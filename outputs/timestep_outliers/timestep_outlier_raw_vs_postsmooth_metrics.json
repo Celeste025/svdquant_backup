@@ -1,0 +1,69 @@
+{
+  "note": "Original fig1 hooked layer OUTPUT. This comparison uses Linear INPUT before/after SmoothQuant scale on the same FFN-down modules.",
+  "layers": {
+    "FLUX.1-dev": "transformer_blocks.12.ff.net.2",
+    "Wan2.1-1.3B": "blocks.20.ffn.net.2"
+  },
+  "color_scale": {
+    "shared_vmin_p005": -2.557056427001953,
+    "shared_vmax_p995": 2.6934869289398193,
+    "postsmooth_only_vmin_p005": -2.5405683517456055,
+    "postsmooth_only_vmax_p995": 2.710806369781494
+  },
+  "raw": {
+    "FLUX.1-dev": {
+      "channels": 12288,
+      "log2_absmax_global_min": -20.0,
+      "log2_absmax_global_max": 4.219168663024902,
+      "per_channel_timestep_range_median": 2.1861443519592285,
+      "per_channel_timestep_range_p90": 4.2901208400726345,
+      "per_channel_timestep_range_max": 14.451107025146484,
+      "step_p99_range": 0.8132393050193731,
+      "step_max_range": 0.9807639122009277,
+      "early_to_late_median_absmax_ratio": 0.7714285850524902,
+      "top1pct_consecutive_jaccard_mean": 0.8285561751928812,
+      "top1pct_first_last_jaccard": 0.0
+    },
+    "Wan2.1-1.3B": {
+      "channels": 8960,
+      "log2_absmax_global_min": -2.5821475982666016,
+      "log2_absmax_global_max": 3.1898245811462402,
+      "per_channel_timestep_range_median": 1.2432711124420166,
+      "per_channel_timestep_range_p90": 2.7369656562805176,
+      "per_channel_timestep_range_max": 4.505423545837402,
+      "step_p99_range": 0.44285939335822966,
+      "step_max_range": 1.0099155902862549,
+      "early_to_late_median_absmax_ratio": 0.9503546357154846,
+      "top1pct_consecutive_jaccard_mean": 0.9087720014613002,
+      "top1pct_first_last_jaccard": 0.22448979591836735
+    }
+  },
+  "postsmooth": {
+    "FLUX.1-dev": {
+      "channels": 12288,
+      "log2_absmax_global_min": -2.5439023971557617,
+      "log2_absmax_global_max": 4.232420921325684,
+      "per_channel_timestep_range_median": 1.945105791091919,
+      "per_channel_timestep_range_p90": 3.9768772602081306,
+      "per_channel_timestep_range_max": 6.006135940551758,
+      "step_p99_range": 0.7863832497596688,
+      "step_max_range": 0.9679782390594482,
+      "early_to_late_median_absmax_ratio": 0.7880794405937195,
+      "top1pct_consecutive_jaccard_mean": 0.8285561751928812,
+      "top1pct_first_last_jaccard": 0.0
+    },
+    "Wan2.1-1.3B": {
+      "channels": 8960,
+      "log2_absmax_global_min": -3.0055594444274902,
+      "log2_absmax_global_max": 3.036836862564087,
+      "per_channel_timestep_range_median": 1.0557632446289062,
+      "per_channel_timestep_range_p90": 2.1585319519042967,
+      "per_channel_timestep_range_max": 4.696077823638916,
+      "step_p99_range": 0.4256300413608549,
+      "step_max_range": 1.0120048522949219,
+      "early_to_late_median_absmax_ratio": 0.9602054357528687,
+      "top1pct_consecutive_jaccard_mean": 0.9118884528865657,
+      "top1pct_first_last_jaccard": 0.2
+    }
+  }
+}

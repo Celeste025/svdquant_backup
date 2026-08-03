@@ -1,0 +1,94 @@
+{
+  "cell_definition": "log2(absmax over batch, all tokens, and for Wan both CFG branches, of each output channel)",
+  "curve_definition": {
+    "all_channel_amplitude_similarity": "mean_c 2^(-abs(v[t+1,c]-v[t,c])); equivalently the mean per-channel min/max amplitude ratio",
+    "relative_outlier_profile_similarity": "same similarity after subtracting each timestep's channel median in log2 space",
+    "top1pct_jaccard": "Jaccard overlap of the highest 1% channel identities between adjacent timesteps"
+  },
+  "figures": [
+    {
+      "layer_type": "attention_q",
+      "depth": "shallow",
+      "flux_layer": "transformer_blocks.0.attn.to_q",
+      "wan_layer": "blocks.0.attn1.to_q",
+      "png": "outputs/timestep_outliers_multilayer/fig1_style_similarity/attention_q_shallow_wan_flux_fig1.png"
+    },
+    {
+      "layer_type": "attention_q",
+      "depth": "middle",
+      "flux_layer": "transformer_blocks.9.attn.to_q",
+      "wan_layer": "blocks.15.attn1.to_q",
+      "png": "outputs/timestep_outliers_multilayer/fig1_style_similarity/attention_q_middle_wan_flux_fig1.png"
+    },
+    {
+      "layer_type": "attention_q",
+      "depth": "deep",
+      "flux_layer": "transformer_blocks.18.attn.to_q",
+      "wan_layer": "blocks.29.attn1.to_q",
+      "png": "outputs/timestep_outliers_multilayer/fig1_style_similarity/attention_q_deep_wan_flux_fig1.png"
+    },
+    {
+      "layer_type": "attention_out",
+      "depth": "shallow",
+      "flux_layer": "transformer_blocks.0.attn.to_out.0",
+      "wan_layer": "blocks.0.attn1.to_out.0",
+      "png": "outputs/timestep_outliers_multilayer/fig1_style_similarity/attention_out_shallow_wan_flux_fig1.png"
+    },
+    {
+      "layer_type": "attention_out",
+      "depth": "middle",
+      "flux_layer": "transformer_blocks.9.attn.to_out.0",
+      "wan_layer": "blocks.15.attn1.to_out.0",
+      "png": "outputs/timestep_outliers_multilayer/fig1_style_similarity/attention_out_middle_wan_flux_fig1.png"
+    },
+    {
+      "layer_type": "attention_out",
+      "depth": "deep",
+      "flux_layer": "transformer_blocks.18.attn.to_out.0",
+      "wan_layer": "blocks.29.attn1.to_out.0",
+      "png": "outputs/timestep_outliers_multilayer/fig1_style_similarity/attention_out_deep_wan_flux_fig1.png"
+    },
+    {
+      "layer_type": "ffn_up",
+      "depth": "shallow",
+      "flux_layer": "transformer_blocks.0.ff.net.0.proj",
+      "wan_layer": "blocks.0.ffn.net.0.proj",
+      "png": "outputs/timestep_outliers_multilayer/fig1_style_similarity/ffn_up_shallow_wan_flux_fig1.png"
+    },
+    {
+      "layer_type": "ffn_up",
+      "depth": "middle",
+      "flux_layer": "transformer_blocks.9.ff.net.0.proj",
+      "wan_layer": "blocks.15.ffn.net.0.proj",
+      "png": "outputs/timestep_outliers_multilayer/fig1_style_similarity/ffn_up_middle_wan_flux_fig1.png"
+    },
+    {
+      "layer_type": "ffn_up",
+      "depth": "deep",
+      "flux_layer": "transformer_blocks.18.ff.net.0.proj",
+      "wan_layer": "blocks.29.ffn.net.0.proj",
+      "png": "outputs/timestep_outliers_multilayer/fig1_style_similarity/ffn_up_deep_wan_flux_fig1.png"
+    },
+    {
+      "layer_type": "ffn_down",
+      "depth": "shallow",
+      "flux_layer": "transformer_blocks.0.ff.net.2",
+      "wan_layer": "blocks.0.ffn.net.2",
+      "png": "outputs/timestep_outliers_multilayer/fig1_style_similarity/ffn_down_shallow_wan_flux_fig1.png"
+    },
+    {
+      "layer_type": "ffn_down",
+      "depth": "middle",
+      "flux_layer": "transformer_blocks.9.ff.net.2",
+      "wan_layer": "blocks.15.ffn.net.2",
+      "png": "outputs/timestep_outliers_multilayer/fig1_style_similarity/ffn_down_middle_wan_flux_fig1.png"
+    },
+    {
+      "layer_type": "ffn_down",
+      "depth": "deep",
+      "flux_layer": "transformer_blocks.18.ff.net.2",
+      "wan_layer": "blocks.29.ffn.net.2",
+      "png": "outputs/timestep_outliers_multilayer/fig1_style_similarity/ffn_down_deep_wan_flux_fig1.png"
+    }
+  ]
+}

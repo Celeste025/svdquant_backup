@@ -1,0 +1,33 @@
+{
+  "mode": "quant",
+  "model": "/data/home/jinqiwen/workspace/video-distilation/DVDQuant_rep/pretrained_models/Wan2.1-T2V-1.3B-Diffusers",
+  "output": "outputs/wan_ablation_sensitive_bf16/quant_seed44.mp4",
+  "prompt": "An astronaut feeding ducks on a sunny afternoon, reflection from the water.",
+  "negative_prompt": "Bright tones, overexposed, static, blurred details, subtitles, style, works, paintings, images, static, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, misshapen limbs, fused fingers, still picture, messy background, three legs, many people in the background, walking backwards",
+  "seed": 44,
+  "height": 480,
+  "width": 832,
+  "num_frames": 81,
+  "num_inference_steps": 50,
+  "guidance_scale": 6.0,
+  "flow_shift": 3.0,
+  "fps": 16,
+  "weight_dtype": "sint4_fake",
+  "activation_dtype": "dynamic_int4_fake: signed except shifted FFN-down uses unsigned",
+  "group_size": 64,
+  "svd_rank": 32,
+  "svd_target": "W_smooth; INT4 target is W_smooth - SVD_rank32(W_smooth)",
+  "quantized_linears": 210,
+  "mixed_sensitive_bf16": true,
+  "calibration": {
+    "num_modules": 300,
+    "num_groups": 210,
+    "mean_search_nmse": 0.010596963245496624,
+    "mean_final_nmse": 0.009113401612270384,
+    "mean_relative_improvement": 0.15517133807039896,
+    "mean_iterations_run": 22.16190476190476,
+    "max_iterations_run": 62,
+    "groups_hit_max_iters": 0
+  },
+  "elapsed_seconds": 329.65647292137146
+}

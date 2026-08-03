@@ -1,0 +1,3311 @@
+{
+  "format": "wan-svdquant-memmap-v1",
+  "model": "/data/home/jinqiwen/workspace/video-distilation/DVDQuant_rep/pretrained_models/Wan2.1-T2V-1.3B-Diffusers",
+  "prompt_file": "/data/home/jinqiwen/workspace/video-distilation/DVDQuant_rep/examples/wan/assets/vbench_subset_8.json",
+  "prompts": [
+    {
+      "index": 0,
+      "seed": 42,
+      "prompt": "Close up of grapes on a rotating table."
+    },
+    {
+      "index": 1,
+      "seed": 43,
+      "prompt": "A storm trooper vacuuming the beach."
+    },
+    {
+      "index": 2,
+      "seed": 44,
+      "prompt": "An astronaut feeding ducks on a sunny afternoon, reflection from the water."
+    },
+    {
+      "index": 3,
+      "seed": 45,
+      "prompt": "indoor movie theater"
+    },
+    {
+      "index": 4,
+      "seed": 46,
+      "prompt": "train station platform"
+    },
+    {
+      "index": 5,
+      "seed": 47,
+      "prompt": "a person swimming in ocean"
+    },
+    {
+      "index": 6,
+      "seed": 48,
+      "prompt": "a person washing the dishes"
+    },
+    {
+      "index": 7,
+      "seed": 49,
+      "prompt": "a person walking in the snowstorm"
+    }
+  ],
+  "negative_prompt": "Bright tones, overexposed, static, blurred details, subtitles, style, works, paintings, images, static, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, misshapen limbs, fused fingers, still picture, messy background, three legs, many people in the background, walking backwards",
+  "height": 480,
+  "width": 832,
+  "num_frames": 81,
+  "num_inference_steps": 50,
+  "guidance_scale": 6.0,
+  "flow_shift": 3.0,
+  "selected_step_indices": [
+    0,
+    5,
+    11,
+    16,
+    22,
+    27,
+    33,
+    38,
+    44,
+    49
+  ],
+  "tokens_per_spatiotemporal_call": 2048,
+  "num_groups": 210,
+  "groups": [
+    {
+      "group_index": 0,
+      "names": [
+        "blocks.0.attn1.to_q",
+        "blocks.0.attn1.to_k",
+        "blocks.0.attn1.to_v"
+      ],
+      "path": "group_000.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 1,
+      "names": [
+        "blocks.0.attn1.to_out.0"
+      ],
+      "path": "group_001.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 2,
+      "names": [
+        "blocks.0.attn2.to_q"
+      ],
+      "path": "group_002.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 3,
+      "names": [
+        "blocks.0.attn2.to_k",
+        "blocks.0.attn2.to_v"
+      ],
+      "path": "group_003.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 4,
+      "names": [
+        "blocks.0.attn2.to_out.0"
+      ],
+      "path": "group_004.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 5,
+      "names": [
+        "blocks.0.ffn.net.0.proj"
+      ],
+      "path": "group_005.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 6,
+      "names": [
+        "blocks.0.ffn.net.2"
+      ],
+      "path": "group_006.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 7,
+      "names": [
+        "blocks.1.attn1.to_q",
+        "blocks.1.attn1.to_k",
+        "blocks.1.attn1.to_v"
+      ],
+      "path": "group_007.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 8,
+      "names": [
+        "blocks.1.attn1.to_out.0"
+      ],
+      "path": "group_008.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 9,
+      "names": [
+        "blocks.1.attn2.to_q"
+      ],
+      "path": "group_009.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 10,
+      "names": [
+        "blocks.1.attn2.to_k",
+        "blocks.1.attn2.to_v"
+      ],
+      "path": "group_010.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 11,
+      "names": [
+        "blocks.1.attn2.to_out.0"
+      ],
+      "path": "group_011.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 12,
+      "names": [
+        "blocks.1.ffn.net.0.proj"
+      ],
+      "path": "group_012.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 13,
+      "names": [
+        "blocks.1.ffn.net.2"
+      ],
+      "path": "group_013.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 14,
+      "names": [
+        "blocks.2.attn1.to_q",
+        "blocks.2.attn1.to_k",
+        "blocks.2.attn1.to_v"
+      ],
+      "path": "group_014.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 15,
+      "names": [
+        "blocks.2.attn1.to_out.0"
+      ],
+      "path": "group_015.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 16,
+      "names": [
+        "blocks.2.attn2.to_q"
+      ],
+      "path": "group_016.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 17,
+      "names": [
+        "blocks.2.attn2.to_k",
+        "blocks.2.attn2.to_v"
+      ],
+      "path": "group_017.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 18,
+      "names": [
+        "blocks.2.attn2.to_out.0"
+      ],
+      "path": "group_018.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 19,
+      "names": [
+        "blocks.2.ffn.net.0.proj"
+      ],
+      "path": "group_019.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 20,
+      "names": [
+        "blocks.2.ffn.net.2"
+      ],
+      "path": "group_020.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 21,
+      "names": [
+        "blocks.3.attn1.to_q",
+        "blocks.3.attn1.to_k",
+        "blocks.3.attn1.to_v"
+      ],
+      "path": "group_021.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 22,
+      "names": [
+        "blocks.3.attn1.to_out.0"
+      ],
+      "path": "group_022.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 23,
+      "names": [
+        "blocks.3.attn2.to_q"
+      ],
+      "path": "group_023.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 24,
+      "names": [
+        "blocks.3.attn2.to_k",
+        "blocks.3.attn2.to_v"
+      ],
+      "path": "group_024.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 25,
+      "names": [
+        "blocks.3.attn2.to_out.0"
+      ],
+      "path": "group_025.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 26,
+      "names": [
+        "blocks.3.ffn.net.0.proj"
+      ],
+      "path": "group_026.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 27,
+      "names": [
+        "blocks.3.ffn.net.2"
+      ],
+      "path": "group_027.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 28,
+      "names": [
+        "blocks.4.attn1.to_q",
+        "blocks.4.attn1.to_k",
+        "blocks.4.attn1.to_v"
+      ],
+      "path": "group_028.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 29,
+      "names": [
+        "blocks.4.attn1.to_out.0"
+      ],
+      "path": "group_029.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 30,
+      "names": [
+        "blocks.4.attn2.to_q"
+      ],
+      "path": "group_030.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 31,
+      "names": [
+        "blocks.4.attn2.to_k",
+        "blocks.4.attn2.to_v"
+      ],
+      "path": "group_031.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 32,
+      "names": [
+        "blocks.4.attn2.to_out.0"
+      ],
+      "path": "group_032.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 33,
+      "names": [
+        "blocks.4.ffn.net.0.proj"
+      ],
+      "path": "group_033.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 34,
+      "names": [
+        "blocks.4.ffn.net.2"
+      ],
+      "path": "group_034.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 35,
+      "names": [
+        "blocks.5.attn1.to_q",
+        "blocks.5.attn1.to_k",
+        "blocks.5.attn1.to_v"
+      ],
+      "path": "group_035.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 36,
+      "names": [
+        "blocks.5.attn1.to_out.0"
+      ],
+      "path": "group_036.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 37,
+      "names": [
+        "blocks.5.attn2.to_q"
+      ],
+      "path": "group_037.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 38,
+      "names": [
+        "blocks.5.attn2.to_k",
+        "blocks.5.attn2.to_v"
+      ],
+      "path": "group_038.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 39,
+      "names": [
+        "blocks.5.attn2.to_out.0"
+      ],
+      "path": "group_039.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 40,
+      "names": [
+        "blocks.5.ffn.net.0.proj"
+      ],
+      "path": "group_040.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 41,
+      "names": [
+        "blocks.5.ffn.net.2"
+      ],
+      "path": "group_041.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 42,
+      "names": [
+        "blocks.6.attn1.to_q",
+        "blocks.6.attn1.to_k",
+        "blocks.6.attn1.to_v"
+      ],
+      "path": "group_042.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 43,
+      "names": [
+        "blocks.6.attn1.to_out.0"
+      ],
+      "path": "group_043.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 44,
+      "names": [
+        "blocks.6.attn2.to_q"
+      ],
+      "path": "group_044.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 45,
+      "names": [
+        "blocks.6.attn2.to_k",
+        "blocks.6.attn2.to_v"
+      ],
+      "path": "group_045.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 46,
+      "names": [
+        "blocks.6.attn2.to_out.0"
+      ],
+      "path": "group_046.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 47,
+      "names": [
+        "blocks.6.ffn.net.0.proj"
+      ],
+      "path": "group_047.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 48,
+      "names": [
+        "blocks.6.ffn.net.2"
+      ],
+      "path": "group_048.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 49,
+      "names": [
+        "blocks.7.attn1.to_q",
+        "blocks.7.attn1.to_k",
+        "blocks.7.attn1.to_v"
+      ],
+      "path": "group_049.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 50,
+      "names": [
+        "blocks.7.attn1.to_out.0"
+      ],
+      "path": "group_050.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 51,
+      "names": [
+        "blocks.7.attn2.to_q"
+      ],
+      "path": "group_051.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 52,
+      "names": [
+        "blocks.7.attn2.to_k",
+        "blocks.7.attn2.to_v"
+      ],
+      "path": "group_052.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 53,
+      "names": [
+        "blocks.7.attn2.to_out.0"
+      ],
+      "path": "group_053.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 54,
+      "names": [
+        "blocks.7.ffn.net.0.proj"
+      ],
+      "path": "group_054.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 55,
+      "names": [
+        "blocks.7.ffn.net.2"
+      ],
+      "path": "group_055.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 56,
+      "names": [
+        "blocks.8.attn1.to_q",
+        "blocks.8.attn1.to_k",
+        "blocks.8.attn1.to_v"
+      ],
+      "path": "group_056.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 57,
+      "names": [
+        "blocks.8.attn1.to_out.0"
+      ],
+      "path": "group_057.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 58,
+      "names": [
+        "blocks.8.attn2.to_q"
+      ],
+      "path": "group_058.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 59,
+      "names": [
+        "blocks.8.attn2.to_k",
+        "blocks.8.attn2.to_v"
+      ],
+      "path": "group_059.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 60,
+      "names": [
+        "blocks.8.attn2.to_out.0"
+      ],
+      "path": "group_060.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 61,
+      "names": [
+        "blocks.8.ffn.net.0.proj"
+      ],
+      "path": "group_061.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 62,
+      "names": [
+        "blocks.8.ffn.net.2"
+      ],
+      "path": "group_062.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 63,
+      "names": [
+        "blocks.9.attn1.to_q",
+        "blocks.9.attn1.to_k",
+        "blocks.9.attn1.to_v"
+      ],
+      "path": "group_063.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 64,
+      "names": [
+        "blocks.9.attn1.to_out.0"
+      ],
+      "path": "group_064.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 65,
+      "names": [
+        "blocks.9.attn2.to_q"
+      ],
+      "path": "group_065.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 66,
+      "names": [
+        "blocks.9.attn2.to_k",
+        "blocks.9.attn2.to_v"
+      ],
+      "path": "group_066.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 67,
+      "names": [
+        "blocks.9.attn2.to_out.0"
+      ],
+      "path": "group_067.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 68,
+      "names": [
+        "blocks.9.ffn.net.0.proj"
+      ],
+      "path": "group_068.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 69,
+      "names": [
+        "blocks.9.ffn.net.2"
+      ],
+      "path": "group_069.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 70,
+      "names": [
+        "blocks.10.attn1.to_q",
+        "blocks.10.attn1.to_k",
+        "blocks.10.attn1.to_v"
+      ],
+      "path": "group_070.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 71,
+      "names": [
+        "blocks.10.attn1.to_out.0"
+      ],
+      "path": "group_071.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 72,
+      "names": [
+        "blocks.10.attn2.to_q"
+      ],
+      "path": "group_072.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 73,
+      "names": [
+        "blocks.10.attn2.to_k",
+        "blocks.10.attn2.to_v"
+      ],
+      "path": "group_073.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 74,
+      "names": [
+        "blocks.10.attn2.to_out.0"
+      ],
+      "path": "group_074.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 75,
+      "names": [
+        "blocks.10.ffn.net.0.proj"
+      ],
+      "path": "group_075.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 76,
+      "names": [
+        "blocks.10.ffn.net.2"
+      ],
+      "path": "group_076.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 77,
+      "names": [
+        "blocks.11.attn1.to_q",
+        "blocks.11.attn1.to_k",
+        "blocks.11.attn1.to_v"
+      ],
+      "path": "group_077.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 78,
+      "names": [
+        "blocks.11.attn1.to_out.0"
+      ],
+      "path": "group_078.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 79,
+      "names": [
+        "blocks.11.attn2.to_q"
+      ],
+      "path": "group_079.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 80,
+      "names": [
+        "blocks.11.attn2.to_k",
+        "blocks.11.attn2.to_v"
+      ],
+      "path": "group_080.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 81,
+      "names": [
+        "blocks.11.attn2.to_out.0"
+      ],
+      "path": "group_081.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 82,
+      "names": [
+        "blocks.11.ffn.net.0.proj"
+      ],
+      "path": "group_082.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 83,
+      "names": [
+        "blocks.11.ffn.net.2"
+      ],
+      "path": "group_083.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 84,
+      "names": [
+        "blocks.12.attn1.to_q",
+        "blocks.12.attn1.to_k",
+        "blocks.12.attn1.to_v"
+      ],
+      "path": "group_084.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 85,
+      "names": [
+        "blocks.12.attn1.to_out.0"
+      ],
+      "path": "group_085.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 86,
+      "names": [
+        "blocks.12.attn2.to_q"
+      ],
+      "path": "group_086.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 87,
+      "names": [
+        "blocks.12.attn2.to_k",
+        "blocks.12.attn2.to_v"
+      ],
+      "path": "group_087.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 88,
+      "names": [
+        "blocks.12.attn2.to_out.0"
+      ],
+      "path": "group_088.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 89,
+      "names": [
+        "blocks.12.ffn.net.0.proj"
+      ],
+      "path": "group_089.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 90,
+      "names": [
+        "blocks.12.ffn.net.2"
+      ],
+      "path": "group_090.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 91,
+      "names": [
+        "blocks.13.attn1.to_q",
+        "blocks.13.attn1.to_k",
+        "blocks.13.attn1.to_v"
+      ],
+      "path": "group_091.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 92,
+      "names": [
+        "blocks.13.attn1.to_out.0"
+      ],
+      "path": "group_092.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 93,
+      "names": [
+        "blocks.13.attn2.to_q"
+      ],
+      "path": "group_093.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 94,
+      "names": [
+        "blocks.13.attn2.to_k",
+        "blocks.13.attn2.to_v"
+      ],
+      "path": "group_094.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 95,
+      "names": [
+        "blocks.13.attn2.to_out.0"
+      ],
+      "path": "group_095.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 96,
+      "names": [
+        "blocks.13.ffn.net.0.proj"
+      ],
+      "path": "group_096.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 97,
+      "names": [
+        "blocks.13.ffn.net.2"
+      ],
+      "path": "group_097.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 98,
+      "names": [
+        "blocks.14.attn1.to_q",
+        "blocks.14.attn1.to_k",
+        "blocks.14.attn1.to_v"
+      ],
+      "path": "group_098.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 99,
+      "names": [
+        "blocks.14.attn1.to_out.0"
+      ],
+      "path": "group_099.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 100,
+      "names": [
+        "blocks.14.attn2.to_q"
+      ],
+      "path": "group_100.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 101,
+      "names": [
+        "blocks.14.attn2.to_k",
+        "blocks.14.attn2.to_v"
+      ],
+      "path": "group_101.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 102,
+      "names": [
+        "blocks.14.attn2.to_out.0"
+      ],
+      "path": "group_102.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 103,
+      "names": [
+        "blocks.14.ffn.net.0.proj"
+      ],
+      "path": "group_103.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 104,
+      "names": [
+        "blocks.14.ffn.net.2"
+      ],
+      "path": "group_104.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 105,
+      "names": [
+        "blocks.15.attn1.to_q",
+        "blocks.15.attn1.to_k",
+        "blocks.15.attn1.to_v"
+      ],
+      "path": "group_105.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 106,
+      "names": [
+        "blocks.15.attn1.to_out.0"
+      ],
+      "path": "group_106.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 107,
+      "names": [
+        "blocks.15.attn2.to_q"
+      ],
+      "path": "group_107.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 108,
+      "names": [
+        "blocks.15.attn2.to_k",
+        "blocks.15.attn2.to_v"
+      ],
+      "path": "group_108.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 109,
+      "names": [
+        "blocks.15.attn2.to_out.0"
+      ],
+      "path": "group_109.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 110,
+      "names": [
+        "blocks.15.ffn.net.0.proj"
+      ],
+      "path": "group_110.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 111,
+      "names": [
+        "blocks.15.ffn.net.2"
+      ],
+      "path": "group_111.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 112,
+      "names": [
+        "blocks.16.attn1.to_q",
+        "blocks.16.attn1.to_k",
+        "blocks.16.attn1.to_v"
+      ],
+      "path": "group_112.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 113,
+      "names": [
+        "blocks.16.attn1.to_out.0"
+      ],
+      "path": "group_113.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 114,
+      "names": [
+        "blocks.16.attn2.to_q"
+      ],
+      "path": "group_114.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 115,
+      "names": [
+        "blocks.16.attn2.to_k",
+        "blocks.16.attn2.to_v"
+      ],
+      "path": "group_115.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 116,
+      "names": [
+        "blocks.16.attn2.to_out.0"
+      ],
+      "path": "group_116.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 117,
+      "names": [
+        "blocks.16.ffn.net.0.proj"
+      ],
+      "path": "group_117.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 118,
+      "names": [
+        "blocks.16.ffn.net.2"
+      ],
+      "path": "group_118.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 119,
+      "names": [
+        "blocks.17.attn1.to_q",
+        "blocks.17.attn1.to_k",
+        "blocks.17.attn1.to_v"
+      ],
+      "path": "group_119.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 120,
+      "names": [
+        "blocks.17.attn1.to_out.0"
+      ],
+      "path": "group_120.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 121,
+      "names": [
+        "blocks.17.attn2.to_q"
+      ],
+      "path": "group_121.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 122,
+      "names": [
+        "blocks.17.attn2.to_k",
+        "blocks.17.attn2.to_v"
+      ],
+      "path": "group_122.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 123,
+      "names": [
+        "blocks.17.attn2.to_out.0"
+      ],
+      "path": "group_123.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 124,
+      "names": [
+        "blocks.17.ffn.net.0.proj"
+      ],
+      "path": "group_124.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 125,
+      "names": [
+        "blocks.17.ffn.net.2"
+      ],
+      "path": "group_125.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 126,
+      "names": [
+        "blocks.18.attn1.to_q",
+        "blocks.18.attn1.to_k",
+        "blocks.18.attn1.to_v"
+      ],
+      "path": "group_126.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 127,
+      "names": [
+        "blocks.18.attn1.to_out.0"
+      ],
+      "path": "group_127.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 128,
+      "names": [
+        "blocks.18.attn2.to_q"
+      ],
+      "path": "group_128.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 129,
+      "names": [
+        "blocks.18.attn2.to_k",
+        "blocks.18.attn2.to_v"
+      ],
+      "path": "group_129.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 130,
+      "names": [
+        "blocks.18.attn2.to_out.0"
+      ],
+      "path": "group_130.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 131,
+      "names": [
+        "blocks.18.ffn.net.0.proj"
+      ],
+      "path": "group_131.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 132,
+      "names": [
+        "blocks.18.ffn.net.2"
+      ],
+      "path": "group_132.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 133,
+      "names": [
+        "blocks.19.attn1.to_q",
+        "blocks.19.attn1.to_k",
+        "blocks.19.attn1.to_v"
+      ],
+      "path": "group_133.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 134,
+      "names": [
+        "blocks.19.attn1.to_out.0"
+      ],
+      "path": "group_134.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 135,
+      "names": [
+        "blocks.19.attn2.to_q"
+      ],
+      "path": "group_135.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 136,
+      "names": [
+        "blocks.19.attn2.to_k",
+        "blocks.19.attn2.to_v"
+      ],
+      "path": "group_136.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 137,
+      "names": [
+        "blocks.19.attn2.to_out.0"
+      ],
+      "path": "group_137.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 138,
+      "names": [
+        "blocks.19.ffn.net.0.proj"
+      ],
+      "path": "group_138.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 139,
+      "names": [
+        "blocks.19.ffn.net.2"
+      ],
+      "path": "group_139.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 140,
+      "names": [
+        "blocks.20.attn1.to_q",
+        "blocks.20.attn1.to_k",
+        "blocks.20.attn1.to_v"
+      ],
+      "path": "group_140.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 141,
+      "names": [
+        "blocks.20.attn1.to_out.0"
+      ],
+      "path": "group_141.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 142,
+      "names": [
+        "blocks.20.attn2.to_q"
+      ],
+      "path": "group_142.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 143,
+      "names": [
+        "blocks.20.attn2.to_k",
+        "blocks.20.attn2.to_v"
+      ],
+      "path": "group_143.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 144,
+      "names": [
+        "blocks.20.attn2.to_out.0"
+      ],
+      "path": "group_144.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 145,
+      "names": [
+        "blocks.20.ffn.net.0.proj"
+      ],
+      "path": "group_145.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 146,
+      "names": [
+        "blocks.20.ffn.net.2"
+      ],
+      "path": "group_146.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 147,
+      "names": [
+        "blocks.21.attn1.to_q",
+        "blocks.21.attn1.to_k",
+        "blocks.21.attn1.to_v"
+      ],
+      "path": "group_147.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 148,
+      "names": [
+        "blocks.21.attn1.to_out.0"
+      ],
+      "path": "group_148.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 149,
+      "names": [
+        "blocks.21.attn2.to_q"
+      ],
+      "path": "group_149.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 150,
+      "names": [
+        "blocks.21.attn2.to_k",
+        "blocks.21.attn2.to_v"
+      ],
+      "path": "group_150.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 151,
+      "names": [
+        "blocks.21.attn2.to_out.0"
+      ],
+      "path": "group_151.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 152,
+      "names": [
+        "blocks.21.ffn.net.0.proj"
+      ],
+      "path": "group_152.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 153,
+      "names": [
+        "blocks.21.ffn.net.2"
+      ],
+      "path": "group_153.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 154,
+      "names": [
+        "blocks.22.attn1.to_q",
+        "blocks.22.attn1.to_k",
+        "blocks.22.attn1.to_v"
+      ],
+      "path": "group_154.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 155,
+      "names": [
+        "blocks.22.attn1.to_out.0"
+      ],
+      "path": "group_155.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 156,
+      "names": [
+        "blocks.22.attn2.to_q"
+      ],
+      "path": "group_156.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 157,
+      "names": [
+        "blocks.22.attn2.to_k",
+        "blocks.22.attn2.to_v"
+      ],
+      "path": "group_157.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 158,
+      "names": [
+        "blocks.22.attn2.to_out.0"
+      ],
+      "path": "group_158.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 159,
+      "names": [
+        "blocks.22.ffn.net.0.proj"
+      ],
+      "path": "group_159.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 160,
+      "names": [
+        "blocks.22.ffn.net.2"
+      ],
+      "path": "group_160.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 161,
+      "names": [
+        "blocks.23.attn1.to_q",
+        "blocks.23.attn1.to_k",
+        "blocks.23.attn1.to_v"
+      ],
+      "path": "group_161.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 162,
+      "names": [
+        "blocks.23.attn1.to_out.0"
+      ],
+      "path": "group_162.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 163,
+      "names": [
+        "blocks.23.attn2.to_q"
+      ],
+      "path": "group_163.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 164,
+      "names": [
+        "blocks.23.attn2.to_k",
+        "blocks.23.attn2.to_v"
+      ],
+      "path": "group_164.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 165,
+      "names": [
+        "blocks.23.attn2.to_out.0"
+      ],
+      "path": "group_165.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 166,
+      "names": [
+        "blocks.23.ffn.net.0.proj"
+      ],
+      "path": "group_166.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 167,
+      "names": [
+        "blocks.23.ffn.net.2"
+      ],
+      "path": "group_167.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 168,
+      "names": [
+        "blocks.24.attn1.to_q",
+        "blocks.24.attn1.to_k",
+        "blocks.24.attn1.to_v"
+      ],
+      "path": "group_168.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 169,
+      "names": [
+        "blocks.24.attn1.to_out.0"
+      ],
+      "path": "group_169.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 170,
+      "names": [
+        "blocks.24.attn2.to_q"
+      ],
+      "path": "group_170.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 171,
+      "names": [
+        "blocks.24.attn2.to_k",
+        "blocks.24.attn2.to_v"
+      ],
+      "path": "group_171.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 172,
+      "names": [
+        "blocks.24.attn2.to_out.0"
+      ],
+      "path": "group_172.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 173,
+      "names": [
+        "blocks.24.ffn.net.0.proj"
+      ],
+      "path": "group_173.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 174,
+      "names": [
+        "blocks.24.ffn.net.2"
+      ],
+      "path": "group_174.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 175,
+      "names": [
+        "blocks.25.attn1.to_q",
+        "blocks.25.attn1.to_k",
+        "blocks.25.attn1.to_v"
+      ],
+      "path": "group_175.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 176,
+      "names": [
+        "blocks.25.attn1.to_out.0"
+      ],
+      "path": "group_176.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 177,
+      "names": [
+        "blocks.25.attn2.to_q"
+      ],
+      "path": "group_177.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 178,
+      "names": [
+        "blocks.25.attn2.to_k",
+        "blocks.25.attn2.to_v"
+      ],
+      "path": "group_178.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 179,
+      "names": [
+        "blocks.25.attn2.to_out.0"
+      ],
+      "path": "group_179.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 180,
+      "names": [
+        "blocks.25.ffn.net.0.proj"
+      ],
+      "path": "group_180.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 181,
+      "names": [
+        "blocks.25.ffn.net.2"
+      ],
+      "path": "group_181.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 182,
+      "names": [
+        "blocks.26.attn1.to_q",
+        "blocks.26.attn1.to_k",
+        "blocks.26.attn1.to_v"
+      ],
+      "path": "group_182.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 183,
+      "names": [
+        "blocks.26.attn1.to_out.0"
+      ],
+      "path": "group_183.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 184,
+      "names": [
+        "blocks.26.attn2.to_q"
+      ],
+      "path": "group_184.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 185,
+      "names": [
+        "blocks.26.attn2.to_k",
+        "blocks.26.attn2.to_v"
+      ],
+      "path": "group_185.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 186,
+      "names": [
+        "blocks.26.attn2.to_out.0"
+      ],
+      "path": "group_186.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 187,
+      "names": [
+        "blocks.26.ffn.net.0.proj"
+      ],
+      "path": "group_187.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 188,
+      "names": [
+        "blocks.26.ffn.net.2"
+      ],
+      "path": "group_188.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 189,
+      "names": [
+        "blocks.27.attn1.to_q",
+        "blocks.27.attn1.to_k",
+        "blocks.27.attn1.to_v"
+      ],
+      "path": "group_189.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 190,
+      "names": [
+        "blocks.27.attn1.to_out.0"
+      ],
+      "path": "group_190.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 191,
+      "names": [
+        "blocks.27.attn2.to_q"
+      ],
+      "path": "group_191.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 192,
+      "names": [
+        "blocks.27.attn2.to_k",
+        "blocks.27.attn2.to_v"
+      ],
+      "path": "group_192.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 193,
+      "names": [
+        "blocks.27.attn2.to_out.0"
+      ],
+      "path": "group_193.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 194,
+      "names": [
+        "blocks.27.ffn.net.0.proj"
+      ],
+      "path": "group_194.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 195,
+      "names": [
+        "blocks.27.ffn.net.2"
+      ],
+      "path": "group_195.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 196,
+      "names": [
+        "blocks.28.attn1.to_q",
+        "blocks.28.attn1.to_k",
+        "blocks.28.attn1.to_v"
+      ],
+      "path": "group_196.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 197,
+      "names": [
+        "blocks.28.attn1.to_out.0"
+      ],
+      "path": "group_197.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 198,
+      "names": [
+        "blocks.28.attn2.to_q"
+      ],
+      "path": "group_198.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 199,
+      "names": [
+        "blocks.28.attn2.to_k",
+        "blocks.28.attn2.to_v"
+      ],
+      "path": "group_199.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 200,
+      "names": [
+        "blocks.28.attn2.to_out.0"
+      ],
+      "path": "group_200.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 201,
+      "names": [
+        "blocks.28.ffn.net.0.proj"
+      ],
+      "path": "group_201.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 202,
+      "names": [
+        "blocks.28.ffn.net.2"
+      ],
+      "path": "group_202.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    },
+    {
+      "group_index": 203,
+      "names": [
+        "blocks.29.attn1.to_q",
+        "blocks.29.attn1.to_k",
+        "blocks.29.attn1.to_v"
+      ],
+      "path": "group_203.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 204,
+      "names": [
+        "blocks.29.attn1.to_out.0"
+      ],
+      "path": "group_204.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 205,
+      "names": [
+        "blocks.29.attn2.to_q"
+      ],
+      "path": "group_205.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 206,
+      "names": [
+        "blocks.29.attn2.to_k",
+        "blocks.29.attn2.to_v"
+      ],
+      "path": "group_206.bf16.mmap",
+      "shape": [
+        81920,
+        1536
+      ],
+      "rows_per_call": 512,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 251658240
+    },
+    {
+      "group_index": 207,
+      "names": [
+        "blocks.29.attn2.to_out.0"
+      ],
+      "path": "group_207.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 208,
+      "names": [
+        "blocks.29.ffn.net.0.proj"
+      ],
+      "path": "group_208.bf16.mmap",
+      "shape": [
+        327680,
+        1536
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 1006632960
+    },
+    {
+      "group_index": 209,
+      "names": [
+        "blocks.29.ffn.net.2"
+      ],
+      "path": "group_209.bf16.mmap",
+      "shape": [
+        327680,
+        8960
+      ],
+      "rows_per_call": 2048,
+      "selected_calls": 160,
+      "storage_dtype": "bfloat16_raw_uint16",
+      "bytes": 5872025600
+    }
+  ],
+  "total_bytes": 334705459200
+}

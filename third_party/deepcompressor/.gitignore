@@ -1,36 +1,3 @@
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -196,56 +163,13 @@ cython_debug/
 .vscode/
 !.vscode/settings.json
 
-.gradio/
-
 .DS_Store
 *.log
-*.nsys-rep
-*.ncu-rep
-
-# ---------------------------------------------------------------------------
-# Local experiment backup (Celeste025/svdquant_backup)
-# Keep: scripts/, reports (md/json), third_party/deepcompressor, engine source.
-# Drop: huge run artifacts, weights, media, caches.
-# ---------------------------------------------------------------------------
-
-# Experiment dumps (~400G+ locally). Keep only lightweight reports.
-/outputs/**
-!/outputs/**/
-!/outputs/**/*.md
-!/outputs/**/*.json
-/logs/
-
-# Model / tensor / media artifacts
 *.pt
-*.pth
-*.ckpt
-*.safetensors
-*.bin
-*.onnx
-*.npy
-*.npz
-*.mp4
-*.avi
-*.wav
-*.flac
-
-# Hugging Face / torch / experiment caches
-.cache/
-.huggingface/
-**/huggingface/hub/
-**/transformers/cache/
-wandb/
+.tmp/
+runs
+exps
 runs/
-lightning_logs/
-
-# Local CUDA extension build product (also covered by *.so above)
-nunchaku/_C*.so
-
-# Editor / OS
-.cursor/
-*.swp
-*~
-
-# Optional large local docs (uncomment if you do not want them in the backup)
-# *.pdf
+exps/
+wandb
+wandb/

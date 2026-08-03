@@ -1,0 +1,34 @@
+{
+  "protocol": {
+    "statistic": "per-channel absmax across all tokens, then log2",
+    "trajectory": "full BF16 seed44 50-step denoising trajectory",
+    "wan_layer": "blocks.20.ffn.net.2; max across conditional and unconditional CFG calls",
+    "flux_layer": "transformer_blocks.12.ff.net.2; selected at the same ~2/3 relative depth of the dual-stream stage"
+  },
+  "FLUX.1-dev": {
+    "channels": 3072,
+    "log2_absmax_global_min": 1.0,
+    "log2_absmax_global_max": 4.918863296508789,
+    "per_channel_timestep_range_median": 1.2856721878051758,
+    "per_channel_timestep_range_p90": 1.7257918357849122,
+    "per_channel_timestep_range_max": 2.504472494125366,
+    "step_p99_range": 1.1369807720184326,
+    "step_max_range": 0.7489380836486816,
+    "early_to_late_median_absmax_ratio": 0.7287449240684509,
+    "top1pct_consecutive_jaccard_mean": 0.7518459125222332,
+    "top1pct_first_last_jaccard": 0.05084745762711865
+  },
+  "Wan2.1-1.3B": {
+    "channels": 1536,
+    "log2_absmax_global_min": 0.13955135643482208,
+    "log2_absmax_global_max": 4.375039577484131,
+    "per_channel_timestep_range_median": 0.7582422494888306,
+    "per_channel_timestep_range_p90": 1.243675947189331,
+    "per_channel_timestep_range_max": 1.9085017442703247,
+    "step_p99_range": 0.5225475251674647,
+    "step_max_range": 0.42084336280822754,
+    "early_to_late_median_absmax_ratio": 1.3246753215789795,
+    "top1pct_consecutive_jaccard_mean": 0.9031823255618037,
+    "top1pct_first_last_jaccard": 0.15384615384615385
+  }
+}

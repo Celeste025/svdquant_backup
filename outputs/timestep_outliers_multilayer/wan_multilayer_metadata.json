@@ -1,0 +1,164 @@
+{
+  "model": "wan",
+  "path": "outputs/timestep_outliers_multilayer/wan_multilayer_surfaces.pt",
+  "a4_path": "outputs/timestep_outliers_multilayer/wan_a4_timestep_metrics.json",
+  "definition": "log2(max over batch,tokens[,CFG branches] of abs(layer output))",
+  "layers": {
+    "attention_q_b0": {
+      "name": "blocks.0.attn1.to_q",
+      "type": "attention_q",
+      "block": 0,
+      "quant_key": null,
+      "shift": 0.0,
+      "unsigned": false,
+      "channels": 1536,
+      "shape": [
+        50,
+        1536
+      ]
+    },
+    "attention_q_b15": {
+      "name": "blocks.15.attn1.to_q",
+      "type": "attention_q",
+      "block": 15,
+      "quant_key": null,
+      "shift": 0.0,
+      "unsigned": false,
+      "channels": 1536,
+      "shape": [
+        50,
+        1536
+      ]
+    },
+    "attention_q_b29": {
+      "name": "blocks.29.attn1.to_q",
+      "type": "attention_q",
+      "block": 29,
+      "quant_key": null,
+      "shift": 0.0,
+      "unsigned": false,
+      "channels": 1536,
+      "shape": [
+        50,
+        1536
+      ]
+    },
+    "attention_out_b0": {
+      "name": "blocks.0.attn1.to_out.0",
+      "type": "attention_out",
+      "block": 0,
+      "quant_key": null,
+      "shift": 0.0,
+      "unsigned": false,
+      "channels": 1536,
+      "shape": [
+        50,
+        1536
+      ]
+    },
+    "attention_out_b15": {
+      "name": "blocks.15.attn1.to_out.0",
+      "type": "attention_out",
+      "block": 15,
+      "quant_key": null,
+      "shift": 0.0,
+      "unsigned": false,
+      "channels": 1536,
+      "shape": [
+        50,
+        1536
+      ]
+    },
+    "attention_out_b29": {
+      "name": "blocks.29.attn1.to_out.0",
+      "type": "attention_out",
+      "block": 29,
+      "quant_key": null,
+      "shift": 0.0,
+      "unsigned": false,
+      "channels": 1536,
+      "shape": [
+        50,
+        1536
+      ]
+    },
+    "ffn_up_b0": {
+      "name": "blocks.0.ffn.net.0.proj",
+      "type": "ffn_up",
+      "block": 0,
+      "quant_key": null,
+      "shift": 0.0,
+      "unsigned": false,
+      "channels": 8960,
+      "shape": [
+        50,
+        8960
+      ]
+    },
+    "ffn_up_b15": {
+      "name": "blocks.15.ffn.net.0.proj",
+      "type": "ffn_up",
+      "block": 15,
+      "quant_key": null,
+      "shift": 0.0,
+      "unsigned": false,
+      "channels": 8960,
+      "shape": [
+        50,
+        8960
+      ]
+    },
+    "ffn_up_b29": {
+      "name": "blocks.29.ffn.net.0.proj",
+      "type": "ffn_up",
+      "block": 29,
+      "quant_key": null,
+      "shift": 0.0,
+      "unsigned": false,
+      "channels": 8960,
+      "shape": [
+        50,
+        8960
+      ]
+    },
+    "ffn_down_b0": {
+      "name": "blocks.0.ffn.net.2",
+      "type": "ffn_down",
+      "block": 0,
+      "quant_key": null,
+      "shift": 0.171875,
+      "unsigned": true,
+      "channels": 1536,
+      "shape": [
+        50,
+        1536
+      ]
+    },
+    "ffn_down_b15": {
+      "name": "blocks.15.ffn.net.2",
+      "type": "ffn_down",
+      "block": 15,
+      "quant_key": null,
+      "shift": 0.171875,
+      "unsigned": true,
+      "channels": 1536,
+      "shape": [
+        50,
+        1536
+      ]
+    },
+    "ffn_down_b29": {
+      "name": "blocks.29.ffn.net.2",
+      "type": "ffn_down",
+      "block": 29,
+      "quant_key": null,
+      "shift": 0.171875,
+      "unsigned": true,
+      "channels": 1536,
+      "shape": [
+        50,
+        1536
+      ]
+    }
+  }
+}
