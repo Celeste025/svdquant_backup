@@ -15,6 +15,14 @@ from diffusers.models.transformers.transformer_flux import (
     FluxSingleTransformerBlock,
     FluxTransformerBlock,
 )
+from diffusers.models.transformers.transformer_wan import WanTransformerBlock
+
+try:
+    from diffusers.models.transformers.transformer_flux import FluxAttention
+except ImportError:  # older diffusers
+    FluxAttention = None  # type: ignore
+
+_ATTN_TYPES = (Attention,) if FluxAttention is None else (Attention, FluxAttention)
 from omniconfig import configclass
 
 from deepcompressor.data.cache import (
@@ -30,6 +38,96 @@ from deepcompressor.dataset.config import BaseDataLoaderConfig
 
 from ..nn.struct import DiffusionBlockStruct, DiffusionModelStruct
 from .base import DiffusionDataset
+
+
+def _detach_cpu(x: tp.Any) -> tp.Any:
+    if isinstance(x, torch.Tensor):
+        return x.detach().cpu()
+    return x
+
+
+def _attach_wan_gate_eval_kwargs(
+    transformer_block_struct,
+    layer_cache: dict[str, IOTensorsCache],
+    layer_inputs: list[ModuleForwardInput],
+) -> None:
+    """Store concatenated Wan ``temb`` / ``rotary_emb`` on the block for gated OutputsError.
+
+    Wan blocks are called as ``block(hs, enc, timestep_proj, rotary_emb)``. Gate is
+    ``(scale_shift_table + timestep_proj).chunk(6)``; OutputsError wrappers need
+    ``temb`` (= timestep_proj) in kwargs via ``TensorsCache.extract``.
+
+    Important: do **not** mutate ``layer_cache[*].inputs`` — Smooth / range span stats
+    require ``inputs.num_tensors == 1``. Eval paths pull kwargs via
+    ``maybe_wan_eval_inputs`` which builds a separate cache view.
+
+    Note: ``DiffusionConcatCacheAction`` stores activations as **one** concatenated
+    tensor in ``data[0]`` with leading batch = sum of sample batches. Gate kwargs
+    must use the same layout so later ``repartition`` stays aligned.
+    """
+    block = transformer_block_struct.module
+    if not isinstance(block, WanTransformerBlock):
+        return
+    if not layer_inputs:
+        return
+    # args: [hidden_states, encoder_hidden_states, temb/timestep_proj, rotary_emb]
+    temb_list, rotary_list = [], []
+    for inp in layer_inputs:
+        assert len(inp.args) >= 4, f"Wan block inputs expected >=4 args, got {len(inp.args)}"
+        temb_list.append(_detach_cpu(inp.args[2]))
+        rotary_list.append(_detach_cpu(inp.args[3]))
+
+    temb_cat = torch.cat(temb_list, dim=0)
+    # RoPE freqs are typically (1, 1, S, D); expand leading dim to total batch for repartition.
+    rotary0 = rotary_list[0]
+    total_b = temb_cat.shape[0]
+    if rotary0.shape[0] == 1 and total_b > 1:
+        rotary_cat = rotary0.expand(total_b, *rotary0.shape[1:]).contiguous()
+    elif rotary0.shape[0] == total_b:
+        rotary_cat = torch.cat(rotary_list, dim=0) if len(rotary_list) > 1 else rotary0
+    else:
+        # Fall back: repeat each sample's rotary by its temb batch, then cat.
+        pieces = []
+        for temb_i, rot_i in zip(temb_list, rotary_list):
+            b_i = temb_i.shape[0]
+            if rot_i.shape[0] == 1 and b_i > 1:
+                pieces.append(rot_i.expand(b_i, *rot_i.shape[1:]).contiguous())
+            else:
+                pieces.append(rot_i)
+        rotary_cat = torch.cat(pieces, dim=0)
+
+    # Match activation cache device so TensorsCache.extract moves kwargs to CUDA with acts.
+    orig_device = torch.device("cpu")
+    for name, ioc in layer_cache.items():
+        if ioc.inputs is None:
+            continue
+        ref_cache = ioc.inputs.front()
+        ref = ref_cache.data[0]
+        if temb_cat.shape[0] != ref.shape[0]:
+            raise RuntimeError(
+                f"Wan gate kwargs batch mismatch for {name}: "
+                f"temb_batch={temb_cat.shape[0]}, act_batch={ref.shape[0]}"
+            )
+        orig_device = getattr(ref_cache, "orig_device", None) or orig_device
+        break
+
+    def _make_cache(data_tensor: torch.Tensor, channels_dim: int) -> TensorCache:
+        n = int(data_tensor.shape[0])
+        return TensorCache(
+            [data_tensor],
+            channels_dim=channels_dim,
+            reshape=LinearReshapeFn(),
+            num_cached=n,
+            num_total=n,
+            num_samples=n,
+            orig_device=orig_device,
+        )
+
+    block._dc_wan_gate = {
+        "temb": _make_cache(temb_cat, channels_dim=1),
+        "rotary": _make_cache(rotary_cat, channels_dim=0),
+    }
+
 
 __all__ = [
     "DiffusionCalibCacheLoaderConfig",
@@ -105,7 +203,7 @@ class DiffusionConcatCacheAction(ConcatCacheAction):
             cache (`TensorsCache`):
                 Cache.
         """
-        if isinstance(module, Attention):
+        if isinstance(module, _ATTN_TYPES):
             encoder_hidden_states = tensors.get("encoder_hidden_states", None)
             if encoder_hidden_states is None:
                 tensors.pop("encoder_hidden_states", None)
@@ -172,7 +270,7 @@ class DiffusionCalibCacheLoader(BaseCalibCacheLoader):
                 ),
                 outputs=TensorCache(channels_dim=-1, reshape=LinearReshapeFn()),
             )
-        elif isinstance(module, Attention):
+        elif isinstance(module, _ATTN_TYPES):
             return IOTensorsCache(
                 inputs=TensorsCache(
                     OrderedDict(
@@ -364,4 +462,20 @@ class DiffusionCalibCacheLoader(BaseCalibCacheLoader):
                                 cache = layer_cache[ffn_struct.down_proj_names[expert_idx]]
                                 for down_proj_name in ffn_struct.down_proj_names[expert_idx::num_experts]:
                                     layer_cache[down_proj_name] = cache
+                    # Wan: inject per-sample temb/rotary for gated OutputsError + RoPE replay.
+                    _attach_wan_gate_eval_kwargs(transformer_block_struct, layer_cache, layer_inputs)
+                    if isinstance(transformer_block_struct.module, WanTransformerBlock) and len(
+                        layer_inputs[0].args
+                    ) >= 4:
+                        # Fallback for attn1.filter_kwargs when eval_inputs has no rotary yet.
+                        # Keep on the same device as cached activations (not forced CPU).
+                        rot = _detach_cpu(layer_inputs[0].args[3])
+                        act_dev = None
+                        for ioc in layer_cache.values():
+                            if ioc.inputs is not None:
+                                act_dev = getattr(ioc.inputs.front(), "orig_device", None)
+                                break
+                        if act_dev is not None and isinstance(rot, torch.Tensor):
+                            rot = rot.to(device=act_dev, non_blocking=True)
+                        layer_kwargs.setdefault("rotary_emb", rot)
             yield layer_name, (layer_struct, layer_cache, layer_kwargs)

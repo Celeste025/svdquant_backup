@@ -46,11 +46,13 @@ class LowRankBranch(nn.Module):
         if self.rank < 0:
             self.a.weight.data.copy_(weight)
         elif self.rank > 0:
-            u, s, vh = torch.linalg.svd(weight.double())
-            # tensor: [oc, ic], u: [oc, oc], s: [oc], vh: [ic, ic]
-            # us: [oc, rank], vh: [rank, ic]
+            # Approximate truncated SVD via randomized svd_lowrank (much faster than full
+            # torch.linalg.svd on large fused matrices). See docs/SVD_LOWRANK.md.
+            q = min(min(out_features, in_features), max(self.rank + 8, self.rank))
+            u, s, v = torch.svd_lowrank(weight.float(), q=q, niter=2)
+            # weight [oc, ic]; u [oc, q], s [q], v [ic, q]
             us = u[:, : self.rank] * s[: self.rank]
-            vh = vh[: self.rank]
+            vh = v[:, : self.rank].transpose(0, 1)
             assert not us.isnan().any(), "NaN in U * S"
             assert not vh.isnan().any(), "NaN in V^T"
             assert not us.isinf().any(), "Inf in U * S"

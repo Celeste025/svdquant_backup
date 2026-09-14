@@ -1,0 +1,9 @@
+# rCM-Wan pure NVFP4 baseline.
+# Keep the real_nvfp4 W4A4 formats, but deliberately opt out of every
+# calibration-based SVDQuant component: no smoothing and no LowRank branch.
+quant:
+  enable_smooth: false
+  wgts:
+    # Manual ratio=1 inherited from the base recipe: it needs no cache data.
+    low_rank:
+      rank: 0

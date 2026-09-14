@@ -1,0 +1,26 @@
+# Minimal VRAM for co-located H20: all calib/search batches = 1.
+# Also lighten smooth grid search (W4A16 needs less α search than W4A4).
+quant:
+  calib:
+    batch_size: 1
+  wgts:
+    calib_range:
+      element_batch_size: 8
+      sample_batch_size: 1
+    low_rank:
+      sample_batch_size: 1
+  ipts:
+    calib_range:
+      element_batch_size: 8
+      sample_batch_size: 1
+  opts:
+    calib_range:
+      element_batch_size: 8
+      sample_batch_size: 1
+  smooth:
+    proj:
+      element_batch_size: 1
+      sample_batch_size: 1
+      num_grids: 5
+    attn:
+      sample_batch_size: 1

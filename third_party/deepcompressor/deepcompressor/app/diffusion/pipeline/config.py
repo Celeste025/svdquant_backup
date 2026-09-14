@@ -102,6 +102,10 @@ class DiffusionPipelineConfig:
             self.task = "depth-to-image"
         elif self.name == "flux.1-fill-dev":
             self.task = "inpainting"
+        elif self.name.startswith("wan"):
+            self.task = "text-to-video"
+        elif self.name.startswith("wan"):
+            self.task = "text-to-video"
 
     def build(
         self, *, dtype: str | torch.dtype | None = None, device: str | torch.device | None = None
@@ -345,12 +349,23 @@ class DiffusionPipelineConfig:
                 path = "black-forest-labs/FLUX.1-Fill-dev"
             elif name == "flux.1-schnell":
                 path = "black-forest-labs/FLUX.1-schnell"
+            elif name in ("wan2.1-1.3b", "wan2.1-t2v-1.3b"):
+                path = path or "/ssd/2/yuzhibo.yzh_data/Wan2.1-T2V-1.3B-Diffusers"
             else:
                 raise ValueError(f"Path for {name} is not specified.")
         if name in ["flux.1-canny-dev", "flux.1-depth-dev"]:
             pipeline = FluxControlPipeline.from_pretrained(path, torch_dtype=dtype)
         elif name == "flux.1-fill-dev":
             pipeline = FluxFillPipeline.from_pretrained(path, torch_dtype=dtype)
+        elif name.startswith("wan"):
+            from diffusers import AutoencoderKLWan, UniPCMultistepScheduler, WanPipeline
+
+            vae = AutoencoderKLWan.from_pretrained(path, subfolder="vae", torch_dtype=torch.float32)
+            pipeline = WanPipeline.from_pretrained(path, vae=vae, torch_dtype=dtype)
+            flow_shift = float(os.environ.get("DEEPCOMPRESSOR_WAN_FLOW_SHIFT", "3.0"))
+            pipeline.scheduler = UniPCMultistepScheduler.from_config(
+                pipeline.scheduler.config, flow_shift=flow_shift
+            )
         elif name.startswith("sana-"):
             if dtype == torch.bfloat16:
                 pipeline = SanaPipeline.from_pretrained(path, variant="bf16", torch_dtype=dtype, use_safetensors=True)

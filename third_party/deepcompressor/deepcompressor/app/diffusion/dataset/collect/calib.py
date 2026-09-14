@@ -69,14 +69,57 @@ def collect(config: DiffusionPtqRunConfig, dataset: datasets.Dataset):
             else:
                 pipeline_kwargs["control_image"] = controls
 
-        result_images = pipeline(prompts, generator=generators, **pipeline_kwargs).images
+        # Broadcast scalar negative_prompt to batch for video pipelines.
+        if "negative_prompt" in pipeline_kwargs and isinstance(pipeline_kwargs["negative_prompt"], str):
+            pipeline_kwargs["negative_prompt"] = [pipeline_kwargs["negative_prompt"]] * len(prompts)
+
+        result = pipeline(prompts, generator=generators, **pipeline_kwargs)
+        if hasattr(result, "frames") and result.frames is not None:
+            # Wan / video pipelines: frames may be list[PIL] or float/uint8 ndarray[T,H,W,C]
+            from PIL import Image
+            import numpy as np
+
+            def _as_pil_frames(frames):
+                if isinstance(frames, np.ndarray):
+                    arr = frames
+                    if np.issubdtype(arr.dtype, np.floating):
+                        max_v = float(arr.max()) if arr.size else 1.0
+                        if max_v <= 1.0 + 1e-3:
+                            arr = (arr * 255.0).clip(0, 255).astype(np.uint8)
+                        else:
+                            arr = arr.clip(0, 255).astype(np.uint8)
+                    elif arr.dtype != np.uint8:
+                        arr = arr.astype(np.uint8)
+                    return [Image.fromarray(frame) for frame in arr]
+                out = []
+                for frame in frames:
+                    if hasattr(frame, "save"):
+                        out.append(frame)
+                    else:
+                        arr = np.asarray(frame)
+                        if np.issubdtype(arr.dtype, np.floating):
+                            max_v = float(arr.max()) if arr.size else 1.0
+                            if max_v <= 1.0 + 1e-3:
+                                arr = (arr * 255.0).clip(0, 255).astype(np.uint8)
+                            else:
+                                arr = arr.clip(0, 255).astype(np.uint8)
+                        elif arr.dtype != np.uint8:
+                            arr = arr.astype(np.uint8)
+                        out.append(Image.fromarray(arr))
+                return out
+
+            result_videos = [_as_pil_frames(frames) for frames in result.frames]
+            result_images = [frames[len(frames) // 2] if frames else None for frames in result_videos]
+        else:
+            result_videos = None
+            result_images = result.images
         num_guidances = (len(caches) // batch_size) // config.eval.num_steps
         num_steps = len(caches) // (batch_size * num_guidances)
         assert (
             len(caches) == batch_size * num_steps * num_guidances
         ), f"Unexpected number of caches: {len(caches)} != {batch_size} * {config.eval.num_steps} * {num_guidances}"
         for j, (filename, image) in enumerate(zip(filenames, result_images, strict=True)):
-            image.save(os.path.join(samples_dirpath, f"{filename}.png"))
+            # Persist model-level I/O caches first (primary artifact).
             for s in range(num_steps):
                 for g in range(num_guidances):
                     c = caches[s * batch_size * num_guidances + g * batch_size + j]
@@ -85,6 +128,20 @@ def collect(config: DiffusionPtqRunConfig, dataset: datasets.Dataset):
                     c["guidance"] = g
                     c = tree_map(lambda x: process(x), c)
                     torch.save(c, os.path.join(caches_dirpath, f"{filename}-{s:05d}-{g}.pt"))
+            try:
+                if image is not None:
+                    image.save(os.path.join(samples_dirpath, f"{filename}.png"))
+                if result_videos is not None and result_videos[j]:
+                    frames = result_videos[j]
+                    frames[0].save(
+                        os.path.join(samples_dirpath, f"{filename}.gif"),
+                        save_all=True,
+                        append_images=frames[1:],
+                        duration=100,
+                        loop=0,
+                    )
+            except Exception as exc:  # noqa: BLE001
+                print(f"Warning: failed to save preview for {filename}: {exc}")
         caches.clear()
 
 

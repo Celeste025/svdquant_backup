@@ -1,0 +1,24 @@
+# rCM-Wan INT4 SVDQuant control.  It deliberately reuses the rCM 16x4 cache
+# and rank-32 / 100-iteration low-rank budget; only the numerical format is
+# supplied by int4.yaml and the smoothing grid is reduced to ten.
+quant:
+  calib:
+    num_samples: 64
+    batch_size: 4
+  smooth:
+    enable_proj: true
+    proj:
+      objective: OutputsError
+      strategy: GridSearch
+      granularity: Layer
+      num_grids: 10
+      allow_low_rank: true
+      fuse_when_possible: false
+  wgts:
+    enable_low_rank: true
+    low_rank:
+      rank: 32
+      early_stop: true
+      degree: 2
+      objective: OutputsError
+      num_iters: 100

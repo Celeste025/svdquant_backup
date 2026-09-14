@@ -1,0 +1,35 @@
+# NVFP4 weights (TE-style two-level) + BF16 activations (no act quant).
+# W4A16: ipts.dtype null disables activation PTQ / hooks.
+quant:
+  wgts:
+    dtype: sfp4_e2m1_all
+    group_shapes:
+    - - -1
+      - -1
+    - - 1
+      - 16
+      - 1
+      - 1
+      - 1
+    scale_dtypes:
+    - torch.float32
+    - sfp8_e4m3_nan
+  ipts:
+    static: false
+    dtype: null
+  enable_extra_wgts: true
+  extra_wgts:
+    dtype: sint4
+    group_shapes:
+    - - 1
+      - 64
+      - 1
+      - 1
+      - 1
+    scale_dtypes:
+    - null
+    includes:
+    - transformer_norm
+    - transformer_add_norm
+pipeline:
+  shift_activations: true

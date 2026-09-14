@@ -21,7 +21,7 @@ from ..nn.struct import (
 )
 from .config import DiffusionQuantConfig
 from .quantizer import DiffusionActivationQuantizer
-from .utils import get_needs_inputs_fn, get_needs_outputs_fn
+from .utils import get_needs_inputs_fn, get_needs_outputs_fn, maybe_wan_eval_inputs, maybe_wrap_wan_gated
 
 __all__ = ["quantize_diffusion_activations"]
 
@@ -70,6 +70,8 @@ def quantize_diffusion_block_activations(  # noqa: C901
             str,  # eval name
             dict[str, tp.Any],  # eval kwargs
             list[tuple[nn.Parameter, torch.Tensor]],  # original wgts
+            tp.Any,  # parent struct (for Wan gate eval inputs)
+            str,  # field_name
         ]
     ] = []
     In, Out = TensorType.Inputs, TensorType.Outputs  # noqa: F841
@@ -124,11 +126,15 @@ def quantize_diffusion_block_activations(  # noqa: C901
                     assert field_name == "add_k_proj"
                     assert module_name == parent.add_k_proj_name
                     modules, module_names = parent.add_qkv_proj, parent.add_qkv_proj_names
+                eval_module = maybe_wrap_wan_gated(eval_module, parent, field_name)
         if modules is None:
             assert module not in used_modules
             used_modules.add(module)
             orig_wgts = [(module.weight, orig_state_dict[f"{module_name}.weight"])] if orig_state_dict else None
-            args_caches.append((module_key, In, [module], [module_name], module, module_name, None, orig_wgts))
+            eval_mod = maybe_wrap_wan_gated(module, parent, field_name)
+            args_caches.append(
+                (module_key, In, [module], [module_name], eval_mod, module_name, None, orig_wgts, parent, field_name)
+            )
         else:
             orig_wgts = []
             for proj_module in modules:
@@ -138,11 +144,35 @@ def quantize_diffusion_block_activations(  # noqa: C901
                     orig_wgts.append(orig_struct_wgts.pop(proj_module))
             orig_wgts.extend(orig_struct_wgts.values())
             orig_wgts = None if not orig_wgts else orig_wgts
-            args_caches.append((module_key, In, modules, module_names, eval_module, eval_name, eval_kwargs, orig_wgts))
+            args_caches.append(
+                (
+                    module_key,
+                    In,
+                    modules,
+                    module_names,
+                    eval_module,
+                    eval_name,
+                    eval_kwargs,
+                    orig_wgts,
+                    parent,
+                    field_name,
+                )
+            )
     # endregion
     quantizers: dict[str, DiffusionActivationQuantizer] = {}
     tools.logging.Formatter.indent_inc()
-    for module_key, tensor_type, modules, module_names, eval_module, eval_name, eval_kwargs, orig_wgts in args_caches:
+    for (
+        module_key,
+        tensor_type,
+        modules,
+        module_names,
+        eval_module,
+        eval_name,
+        eval_kwargs,
+        orig_wgts,
+        parent,
+        field_name,
+    ) in args_caches:
         if isinstance(modules[0], nn.Linear):
             channels_dim = -1
             assert all(isinstance(m, nn.Linear) for m in modules)
@@ -173,7 +203,12 @@ def quantize_diffusion_block_activations(  # noqa: C901
                     modules=modules,
                     activations=activations,
                     eval_module=eval_module,
-                    eval_inputs=layer_cache[eval_name].inputs if layer_cache else None,
+                    eval_inputs=maybe_wan_eval_inputs(
+                        layer_cache[eval_name].inputs if layer_cache else None,
+                        parent,
+                        field_name,
+                        eval_module,
+                    ),
                     eval_kwargs=eval_kwargs,
                     orig_weights=orig_wgts,
                 )

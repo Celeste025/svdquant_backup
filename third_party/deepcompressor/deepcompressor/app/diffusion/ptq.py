@@ -298,6 +298,26 @@ def main(config: DiffusionPtqRunConfig, logging_level: int = tools.logging.DEBUG
     logger.info("* Building diffusion model pipeline")
     tools.logging.Formatter.indent_inc()
     pipeline = config.pipeline.build()
+    # PTQ uses pre-collected transformer I/O caches; keep only the DiT on GPU.
+    if os.environ.get("DEEPCOMPRESSOR_TRANSFORMER_ONLY", "1") not in ("0", "false", "False"):
+        moved = []
+        for attr in (
+            "text_encoder",
+            "text_encoder_2",
+            "text_encoder_3",
+            "vae",
+            "image_encoder",
+            "controlnet",
+        ):
+            if hasattr(pipeline, attr):
+                mod = getattr(pipeline, attr)
+                if isinstance(mod, torch.nn.Module):
+                    mod.to("cpu")
+                    moved.append(attr)
+        if moved:
+            logger.info(f"* Moved to CPU for PTQ VRAM: {', '.join(moved)}")
+        gc.collect()
+        torch.cuda.empty_cache()
     if "nf4" not in config.pipeline.name and "gguf" not in config.pipeline.name:
         model = DiffusionModelStruct.construct(pipeline)
         tools.logging.Formatter.indent_dec()

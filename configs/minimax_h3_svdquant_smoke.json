@@ -1,0 +1,35 @@
+{
+  "model": "MiniMaxH3DiTComfyPruned",
+  "target": "blocks.{0..49}.{attn.qkv_proj,attn.out_proj,mlp.fc1,mlp.fc2}",
+  "expected_blocks": 50,
+  "expected_linears": 200,
+  "quantization": {
+    "format": "real-NVFP4 fake quantization",
+    "weights": "W4",
+    "activations": "A4 dynamic",
+    "group_size": 16,
+    "tensor_scale_dtype": "float32",
+    "group_scale_dtype": "E4M3",
+    "value_dtype": "E2M1"
+  },
+  "smoothing": {"objective": "H3 block OutputsError", "num_grids": 2},
+  "low_rank": {"rank": 32, "num_iters": 2, "objective": "H3 block OutputsError"},
+  "calibration": {
+    "prompt_ids": [48, 105],
+    "steps": [0, 10, 20, 29],
+    "sample_size": 8,
+    "sample_batch_size": 1,
+    "height": 256,
+    "width": 448,
+    "frames": 39,
+    "element_size": 128
+  },
+  "inference": {
+    "prompt_id": 42,
+    "seed": 52386,
+    "height": 480,
+    "width": 832,
+    "frames": 39,
+    "steps": 8
+  }
+}

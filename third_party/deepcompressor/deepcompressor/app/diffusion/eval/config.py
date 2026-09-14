@@ -74,6 +74,8 @@ class DiffusionEvalConfig:
 
     height: int | None = None
     width: int | None = None
+    num_frames: int | None = None
+    negative_prompt: str | None = None
     clean_caption: bool | None = None
     num_steps: int | None = None
     guidance_scale: float | None = None
@@ -113,6 +115,10 @@ class DiffusionEvalConfig:
             kwargs["height"] = self.height
         if self.width is not None:
             kwargs["width"] = self.width
+        if self.num_frames is not None:
+            kwargs["num_frames"] = self.num_frames
+        if self.negative_prompt is not None:
+            kwargs["negative_prompt"] = self.negative_prompt
         if self.clean_caption is not None:
             kwargs["clean_caption"] = self.clean_caption
         if self.num_steps is not None:

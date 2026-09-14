@@ -36,6 +36,7 @@ from diffusers.models.transformers.transformer_flux import (
     FluxTransformerBlock,
 )
 from diffusers.models.transformers.transformer_sd3 import SD3Transformer2DModel
+from diffusers.models.transformers.transformer_wan import WanTransformer3DModel, WanTransformerBlock
 from diffusers.models.unets.unet_2d import UNet2DModel
 from diffusers.models.unets.unet_2d_blocks import (
     CrossAttnDownBlock2D,
@@ -56,6 +57,7 @@ from diffusers.pipelines import (
     StableDiffusion3Pipeline,
     StableDiffusionPipeline,
     StableDiffusionXLPipeline,
+    WanPipeline,
 )
 
 from deepcompressor.nn.patch.conv import ConcatConv2d, ShiftedConv2d
@@ -85,6 +87,7 @@ DIT_BLOCK_CLS = tp.Union[
     FluxSingleTransformerBlock,
     FluxTransformerBlock,
     SanaTransformerBlock,
+    WanTransformerBlock,
 ]
 UNET_BLOCK_CLS = tp.Union[
     DownBlock2D,
@@ -100,6 +103,7 @@ DIT_CLS = tp.Union[
     SD3Transformer2DModel,
     FluxTransformer2DModel,
     SanaTransformer2DModel,
+    WanTransformer3DModel,
 ]
 UNET_CLS = tp.Union[UNet2DModel, UNet2DConditionModel]
 MODEL_CLS = tp.Union[DIT_CLS, UNET_CLS]
@@ -112,6 +116,7 @@ DIT_PIPELINE_CLS = tp.Union[
     FluxControlPipeline,
     FluxFillPipeline,
     SanaPipeline,
+    WanPipeline,
 ]
 PIPELINE_CLS = tp.Union[UNET_PIPELINE_CLS, DIT_PIPELINE_CLS]
 
@@ -328,6 +333,13 @@ class DiffusionAttentionStruct(AttentionStruct):
                 attn_kwargs["attention_mask"] = kwargs.get("attention_mask", None)
             else:
                 attn_kwargs["attention_mask"] = kwargs.get("encoder_attention_mask", None)
+        elif isinstance(self.parent.module, WanTransformerBlock):
+            # WanAttnProcessor2_0 applies RoPE only on self-attn (attn1).
+            # Do not pass rotary_emb into attn2 — Wan block itself omits it, and a
+            # CPU fallback in layer_kwargs would otherwise cause device mismatches.
+            attn_kwargs = {}
+            if self.is_self_attn() and "rotary_emb" in kwargs:
+                attn_kwargs["rotary_emb"] = kwargs["rotary_emb"]
         else:
             attn_kwargs = {}
         return attn_kwargs
@@ -343,7 +355,12 @@ class DiffusionAttentionStruct(AttentionStruct):
         idx: int = 0,
         **kwargs,
     ) -> "DiffusionAttentionStruct":
-        if module.is_cross_attention:
+        # Wan sets cross_attention_dim=None so is_cross_attention=False, but attn2 is true
+        # cross-attn at runtime: to_q(hidden) / to_k,v(encoder_hidden_states).
+        wan_cross = (
+            parent is not None and isinstance(parent.module, WanTransformerBlock) and rname == "attn2"
+        )
+        if module.is_cross_attention or wan_cross:
             q_proj, k_proj, v_proj = module.to_q, None, None
             add_q_proj, add_k_proj, add_v_proj, add_o_proj = None, module.to_k, module.to_v, None
             q_proj_rname, k_proj_rname, v_proj_rname = "to_q", "", ""
@@ -705,6 +722,18 @@ class DiffusionTransformerBlockStruct(TransformerBlockStruct, DiffusionBlockStru
             ffn, ffn_rname = module.ff, "ff"
             pre_add_ffn_norm, pre_add_ffn_norm_rname = module.norm2_context, "norm2_context"
             add_ffn, add_ffn_rname = module.ff_context, "ff_context"
+        elif isinstance(module, WanTransformerBlock):
+            # Wan: self-attn (norm1) + cross-attn (norm2) + FFN (norm3, field name `ffn`).
+            # Uses scale_shift_table + temb (AdaLN-like); avoid "layer_norm" so fuse_when_possible
+            # cannot incorrectly fold smooth scales into FP32LayerNorm.
+            parallel = False
+            norm_type = add_norm_type = "ada_norm_single"
+            pre_attn_norms, pre_attn_norm_rnames = [module.norm1, module.norm2], ["norm1", "norm2"]
+            attns, attn_rnames = [module.attn1, module.attn2], ["attn1", "attn2"]
+            pre_attn_add_norms, pre_attn_add_norm_rnames = [None, None], ["", ""]
+            pre_ffn_norm, pre_ffn_norm_rname = module.norm3, "norm3"
+            ffn, ffn_rname = module.ffn, "ffn"
+            pre_add_ffn_norm, pre_add_ffn_norm_rname, add_ffn, add_ffn_rname = None, "", None, ""
         else:
             raise NotImplementedError(f"Unsupported module type: {type(module)}")
         return DiffusionTransformerBlockStruct(
@@ -1721,6 +1750,13 @@ class DiTStruct(DiffusionModelStruct, DiffusionTransformerStruct):
                 norm_out, norm_out_rname = module.norm_out, "norm_out"
                 proj_out, proj_out_rname = module.proj_out, "proj_out"
                 transformer_blocks, transformer_blocks_rname = module.transformer_blocks, "transformer_blocks"
+            elif isinstance(module, WanTransformer3DModel):
+                input_embed, input_embed_rname = module.patch_embedding, "patch_embedding"
+                time_embed, time_embed_rname = module.condition_embedder, "condition_embedder"
+                text_embed, text_embed_rname = module.condition_embedder.text_embedder, "condition_embedder.text_embedder"
+                norm_out, norm_out_rname = module.norm_out, "norm_out"
+                proj_out, proj_out_rname = module.proj_out, "proj_out"
+                transformer_blocks, transformer_blocks_rname = module.blocks, "blocks"
             else:
                 raise NotImplementedError(f"Unsupported module type: {type(module)}")
             return DiTStruct(

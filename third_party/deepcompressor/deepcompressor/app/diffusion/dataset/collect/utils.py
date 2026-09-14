@@ -11,6 +11,10 @@ from diffusers.models.transformers import (
     PixArtTransformer2DModel,
     SanaTransformer2DModel,
 )
+try:
+    from diffusers.models.transformers import WanTransformer3DModel
+except ImportError:  # diffusers < 0.33
+    WanTransformer3DModel = None  # type: ignore
 from diffusers.models.unets.unet_2d_condition import UNet2DConditionModel
 
 from deepcompressor.utils.common import tree_map, tree_split
@@ -57,6 +61,8 @@ class CollectHook:
         elif isinstance(module, (PixArtTransformer2DModel, SanaTransformer2DModel)):
             new_args.append(input_kwargs.pop("hidden_states"))
         elif isinstance(module, FluxTransformer2DModel):
+            new_args.append(input_kwargs.pop("hidden_states"))
+        elif WanTransformer3DModel is not None and isinstance(module, WanTransformer3DModel):
             new_args.append(input_kwargs.pop("hidden_states"))
         else:
             raise ValueError(f"Unknown model: {module}")

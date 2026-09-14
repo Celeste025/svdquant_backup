@@ -21,7 +21,7 @@ from ..nn.struct import (
     DiffusionTransformerBlockStruct,
 )
 from .config import DiffusionQuantConfig
-from .utils import get_needs_inputs_fn, wrap_joint_attn
+from .utils import get_needs_inputs_fn, maybe_wan_eval_inputs, maybe_wrap_wan_gated, wrap_joint_attn
 
 __all__ = ["smooth_diffusion"]
 
@@ -75,13 +75,16 @@ def smooth_diffusion_qkv_proj(
             input_quantizer=Quantizer(config.ipts, channels_dim=-1, key=module_key),
             inputs=block_cache[attn.q_proj_name].inputs if block_cache else None,
             eval_inputs=block_cache[attn.name].inputs if block_cache else None,
-            eval_module=attn,
+            eval_module=maybe_wrap_wan_gated(attn, attn, "q_proj"),
             eval_kwargs=attn.filter_kwargs(block_kwargs),
             develop_dtype=config.develop_dtype,
         )
         if prevs is None:
             # we need to register forward pre hook to smooth inputs
-            if attn.module.group_norm is None and attn.module.spatial_norm is None:
+            # FluxAttention (newer diffusers) has no group_norm/spatial_norm; treat missing as None.
+            group_norm = getattr(attn.module, "group_norm", None)
+            spatial_norm = getattr(attn.module, "spatial_norm", None)
+            if group_norm is None and spatial_norm is None:
                 ActivationSmoother(
                     smooth_cache[cache_key],
                     channels_dim=-1,
@@ -169,8 +172,13 @@ def smooth_diffusion_out_proj(  # noqa: C901
             weight_quantizer=Quantizer(config_wgts, key=module_key, low_rank=config.wgts.low_rank),
             input_quantizer=Quantizer(config.ipts, channels_dim=-1, key=module_key),
             inputs=block_cache[attn.o_proj_name].inputs if block_cache else None,
-            eval_inputs=block_cache[attn.o_proj_name].inputs if block_cache else None,
-            eval_module=attn.o_proj,
+            eval_inputs=maybe_wan_eval_inputs(
+                block_cache[attn.o_proj_name].inputs if block_cache else None,
+                attn,
+                "o_proj",
+                attn.o_proj,
+            ),
+            eval_module=maybe_wrap_wan_gated(attn.o_proj, attn, "o_proj"),
             extra_modules=[attn.add_o_proj] if attn.is_joint_attn() else None,
             develop_dtype=config.develop_dtype,
         )
@@ -265,8 +273,13 @@ def smooth_diffusion_up_proj(
             weight_quantizer=Quantizer(config_wgts, key=module_key, low_rank=config.wgts.low_rank),
             input_quantizer=Quantizer(config.ipts, channels_dim=channels_dim, key=module_key),
             inputs=block_cache[ffn.up_proj_name].inputs if block_cache else None,
-            eval_inputs=block_cache[ffn.up_proj_name].inputs if block_cache else None,
-            eval_module=ffn.up_proj,
+            eval_inputs=maybe_wan_eval_inputs(
+                block_cache[ffn.up_proj_name].inputs if block_cache else None,
+                ffn,
+                "up_proj",
+                ffn.up_proj,
+            ),
+            eval_module=maybe_wrap_wan_gated(ffn.up_proj, ffn, "up_proj"),
             develop_dtype=config.develop_dtype,
         )
         if prevs is None:
@@ -304,8 +317,13 @@ def smooth_diffusion_down_proj(
             weight_quantizer=Quantizer(config_wgts, key=module_key, low_rank=config.wgts.low_rank),
             input_quantizer=Quantizer(config_ipts, channels_dim=channels_dim, key=module_key),
             inputs=block_cache[ffn.down_proj_name].inputs if block_cache else None,
-            eval_inputs=block_cache[ffn.down_proj_name].inputs if block_cache else None,
-            eval_module=ffn.down_proj,
+            eval_inputs=maybe_wan_eval_inputs(
+                block_cache[ffn.down_proj_name].inputs if block_cache else None,
+                ffn,
+                "down_proj",
+                ffn.down_proj,
+            ),
+            eval_module=maybe_wrap_wan_gated(ffn.down_proj, ffn, "down_proj"),
             develop_dtype=config.develop_dtype,
         )
         ffn.down_proj.in_smooth_cache_key = cache_key

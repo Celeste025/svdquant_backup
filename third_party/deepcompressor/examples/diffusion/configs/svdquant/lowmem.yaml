@@ -1,0 +1,25 @@
+# Offload text encoders/VAE via DEEPCOMPRESSOR_TRANSFORMER_ONLY=1 in ptq.py.
+# Try batch=8 (between original 16 and previous OOM-at-1 experiment).
+quant:
+  calib:
+    batch_size: 8
+  wgts:
+    calib_range:
+      element_batch_size: 32
+      sample_batch_size: 8
+    low_rank:
+      sample_batch_size: 8
+  ipts:
+    calib_range:
+      element_batch_size: 32
+      sample_batch_size: 8
+  opts:
+    calib_range:
+      element_batch_size: 32
+      sample_batch_size: 8
+  smooth:
+    proj:
+      element_batch_size: 8
+      sample_batch_size: 8
+    attn:
+      sample_batch_size: 8

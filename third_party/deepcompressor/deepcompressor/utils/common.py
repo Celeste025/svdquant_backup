@@ -191,11 +191,16 @@ def tree_collate(batch: list[tp.Any] | tuple[tp.Any, ...]) -> tp.Any:
     elif isinstance(batch[0], (list, tuple)):
         return [tree_collate(samples) for samples in zip(*batch, strict=True)]
     elif isinstance(batch[0], torch.Tensor):
-        # if all tensors in batch are exactly the same, return the tensor itself
+        # Tensors with an explicit leading batch dim of 1 (e.g. Wan encoder_hidden_states)
+        # must always be concatenated — identical CFG/negative embeddings would otherwise
+        # collapse to [1, ...] and disagree with hidden_states [B, ...].
+        # Tensors without a sample batch dim (e.g. Flux image_rotary_emb of shape [S, D])
+        # keep the old equal-tensor share behavior so RoPE is not wrongly cat'd along seq.
+        if batch[0].ndim > 0 and batch[0].shape[0] == 1:
+            return torch.cat(batch, dim=0)
         if all(torch.equal(batch[0], b) for b in batch):
             return batch[0]
-        else:
-            return torch.cat(batch)
+        return torch.cat(batch, dim=0)
     else:
         return batch[0]
 

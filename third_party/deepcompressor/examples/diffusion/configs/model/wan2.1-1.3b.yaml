@@ -1,0 +1,66 @@
+pipeline:
+  name: wan2.1-1.3b
+  path: /ssd/2/yuzhibo.yzh_data/Wan2.1-T2V-1.3B-Diffusers
+  dtype: torch.bfloat16
+eval:
+  num_steps: 50
+  guidance_scale: 6.0
+  height: 480
+  width: 832
+  num_frames: 33
+  negative_prompt: "Bright tones, overexposed, static, blurred details, subtitles, style, works, paintings, images, static, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, misshapen limbs, fused fingers, still picture, messy background, three legs, many people in the background, walking backwards"
+  protocol: unipc{num_steps}-g{guidance_scale}-f33
+quant:
+  # batch_size/sample_batch_size stay at 4 for video VRAM (Flux uses 16 on images).
+  # sample_size=-1 matches Flux: use all loaded calib caches in OutputsError search.
+  calib:
+    batch_size: 4
+  wgts:
+    calib_range:
+      element_batch_size: 32
+      sample_batch_size: 4
+      element_size: 512
+      sample_size: -1
+    low_rank:
+      sample_batch_size: 4
+      sample_size: -1
+    skips:
+    - embed
+    - resblock_shortcut
+    - resblock_time_proj
+    - transformer_proj_in
+    - transformer_proj_out
+    - down_sample
+    - up_sample
+  ipts:
+    calib_range:
+      element_batch_size: 32
+      sample_batch_size: 4
+      element_size: 512
+      sample_size: -1
+    skips:
+    - embed
+    - resblock_shortcut
+    - resblock_time_proj
+    - transformer_proj_in
+    - transformer_proj_out
+    - transformer_norm
+    - transformer_add_norm
+    - down_sample
+    - up_sample
+  opts:
+    calib_range:
+      element_batch_size: 32
+      sample_batch_size: 4
+      element_size: 512
+      sample_size: -1
+  smooth:
+    proj:
+      element_batch_size: -1
+      sample_batch_size: 4
+      element_size: -1
+      sample_size: -1
+      num_grids: 10
+    attn:
+      sample_batch_size: 4
+      sample_size: -1

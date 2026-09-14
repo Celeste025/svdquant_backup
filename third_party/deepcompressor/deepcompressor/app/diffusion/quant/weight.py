@@ -16,7 +16,7 @@ from deepcompressor.utils import tools
 from ..nn.struct import DiffusionAttentionStruct, DiffusionBlockStruct, DiffusionModelStruct, DiffusionModuleStruct
 from .config import DiffusionQuantConfig
 from .quantizer import DiffusionActivationQuantizer, DiffusionWeightQuantizer
-from .utils import get_needs_inputs_fn, wrap_joint_attn
+from .utils import get_needs_inputs_fn, maybe_wan_eval_inputs, maybe_wrap_wan_gated, wrap_joint_attn
 
 __all__ = ["quantize_diffusion_weights", "load_diffusion_weights_state_dict"]
 
@@ -84,8 +84,10 @@ def calibrate_diffusion_block_low_rank_branch(  # noqa: C901
                 eval_kwargs = parent.filter_kwargs(layer_kwargs)
             if parent.is_joint_attn() and "add_" in field_name:
                 eval_module = wrap_joint_attn(eval_module, indexes=1)
+            eval_module = maybe_wrap_wan_gated(eval_module, parent, field_name)
         else:
             eval_module, eval_name, eval_kwargs = module, module_name, None
+            eval_module = maybe_wrap_wan_gated(eval_module, parent, field_name)
         if isinstance(modules[0], nn.Linear):
             assert all(isinstance(m, nn.Linear) for m in modules)
             channels_dim = -1
@@ -110,7 +112,12 @@ def calibrate_diffusion_block_low_rank_branch(  # noqa: C901
                     ),
                     modules=modules,
                     inputs=layer_cache[module_name].inputs if layer_cache else None,
-                    eval_inputs=layer_cache[eval_name].inputs if layer_cache else None,
+                    eval_inputs=maybe_wan_eval_inputs(
+                        layer_cache[eval_name].inputs if layer_cache else None,
+                        parent,
+                        field_name,
+                        eval_module,
+                    ),
                     eval_module=eval_module,
                     eval_kwargs=eval_kwargs,
                 ).state_dict()
@@ -185,8 +192,10 @@ def update_diffusion_block_weight_quantizer_state_dict(
                 eval_kwargs = parent.filter_kwargs(layer_kwargs)
             if parent.is_joint_attn() and "add_" in field_name:
                 eval_module = wrap_joint_attn(eval_module, indexes=1)
+            eval_module = maybe_wrap_wan_gated(eval_module, parent, field_name)
         else:
             eval_module, eval_name, eval_kwargs = module, module_name, None
+            eval_module = maybe_wrap_wan_gated(eval_module, parent, field_name)
         config_wgts = config.wgts
         if config.enabled_extra_wgts and config.extra_wgts.is_enabled_for(module_key):
             config_wgts = config.extra_wgts
@@ -197,7 +206,12 @@ def update_diffusion_block_weight_quantizer_state_dict(
                 quantizer.calibrate_dynamic_range(
                     module=module,
                     inputs=layer_cache[module_name].inputs if layer_cache else None,
-                    eval_inputs=layer_cache[eval_name].inputs if layer_cache else None,
+                    eval_inputs=maybe_wan_eval_inputs(
+                        layer_cache[eval_name].inputs if layer_cache else None,
+                        parent,
+                        field_name,
+                        eval_module,
+                    ),
                     eval_module=eval_module,
                     eval_kwargs=eval_kwargs,
                 )

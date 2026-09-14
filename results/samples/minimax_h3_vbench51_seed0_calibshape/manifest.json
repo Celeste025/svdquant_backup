@@ -1,0 +1,504 @@
+{
+  "schema_version": 1,
+  "source": "/home/wjq/workspace/ViDiT-Q/eval/video/Vbench/vbench/VBench_full_info.json",
+  "created_at": 1789125664.0838141,
+  "settings": {
+    "seed": 0,
+    "height": 576,
+    "width": 1024,
+    "frames": 124,
+    "steps": 20,
+    "cfg_scale": 1.0,
+    "rand_device": "cpu",
+    "tiled": true,
+    "fps": 24
+  },
+  "sampling": {
+    "method": "deterministic stratified greedy coverage",
+    "source_population": 251,
+    "cases": 51,
+    "dimension_quotas": {
+      "aesthetic_quality": 19,
+      "scene": 17,
+      "imaging_quality": 19,
+      "overall_consistency": 19,
+      "background_consistency": 17,
+      "subject_consistency": 14,
+      "dynamic_degree": 14,
+      "motion_smoothness": 14
+    },
+    "dimension_counts": {
+      "aesthetic_quality": 19,
+      "scene": 17,
+      "imaging_quality": 19,
+      "overall_consistency": 19,
+      "background_consistency": 17,
+      "subject_consistency": 15,
+      "dynamic_degree": 15,
+      "motion_smoothness": 15
+    }
+  },
+  "variants": {
+    "bf16": {
+      "format": "bf16"
+    },
+    "w4a4": {
+      "format": "real-NVFP4 dynamic W4A4",
+      "smoothing": false,
+      "low_rank": false,
+      "group_size": 16,
+      "activation_element_size": 128
+    },
+    "svdquant": {
+      "format": "real-NVFP4 SVDQuant",
+      "rank": 32,
+      "grid": 10,
+      "max_lowrank_iters": 50,
+      "state": "/home/wjq/workspace/svdquant-exp/results/checkpoints/minimax_h3_svdquant_standard_8p64s/quant_state.pt"
+    }
+  },
+  "cases": [
+    {
+      "case_id": "vbench_000",
+      "prompt": "a person swimming in ocean",
+      "dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ]
+    },
+    {
+      "case_id": "vbench_072",
+      "prompt": "Close up of grapes on a rotating table.",
+      "dimensions": [
+        "aesthetic_quality",
+        "imaging_quality",
+        "overall_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_073",
+      "prompt": "Turtle swimming in ocean.",
+      "dimensions": [
+        "aesthetic_quality",
+        "imaging_quality",
+        "overall_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_001",
+      "prompt": "a person giving a presentation to a room full of colleagues",
+      "dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ]
+    },
+    {
+      "case_id": "vbench_074",
+      "prompt": "A storm trooper vacuuming the beach.",
+      "dimensions": [
+        "aesthetic_quality",
+        "imaging_quality",
+        "overall_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_002",
+      "prompt": "a person washing the dishes",
+      "dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ]
+    },
+    {
+      "case_id": "vbench_075",
+      "prompt": "A panda standing on a surfboard in the ocean in sunset.",
+      "dimensions": [
+        "aesthetic_quality",
+        "imaging_quality",
+        "overall_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_076",
+      "prompt": "An astronaut feeding ducks on a sunny afternoon, reflection from the water.",
+      "dimensions": [
+        "aesthetic_quality",
+        "imaging_quality",
+        "overall_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_003",
+      "prompt": "a person eating a burger",
+      "dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ]
+    },
+    {
+      "case_id": "vbench_077",
+      "prompt": "Two pandas discussing an academic paper.",
+      "dimensions": [
+        "aesthetic_quality",
+        "imaging_quality",
+        "overall_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_004",
+      "prompt": "a person walking in the snowstorm",
+      "dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ]
+    },
+    {
+      "case_id": "vbench_078",
+      "prompt": "Sunset time lapse at the beach with moving clouds and colors in the sky.",
+      "dimensions": [
+        "aesthetic_quality",
+        "imaging_quality",
+        "overall_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_165",
+      "prompt": "alley",
+      "dimensions": [
+        "scene",
+        "background_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_005",
+      "prompt": "a person drinking coffee in a cafe",
+      "dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ]
+    },
+    {
+      "case_id": "vbench_079",
+      "prompt": "A fat rabbit wearing a purple robe walking through a fantasy landscape.",
+      "dimensions": [
+        "aesthetic_quality",
+        "imaging_quality",
+        "overall_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_166",
+      "prompt": "amusement park",
+      "dimensions": [
+        "scene",
+        "background_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_167",
+      "prompt": "aquarium",
+      "dimensions": [
+        "scene",
+        "background_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_080",
+      "prompt": "A koala bear playing piano in the forest.",
+      "dimensions": [
+        "aesthetic_quality",
+        "imaging_quality",
+        "overall_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_006",
+      "prompt": "a person playing guitar",
+      "dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ]
+    },
+    {
+      "case_id": "vbench_168",
+      "prompt": "arch",
+      "dimensions": [
+        "scene",
+        "background_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_081",
+      "prompt": "An astronaut flying in space.",
+      "dimensions": [
+        "aesthetic_quality",
+        "imaging_quality",
+        "overall_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_169",
+      "prompt": "art gallery",
+      "dimensions": [
+        "scene",
+        "background_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_007",
+      "prompt": "a bicycle leaning against a tree",
+      "dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ]
+    },
+    {
+      "case_id": "vbench_082",
+      "prompt": "Fireworks.",
+      "dimensions": [
+        "aesthetic_quality",
+        "imaging_quality",
+        "overall_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_170",
+      "prompt": "bathroom",
+      "dimensions": [
+        "scene",
+        "background_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_171",
+      "prompt": "bakery shop",
+      "dimensions": [
+        "scene",
+        "background_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_008",
+      "prompt": "a bicycle gliding through a snowy field",
+      "dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ]
+    },
+    {
+      "case_id": "vbench_083",
+      "prompt": "An animated painting of fluffy white clouds moving in sky.",
+      "dimensions": [
+        "aesthetic_quality",
+        "imaging_quality",
+        "overall_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_172",
+      "prompt": "ballroom",
+      "dimensions": [
+        "scene",
+        "background_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_084",
+      "prompt": "Flying through fantasy landscapes.",
+      "dimensions": [
+        "aesthetic_quality",
+        "imaging_quality",
+        "overall_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_009",
+      "prompt": "a bicycle slowing down to stop",
+      "dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ]
+    },
+    {
+      "case_id": "vbench_173",
+      "prompt": "bar",
+      "dimensions": [
+        "scene",
+        "background_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_085",
+      "prompt": "A bigfoot walking in the snowstorm.",
+      "dimensions": [
+        "aesthetic_quality",
+        "imaging_quality",
+        "overall_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_174",
+      "prompt": "barn",
+      "dimensions": [
+        "scene",
+        "background_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_010",
+      "prompt": "a bicycle accelerating to gain speed",
+      "dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ]
+    },
+    {
+      "case_id": "vbench_175",
+      "prompt": "basement",
+      "dimensions": [
+        "scene",
+        "background_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_086",
+      "prompt": "A squirrel eating a burger.",
+      "dimensions": [
+        "aesthetic_quality",
+        "imaging_quality",
+        "overall_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_176",
+      "prompt": "beach",
+      "dimensions": [
+        "scene",
+        "background_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_011",
+      "prompt": "a car stuck in traffic during rush hour",
+      "dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ]
+    },
+    {
+      "case_id": "vbench_087",
+      "prompt": "A cat wearing sunglasses and working as a lifeguard at a pool.",
+      "dimensions": [
+        "aesthetic_quality",
+        "imaging_quality",
+        "overall_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_177",
+      "prompt": "bedroom",
+      "dimensions": [
+        "scene",
+        "background_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_088",
+      "prompt": "Snow rocky mountains peaks canyon. snow blanketed rocky mountains surround and shadow deep canyons. the canyons twist and bend through the high elevated mountain peaks.",
+      "dimensions": [
+        "aesthetic_quality",
+        "imaging_quality",
+        "overall_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_178",
+      "prompt": "bridge",
+      "dimensions": [
+        "scene",
+        "background_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_012",
+      "prompt": "a car turning a corner",
+      "dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ]
+    },
+    {
+      "case_id": "vbench_179",
+      "prompt": "botanical garden",
+      "dimensions": [
+        "scene",
+        "background_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_089",
+      "prompt": "Splash of turquoise water in extreme slow motion, alpha channel included.",
+      "dimensions": [
+        "aesthetic_quality",
+        "imaging_quality",
+        "overall_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_180",
+      "prompt": "cafeteria",
+      "dimensions": [
+        "scene",
+        "background_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_013",
+      "prompt": "a car slowing down to stop",
+      "dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ]
+    },
+    {
+      "case_id": "vbench_090",
+      "prompt": "an ice cream is melting on the table.",
+      "dimensions": [
+        "aesthetic_quality",
+        "imaging_quality",
+        "overall_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_181",
+      "prompt": "campsite",
+      "dimensions": [
+        "scene",
+        "background_consistency"
+      ]
+    },
+    {
+      "case_id": "vbench_014",
+      "prompt": "a car accelerating to gain speed",
+      "dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ]
+    }
+  ]
+}
