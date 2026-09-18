@@ -9,10 +9,17 @@ every video as belonging to every requested VBench dimension.
 import argparse
 import csv
 import json
+import os
+import sys
 from pathlib import Path
 
 import numpy as np
 import torch
+
+ROOT = Path(__file__).resolve().parents[1]
+VBENCH_ROOT = Path(os.environ.get("VBENCH_ROOT", ROOT / "third_party/ViDiT-Q/eval/video/Vbench"))
+if str(VBENCH_ROOT) not in sys.path:
+    sys.path.insert(0, str(VBENCH_ROOT))
 
 # The legacy VBench MUSIQ dependency pins imgaug, whose NumPy-1.x
 # ``sctypes`` lookup was removed in NumPy 2.  Keep this compatibility shim

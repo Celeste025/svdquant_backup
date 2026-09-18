@@ -15,12 +15,21 @@ import torch.nn as nn
 
 from minimax_h3_svdquant_common import module_fingerprint, nmse, target_linears
 
-CONVROT_ROOT = Path("/home/wjq/workspace/ConvRot")
+# The optional ConvRot checkout is deliberately external to this repository.
+# An explicit environment variable keeps the adapter portable across servers
+# while retaining the historical workstation location as a compatibility
+# fallback for existing experiments.
+CONVROT_ROOT = Path(os.environ.get("CONVROT_ROOT", "/home/wjq/workspace/ConvRot")).expanduser()
 ROT_SIZE = 256
 
 
 def import_convrot() -> None:
     """Register ConvRot/TorchAO dispatches from its unmodified source tree."""
+    if not CONVROT_ROOT.is_dir():
+        raise FileNotFoundError(
+            f"ConvRot checkout not found at {CONVROT_ROOT}; set CONVROT_ROOT to "
+            "the optional ConvRot source tree."
+        )
     if str(CONVROT_ROOT) not in sys.path:
         sys.path.insert(0, str(CONVROT_ROOT))
     import convrot  # noqa: F401

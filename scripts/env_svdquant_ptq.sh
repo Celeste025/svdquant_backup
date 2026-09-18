@@ -27,6 +27,8 @@ else
 fi
 
 export HF_ENDPOINT="${HF_ENDPOINT:-https://hf-mirror.com}"
+export DIFFSYNTH_ROOT="${DIFFSYNTH_ROOT:-${REPO_ROOT}/third_party/DiffSynth-Studio}"
+export VBENCH_ROOT="${VBENCH_ROOT:-${REPO_ROOT}/third_party/ViDiT-Q/eval/video/Vbench}"
 if [[ -d "${DATA_ROOT}" ]] && touch "${DATA_ROOT}/.write_test" 2>/dev/null; then
   rm -f "${DATA_ROOT}/.write_test"
 else
@@ -53,4 +55,6 @@ echo "  python: $(command -v python)"
 echo "  DATA_ROOT=${DATA_ROOT}"
 echo "  HF_ENDPOINT=${HF_ENDPOINT}"
 echo "  CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES}"
+echo "  DIFFSYNTH_ROOT=${DIFFSYNTH_ROOT}"
+echo "  VBENCH_ROOT=${VBENCH_ROOT}"
 echo "  cwd: $(pwd)"

@@ -11,7 +11,7 @@ import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DIFFSYNTH_ROOT = Path("/home/wjq/workspace/DiffSynth-Studio")
+DIFFSYNTH_ROOT = Path(os.environ.get("DIFFSYNTH_ROOT", ROOT / "third_party/DiffSynth-Studio"))
 if str(DIFFSYNTH_ROOT) not in sys.path:
     sys.path.insert(0, str(DIFFSYNTH_ROOT))
 os.chdir(DIFFSYNTH_ROOT)  # DiffSynth model patterns are relative to this directory.
@@ -85,9 +85,11 @@ def apply_svdquant(dit, state_path: Path):
     if state.get("format") != "minimax-h3-svdquant-standard-v1" or len(state.get("layers", {})) != 200:
         raise RuntimeError("invalid MiniMax-H3 standard SVDQuant state")
     cfg = state.get("config", {})
-    expected = {"rank": 32, "num_grids": 10, "max_lowrank_iters": 50, "group_size": 16, "element_size": 128}
+    expected = {"num_grids": 10, "max_lowrank_iters": 50, "group_size": 16, "element_size": 128}
     if any(cfg.get(k) != v for k, v in expected.items()):
         raise RuntimeError(f"unexpected SVDQuant recipe: {cfg}")
+    if cfg.get("rank") not in (32, 64):
+        raise RuntimeError(f"unsupported SVDQuant rank: {cfg.get('rank')}")
     runtimes = []
     for index, (name, linear) in enumerate(target_linears(dit), 1):
         layer = state["layers"][name]
@@ -138,6 +140,7 @@ def main() -> None:
     parser.add_argument("--manifest", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--variant", choices=("bf16", "w4a4", "svdquant"), required=True)
+    parser.add_argument("--state", type=Path, default=STATE, help="SVDQuant state; used only for --variant svdquant")
     parser.add_argument("--smoke", action="store_true")
     args = parser.parse_args()
     manifest = json.loads(args.manifest.read_text())
@@ -151,10 +154,10 @@ def main() -> None:
     runtimes = []
     if args.variant != "bf16":
         pipe.load_models_to_device(["dit"])
-        runtimes = apply_plain_w4a4(pipe.dit) if args.variant == "w4a4" else apply_svdquant(pipe.dit, STATE)
+        runtimes = apply_plain_w4a4(pipe.dit) if args.variant == "w4a4" else apply_svdquant(pipe.dit, args.state)
     validation = validate(pipe.dit, args.variant, runtimes)
     worker_status = args.output / "worker_status" / f"{args.variant}.json"
-    atomic_json(worker_status, {"state": "running", "variant": args.variant, "validation": validation,
+    atomic_json(worker_status, {"state": "running", "variant": args.variant, "quant_state": str(args.state) if args.variant == "svdquant" else None, "validation": validation,
                                 "pid": os.getpid(), "started_at": time.time()})
     generated = skipped = 0
     failures = []
@@ -179,7 +182,7 @@ def main() -> None:
                                  "error": repr(exc)})
             torch.cuda.empty_cache()
     atomic_json(worker_status, {"state": "complete" if not failures else "completed_with_failures",
-                                "variant": args.variant, "validation": validation, "generated": generated,
+                                "variant": args.variant, "quant_state": str(args.state) if args.variant == "svdquant" else None, "validation": validation, "generated": generated,
                                 "skipped": skipped, "failures": failures, "finished_at": time.time()})
     if failures:
         raise SystemExit(f"{args.variant}: {len(failures)} case(s) failed")

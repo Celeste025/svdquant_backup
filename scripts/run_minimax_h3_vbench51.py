@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import subprocess
@@ -12,7 +13,8 @@ from collections import OrderedDict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-VBENCH = Path("/home/wjq/workspace/ViDiT-Q/eval/video/Vbench/vbench/VBench_full_info.json")
+VBENCH_ROOT = Path(os.environ.get("VBENCH_ROOT", ROOT / "third_party/ViDiT-Q/eval/video/Vbench/vbench"))
+VBENCH = VBENCH_ROOT / "VBench_full_info.json"
 OUT = ROOT / "results/samples/minimax_h3_vbench51_seed0_calibshape"
 DIMS = ("aesthetic_quality", "scene", "imaging_quality", "overall_consistency", "background_consistency",
         "subject_consistency", "dynamic_degree", "motion_smoothness")
@@ -27,7 +29,12 @@ def atomic_json(path: Path, value: object) -> None:
     temp.replace(path)
 
 
-def build_manifest(path: Path) -> dict:
+def build_manifest(path: Path, state: Path = ROOT / "results/checkpoints/minimax_h3_svdquant_standard_8p64s/quant_state.pt") -> dict:
+    import torch
+    state_doc = torch.load(state, map_location="cpu", weights_only=False)
+    recipe = state_doc.get("config", {})
+    if state_doc.get("format") != "minimax-h3-svdquant-standard-v1" or recipe.get("rank") not in (32, 64):
+        raise RuntimeError(f"invalid H3 SVDQuant state: {state}")
     prompts: OrderedDict[str, dict] = OrderedDict()
     for item in json.loads(VBENCH.read_text()):
         dims = [d for d in item["dimension"] if d in DIMS]
@@ -52,8 +59,8 @@ def build_manifest(path: Path) -> dict:
                 "variants": {"bf16": {"format": "bf16"},
                              "w4a4": {"format": "real-NVFP4 dynamic W4A4", "smoothing": False, "low_rank": False,
                                         "group_size": 16, "activation_element_size": 128},
-                             "svdquant": {"format": "real-NVFP4 SVDQuant", "rank": 32, "grid": 10,
-                                          "max_lowrank_iters": 50, "state": str(ROOT / "results/checkpoints/minimax_h3_svdquant_standard_8p64s/quant_state.pt")}},
+                             "svdquant": {"format": "real-NVFP4 SVDQuant", "rank": recipe["rank"], "grid": recipe["num_grids"],
+                                          "max_lowrank_iters": recipe["max_lowrank_iters"], "state": str(state)}},
                 "cases": selected}
     atomic_json(path, manifest)
     return manifest
@@ -63,18 +70,39 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, default=OUT)
     parser.add_argument("--gpu", default="7")
+    parser.add_argument("--state", type=Path, default=ROOT / "results/checkpoints/minimax_h3_svdquant_standard_8p64s/quant_state.pt")
+    parser.add_argument("--source", type=Path, help="copy paired BF16/W4A4 artifacts from this completed VBench directory")
+    parser.add_argument("--variants", nargs="+", choices=("bf16", "w4a4", "svdquant"), default=("bf16", "w4a4", "svdquant"))
     parser.add_argument("--smoke", action="store_true")
     args = parser.parse_args()
     manifest_path = args.output / "manifest.json"
-    manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else build_manifest(manifest_path)
+    manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else build_manifest(manifest_path, args.state)
     if manifest.get("settings") != SETTINGS or len(manifest.get("cases", [])) != 51:
         raise RuntimeError("existing manifest does not match this experiment contract")
     env = {**os.environ, "CUDA_VISIBLE_DEVICES": args.gpu, "DIFFSYNTH_SKIP_DOWNLOAD": "True",
-           "PYTHONPATH": f"{ROOT / 'scripts'}:/home/wjq/workspace/DiffSynth-Studio",
+           "PYTHONPATH": f"{ROOT / 'scripts'}:{os.environ.get('DIFFSYNTH_ROOT', str(ROOT / 'third_party/DiffSynth-Studio'))}",
            "TOKENIZERS_PARALLELISM": "false"}
-    for variant in ("bf16", "w4a4", "svdquant"):
+    if manifest["variants"]["svdquant"].get("state") != str(args.state):
+        raise RuntimeError("existing manifest refers to a different SVDQuant state")
+    if args.source:
+        for case in manifest["cases"]:
+            for variant in ("bf16", "w4a4"):
+                for suffix in (".mp4", ".json"):
+                    source = args.source / "cases" / case["case_id"] / f"{variant}{suffix}"
+                    target = args.output / "cases" / case["case_id"] / source.name
+                    if not source.is_file():
+                        raise FileNotFoundError(source)
+                    if target.exists():
+                        if hashlib.sha256(source.read_bytes()).digest() != hashlib.sha256(target.read_bytes()).digest():
+                            raise RuntimeError(f"copied baseline differs from source: {target}")
+                    else:
+                        target.parent.mkdir(parents=True, exist_ok=True)
+                        target.write_bytes(source.read_bytes())
+    for variant in args.variants:
         command = [sys.executable, str(ROOT / "scripts/minimax_h3_vbench51_worker.py"), "--manifest", str(manifest_path),
                    "--output", str(args.output), "--variant", variant]
+        if variant == "svdquant":
+            command += ["--state", str(args.state)]
         if args.smoke:
             command.append("--smoke")
         subprocess.run(command, check=True, env=env)

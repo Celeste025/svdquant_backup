@@ -16,7 +16,7 @@ from collections import OrderedDict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-VBENCH = Path("/home/wjq/workspace/ViDiT-Q/eval/video/Vbench/vbench/VBench_full_info.json")
+VBENCH = Path(os.environ.get("VBENCH_ROOT", ROOT / "third_party/ViDiT-Q/eval/video/Vbench/vbench")) / "VBench_full_info.json"
 SOURCE = ROOT / "results/samples/rcm_vbench251_seed0_480p77f_4step"
 OUT = ROOT / "results/samples/rcm_int4_svdquant_vbench51_seed0_480p77f_4step"
 DIMS = ("aesthetic_quality", "scene", "imaging_quality", "overall_consistency", "background_consistency",

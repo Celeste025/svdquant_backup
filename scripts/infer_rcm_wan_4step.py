@@ -41,9 +41,25 @@ def load_quantized_transformer(pipe, ckpt_dir: Path, model_path: Path, recipe: s
     manifest_path = ckpt_dir / "manifest.json"
     if recipe is None and manifest_path.is_file():
         recipe = json.loads(manifest_path.read_text()).get("format")
-    configs = (["configs/svdquant/int4.yaml", "configs/svdquant/rcm_wan_int4_s16_g10.yaml"]
-               if recipe == "rcm-wan-int4-svdquant-v1"
-               else ["configs/svdquant/real_nvfp4.yaml", "configs/svdquant/wan_s16.yaml"])
+    real_recipes = {
+        "rcm-wan-real-nvfp4-r32-g20": "configs/svdquant/rcm_wan_real_nvfp4_s16_g20_r32.yaml",
+        "rcm-wan-real-nvfp4-r64-g10": "configs/svdquant/rcm_wan_real_nvfp4_s16_g10_r64.yaml",
+    }
+    if recipe == "rcm-wan-int4-svdquant-v1":
+        configs = ["configs/svdquant/int4.yaml", "configs/svdquant/rcm_wan_int4_s16_g10.yaml"]
+    else:
+        configs = ["configs/svdquant/real_nvfp4.yaml", "configs/svdquant/wan_s16.yaml"]
+        # A saved rank changes the reconstructed low-rank module shape.  The
+        # historic rank-32 checkpoint has no manifest and deliberately keeps
+        # the default recipe; new checkpoint manifests select an exact overlay.
+        if recipe in real_recipes:
+            configs.append(real_recipes[recipe])
+        elif recipe == "rcm-wan-real-nvfp4-svdquant-v1":
+            spec = json.loads(manifest_path.read_text()).get("svdquant", {})
+            key = f"rcm-wan-real-nvfp4-r{spec.get('rank')}-g{spec.get('smooth_grids')}"
+            if key not in real_recipes:
+                raise RuntimeError(f"unsupported rCM real-NVFP4 manifest recipe: {spec}")
+            configs.append(real_recipes[key])
     load_dirpath = ckpt_dir
     # This rCM INT4 run intentionally saved only the final model/scale/weight
     # tensors in ``ckpt_dir``.  Its smooth and low-rank branch states live in
@@ -52,10 +68,17 @@ def load_quantized_transformer(pipe, ckpt_dir: Path, model_path: Path, recipe: s
     # private link-only view rather than mutating the checkpoint directory.
     if recipe == "rcm-wan-int4-svdquant-v1":
         run_cache = ckpt_dir.parents[1] / "runs" / ckpt_dir.name / "diffusion" / "cache"
+
         def find_cache(kind: str) -> Path:
+            packaged = ckpt_dir / f"{kind}.pt"
+            if packaged.is_file():
+                return packaged
             candidates = [p for p in run_cache.rglob("wan2.1-1.3b.pt") if f"/{kind}/" in str(p)]
             if len(candidates) != 1:
-                raise RuntimeError(f"expected one rCM INT4 {kind} cache below {run_cache}, found {len(candidates)}")
+                raise RuntimeError(
+                    f"missing published {kind}.pt and expected one legacy rCM INT4 {kind} cache "
+                    f"below {run_cache}, found {len(candidates)}"
+                )
             return candidates[0]
         load_dirpath = RESULTS_ROOT / "ptq_load_scratch" / ckpt_dir.name
         load_dirpath.mkdir(parents=True, exist_ok=True)

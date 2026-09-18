@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "release": "v0.1.0",
+  "repositories": {
+    "rcm-wan": "svdquant-rcm-wan2.1-1.3b",
+    "minimax-h3": "svdquant-minimax-h3",
+    "flux1": "svdquant-flux1"
+  },
+  "artifacts": {
+    "rcm-wan:real-nvfp4-g5-r32": {"repository": "rcm-wan", "path": "variants/real-nvfp4-g5-r32", "loader": "scripts/infer_rcm_wan_4step.py"},
+    "rcm-wan:int4-g10-r32": {"repository": "rcm-wan", "path": "variants/int4-g10-r32", "loader": "scripts/infer_rcm_wan_4step.py"},
+    "rcm-wan:real-nvfp4-g20-r32": {"repository": "rcm-wan", "path": "variants/real-nvfp4-g20-r32", "loader": "scripts/infer_rcm_wan_4step.py"},
+    "rcm-wan:real-nvfp4-g10-r64": {"repository": "rcm-wan", "path": "variants/real-nvfp4-g10-r64", "loader": "scripts/infer_rcm_wan_4step.py"},
+    "minimax-h3:nvfp4-g10-r32": {"repository": "minimax-h3", "path": "variants/nvfp4-g10-r32", "loader": "scripts/infer_minimax_h3_svdquant_standard.py"},
+    "minimax-h3:nvfp4-g10-r64": {"repository": "minimax-h3", "path": "variants/nvfp4-g10-r64", "loader": "scripts/infer_minimax_h3_svdquant_standard.py"},
+    "flux1:dev-int4-r32": {"repository": "flux1", "path": "variants/dev-int4-r32", "loader": "scripts/infer_bf16_vs_w4a4_one.py"},
+    "flux1:schnell-int4-r32": {"repository": "flux1", "path": "variants/schnell-int4-r32", "loader": "scripts/exp_flux_schnell_rollout_error.py"}
+  }
+}

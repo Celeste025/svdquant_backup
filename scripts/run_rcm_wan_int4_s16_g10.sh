@@ -2,12 +2,12 @@
 # rCM-Wan 4-step, 77-frame INT4 SVDQuant control experiment.
 set -euo pipefail
 
-ROOT=/home/wjq/workspace/svdquant-exp
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DIFFUSION="$ROOT/third_party/deepcompressor/examples/diffusion"
-DATA=/data1/models/svdquant-wjq
+DATA="${SVDQUANT_DATA_ROOT:-/data1/models/svdquant-wjq}"
 # This is the historical DeepCompressor/Wan PTQ runtime (Diffusers 0.33),
 # not the newer recovered H3 runtime (Diffusers 0.40).
-PY=/data1/models/svdquant-wjq/conda-envs/svdquant-ptq/bin/python
+PY="${SVDQUANT_PTQ_PYTHON:-$DATA/conda-envs/svdquant-ptq/bin/python}"
 CACHE="$DATA/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16"
 MODEL="$DATA/models/Wan2.1-T2V-1.3B-Diffusers"
 RCM_TRANSFORMER="$DATA/models/rcm-Wan2.1-T2V-1.3B-Diffusers/transformer"
@@ -21,7 +21,7 @@ export DEEPCOMPRESSOR_TRANSFORMER_ONLY=1
 # the later experimental Wan gated OutputsError wrapper for this control run.
 export DEEPCOMPRESSOR_WAN_GATED=0
 export PYTHONPATH="$ROOT/third_party/deepcompressor:${PYTHONPATH:-}"
-export PATH="/data1/models/svdquant-wjq/conda-envs/svdquant-ptq/bin:$PATH"
+export PATH="$(dirname "$PY"):$PATH"
 export RCM_TRANSFORMER_PATH="$RCM_TRANSFORMER"
 mkdir -p "$RUN" "$(dirname "$LOG")"
 test "$(find "$CACHE/caches" -maxdepth 1 -name '*.pt' | wc -l)" = 64

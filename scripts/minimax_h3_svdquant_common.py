@@ -12,6 +12,7 @@ from __future__ import annotations
 import json
 import math
 import os
+import sys
 import types
 from contextlib import contextmanager
 from dataclasses import dataclass
@@ -22,14 +23,18 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+ROOT = Path(__file__).resolve().parents[1]
+DIFFSYNTH_ROOT = Path(os.environ.get("DIFFSYNTH_ROOT", ROOT / "third_party/DiffSynth-Studio"))
+if str(DIFFSYNTH_ROOT) not in sys.path:
+    sys.path.insert(0, str(DIFFSYNTH_ROOT))
+
 from deepcompressor.nn.patch.lowrank import LowRankBranch
 from diffsynth.models.minimax_h3_dit import MiniMaxH3DiTBlock
 from diffsynth.models.minimax_h3_dit_comfy import MiniMaxH3DiTComfyPruned
 from diffsynth.pipelines.minimax_h3_audio_video import MiniMaxH3Pipeline, ModelConfig
 
 
-DIFFSYNTH_ROOT = Path("/home/wjq/workspace/DiffSynth-Studio")
-PROMPT_FILE = Path("/home/wjq/workspace/178866172854036")
+PROMPT_FILE = Path(os.environ.get("MINIMAX_H3_PROMPT_FILE", ROOT / "data/minimax_h3_prompts.jsonl"))
 DIT_MODEL_ID = "Comfy-Org/MiniMax-H3"
 DIT_PATTERN = "diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors"
 H3_MODEL_ID = "MiniMax/MiniMax-H3"

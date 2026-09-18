@@ -1,0 +1,21 @@
+# Optional environment for the historical MiniMax-H3 ConvRot ablation only.
+# It requires a separately patched ConvRot checkout; see docs/environment_matrix.md.
+name: convrot-wan
+channels:
+  - defaults
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu128
+      - torch==2.11.0+cu128
+      - torchao==0.17.0
+      - mslk==1.1.1+cu128
+      - triton==3.6.0
+      - diffusers==0.40.0
+      - transformers>=4.44
+      - accelerate>=0.34
+      - safetensors>=0.4
+      - PyYAML>=6.0
+      - imageio[ffmpeg]>=2.34
+      - ninja>=1.11

@@ -1,0 +1,10 @@
+# rCM-Wan real-NVFP4 W4A4 SVDQuant ablation: restore the default 20-point
+# smoothing search while retaining the historic rank-32 low-rank branch.
+quant:
+  wgts:
+    low_rank:
+      rank: 32
+      num_iters: 100
+  smooth:
+    proj:
+      num_grids: 20
