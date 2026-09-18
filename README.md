@@ -113,6 +113,8 @@ Published repositories:
 - `Celeste025/svdquant-minimax-h3` and `Celeste025/svdquant-videoeval-minimax-h3` — private H3 states/videos; require the owner's read token.
 
 See `docs/modelscope_release.md` for package layout and publishing details.
+For a concise, copy-ready task brief for an agent on another server, see
+[`docs/new_server_handoff_prompt.md`](docs/new_server_handoff_prompt.md).
 
 ### Main entry points
 
