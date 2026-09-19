@@ -61,12 +61,13 @@ def load_quantized_transformer(pipe, ckpt_dir: Path, model_path: Path, recipe: s
                 raise RuntimeError(f"unsupported rCM real-NVFP4 manifest recipe: {spec}")
             configs.append(real_recipes[key])
     load_dirpath = ckpt_dir
-    # This rCM INT4 run intentionally saved only the final model/scale/weight
-    # tensors in ``ckpt_dir``.  Its smooth and low-rank branch states live in
-    # the immutable PTQ cache.  DeepCompressor needs both states while it
-    # rebuilds the module graph before loading ``model.pt``.  Construct a
-    # private link-only view rather than mutating the checkpoint directory.
-    if recipe == "rcm-wan-int4-svdquant-v1":
+    # Smoothing and low-rank branches are distinct PTQ cache states rather
+    # than entries in model.pt/scale.pt/wgts.pt.  Published packages carry
+    # smooth.pt and branch.pt explicitly.  Construct a private link-only view
+    # because DeepCompressor expects these canonical names while it rebuilds
+    # the quantized module graph.  The cache search is only a legacy fallback
+    # for historical local checkpoints.
+    if (ckpt_dir / "smooth.pt").is_file() or (ckpt_dir / "branch.pt").is_file() or recipe == "rcm-wan-int4-svdquant-v1":
         run_cache = ckpt_dir.parents[1] / "runs" / ckpt_dir.name / "diffusion" / "cache"
 
         def find_cache(kind: str) -> Path:
@@ -76,7 +77,7 @@ def load_quantized_transformer(pipe, ckpt_dir: Path, model_path: Path, recipe: s
             candidates = [p for p in run_cache.rglob("wan2.1-1.3b.pt") if f"/{kind}/" in str(p)]
             if len(candidates) != 1:
                 raise RuntimeError(
-                    f"missing published {kind}.pt and expected one legacy rCM INT4 {kind} cache "
+                    f"missing published {kind}.pt and expected one legacy rCM {kind} cache "
                     f"below {run_cache}, found {len(candidates)}"
                 )
             return candidates[0]
@@ -89,7 +90,7 @@ def load_quantized_transformer(pipe, ckpt_dir: Path, model_path: Path, recipe: s
         }
         for name, source in sources.items():
             if not source.is_file():
-                raise RuntimeError(f"missing INT4 load artifact: {source}")
+                raise RuntimeError(f"missing rCM SVDQuant load artifact: {source}")
             target = load_dirpath / name
             if target.exists() or target.is_symlink():
                 if target.resolve() != source.resolve():

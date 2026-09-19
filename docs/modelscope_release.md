@@ -8,8 +8,8 @@ outside Git and are immutable once checksums have been written.
 Each model variant contains `artifact.json`, `SHA256SUMS`, a README, a recipe
 snapshot, and only the state required to reconstruct the quantized transformer.
 H3 uses `quant_state.pt`; rCM and FLUX use `model.pt`, `scale.pt`, and
-`wgts.pt`. The historical rCM INT4 and both FLUX variants additionally carry
-`smooth.pt` and `branch.pt`, so no original PTQ cache is needed.
+`wgts.pt`. Every rCM SVDQuant and FLUX variant also carries `smooth.pt` and
+`branch.pt`, so no original PTQ cache is needed for loading a published state.
 
 Download and verify an artifact (after release):
 
