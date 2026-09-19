@@ -38,6 +38,7 @@ DATASETS: dict[str, tuple[Collection, ...]] = {
         Collection("h3_vbench51_r64", ROOT / "results/samples/minimax_h3_svdquant_standard_r64_vbench51_seed0_calibshape", "MiniMax-H3 VBench-51: paired BF16/W4A4 and SVDQuant rank64."),
         Collection("h3_standard_r32", ROOT / "results/samples/minimax_h3_svdquant_standard_8p64s", "MiniMax-H3 standard selected p2/p16/p26/p42/p51 comparisons, rank32."),
         Collection("h3_standard_r64", ROOT / "results/samples/minimax_h3_svdquant_standard_r64_8p64s", "MiniMax-H3 available standard rank64 comparison videos."),
+        Collection("h3_vbench51_convrot", ROOT / "results/samples/minimax_h3_convrot_vbench51_seed0_calibshape", "MiniMax-H3 VBench-51 ConvRot NVFP4, paired with the canonical BF16/W4A4 baselines."),
     ),
 }
 
@@ -113,7 +114,8 @@ def write_dataset(name: str, collections: tuple[Collection, ...], release_root: 
         "collections": [{"name": x.name, "description": x.description, "source_paths_removed": True} for x in collections],
         "video_records": len(records),
         "unique_videos": len(seen),
-        "smoke_or_convrot_included": False,
+        "smoke_included": False,
+        "convrot_included": name == "svdquant-videoeval-minimax-h3",
     }
     (destination / "artifact.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     (destination / "README.md").write_text(
