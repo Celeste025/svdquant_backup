@@ -11,14 +11,16 @@ import time
 import traceback
 from pathlib import Path
 
+REPO_ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_DATA_ROOT = REPO_ROOT.parents[2] / "app_data"
 os.environ.setdefault("ARROW_DEFAULT_MEMORY_POOL", "system")
 os.environ.setdefault("PYTHONMALLOC", "malloc")
 os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
-os.environ.setdefault("HF_ENDPOINT", "https://hf-mirror.com")
 
-DATA_ROOT = Path(os.environ.get("DATA_ROOT", "/ssd/2/wenjinqi.wjq"))
-os.environ.setdefault("HF_HOME", str(DATA_ROOT / "hf"))
-os.environ.setdefault("HUGGINGFACE_HUB_CACHE", str(DATA_ROOT / "hf" / "hub"))
+DATA_ROOT = Path(os.environ.get("DATA_ROOT", os.environ.get("SVDQUANT_DATA_ROOT", DEFAULT_DATA_ROOT)))
+os.environ.setdefault("SVDQUANT_DATA_ROOT", str(DATA_ROOT))
+os.environ.setdefault("HF_HOME", str(DATA_ROOT / "cache" / "hf"))
+os.environ.setdefault("HUGGINGFACE_HUB_CACHE", str(Path(os.environ["HF_HOME"]) / "hub"))
 os.environ.setdefault("TMPDIR", str(DATA_ROOT / "tmp"))
 
 import torch  # noqa: E402
@@ -33,7 +35,7 @@ HEIGHT = 1024
 WIDTH = 1024
 MODEL_PATH = Path(os.environ.get("FLUX_MODEL_PATH", str(DATA_ROOT / "models" / "FLUX.1-dev")))
 MODEL_CONFIG = os.environ.get("FLUX_MODEL_CONFIG", "configs/model/flux.1-dev.yaml")
-CALIB_PATH = os.environ.get("FLUX_CALIB_PATH", str(DATA_ROOT / "datasets/torch.bfloat16/flux.1-dev/fmeuler50-g3.5/qdiff/s64"))
+CALIB_PATH = Path(os.environ.get("FLUX_CALIB_PATH", str(DATA_ROOT / "datasets" / "torch.bfloat16" / "flux.1-dev" / "fmeuler50-g3.5" / "qdiff" / "s64")))
 
 
 def _parse_cfg(argv: list[str]):
@@ -45,21 +47,14 @@ def _parse_cfg(argv: list[str]):
 
 
 def load_quant_pipeline(ckpt_dir: Path):
-    """Load Flux via official pipeline.build + ptq(load_from=ckpt).
-
-    Must go through DiffusionPipelineConfig.build() so FluxSingleTransformerBlock.proj_out
-    is converted to ConcatLinear before DiffusionModelStruct.construct / weight load.
-    """
+    """Load Flux via official pipeline.build + ptq(load_from=ckpt)."""
     from deepcompressor.app.diffusion.nn.struct import DiffusionModelStruct
     from deepcompressor.app.diffusion.ptq import ptq
 
-    # Keep full pipeline on GPU for image generation (not PTQ-only mode).
     os.environ["DEEPCOMPRESSOR_TRANSFORMER_ONLY"] = "0"
-
-    repo = Path(__file__).resolve().parents[1]
-    diffusion = repo / "third_party" / "deepcompressor" / "examples" / "diffusion"
+    diffusion = REPO_ROOT / "third_party" / "deepcompressor" / "examples" / "diffusion"
     os.chdir(diffusion)
-    out_root = DATA_ROOT / "compare" / "bf16_vs_w4a4_one" / "ptq_load_scratch"
+    out_root = DATA_ROOT / "runs" / "flux" / "ptq_load_scratch"
     out_root.mkdir(parents=True, exist_ok=True)
     cfg = _parse_cfg(
         [
@@ -88,6 +83,15 @@ def load_quant_pipeline(ckpt_dir: Path):
 
     print("[quant] building Flux pipeline (with ConcatLinear patch)...", flush=True)
     pipe = cfg.pipeline.build()
+    # The 48 GiB GPU cannot hold the BF16 transformer, the encoders/VAE, and the
+    # 22 GiB model.pt restoration at the same time; offload the non-DiT parts
+    # while the published quantized state is restored onto the transformer.
+    for attr in ("text_encoder", "text_encoder_2", "vae"):
+        module = getattr(pipe, attr, None)
+        if isinstance(module, torch.nn.Module):
+            module.to("cpu")
+    gc.collect()
+    torch.cuda.empty_cache()
     model = DiffusionModelStruct.construct(pipe)
 
     print(f"[quant] loading PTQ ckpt from {ckpt_dir} (smooth + model + branch + act hooks)...", flush=True)
@@ -109,10 +113,18 @@ def load_bf16_pipeline(dtype=torch.bfloat16):
     from diffusers import FluxPipeline
 
     print("[bf16] building FluxPipeline...", flush=True)
-    return FluxPipeline.from_pretrained(
-        str(MODEL_PATH),
-        torch_dtype=dtype,
-    ).to("cuda")
+    return FluxPipeline.from_pretrained(str(MODEL_PATH), torch_dtype=dtype).to("cuda")
+
+
+def require_free_gpu(min_free_gib: float) -> None:
+    if not torch.cuda.is_available():
+        raise RuntimeError("CUDA is unavailable")
+    free, total = torch.cuda.mem_get_info()
+    if free < min_free_gib * 2**30:
+        raise RuntimeError(
+            f"GPU free memory is {free / 2**30:.2f} GiB; requires at least {min_free_gib:.2f} GiB "
+            f"of {total / 2**30:.2f} GiB"
+        )
 
 
 @torch.inference_mode()
@@ -145,21 +157,16 @@ def generate(pipe, prompt: str, seed: int, out_path: Path) -> dict:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--ckpt",
-        type=Path,
-        default=DATA_ROOT / "ckpts" / "flux.1-dev-int4-fast-svd-lowrank",
-    )
-    parser.add_argument(
-        "--out-dir",
-        type=Path,
-        default=DATA_ROOT / "compare" / "bf16_vs_w4a4_one",
-    )
+    parser.add_argument("--ckpt", type=Path, default=DATA_ROOT / "artifacts" / "variants" / "dev-int4-r32")
+    parser.add_argument("--out-dir", type=Path, default=DATA_ROOT / "compare" / "bf16_vs_w4a4_one")
     parser.add_argument("--prompt", type=str, default=PROMPT)
     parser.add_argument("--seed", type=int, default=SEED)
     parser.add_argument("--only", choices=["both", "bf16", "quant"], default="both")
+    parser.add_argument("--load-only", action="store_true")
+    parser.add_argument("--min-free-gib", type=float, default=20.0)
     args = parser.parse_args()
 
+    require_free_gpu(args.min_free_gib)
     report = {
         "prompt": args.prompt,
         "seed": args.seed,
@@ -168,18 +175,28 @@ def main() -> int:
         "height": HEIGHT,
         "width": WIDTH,
         "ckpt": str(args.ckpt),
+        "load_only": args.load_only,
     }
 
     if args.only in ("both", "bf16"):
         pipe = load_bf16_pipeline()
-        report["bf16"] = generate(pipe, args.prompt, args.seed, args.out_dir / f"bf16_seed{args.seed}.png")
+        report["bf16"] = {"loaded": True} if args.load_only else generate(
+            pipe, args.prompt, args.seed, args.out_dir / f"bf16_seed{args.seed}.png"
+        )
         del pipe
         gc.collect()
         torch.cuda.empty_cache()
 
     if args.only in ("both", "quant"):
         pipe = load_quant_pipeline(args.ckpt)
-        report["w4a4"] = generate(pipe, args.prompt, args.seed, args.out_dir / f"w4a4_svd_lowrank_seed{args.seed}.png")
+        # Restore the offloaded encoders/VAE on GPU for prompt encoding and decode.
+        for attr in ("text_encoder", "text_encoder_2", "vae"):
+            module = getattr(pipe, attr, None)
+            if isinstance(module, torch.nn.Module):
+                module.to("cuda")
+        report["w4a4"] = {"loaded": True} if args.load_only else generate(
+            pipe, args.prompt, args.seed, args.out_dir / f"w4a4_svd_lowrank_seed{args.seed}.png"
+        )
         del pipe
         gc.collect()
         torch.cuda.empty_cache()

@@ -24,6 +24,14 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 ROOT = Path(__file__).resolve().parents[1]
+DATA_ROOT = Path(os.environ.get("SVDQUANT_DATA_ROOT", ROOT.parents[2] / "app_data"))
+H3_MODEL_ROOT = Path(os.environ.get("MINIMAX_H3_MODEL_ROOT", DATA_ROOT / "models" / "MiniMax-H3"))
+H3_DIT_PATH = Path(
+    os.environ.get(
+        "MINIMAX_H3_DIT_PATH",
+        DATA_ROOT / "models" / "Comfy-Org" / "MiniMax-H3" / "diffusion_models" / "minimax_h3_fl2va_pruned_bf16.safetensors",
+    )
+)
 DIFFSYNTH_ROOT = Path(os.environ.get("DIFFSYNTH_ROOT", ROOT / "third_party/DiffSynth-Studio"))
 if str(DIFFSYNTH_ROOT) not in sys.path:
     sys.path.insert(0, str(DIFFSYNTH_ROOT))
@@ -87,9 +95,19 @@ def disk_config() -> dict[str, Any]:
     }
 
 
-def load_h3_pipeline(*, full: bool, reserve_gib: float = 4.0, dit_disk: bool = True) -> MiniMaxH3Pipeline:
+def local_h3_files(pattern: str) -> str | list[str]:
+    files = sorted(H3_MODEL_ROOT.glob(pattern))
+    if not files:
+        raise FileNotFoundError(f"missing MiniMax-H3 component '{pattern}' below {H3_MODEL_ROOT}")
+    paths = [str(path) for path in files]
+    return paths[0] if len(paths) == 1 else paths
+
+
+def load_h3_pipeline(*, full: bool, reserve_gib: float = 4.0, dit_disk: bool = True,
+                     vram_limit_gib: float | None = None) -> MiniMaxH3Pipeline:
     """Load the local pruned checkpoint; ``full=False`` loads only the DiT."""
-    os.environ.setdefault("DIFFSYNTH_SKIP_DOWNLOAD", "True")
+    if not H3_DIT_PATH.is_file():
+        raise FileNotFoundError(f"missing MiniMax-H3 pruned DiT at {H3_DIT_PATH}; set MINIMAX_H3_DIT_PATH after downloading it")
     cfg = disk_config()
     dit_cfg = cfg if dit_disk else {
         "offload_dtype": torch.bfloat16, "offload_device": "cpu",
@@ -97,19 +115,23 @@ def load_h3_pipeline(*, full: bool, reserve_gib: float = 4.0, dit_disk: bool = T
         "preparing_dtype": torch.bfloat16, "preparing_device": "cuda",
         "computation_dtype": torch.bfloat16, "computation_device": "cuda",
     }
-    models = [ModelConfig(model_id=DIT_MODEL_ID, origin_file_pattern=DIT_PATTERN, **dit_cfg)]
+    models = [ModelConfig(path=str(H3_DIT_PATH), **dit_cfg)]
     processor = None
     if full:
         models += [
-            ModelConfig(model_id=H3_MODEL_ID, origin_file_pattern="FL2VA/text_encoder/model*.safetensors", **cfg),
-            ModelConfig(model_id=H3_MODEL_ID, origin_file_pattern="FL2VA/video_vae/source/model.safetensors", **cfg),
-            ModelConfig(model_id=H3_MODEL_ID, origin_file_pattern="FL2VA/audio_vae/model.safetensors", **cfg),
+            ModelConfig(path=local_h3_files("FL2VA/text_encoder/model*.safetensors"), **cfg),
+            ModelConfig(path=local_h3_files("FL2VA/video_vae/source/model.safetensors"), **cfg),
+            ModelConfig(path=local_h3_files("FL2VA/audio_vae/model.safetensors"), **cfg),
         ]
-        processor = ModelConfig(model_id=H3_MODEL_ID, origin_file_pattern="FL2VA/processor/")
+        processor_path = H3_MODEL_ROOT / "FL2VA/processor"
+        if not processor_path.is_dir():
+            raise FileNotFoundError(f"missing MiniMax-H3 processor below {processor_path}")
+        processor = ModelConfig(path=str(processor_path))
     total_gib = torch.cuda.mem_get_info("cuda")[1] / 1024**3
+    limit_gib = vram_limit_gib if vram_limit_gib is not None else total_gib - reserve_gib
     pipe = MiniMaxH3Pipeline.from_pretrained(
         torch_dtype=torch.bfloat16, device="cuda", model_configs=models,
-        processor_config=processor, vram_limit=max(1.0, total_gib - reserve_gib),
+        processor_config=processor, vram_limit=max(1.0, limit_gib),
     )
     if not isinstance(pipe.dit, MiniMaxH3DiTComfyPruned):
         raise TypeError(f"Expected MiniMaxH3DiTComfyPruned, got {type(pipe.dit)!r}")

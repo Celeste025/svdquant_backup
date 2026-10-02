@@ -1,60 +1,41 @@
 #!/usr/bin/env bash
 # Activate SVDQuant PTQ env (correctness-first; no nunchaku kernels required).
-# Usage: source /home/wjq/workspace/svdquant-exp/scripts/env_svdquant_ptq.sh
+# Usage: source scripts/env_svdquant_ptq.sh
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-ENV_NAME="svdquant-ptq"
-DC_ROOT="${REPO_ROOT}/third_party/deepcompressor"
-DIFFUSION_EXAMPLES="${DC_ROOT}/examples/diffusion"
-DATA_ROOT="${SVDQUANT_DATA_ROOT:-/data1/models/svdquant-wjq}"
-PTQ_ENV="${DATA_ROOT}/conda-envs/svdquant-ptq"
-HOME_CONDA="${HOME}/miniconda3"
+WORKSPACE_ROOT="$(cd "${REPO_ROOT}/../../.." && pwd)"
+DATA_ROOT="${SVDQUANT_DATA_ROOT:-${WORKSPACE_ROOT}/app_data}"
+ENV_ROOT="${SVDQUANT_ENV_ROOT:-${WORKSPACE_ROOT}/app_source/envs}"
+PTQ_ENV="${SVDQUANT_PTQ_ENV:-${ENV_ROOT}/svdquant-ptq}"
+DIFFUSION_EXAMPLES="${REPO_ROOT}/third_party/deepcompressor/examples/diffusion"
 
-if [[ -x "${PTQ_ENV}/bin/python" ]]; then
-  export PATH="${PTQ_ENV}/bin:${PATH}"
-elif [[ -f "${HOME_CONDA}/etc/profile.d/conda.sh" ]]; then
-  # shellcheck disable=SC1091
-  source "${HOME_CONDA}/etc/profile.d/conda.sh"
-  if conda env list | grep -qE '(^|\s)svdquant-ptq\s'; then
-    conda activate "${ENV_NAME}"
-  else
-    echo "No svdquant-ptq environment found at ${PTQ_ENV}" >&2
-    return 1 2>/dev/null || exit 1
-  fi
-else
-  echo "No svdquant-ptq environment found at ${PTQ_ENV}" >&2
+if [[ ! -x "${PTQ_ENV}/bin/python" ]]; then
+  echo "No PTQ environment found at ${PTQ_ENV}" >&2
   return 1 2>/dev/null || exit 1
 fi
 
-export HF_ENDPOINT="${HF_ENDPOINT:-https://hf-mirror.com}"
+export PATH="${PTQ_ENV}/bin:${PATH}"
+export SVDQUANT_DATA_ROOT="${DATA_ROOT}"
+
 export DIFFSYNTH_ROOT="${DIFFSYNTH_ROOT:-${REPO_ROOT}/third_party/DiffSynth-Studio}"
 export VBENCH_ROOT="${VBENCH_ROOT:-${REPO_ROOT}/third_party/ViDiT-Q/eval/video/Vbench}"
-if [[ -d "${DATA_ROOT}" ]] && touch "${DATA_ROOT}/.write_test" 2>/dev/null; then
-  rm -f "${DATA_ROOT}/.write_test"
-else
-  DATA_ROOT="${REPO_ROOT}/_data"
-  mkdir -p "${DATA_ROOT}"
-  echo "WARNING: /ssd/2/wenjinqi.wjq not writable; using ${DATA_ROOT}" >&2
-fi
+export VBENCH_CACHE_ROOT="${VBENCH_CACHE_ROOT:-${DATA_ROOT}/cache/vbench}"
+export HF_HOME="${HF_HOME:-${DATA_ROOT}/cache/hf}"
+export HUGGINGFACE_HUB_CACHE="${HUGGINGFACE_HUB_CACHE:-${HF_HOME}/hub}"
+export TRANSFORMERS_CACHE="${TRANSFORMERS_CACHE:-${HF_HOME}/transformers}"
+export DIFFUSERS_CACHE="${DIFFUSERS_CACHE:-${HF_HOME}/diffusers}"
+export PIP_CACHE_DIR="${PIP_CACHE_DIR:-${DATA_ROOT}/cache/pip}"
+export TMPDIR="${TMPDIR:-${DATA_ROOT}/tmp}"
+export FLUX_MODEL_PATH="${FLUX_MODEL_PATH:-${DATA_ROOT}/models/FLUX.1-dev}"
+mkdir -p "${HF_HOME}" "${VBENCH_CACHE_ROOT}" "${DATA_ROOT}/artifacts" "${DATA_ROOT}/datasets" \
+  "${DATA_ROOT}/runs/logs" "${DATA_ROOT}/videos" "${PIP_CACHE_DIR}" "${TMPDIR}"
 
-export HF_HOME="${DATA_ROOT}/hf"
-export HUGGINGFACE_HUB_CACHE="${HF_HOME}/hub"
-export TRANSFORMERS_CACHE="${HF_HOME}/transformers"
-export DIFFUSERS_CACHE="${HF_HOME}/diffusers"
-export PIP_CACHE_DIR="${DATA_ROOT}/pip-cache"
-export TMPDIR="${DATA_ROOT}/tmp"
-mkdir -p "${HF_HOME}" "${DATA_ROOT}/datasets" "${DATA_ROOT}/runs" \
-  "${DATA_ROOT}/ckpts" "${DATA_ROOT}/compare" "${PIP_CACHE_DIR}" "${TMPDIR}"
-
-# Prefer idle GPUs; leave some free for others (adjust after nvidia-smi).
-export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0,5,6,7}"
-
-cd "${DIFFUSION_EXAMPLES}" || true
+cd "${DIFFUSION_EXAMPLES}" || return 1 2>/dev/null || exit 1
 echo "Activated svdquant-ptq"
 echo "  python: $(command -v python)"
-echo "  DATA_ROOT=${DATA_ROOT}"
-echo "  HF_ENDPOINT=${HF_ENDPOINT}"
-echo "  CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES}"
+echo "  SVDQUANT_DATA_ROOT=${SVDQUANT_DATA_ROOT}"
+echo "  HF_HOME=${HF_HOME}"
 echo "  DIFFSYNTH_ROOT=${DIFFSYNTH_ROOT}"
 echo "  VBENCH_ROOT=${VBENCH_ROOT}"
+echo "  VBENCH_CACHE_ROOT=${VBENCH_CACHE_ROOT}"
 echo "  cwd: $(pwd)"

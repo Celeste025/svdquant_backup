@@ -12,8 +12,7 @@ DIFFSYNTH_ROOT = Path(os.environ.get("DIFFSYNTH_ROOT", ROOT / "third_party/DiffS
 if str(DIFFSYNTH_ROOT) not in sys.path:
     sys.path.insert(0, str(DIFFSYNTH_ROOT))
 
-import torch
-from diffsynth.pipelines.minimax_h3_audio_video import MiniMaxH3Pipeline, ModelConfig
+from minimax_h3_svdquant_common import load_h3_pipeline
 from diffsynth.utils.data.audio_video import write_video_audio
 
 
@@ -33,22 +32,7 @@ def main() -> None:
     if args.height % 32 or args.width % 32 or (args.frames - 5) % 17:
         raise ValueError("height/width must be multiples of 32 and frames must satisfy 17n+5")
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    disk = {
-        "offload_dtype": "disk", "offload_device": "disk", "onload_dtype": "disk", "onload_device": "disk",
-        "preparing_dtype": torch.bfloat16, "preparing_device": "cuda",
-        "computation_dtype": torch.bfloat16, "computation_device": "cuda",
-    }
-    pipeline = MiniMaxH3Pipeline.from_pretrained(
-        torch_dtype=torch.bfloat16, device="cuda",
-        model_configs=[
-            ModelConfig(model_id="Comfy-Org/MiniMax-H3", origin_file_pattern="diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors", **disk),
-            ModelConfig(model_id="MiniMax/MiniMax-H3", origin_file_pattern="FL2VA/text_encoder/model*.safetensors", **disk),
-            ModelConfig(model_id="MiniMax/MiniMax-H3", origin_file_pattern="FL2VA/video_vae/source/model.safetensors", **disk),
-            ModelConfig(model_id="MiniMax/MiniMax-H3", origin_file_pattern="FL2VA/audio_vae/model.safetensors", **disk),
-        ],
-        processor_config=ModelConfig(model_id="MiniMax/MiniMax-H3", origin_file_pattern="FL2VA/processor/"),
-        vram_limit=torch.cuda.mem_get_info("cuda")[1] / 1024**3 - 4,
-    )
+    pipeline = load_h3_pipeline(full=True)
     video, audio = pipeline(prompt=args.prompt, height=args.height, width=args.width, num_frames=args.frames,
                             num_inference_steps=args.steps, seed=args.seed, tiled=True)
     write_video_audio(video=video, audio=audio, output_path=str(args.output), fps=24,

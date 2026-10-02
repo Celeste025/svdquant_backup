@@ -16,7 +16,8 @@ from diffusers import WanPipeline, WanTransformer3DModel
 from diffusers.utils import export_to_video
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-RESULTS_ROOT = REPO_ROOT / "results"
+DATA_ROOT = Path(os.environ.get("SVDQUANT_DATA_ROOT", REPO_ROOT.parents[2] / "app_data"))
+RESULTS_ROOT = Path(os.environ.get("RCM_RUNS_ROOT", DATA_ROOT / "runs" / "rcm-wan"))
 
 def load_quantized_transformer(pipe, ckpt_dir: Path, model_path: Path, recipe: str | None = None) -> None:
     """Insert DeepCompressor quantizers and load an rCM-Wan PTQ checkpoint."""
@@ -39,8 +40,14 @@ def load_quantized_transformer(pipe, ckpt_dir: Path, model_path: Path, recipe: s
     diffusion_root = REPO_ROOT / "third_party" / "deepcompressor" / "examples" / "diffusion"
     previous_argv, previous_cwd = sys.argv, Path.cwd()
     manifest_path = ckpt_dir / "manifest.json"
+    artifact_path = ckpt_dir / "artifact.json"
     if recipe is None and manifest_path.is_file():
         recipe = json.loads(manifest_path.read_text()).get("format")
+    if recipe is None and artifact_path.is_file():
+        artifact = json.loads(artifact_path.read_text())
+        artifact_format = artifact.get("recipe", {}).get("format", "").lower()
+        if "int4" in artifact_format:
+            recipe = "rcm-wan-int4-svdquant-v1"
     real_recipes = {
         "rcm-wan-real-nvfp4-r32-g20": "configs/svdquant/rcm_wan_real_nvfp4_s16_g20_r32.yaml",
         "rcm-wan-real-nvfp4-r64-g10": "configs/svdquant/rcm_wan_real_nvfp4_s16_g10_r64.yaml",
@@ -160,7 +167,7 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--height", type=int, default=480)
     parser.add_argument("--width", type=int, default=832)
-    parser.add_argument("--frames", type=int, default=81)
+    parser.add_argument("--frames", type=int, default=77)
     parser.add_argument("--vae-core-latent-size", type=int, default=20)
     parser.add_argument("--vae-halo-latent-size", type=int, default=16)
     parser.add_argument("--latent-output", type=Path, help="optionally save the final pre-VAE latent")

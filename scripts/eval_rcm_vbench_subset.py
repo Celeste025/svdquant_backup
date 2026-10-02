@@ -17,7 +17,9 @@ import numpy as np
 import torch
 
 ROOT = Path(__file__).resolve().parents[1]
+DATA_ROOT = Path(os.environ.get("SVDQUANT_DATA_ROOT", ROOT.parents[2] / "app_data"))
 VBENCH_ROOT = Path(os.environ.get("VBENCH_ROOT", ROOT / "third_party/ViDiT-Q/eval/video/Vbench"))
+VBENCH_CACHE_ROOT = Path(os.environ.get("VBENCH_CACHE_ROOT", DATA_ROOT / "cache" / "vbench"))
 if str(VBENCH_ROOT) not in sys.path:
     sys.path.insert(0, str(VBENCH_ROOT))
 
@@ -47,8 +49,14 @@ def _load_trusted_vbench_checkpoint(*args, **kwargs):
 
 torch.load = _load_trusted_vbench_checkpoint
 
-from vbench.distributed import print0
+import vbench.utils as vbench_utils
+
+vbench_utils.CACHE_DIR = str(VBENCH_CACHE_ROOT)
 from vbench.utils import init_submodules, save_json
+
+
+def print0(*args, **kwargs):
+    print(*args, **kwargs)
 
 
 DEFAULT_DIMENSIONS = (

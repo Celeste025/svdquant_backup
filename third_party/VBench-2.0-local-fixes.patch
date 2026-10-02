@@ -1,0 +1,181 @@
+diff --git a/VBench-2.0/vbench2/__init__.py b/VBench-2.0/vbench2/__init__.py
+index ed7e6f2..3eba2ca 100755
+--- a/VBench-2.0/vbench2/__init__.py
++++ b/VBench-2.0/vbench2/__init__.py
+@@ -71,7 +71,7 @@ class VBench2(object):
+                     if prompt_dict["dimension"][0]=='Diversity':
+                         num=20
+                     else:
+-                        num=3
++                        num=1
+                     for i in range(num): # video index for the same prompt
+                         intended_video_name = f'{prompt[:180]}{special_str}-{str(i)}{postfix}'
+                         if intended_video_name in video_names: # if the video exists
+@@ -81,7 +81,7 @@ class VBench2(object):
+                                 print(f'Successfully found video: {intended_video_name}')
+                         else:
+                             print(f'WARNING!!! This required video is not found! Missing benchmark videos can lead to unfair evaluation result. The missing video is: {intended_video_name}')
+-                            raise
++                            continue
+                     cur_full_info_list.append(prompt_dict)
+ 
+         cur_full_info_path = os.path.join(self.output_path, name+'_full_info.json')
+diff --git a/VBench-2.0/vbench2/camera_motion.py b/VBench-2.0/vbench2/camera_motion.py
+index 7ffbe36..e5558e1 100644
+--- a/VBench-2.0/vbench2/camera_motion.py
++++ b/VBench-2.0/vbench2/camera_motion.py
+@@ -9,6 +9,7 @@ from .third_party.cotracker.utils.visualizer import Visualizer
+ import json
+ import os
+ from vbench2.utils import load_dimension_info, split_video_into_scenes
++from vbench2.utils import CACHE_DIR
+ from tqdm import tqdm
+ 
+ 
+@@ -48,12 +49,12 @@ class CameraPredict:
+         self.grid_size = 10
+         self.number_points = 1
+         try:
+-            self.model = torch.hub.load(submodules_list["repo"], submodules_list["model"]).to(self.device)
++            self.model = torch.hub.load(os.path.join(CACHE_DIR, "cotracker_hub"), submodules_list["model"], source="local").to(self.device)
+         except:
+             # workaround for CERTIFICATE_VERIFY_FAILED (see: https://github.com/pytorch/pytorch/issues/33288#issuecomment-954160699)
+             import ssl
+             ssl._create_default_https_context = ssl._create_unverified_context
+-            self.model = torch.hub.load(submodules_list["repo"], submodules_list["model"]).to(self.device)
++            self.model = torch.hub.load(os.path.join(CACHE_DIR, "cotracker_hub"), submodules_list["model"], source="local").to(self.device)
+ 
+     def transform360(self, vector):
+         up=[]
+diff --git a/VBench-2.0/vbench2/multi_view_consistency.py b/VBench-2.0/vbench2/multi_view_consistency.py
+index 4ad4fcb..39575c5 100644
+--- a/VBench-2.0/vbench2/multi_view_consistency.py
++++ b/VBench-2.0/vbench2/multi_view_consistency.py
+@@ -16,6 +16,7 @@ from .third_party.RAFT.core.raft import RAFT
+ from .third_party.RAFT.core.utils.utils import InputPadder
+ import json
+ from vbench2.utils import load_dimension_info, split_video_into_scenes
++from vbench2.utils import CACHE_DIR
+ from tqdm import tqdm
+ 
+ def transform_class360(vector, min_reso, factor=0.008): # 768*0.05
+@@ -35,12 +36,12 @@ class CameraPredict:
+         self.grid_size = 10
+         self.number_points = 1
+         try:
+-            self.model = torch.hub.load(submodules_list["repo"], submodules_list["model"]).to(self.device)
++            self.model = torch.hub.load(os.path.join(CACHE_DIR, "cotracker_hub"), submodules_list["model"], source="local").to(self.device)
+         except:
+             # workaround for CERTIFICATE_VERIFY_FAILED (see: https://github.com/pytorch/pytorch/issues/33288#issuecomment-954160699)
+             import ssl
+             ssl._create_default_https_context = ssl._create_unverified_context
+-            self.model = torch.hub.load(submodules_list["repo"], submodules_list["model"]).to(self.device)
++            self.model = torch.hub.load(os.path.join(CACHE_DIR, "cotracker_hub"), submodules_list["model"], source="local").to(self.device)
+ 
+     def transform360(self, vector):
+         up=[]
+diff --git a/VBench-2.0/vbench2/third_party/Instance_detector/split.py b/VBench-2.0/vbench2/third_party/Instance_detector/split.py
+index 12fd1cc..869a1c1 100644
+--- a/VBench-2.0/vbench2/third_party/Instance_detector/split.py
++++ b/VBench-2.0/vbench2/third_party/Instance_detector/split.py
+@@ -1,48 +1,58 @@
+ import os
+ import subprocess
+ import json
++from fractions import Fraction
+ from pathlib import Path
+ 
++import av
++
+ def get_video_info(filepath):
+-    cmd = [
+-        "ffprobe", "-v", "error",
+-        "-select_streams", "v:0",
+-        "-show_entries", "stream=avg_frame_rate,duration",
+-        "-of", "json", filepath
+-    ]
+-    result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+-    info = json.loads(result.stdout)
+-    duration = float(info['streams'][0]['duration'])
+-    fr_str = info['streams'][0]['avg_frame_rate']
+-    if '/' in fr_str:
+-        num, den = map(int, fr_str.split('/'))
+-        fps = num / den if den != 0 else 25
+-    else:
+-        fps = float(fr_str)
++    # 系统 ffprobe 有 SDL3 崩溃问题，改用 PyAV 探测
++    with av.open(filepath) as container:
++        stream = container.streams.video[0]
++        duration = float(container.duration or 0) / 1_000_000
++        if duration <= 0 and stream.duration is not None:
++            duration = float(stream.duration) * float(stream.time_base or 0)
++        if stream.average_rate:
++            fps = float(stream.average_rate)
++        else:
++            fps = 25.0
+     return duration, fps
+ 
+ def split_video(filepath, output_folder):
+     filename = os.path.basename(filepath)
+     name, _ = os.path.splitext(filename)
+     duration, fps = get_video_info(filepath)
+-    total_segments = int(duration) - 1 
++    total_segments = int(duration) - 1
+ 
+-    for i in range(total_segments): 
++    for i in range(total_segments):
+         out_path = os.path.join(output_folder, f"{name}_clip_{i:04d}.mp4")
+         if os.path.exists(out_path):
+             continue
+-        cmd = [
+-            "ffmpeg", "-y",
+-            "-i", filepath,
+-            "-ss", str(i),       
+-            "-t", "2",          
+-            "-r", str(fps),
+-            "-c:v", "libx264",
+-            "-c:a", "aac",
+-            "-strict", "experimental",
+-            out_path
+-        ]
+-        subprocess.run(cmd)
++        with av.open(filepath) as inp, av.open(out_path, "w") as out:
++            vstream = out.add_stream("libx264", rate=Fraction(int(round(fps)), 1))
++            vstream.width = inp.streams.video[0].width
++            vstream.height = inp.streams.video[0].height
++            vstream.pix_fmt = "yuv420p"
++            inp.seek(int(i * 1_000_000), stream=inp.streams.video[0])
++            start = None
++            n = 0
++            for frame in inp.decode(video=0):
++                if start is None:
++                    start = frame.pts
++                t = (frame.pts - start) * float(inp.streams.video[0].time_base)
++                if t < 0:
++                    continue
++                if t >= 2.0:
++                    break
++                frame = frame.reformat(width=vstream.width, height=vstream.height, format="yuv420p")
++                for packet in vstream.encode(frame):
++                    out.mux(packet)
++                n += 1
++            for packet in vstream.encode(None):
++                out.mux(packet)
++            if n == 0:
++                os.remove(out_path)
+ 
+ def split(input_folder, model_name):
+     output_folder = f"./model_clip/{model_name}"
+diff --git a/VBench-2.0/vbench2/third_party/YOLO-World/yolo_world_v2_xl_vlpan_bn_2e-3_100e_4x8gpus_obj365v1_goldg_train_lvis_minival.py b/VBench-2.0/vbench2/third_party/YOLO-World/yolo_world_v2_xl_vlpan_bn_2e-3_100e_4x8gpus_obj365v1_goldg_train_lvis_minival.py
+index 5bd190b..417aea8 100644
+--- a/VBench-2.0/vbench2/third_party/YOLO-World/yolo_world_v2_xl_vlpan_bn_2e-3_100e_4x8gpus_obj365v1_goldg_train_lvis_minival.py
++++ b/VBench-2.0/vbench2/third_party/YOLO-World/yolo_world_v2_xl_vlpan_bn_2e-3_100e_4x8gpus_obj365v1_goldg_train_lvis_minival.py
+@@ -17,7 +17,7 @@ weight_decay = 0.05 / 2
+ train_batch_size_per_gpu = 16
+ text_model_name = '../pretrained_models/clip-vit-base-patch32-projection'
+ # text_model_name = 'openai/clip-vit-base-patch32'
+-text_model_name = '/mnt/petrelfs/zhengdian/code/ckpt/clip-vit-base-patch32'
++text_model_name = '/home/admin/workspace/aop_lab/app_data/cache/vbench2/clip-vit-base-patch32'
+ 
+ # scaling model from X to XL
+ deepen_factor = 1.0

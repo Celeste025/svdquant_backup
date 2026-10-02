@@ -69,7 +69,7 @@ def build_manifest(path: Path, state: Path = ROOT / "results/checkpoints/minimax
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, default=OUT)
-    parser.add_argument("--gpu", default="7")
+    parser.add_argument("--gpu", required=True, help="physical GPU index selected after an availability check")
     parser.add_argument("--state", type=Path, default=ROOT / "results/checkpoints/minimax_h3_svdquant_standard_8p64s/quant_state.pt")
     parser.add_argument("--source", type=Path, help="copy paired BF16/W4A4 artifacts from this completed VBench directory")
     parser.add_argument("--variants", nargs="+", choices=("bf16", "w4a4", "svdquant"), default=("bf16", "w4a4", "svdquant"))
