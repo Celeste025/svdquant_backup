@@ -1,0 +1,757 @@
+{
+  "experiment": "E014",
+  "phase": "check",
+  "arm": "bf16",
+  "status": "complete",
+  "deadline_unix": null,
+  "complete_dit_calls": 0,
+  "scope": "Fixed-state numerical/cost baseline only; no decoded video or quality claim",
+  "inherited_binding": {
+    "correctness_binding": {
+      "original_report_sha256": "2caef6a433089207b62bb8ef2d508f06f975af8dc70d109f18f1ab2171fc82e0",
+      "original_status_retained": "failed_stop",
+      "inherited_complete_stages": [
+        "offload_bf16",
+        "resident_bf16",
+        "legacy_formula_reference"
+      ],
+      "resume_report": "/home/wjq/workspace/svdquant-exp/results/research/E009_h3_native_resume.json",
+      "resume_report_sha256": "5212123739b807e86c2cbbb6d22f157a0a8aa36703ba36f0c2464edbdb2184e8",
+      "real_sf0_proof": "/home/wjq/workspace/svdquant-exp/results/research/E009_h3_sf0_domain_v2.json",
+      "real_sf0_proof_sha256": "bbffff52a0b1851b1d72ebbce0c5cf7f7e4317c64c40655af4a64f03ab8bbe97",
+      "slow_fast_all_50_blocks_and_two_endpoints_exact": true,
+      "reference_fast_checks": {
+        "compatibility": "h3_e005_sf0_canonical_zero_numeric_equivalence_v1",
+        "checked_calls": 200,
+        "invalid_calls": 0,
+        "calls_with_nonzero_input_zero_sf": 1,
+        "affected_call_indices_zero_based": [
+          7
+        ],
+        "count_scope": "Call-level flags only; not a count of affected tensor groups or elements"
+      }
+    },
+    "export_manifest": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E009/legacy_export/manifest.json",
+      "sha256": "0b92e3e9f6a937ca7a6ebff6c4dfe4e6ad4e918224525ab5bf12a4e1baddfec0"
+    },
+    "sdpa_enabled": {
+      "flash": true,
+      "math": true,
+      "mem_efficient": true,
+      "cudnn": true
+    },
+    "profile_precondition": {
+      "native": "/home/wjq/workspace/svdquant-exp/results/research/E009_profile_native.json",
+      "sha256": "47f8a7abdd6491be93ddabafa66a3fcb64dd86c7edf4882781d935ab3ad3f494"
+    },
+    "sources": {
+      "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py": {
+        "sha256": "41e6e4eb1d9df554e5ea109b9bad3d1df83e9b64788137511262a82a0f34431f",
+        "bytes": 28742
+      },
+      "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_manifest.json": {
+        "sha256": "9469815d0c1d3d51bc793c2e3eaba08c80b35969ef2fab3776667db6b61fa79d",
+        "bytes": 13391
+      },
+      "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_paired_plan.md": {
+        "sha256": "1e616ceacc92085cd938a90d5e99faac5d41a7c7e4e51844445b8775c06fc3e4",
+        "bytes": 7695
+      },
+      "/home/wjq/workspace/svdquant-exp/scripts/minimax_h3_svdquant_common.py": {
+        "sha256": "d0fca20f98a40c3aa20773faa47e6d6b986811f6cd03802723021fd50383ae61",
+        "bytes": 14656
+      },
+      "/home/wjq/workspace/svdquant-exp/scripts/infer_minimax_h3_svdquant_standard.py": {
+        "sha256": "1966ce25cbf7fb630e620a84f64ca9219afd0120e0fe07078dc8250e221961a1",
+        "bytes": 4465
+      },
+      "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_native_nvfp4.py": {
+        "sha256": "43cb697faa4c5276fcb4432f696e36ed9f69f84b7b8a27a6f1c4ef986fc7f19b",
+        "bytes": 28771
+      },
+      "/home/wjq/workspace/svdquant-exp/scripts/research/profile_h3_native_nvfp4.py": {
+        "sha256": "6fbabdfb87a333d35b66fdf4a1976ae1ea2e575a5b5bb83e60d930a75e99d45e",
+        "bytes": 26846
+      },
+      "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_nvfp4.py": {
+        "sha256": "13ca884a8f6c7d93258870970c9f4b204f7cc42af0038f549b825321bb899d0a",
+        "bytes": 14615
+      },
+      "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py": {
+        "sha256": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa",
+        "bytes": 22773
+      },
+      "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_fastpack.py": {
+        "sha256": "f5a22a9e3f23d7903403017575e1a63c1cb42e04b0230256a5808902bbc198b7",
+        "bytes": 7255
+      },
+      "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_zero_sf_compat.py": {
+        "sha256": "ccaaa71670a48bb8667c286fff0ae08556b568fa6d77184200a39e4b6cc00048",
+        "bytes": 5281
+      },
+      "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_native_contract.py": {
+        "sha256": "0be4b1fb4a67f52e2c618ef492f49e1285cc14b57c2e6ceffbc6fa578a011c83",
+        "bytes": 15329
+      },
+      "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_modality_pulse.py": {
+        "sha256": "e836578688580885fd46f54b0d45eef7b975932bfe5872f764feb8e4b86c820c",
+        "bytes": 13825
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/diffsynth/pipelines/minimax_h3_audio_video.py": {
+        "sha256": "7f5ff890d796dcfac3551e235741bdfbd4dbcae91aae3b6e4c3817dce38eecd6",
+        "bytes": 56577
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/base_pipeline.py": {
+        "sha256": "aa5e3729bcbe4a6969b32dc78602abadf6d7832317014c2d192d73c021aa6728",
+        "bytes": 26272
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/flow_match.py": {
+        "sha256": "4639571d6986fef53094bc166f3b3a8fdf5790435d28528ead7f0a929d5d2a52",
+        "bytes": 20775
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit.py": {
+        "sha256": "bd617a4312c70405e916707e1908100b484b2259dfbeba4af7de5bb145206d80",
+        "bytes": 18207
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit_comfy.py": {
+        "sha256": "e8a2eb4cb986ba384052100fdc03984446f3fa35d0ab1e9ebfacffc039a2e8ff",
+        "bytes": 3011
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_text_encoder.py": {
+        "sha256": "f874a56ce992070976b534dc42e0639221fe8c88cb29d9b3e2cadf6de553a9cf",
+        "bytes": 9391
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_video_vae.py": {
+        "sha256": "3dd4da5c90135c904fa5f1d4f70dd43e2571e394ce437bb168a5110f71076bf4",
+        "bytes": 31730
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_audio_vae.py": {
+        "sha256": "ce6dc03b73a0596df22a6aa89e6db9183017bd5d0e2e99b547a6bfee53a7ef2c",
+        "bytes": 19869
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/attention/attention.py": {
+        "sha256": "1126b2e19184299cbfc611dcf66e46d0fd1a7bfa1d616f2ed38bc60ba19679ae",
+        "bytes": 13461
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/vram/layers.py": {
+        "sha256": "4597374ac9166a2576544fb9b746360ee4c0441e96fd7af4300fcc739abd26cf",
+        "bytes": 25504
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/diffsynth/utils/data/audio_video.py": {
+        "sha256": "9d30fdd4538475d2d6aae7fe64cca2d78012e904366ec85d81e48720874d9dd0",
+        "bytes": 8947
+      }
+    },
+    "settings": {
+      "height": 576,
+      "width": 1024,
+      "num_frames": 124,
+      "num_inference_steps": 20,
+      "cfg_scale": 1.0,
+      "flow_shift": 12.0,
+      "audio_flow_shift": 3.0,
+      "rand_device": "cpu",
+      "noise_dtype": "bfloat16",
+      "tiled": true,
+      "tile_size": 256,
+      "tile_overlap": 64,
+      "fps": 24,
+      "audio_sample_rate": 32000
+    },
+    "cases": [],
+    "torch": "2.11.0+cu128",
+    "environment": {
+      "CUDA_VISIBLE_DEVICES": "",
+      "DIFFSYNTH_ROOT": "/home/wjq/workspace/DiffSynth-Studio",
+      "MINIMAX_H3_MODEL_ROOT": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3",
+      "MINIMAX_H3_DIT_PATH": "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors",
+      "DIFFSYNTH_ATTENTION_IMPLEMENTATION": "torch",
+      "DIFFSYNTH_SKIP_DOWNLOAD": "True",
+      "HF_HUB_OFFLINE": "1",
+      "TRANSFORMERS_OFFLINE": "1"
+    }
+  },
+  "sources": {
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/attention/attention.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/attention/attention.py",
+      "sha256": "1126b2e19184299cbfc611dcf66e46d0fd1a7bfa1d616f2ed38bc60ba19679ae",
+      "bytes": 13461
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/vram/layers.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/vram/layers.py",
+      "sha256": "4597374ac9166a2576544fb9b746360ee4c0441e96fd7af4300fcc739abd26cf",
+      "bytes": 25504
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/base_pipeline.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/base_pipeline.py",
+      "sha256": "aa5e3729bcbe4a6969b32dc78602abadf6d7832317014c2d192d73c021aa6728",
+      "bytes": 26272
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/flow_match.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/flow_match.py",
+      "sha256": "4639571d6986fef53094bc166f3b3a8fdf5790435d28528ead7f0a929d5d2a52",
+      "bytes": 20775
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_audio_vae.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_audio_vae.py",
+      "sha256": "ce6dc03b73a0596df22a6aa89e6db9183017bd5d0e2e99b547a6bfee53a7ef2c",
+      "bytes": 19869
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit.py",
+      "sha256": "bd617a4312c70405e916707e1908100b484b2259dfbeba4af7de5bb145206d80",
+      "bytes": 18207
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit_comfy.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit_comfy.py",
+      "sha256": "e8a2eb4cb986ba384052100fdc03984446f3fa35d0ab1e9ebfacffc039a2e8ff",
+      "bytes": 3011
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_text_encoder.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_text_encoder.py",
+      "sha256": "f874a56ce992070976b534dc42e0639221fe8c88cb29d9b3e2cadf6de553a9cf",
+      "bytes": 9391
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_video_vae.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_video_vae.py",
+      "sha256": "3dd4da5c90135c904fa5f1d4f70dd43e2571e394ce437bb168a5110f71076bf4",
+      "bytes": 31730
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/pipelines/minimax_h3_audio_video.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/pipelines/minimax_h3_audio_video.py",
+      "sha256": "7f5ff890d796dcfac3551e235741bdfbd4dbcae91aae3b6e4c3817dce38eecd6",
+      "bytes": 56577
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/utils/data/audio_video.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/utils/data/audio_video.py",
+      "sha256": "9d30fdd4538475d2d6aae7fe64cca2d78012e904366ec85d81e48720874d9dd0",
+      "bytes": 8947
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_manifest.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_manifest.json",
+      "sha256": "9469815d0c1d3d51bc793c2e3eaba08c80b35969ef2fab3776667db6b61fa79d",
+      "bytes": 13391
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_paired_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_paired_plan.md",
+      "sha256": "1e616ceacc92085cd938a90d5e99faac5d41a7c7e4e51844445b8775c06fc3e4",
+      "bytes": 7695
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_manifest.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_manifest.json",
+      "sha256": "56299b66ebf8be315e2bebc3ae684eefb7781abd1a5e984e7aab3ecee4265f65",
+      "bytes": 6437
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_plan.md",
+      "sha256": "af609cb182415d336a9f96f85fb7ee62fc2c2a15d23fca688d34763f7f7742c7",
+      "bytes": 5158
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/infer_minimax_h3_svdquant_standard.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/infer_minimax_h3_svdquant_standard.py",
+      "sha256": "1966ce25cbf7fb630e620a84f64ca9219afd0120e0fe07078dc8250e221961a1",
+      "bytes": 4465
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/minimax_h3_svdquant_common.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/minimax_h3_svdquant_common.py",
+      "sha256": "d0fca20f98a40c3aa20773faa47e6d6b986811f6cd03802723021fd50383ae61",
+      "bytes": 14656
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_native_nvfp4.py",
+      "sha256": "43cb697faa4c5276fcb4432f696e36ed9f69f84b7b8a27a6f1c4ef986fc7f19b",
+      "bytes": 28771
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_nvfp4.py",
+      "sha256": "13ca884a8f6c7d93258870970c9f4b204f7cc42af0038f549b825321bb899d0a",
+      "bytes": 14615
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_fastpack.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_fastpack.py",
+      "sha256": "f5a22a9e3f23d7903403017575e1a63c1cb42e04b0230256a5808902bbc198b7",
+      "bytes": 7255
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_zero_sf_compat.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_zero_sf_compat.py",
+      "sha256": "ccaaa71670a48bb8667c286fff0ae08556b568fa6d77184200a39e4b6cc00048",
+      "bytes": 5281
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_plain_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_plain_native_nvfp4.py",
+      "sha256": "36ea5e95e3bf8858b3e545157d0505be2fa03e353b432dde4cdc785f085086f0",
+      "bytes": 10532
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_conditional_response.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_conditional_response.py",
+      "sha256": "4886b367c3ca1934cb2b3d23858d2dd06649681279c3cfaabbaab62d31b3627e",
+      "bytes": 32900
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_modality_pulse.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_modality_pulse.py",
+      "sha256": "e836578688580885fd46f54b0d45eef7b975932bfe5872f764feb8e4b86c820c",
+      "bytes": 13825
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_native_contract.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_native_contract.py",
+      "sha256": "0be4b1fb4a67f52e2c618ef492f49e1285cc14b57c2e6ceffbc6fa578a011c83",
+      "bytes": 15329
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_plain_baseline.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_plain_baseline.py",
+      "sha256": "d22105c5eac28187b773c852523a70845e43cb12f4740f049bc2eaf971a56af3",
+      "bytes": 24191
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/profile_h3_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/profile_h3_native_nvfp4.py",
+      "sha256": "6fbabdfb87a333d35b66fdf4a1976ae1ea2e575a5b5bb83e60d930a75e99d45e",
+      "bytes": 26846
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py",
+      "sha256": "41e6e4eb1d9df554e5ea109b9bad3d1df83e9b64788137511262a82a0f34431f",
+      "bytes": 28742
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py",
+      "sha256": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa",
+      "bytes": 22773
+    }
+  },
+  "manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_manifest.json",
+    "sha256": "56299b66ebf8be315e2bebc3ae684eefb7781abd1a5e984e7aab3ecee4265f65",
+    "bytes": 6437
+  },
+  "plan": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_plan.md",
+    "sha256": "af609cb182415d336a9f96f85fb7ee62fc2c2a15d23fca688d34763f7f7742c7",
+    "bytes": 5158
+  },
+  "inputs": {
+    "e009_p001_s00": {
+      "args": [],
+      "kwargs": {
+        "audio_pos_info": {
+          "position_ids": {
+            "shape": [
+              414
+            ],
+            "dtype": "torch.int64",
+            "sha256": "0e4191211759e33ccf798497b934df3619995518acf315220d4562f2798cafab"
+          }
+        },
+        "audio_x": {
+          "shape": [
+            1,
+            22400,
+            32
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "4fbfa6cc16c0ff6fd7b235d7f77e428ac369c8b08c7a04f54e7ad002e3795495"
+        },
+        "control_hints": null,
+        "img_pos_for_infer_output_info": {
+          "position_ids": {
+            "shape": [
+              21312
+            ],
+            "dtype": "torch.int64",
+            "sha256": "f5ebdfe99092b25b31e6e4d744f3036283be6492663f02162844a9fbe48f4e70"
+          }
+        },
+        "img_pos_info": {
+          "position_ids": {
+            "shape": [
+              21312
+            ],
+            "dtype": "torch.int64",
+            "sha256": "f5ebdfe99092b25b31e6e4d744f3036283be6492663f02162844a9fbe48f4e70"
+          }
+        },
+        "img_position_ids": {
+          "shape": [
+            1,
+            22400,
+            3
+          ],
+          "dtype": "torch.float64",
+          "sha256": "0f462bb90040d0b11ea9c71ee850b43933ac9ffed12dec63059cb3268c6d6f42"
+        },
+        "inverse_indices": {
+          "shape": [
+            22400
+          ],
+          "dtype": "torch.int64",
+          "sha256": "66731787e751f992654a8d5924c6445f36ce30035c0d470f293f9e4a3445bd4d"
+        },
+        "packed_seq_params": {
+          "cu_seqlens_q": {
+            "shape": [
+              3
+            ],
+            "dtype": "torch.int32",
+            "sha256": "61f121e288aaa01e79e650c5d73308579ea89fe4c141e74ab5190251bf0120c4"
+          },
+          "max_seqlen_q": 22384
+        },
+        "prompt_embeds": {
+          "shape": [
+            658,
+            5120
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "4fa4077ff3292b95bbf51be758a933198c9278fe27cd1107d996fb6c16f095f3"
+        },
+        "refiner_packed_seq_params": {
+          "cu_seqlens_q": {
+            "shape": [
+              3
+            ],
+            "dtype": "torch.int32",
+            "sha256": "207c8a7bec55a8bed7f514e82c84196db279631b3f654b623850b7ba2918626d"
+          },
+          "max_seqlen_q": 658
+        },
+        "skip_mask_out_condition": true,
+        "text_pos_info": {
+          "position_ids": {
+            "shape": [
+              658
+            ],
+            "dtype": "torch.int64",
+            "sha256": "e79ad07c72abc57477ff860ac4b62527a3039fa0862025e352ef115b1c07536b"
+          }
+        },
+        "token_tags": {
+          "shape": [
+            22400
+          ],
+          "dtype": "torch.int64",
+          "sha256": "5c5e83a8f55a3165ce6a5a1fae84518ffbeda05b1a7682b4d57f17a012b078b1"
+        },
+        "unique_timesteps": {
+          "shape": [
+            1
+          ],
+          "dtype": "torch.float32",
+          "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119"
+        },
+        "update_mask": null,
+        "use_gradient_checkpointing": false,
+        "use_gradient_checkpointing_offload": false,
+        "x": {
+          "shape": [
+            1,
+            22400,
+            96
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "f19b241837b62cf1cc244074e4c32088aa5d2fb00431cc3dd38a32dc25454830"
+        }
+      }
+    },
+    "e010_p030_s05": {
+      "embedding": {
+        "shape": [
+          501,
+          5120
+        ],
+        "dtype": "torch.bfloat16",
+        "sha256": "77df337b4e39402cacd97c1596a94f2f67a83733b02e67ff086b8f4fab6b6803"
+      },
+      "text_token_tags": {
+        "shape": [
+          501
+        ],
+        "dtype": "torch.int64",
+        "sha256": "c89cd1baab4f342a408b04e32eafc5a81cd4bea8880239cf4476dd02cb0ab34b"
+      },
+      "state": {
+        "audio": {
+          "latents_after": {
+            "shape": [
+              2,
+              32,
+              207
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "e73e8eca8ed459718de39c256203be0cb56be700f9c5a117a8124f07579694a2"
+          },
+          "latents_before": {
+            "shape": [
+              2,
+              32,
+              207
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "afbae7cff2b272486af55257f80a0d5130ad5ea37a522b8ccfdb0f70ea0e27b1"
+          },
+          "noise_pred": {
+            "shape": [
+              2,
+              32,
+              207
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "83f152100e856f42a0d8e7f10eb2aab93fdf9f0490fef46602caf2d1260ccb71"
+          },
+          "sigma": {
+            "shape": [],
+            "dtype": "torch.float32",
+            "sha256": "d388666e2351caf97e32db79dd5efdff3de2d4073eff49ef61edc7d7fd6a6250"
+          },
+          "timestep": {
+            "shape": [],
+            "dtype": "torch.float32",
+            "sha256": "51b9a2219c7ec471ac132d8051d4877a1b98176fc9513c7b337c0ceae5fd8827"
+          }
+        },
+        "video": {
+          "latents_after": {
+            "shape": [
+              1,
+              24,
+              37,
+              36,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "82a7a4c2c9ae5846fe49886f3739e9ab42c35e38b666e01be830594f9ec02b26"
+          },
+          "latents_before": {
+            "shape": [
+              1,
+              24,
+              37,
+              36,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "0430e5563cc4d520db24f28f2b57222f07725e1f0c05b53dc28430bae9ce4769"
+          },
+          "noise_pred": {
+            "shape": [
+              1,
+              24,
+              37,
+              36,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "79415718ec9fe4d8d80c155c39fc4ffbb8be4e81f4b40c3338ba5e5c7f6d0dd4"
+          },
+          "sigma": {
+            "shape": [],
+            "dtype": "torch.float32",
+            "sha256": "9dc630ec673c6f5c02926a04268ba29bd869c0b90adb1b5b1caf26fb8c1d13e8"
+          },
+          "timestep": {
+            "shape": [],
+            "dtype": "torch.float32",
+            "sha256": "e589cad7ab03cc6721d0ccbb692e40af5553a51a9e43dc7aa727c26313d06e73"
+          }
+        }
+      },
+      "packed": {
+        "audio_pos": {
+          "shape": [
+            414
+          ],
+          "dtype": "torch.int64",
+          "sha256": "9b73f57a9457a9748d2618ab9a6739255440483d9e01a1518e5bf94314116ee4"
+        },
+        "cu_seqlens": {
+          "shape": [
+            3
+          ],
+          "dtype": "torch.int32",
+          "sha256": "d04d6c79bfd36def0c4998385a1bb77293f03ecd957d1cf0519334babdcbdbe1"
+        },
+        "img_pos": {
+          "shape": [
+            21312
+          ],
+          "dtype": "torch.int64",
+          "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+        },
+        "img_position_ids": {
+          "shape": [
+            1,
+            22272,
+            3
+          ],
+          "dtype": "torch.float64",
+          "sha256": "e6877f45135838155bcbd84cb76f8041530417a26ec06c6c32fcbdf36bc6f528"
+        },
+        "seq_len": 22272,
+        "text_pos": {
+          "shape": [
+            501
+          ],
+          "dtype": "torch.int64",
+          "sha256": "6c0fa99e682ba28af74b65991fc7decf5b0b2db50feb016088acc9eb0d8365b0"
+        },
+        "token_tags": {
+          "shape": [
+            22272
+          ],
+          "dtype": "torch.int64",
+          "sha256": "6fc1450d272abe0fae1540ebed39f6a0c980f72dfa5ac3da37975d7258674e73"
+        }
+      }
+    },
+    "e010_p036_s14": {
+      "embedding": {
+        "shape": [
+          813,
+          5120
+        ],
+        "dtype": "torch.bfloat16",
+        "sha256": "440bbff8dce8199957df602f7c8100506c21c14a0b6e24a73715019e21435db3"
+      },
+      "text_token_tags": {
+        "shape": [
+          813
+        ],
+        "dtype": "torch.int64",
+        "sha256": "28be83664d7dcae4bb19811404a7fb0e2e1b77362807bdee521b8867b7ae1028"
+      },
+      "state": {
+        "audio": {
+          "latents_after": {
+            "shape": [
+              2,
+              32,
+              207
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "03ac1a018629ac78d879f488c59c54f780a11d29740982153dff19af326001bf"
+          },
+          "latents_before": {
+            "shape": [
+              2,
+              32,
+              207
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "ca2411fac478a10c3361856091aba9c972eba301f165b4acd948b1d71ce807ad"
+          },
+          "noise_pred": {
+            "shape": [
+              2,
+              32,
+              207
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "bea80deefc179ba402e297052adca0e8b31a5889753429a33872e636f296ac25"
+          },
+          "sigma": {
+            "shape": [],
+            "dtype": "torch.float32",
+            "sha256": "dc7cb9d4f0ba4d498d5812eb7fc73b9e728890242cb88b30d7c27fd1bf22088b"
+          },
+          "timestep": {
+            "shape": [],
+            "dtype": "torch.float32",
+            "sha256": "19a52d265bb86d785ae1c13c1be275563ec9a37e9a3f06a0cb0e2570f52db03f"
+          }
+        },
+        "video": {
+          "latents_after": {
+            "shape": [
+              1,
+              24,
+              37,
+              36,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "705e8bc87a740426654fba6496e950db067975150334077da481c336859b0ed2"
+          },
+          "latents_before": {
+            "shape": [
+              1,
+              24,
+              37,
+              36,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "84a396452dd164c23449a33135230facebded831d7e5e66eba6228645dd5f023"
+          },
+          "noise_pred": {
+            "shape": [
+              1,
+              24,
+              37,
+              36,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "f14a9316c2339591161e28a5e65a2ed1f297b804e19a6214f16736aa0de53ca3"
+          },
+          "sigma": {
+            "shape": [],
+            "dtype": "torch.float32",
+            "sha256": "6f33e786cf1f037a01e838994ac8c2c67a5d0116fe85438e6c92b9fe01a393b5"
+          },
+          "timestep": {
+            "shape": [],
+            "dtype": "torch.float32",
+            "sha256": "21ed909e00cec13d8928aea5c8dbec6875ad4d99d7bbe2c74f414cd06981ac64"
+          }
+        }
+      },
+      "packed": {
+        "audio_pos": {
+          "shape": [
+            414
+          ],
+          "dtype": "torch.int64",
+          "sha256": "812173c7db17cac9b970b95480c24c4d23bab191a9cb51d2a748d839d53a0c37"
+        },
+        "cu_seqlens": {
+          "shape": [
+            3
+          ],
+          "dtype": "torch.int32",
+          "sha256": "13ad55c895ae209d8d98b6f005dd88ff549b946fad61fea1d851ee35cd15d903"
+        },
+        "img_pos": {
+          "shape": [
+            21312
+          ],
+          "dtype": "torch.int64",
+          "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+        },
+        "img_position_ids": {
+          "shape": [
+            1,
+            22592,
+            3
+          ],
+          "dtype": "torch.float64",
+          "sha256": "26d1ad59945b293f852bc7a18829f637d22aed14d11db8ed2d0fa7d771df28b8"
+        },
+        "seq_len": 22592,
+        "text_pos": {
+          "shape": [
+            813
+          ],
+          "dtype": "torch.int64",
+          "sha256": "b395d884b64e3133f0d98582903c6687c18008eafd0d58628f9bf04a4465a330"
+        },
+        "token_tags": {
+          "shape": [
+            22592
+          ],
+          "dtype": "torch.int64",
+          "sha256": "7af1a16cf198fe62271dbe4f1397662fb584af0a39a47b84cb74800f8c89b0a7"
+        }
+      }
+    }
+  },
+  "cuda_initialized": false
+}

@@ -1,0 +1,54 @@
+{
+  "experiment": "E019",
+  "status": "failed_stop",
+  "start_epoch": 1790957287.3505077,
+  "deadline_epoch": 1790958187.3505077,
+  "wall_budget_seconds": 900,
+  "gpu": 5,
+  "max_dit_calls": 0,
+  "max_attention_calls": 12,
+  "freeze_sha256": "864fa42e2403af5d092639da33437b2edd3d4c9cd0500595bc054456115beb99",
+  "stages": [
+    {
+      "name": "probe",
+      "status": "failed_stop",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_partition_contract.py",
+        "--phase",
+        "run",
+        "--deadline-unix",
+        "1790958187.3505077"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E019_probe.log",
+      "gpu_before": {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0,
+        "samples": [
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "start_epoch": 1790957288.0067167,
+      "pid": 629893,
+      "returncode": 1,
+      "seconds": 9.129741907119751
+    }
+  ],
+  "error": "RuntimeError('E019 probe exited 1')",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/launch_h3_partition_contract.py\", line 65, in main\n    raise RuntimeError(f'E019 probe exited {code}')\nRuntimeError: E019 probe exited 1\n",
+  "seconds_total": 9.790297031402588
+}

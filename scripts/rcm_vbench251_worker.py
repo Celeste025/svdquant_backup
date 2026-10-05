@@ -153,6 +153,10 @@ def main() -> None:
     p.add_argument("--manifest", type=Path, required=True)
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--variant", choices=("bf16", "nvfp4", "nvfp4_svdquant", "int4_plain", "int4_svdquant"), required=True)
+    p.add_argument("--svdquant-checkpoint", type=Path,
+                   help="explicit checkpoint for the nvfp4_svdquant variant")
+    p.add_argument("--svdquant-recipe",
+                   help="optional inference-loader recipe; normally inferred from checkpoint manifest")
     p.add_argument("--smoke", action="store_true")
     args = p.parse_args()
     manifest = json.loads(args.manifest.read_text())
@@ -170,7 +174,10 @@ def main() -> None:
     elif args.variant == "int4_plain":
         load_pure_w4a4(pipe, "configs/svdquant/int4.yaml")
     elif args.variant == "nvfp4_svdquant":
-        load_svdquant(pipe, SVDQUANT_CKPT, "real-nvfp4")
+        checkpoint = args.svdquant_checkpoint or SVDQUANT_CKPT
+        if not checkpoint.is_dir():
+            raise RuntimeError(f"missing SVDQuant checkpoint: {checkpoint}")
+        load_svdquant(pipe, checkpoint, args.svdquant_recipe)
     elif args.variant == "int4_svdquant":
         load_svdquant(pipe, INT4_SVDQUANT_CKPT, "rcm-wan-int4-svdquant-v1")
     validation = validate_variant(pipe, args.variant)

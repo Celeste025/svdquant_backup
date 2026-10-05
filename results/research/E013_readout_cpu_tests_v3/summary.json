@@ -1,0 +1,179 @@
+{
+  "status": "complete",
+  "scope": "CPU synthetic geometry, not model behavior or quality",
+  "versions": {
+    "executable": "/data1/models/svdquant-wjq/conda-envs/mjvideo/bin/python",
+    "python": "3.12.13 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:38:16) [GCC 14.3.0]",
+    "numpy": "2.5.2",
+    "opencv": "5.0.0"
+  },
+  "sources": {
+    "/home/wjq/workspace/svdquant-exp/scripts/research/test_h3_projected_behavior.py": "9ec7737e14733fbf70949f3f62d848367d3fd549a8d44b9c0acbefd138f2af9c",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/evaluate_h3_projected_behavior.py": "8668eb1975b45cec5c1a330bf19998384015b3b20551771b838440785b924801"
+  },
+  "thresholds": {
+    "red_hue": [
+      [
+        0,
+        10
+      ],
+      [
+        170,
+        179
+      ]
+    ],
+    "blue_hue": [
+      [
+        100,
+        130
+      ]
+    ],
+    "saturation_min": 120,
+    "value_min": 60,
+    "main_share_min": 0.9,
+    "area_fraction_range": [
+      0.002,
+      0.08
+    ],
+    "valid_fraction_min": 0.9,
+    "endpoint_fraction": 0.1,
+    "endpoint_valid_min": 0.8,
+    "rho_min": 1.5,
+    "diameter_relative_tolerance": 0.2,
+    "diameter_stable_fraction_min": 0.9,
+    "jump_diagonal_fraction_max": 0.1,
+    "toward_rho_ratio_max": 0.8,
+    "toward_distance_ratio_max": 0.9,
+    "away_rho_ratio_min": 1.25,
+    "away_distance_ratio_min": 1.1,
+    "direction_conflict_min_deviation": 0.01
+  },
+  "cases": [
+    {
+      "fixture": "toward",
+      "expected": "behavior_pass",
+      "actual": "behavior_pass",
+      "valid_fraction": 1.0,
+      "reasons": [],
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E013_readout_cpu_tests_v3/toward/report.json"
+    },
+    {
+      "fixture": "away",
+      "expected": "behavior_pass",
+      "actual": "behavior_pass",
+      "valid_fraction": 1.0,
+      "reasons": [],
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E013_readout_cpu_tests_v3/away/report.json"
+    },
+    {
+      "fixture": "static",
+      "expected": "behavior_fail",
+      "actual": "behavior_fail",
+      "valid_fraction": 1.0,
+      "reasons": [
+        "valid_detection_but_direction_or_amplitude_failed"
+      ],
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E013_readout_cpu_tests_v3/static/report.json"
+    },
+    {
+      "fixture": "translation",
+      "expected": "behavior_fail",
+      "actual": "behavior_fail",
+      "valid_fraction": 1.0,
+      "reasons": [
+        "valid_detection_but_direction_or_amplitude_failed"
+      ],
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E013_readout_cpu_tests_v3/translation/report.json"
+    },
+    {
+      "fixture": "zoom",
+      "expected": "unknown",
+      "actual": "unknown",
+      "valid_fraction": 1.0,
+      "reasons": [
+        "rho_and_distance_direction_conflict"
+      ],
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E013_readout_cpu_tests_v3/zoom/report.json"
+    },
+    {
+      "fixture": "double_red",
+      "expected": "unknown",
+      "actual": "unknown",
+      "valid_fraction": 0.0,
+      "reasons": [
+        "insufficient_valid_frames",
+        "insufficient_valid_endpoint_frames",
+        "no_valid_start_reference",
+        "insufficient_valid_frames_after_size_guards",
+        "insufficient_valid_endpoint_frames_after_size_guards",
+        "endpoint_metric_unavailable"
+      ],
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E013_readout_cpu_tests_v3/double_red/report.json"
+    },
+    {
+      "fixture": "missing",
+      "expected": "unknown",
+      "actual": "unknown",
+      "valid_fraction": 0.7580645161290323,
+      "reasons": [
+        "insufficient_valid_frames",
+        "red_diameter_unstable",
+        "blue_diameter_unstable",
+        "red_blue_diameter_ratio_unstable",
+        "insufficient_valid_frames_after_size_guards"
+      ],
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E013_readout_cpu_tests_v3/missing/report.json"
+    },
+    {
+      "fixture": "cropping",
+      "expected": "unknown",
+      "actual": "unknown",
+      "valid_fraction": 0.0,
+      "reasons": [
+        "insufficient_valid_frames",
+        "insufficient_valid_endpoint_frames",
+        "no_valid_start_reference",
+        "insufficient_valid_frames_after_size_guards",
+        "insufficient_valid_endpoint_frames_after_size_guards",
+        "endpoint_metric_unavailable"
+      ],
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E013_readout_cpu_tests_v3/cropping/report.json"
+    },
+    {
+      "fixture": "inflation",
+      "expected": "unknown",
+      "actual": "unknown",
+      "valid_fraction": 0.45161290322580644,
+      "reasons": [
+        "red_diameter_unstable",
+        "blue_diameter_unstable",
+        "insufficient_valid_frames_after_size_guards",
+        "insufficient_valid_endpoint_frames_after_size_guards",
+        "endpoint_metric_unavailable"
+      ],
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E013_readout_cpu_tests_v3/inflation/report.json"
+    },
+    {
+      "fixture": "jump",
+      "expected": "unknown",
+      "actual": "unknown",
+      "valid_fraction": 1.0,
+      "reasons": [
+        "centroid_jump"
+      ],
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E013_readout_cpu_tests_v3/jump/report.json"
+    },
+    {
+      "fixture": "conflict",
+      "expected": "unknown",
+      "actual": "unknown",
+      "valid_fraction": 1.0,
+      "reasons": [
+        "rho_and_distance_direction_conflict"
+      ],
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E013_readout_cpu_tests_v3/conflict/report.json"
+    }
+  ],
+  "opposite_direction_fixture": "behavior_fail",
+  "seconds_total": 9.244873055955395
+}

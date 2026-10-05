@@ -1,0 +1,543 @@
+{
+  "experiment": "E043",
+  "status": "complete",
+  "phase": "check",
+  "actual_counts": {
+    "dit": 0,
+    "scheduler": 0,
+    "public_vae_decode": 0,
+    "text_encoder": 0
+  },
+  "cases": [],
+  "manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E043_vanilla_wan_manifest.json",
+    "bytes": 5898,
+    "sha256": "8844e616bee677d563bd662e4b66db88dde4b63be076d8d0e01273b759d8e4e9"
+  },
+  "sources": [
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_vanilla_wan_reference.py",
+      "bytes": 15853,
+      "sha256": "e51e102122e1c15ce46c59c8b4cddf88e50640eb17b2e69f02e447177e165479"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E043_vanilla_wan_manifest.json",
+      "bytes": 5898,
+      "sha256": "8844e616bee677d563bd662e4b66db88dde4b63be076d8d0e01273b759d8e4e9"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E043_vanilla_wan_reference_plan.md",
+      "bytes": 2895,
+      "sha256": "7310db589f0440cec74f194d8f833dbd1db19875417af06a725a0c7befb3c6e5"
+    },
+    {
+      "file": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/pipelines/wan/pipeline_wan.py",
+      "bytes": 32040,
+      "sha256": "2a5fcd905ad0fbcbd76240e02007e73ab3583f927da8b9fe0fbe5a4a54d792aa"
+    },
+    {
+      "file": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/models/transformers/transformer_wan.py",
+      "bytes": 31082,
+      "sha256": "74741d74c9fa4b9d02be83de9840b37a732080a795aa2d19037c03e312c76907"
+    },
+    {
+      "file": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/models/autoencoders/autoencoder_kl_wan.py",
+      "bytes": 54261,
+      "sha256": "a38de0c53adcb81887a0b48d44e3fb59737d7b1e4779a666febe83be666e8fa8"
+    },
+    {
+      "file": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/schedulers/scheduling_unipc_multistep.py",
+      "bytes": 56242,
+      "sha256": "5bfe1dcf55ebea6dbbf624d3af676b2529b81fbcaf493150d562ec9e1aba3872"
+    },
+    {
+      "file": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/transformers/models/umt5/modeling_umt5.py",
+      "bytes": 69277,
+      "sha256": "1cff5353264f815d82f72102f33f58a936983e01b223f5cfd2b144f63d4660e8"
+    }
+  ],
+  "inherited_te_vae_asset_receipt": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E024/assets_manifest_attempt3.json",
+    "bytes": 27582,
+    "sha256": "8c851f0b442558d412d212e28dbb0c8b959184c1ed87cea5ec9b53ec91d71026"
+  },
+  "base_transformer_receipt": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E043/base_transformer_provenance.json",
+    "bytes": 1325,
+    "sha256": "2967ac89b4a5a97f04b0e4e7cba0efffa98d11b0954c38d4250fed9d9162b201"
+  },
+  "assets_stat": [
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/configuration.json",
+      "bytes": 81,
+      "mtime_ns": 1787752406723338869
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/model_index.json",
+      "bytes": 400,
+      "mtime_ns": 1787754489975141017
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/scheduler/scheduler_config.json",
+      "bytes": 751,
+      "mtime_ns": 1787754490240149502
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/text_encoder/config.json",
+      "bytes": 854,
+      "mtime_ns": 1787752406523332450
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/text_encoder/model-00001-of-00005.safetensors",
+      "bytes": 4972389712,
+      "mtime_ns": 1787754844560507114
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/text_encoder/model-00002-of-00005.safetensors",
+      "bytes": 4899225672,
+      "mtime_ns": 1787753815533545876
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/text_encoder/model-00003-of-00005.safetensors",
+      "bytes": 4966309504,
+      "mtime_ns": 1787754149009223530
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/text_encoder/model-00004-of-00005.safetensors",
+      "bytes": 4999880704,
+      "mtime_ns": 1787754592877435876
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/text_encoder/model-00005-of-00005.safetensors",
+      "bytes": 2885866152,
+      "mtime_ns": 1787754487756069964
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/text_encoder/model.safetensors.index.json",
+      "bytes": 22476,
+      "mtime_ns": 1787754489860137335
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/tokenizer/special_tokens_map.json",
+      "bytes": 7079,
+      "mtime_ns": 1787754490360153345
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/tokenizer/spiece.model",
+      "bytes": 4548313,
+      "mtime_ns": 1787754490527158692
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/tokenizer/tokenizer.json",
+      "bytes": 16837459,
+      "mtime_ns": 1787754491605193210
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/tokenizer/tokenizer_config.json",
+      "bytes": 61758,
+      "mtime_ns": 1787754491767198397
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/transformer/config.json",
+      "bytes": 465,
+      "mtime_ns": 1787752406592334665
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/transformer/diffusion_pytorch_model-00001-of-00002.safetensors",
+      "bytes": 4998781576,
+      "mtime_ns": 1787754845855548645
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/transformer/diffusion_pytorch_model-00002-of-00002.safetensors",
+      "bytes": 677289072,
+      "mtime_ns": 1787752463822171241
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/transformer/diffusion_pytorch_model.safetensors.index.json",
+      "bytes": 73296,
+      "mtime_ns": 1787752407030348721
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/vae/config.json",
+      "bytes": 724,
+      "mtime_ns": 1787752406640336205
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/vae/diffusion_pytorch_model.safetensors",
+      "bytes": 507591892,
+      "mtime_ns": 1787752451823786198
+    }
+  ],
+  "disk_configs": {
+    "model_index.json": {
+      "_class_name": "WanPipeline",
+      "_diffusers_version": "0.33.0.dev0",
+      "scheduler": [
+        "diffusers",
+        "UniPCMultistepScheduler"
+      ],
+      "text_encoder": [
+        "transformers",
+        "UMT5EncoderModel"
+      ],
+      "tokenizer": [
+        "transformers",
+        "T5TokenizerFast"
+      ],
+      "transformer": [
+        "diffusers",
+        "WanTransformer3DModel"
+      ],
+      "vae": [
+        "diffusers",
+        "AutoencoderKLWan"
+      ]
+    },
+    "transformer/config.json": {
+      "_class_name": "WanTransformer3DModel",
+      "_diffusers_version": "0.33.0.dev0",
+      "added_kv_proj_dim": null,
+      "attention_head_dim": 128,
+      "cross_attn_norm": true,
+      "eps": 1e-06,
+      "ffn_dim": 8960,
+      "freq_dim": 256,
+      "image_dim": null,
+      "in_channels": 16,
+      "num_attention_heads": 12,
+      "num_layers": 30,
+      "out_channels": 16,
+      "patch_size": [
+        1,
+        2,
+        2
+      ],
+      "qk_norm": "rms_norm_across_heads",
+      "rope_max_seq_len": 1024,
+      "text_dim": 4096
+    },
+    "vae/config.json": {
+      "_class_name": "AutoencoderKLWan",
+      "_diffusers_version": "0.33.0.dev0",
+      "attn_scales": [],
+      "base_dim": 96,
+      "dim_mult": [
+        1,
+        2,
+        4,
+        4
+      ],
+      "dropout": 0.0,
+      "latents_mean": [
+        -0.7571,
+        -0.7089,
+        -0.9113,
+        0.1075,
+        -0.1745,
+        0.9653,
+        -0.1517,
+        1.5508,
+        0.4134,
+        -0.0715,
+        0.5517,
+        -0.3632,
+        -0.1922,
+        -0.9497,
+        0.2503,
+        -0.2921
+      ],
+      "latents_std": [
+        2.8184,
+        1.4541,
+        2.3275,
+        2.6558,
+        1.2196,
+        1.7708,
+        2.6052,
+        2.0743,
+        3.2687,
+        2.1526,
+        2.8652,
+        1.5579,
+        1.6382,
+        1.1253,
+        2.8251,
+        1.916
+      ],
+      "num_res_blocks": 2,
+      "temperal_downsample": [
+        false,
+        true,
+        true
+      ],
+      "z_dim": 16
+    },
+    "text_encoder/config.json": {
+      "_name_or_path": "google/umt5-xxl",
+      "architectures": [
+        "UMT5EncoderModel"
+      ],
+      "classifier_dropout": 0.0,
+      "d_ff": 10240,
+      "d_kv": 64,
+      "d_model": 4096,
+      "decoder_start_token_id": 0,
+      "dense_act_fn": "gelu_new",
+      "dropout_rate": 0.1,
+      "eos_token_id": 1,
+      "feed_forward_proj": "gated-gelu",
+      "initializer_factor": 1.0,
+      "is_encoder_decoder": true,
+      "is_gated_act": true,
+      "layer_norm_epsilon": 1e-06,
+      "model_type": "umt5",
+      "num_decoder_layers": 24,
+      "num_heads": 64,
+      "num_layers": 24,
+      "output_past": true,
+      "pad_token_id": 0,
+      "relative_attention_max_distance": 128,
+      "relative_attention_num_buckets": 32,
+      "scalable_attention": true,
+      "tie_word_embeddings": false,
+      "tokenizer_class": "T5Tokenizer",
+      "torch_dtype": "float32",
+      "transformers_version": "4.48.0.dev0",
+      "use_cache": true,
+      "vocab_size": 256384
+    },
+    "scheduler/scheduler_config.json": {
+      "_class_name": "UniPCMultistepScheduler",
+      "_diffusers_version": "0.33.0.dev0",
+      "beta_end": 0.02,
+      "beta_schedule": "linear",
+      "beta_start": 0.0001,
+      "disable_corrector": [],
+      "dynamic_thresholding_ratio": 0.995,
+      "final_sigmas_type": "zero",
+      "flow_shift": 3.0,
+      "lower_order_final": true,
+      "num_train_timesteps": 1000,
+      "predict_x0": true,
+      "prediction_type": "flow_prediction",
+      "rescale_betas_zero_snr": false,
+      "sample_max_value": 1.0,
+      "solver_order": 2,
+      "solver_p": null,
+      "solver_type": "bh2",
+      "steps_offset": 0,
+      "thresholding": false,
+      "timestep_spacing": "linspace",
+      "trained_betas": null,
+      "use_beta_sigmas": false,
+      "use_exponential_sigmas": false,
+      "use_flow_sigmas": true,
+      "use_karras_sigmas": false
+    }
+  },
+  "versions": {
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "diffusers": "0.40.0",
+    "imageio": "v2 API",
+    "ffmpeg_executable": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2",
+    "diffusers_path": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/__init__.py"
+  },
+  "settings": {
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "num_inference_steps": 50,
+    "guidance_scale": 6.0,
+    "flow_shift": 8.0,
+    "fps": 16,
+    "scheduler": "UniPCMultistepScheduler",
+    "transformer_dtype": "bfloat16",
+    "text_encoder_dtype": "bfloat16",
+    "vae_dtype": "float32",
+    "latent_update_dtype": "float32",
+    "max_sequence_length": 512,
+    "prompt_extension": false,
+    "attention_backend_dit": "torch SDPA FLASH_ATTENTION",
+    "compile": false,
+    "offload": false,
+    "vae_tiling": false
+  },
+  "prompt_id": 161,
+  "selected_cases": [
+    {
+      "case_id": "vbench0161_r0",
+      "prompt_id": 161,
+      "source_index_zero_based": 161,
+      "replica": 0,
+      "prompt": "A person is clapping",
+      "prompt_sha256": "268d62ce600baae94ac9ce2a33755b342aa42cc2b1386c4ee19501048f0015c8",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "seed": 43001610
+    },
+    {
+      "case_id": "vbench0161_r1",
+      "prompt_id": 161,
+      "source_index_zero_based": 161,
+      "replica": 1,
+      "prompt": "A person is clapping",
+      "prompt_sha256": "268d62ce600baae94ac9ce2a33755b342aa42cc2b1386c4ee19501048f0015c8",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "seed": 43001611
+    }
+  ],
+  "cpu_schedule": {
+    "config": {
+      "num_train_timesteps": 1000,
+      "beta_start": 0.0001,
+      "beta_end": 0.02,
+      "beta_schedule": "linear",
+      "trained_betas": null,
+      "solver_order": 2,
+      "prediction_type": "flow_prediction",
+      "thresholding": false,
+      "dynamic_thresholding_ratio": 0.995,
+      "sample_max_value": 1.0,
+      "predict_x0": true,
+      "solver_type": "bh2",
+      "lower_order_final": true,
+      "disable_corrector": [],
+      "solver_p": null,
+      "use_karras_sigmas": false,
+      "use_exponential_sigmas": false,
+      "use_beta_sigmas": false,
+      "use_flow_sigmas": true,
+      "flow_shift": 8.0,
+      "timestep_spacing": "linspace",
+      "steps_offset": 0,
+      "final_sigmas_type": "zero",
+      "rescale_betas_zero_snr": false,
+      "use_dynamic_shifting": false,
+      "time_shift_type": "exponential",
+      "sigma_min": null,
+      "sigma_max": null,
+      "shift_terminal": null,
+      "_use_default_values": [
+        "time_shift_type",
+        "shift_terminal",
+        "sigma_max",
+        "sigma_min",
+        "use_dynamic_shifting"
+      ],
+      "_class_name": "UniPCMultistepScheduler",
+      "_diffusers_version": "0.33.0.dev0"
+    },
+    "timesteps": [
+      999,
+      997,
+      994,
+      992,
+      989,
+      986,
+      983,
+      980,
+      976,
+      973,
+      969,
+      965,
+      962,
+      957,
+      953,
+      949,
+      944,
+      939,
+      934,
+      928,
+      923,
+      917,
+      910,
+      903,
+      896,
+      889,
+      880,
+      872,
+      863,
+      853,
+      842,
+      830,
+      818,
+      805,
+      790,
+      774,
+      757,
+      738,
+      717,
+      693,
+      667,
+      638,
+      605,
+      567,
+      523,
+      473,
+      413,
+      341,
+      254,
+      146
+    ],
+    "sigmas": [
+      0.9999989867210388,
+      0.9974580407142639,
+      0.9948239922523499,
+      0.9920927882194519,
+      0.989258885383606,
+      0.9863163828849792,
+      0.9832589626312256,
+      0.980079710483551,
+      0.9767712354660034,
+      0.9733254909515381,
+      0.969733715057373,
+      0.965986430644989,
+      0.9620733857154846,
+      0.9579832553863525,
+      0.953703761100769,
+      0.9492214918136597,
+      0.9445215463638306,
+      0.9395878911018372,
+      0.9344024062156677,
+      0.9289454817771912,
+      0.9231951832771301,
+      0.9171271920204163,
+      0.9107144474983215,
+      0.9039266705513,
+      0.8967299461364746,
+      0.8890862464904785,
+      0.8809525966644287,
+      0.8722802996635437,
+      0.8630139827728271,
+      0.8530904650688171,
+      0.8424373269081116,
+      0.8309709429740906,
+      0.8185945153236389,
+      0.8051952719688416,
+      0.7906408905982971,
+      0.7747753262519836,
+      0.7574130296707153,
+      0.7383317351341248,
+      0.7172627449035645,
+      0.6938785314559937,
+      0.6677752137184143,
+      0.6384492516517639,
+      0.6052646636962891,
+      0.567406177520752,
+      0.5238115787506104,
+      0.4730703830718994,
+      0.4132682979106903,
+      0.3417403995990753,
+      0.25466302037239075,
+      0.14634741842746735,
+      0.0
+    ]
+  },
+  "cuda_available": false,
+  "model_weights_loaded": false,
+  "seconds_total": 0.012731381924822927
+}

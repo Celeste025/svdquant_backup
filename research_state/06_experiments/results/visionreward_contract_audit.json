@@ -1,0 +1,32 @@
+{
+  "scope": "CPU-only contract inspection; no score or model inference",
+  "source_files": [
+    {
+      "path": "/data1/models/svdquant-wjq/third_party/VisionReward/inference-video.py",
+      "sha256": "782881168aa62d8a459f12da6e2bdfe05dc4beca5b9fd79d67cdef0289129855"
+    },
+    {
+      "path": "/data1/models/svdquant-wjq/third_party/VisionReward/VisionReward_Video/VisionReward_video_qa_select.txt",
+      "sha256": "79de7f5e135a7957144826056a83be63fd6ddcbc61ba6460e09a0b09da580ee3"
+    },
+    {
+      "path": "/data1/models/svdquant-wjq/third_party/VisionReward/VisionReward_Video/weight.json",
+      "sha256": "0c6367f244ae64fa881e93f0033f2a4362176893ed2f946223ec64a57e3c9204"
+    },
+    {
+      "path": "/home/wjq/workspace/svdquant-exp/tools/evaluate_visionreward_video.py",
+      "sha256": "fe235a7de07b7802cc5c40bbd267ba5a62a58b26db0d9f36971c963a95f76ea9"
+    }
+  ],
+  "question_count": 29,
+  "local_tokenizer": {
+    "Yes": 9642,
+    "yes": 9891,
+    "No": 2822,
+    "no": 2201,
+    "space_Yes": 7566,
+    "space_yes": 10035
+  },
+  "finding": "Official script compares decoded output exactly with lowercase yes; existing local untracked evaluator compares token_id to uppercase Yes. Different mappings; no existing output found to determine impact. Do not silently call these numerically equivalent.",
+  "next_use": "If used for E010, save raw decoded answers; report strict official lowercase and normalized yes/no separately, reject unrecognized answers for normalized metric. Questions do not evaluate audio; tiny paired sample scores cannot establish quality equivalence."
+}

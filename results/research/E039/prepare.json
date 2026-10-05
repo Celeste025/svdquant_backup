@@ -1,0 +1,78 @@
+{
+  "experiment": "E039",
+  "status": "complete",
+  "actual_sdpa_calls": 2,
+  "actual_dit_calls": 0,
+  "receipts": [
+    {
+      "q_shape": [
+        1,
+        56,
+        22539,
+        128
+      ],
+      "dtype": "torch.bfloat16",
+      "scale": 0.08838834764831845
+    },
+    {
+      "q_shape": [
+        1,
+        56,
+        53,
+        128
+      ],
+      "dtype": "torch.bfloat16",
+      "scale": 0.08838834764831845
+    }
+  ],
+  "source": {
+    "file": "/data1/models/svdquant-wjq/research/20261003/E035/capture/block_00.pt",
+    "bytes": 2194861976,
+    "sha256": "64312cff822f1aaf7e9331530cbc10272ab6dd6c4681835215449c1e5b4016c8"
+  },
+  "plan": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E039_output_projection_parallel_plan.md",
+    "bytes": 4603,
+    "sha256": "211f0e0eb8f422c59ef44c32ba375ee921881b60a22e7d826105521e51209b39"
+  },
+  "sources": [
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/prepare_h3_projection_boundary.py",
+      "bytes": 5945,
+      "sha256": "31118c95b37c64806a9e38b946d68816737efa851ccf8bfb013ca2892db5dbcd"
+    },
+    {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit.py",
+      "bytes": 18207,
+      "sha256": "bd617a4312c70405e916707e1908100b484b2259dfbeba4af7de5bb145206d80"
+    }
+  ],
+  "torch": "2.11.0+cu128",
+  "cuda": "12.8",
+  "input_qkv_kind": "E035 native projection, same original BF16 teacher input state",
+  "valid_length": 22539,
+  "model_total": 22592,
+  "model_padding": 53,
+  "cu_seqlens": [
+    0,
+    22539,
+    22592
+  ],
+  "scale": 0.08838834764831845,
+  "artifact": {
+    "file": "/data1/models/svdquant-wjq/research/20261003/E039/attention_output.pt",
+    "bytes": 323880552,
+    "sha256": "685a85591667966d325f1e6ec6d065122fa8d4e28d67aae74032960f4c978a90"
+  },
+  "shape": [
+    22592,
+    56,
+    128
+  ],
+  "dtype": "torch.bfloat16",
+  "finite": true,
+  "model_padding_rms": 0.800828754901886,
+  "model_padding_max_abs": 4.0625,
+  "peak_allocated_bytes": 2105212928,
+  "seconds": 2.336383819580078
+}

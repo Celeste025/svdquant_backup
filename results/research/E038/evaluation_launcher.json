@@ -1,0 +1,101 @@
+{
+  "experiment": "E038",
+  "status": "complete",
+  "start_epoch": 1790994732.4242182,
+  "deadline_epoch": 1790995932.4242182,
+  "stages": [
+    {
+      "name": "temporal",
+      "gpu": 0,
+      "gpu_before": {
+        "index": 0,
+        "uuid": "GPU-f2d2bf35-6009-bfec-9e68-dfffd5b077c4",
+        "memory_mib": 0,
+        "utilization_percent": 0,
+        "samples": [
+          {
+            "index": 0,
+            "uuid": "GPU-f2d2bf35-6009-bfec-9e68-dfffd5b077c4",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 0,
+            "uuid": "GPU-f2d2bf35-6009-bfec-9e68-dfffd5b077c4",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "pid": 739940,
+      "command": [
+        "/data1/models/svdquant-wjq/conda-envs/mjvideo/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/evaluate_h3_center_video_temporal.py",
+        "--deadline-unix",
+        "1790995932.4242182"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E038_temporal.log",
+      "status": "complete",
+      "start_epoch": 1790994732.42518,
+      "returncode": 0,
+      "seconds": 216.07344388961792
+    },
+    {
+      "name": "mjvideo",
+      "gpu": 1,
+      "gpu_before": {
+        "index": 1,
+        "uuid": "GPU-d69766fc-a299-bc28-48a0-41ce331b0359",
+        "memory_mib": 0,
+        "utilization_percent": 0,
+        "samples": [
+          {
+            "index": 1,
+            "uuid": "GPU-d69766fc-a299-bc28-48a0-41ce331b0359",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 1,
+            "uuid": "GPU-d69766fc-a299-bc28-48a0-41ce331b0359",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "pid": 739941,
+      "command": [
+        "/data1/models/svdquant-wjq/conda-envs/mjvideo/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/eval_mjvideo_e021.py",
+        "--manifest",
+        "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E038_center_video_manifest.json",
+        "--samples",
+        "/data1/models/svdquant-wjq/research/20261003/E038",
+        "--model",
+        "/data1/models/svdquant-wjq/models/MJ-VIDEO-2B",
+        "--tokenizer",
+        "/data1/models/svdquant-wjq/research/20261003/E021/tokenizer",
+        "--mjvideo-repo",
+        "/data1/models/svdquant-wjq/third_party/MJ-Video",
+        "--output",
+        "/home/wjq/workspace/svdquant-exp/results/research/E038/mjvideo_scores.json",
+        "--variants",
+        "bf16",
+        "global_mean",
+        "coarse16",
+        "--num-segments",
+        "8",
+        "--video-template",
+        "decode_{variant}/{case_id}.mp4"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E038_mjvideo.log",
+      "status": "complete",
+      "start_epoch": 1790994732.4259593,
+      "returncode": 0,
+      "seconds": 27.008212566375732
+    }
+  ],
+  "seconds": 216.0756871700287
+}

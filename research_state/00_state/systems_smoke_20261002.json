@@ -1,0 +1,48 @@
+{
+  "torch": "2.11.0+cu128",
+  "torch_cuda": "12.8",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "capability": [
+    12,
+    0
+  ],
+  "tests": [
+    {
+      "shape_mnk": [
+        128,
+        128,
+        256
+      ],
+      "status": "ok",
+      "finite": true,
+      "native_vs_exact_nmse": 2.7140470137965167e-06,
+      "native_vs_bf16_qdq_nmse": 0.0,
+      "native_vs_bf16_qdq_maxabs": 0.0,
+      "cuda_kernel_names": [
+        "cutlass3x_sm120_bstensorop_s16864gemm_block_scaled_ue4m3xe2m1_ue4m3xe2m1_f32_bf16_bf16_128x128x256_1x1x1_0_tnn_align32_o_vs16_bias_bf16_relu"
+      ]
+    },
+    {
+      "shape_mnk": [
+        257,
+        256,
+        512
+      ],
+      "status": "ok",
+      "finite": true,
+      "native_vs_exact_nmse": 2.7200048862141557e-06,
+      "native_vs_bf16_qdq_nmse": 0.0,
+      "native_vs_bf16_qdq_maxabs": 0.0
+    }
+  ],
+  "two_level": {
+    "status": "ok",
+    "global_scales": [
+      0.013700000010430813,
+      0.002309999894350767
+    ],
+    "native_vs_exact_nmse": 2.7252526706433855e-06,
+    "native_vs_bf16_qdq_nmse": 1.2403997970977798e-05,
+    "fraction_different": 0.53436279296875
+  }
+}

@@ -1,0 +1,417 @@
+{
+  "experiment": "E016",
+  "status": "complete",
+  "start_epoch": 1790949748.170656,
+  "deadline_epoch": 1790951548.170656,
+  "wall_budget_seconds": 1800,
+  "max_complete_dit_calls": 30,
+  "planned_dit_calls": 27,
+  "freeze_sha256": "8daeba8b27e7541ac3974f2851c4a6d2a57882bc6b14856535e1aa9af0f524a0",
+  "stages": [
+    {
+      "name": "evaluate_bf16_original",
+      "status": "complete",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_full_fp4_attention.py",
+        "--phase",
+        "evaluate",
+        "--arm",
+        "bf16_original",
+        "--check-report",
+        "/home/wjq/workspace/svdquant-exp/results/research/E016/E016_check_bf16_original.json",
+        "--deadline-unix",
+        "1790951548.170656"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E016_evaluate_bf16_original.log",
+      "gpu_before": {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0,
+        "samples": [
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "planned_dit_calls": 3,
+      "start_epoch": 1790949748.854895,
+      "environment": {
+        "CUDA_HOME": "/usr/local/cuda",
+        "FLASHINFER_WORKSPACE_BASE": "/data1/models/svdquant-wjq/research/cache/flashinfer",
+        "TMPDIR": "/data1/models/svdquant-wjq/research/cache/tmp",
+        "TORCH_EXTENSIONS_DIR": "/data1/models/svdquant-wjq/research/cache/torch_extensions",
+        "MAX_JOBS": "4",
+        "CUDA_VISIBLE_DEVICES": "5",
+        "TRITON_CACHE_DIR": "/data1/models/svdquant-wjq/research/cache/triton",
+        "CUDA_CACHE_PATH": "/data1/models/svdquant-wjq/research/cache/cuda"
+      },
+      "pid": 3122627,
+      "returncode": 0,
+      "end_epoch": 1790949787.0356433,
+      "seconds": 38.18074822425842,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E016/E016_evaluate_bf16_original.json",
+      "report_sha256": "516579f2b5274c5ebbe9d43911844923956b86dcd411383238cae394c8f87475"
+    },
+    {
+      "name": "evaluate_svd_bf16",
+      "status": "complete",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_full_fp4_attention.py",
+        "--phase",
+        "evaluate",
+        "--arm",
+        "svd_bf16",
+        "--check-report",
+        "/home/wjq/workspace/svdquant-exp/results/research/E016/E016_check_bf16_original.json",
+        "--deadline-unix",
+        "1790951548.170656"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E016_evaluate_svd_bf16.log",
+      "gpu_before": {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0,
+        "samples": [
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "planned_dit_calls": 3,
+      "start_epoch": 1790949787.7267282,
+      "environment": {
+        "CUDA_HOME": "/usr/local/cuda",
+        "FLASHINFER_WORKSPACE_BASE": "/data1/models/svdquant-wjq/research/cache/flashinfer",
+        "TMPDIR": "/data1/models/svdquant-wjq/research/cache/tmp",
+        "TORCH_EXTENSIONS_DIR": "/data1/models/svdquant-wjq/research/cache/torch_extensions",
+        "MAX_JOBS": "4",
+        "CUDA_VISIBLE_DEVICES": "5",
+        "TRITON_CACHE_DIR": "/data1/models/svdquant-wjq/research/cache/triton",
+        "CUDA_CACHE_PATH": "/data1/models/svdquant-wjq/research/cache/cuda"
+      },
+      "pid": 3131822,
+      "returncode": 0,
+      "end_epoch": 1790949833.5705438,
+      "seconds": 45.84381556510925,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E016/E016_evaluate_svd_bf16.json",
+      "report_sha256": "51ab610e4748541b1009c9495c8fc7927f26b00e111a0fc1259fbc037b296a12"
+    },
+    {
+      "name": "evaluate_svd_block_mean",
+      "status": "complete",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_full_fp4_attention.py",
+        "--phase",
+        "evaluate",
+        "--arm",
+        "svd_block_mean",
+        "--check-report",
+        "/home/wjq/workspace/svdquant-exp/results/research/E016/E016_check_bf16_original.json",
+        "--deadline-unix",
+        "1790951548.170656"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E016_evaluate_svd_block_mean.log",
+      "gpu_before": {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0,
+        "samples": [
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 13
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 13
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "planned_dit_calls": 3,
+      "start_epoch": 1790949835.4090695,
+      "environment": {
+        "CUDA_HOME": "/usr/local/cuda",
+        "FLASHINFER_WORKSPACE_BASE": "/data1/models/svdquant-wjq/research/cache/flashinfer",
+        "TMPDIR": "/data1/models/svdquant-wjq/research/cache/tmp",
+        "TORCH_EXTENSIONS_DIR": "/data1/models/svdquant-wjq/research/cache/torch_extensions",
+        "MAX_JOBS": "4",
+        "CUDA_VISIBLE_DEVICES": "5",
+        "TRITON_CACHE_DIR": "/data1/models/svdquant-wjq/research/cache/triton",
+        "CUDA_CACHE_PATH": "/data1/models/svdquant-wjq/research/cache/cuda"
+      },
+      "pid": 3142610,
+      "returncode": 0,
+      "end_epoch": 1790949875.9392474,
+      "seconds": 40.53017783164978,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E016/E016_evaluate_svd_block_mean.json",
+      "report_sha256": "ee8715cc22579c7ca6e09a71d74f1b7b0b27bf078f66f15513f876c062dfc97e"
+    },
+    {
+      "name": "evaluate_svd_global_mean",
+      "status": "complete",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_full_fp4_attention.py",
+        "--phase",
+        "evaluate",
+        "--arm",
+        "svd_global_mean",
+        "--check-report",
+        "/home/wjq/workspace/svdquant-exp/results/research/E016/E016_check_bf16_original.json",
+        "--deadline-unix",
+        "1790951548.170656"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E016_evaluate_svd_global_mean.log",
+      "gpu_before": {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0,
+        "samples": [
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "planned_dit_calls": 3,
+      "start_epoch": 1790949876.6293685,
+      "environment": {
+        "CUDA_HOME": "/usr/local/cuda",
+        "FLASHINFER_WORKSPACE_BASE": "/data1/models/svdquant-wjq/research/cache/flashinfer",
+        "TMPDIR": "/data1/models/svdquant-wjq/research/cache/tmp",
+        "TORCH_EXTENSIONS_DIR": "/data1/models/svdquant-wjq/research/cache/torch_extensions",
+        "MAX_JOBS": "4",
+        "CUDA_VISIBLE_DEVICES": "5",
+        "TRITON_CACHE_DIR": "/data1/models/svdquant-wjq/research/cache/triton",
+        "CUDA_CACHE_PATH": "/data1/models/svdquant-wjq/research/cache/cuda"
+      },
+      "pid": 3151831,
+      "returncode": 0,
+      "end_epoch": 1790949915.9612927,
+      "seconds": 39.33192420005798,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E016/E016_evaluate_svd_global_mean.json",
+      "report_sha256": "b99f592bebe3933278a4e48bd1ba943a7b960b3d04caaec640790c1806b02547"
+    },
+    {
+      "name": "bench_svd_bf16",
+      "status": "complete",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_full_fp4_attention.py",
+        "--phase",
+        "bench",
+        "--arm",
+        "svd_bf16",
+        "--check-report",
+        "/home/wjq/workspace/svdquant-exp/results/research/E016/E016_check_bf16_original.json",
+        "--deadline-unix",
+        "1790951548.170656"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E016_bench_svd_bf16.log",
+      "gpu_before": {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0,
+        "samples": [
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "planned_dit_calls": 5,
+      "start_epoch": 1790949916.6213753,
+      "environment": {
+        "CUDA_HOME": "/usr/local/cuda",
+        "FLASHINFER_WORKSPACE_BASE": "/data1/models/svdquant-wjq/research/cache/flashinfer",
+        "TMPDIR": "/data1/models/svdquant-wjq/research/cache/tmp",
+        "TORCH_EXTENSIONS_DIR": "/data1/models/svdquant-wjq/research/cache/torch_extensions",
+        "MAX_JOBS": "4",
+        "CUDA_VISIBLE_DEVICES": "5",
+        "TRITON_CACHE_DIR": "/data1/models/svdquant-wjq/research/cache/triton",
+        "CUDA_CACHE_PATH": "/data1/models/svdquant-wjq/research/cache/cuda"
+      },
+      "pid": 3161241,
+      "returncode": 0,
+      "end_epoch": 1790949973.283905,
+      "seconds": 56.662529706954956,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E016/E016_bench_svd_bf16.json",
+      "report_sha256": "6094ac05e0b9ef2d3e4e756c0b6790641d74139b841f5b47078f2775deb972b8"
+    },
+    {
+      "name": "bench_svd_block_mean",
+      "status": "complete",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_full_fp4_attention.py",
+        "--phase",
+        "bench",
+        "--arm",
+        "svd_block_mean",
+        "--check-report",
+        "/home/wjq/workspace/svdquant-exp/results/research/E016/E016_check_bf16_original.json",
+        "--deadline-unix",
+        "1790951548.170656"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E016_bench_svd_block_mean.log",
+      "gpu_before": {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0,
+        "samples": [
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "planned_dit_calls": 5,
+      "start_epoch": 1790949973.951517,
+      "environment": {
+        "CUDA_HOME": "/usr/local/cuda",
+        "FLASHINFER_WORKSPACE_BASE": "/data1/models/svdquant-wjq/research/cache/flashinfer",
+        "TMPDIR": "/data1/models/svdquant-wjq/research/cache/tmp",
+        "TORCH_EXTENSIONS_DIR": "/data1/models/svdquant-wjq/research/cache/torch_extensions",
+        "MAX_JOBS": "4",
+        "CUDA_VISIBLE_DEVICES": "5",
+        "TRITON_CACHE_DIR": "/data1/models/svdquant-wjq/research/cache/triton",
+        "CUDA_CACHE_PATH": "/data1/models/svdquant-wjq/research/cache/cuda"
+      },
+      "pid": 3174408,
+      "returncode": 0,
+      "end_epoch": 1790950023.2022579,
+      "seconds": 49.25074076652527,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E016/E016_bench_svd_block_mean.json",
+      "report_sha256": "6cb18116a65127c837b14cdf73478a2f2bfe4a78b7539dfe3f29aa05599129f8"
+    },
+    {
+      "name": "bench_svd_global_mean",
+      "status": "complete",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_full_fp4_attention.py",
+        "--phase",
+        "bench",
+        "--arm",
+        "svd_global_mean",
+        "--check-report",
+        "/home/wjq/workspace/svdquant-exp/results/research/E016/E016_check_bf16_original.json",
+        "--deadline-unix",
+        "1790951548.170656"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E016_bench_svd_global_mean.log",
+      "gpu_before": {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0,
+        "samples": [
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "planned_dit_calls": 5,
+      "start_epoch": 1790950023.9091253,
+      "environment": {
+        "CUDA_HOME": "/usr/local/cuda",
+        "FLASHINFER_WORKSPACE_BASE": "/data1/models/svdquant-wjq/research/cache/flashinfer",
+        "TMPDIR": "/data1/models/svdquant-wjq/research/cache/tmp",
+        "TORCH_EXTENSIONS_DIR": "/data1/models/svdquant-wjq/research/cache/torch_extensions",
+        "MAX_JOBS": "4",
+        "CUDA_VISIBLE_DEVICES": "5",
+        "TRITON_CACHE_DIR": "/data1/models/svdquant-wjq/research/cache/triton",
+        "CUDA_CACHE_PATH": "/data1/models/svdquant-wjq/research/cache/cuda"
+      },
+      "pid": 3185898,
+      "returncode": 0,
+      "end_epoch": 1790950071.8063354,
+      "seconds": 47.897210121154785,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E016/E016_bench_svd_global_mean.json",
+      "report_sha256": "01d60cb5162c0c9929ddf9fc097fdd64eb721a0ad6b30f88917e66b6df2373c8"
+    }
+  ],
+  "seconds_total": 323.6408908367157
+}

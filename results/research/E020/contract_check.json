@@ -1,0 +1,41 @@
+{
+  "status": "complete",
+  "scope": "Small GPU numerical/gradient/native contract; no model quality evidence",
+  "device": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "bf16_packet_exact_existing_packer": true,
+  "single_kernel_decode_equals_lut": true,
+  "ste_forward_actual_qdq_and_identity_gradient": true,
+  "fp32_master_not_prerounded_to_bf16": {
+    "fp32_global": 0.00037239587982185185,
+    "bf16_global": 0.0003720238455571234
+  },
+  "main_weight_gradient_and_update": true,
+  "actual_native_gemm": [
+    {
+      "a_dtype": "torch.float4_e2m1fn_x2",
+      "b_dtype": "torch.float4_e2m1fn_x2",
+      "shape_a": [
+        32,
+        32
+      ],
+      "shape_b": [
+        32,
+        128
+      ]
+    }
+  ],
+  "native_vs_qdq_nmse": 9.093101469643913e-06,
+  "native_has_no_trainable_or_bf16_weight": true,
+  "packet_global": {
+    "shape": [
+      1
+    ],
+    "dtype": "torch.float32",
+    "sha256": "43277058596f676b91181480d949c704ddf09e116abdc4b985d411eceb3f9f11"
+  },
+  "seconds_total": 2.7204372882843018,
+  "sources": {
+    "/home/wjq/workspace/svdquant-exp/scripts/research/check_wan_mainweight_qad.py": "5c802c50b6318de8fb93f273dc0f99a1646034e0d97edc8775328e9907bc515b",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/wan_mainweight_qad.py": "09a81e1a7b33c59a8e09d57f31046eec68c25c4626ed2bd1a788902e9f077cd8"
+  }
+}

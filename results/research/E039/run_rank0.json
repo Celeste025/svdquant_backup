@@ -1,0 +1,5841 @@
+{
+  "experiment": "E039",
+  "phase": "run",
+  "status": "complete",
+  "rank": 0,
+  "world_size": 2,
+  "arms": [
+    "bf16_return",
+    "fp8_return",
+    "row_parallel",
+    "fp4_side"
+  ],
+  "expected_boundaries_per_rank": 52,
+  "expected_native_gemms_per_rank": 65,
+  "actual_dit_calls": 0,
+  "timing_scope": "Resident head-owned BF16 O through all smoothing/statistics/packs/wire copies/collectives/native projection to real token-owned projected BF16 output. JIT included in first warmup and900s deadline; control barriers, disk loading, flag readback and saving outside per-invocation timing.",
+  "byte_scope": "Actual A2A application bytes; SUM/MAX collectives logical peer bytes separately, not NCCL protocol traffic.",
+  "numerical_contracts": {
+    "bf16_return": "Original native SVD projection after BF16 A2A.",
+    "fp8_return": "Per-source/destination message E4M3 with FP32 amax/448 scale, decode to BF16 before original smooth/projection.",
+    "row_parallel": "Shared destination activation globals; BF16 partial main and BF16 down; one BF16 SUM RS; one BF16 up/add at owner.",
+    "fp4_side": "Shared destination globals and actual packed input; BF16 partial down; float32 sum then BF16 down; original full main/up/add at owner."
+  },
+  "scientific_scope": "One actual H3 output/projection; no quality or byte-equality gate, no DiT. Compare main-valid and real model-padding output separately.",
+  "sources": {
+    "runner": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_output_projection_parallel.py",
+      "bytes": 22983,
+      "sha256": "0feca17c5491b499a0aa414fdc93d8fe48b50fd04fbdf382faf83dd2a528eb84"
+    },
+    "native": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_nvfp4.py",
+      "bytes": 14615,
+      "sha256": "13ca884a8f6c7d93258870970c9f4b204f7cc42af0038f549b825321bb899d0a"
+    },
+    "packer": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_fastpack.py",
+      "bytes": 7255,
+      "sha256": "f5a22a9e3f23d7903403017575e1a63c1cb42e04b0230256a5808902bbc198b7"
+    },
+    "packet": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py",
+      "bytes": 22773,
+      "sha256": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa"
+    },
+    "plan": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E039_output_projection_parallel_plan.md",
+      "bytes": 4603,
+      "sha256": "211f0e0eb8f422c59ef44c32ba375ee921881b60a22e7d826105521e51209b39"
+    }
+  },
+  "input": {
+    "file": "/data1/models/svdquant-wjq/research/20261003/E039/attention_output.pt",
+    "bytes": 323880552,
+    "sha256": "685a85591667966d325f1e6ec6d065122fa8d4e28d67aae74032960f4c978a90"
+  },
+  "weight": {
+    "file": "/data1/models/svdquant-wjq/research/20261002/E009/legacy_export/layers/blocks.0.attn.out_proj.pt",
+    "bytes": 22497465,
+    "sha256": "ed21f5c0e9522aefe572dac3345f0225259fb3c25b795c3166418480ca0da2a0"
+  },
+  "geometry": {
+    "real_total": 22592,
+    "main_valid": 22539,
+    "heads": 56,
+    "head_dim": 128,
+    "input_features": 7168,
+    "output_features": 5376,
+    "rank": 32,
+    "token_starts": [
+      0,
+      11264
+    ],
+    "real_token_lengths": [
+      11264,
+      11328
+    ],
+    "valid_token_lengths": [
+      11264,
+      11275
+    ],
+    "scale_physical_rows": [
+      11264,
+      11392
+    ],
+    "RS_slot_rows": 11392,
+    "model_padding_rows": 53,
+    "row_padding_policy": "Original 53 model-padding outputs are real and enter amax/projection. Only encoder SF/RS padding is artificial."
+  },
+  "environment": {
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "nccl": [
+      2,
+      28,
+      9
+    ],
+    "device": "NVIDIA RTX PRO 5000 72GB Blackwell",
+    "tf32": false,
+    "p2p_access_to_other_rank": true
+  },
+  "actual_counts": {
+    "boundary": 52,
+    "native_gemm": 65,
+    "lr_down": 78,
+    "lr_up": 52,
+    "smooth": 52,
+    "pack": 78,
+    "fp8_quant": 26,
+    "fp8_dequant": 26,
+    "amax_reduce": 52,
+    "all_to_all": 39,
+    "all_reduce": 26,
+    "reduce_scatter": 13
+  },
+  "control_barrier_calls": 54,
+  "benchmarks": [
+    {
+      "arm": "bf16_return",
+      "warmups": [
+        {
+          "round": 0,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 0,
+          "wall_ms": 1333.7633030023426,
+          "cuda_ms": 1333.707275390625,
+          "before": {
+            "allocated": 196286976,
+            "reserved": 207618048,
+            "peak_allocated": 196286976,
+            "peak_reserved": 207618048
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 962592768,
+            "peak_allocated": 939859456,
+            "peak_reserved": 962592768
+          },
+          "incremental_peak_allocated": 743572480,
+          "incremental_peak_reserved": 754974720,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "bf16_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                80740352,
+                81199104
+              ],
+              "receive_splits": [
+                80740352,
+                80740352
+              ],
+              "input_numel": 161939456,
+              "output_numel": 161480704,
+              "remote_send_bytes": 81199104,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "fields": [
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 80740352
+                  }
+                ],
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 81199104
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 1,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 0,
+          "wall_ms": 6.339711835607886,
+          "cuda_ms": 6.316927909851074,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003200,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "bf16_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                80740352,
+                81199104
+              ],
+              "receive_splits": [
+                80740352,
+                80740352
+              ],
+              "input_numel": 161939456,
+              "output_numel": 161480704,
+              "remote_send_bytes": 81199104,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "fields": [
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 80740352
+                  }
+                ],
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 81199104
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 2,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 0,
+          "wall_ms": 6.353372009471059,
+          "cuda_ms": 6.333248138427734,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003200,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "bf16_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                80740352,
+                81199104
+              ],
+              "receive_splits": [
+                80740352,
+                80740352
+              ],
+              "input_numel": 161939456,
+              "output_numel": 161480704,
+              "remote_send_bytes": 81199104,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "fields": [
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 80740352
+                  }
+                ],
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 81199104
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        }
+      ],
+      "repeats": [
+        {
+          "round": 0,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 0,
+          "wall_ms": 6.354504032060504,
+          "cuda_ms": 6.334559917449951,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003200,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "bf16_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                80740352,
+                81199104
+              ],
+              "receive_splits": [
+                80740352,
+                80740352
+              ],
+              "input_numel": 161939456,
+              "output_numel": 161480704,
+              "remote_send_bytes": 81199104,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "fields": [
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 80740352
+                  }
+                ],
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 81199104
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 1,
+          "order": [
+            "fp8_return",
+            "row_parallel",
+            "fp4_side",
+            "bf16_return"
+          ],
+          "position": 3,
+          "wall_ms": 6.361825158819556,
+          "cuda_ms": 6.338624000549316,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003200,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "bf16_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                80740352,
+                81199104
+              ],
+              "receive_splits": [
+                80740352,
+                80740352
+              ],
+              "input_numel": 161939456,
+              "output_numel": 161480704,
+              "remote_send_bytes": 81199104,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "fields": [
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 80740352
+                  }
+                ],
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 81199104
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 2,
+          "order": [
+            "row_parallel",
+            "fp4_side",
+            "bf16_return",
+            "fp8_return"
+          ],
+          "position": 2,
+          "wall_ms": 6.382236024364829,
+          "cuda_ms": 6.360159873962402,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003200,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "bf16_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                80740352,
+                81199104
+              ],
+              "receive_splits": [
+                80740352,
+                80740352
+              ],
+              "input_numel": 161939456,
+              "output_numel": 161480704,
+              "remote_send_bytes": 81199104,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "fields": [
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 80740352
+                  }
+                ],
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 81199104
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 3,
+          "order": [
+            "fp4_side",
+            "bf16_return",
+            "fp8_return",
+            "row_parallel"
+          ],
+          "position": 1,
+          "wall_ms": 6.344769150018692,
+          "cuda_ms": 6.3243842124938965,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003200,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "bf16_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                80740352,
+                81199104
+              ],
+              "receive_splits": [
+                80740352,
+                80740352
+              ],
+              "input_numel": 161939456,
+              "output_numel": 161480704,
+              "remote_send_bytes": 81199104,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "fields": [
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 80740352
+                  }
+                ],
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 81199104
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 4,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 0,
+          "wall_ms": 6.330937845632434,
+          "cuda_ms": 6.309887886047363,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003200,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "bf16_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                80740352,
+                81199104
+              ],
+              "receive_splits": [
+                80740352,
+                80740352
+              ],
+              "input_numel": 161939456,
+              "output_numel": 161480704,
+              "remote_send_bytes": 81199104,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "fields": [
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 80740352
+                  }
+                ],
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 81199104
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 5,
+          "order": [
+            "fp8_return",
+            "row_parallel",
+            "fp4_side",
+            "bf16_return"
+          ],
+          "position": 3,
+          "wall_ms": 6.327732931822538,
+          "cuda_ms": 6.306560039520264,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003200,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "bf16_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                80740352,
+                81199104
+              ],
+              "receive_splits": [
+                80740352,
+                80740352
+              ],
+              "input_numel": 161939456,
+              "output_numel": 161480704,
+              "remote_send_bytes": 81199104,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "fields": [
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 80740352
+                  }
+                ],
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 81199104
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 6,
+          "order": [
+            "row_parallel",
+            "fp4_side",
+            "bf16_return",
+            "fp8_return"
+          ],
+          "position": 2,
+          "wall_ms": 6.318058120086789,
+          "cuda_ms": 6.2973761558532715,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003200,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "bf16_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                80740352,
+                81199104
+              ],
+              "receive_splits": [
+                80740352,
+                80740352
+              ],
+              "input_numel": 161939456,
+              "output_numel": 161480704,
+              "remote_send_bytes": 81199104,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "fields": [
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 80740352
+                  }
+                ],
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 81199104
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 7,
+          "order": [
+            "fp4_side",
+            "bf16_return",
+            "fp8_return",
+            "row_parallel"
+          ],
+          "position": 1,
+          "wall_ms": 6.350558018311858,
+          "cuda_ms": 6.329472064971924,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003200,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "bf16_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                80740352,
+                81199104
+              ],
+              "receive_splits": [
+                80740352,
+                80740352
+              ],
+              "input_numel": 161939456,
+              "output_numel": 161480704,
+              "remote_send_bytes": 81199104,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "fields": [
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 80740352
+                  }
+                ],
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 81199104
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 8,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 0,
+          "wall_ms": 6.3437779899686575,
+          "cuda_ms": 6.320864200592041,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003200,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "bf16_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                80740352,
+                81199104
+              ],
+              "receive_splits": [
+                80740352,
+                80740352
+              ],
+              "input_numel": 161939456,
+              "output_numel": 161480704,
+              "remote_send_bytes": 81199104,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "fields": [
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 80740352
+                  }
+                ],
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 81199104
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 9,
+          "order": [
+            "fp8_return",
+            "row_parallel",
+            "fp4_side",
+            "bf16_return"
+          ],
+          "position": 3,
+          "wall_ms": 6.452603964135051,
+          "cuda_ms": 6.411935806274414,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003200,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "bf16_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                80740352,
+                81199104
+              ],
+              "receive_splits": [
+                80740352,
+                80740352
+              ],
+              "input_numel": 161939456,
+              "output_numel": 161480704,
+              "remote_send_bytes": 81199104,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "fields": [
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 80740352
+                  }
+                ],
+                [
+                  {
+                    "name": "o",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 81199104
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        }
+      ],
+      "output": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank0/bf16_return_output.pt",
+          "bytes": 121112182,
+          "sha256": "49e5031fba0c93db34dba17afddc54fd36fdad21ac1e98c2c5db82a56ffe69fc"
+        },
+        "tensor": {
+          "shape": [
+            11264,
+            5376
+          ],
+          "dtype": "torch.bfloat16",
+          "finite": true,
+          "sha256": "d2e663cab955447ec5fc2880547e5b0d6300db9524366d7e28cffc27a67c0e69"
+        }
+      },
+      "state": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank0/bf16_return_state.pt",
+          "bytes": 722869,
+          "sha256": "da9c9bb714f0f30157b8e4b2ac118f5b6dc025d1f06334d078e0069322ce6c17"
+        },
+        "tensors": {
+          "down": {
+            "shape": [
+              11264,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "d1e8f81361119f06a02a790dc6e55c89fd678c51bd64766203c6bdbabda27a57"
+          },
+          "activation_globals": {
+            "shape": [
+              1
+            ],
+            "dtype": "torch.float32",
+            "finite": true,
+            "sha256": "3132b21eb852578e902da417ef5b96dda5548a3c61b8d1d4b77adc4a58ced5c3"
+          }
+        }
+      },
+      "status": "complete",
+      "median_wall_ms": 6.347663584165275,
+      "median_cuda_ms": 6.32692813873291
+    },
+    {
+      "arm": "fp8_return",
+      "warmups": [
+        {
+          "round": 0,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 1,
+          "wall_ms": 33.829462016001344,
+          "cuda_ms": 33.797119140625,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 962592768,
+            "peak_allocated": 205855744,
+            "peak_reserved": 962592768
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1451229184,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1451229184
+          },
+          "incremental_peak_allocated": 734003712,
+          "incremental_peak_reserved": 488636416,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 2,
+            "fp8_dequant": 2,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "fp8_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                40370180,
+                40599556
+              ],
+              "receive_splits": [
+                40370180,
+                40370180
+              ],
+              "input_numel": 80969736,
+              "output_numel": 80740360,
+              "remote_send_bytes": 40599556,
+              "remote_receive_bytes": 40370180,
+              "self_send_bytes": 40370180,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40370176
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40599552
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 1,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 1,
+          "wall_ms": 11.11112697981298,
+          "cuda_ms": 11.083711624145508,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003712,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 2,
+            "fp8_dequant": 2,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "fp8_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                40370180,
+                40599556
+              ],
+              "receive_splits": [
+                40370180,
+                40370180
+              ],
+              "input_numel": 80969736,
+              "output_numel": 80740360,
+              "remote_send_bytes": 40599556,
+              "remote_receive_bytes": 40370180,
+              "self_send_bytes": 40370180,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40370176
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40599552
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 2,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 1,
+          "wall_ms": 11.065117083489895,
+          "cuda_ms": 11.04412841796875,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003712,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 2,
+            "fp8_dequant": 2,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "fp8_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                40370180,
+                40599556
+              ],
+              "receive_splits": [
+                40370180,
+                40370180
+              ],
+              "input_numel": 80969736,
+              "output_numel": 80740360,
+              "remote_send_bytes": 40599556,
+              "remote_receive_bytes": 40370180,
+              "self_send_bytes": 40370180,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40370176
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40599552
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        }
+      ],
+      "repeats": [
+        {
+          "round": 0,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 1,
+          "wall_ms": 11.081542121246457,
+          "cuda_ms": 11.060064315795898,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003712,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 2,
+            "fp8_dequant": 2,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "fp8_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                40370180,
+                40599556
+              ],
+              "receive_splits": [
+                40370180,
+                40370180
+              ],
+              "input_numel": 80969736,
+              "output_numel": 80740360,
+              "remote_send_bytes": 40599556,
+              "remote_receive_bytes": 40370180,
+              "self_send_bytes": 40370180,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40370176
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40599552
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 1,
+          "order": [
+            "fp8_return",
+            "row_parallel",
+            "fp4_side",
+            "bf16_return"
+          ],
+          "position": 0,
+          "wall_ms": 11.103786062449217,
+          "cuda_ms": 11.079872131347656,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003200,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 2,
+            "fp8_dequant": 2,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "fp8_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                40370180,
+                40599556
+              ],
+              "receive_splits": [
+                40370180,
+                40370180
+              ],
+              "input_numel": 80969736,
+              "output_numel": 80740360,
+              "remote_send_bytes": 40599556,
+              "remote_receive_bytes": 40370180,
+              "self_send_bytes": 40370180,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40370176
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40599552
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 2,
+          "order": [
+            "row_parallel",
+            "fp4_side",
+            "bf16_return",
+            "fp8_return"
+          ],
+          "position": 3,
+          "wall_ms": 11.087771039456129,
+          "cuda_ms": 11.066816329956055,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003712,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 2,
+            "fp8_dequant": 2,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "fp8_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                40370180,
+                40599556
+              ],
+              "receive_splits": [
+                40370180,
+                40370180
+              ],
+              "input_numel": 80969736,
+              "output_numel": 80740360,
+              "remote_send_bytes": 40599556,
+              "remote_receive_bytes": 40370180,
+              "self_send_bytes": 40370180,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40370176
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40599552
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 3,
+          "order": [
+            "fp4_side",
+            "bf16_return",
+            "fp8_return",
+            "row_parallel"
+          ],
+          "position": 2,
+          "wall_ms": 11.120021110400558,
+          "cuda_ms": 11.098976135253906,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003712,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 2,
+            "fp8_dequant": 2,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "fp8_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                40370180,
+                40599556
+              ],
+              "receive_splits": [
+                40370180,
+                40370180
+              ],
+              "input_numel": 80969736,
+              "output_numel": 80740360,
+              "remote_send_bytes": 40599556,
+              "remote_receive_bytes": 40370180,
+              "self_send_bytes": 40370180,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40370176
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40599552
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 4,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 1,
+          "wall_ms": 11.082913959398866,
+          "cuda_ms": 11.06112003326416,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003712,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 2,
+            "fp8_dequant": 2,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "fp8_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                40370180,
+                40599556
+              ],
+              "receive_splits": [
+                40370180,
+                40370180
+              ],
+              "input_numel": 80969736,
+              "output_numel": 80740360,
+              "remote_send_bytes": 40599556,
+              "remote_receive_bytes": 40370180,
+              "self_send_bytes": 40370180,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40370176
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40599552
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 5,
+          "order": [
+            "fp8_return",
+            "row_parallel",
+            "fp4_side",
+            "bf16_return"
+          ],
+          "position": 0,
+          "wall_ms": 11.073889909312129,
+          "cuda_ms": 11.0513277053833,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003200,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 2,
+            "fp8_dequant": 2,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "fp8_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                40370180,
+                40599556
+              ],
+              "receive_splits": [
+                40370180,
+                40370180
+              ],
+              "input_numel": 80969736,
+              "output_numel": 80740360,
+              "remote_send_bytes": 40599556,
+              "remote_receive_bytes": 40370180,
+              "self_send_bytes": 40370180,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40370176
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40599552
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 6,
+          "order": [
+            "row_parallel",
+            "fp4_side",
+            "bf16_return",
+            "fp8_return"
+          ],
+          "position": 3,
+          "wall_ms": 11.07168709859252,
+          "cuda_ms": 11.050080299377441,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003712,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 2,
+            "fp8_dequant": 2,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "fp8_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                40370180,
+                40599556
+              ],
+              "receive_splits": [
+                40370180,
+                40370180
+              ],
+              "input_numel": 80969736,
+              "output_numel": 80740360,
+              "remote_send_bytes": 40599556,
+              "remote_receive_bytes": 40370180,
+              "self_send_bytes": 40370180,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40370176
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40599552
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 7,
+          "order": [
+            "fp4_side",
+            "bf16_return",
+            "fp8_return",
+            "row_parallel"
+          ],
+          "position": 2,
+          "wall_ms": 11.092939879745245,
+          "cuda_ms": 11.071488380432129,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003712,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 2,
+            "fp8_dequant": 2,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "fp8_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                40370180,
+                40599556
+              ],
+              "receive_splits": [
+                40370180,
+                40370180
+              ],
+              "input_numel": 80969736,
+              "output_numel": 80740360,
+              "remote_send_bytes": 40599556,
+              "remote_receive_bytes": 40370180,
+              "self_send_bytes": 40370180,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40370176
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40599552
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 8,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 1,
+          "wall_ms": 12.747717089951038,
+          "cuda_ms": 12.726240158081055,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003712,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 2,
+            "fp8_dequant": 2,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "fp8_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                40370180,
+                40599556
+              ],
+              "receive_splits": [
+                40370180,
+                40370180
+              ],
+              "input_numel": 80969736,
+              "output_numel": 80740360,
+              "remote_send_bytes": 40599556,
+              "remote_receive_bytes": 40370180,
+              "self_send_bytes": 40370180,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40370176
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40599552
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 9,
+          "order": [
+            "fp8_return",
+            "row_parallel",
+            "fp4_side",
+            "bf16_return"
+          ],
+          "position": 0,
+          "wall_ms": 11.120131006464362,
+          "cuda_ms": 11.099007606506348,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328211968,
+            "reserved": 1700790272,
+            "peak_allocated": 939859456,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 734003200,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 1,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 1,
+            "fp8_quant": 2,
+            "fp8_dequant": 2,
+            "amax_reduce": 0,
+            "all_to_all": 1,
+            "all_reduce": 0,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all",
+              "label": "fp8_return",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                40370180,
+                40599556
+              ],
+              "receive_splits": [
+                40370180,
+                40370180
+              ],
+              "input_numel": 80969736,
+              "output_numel": 80740360,
+              "remote_send_bytes": 40599556,
+              "remote_receive_bytes": 40370180,
+              "self_send_bytes": 40370180,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40370176
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      3584
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 40599552
+                  },
+                  {
+                    "name": "scale",
+                    "shape": [
+                      1
+                    ],
+                    "dtype": "torch.float32",
+                    "bytes": 4
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 1,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        }
+      ],
+      "output": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank0/fp8_return_output.pt",
+          "bytes": 121112175,
+          "sha256": "5e3590e26a07e5e2cb926c1ad46673d511bfaa013fbac4c0b58145ef2987a829"
+        },
+        "tensor": {
+          "shape": [
+            11264,
+            5376
+          ],
+          "dtype": "torch.bfloat16",
+          "finite": true,
+          "sha256": "0b21e7a07afde33b6e85ec686e10caf6dbbeef9abeb436950ff21ef164a940ce"
+        }
+      },
+      "state": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank0/fp8_return_state.pt",
+          "bytes": 722861,
+          "sha256": "59a52d1399f710a2684666a7dc9e2f3b3cec8b25caf60eb981e51dc3aed8d19e"
+        },
+        "tensors": {
+          "down": {
+            "shape": [
+              11264,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "6d5abe8c025627773503cd0f509abc6a83d845e2bbe2334df2f21737ac034831"
+          },
+          "activation_globals": {
+            "shape": [
+              1
+            ],
+            "dtype": "torch.float32",
+            "finite": true,
+            "sha256": "3132b21eb852578e902da417ef5b96dda5548a3c61b8d1d4b77adc4a58ced5c3"
+          }
+        }
+      },
+      "status": "complete",
+      "median_wall_ms": 11.090355459600687,
+      "median_cuda_ms": 11.069152355194092
+    },
+    {
+      "arm": "row_parallel",
+      "warmups": [
+        {
+          "round": 0,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 2,
+          "wall_ms": 430.266500916332,
+          "cuda_ms": 430.2362365722656,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1451229184,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1451229184
+          },
+          "after": {
+            "allocated": 328212480,
+            "reserved": 1700790272,
+            "peak_allocated": 882266624,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 676410880,
+          "incremental_peak_reserved": 249561088,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 2,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 0,
+            "all_reduce": 1,
+            "reduce_scatter": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "reduce_scatter_sum",
+              "label": "BF16_partial_main_and_down32",
+              "dtype": "torch.bfloat16",
+              "input_shape": [
+                2,
+                11392,
+                5408
+              ],
+              "output_shape": [
+                11392,
+                5408
+              ],
+              "logical_peer_send_bytes": 123215872,
+              "logical_peer_receive_bytes": 123215872,
+              "extra_slot_zero_rows": [
+                128,
+                64
+              ],
+              "slots": 2,
+              "slot_rows": 11392,
+              "main_features": 5376,
+              "down_features": 32,
+              "byte_scope": "World2 RS one peer chunk per rank; logical application payload, not measured NCCL protocol traffic."
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 1,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 2,
+          "wall_ms": 8.55331588536501,
+          "cuda_ms": 8.531359672546387,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328212480,
+            "reserved": 1700790272,
+            "peak_allocated": 882266624,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 676410880,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 2,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 0,
+            "all_reduce": 1,
+            "reduce_scatter": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "reduce_scatter_sum",
+              "label": "BF16_partial_main_and_down32",
+              "dtype": "torch.bfloat16",
+              "input_shape": [
+                2,
+                11392,
+                5408
+              ],
+              "output_shape": [
+                11392,
+                5408
+              ],
+              "logical_peer_send_bytes": 123215872,
+              "logical_peer_receive_bytes": 123215872,
+              "extra_slot_zero_rows": [
+                128,
+                64
+              ],
+              "slots": 2,
+              "slot_rows": 11392,
+              "main_features": 5376,
+              "down_features": 32,
+              "byte_scope": "World2 RS one peer chunk per rank; logical application payload, not measured NCCL protocol traffic."
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 2,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 2,
+          "wall_ms": 8.636873913928866,
+          "cuda_ms": 8.601280212402344,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328212480,
+            "reserved": 1700790272,
+            "peak_allocated": 882266624,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 676410880,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 2,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 0,
+            "all_reduce": 1,
+            "reduce_scatter": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "reduce_scatter_sum",
+              "label": "BF16_partial_main_and_down32",
+              "dtype": "torch.bfloat16",
+              "input_shape": [
+                2,
+                11392,
+                5408
+              ],
+              "output_shape": [
+                11392,
+                5408
+              ],
+              "logical_peer_send_bytes": 123215872,
+              "logical_peer_receive_bytes": 123215872,
+              "extra_slot_zero_rows": [
+                128,
+                64
+              ],
+              "slots": 2,
+              "slot_rows": 11392,
+              "main_features": 5376,
+              "down_features": 32,
+              "byte_scope": "World2 RS one peer chunk per rank; logical application payload, not measured NCCL protocol traffic."
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        }
+      ],
+      "repeats": [
+        {
+          "round": 0,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 2,
+          "wall_ms": 8.60613607801497,
+          "cuda_ms": 8.585408210754395,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328212480,
+            "reserved": 1700790272,
+            "peak_allocated": 882266624,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 676410880,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 2,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 0,
+            "all_reduce": 1,
+            "reduce_scatter": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "reduce_scatter_sum",
+              "label": "BF16_partial_main_and_down32",
+              "dtype": "torch.bfloat16",
+              "input_shape": [
+                2,
+                11392,
+                5408
+              ],
+              "output_shape": [
+                11392,
+                5408
+              ],
+              "logical_peer_send_bytes": 123215872,
+              "logical_peer_receive_bytes": 123215872,
+              "extra_slot_zero_rows": [
+                128,
+                64
+              ],
+              "slots": 2,
+              "slot_rows": 11392,
+              "main_features": 5376,
+              "down_features": 32,
+              "byte_scope": "World2 RS one peer chunk per rank; logical application payload, not measured NCCL protocol traffic."
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 1,
+          "order": [
+            "fp8_return",
+            "row_parallel",
+            "fp4_side",
+            "bf16_return"
+          ],
+          "position": 1,
+          "wall_ms": 8.712029084563255,
+          "cuda_ms": 8.690912246704102,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328212480,
+            "reserved": 1700790272,
+            "peak_allocated": 882266624,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 676410880,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 2,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 0,
+            "all_reduce": 1,
+            "reduce_scatter": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "reduce_scatter_sum",
+              "label": "BF16_partial_main_and_down32",
+              "dtype": "torch.bfloat16",
+              "input_shape": [
+                2,
+                11392,
+                5408
+              ],
+              "output_shape": [
+                11392,
+                5408
+              ],
+              "logical_peer_send_bytes": 123215872,
+              "logical_peer_receive_bytes": 123215872,
+              "extra_slot_zero_rows": [
+                128,
+                64
+              ],
+              "slots": 2,
+              "slot_rows": 11392,
+              "main_features": 5376,
+              "down_features": 32,
+              "byte_scope": "World2 RS one peer chunk per rank; logical application payload, not measured NCCL protocol traffic."
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 2,
+          "order": [
+            "row_parallel",
+            "fp4_side",
+            "bf16_return",
+            "fp8_return"
+          ],
+          "position": 0,
+          "wall_ms": 10.955529054626822,
+          "cuda_ms": 10.931615829467773,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328212480,
+            "reserved": 1700790272,
+            "peak_allocated": 882266624,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 676410880,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 2,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 0,
+            "all_reduce": 1,
+            "reduce_scatter": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "reduce_scatter_sum",
+              "label": "BF16_partial_main_and_down32",
+              "dtype": "torch.bfloat16",
+              "input_shape": [
+                2,
+                11392,
+                5408
+              ],
+              "output_shape": [
+                11392,
+                5408
+              ],
+              "logical_peer_send_bytes": 123215872,
+              "logical_peer_receive_bytes": 123215872,
+              "extra_slot_zero_rows": [
+                128,
+                64
+              ],
+              "slots": 2,
+              "slot_rows": 11392,
+              "main_features": 5376,
+              "down_features": 32,
+              "byte_scope": "World2 RS one peer chunk per rank; logical application payload, not measured NCCL protocol traffic."
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 3,
+          "order": [
+            "fp4_side",
+            "bf16_return",
+            "fp8_return",
+            "row_parallel"
+          ],
+          "position": 3,
+          "wall_ms": 8.789768209680915,
+          "cuda_ms": 8.768447875976562,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328212480,
+            "reserved": 1700790272,
+            "peak_allocated": 882266624,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 676410880,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 2,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 0,
+            "all_reduce": 1,
+            "reduce_scatter": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "reduce_scatter_sum",
+              "label": "BF16_partial_main_and_down32",
+              "dtype": "torch.bfloat16",
+              "input_shape": [
+                2,
+                11392,
+                5408
+              ],
+              "output_shape": [
+                11392,
+                5408
+              ],
+              "logical_peer_send_bytes": 123215872,
+              "logical_peer_receive_bytes": 123215872,
+              "extra_slot_zero_rows": [
+                128,
+                64
+              ],
+              "slots": 2,
+              "slot_rows": 11392,
+              "main_features": 5376,
+              "down_features": 32,
+              "byte_scope": "World2 RS one peer chunk per rank; logical application payload, not measured NCCL protocol traffic."
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 4,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 2,
+          "wall_ms": 8.583270944654942,
+          "cuda_ms": 8.561984062194824,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328212480,
+            "reserved": 1700790272,
+            "peak_allocated": 882266624,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 676410880,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 2,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 0,
+            "all_reduce": 1,
+            "reduce_scatter": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "reduce_scatter_sum",
+              "label": "BF16_partial_main_and_down32",
+              "dtype": "torch.bfloat16",
+              "input_shape": [
+                2,
+                11392,
+                5408
+              ],
+              "output_shape": [
+                11392,
+                5408
+              ],
+              "logical_peer_send_bytes": 123215872,
+              "logical_peer_receive_bytes": 123215872,
+              "extra_slot_zero_rows": [
+                128,
+                64
+              ],
+              "slots": 2,
+              "slot_rows": 11392,
+              "main_features": 5376,
+              "down_features": 32,
+              "byte_scope": "World2 RS one peer chunk per rank; logical application payload, not measured NCCL protocol traffic."
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 5,
+          "order": [
+            "fp8_return",
+            "row_parallel",
+            "fp4_side",
+            "bf16_return"
+          ],
+          "position": 1,
+          "wall_ms": 8.99079698137939,
+          "cuda_ms": 8.969375610351562,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328212480,
+            "reserved": 1700790272,
+            "peak_allocated": 882266624,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 676410880,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 2,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 0,
+            "all_reduce": 1,
+            "reduce_scatter": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "reduce_scatter_sum",
+              "label": "BF16_partial_main_and_down32",
+              "dtype": "torch.bfloat16",
+              "input_shape": [
+                2,
+                11392,
+                5408
+              ],
+              "output_shape": [
+                11392,
+                5408
+              ],
+              "logical_peer_send_bytes": 123215872,
+              "logical_peer_receive_bytes": 123215872,
+              "extra_slot_zero_rows": [
+                128,
+                64
+              ],
+              "slots": 2,
+              "slot_rows": 11392,
+              "main_features": 5376,
+              "down_features": 32,
+              "byte_scope": "World2 RS one peer chunk per rank; logical application payload, not measured NCCL protocol traffic."
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 6,
+          "order": [
+            "row_parallel",
+            "fp4_side",
+            "bf16_return",
+            "fp8_return"
+          ],
+          "position": 0,
+          "wall_ms": 8.696584962308407,
+          "cuda_ms": 8.674752235412598,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328212480,
+            "reserved": 1700790272,
+            "peak_allocated": 882266624,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 676410880,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 2,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 0,
+            "all_reduce": 1,
+            "reduce_scatter": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "reduce_scatter_sum",
+              "label": "BF16_partial_main_and_down32",
+              "dtype": "torch.bfloat16",
+              "input_shape": [
+                2,
+                11392,
+                5408
+              ],
+              "output_shape": [
+                11392,
+                5408
+              ],
+              "logical_peer_send_bytes": 123215872,
+              "logical_peer_receive_bytes": 123215872,
+              "extra_slot_zero_rows": [
+                128,
+                64
+              ],
+              "slots": 2,
+              "slot_rows": 11392,
+              "main_features": 5376,
+              "down_features": 32,
+              "byte_scope": "World2 RS one peer chunk per rank; logical application payload, not measured NCCL protocol traffic."
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 7,
+          "order": [
+            "fp4_side",
+            "bf16_return",
+            "fp8_return",
+            "row_parallel"
+          ],
+          "position": 3,
+          "wall_ms": 9.01902886107564,
+          "cuda_ms": 8.99839973449707,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328212480,
+            "reserved": 1700790272,
+            "peak_allocated": 882266624,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 676410880,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 2,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 0,
+            "all_reduce": 1,
+            "reduce_scatter": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "reduce_scatter_sum",
+              "label": "BF16_partial_main_and_down32",
+              "dtype": "torch.bfloat16",
+              "input_shape": [
+                2,
+                11392,
+                5408
+              ],
+              "output_shape": [
+                11392,
+                5408
+              ],
+              "logical_peer_send_bytes": 123215872,
+              "logical_peer_receive_bytes": 123215872,
+              "extra_slot_zero_rows": [
+                128,
+                64
+              ],
+              "slots": 2,
+              "slot_rows": 11392,
+              "main_features": 5376,
+              "down_features": 32,
+              "byte_scope": "World2 RS one peer chunk per rank; logical application payload, not measured NCCL protocol traffic."
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 8,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 2,
+          "wall_ms": 8.853656006976962,
+          "cuda_ms": 8.832096099853516,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328212480,
+            "reserved": 1700790272,
+            "peak_allocated": 882266624,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 676410880,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 2,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 0,
+            "all_reduce": 1,
+            "reduce_scatter": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "reduce_scatter_sum",
+              "label": "BF16_partial_main_and_down32",
+              "dtype": "torch.bfloat16",
+              "input_shape": [
+                2,
+                11392,
+                5408
+              ],
+              "output_shape": [
+                11392,
+                5408
+              ],
+              "logical_peer_send_bytes": 123215872,
+              "logical_peer_receive_bytes": 123215872,
+              "extra_slot_zero_rows": [
+                128,
+                64
+              ],
+              "slots": 2,
+              "slot_rows": 11392,
+              "main_features": 5376,
+              "down_features": 32,
+              "byte_scope": "World2 RS one peer chunk per rank; logical application payload, not measured NCCL protocol traffic."
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 9,
+          "order": [
+            "fp8_return",
+            "row_parallel",
+            "fp4_side",
+            "bf16_return"
+          ],
+          "position": 1,
+          "wall_ms": 8.724557934328914,
+          "cuda_ms": 8.68182373046875,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 328212480,
+            "reserved": 1700790272,
+            "peak_allocated": 882266624,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 676410880,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 2,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 0,
+            "all_reduce": 1,
+            "reduce_scatter": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "reduce_scatter_sum",
+              "label": "BF16_partial_main_and_down32",
+              "dtype": "torch.bfloat16",
+              "input_shape": [
+                2,
+                11392,
+                5408
+              ],
+              "output_shape": [
+                11392,
+                5408
+              ],
+              "logical_peer_send_bytes": 123215872,
+              "logical_peer_receive_bytes": 123215872,
+              "extra_slot_zero_rows": [
+                128,
+                64
+              ],
+              "slots": 2,
+              "slot_rows": 11392,
+              "main_features": 5376,
+              "down_features": 32,
+              "byte_scope": "World2 RS one peer chunk per rank; logical application payload, not measured NCCL protocol traffic."
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        }
+      ],
+      "output": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank0/row_parallel_output.pt",
+          "bytes": 121112189,
+          "sha256": "ce398d02903d4ddaad7a5d1c9aeb23fc3675fe4b9c92aea595d67f59f2142f38"
+        },
+        "tensor": {
+          "shape": [
+            11264,
+            5376
+          ],
+          "dtype": "torch.bfloat16",
+          "finite": true,
+          "sha256": "dbbce831e2edcddc8fd844916cb25af708553a4f0715fd5de966ee57703bc93e"
+        }
+      },
+      "state": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank0/row_parallel_state.pt",
+          "bytes": 722877,
+          "sha256": "70183f09ef44c1f5c3744da564c2ec7170946542ed42512185833d5828bf86e7"
+        },
+        "tensors": {
+          "down": {
+            "shape": [
+              11264,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "752279767fa7f87369833825840330b6353b9f27aa74afa2f5962b0c8b4bba88"
+          },
+          "activation_globals": {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.float32",
+            "finite": true,
+            "sha256": "4cb9e6a4aa8d43fd914283b4d04ff7abfe6ba5a13550829bcc0cd8ca6c26b237"
+          }
+        }
+      },
+      "status": "complete",
+      "median_wall_ms": 8.757163072004914,
+      "median_cuda_ms": 8.729680061340332
+    },
+    {
+      "arm": "fp4_side",
+      "warmups": [
+        {
+          "round": 0,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 3,
+          "wall_ms": 4.924661945551634,
+          "cuda_ms": 4.900608062744141,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 327688192,
+            "reserved": 1700790272,
+            "peak_allocated": 692591616,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 486735360,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 1,
+            "all_reduce": 1,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "all_to_all",
+              "label": "fp4_side",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                23429120,
+                23576576
+              ],
+              "receive_splits": [
+                23429120,
+                23429120
+              ],
+              "input_numel": 47005696,
+              "output_numel": 46858240,
+              "remote_send_bytes": 23576576,
+              "remote_receive_bytes": 23429120,
+              "self_send_bytes": 23429120,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20185088
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2523136
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2523136
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11264,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 720896
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20299776
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2551808
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2551808
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11328,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 724992
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 1,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 3,
+          "wall_ms": 4.9083358608186245,
+          "cuda_ms": 4.887616157531738,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 327688192,
+            "reserved": 1700790272,
+            "peak_allocated": 692591616,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 486735360,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 1,
+            "all_reduce": 1,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "all_to_all",
+              "label": "fp4_side",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                23429120,
+                23576576
+              ],
+              "receive_splits": [
+                23429120,
+                23429120
+              ],
+              "input_numel": 47005696,
+              "output_numel": 46858240,
+              "remote_send_bytes": 23576576,
+              "remote_receive_bytes": 23429120,
+              "self_send_bytes": 23429120,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20185088
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2523136
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2523136
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11264,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 720896
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20299776
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2551808
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2551808
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11328,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 724992
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 2,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 3,
+          "wall_ms": 4.877950064837933,
+          "cuda_ms": 4.856480121612549,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 327688192,
+            "reserved": 1700790272,
+            "peak_allocated": 692591616,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 486735360,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 1,
+            "all_reduce": 1,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "all_to_all",
+              "label": "fp4_side",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                23429120,
+                23576576
+              ],
+              "receive_splits": [
+                23429120,
+                23429120
+              ],
+              "input_numel": 47005696,
+              "output_numel": 46858240,
+              "remote_send_bytes": 23576576,
+              "remote_receive_bytes": 23429120,
+              "self_send_bytes": 23429120,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20185088
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2523136
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2523136
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11264,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 720896
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20299776
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2551808
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2551808
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11328,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 724992
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        }
+      ],
+      "repeats": [
+        {
+          "round": 0,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 3,
+          "wall_ms": 4.893483128398657,
+          "cuda_ms": 4.872384071350098,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 327688192,
+            "reserved": 1700790272,
+            "peak_allocated": 692591616,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 486735360,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 1,
+            "all_reduce": 1,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "all_to_all",
+              "label": "fp4_side",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                23429120,
+                23576576
+              ],
+              "receive_splits": [
+                23429120,
+                23429120
+              ],
+              "input_numel": 47005696,
+              "output_numel": 46858240,
+              "remote_send_bytes": 23576576,
+              "remote_receive_bytes": 23429120,
+              "self_send_bytes": 23429120,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20185088
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2523136
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2523136
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11264,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 720896
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20299776
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2551808
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2551808
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11328,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 724992
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 1,
+          "order": [
+            "fp8_return",
+            "row_parallel",
+            "fp4_side",
+            "bf16_return"
+          ],
+          "position": 2,
+          "wall_ms": 4.903760040178895,
+          "cuda_ms": 4.8824639320373535,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 327688192,
+            "reserved": 1700790272,
+            "peak_allocated": 692591616,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 486735360,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 1,
+            "all_reduce": 1,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "all_to_all",
+              "label": "fp4_side",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                23429120,
+                23576576
+              ],
+              "receive_splits": [
+                23429120,
+                23429120
+              ],
+              "input_numel": 47005696,
+              "output_numel": 46858240,
+              "remote_send_bytes": 23576576,
+              "remote_receive_bytes": 23429120,
+              "self_send_bytes": 23429120,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20185088
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2523136
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2523136
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11264,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 720896
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20299776
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2551808
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2551808
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11328,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 724992
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 2,
+          "order": [
+            "row_parallel",
+            "fp4_side",
+            "bf16_return",
+            "fp8_return"
+          ],
+          "position": 1,
+          "wall_ms": 4.913633922114968,
+          "cuda_ms": 4.887040138244629,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 327688192,
+            "reserved": 1700790272,
+            "peak_allocated": 692591616,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 486735360,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 1,
+            "all_reduce": 1,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "all_to_all",
+              "label": "fp4_side",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                23429120,
+                23576576
+              ],
+              "receive_splits": [
+                23429120,
+                23429120
+              ],
+              "input_numel": 47005696,
+              "output_numel": 46858240,
+              "remote_send_bytes": 23576576,
+              "remote_receive_bytes": 23429120,
+              "self_send_bytes": 23429120,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20185088
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2523136
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2523136
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11264,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 720896
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20299776
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2551808
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2551808
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11328,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 724992
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 3,
+          "order": [
+            "fp4_side",
+            "bf16_return",
+            "fp8_return",
+            "row_parallel"
+          ],
+          "position": 0,
+          "wall_ms": 4.904249915853143,
+          "cuda_ms": 4.883615970611572,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 327688192,
+            "reserved": 1700790272,
+            "peak_allocated": 692591616,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 486735872,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 1,
+            "all_reduce": 1,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "all_to_all",
+              "label": "fp4_side",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                23429120,
+                23576576
+              ],
+              "receive_splits": [
+                23429120,
+                23429120
+              ],
+              "input_numel": 47005696,
+              "output_numel": 46858240,
+              "remote_send_bytes": 23576576,
+              "remote_receive_bytes": 23429120,
+              "self_send_bytes": 23429120,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20185088
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2523136
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2523136
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11264,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 720896
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20299776
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2551808
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2551808
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11328,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 724992
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 4,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 3,
+          "wall_ms": 4.879041109234095,
+          "cuda_ms": 4.857247829437256,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 327688192,
+            "reserved": 1700790272,
+            "peak_allocated": 692591616,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 486735360,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 1,
+            "all_reduce": 1,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "all_to_all",
+              "label": "fp4_side",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                23429120,
+                23576576
+              ],
+              "receive_splits": [
+                23429120,
+                23429120
+              ],
+              "input_numel": 47005696,
+              "output_numel": 46858240,
+              "remote_send_bytes": 23576576,
+              "remote_receive_bytes": 23429120,
+              "self_send_bytes": 23429120,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20185088
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2523136
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2523136
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11264,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 720896
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20299776
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2551808
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2551808
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11328,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 724992
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 5,
+          "order": [
+            "fp8_return",
+            "row_parallel",
+            "fp4_side",
+            "bf16_return"
+          ],
+          "position": 2,
+          "wall_ms": 4.892441909760237,
+          "cuda_ms": 4.871103763580322,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 327688192,
+            "reserved": 1700790272,
+            "peak_allocated": 692591616,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 486735360,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 1,
+            "all_reduce": 1,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "all_to_all",
+              "label": "fp4_side",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                23429120,
+                23576576
+              ],
+              "receive_splits": [
+                23429120,
+                23429120
+              ],
+              "input_numel": 47005696,
+              "output_numel": 46858240,
+              "remote_send_bytes": 23576576,
+              "remote_receive_bytes": 23429120,
+              "self_send_bytes": 23429120,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20185088
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2523136
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2523136
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11264,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 720896
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20299776
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2551808
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2551808
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11328,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 724992
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 6,
+          "order": [
+            "row_parallel",
+            "fp4_side",
+            "bf16_return",
+            "fp8_return"
+          ],
+          "position": 1,
+          "wall_ms": 4.880394088104367,
+          "cuda_ms": 4.859551906585693,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 327688192,
+            "reserved": 1700790272,
+            "peak_allocated": 692591616,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 486735360,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 1,
+            "all_reduce": 1,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "all_to_all",
+              "label": "fp4_side",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                23429120,
+                23576576
+              ],
+              "receive_splits": [
+                23429120,
+                23429120
+              ],
+              "input_numel": 47005696,
+              "output_numel": 46858240,
+              "remote_send_bytes": 23576576,
+              "remote_receive_bytes": 23429120,
+              "self_send_bytes": 23429120,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20185088
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2523136
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2523136
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11264,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 720896
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20299776
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2551808
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2551808
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11328,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 724992
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 7,
+          "order": [
+            "fp4_side",
+            "bf16_return",
+            "fp8_return",
+            "row_parallel"
+          ],
+          "position": 0,
+          "wall_ms": 4.901224980130792,
+          "cuda_ms": 4.880703926086426,
+          "before": {
+            "allocated": 205855744,
+            "reserved": 1700790272,
+            "peak_allocated": 205855744,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 327688192,
+            "reserved": 1700790272,
+            "peak_allocated": 692591616,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 486735872,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 1,
+            "all_reduce": 1,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "all_to_all",
+              "label": "fp4_side",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                23429120,
+                23576576
+              ],
+              "receive_splits": [
+                23429120,
+                23429120
+              ],
+              "input_numel": 47005696,
+              "output_numel": 46858240,
+              "remote_send_bytes": 23576576,
+              "remote_receive_bytes": 23429120,
+              "self_send_bytes": 23429120,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20185088
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2523136
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2523136
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11264,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 720896
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20299776
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2551808
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2551808
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11328,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 724992
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 8,
+          "order": [
+            "bf16_return",
+            "fp8_return",
+            "row_parallel",
+            "fp4_side"
+          ],
+          "position": 3,
+          "wall_ms": 4.890488926321268,
+          "cuda_ms": 4.868832111358643,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 327688192,
+            "reserved": 1700790272,
+            "peak_allocated": 692591616,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 486735360,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 1,
+            "all_reduce": 1,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "all_to_all",
+              "label": "fp4_side",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                23429120,
+                23576576
+              ],
+              "receive_splits": [
+                23429120,
+                23429120
+              ],
+              "input_numel": 47005696,
+              "output_numel": 46858240,
+              "remote_send_bytes": 23576576,
+              "remote_receive_bytes": 23429120,
+              "self_send_bytes": 23429120,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20185088
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2523136
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2523136
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11264,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 720896
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20299776
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2551808
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2551808
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11328,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 724992
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        },
+        {
+          "round": 9,
+          "order": [
+            "fp8_return",
+            "row_parallel",
+            "fp4_side",
+            "bf16_return"
+          ],
+          "position": 2,
+          "wall_ms": 5.0105329137295485,
+          "cuda_ms": 4.973440170288086,
+          "before": {
+            "allocated": 205856256,
+            "reserved": 1700790272,
+            "peak_allocated": 205856256,
+            "peak_reserved": 1700790272
+          },
+          "after": {
+            "allocated": 327688192,
+            "reserved": 1700790272,
+            "peak_allocated": 692591616,
+            "peak_reserved": 1700790272
+          },
+          "incremental_peak_allocated": 486735360,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "boundary": 1,
+            "native_gemm": 1,
+            "lr_down": 2,
+            "lr_up": 1,
+            "smooth": 1,
+            "pack": 2,
+            "fp8_quant": 0,
+            "fp8_dequant": 0,
+            "amax_reduce": 2,
+            "all_to_all": 1,
+            "all_reduce": 1,
+            "reduce_scatter": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_max",
+              "label": "destination_chunk_full_feature_amax",
+              "dtype": "torch.float32",
+              "shape": [
+                2
+              ],
+              "logical_peer_send_bytes": 8,
+              "logical_peer_receive_bytes": 8,
+              "self_send_bytes": 0,
+              "real_rows": [
+                11264,
+                11328
+              ],
+              "includes_model_padding_rows": 53,
+              "excludes_transport_padding_rows": 64
+            },
+            {
+              "kind": "all_to_all",
+              "label": "fp4_side",
+              "dtype": "torch.uint8",
+              "send_splits": [
+                23429120,
+                23576576
+              ],
+              "receive_splits": [
+                23429120,
+                23429120
+              ],
+              "input_numel": 47005696,
+              "output_numel": 46858240,
+              "remote_send_bytes": 23576576,
+              "remote_receive_bytes": 23429120,
+              "self_send_bytes": 23429120,
+              "fields": [
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11264,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20185088
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2523136
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2523136
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11264,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 720896
+                  }
+                ],
+                [
+                  {
+                    "name": "codes",
+                    "shape": [
+                      11328,
+                      1792
+                    ],
+                    "dtype": "torch.uint8",
+                    "bytes": 20299776
+                  },
+                  {
+                    "name": "sf",
+                    "shape": [
+                      2551808
+                    ],
+                    "dtype": "torch.float8_e4m3fn",
+                    "bytes": 2551808
+                  },
+                  {
+                    "name": "down",
+                    "shape": [
+                      11328,
+                      32
+                    ],
+                    "dtype": "torch.bfloat16",
+                    "bytes": 724992
+                  }
+                ]
+              ]
+            }
+          ],
+          "pack_flag_checks": {
+            "calls": 2,
+            "invalid_calls": 0,
+            "calls_with_nonzero_input_zero_sf": 0
+          }
+        }
+      ],
+      "output": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank0/fp4_side_output.pt",
+          "bytes": 121112161,
+          "sha256": "241fa7dc6656e88f8dbbe173da413999891c960cbffbc055bf48991e917f4783"
+        },
+        "tensor": {
+          "shape": [
+            11264,
+            5376
+          ],
+          "dtype": "torch.bfloat16",
+          "finite": true,
+          "sha256": "4a744101af8539e87ae0122a4c191e934633aab745f70c0029e131ef88e2dcf7"
+        }
+      },
+      "state": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank0/fp4_side_state.pt",
+          "bytes": 722845,
+          "sha256": "3220720218dc6796a1feb253e41b4e3107ae58afda4106d22f5a286b7d692496"
+        },
+        "tensors": {
+          "down": {
+            "shape": [
+              11264,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "752279767fa7f87369833825840330b6353b9f27aa74afa2f5962b0c8b4bba88"
+          },
+          "activation_globals": {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.float32",
+            "finite": true,
+            "sha256": "4cb9e6a4aa8d43fd914283b4d04ff7abfe6ba5a13550829bcc0cd8ca6c26b237"
+          }
+        }
+      },
+      "status": "complete",
+      "median_wall_ms": 4.897354054264724,
+      "median_cuda_ms": 4.876543998718262
+    }
+  ],
+  "resident_baseline": {
+    "allocated": 196286976,
+    "reserved": 207618048,
+    "peak_allocated": 196286976,
+    "peak_reserved": 207618048
+  },
+  "after_warmup_baseline": {
+    "allocated": 205856256,
+    "reserved": 1700790272,
+    "peak_allocated": 692591616,
+    "peak_reserved": 1700790272
+  },
+  "cuda_initialized": true,
+  "released_allocated_bytes": 9568768,
+  "seconds": 6.783235788345337
+}

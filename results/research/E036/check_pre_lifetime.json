@@ -1,0 +1,249 @@
+{
+  "experiment": "E036",
+  "phase": "check",
+  "status": "complete",
+  "rank": 0,
+  "world_size": 2,
+  "arms": [
+    "bf16_a2a",
+    "mixed_k16",
+    "fp4_table16"
+  ],
+  "expected_native_per_rank": 39,
+  "expected_native_total": 78,
+  "actual_dit_calls": 0,
+  "timing_scope": "Resident padded token-shard BF16 HND QKV to valid token-owned/all-head NHD BF16 output; includes every data collective, C/K statistics, pack, wire copies/reassembly, correction and output inverse A2A. Control barriers/sync before start, JIT/upload, saving and CPU numeric work excluded.",
+  "memory_scope": "Shared allocator warmed across all arms; no per-repeat cache flush. Resident/after-warmup and each repeat baseline/peaks retained. Outputs released before next call.",
+  "byte_scope": "A2A actual dtype/numel/splits and peer payload separated from self-copy/receive. AllReduce tensor payload reported separately, not claimed as measured NCCL link/protocol traffic. No performance or video-quality inference from payload ratios.",
+  "cold_jit_in_deadline": true,
+  "sources": {
+    "runner": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_sequence_parallel_correction.py",
+      "bytes": 26127,
+      "sha256": "9561177bfef347858108174e3ccedb3253564b19a3460d3d1f07144e4a6fabc8"
+    },
+    "common": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_query_mean_k4.py",
+      "bytes": 11027,
+      "sha256": "ee4406f6a26dc6c671171a97bcda070d7be9f16d4fb599787aa208f7764b1e3a"
+    },
+    "coarse": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_coarse_centers.py",
+      "bytes": 17703,
+      "sha256": "93b41995812f7b8e3a0b487c850127f3a5102cdc755ea21ef14516bbe1e3c989"
+    },
+    "private": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/codebook_attention_sm120.py",
+      "bytes": 17979,
+      "sha256": "dc2b139eca6e971d21b1ff8a47895124fd0e77088e311494fc9c75a5df524372"
+    },
+    "official": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/nvfp4_attention_sm120.py",
+      "bytes": 19507,
+      "sha256": "040738c6d6af5584ca9b375bb59468d7011506862ff0a162f1f51a72149abefc"
+    },
+    "plan": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E036_sequence_parallel_correction_plan.md",
+      "bytes": 4389,
+      "sha256": "305122c56555e73adcd9fca6302beb1291f90449ecda0ca97c9bd13f5734cf30"
+    }
+  },
+  "reference_report": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E034/run.json",
+    "bytes": 626726,
+    "sha256": "40f6dd949d3f4b27badad4fc62c4502556df1939556025cea82d7a95c7b42d82"
+  },
+  "input": {
+    "file": "/data1/models/svdquant-wjq/research/20261002/E018/capture/block0.pt",
+    "sha256": "5c8882219a165d9c4835ee80f132455f875fc21a2bd122c1b20c64cfed7b603c",
+    "bytes": 1292661823
+  },
+  "references": {
+    "bf16": {
+      "artifact": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block0_bf16_shift0.pt",
+        "sha256": "49b2698d53d398e429da75d1288e3e9925af8527d65bf56d1d9f1220ef11df1d",
+        "bytes": 323120758
+      },
+      "tensor": {
+        "shape": [
+          22539,
+          56,
+          128
+        ],
+        "dtype": "torch.bfloat16",
+        "sha256": "840d01f656bbeb6069a9ced5ae357c0bd3a3e027be9a593d3f5ae1d989957e41"
+      }
+    },
+    "coarse16": {
+      "artifact": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E034/outputs/block0_coarse16.pt",
+        "bytes": 323120737,
+        "sha256": "201259a476ef1e38df6a506ba6cb0a448ea42824f0323f61d79f52d8716cbc51"
+      },
+      "tensor": {
+        "shape": [
+          22539,
+          56,
+          128
+        ],
+        "dtype": "torch.bfloat16",
+        "finite": true,
+        "sha256": "7b3298dfea52a7153b2b2652067083ac1323b22f409686e34a1a29c5c27fbf02"
+      }
+    },
+    "coarse_centers": {
+      "artifact": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E034/outputs/block0_coarse16_centers.pt",
+        "bytes": 271409,
+        "sha256": "f6abc003d5448a0e30b45e3f2557324849ceb03a58e324bf3d5d6d5fb98adb2a"
+      },
+      "tensors": {
+        "centers": {
+          "shape": [
+            56,
+            16,
+            128
+          ],
+          "dtype": "torch.bfloat16",
+          "finite": true,
+          "sha256": "459db1d9589c7a22bbd0819dac2badde1c44f5d87e315536ca5a510167d7583d"
+        },
+        "ids": {
+          "shape": [
+            1,
+            56,
+            177
+          ],
+          "dtype": "torch.int32",
+          "finite": true,
+          "sha256": "121f617fc170cace5fdb8038b68a6b50ee0aff2c2c638adcb6d5df8a4d9d6957"
+        },
+        "boundaries": {
+          "shape": [
+            17
+          ],
+          "dtype": "torch.int32",
+          "finite": true,
+          "sha256": "8dd98ded1007598937ce7dbae3f110eacd2f9944522c1d33c45adc87e42061e0"
+        }
+      },
+      "provenance": "Returned small tensors from repeat index9 of the measured execute; no extra GPU reconstruction."
+    }
+  },
+  "private_source_hash": "f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6",
+  "geometry": {
+    "valid_length": 22539,
+    "padded_length": 22656,
+    "heads": 56,
+    "head_dim": 128,
+    "world_size": 2,
+    "token_starts": [
+      0,
+      11264
+    ],
+    "padded_token_lengths": [
+      11264,
+      11392
+    ],
+    "valid_token_lengths": [
+      11264,
+      11275
+    ],
+    "head_ranges": [
+      [
+        0,
+        28
+      ],
+      [
+        28,
+        56
+      ]
+    ],
+    "center_boundaries": [
+      0,
+      11,
+      22,
+      33,
+      44,
+      55,
+      66,
+      77,
+      88,
+      99,
+      110,
+      121,
+      132,
+      143,
+      154,
+      165,
+      177
+    ],
+    "ids": {
+      "shape": [
+        1,
+        56,
+        177
+      ],
+      "dtype": "torch.int32",
+      "finite": true,
+      "sha256": "121f617fc170cace5fdb8038b68a6b50ee0aff2c2c638adcb6d5df8a4d9d6957"
+    },
+    "q_padding": "Zero raw Q participates in C, then Qcenter padding is -C.",
+    "k_padding": "Kmean uses valid N; Kcenter padding is explicitly zero, never -Kmean.",
+    "scale_transport": "Q/K row64 slabs; Vsf reshaped [H,2,L/64,256], concatenate token-tile axis."
+  },
+  "cpu_transport": {
+    "forward": [
+      {
+        "arm": "bf16_a2a",
+        "head_redistribution_and_physical_packet_rejoin": true,
+        "send_bytes_per_source": [
+          [
+            17301504,
+            17301504
+          ],
+          [
+            17498112,
+            17498112
+          ]
+        ]
+      },
+      {
+        "arm": "mixed_k16",
+        "head_redistribution_and_physical_packet_rejoin": true,
+        "send_bytes_per_source": [
+          [
+            9015296,
+            9015296
+          ],
+          [
+            9117696,
+            9117696
+          ]
+        ]
+      },
+      {
+        "arm": "fp4_table16",
+        "head_redistribution_and_physical_packet_rejoin": true,
+        "send_bytes_per_source": [
+          [
+            6307840,
+            6307840
+          ],
+          [
+            6379520,
+            6379520
+          ]
+        ]
+      }
+    ],
+    "inverse_output_roundtrip": true,
+    "k_permutation_phase": true,
+    "v_scale_physical_reference_rejoin": true,
+    "private_28head_metadata": true,
+    "scope": "Labeled byte copies at actual token lengths and D128, reduced four-head fixture. No GPU packet arithmetic, distributed collective, or native28head execution validated."
+  },
+  "cuda_initialized": false,
+  "seconds": 4.3414037227630615
+}

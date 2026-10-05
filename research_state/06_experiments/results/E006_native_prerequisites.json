@@ -1,0 +1,56 @@
+{
+  "status": "passed",
+  "native_attention_cases": 4,
+  "fixed_scale_packer_cases": 7,
+  "environment": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002",
+  "files": {
+    "/home/wjq/workspace/svdquant-exp/results/research/E006_attention_smoke.json": {
+      "bytes": 5646,
+      "sha256": "9d34f30b4997e6a450b9a0a4fa1f840e8d8f79030e59d1ccabdcaae54730e2d5"
+    },
+    "/home/wjq/workspace/svdquant-exp/results/research/E006_fixed_packer_parity.json": {
+      "bytes": 8127,
+      "sha256": "4f68df1050d5dac9af71903ba9f73c864a2b8303798c5aa3c579b189180ed697"
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/results/E006_environment.txt": {
+      "bytes": 143,
+      "sha256": "a886cdbf031075e0bfd9a732ca5d053b7b5eb1a96813ebd791cc4d5c9c6e6fe2"
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/smoke_nvfp4_attention.py": {
+      "bytes": 5111,
+      "sha256": "0a5164065def799cf2a20549d35311dff634e35d4ef2bcaa8478bc7d24758a4a"
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/nvfp4_attention_fixed_scale.py": {
+      "bytes": 4581,
+      "sha256": "ec77c32618513fc981293590d95428a98670f0bd3b29bb1c79b545ed15b8c731"
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/test_attention_fixed_packer.py": {
+      "bytes": 2465,
+      "sha256": "1576156d191ed3bffb017ee9bc8637ff9672bf8cf43773ff24ba975d16bf0bac"
+    },
+    "/data1/models/svdquant-wjq/research/cache/flashinfer/.cache/flashinfer/0.7.0.post1/120f/cached_ops/nvfp4_attention_sm120/nvfp4_attention_sm120.so": {
+      "bytes": 1504168,
+      "sha256": "4647bc314cb854507e402ae34a519930505ca2884b47d3fd3881ea74512336ed"
+    }
+  },
+  "checks": [
+    "native FP4 kernel profiler",
+    "logical K length passed explicitly",
+    "short all-zero attention finite and zero",
+    "independent batch sequence invariant",
+    "fixed pack all seven buffers byte exact",
+    "ties, signed zero, scale underflow native conversion parity"
+  ],
+  "limitations": [
+    "synthetic only; no real model factorial yet",
+    "reference fixed-scale encoder not speed optimized",
+    "clipping stats include physical padding",
+    "internal P scale stays dynamic"
+  ],
+  "setup_notes": [
+    "isolated venv in data disk; existing H3/PTQ environments untouched",
+    "cuda-python pinned 12.9.7 and cuda-bindings 12.9.9 to satisfy torch <13 requirement",
+    "first interactive parity attempt missed ninja PATH; configured PATH before successful reproducible script run",
+    "only required FlashInfer SM120 module dependencies installed, not all optional backends"
+  ]
+}

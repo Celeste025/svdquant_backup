@@ -1,0 +1,176 @@
+{
+  "status": "failed",
+  "torch": "2.11.0+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "started": 1790928657.894994,
+  "cases": [
+    {
+      "name": "random_257_32",
+      "shape": [
+        257,
+        32
+      ],
+      "global_scale": 0.0014241538010537624,
+      "byte_mismatches": {
+        "codes": 0,
+        "global_scale": 0,
+        "swizzled_scales": 0
+      },
+      "seconds": 1.4097356796264648,
+      "packing_ms_cuda": 0.04477120041847229,
+      "packing_ms_wall": 0.0570524949580431
+    },
+    {
+      "name": "random_512_1536",
+      "shape": [
+        512,
+        1536
+      ],
+      "global_scale": 0.0019066222012043,
+      "byte_mismatches": {
+        "codes": 0,
+        "global_scale": 0,
+        "swizzled_scales": 0
+      },
+      "seconds": 0.25827956199645996,
+      "packing_ms_cuda": 0.04228160083293915,
+      "packing_ms_wall": 0.048811896704137325
+    },
+    {
+      "name": "random_31200_1536",
+      "shape": [
+        31200,
+        1536
+      ],
+      "global_scale": 0.002104259794577956,
+      "byte_mismatches": {
+        "codes": 0,
+        "global_scale": 0,
+        "swizzled_scales": 0
+      },
+      "seconds": 0.3649890422821045,
+      "packing_ms_cuda": 0.23426880836486816,
+      "packing_ms_wall": 0.2387942047789693
+    },
+    {
+      "name": "random_31200_8960",
+      "shape": [
+        31200,
+        8960
+      ],
+      "global_scale": 0.0022321429569274187,
+      "byte_mismatches": {
+        "codes": 0,
+        "global_scale": 0,
+        "swizzled_scales": 0
+      },
+      "seconds": 0.35498046875,
+      "packing_ms_cuda": 1.281113624572754,
+      "packing_ms_wall": 1.2864633928984404
+    },
+    {
+      "name": "e2m1_midpoints_signed_zero",
+      "shape": [
+        16,
+        32
+      ],
+      "global_scale": 1.0,
+      "byte_mismatches": {
+        "codes": 0,
+        "global_scale": 0,
+        "swizzled_scales": 0
+      },
+      "seconds": 0.22127079963684082,
+      "packing_ms_cuda": 0.04195199906826019,
+      "packing_ms_wall": 0.04587429575622082
+    },
+    {
+      "name": "e4m3_midpoints_subnormal",
+      "shape": [
+        126,
+        32
+      ],
+      "global_scale": 1.0,
+      "byte_mismatches": {
+        "codes": 0,
+        "global_scale": 0,
+        "swizzled_scales": 0
+      },
+      "seconds": 0.22980546951293945,
+      "packing_ms_cuda": 0.0423007994890213,
+      "packing_ms_wall": 0.04648631438612938
+    },
+    {
+      "name": "zero_groups_underflow",
+      "shape": [
+        129,
+        64
+      ],
+      "global_scale": 0.0003720238455571234,
+      "byte_mismatches": {
+        "codes": 0,
+        "global_scale": 0,
+        "swizzled_scales": 512
+      },
+      "seconds": 0.23230838775634766,
+      "debug_global": [
+        0.0003720238455571234,
+        0.0003720238455571234
+      ],
+      "debug_sf_first": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0,
+          -0.0
+        ]
+      ],
+      "debug_codes": []
+    }
+  ],
+  "source_sha256": {
+    "test_wan_nvfp4_fastpack.py": "62883443cfd4580deb21bc3366bf76193205ef2a04c0f4046f9aa1c050814c90",
+    "wan_nvfp4_fastpack.py": "fdeb2dad83263692291e166899934141492d0068111009c191a75574a2a031eb"
+  },
+  "error": "AssertionError('packing mismatch in zero_groups_underflow')",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/test_wan_nvfp4_fastpack.py\", line 77, in run\n    save();raise AssertionError(f'packing mismatch in {name}')\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: packing mismatch in zero_groups_underflow\n"
+}

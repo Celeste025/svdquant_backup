@@ -1,0 +1,241 @@
+{
+  "experiment": "E017",
+  "status": "complete",
+  "start_epoch": 1790951716.5300398,
+  "deadline_epoch": 1790953516.5300398,
+  "wall_budget_seconds": 1800,
+  "freeze_sha256": "d07ff63fcbb0e390f692f991f500e279ad022b34965b89be2557d3ee42870551",
+  "max_dit_calls": 80,
+  "expected_evaluation_answers": 232,
+  "stages": [
+    {
+      "name": "denoise_block_mean",
+      "status": "complete",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_fp4_attention_video.py",
+        "--phase",
+        "denoise",
+        "--arm",
+        "block_mean",
+        "--deadline-unix",
+        "1790953516.5300398"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E017_denoise_block_mean.log",
+      "gpu_before": {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0,
+        "samples": [
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "start_epoch": 1790951717.296784,
+      "pid": 3559162,
+      "returncode": 0,
+      "end_epoch": 1790951949.4540558,
+      "seconds": 232.15727186203003,
+      "dit_calls": 40,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E017/E017_denoise_block_mean.json",
+      "report_sha256": "2c420d7ff566ec3858711139cdad1b320e09a457ed2860b32b9b0f45cb765eee"
+    },
+    {
+      "name": "denoise_global_mean",
+      "status": "complete",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_fp4_attention_video.py",
+        "--phase",
+        "denoise",
+        "--arm",
+        "global_mean",
+        "--deadline-unix",
+        "1790953516.5300398"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E017_denoise_global_mean.log",
+      "gpu_before": {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0,
+        "samples": [
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "start_epoch": 1790951950.1329432,
+      "pid": 3611476,
+      "returncode": 0,
+      "end_epoch": 1790952175.7327926,
+      "seconds": 225.59984946250916,
+      "dit_calls": 40,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E017/E017_denoise_global_mean.json",
+      "report_sha256": "992de54141016ea5ca0e0d3641e451d36212701b51a94f92b754adad4301e84e"
+    },
+    {
+      "name": "decode_block_mean",
+      "status": "complete",
+      "command": [
+        "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_fp4_attention_video.py",
+        "--phase",
+        "decode",
+        "--arm",
+        "block_mean",
+        "--deadline-unix",
+        "1790953516.5300398"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E017_decode_block_mean.log",
+      "gpu_before": {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0,
+        "samples": [
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 27
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 27
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "start_epoch": 1790952177.5842652,
+      "pid": 3662178,
+      "returncode": 0,
+      "end_epoch": 1790952205.7463381,
+      "seconds": 28.162072896957397,
+      "videos": 2,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E017/E017_decode_block_mean.json",
+      "report_sha256": "278eb4f271d01b1a56cfccfe3c2f74dae6b6614af2bfab15383f3b0c16abc7d0"
+    },
+    {
+      "name": "decode_global_mean",
+      "status": "complete",
+      "command": [
+        "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_fp4_attention_video.py",
+        "--phase",
+        "decode",
+        "--arm",
+        "global_mean",
+        "--deadline-unix",
+        "1790953516.5300398"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E017_decode_global_mean.log",
+      "gpu_before": {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0,
+        "samples": [
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "start_epoch": 1790952206.4067318,
+      "pid": 3669379,
+      "returncode": 0,
+      "end_epoch": 1790952234.912543,
+      "seconds": 28.50581121444702,
+      "videos": 2,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E017/E017_decode_global_mean.json",
+      "report_sha256": "825d74f08a5e94caa8cea4cec9ea89549549fccc5eb77460f56c8ed1e8debf02"
+    },
+    {
+      "name": "visionreward",
+      "status": "complete",
+      "command": [
+        "/data1/models/svdquant-wjq/conda-envs/mjvideo/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/evaluate_h3_fp4_video.py",
+        "--deadline-unix",
+        "1790953516.5300398"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E017_visionreward.log",
+      "gpu_before": {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0,
+        "samples": [
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "start_epoch": 1790952235.5857964,
+      "pid": 3676604,
+      "returncode": 0,
+      "end_epoch": 1790952375.0820084,
+      "seconds": 139.49621200561523,
+      "evaluation_answers": 232,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E017/E017_visionreward.json",
+      "report_sha256": "52d9b82d8f1a7a2201bc35c3406918fdbf05825842f0895c4c3768090c2477eb"
+    }
+  ],
+  "seconds_total": 658.5685784816742
+}

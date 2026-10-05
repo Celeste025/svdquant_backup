@@ -1,0 +1,184 @@
+{
+  "experiment": "E017",
+  "status": "preregistered",
+  "scope": "Two previously inspected prompts; existing native FP4-attention generation baseline, not a method or generalization claim.",
+  "settings": {
+    "height": 576,
+    "width": 1024,
+    "num_frames": 124,
+    "num_inference_steps": 20,
+    "cfg_scale": 1.0,
+    "flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "noise_dtype": "bfloat16",
+    "tiled": true,
+    "tile_size": 256,
+    "tile_overlap": 64,
+    "fps": 24,
+    "audio_sample_rate": 32000
+  },
+  "cases": [
+    {
+      "prompt_id": 30,
+      "seed": 49771,
+      "prompt": "# Core Summary\nA 5-second cinematic text animation set against a deep black void, featuring three lines of white, handwritten-style Chinese text appearing sequentially with 35mm film grain and subtle light leaks. Continuous shot. The first line fades in with a slight jitter, followed rapidly by the second and third lines, culminating in a full display of the philosophical message before fading.\n\n# Scene\n[shot1][00:00-00:05]\nDeep black background with high-contrast 35mm film grain overlay. Subtle dust particles float slowly in the void, illuminated by a faint, unseen top light source. A soft, warm vignette borders the frame. No physical architecture or terrain.\n**Audio Description**: Low-frequency ambient hum, subtle film projector mechanical noise, silence otherwise.\n\n# Subjects Description\nNone. The primary visual elements are the text lines themselves, styled as handwritten white characters with slight imperfections.\n\n# Dynamic Narrative\n[shot1][00:00-00:05]\nThe frame begins pure black. At 00:00, the first line of text `\"最烂的剧本，往往有最好的演员。\"` writes itself onto the center screen in a crooked, white handwritten font, appearing as if drawn by an invisible pen with slight jitter. By 00:01.5, the second line `\"演员：你。\"` snaps in below the first, slightly smaller and sharper. At 00:02.5, the third line `\"评分：无法评分，因为人生不需要。\"` fades in beneath the second, completing the stanza. The camera holds static on the full text arrangement. A subtle light leak flickers across the right edge at 00:04. The text remains visible until the clip ends, with film grain continuously shifting over the black background.\n\n# Style, Color & Aesthetics\nMonochromatic palette with deep blacks and bright white text. High-contrast film noir aesthetic. 35mm film grain, slight chromatic aberration on text edges, and organic dust textures create a tactile, analog movie feel. Lighting is minimal, focusing entirely on the legibility of the text against the void.\n\n# Atmosphere & Emotion\nIntrospective, melancholic, and philosophical. The darkness and grain evoke a sense of nostalgia and seriousness, while the message delivers a poignant, empowering twist about the nature of life and self-agency.",
+      "prompt_sha256": "fba1ea309896aa765c8f4c1311d0c8cc2b8921df6637f420e740d058da3eb822",
+      "reason": "5-second text animation with ambient sound"
+    },
+    {
+      "prompt_id": 36,
+      "seed": 59526,
+      "prompt": "# Core Summary\nA 5-second cinematic product showcase for \"超能植愈香氛洗衣液\" (Chaoneng Plant Healing Fragrance Laundry Detergent), blending macro ingredient artistry with a heroic product reveal. The clip uses a two-shot structure: first, an extreme close-up of natural ingredients swirling in liquid to establish the \"plant healing\" concept; second, a polished medium shot of the 2.8kg bottle with dynamic lighting and key selling point text overlays. The visual style mimics high-end perfume commercials with luminous, layered lighting and fluid motion.\n\n# Scene\n[shot1][00:00-00:02]\nA macro studio environment with a shallow depth of field. The background is a soft, out-of-focus bokeh of natural greens and warm golds. A pool of pearlescent, viscous liquid fills the lower frame, catching directional sunlight that creates caustic reflections. Floating on the surface are delicate French Iris petals and small chips of sandalwood.\n\n[shot2][00:02-00:05]\nA clean, minimalist product stage with a textured stone pedestal in the center. The background is a gradient of soft white to pale sage green, illuminated by volumetric light beams (Tyndall effect) cutting through a subtle mist. The lighting is bright and high-key, casting sharp but soft shadows to emphasize the bottle's contours.\n\n# Subjects Description\n- **Product**: A 2.8kg large capacity bottle of \"超能植愈香氛洗衣液\". The bottle design is sleek, featuring a translucent green-tinted plastic body showing the liquid inside, with a premium white and gold label. The cap is a sturdy, ergonomic pump or screw top in dark green or wood texture.\n- **Ingredients**: Visual representations of French Iris (pale purple/white petals), Sandalwood (brown woody chips), and a swirl of green-gold liquid detergent.\n\n# Dynamic Narrative\n[shot1][00:00-00:02]\nExtreme close-up. Slow motion. French Iris petals and sandalwood chips gently drop into the pearlescent green liquid, creating a viscous, satisfying ripple effect. Light refracts through the liquid swirls, highlighting the texture of the natural oils. The motion is fluid and hypnotic, emphasizing the \"100% natural plant精油\" concept. Sound of a soft liquid splash and a delicate chime.\n\n[shot2][00:02-00:05]\nCut to medium shot. The 2.8kg bottle stands firmly on the stone pedestal. A beam of light sweeps across the label from left to right, making the gold text gleam. Soft mist swirls around the base of the bottle. White text fades in elegantly on the right side: `\"Yves Cassar 专属调香\"` followed by `\"720h 持久留香\"`. The bottle remains static while the light and mist create dynamic movement. Sound of a low, luxurious bass swell and a subtle wind whoosh.\n\n# Style, Color & Aesthetics\n- **Visual Style**: High-end commercial cinematography, resembling luxury perfume advertisements.\n- **Color Palette**: Dominant sage greens, pearlescent whites, and accents of gold and pale purple.\n- **Lighting**: Bright, luminous, and layered. Use of rim lighting to separate the bottle from the background. Volumetric haze for atmosphere.\n- **Texture**: Emphasis on fluid viscosity, petal delicacy, and smooth plastic/glass surfaces.\n- **Quality**: High resolution, sharp focus on product details, smooth motion blur for liquid elements.\n\n# Atmosphere & Emotion\n- **Atmosphere**: Fresh, luxurious, natural, and serene.\n- **Emotion**: Trust in quality, sensory pleasure, and premium elegance. The clip aims to evoke the feeling of a high-end spa or garden through visual cues.",
+      "prompt_sha256": "27ecdc7b8cf31078396b8fd42cd7f4b25a300cf9da0a31a1cca6ed4db75d198b",
+      "reason": "5-second macro liquid/product sequence with sound effects"
+    }
+  ],
+  "arms": [
+    "block_mean",
+    "global_mean"
+  ],
+  "prepared_cases": [
+    {
+      "prompt_id": 30,
+      "seed": 49771,
+      "file": "/data1/models/svdquant-wjq/research/20261002/E010/prepare/p030.pt",
+      "sha256": "deacde742b509e24536d225f8e8fb21b892e71c2653e58e0026e822865f1108a",
+      "embedding_shape": [
+        501,
+        5120
+      ],
+      "embedding_sha256": "77df337b4e39402cacd97c1596a94f2f67a83733b02e67ff086b8f4fab6b6803",
+      "initial_noise_sha256": {
+        "video_latents": "eea1e6bdf497ddb2fdf965b9ac2eba6064aeddabb5bc9a42ce0495d6647b8666",
+        "audio_latents": "6498590d98477373fce29d66070192298947cf9c3c773b5ad93d43985d81ed32"
+      },
+      "seconds": 6.8549154039938
+    },
+    {
+      "prompt_id": 36,
+      "seed": 59526,
+      "file": "/data1/models/svdquant-wjq/research/20261002/E010/prepare/p036.pt",
+      "sha256": "fc54887b3e504de37471c5f88bd2d235a6af192abdd5f09d382365011bc99c20",
+      "embedding_shape": [
+        813,
+        5120
+      ],
+      "embedding_sha256": "440bbff8dce8199957df602f7c8100506c21c14a0b6e24a73715019e21435db3",
+      "initial_noise_sha256": {
+        "video_latents": "be7648a7ac5e47427c1baaae5f00c99b78419a12b9521b094b9277f69ba21bd3",
+        "audio_latents": "c2e8d8bef8b80eb877432349f1a817815758ca17d8ee34bd56c8d79ae5d69dbd"
+      },
+      "seconds": 2.320790224010125
+    }
+  ],
+  "attention_contracts": {
+    "30": {
+      "expected_cu": [
+        0,
+        22227,
+        22272
+      ],
+      "expected_refiner_cu": [
+        0,
+        501,
+        501
+      ]
+    },
+    "36": {
+      "expected_cu": [
+        0,
+        22539,
+        22592
+      ],
+      "expected_refiner_cu": [
+        0,
+        813,
+        813
+      ]
+    }
+  },
+  "export_dir": "/data1/models/svdquant-wjq/research/20261002/E009/legacy_export",
+  "python": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+  "python_decode": "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+  "python_evaluate": "/data1/models/svdquant-wjq/conda-envs/mjvideo/bin/python",
+  "environment": {
+    "CUDA_HOME": "/usr/local/cuda",
+    "FLASHINFER_WORKSPACE_BASE": "/data1/models/svdquant-wjq/research/cache/flashinfer",
+    "TMPDIR": "/data1/models/svdquant-wjq/research/cache/tmp",
+    "TORCH_EXTENSIONS_DIR": "/data1/models/svdquant-wjq/research/cache/torch_extensions",
+    "MAX_JOBS": "4"
+  },
+  "data_dir": "/data1/models/svdquant-wjq/research/20261002/E017",
+  "report_dir": "/home/wjq/workspace/svdquant-exp/results/research/E017",
+  "plan": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E017_h3_fp4_video_plan.md",
+    "sha256": "7f4fc987bbed09b1ec663608ef2a5ee281f4368236535eaaf112390f250357f2",
+    "bytes": 4302
+  },
+  "budget": {
+    "wall_seconds": 1800,
+    "gpu": 5,
+    "max_dit_calls": 80,
+    "max_peak_allocated_gib": 60,
+    "decode_videos": 4,
+    "evaluation_questions": 232
+  },
+  "e010_manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_manifest.json",
+    "sha256": "9469815d0c1d3d51bc793c2e3eaba08c80b35969ef2fab3776667db6b61fa79d",
+    "bytes": 13391
+  },
+  "e010_prepare": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E010_h3_prepare.json",
+    "sha256": "325f8aab98f76fbb57666b1014a9fa2a8d2111d4048b52882f475a5bb745a8e8",
+    "bytes": 18395
+  },
+  "e010_summary": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E010_summary.json",
+    "sha256": "7635fca99da42739caae3c0efd2bc712ee5192d71dacdbce084c82b134623acb",
+    "bytes": 353235
+  },
+  "e010_denoisers": {
+    "bf16": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E010_h3_denoise_bf16.json",
+      "sha256": "7f4eff2df63c112e6dcab5504c80e485b76e601ccf32d10d4f64127a25a48eeb",
+      "bytes": 274839
+    },
+    "native": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E010_h3_denoise_native.json",
+      "sha256": "df5bf29e251917e8d2ca7f33a1442904a178c7fc20a836959b52b38d0251a1b9",
+      "bytes": 388573
+    }
+  },
+  "e010_decode": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E010_h3_decode.json",
+    "sha256": "150d57592588c5b27fc2b22889c34078be8e8d15cfb9a9949c34729471acfc39",
+    "bytes": 42832
+  },
+  "e010_visionreward": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E010_visionreward.json",
+    "sha256": "8f4ad4b1bfe37f7b7b965532963497a91a93a6ab64b311cde99cc7a09ad44eab",
+    "bytes": 1357339
+  },
+  "e016_manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E016_h3_full_attention_manifest.json",
+    "sha256": "5b1e91c55e002b1be9b42d4392c9c55e81a02197aaeb7d47a53e11cafc7fab48",
+    "bytes": 26097
+  },
+  "e016_check": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E016/E016_check_bf16_original.json",
+    "sha256": "3ac9c5a9c87383c88b30d6f97470b26e841ccbfb446a6d20adb42c5f97c1f636",
+    "bytes": 57751
+  },
+  "e016_summary": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E016/independent_summary.json",
+    "sha256": "2a4856da0037f54ad98dd5b7c8177633e6781ffdf2a05a1f2d358de1c9441ce7",
+    "bytes": 497349
+  },
+  "e016_freeze": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E016/frozen_contract.json",
+    "sha256": "8daeba8b27e7541ac3974f2851c4a6d2a57882bc6b14856535e1aa9af0f524a0",
+    "bytes": 14692
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "status": "complete",
+  "raw_file": "results/research/E009_h3_native_resume.json",
+  "raw_sha256": "5212123739b807e86c2cbbb6d22f157a0a8aa36703ba36f0c2464edbdb2184e8",
+  "scope": "one original-calib p1step0; only new native slow/fast passes, inherited BF16/QDQ refs",
+  "native_endpoints": {
+    "video": {
+      "shape": [
+        21312,
+        96
+      ],
+      "sha256": "bdc0e53288ef5dba47548f64afb90f8c30b8a34b1f7f879b30390ec9cab1e463",
+      "finite": true,
+      "comparisons": {
+        "offload_bf16": {
+          "err2": 299808.2325631669,
+          "ref2": 12846486.890349228,
+          "nmse": 0.02333776036376095,
+          "max_abs": 2.265625,
+          "numel": 2045952,
+          "bitwise_equal": false
+        },
+        "legacy_formula_reference": {
+          "err2": 46443.08766068182,
+          "ref2": 12492748.04891545,
+          "nmse": 0.003717603803329224,
+          "max_abs": 1.55859375,
+          "numel": 2045952,
+          "bitwise_equal": false
+        }
+      }
+    },
+    "audio": {
+      "shape": [
+        414,
+        32
+      ],
+      "sha256": "ac64a78752e26cb1d5b1f46bd265673c93c91275b74eda9c655c405c978f5c88",
+      "finite": true,
+      "comparisons": {
+        "offload_bf16": {
+          "err2": 641.4494359695818,
+          "ref2": 15386.566117632867,
+          "nmse": 0.041688927280173746,
+          "max_abs": 0.640625,
+          "numel": 13248,
+          "bitwise_equal": false
+        },
+        "legacy_formula_reference": {
+          "err2": 201.02572034153854,
+          "ref2": 14974.054991450348,
+          "nmse": 0.01342493536028264,
+          "max_abs": 0.8671875,
+          "numel": 13248,
+          "bitwise_equal": false
+        }
+      }
+    }
+  },
+  "native_runtime": {
+    "sdpa_calls": 102,
+    "scaled_mm_calls": 200,
+    "disk_loads": 0,
+    "qkv_dtypes": [
+      [
+        "torch.bfloat16",
+        "torch.bfloat16",
+        "torch.bfloat16"
+      ]
+    ]
+  },
+  "fast_runtime": {
+    "sdpa_calls": 102,
+    "scaled_mm_calls": 200,
+    "disk_loads": 0,
+    "qkv_dtypes": [
+      [
+        "torch.bfloat16",
+        "torch.bfloat16",
+        "torch.bfloat16"
+      ]
+    ]
+  },
+  "fast_checks": {
+    "compatibility": "h3_e005_sf0_canonical_zero_numeric_equivalence_v1",
+    "checked_calls": 200,
+    "invalid_calls": 0,
+    "calls_with_nonzero_input_zero_sf": 1,
+    "affected_call_indices_zero_based": [
+      7
+    ],
+    "count_scope": "Call-level flags only; not a count of affected tensor groups or elements"
+  },
+  "slow_fast_all_50_blocks_and_two_endpoints_sha_equal": true,
+  "slow_sf0_layers": [
+    {
+      "layer": "blocks.1.mlp.fc2",
+      "groups": 95
+    }
+  ],
+  "legacy_endpoints": {
+    "video": {
+      "shape": [
+        21312,
+        96
+      ],
+      "sha256": "db8df57a579b1f9c382fa92aeed838fb791052d4e90a1a401fef5b91f920d04e",
+      "finite": true,
+      "comparisons": {
+        "offload_bf16": {
+          "err2": 340286.19248713285,
+          "ref2": 12846486.890349228,
+          "nmse": 0.02648865759110912,
+          "max_abs": 2.00390625,
+          "numel": 2045952,
+          "bitwise_equal": false
+        }
+      }
+    },
+    "audio": {
+      "shape": [
+        414,
+        32
+      ],
+      "sha256": "57549290ba7d99552fc48943b36f6e3588fff9a7a4ce5a80bc8af6bd846173db",
+      "finite": true,
+      "comparisons": {
+        "offload_bf16": {
+          "err2": 1058.3373142982637,
+          "ref2": 15386.566117632867,
+          "nmse": 0.06878320388104131,
+          "max_abs": 0.7490234375,
+          "numel": 13248,
+          "bitwise_equal": false
+        }
+      }
+    }
+  },
+  "relative_change_in_nmse_vs_bf16": {
+    "video": -0.11895269575328582,
+    "audio": -0.3939083245922418
+  }
+}

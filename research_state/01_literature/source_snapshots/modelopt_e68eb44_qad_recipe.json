@@ -1,0 +1,226 @@
+{
+  "repository": "https://github.com/NVIDIA/Model-Optimizer",
+  "commit": "e68eb44ee5c7fdb6a86885f457f1cdba0598e0c1",
+  "commit_committer_date": "2026-10-02T17:48:14Z",
+  "retrieved_at_utc": "2026-10-02T18:01:10.533279+00:00",
+  "policy": "Current commit fetched and key logic re-read now. No assertion that earlier unpinned main fetches were this commit.",
+  "files": [
+    {
+      "path": "modelopt_recipes/configs/numerics/nvfp4.yaml",
+      "url": "https://raw.githubusercontent.com/NVIDIA/Model-Optimizer/e68eb44ee5c7fdb6a86885f457f1cdba0598e0c1/modelopt_recipes/configs/numerics/nvfp4.yaml",
+      "github_url": "https://github.com/NVIDIA/Model-Optimizer/blob/e68eb44ee5c7fdb6a86885f457f1cdba0598e0c1/modelopt_recipes/configs/numerics/nvfp4.yaml",
+      "sha256": "cea91c0276a335195b8f515623360d14a2df8458128b2507bf2ffd6488fa1768",
+      "bytes": 1096,
+      "line_count": 26,
+      "excerpts": [
+        {
+          "start": 1,
+          "end": 26,
+          "text": "# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.\n# SPDX-License-Identifier: Apache-2.0\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n#\n# http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n\n# Dynamic NVFP4 E2M1 block quantizer attributes with FP8 E4M3 scales.\n\n# modelopt-schema: modelopt.torch.quantization.config.QuantizerAttributeConfig\nnum_bits: e2m1\nblock_sizes:\n  -1: 16\n  type: dynamic\n  scale_bits: e4m3\n# Autoquant LP cost: 4 value bits + an FP8 (8-bit) scale per 16-element block = 4.5 bits/element\n# (the num_bits heuristic under-counts this as 4.0). Read only by autoquant.\neffective_bits: 4.5"
+        }
+      ]
+    },
+    {
+      "path": "modelopt_recipes/configs/ptq/units/w4a4_nvfp4_nvfp4.yaml",
+      "url": "https://raw.githubusercontent.com/NVIDIA/Model-Optimizer/e68eb44ee5c7fdb6a86885f457f1cdba0598e0c1/modelopt_recipes/configs/ptq/units/w4a4_nvfp4_nvfp4.yaml",
+      "github_url": "https://github.com/NVIDIA/Model-Optimizer/blob/e68eb44ee5c7fdb6a86885f457f1cdba0598e0c1/modelopt_recipes/configs/ptq/units/w4a4_nvfp4_nvfp4.yaml",
+      "sha256": "2682bc6150b295646f9d3061feb2963680cd62d216b9ff5619eebd3f75a1e0dc",
+      "bytes": 1028,
+      "line_count": 27,
+      "excerpts": [
+        {
+          "start": 1,
+          "end": 27,
+          "text": "# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.\n# SPDX-License-Identifier: Apache-2.0\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n#\n# http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n\n# QuantizerCfgList snippet that enables dynamic NVFP4 on weight and input quantizers.\n\n# modelopt-schema: modelopt.torch.quantization.config.QuantizerCfgListConfig\nimports:\n  nvfp4: configs/numerics/nvfp4\n---\n  - quantizer_name: '*weight_quantizer'\n    cfg:\n      $import: nvfp4\n  - quantizer_name: '*input_quantizer'\n    cfg:\n      $import: nvfp4"
+        }
+      ]
+    },
+    {
+      "path": "modelopt_recipes/configs/ptq/presets/model/nvfp4.yaml",
+      "url": "https://raw.githubusercontent.com/NVIDIA/Model-Optimizer/e68eb44ee5c7fdb6a86885f457f1cdba0598e0c1/modelopt_recipes/configs/ptq/presets/model/nvfp4.yaml",
+      "github_url": "https://github.com/NVIDIA/Model-Optimizer/blob/e68eb44ee5c7fdb6a86885f457f1cdba0598e0c1/modelopt_recipes/configs/ptq/presets/model/nvfp4.yaml",
+      "sha256": "d3652a3caaa8613d8400f459e388ae647ab1f7668d96177ad87d5f0ba0f2a8fd",
+      "bytes": 1157,
+      "line_count": 28,
+      "excerpts": [
+        {
+          "start": 1,
+          "end": 28,
+          "text": "# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.\n# SPDX-License-Identifier: Apache-2.0\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n#\n# http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n\n# QuantizeConfig preset for dynamic NVFP4 W4A4 quantization on weights and inputs.\n\n# modelopt-schema: modelopt.torch.quantization.config.QuantizeConfig\nimports:\n  base_disable_all: configs/ptq/units/base_disable_all\n  w4a4_nvfp4_nvfp4: configs/ptq/units/w4a4_nvfp4_nvfp4\n  default_disabled_quantizers: configs/ptq/units/default_disabled_quantizers\n\nalgorithm: max\nquant_cfg:\n  - $import: base_disable_all\n  - $import: w4a4_nvfp4_nvfp4\n  - $import: default_disabled_quantizers"
+        }
+      ]
+    },
+    {
+      "path": "modelopt/torch/quantization/config.py",
+      "url": "https://raw.githubusercontent.com/NVIDIA/Model-Optimizer/e68eb44ee5c7fdb6a86885f457f1cdba0598e0c1/modelopt/torch/quantization/config.py",
+      "github_url": "https://github.com/NVIDIA/Model-Optimizer/blob/e68eb44ee5c7fdb6a86885f457f1cdba0598e0c1/modelopt/torch/quantization/config.py",
+      "sha256": "c2fc683d3503b3d5bb9fc2865edd88e0413c780dd628dcaa5b70193a3aa8b2a3",
+      "bytes": 79144,
+      "line_count": 1849,
+      "excerpts": [
+        {
+          "start": 478,
+          "end": 486,
+          "text": "    type: str = ModeloptField(\n        default=\"static\",\n        title=\"\"\"Specify whether the quantization is static or dynamic.\"\"\",\n        description=\"\"\"The value is a string from ``[\"static\", \"dynamic\"]``.\n            If ``\"dynamic\"``, dynamic quantization will be enabled which does not collect any statistics during\n            calibration.\"\"\",\n        pattern=r\"^static$|^dynamic$\",\n    )\n"
+        },
+        {
+          "start": 627,
+          "end": 643,
+          "text": "    pass_through_bwd: bool = ModeloptField(\n        default=True,\n        title=\"If set to true, fake quantization will be a pass through for gradient computation.\",\n        description=\"\"\"\n        Gradient computation where fake quantization is pass through is called\n        'Straight-Through Estimator (STE)'. STE does not require saving of the input tensor for\n        performing backward pass and hence consumes less memory.\n\n        If set to False, we will use STE with zeroed outlier gradients. This setting may\n        yield better QAT accuracy depending on the quantization format. However, this setting\n        requires saving of the input tensor for computing gradients which uses more memory.\n\n        For dynamic quantization formats like MXFP4, STE with zeroed outlier gradients\n        is not needed since fake quantization with dynamic amax results in minimal/no clipping.\n        \"\"\",\n    )\n"
+        },
+        {
+          "start": 616,
+          "end": 626,
+          "text": "    rotate: bool | RotateConfig = ModeloptField(\n        default=False,\n        title=\"\"\"Configuration for rotating the input before quantization.\"\"\",\n        description=\"\"\"Can be a boolean or a :class:`RotateConfig` instance (or equivalent dict).\n\n        If a boolean, it is treated as :attr:`RotateConfig.enable` with all other fields defaulting.\n\n        This can be used for rotation based PTQ methods, e.g. QuaRot or SpinQuant.\n        See https://arxiv.org/abs/2404.00456 for example.\"\"\",\n    )\n"
+        }
+      ]
+    },
+    {
+      "path": "modelopt/torch/quantization/nn/modules/tensor_quantizer.py",
+      "url": "https://raw.githubusercontent.com/NVIDIA/Model-Optimizer/e68eb44ee5c7fdb6a86885f457f1cdba0598e0c1/modelopt/torch/quantization/nn/modules/tensor_quantizer.py",
+      "github_url": "https://github.com/NVIDIA/Model-Optimizer/blob/e68eb44ee5c7fdb6a86885f457f1cdba0598e0c1/modelopt/torch/quantization/nn/modules/tensor_quantizer.py",
+      "sha256": "7d93ac97ab5c59ef89b10c5720e9bc52220f43554170ba6ce1278c591fe62574",
+      "bytes": 77131,
+      "line_count": 1919,
+      "excerpts": [
+        {
+          "start": 736,
+          "end": 751,
+          "text": "    def _get_amax(self, inputs):\n        \"\"\"Get amax from buffer or compute it dynamically.\"\"\"\n        if self._use_constant_amax:\n            return torch.tensor(torch.finfo(torch.float8_e4m3fn).max, device=inputs.device)\n        if hasattr(self, \"_amax\"):\n            amax = self._amax\n            # A constant_amax buffer is registered at config time (on CPU) and may not have\n            # followed a later `model.to(device)`; align it with the input device on the fly.\n            if amax.device != inputs.device:\n                amax = amax.to(inputs.device)\n        else:\n            reduce_axis = quant_utils.convert_quantization_axis_to_reduce_axis(inputs, self._axis)\n            amax = quant_utils.reduce_amax(inputs, axis=reduce_axis, keepdims=True).detach()\n\n        amax = amax.detach() if is_torch_export_mode() else amax.data\n        return amax"
+        },
+        {
+          "start": 890,
+          "end": 949,
+          "text": "    def _fake_quantize(self, inputs):\n        \"\"\"Fake quantization.\"\"\"\n        if self.backend is not None:\n            if self.backend not in _QUANT_FUNCTIONAL_BACKENDS:\n                raise KeyError(f\"Quant backend '{self.backend}' is not registered.\")\n            entrypoint = _QUANT_FUNCTIONAL_BACKENDS[self.backend]\n            return entrypoint(inputs, self)\n\n        amax = None\n        if not self.is_mx_format:\n            amax = self._get_amax(inputs)\n\n        if self.block_sizes is not None and self.block_sizes.get(\"type\", \"static\") == \"dynamic\":\n            # Dynamic block quantization\n            block_size = self.block_sizes.get(-1, None) or self.block_sizes.get(\n                inputs.dim() - 1, None\n            )\n            if block_size is None:\n                raise ValueError(\"block size for dynamic quantization not found.\")\n\n            outputs = dynamic_block_quant(\n                inputs,\n                block_size,\n                amax,\n                self._get_bias(inputs),\n                self._num_bits,\n                self.block_sizes.get(\"scale_bits\", None),\n                getattr(self, \"_trt_high_precision_dtype\", None),\n                getattr(self, \"_onnx_quantizer_type\", None),\n                self._pass_through_bwd,\n            )\n        elif isinstance(self._num_bits, tuple):\n            # Float-point quantization, e.g., FP8\n            E, M = self._num_bits  # noqa: N806\n\n            outputs = scaled_e4m3(\n                inputs,\n                amax,\n                self._get_bias(inputs),\n                E,\n                M,\n                self._trt_high_precision_dtype,\n                self._pass_through_bwd,\n            )\n\n        else:\n            # Integer quantization, e.g., INT8\n            outputs = fake_tensor_quant(\n                inputs,\n                amax,\n                self._get_bias(inputs),\n                self._num_bits,\n                self._unsigned,\n                self._narrow_range,\n                self._trt_high_precision_dtype,\n                self._pass_through_bwd,\n                self.block_sizes.get(-1) if self.block_sizes else None,\n                self.axis[0] if isinstance(self.axis, tuple) else self.axis,\n            )\n        return outputs"
+        }
+      ]
+    },
+    {
+      "path": "modelopt/torch/quantization/model_calib.py",
+      "url": "https://raw.githubusercontent.com/NVIDIA/Model-Optimizer/e68eb44ee5c7fdb6a86885f457f1cdba0598e0c1/modelopt/torch/quantization/model_calib.py",
+      "github_url": "https://github.com/NVIDIA/Model-Optimizer/blob/e68eb44ee5c7fdb6a86885f457f1cdba0598e0c1/modelopt/torch/quantization/model_calib.py",
+      "sha256": "a0cf22f2692da3eb46a3aaf9d76a31d6dbc9b29c2fc9dac4df429d24ea7aaa37",
+      "bytes": 105057,
+      "line_count": 2410,
+      "excerpts": [
+        {
+          "start": 193,
+          "end": 205,
+          "text": "def weight_only_quantize(model: nn.Module):\n    \"\"\"Just quantize the weights of the model.\"\"\"\n    names = module_name_maps(model)\n    seen_modules = set()\n    for module in names.name_to_module.values():\n        if module in seen_modules:\n            continue\n\n        if isinstance(module, QuantModule):\n            with enable_weight_access_and_writeback(module, model, names):\n                for weight, weight_quantizer in module.iter_weights_for_calibration():\n                    weight_quantizer(weight)\n        seen_modules.add(module)"
+        },
+        {
+          "start": 317,
+          "end": 504,
+          "text": "def max_calibrate(\n    model: nn.Module,\n    forward_loop: ForwardLoop | None = None,\n    distributed_sync=True,\n    sync_expert_weight_amax=False,\n    shared_states: Mapping[str, Mapping[str, Sequence[str]]] | None = None,\n    skip_forward_without_activation_calib: bool = False,\n):\n    \"\"\"Calibrate the model using max.\n\n    Args:\n        model: Model to be calibrated.\n        forward_loop: A callable which takes the model as argument and\n            forwards calibration data through the model.\n        distributed_sync: Whether to sync input_quantizer amax across distributed processes.\n        sync_expert_weight_amax: SequentialMLP only — share one weight amax across all experts\n            in a MoE layer (within-rank sync + EP all-reduce when EP>1).\n        shared_states: Optional dict keyed by shared-state name. ``\"weight_global_amax\"`` is\n            implemented today and accepts ``{\"patterns\": [...]}``; omitted patterns use\n            ``SHARED_PATTERNS``, while an empty list disables the state.\n        skip_forward_without_activation_calib: If True, skip the (potentially expensive)\n            ``forward_loop`` when no enabled quantizer needs data-driven activation statistics\n            (see :func:`_needs_activation_forward_for_max_calib`). Weight calibration still runs.\n            Only opt-in for the top-level ``max`` path; algorithms that always need activations\n            (MSE, local Hessian, SmoothQuant, SVDQuant, GPTQ) call this with the default False.\n\n    See :class:`MaxCalibConfig <modelopt.torch.quantization.config.MaxCalibConfig>` for\n    details on the remaining arguments.\n    \"\"\"\n    # Discover fusible sibling groups by name regex and attach the (initially empty) shared\n    # state up front, so parent-level runtime hooks can be installed by future concrete\n    # states. Discovery is structural (a pattern over the module tree), so it needs no\n    # ``_amax``; per-member values are aggregated later by\n    # SharedWeightGlobalAmaxState.populate, after the forward and any cross-rank ``_amax`` sync.\n    weight_patterns = SharedWeightGlobalAmaxState.resolve_patterns(shared_states=shared_states)\n    SharedWeightGlobalAmaxState.attach(model, patterns=weight_patterns)\n\n    # Always run weight calibration on the weight tensor directly so every weight\n    # quantizer gets ``_amax``, regardless of MoE routing. Downstream algorithms\n    # (MSE, AWQ, export) then no longer need to patch in a missing ``_amax``.\n    enable_stats_collection(model)\n    weight_only_quantize(model)\n    if forward_loop is not None:\n        if skip_forward_without_activation_calib and not _needs_activation_forward_for_max_calib(\n            model\n        ):\n            print_rank_0(\n                \"max_calibrate: all enabled activation quantizers use constant/dynamic amax; \"\n                \"skipping the calibration forward pass (weight-only calibration).\"\n            )\n        else:\n            forward_loop(model)\n    finish_stats_collection(model)\n\n    # Sync quantizer amax across local experts within each rank (for SequentialMLP)\n    for name, module in model.named_modules():\n        if hasattr(module, \"layer_sync_moe_local_experts_amax\"):\n            module.layer_sync_moe_local_experts_amax(sync_weight_amax=sync_expert_weight_amax)\n\n    # Fail fast on NVFP4 static-block with TP>1 (sharded_state_dict treats _amax as replicated).\n    try:\n        from .plugins.megatron import _check_nvfp4_static_tp_supported\n    except ImportError:\n        pass\n    else:\n        _check_nvfp4_static_tp_supported(model)\n\n    if not distributed_sync:\n        # Single-process: _amax is final.\n        _finalize_with_shared_state(model, weight_patterns)\n        return\n\n    # Check MoE calibration completeness before sync\n    for name, module in model.named_modules():\n        if isinstance(module, QuantModule) and _has_expert_parallelism(module):\n            for child in module.children():\n                if isinstance(child, AnyQuantizer):\n                    _check_moe_calibration_complete(child, module.parallel_state)\n\n    def sync_quantizer_amax_across_dp_ep(quantizer, parallel_state, parent_name, child_name):\n        \"\"\"Sync amax across DP (always) and EP (filtered — see _should_sync_amax_across_ep).\"\"\"\n        if isinstance(quantizer, (SequentialQuantizer, GroupedQuantizer)):\n            for _q in quantizer:\n                sync_quantizer_amax_across_dp_ep(_q, parallel_state, parent_name, child_name)\n            return\n        if getattr(quantizer, \"_amax\", None) is None:\n            return\n        quantizer.sync_amax_across_distributed_group(parallel_state.data_parallel_group)\n        if _should_sync_amax_across_ep(parent_name, child_name, sync_expert_weight_amax):\n            quantizer.sync_amax_across_distributed_group(parallel_state.expert_model_parallel_group)\n\n    # Step 2:Sync amax across data parallelism\n    for name, module in model.named_modules():\n        if isinstance(module, QuantModule):\n            for child_name, child in module.named_children():\n                if isinstance(child, AnyQuantizer):\n                    sync_quantizer_amax_across_dp_ep(child, module.parallel_state, name, child_name)\n    # Step 3: TP sync\n    # Objective: the quantization parameters when TP = 8 then changed to TP=4 then back to TP=8 should be the same\n\n    # ColumnParallel: X @ [A_1, A_2] (weights split along Cout)\n    #   activations:  TPG should have the same amax if axis in [None, -1]\n    #   weights:      TPG should have the same amax if axis in [None, -1] (note: we dont use -1 axis for weights)\n\n    # RowParallel:    [X_1, X_2] @  [A_1\n    #                                A_2] (weights split along Cin)\n    #   activations:  TPG should have the same amax if axis in [None]\n    #   weights:      TPG should have the same amax if axis in [None, 0]\n\n    def sync_quantizer_amax_across_tp(\n        quantizer: TensorQuantizer | SequentialQuantizer,\n        linear_name: str,\n        quantizer_type: str,\n        axes_for_sync: list,\n        parallel_state: ParallelState,\n    ):\n        # Syncing amax across TP for sequential quantizer\n        if isinstance(quantizer, (SequentialQuantizer, GroupedQuantizer)):\n            for _q in quantizer:\n                sync_quantizer_amax_across_tp(\n                    _q, linear_name, quantizer_type, axes_for_sync, parallel_state\n                )\n            return\n        # sync is not needed for block quantization\n        if quantizer.block_sizes is not None:\n            if hasattr(quantizer, \"_padding\"):\n                warnings.warn(\n                    f\"Found block-quantized padded {quantizer_type} for {linear_name}, amax will\"\n                    \" not be synced correctly.\"\n                )\n            # Skip amax sync for INT4 / W4A8 block quantization\n            # Sync amax for NVFP4 (dynamic per-block, static per-tensor quantized scale)\n            if getattr(quantizer.block_sizes, \"type\", None) == \"dynamic\":\n                return\n\n        if quantizer.axis in axes_for_sync and quantizer.amax is not None:\n            quantizer.sync_amax_across_distributed_group(parallel_state.tensor_parallel_group)\n\n    # Step 2: Sync amax across relevant parallelism (such as TP / EP)\n    for name, module in model.named_modules():\n        if getattr(module, \"_parallel_state\", None) is None:\n            continue\n\n        if is_quantized_column_parallel_linear(module):\n            sync_quantizer_amax_across_tp(\n                module.input_quantizer,\n                name,\n                \"input_quantizer\",\n                axes_for_sync=[None, -1],\n                parallel_state=module.parallel_state,\n            )\n            sync_quantizer_amax_across_tp(\n                module.weight_quantizer,\n                name,\n                \"weight_quantizer\",\n                axes_for_sync=[None, -1],\n                parallel_state=module.parallel_state,\n            )\n\n        if is_quantized_row_parallel_linear(module):\n            sync_quantizer_amax_across_tp(\n                module.input_quantizer,\n                name,\n                \"input_quantizer\",\n                axes_for_sync=[None],\n                parallel_state=module.parallel_state,\n            )\n\n            sync_quantizer_amax_across_tp(\n                module.weight_quantizer,\n                name,\n                \"weight_quantizer\",\n                axes_for_sync=[None, 0],\n                parallel_state=module.parallel_state,\n            )\n\n        # KV Cache Quantization\n        if hasattr(module, \"k_bmm_quantizer\") and hasattr(module, \"v_bmm_quantizer\"):\n            # We only support KVCache quantization with scalar per-tensor states for now (NVFP4 & FP8 KV cache)\n            # So we should sync amax across DP and TP for these quantizers (DP is already synced from above)\n            for quantizer in [module.k_bmm_quantizer, module.v_bmm_quantizer]:\n                if isinstance(quantizer, TensorQuantizer) and quantizer.amax is not None:\n                    quantizer.sync_amax_across_distributed_group(\n                        module.parallel_state.tensor_parallel_group\n                    )\n\n    # _amax is now cross-rank consistent across ranks.\n    _finalize_with_shared_state(model, weight_patterns)"
+        },
+        {
+          "start": 1135,
+          "end": 1148,
+          "text": "def enable_stats_collection(model: nn.Module):\n    \"\"\"Enable stats collection for all quantizers in the model.\"\"\"\n    for name, module in model.named_modules():\n        if isinstance(module, TensorQuantizer) and not module._disabled:\n            if module._use_constant_amax or module._constant_amax is not None:\n                # Quantizers with a constant amax use a fixed amax and don't need calibration.\n                # Disable quantization during calibration so it doesn't affect other quantizers.\n                module.disable_quant()\n                continue\n            elif module._calibrator is not None:\n                module.disable_quant()\n                module.enable_calib()\n            else:\n                module.disable()"
+        },
+        {
+          "start": 1151,
+          "end": 1174,
+          "text": "def finish_stats_collection(model: nn.Module, method: str | None = None, **kwargs):\n    \"\"\"Finish stats collection for all quantizers in the model.\"\"\"\n    for _, module in model.named_modules():\n        if not isinstance(module, TensorQuantizer) or module._disabled:\n            continue\n\n        if module._use_constant_amax or module._constant_amax is not None:\n            # Re-enable quantization for constant-amax quantizers disabled in enable_stats_collection.\n            module.enable_quant()\n            continue\n\n        cal = getattr(module, \"_calibrator\", None)\n        if cal and not getattr(module, \"_dynamic\", False):\n            if method == \"entropy\":\n                if cal.compute_amax(method) is not None:\n                    module.load_calib_amax(\"entropy\", **kwargs)\n            elif cal.compute_amax(**kwargs) is not None:\n                module.load_calib_amax(**kwargs)\n\n        if module.bias_calibrator is not None and module.bias_type == \"static\":\n            module.load_calib_bias()\n\n        module.enable_quant()\n        module.disable_calib()"
+        }
+      ]
+    },
+    {
+      "path": "modelopt/torch/quantization/tensor_quant.py",
+      "url": "https://raw.githubusercontent.com/NVIDIA/Model-Optimizer/e68eb44ee5c7fdb6a86885f457f1cdba0598e0c1/modelopt/torch/quantization/tensor_quant.py",
+      "github_url": "https://github.com/NVIDIA/Model-Optimizer/blob/e68eb44ee5c7fdb6a86885f457f1cdba0598e0c1/modelopt/torch/quantization/tensor_quant.py",
+      "sha256": "04797525a68472627ab89596ff465f782498ca934937e2e2a4be12f3235ef932",
+      "bytes": 22841,
+      "line_count": 707,
+      "excerpts": [
+        {
+          "start": 291,
+          "end": 298,
+          "text": "def _fake_tensor_quant_backward(inputs, amax: torch.Tensor | None, grad_outputs):\n    # Skip clip for MX formats\n    if amax is None:\n        return grad_outputs\n\n    zero = grad_outputs.new_zeros(1)\n    grad_inputs = torch.where(inputs.abs() <= amax, grad_outputs, zero)\n    return grad_inputs"
+        },
+        {
+          "start": 301,
+          "end": 306,
+          "text": "def _fake_quant_backward_function(ctx, grad_outputs, num_args=1):\n    saved_tensors = ctx.saved_tensors\n    if len(saved_tensors) == 0:\n        return (grad_outputs,) + (None,) * (num_args - 1)\n    inputs, amax = saved_tensors\n    return (_fake_tensor_quant_backward(inputs, amax, grad_outputs),) + (None,) * (num_args - 1)"
+        },
+        {
+          "start": 309,
+          "end": 316,
+          "text": "def _save_for_backward_if_needed(ctx, pass_through_bwd, inputs, amax):\n    if not pass_through_bwd and amax is not None:\n        amax = (\n            amax\n            if isinstance(amax, torch.Tensor)\n            else torch.tensor(amax, device=inputs.device, dtype=inputs.dtype)\n        )\n        ctx.save_for_backward(inputs, amax)"
+        },
+        {
+          "start": 539,
+          "end": 563,
+          "text": "    def forward(\n        ctx,\n        inputs,\n        block_size,\n        amax,\n        bias,\n        num_bits,\n        scale_bits,\n        trt_high_precision_dtype=None,\n        onnx_quantizer_type=\"dynamic\",\n        pass_through_bwd=True,\n    ):\n        \"\"\"Forward method.\"\"\"\n        _save_for_backward_if_needed(ctx, pass_through_bwd, inputs, amax)\n        return _dynamic_block_quantize_forward(\n            ctx,\n            inputs,\n            block_size,\n            amax,\n            num_bits,\n            scale_bits,\n            trt_high_precision_dtype,\n            onnx_quantizer_type,\n            pass_through_bwd,\n        )"
+        },
+        {
+          "start": 566,
+          "end": 568,
+          "text": "    def backward(ctx, grad_outputs):\n        \"\"\"Implements straight through estimation with clipping.\"\"\"\n        return _fake_quant_backward_function(ctx, grad_outputs, num_args=9)"
+        }
+      ]
+    },
+    {
+      "path": "modelopt/torch/kernels/quantization/gemm/fp4_kernel_hopper.py",
+      "url": "https://raw.githubusercontent.com/NVIDIA/Model-Optimizer/e68eb44ee5c7fdb6a86885f457f1cdba0598e0c1/modelopt/torch/kernels/quantization/gemm/fp4_kernel_hopper.py",
+      "github_url": "https://github.com/NVIDIA/Model-Optimizer/blob/e68eb44ee5c7fdb6a86885f457f1cdba0598e0c1/modelopt/torch/kernels/quantization/gemm/fp4_kernel_hopper.py",
+      "sha256": "ef3f9cd41b6873da3897350eead5be7a28b4028f84b0e8889428099c4d1480d9",
+      "bytes": 5357,
+      "line_count": 160,
+      "excerpts": [
+        {
+          "start": 73,
+          "end": 89,
+          "text": "    global_scale = tl.load(global_scale_ptr).to(tl.float32)\n    global_scale_valid = (global_scale > 0.0) & (global_scale < float(\"inf\"))  # False for NaN\n    global_scale_safe = tl.where(global_scale_valid, global_scale, 1.0)\n\n    tile = tl.load(x_block_ptr, boundary_check=(0, 1), padding_option=\"zero\").to(tl.float32)\n\n    tile_reshaped = tl.reshape(tile, (TILE_M, NUM_FP4_BLOCKS, BLOCK_SIZE))\n    block_max = tl.max(tl.abs(tile_reshaped), axis=2, keep_dims=True)\n    block_max_quant = fp8_quantize_scale(block_max, global_scale_safe)\n    # Like the CUDA extension, a zero, inf or NaN global amax uses a unit block scale.\n    block_max_quant = tl.where(global_scale_valid, block_max_quant, 1.0)\n\n    # Only a zero block scale zeroes the block; small nonzero scales quantize normally.\n    x_quant = nvfp4_scalar_quant(tile_reshaped, block_max_quant, BLOCK_SIZE)\n    tile_quant = tl.reshape(x_quant, (TILE_M, TILE_N))\n\n    tl.store(y_block_ptr, tile_quant.to(OUT_DTYPE), boundary_check=(0, 1))"
+        },
+        {
+          "start": 130,
+          "end": 130,
+          "text": "    global_scale = (global_amax.float() / (6.0 * 448.0)).to(x.device)"
+        }
+      ]
+    },
+    {
+      "path": "modelopt/torch/kernels/quantization/common/nvfp4_quant.py",
+      "url": "https://raw.githubusercontent.com/NVIDIA/Model-Optimizer/e68eb44ee5c7fdb6a86885f457f1cdba0598e0c1/modelopt/torch/kernels/quantization/common/nvfp4_quant.py",
+      "github_url": "https://github.com/NVIDIA/Model-Optimizer/blob/e68eb44ee5c7fdb6a86885f457f1cdba0598e0c1/modelopt/torch/kernels/quantization/common/nvfp4_quant.py",
+      "sha256": "b57608fbd11f56750471d2d104fa3027910a28675492f9ddec263d15b189d02a",
+      "bytes": 5524,
+      "line_count": 155,
+      "excerpts": [
+        {
+          "start": 33,
+          "end": 63,
+          "text": "def fp4_round_magnitude(abs_scaled):\n    \"\"\"Round ``|x| / scale`` to the nearest FP4 (E2M1) magnitude.\n\n    Works with any tensor shape — the caller is responsible for computing\n    ``abs_scaled = |x| / scale`` beforehand.\n\n    Returns:\n        Tensor of same shape as *abs_scaled* with values in\n        {0.0, 0.5, 1.0, 1.5, 2.0, 3.0, 4.0, 6.0}.\n    \"\"\"\n    return tl.where(\n        abs_scaled <= 0.25,\n        0.0,\n        tl.where(\n            abs_scaled < 0.75,\n            0.5,\n            tl.where(\n                abs_scaled <= 1.25,\n                1.0,\n                tl.where(\n                    abs_scaled < 1.75,\n                    1.5,\n                    tl.where(\n                        abs_scaled <= 2.5,\n                        2.0,\n                        tl.where(abs_scaled < 3.5, 3.0, tl.where(abs_scaled <= 5.0, 4.0, 6.0)),\n                    ),\n                ),\n            ),\n        ),\n    )"
+        },
+        {
+          "start": 67,
+          "end": 101,
+          "text": "def nvfp4_scalar_quant(\n    x,  # [N] float32, already loaded\n    scale,  # float32 scalar: pre-computed block scale (amax / 6.0)\n    N: tl.constexpr,\n):\n    \"\"\"NVFP4 scalar fake quantization for a group of elements sharing one scale.\n\n    Quantizes each element independently: divide by scale, round to nearest\n    FP4 (E2M1) value via ``fp4_round_magnitude``, multiply by scale.\n    A zero scale produces an all-zero block.\n\n    All ops are element-wise, so any shape works with a broadcastable\n    ``scale`` (e.g. a [M, B, 16] tile with [M, B, 1] per-block scales, as\n    used by the attention softmax-P qdq).\n\n    Args:\n        x:     [N] float32 tensor of values to quantize (already in registers).\n        scale: float32 scalar block scale (or broadcastable tensor of scales).\n        N:     Compile-time number of elements.\n\n    Returns:\n        x_quant: [N] float32, fake-quantized values.\n    \"\"\"\n    x_abs = tl.abs(x)\n    zero_scale = scale == 0.0\n    scale_safe = tl.where(\n        zero_scale | libdevice.isnan(scale) | (tl.abs(scale) == float(\"inf\")),\n        1.0,\n        scale,\n    )\n    abs_scaled = x_abs / scale_safe\n    q_val = fp4_round_magnitude(abs_scaled)\n    x_rescaled = q_val * scale_safe\n    x_quant = tl.where(x >= 0, x_rescaled, -x_rescaled)\n    return tl.where(zero_scale, 0.0, x_quant)"
+        },
+        {
+          "start": 105,
+          "end": 125,
+          "text": "def fp8_quantize_scale(block_amax, global_scale):\n    \"\"\"FP8 E4M3 fake-quantize the per-block NVFP4 scale.\n\n    Computes ``scale = block_amax / 6.0``, then round-trips it through\n    FP8 E4M3 using ``global_scale`` for the second-level scaling. Values above\n    the E4M3 maximum saturate; values below its rounding range may become zero.\n\n    Works with any tensor shape (scalar, 1-D, or higher) since all ops\n    are element-wise.\n\n    Args:\n        block_amax:   Per-block amax value(s).\n        global_scale: Pre-computed ``global_amax / (6.0 * 448.0)``.\n\n    Returns:\n        FP8-quantized per-block scale(s), same shape as ``block_amax``.\n    \"\"\"\n    FP8_E4M3_MAX: tl.constexpr = 448.0\n    scale_in_fp8_range = block_amax / (6.0 * global_scale)\n    scale_saturated = tl.minimum(scale_in_fp8_range, FP8_E4M3_MAX)\n    return scale_saturated.to(tl.float8e4nv).to(tl.float32) * global_scale"
+        }
+      ]
+    },
+    {
+      "path": "examples/llm_qat/configs/train/qad_nvfp4.yaml",
+      "url": "https://raw.githubusercontent.com/NVIDIA/Model-Optimizer/e68eb44ee5c7fdb6a86885f457f1cdba0598e0c1/examples/llm_qat/configs/train/qad_nvfp4.yaml",
+      "github_url": "https://github.com/NVIDIA/Model-Optimizer/blob/e68eb44ee5c7fdb6a86885f457f1cdba0598e0c1/examples/llm_qat/configs/train/qad_nvfp4.yaml",
+      "sha256": "6e0ca9167b52a73d97afa1f47c900119c03107b0744c54216a842414daf39c55",
+      "bytes": 832,
+      "line_count": 44,
+      "excerpts": [
+        {
+          "start": 1,
+          "end": 44,
+          "text": "# QAD: Quantization-Aware Distillation with NVFP4\n\n# Model\nmodel_name_or_path:  # e.g., Qwen/Qwen3-8B\noutput_dir:  # e.g., qwen3-8b-qad-nvfp4\nattn_implementation: flash_attention_2\n\n# Distillation\ndistill: true\nteacher_model:  # e.g., Qwen/Qwen3-8B\n\n# Dataset\ndataset_config: configs/dataset/blend.yaml\ntrain_samples: 20000\neval_samples: 2000\n\n# Hyperparameters\nnum_train_epochs: 1.0\nlearning_rate: 1e-5\nper_device_train_batch_size: 2\nper_device_eval_batch_size: 2\ngradient_accumulation_steps: 2\nmodel_max_length: 8192\nwarmup_ratio: 0.05\nlr_scheduler_type: cosine\nuse_liger_kernel: true\nmanual_gc: true\nseed: 42\ndo_train: true\ndo_eval: true\n\n# Checkpointing\nload_best_model_at_end: true\nsave_total_limit: 2\n\n# Evaluation\neval_on_start: true\neval_strategy: steps\neval_steps: 50\n\n# Logging\nlogging_steps: 1\nreport_to:\n  - tensorboard"
+        }
+      ]
+    }
+  ],
+  "review_status": "Key configuration, calibration, global/block scaling, saturation, rounding and default STE logic re-read at this immutable commit; report line references updated.",
+  "difference_from_prior_unpinned_web_fetch": "Hopper helper in fixed commit uses zero-scale canonical zero and quantizes small nonzero scales normally; earlier cached main excerpt had a <1e-5 replacement with 1. Report corrects the statement without assigning a historical commit."
+}

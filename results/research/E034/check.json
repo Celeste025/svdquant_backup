@@ -1,0 +1,842 @@
+{
+  "experiment": "E034",
+  "phase": "check",
+  "status": "complete",
+  "actual_dit_calls": 0,
+  "attention_calls": 0,
+  "arms": [
+    "global",
+    "fullblock",
+    "codebook",
+    "coarse16"
+  ],
+  "warmups": 3,
+  "repeats": 10,
+  "expected_attention_calls": 156,
+  "geometry": {
+    "heads": 56,
+    "valid_length": 22539,
+    "padded_length": 22656,
+    "head_dim": 128,
+    "query_groups": 177,
+    "coarse_centers": 16
+  },
+  "timing_scope": "Resident contiguous BF16 HND QKV plus fixed geometry IDs to valid contiguous NHD output. Include necessary BF16 reductions/pad/centering, fresh clustering only for codebook, all three packs, FP32 K conversion, table GEMM, native attention and output assembly. Exclude upload/static-ID construction/JIT/CPU hashes/files/numeric reports.",
+  "memory_scope": "Per-arm cache clear; all arms retain the same fixed ID map and weights. Warm baseline then per-repeat resetpeak/baseline/peak/increment. Every call returns its small center/ID tensors along with output; all products are released before the next repeat. Final coarse small tensors are saved from that call without re-execution.",
+  "scope": "Same K16 capacity contiguous-center strong baseline; no new kernel, video, parameter search, byte scientific gate or novel-algorithm claim.",
+  "sources": {
+    "runner": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_coarse_centers.py",
+      "bytes": 17703,
+      "sha256": "93b41995812f7b8e3a0b487c850127f3a5102cdc755ea21ef14516bbe1e3c989"
+    },
+    "previous": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_codebook_consumer.py",
+      "bytes": 26107,
+      "sha256": "0487e640d9a9b85935d931bd4c244b88c57adff6cdaa70973ac7f7d8d2af9855"
+    },
+    "codebook": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_codebook_centers.py",
+      "bytes": 15087,
+      "sha256": "e46c14724d21d8109c0d9b80be551aee3924e15d4052d6dbd2c03088d21adc7e"
+    },
+    "common": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_query_mean_k4.py",
+      "bytes": 11027,
+      "sha256": "ee4406f6a26dc6c671171a97bcda070d7be9f16d4fb599787aa208f7764b1e3a"
+    },
+    "adaptive": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_adaptive_centers.py",
+      "bytes": 14134,
+      "sha256": "fe6e1810deb3068e3752f76c75795abccc1c82ade8d54957dd3e382993356e89"
+    },
+    "official": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/nvfp4_attention_sm120.py",
+      "bytes": 19507,
+      "sha256": "040738c6d6af5584ca9b375bb59468d7011506862ff0a162f1f51a72149abefc"
+    },
+    "private": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/codebook_attention_sm120.py",
+      "bytes": 17979,
+      "sha256": "dc2b139eca6e971d21b1ff8a47895124fd0e77088e311494fc9c75a5df524372"
+    },
+    "plan": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E034_coarse_center_baseline_plan.md",
+      "bytes": 2622,
+      "sha256": "79c6bcbe0f267cd63fb10193e909f4cd01a0f0824077a246cc2f43ab59ce0442"
+    }
+  },
+  "reference_report": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E033/run.json",
+    "bytes": 616477,
+    "sha256": "292dd0a5a452996db422f3c70398d0a2e2eba40ffcc2bd34500727bdc74e14af"
+  },
+  "private_source": {
+    "source_hash": "f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6",
+    "jit_name": "e033_nvfp4_codebook_f9b8d4face60e3ba",
+    "namespace": "e033_nvfp4_attention_f9b8d4face60e3ba",
+    "private_dir": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6",
+    "binding": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/binding.cu",
+    "generator": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/codebook_attention_sm120.py",
+      "bytes": 17979,
+      "sha256": "dc2b139eca6e971d21b1ff8a47895124fd0e77088e311494fc9c75a5df524372"
+    },
+    "official_header_count": 29,
+    "official_sources": {
+      "api/launcher.h": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/api/launcher.h",
+        "bytes": 6172,
+        "sha256": "38244efc7aa841d9015824bf5cb8fd0939749ad002d4eb0c32881d43fd5afc67"
+      },
+      "common/block_info.h": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/block_info.h",
+        "bytes": 2726,
+        "sha256": "42db5a7f19200de6901a154b320cfdd7d0425eb10cb340c55ae27d07429b1104"
+      },
+      "common/cute_extension.h": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/cute_extension.h",
+        "bytes": 22592,
+        "sha256": "ebff69dd5d2c225ef95b030e20a1b8c0569708246650787ebf3fcbca630b2e7f"
+      },
+      "common/gemm_with_interleave.h": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/gemm_with_interleave.h",
+        "bytes": 3267,
+        "sha256": "5210c3d93bfa81a5ae8b16c9806f298bf0a12bd93b403334624bc1516875bb4e"
+      },
+      "common/params.h": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/params.h",
+        "bytes": 3221,
+        "sha256": "5c37f98a6be483dd7010f5c8f56c17bb6b5916f31071e27cee605c7ef94c23e9"
+      },
+      "common/static_switch.h": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/static_switch.h",
+        "bytes": 4005,
+        "sha256": "b0bb66150d434516418a75483d583a8e1872c8f560ef8fba111eda3e1c35f888"
+      },
+      "compute/consumer/delta_correction.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/consumer/delta_correction.cuh",
+        "bytes": 2968,
+        "sha256": "db067b790c872f5e5538ea7996392a8e1315a92c5868416722bc66eef618b0fe"
+      },
+      "compute/consumer/pv_gemm.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/consumer/pv_gemm.cuh",
+        "bytes": 8404,
+        "sha256": "5fa9f7d7f651f1739f965b644550627daa1ccbd7b39590538459ec7851a0c9b0"
+      },
+      "compute/consumer/qk_gemm.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/consumer/qk_gemm.cuh",
+        "bytes": 6890,
+        "sha256": "1abe2386bbcd837c5bf89eae3a69dc197b3e0c964e5a73886467006687c02cd6"
+      },
+      "compute/consumer/softmax.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/consumer/softmax.cuh",
+        "bytes": 34364,
+        "sha256": "57fa09d6e5884abe2b9ce94f492d1a222ce6e6bddbc3ab364818a6d913d12cb6"
+      },
+      "compute/epilogue/lse_writer.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/epilogue/lse_writer.cuh",
+        "bytes": 3880,
+        "sha256": "a61414278ee4e367a0a0a08b9bfaac254559fb7f54c49cf9a3dfb2c5ddd614b5"
+      },
+      "compute/epilogue/output_writer.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/epilogue/output_writer.cuh",
+        "bytes": 8579,
+        "sha256": "298bf6d9f0c1de78f7ddacd37a9d33d147d9f87a14fbb7b902db7036505f1285"
+      },
+      "compute/epilogue.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/epilogue.cuh",
+        "bytes": 9694,
+        "sha256": "d5fe649afe69c7486c4e08ff38959902c857c5aebe74c0286b601931dacfb6e4"
+      },
+      "compute/mainloop.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/mainloop.cuh",
+        "bytes": 46004,
+        "sha256": "0c36b7ecf8ed705ca9b852560a4dba17840b0bf494f50fd8511d3f8f77268f5e"
+      },
+      "compute/producer/load_k.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/producer/load_k.cuh",
+        "bytes": 5796,
+        "sha256": "a1849b4ce1244611fc2e7b7e45509391e00c08908dabc3fd80f8a57ac2aff4d8"
+      },
+      "compute/producer/load_q.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/producer/load_q.cuh",
+        "bytes": 4042,
+        "sha256": "678617b648a9a0c8b2305d3af9ac579a0210b93469b79898d9cf1bf524fe300c"
+      },
+      "compute/producer/load_v.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/producer/load_v.cuh",
+        "bytes": 4578,
+        "sha256": "ccd40b66e4490e0ce2346c0d590acb7159ca184e03d4728ed7711b66953a4300"
+      },
+      "kernel/attention_kernel.h": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/kernel/attention_kernel.h",
+        "bytes": 10764,
+        "sha256": "2b0b243876f98aff40d7c5b6f392916ff8d30e4d1ad31a8e9c282668ed382031"
+      },
+      "kernel/scheduler.h": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/kernel/scheduler.h",
+        "bytes": 8307,
+        "sha256": "30abd8e4316675ff1865578ba4136483e3391bd48f426c442dd08e9619f5d2b6"
+      },
+      "kernel/traits.h": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/kernel/traits.h",
+        "bytes": 10710,
+        "sha256": "423ee6287a89c951fa9a6d819b9a16f557dd27a335d8aa0a325554b21bce630b"
+      },
+      "primitives/barrier.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/primitives/barrier.cuh",
+        "bytes": 7562,
+        "sha256": "a0ad7fa0ffcc16a79c90bcb0a95076885201076e66f88ab7e09989b3892c292b"
+      },
+      "primitives/pipeline.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/primitives/pipeline.cuh",
+        "bytes": 4050,
+        "sha256": "96be5ba090aa05935c867b8eedecf50e4028ada3e49d1ef6a04c019e882c954d"
+      },
+      "primitives/tma.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/primitives/tma.cuh",
+        "bytes": 3575,
+        "sha256": "27a9434e47de9645717f8fb6d88c2c97b165c7a4f9d247a63b2083d2b5438783"
+      },
+      "primitives/warpgroup.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/primitives/warpgroup.cuh",
+        "bytes": 4116,
+        "sha256": "3667ca52c48e849ed7b0b500948fecc061fb4a9f8dd480733d6e9a4e7a46ad1c"
+      },
+      "quantization/fp4_convert.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/quantization/fp4_convert.cuh",
+        "bytes": 2291,
+        "sha256": "5af96f4c370a4cfba96fa9ef6ff1debbf545593403350863cdb7e1c3096ed746"
+      },
+      "quantization/fp4_layout.h": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/quantization/fp4_layout.h",
+        "bytes": 5782,
+        "sha256": "2adee11761e3d670614f6980c071b596d02069af1c9f70fe455798331d8f6bdb"
+      },
+      "utils/copy.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/utils/copy.cuh",
+        "bytes": 2123,
+        "sha256": "de6ddcffe5bd01b979c6e1a45e083572fb219875288e5df1e39888e842a811a6"
+      },
+      "utils/layout.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/utils/layout.cuh",
+        "bytes": 2401,
+        "sha256": "487f9816ec70648f11de06a0775908608766d06728b16a2b1a160d59eb25a558"
+      },
+      "utils/math.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/utils/math.cuh",
+        "bytes": 939,
+        "sha256": "a43dc22c1e19b941704b50ab1ceb84ca85311171a457ade7eb695bb425e57a74"
+      },
+      "binding.cu": {
+        "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/csrc/nvfp4_attention_sm120/nvfp4_attention_sm120_binding.cu",
+        "bytes": 14272,
+        "sha256": "9a847598ef4a36cc078a73722c2826d16b8bc489acfb031cac5f9957b4c5619c"
+      }
+    },
+    "generated_sources": {
+      "api/launcher.h": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/api/launcher.h",
+        "bytes": 6410,
+        "sha256": "e578c400149475ef5c2091d94e20b0bf7c4fb145c42196ad31853d7806edeb15"
+      },
+      "common/block_info.h": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/common/block_info.h",
+        "bytes": 2726,
+        "sha256": "42db5a7f19200de6901a154b320cfdd7d0425eb10cb340c55ae27d07429b1104"
+      },
+      "common/cute_extension.h": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/common/cute_extension.h",
+        "bytes": 22592,
+        "sha256": "ebff69dd5d2c225ef95b030e20a1b8c0569708246650787ebf3fcbca630b2e7f"
+      },
+      "common/gemm_with_interleave.h": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/common/gemm_with_interleave.h",
+        "bytes": 3311,
+        "sha256": "140e22c9db395afd1d70b6b543babde2b44a803d009ce40b38605ec5924529c4"
+      },
+      "common/params.h": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/common/params.h",
+        "bytes": 3381,
+        "sha256": "7744e3d75a89a2bb40b619edb4cd08923492ac4758ff64a94b1f1bee984be40e"
+      },
+      "common/static_switch.h": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/common/static_switch.h",
+        "bytes": 4005,
+        "sha256": "b0bb66150d434516418a75483d583a8e1872c8f560ef8fba111eda3e1c35f888"
+      },
+      "compute/consumer/delta_correction.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/compute/consumer/delta_correction.cuh",
+        "bytes": 3012,
+        "sha256": "fd2dee10106666f9f7c042d389520b16ccec014dd1c0e016efcfe800011d9daa"
+      },
+      "compute/consumer/pv_gemm.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/compute/consumer/pv_gemm.cuh",
+        "bytes": 8492,
+        "sha256": "ba55ac2fd939a338898f3f954b85fc204935340e131ab86b1df7900e5794b2ce"
+      },
+      "compute/consumer/qk_gemm.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/compute/consumer/qk_gemm.cuh",
+        "bytes": 6956,
+        "sha256": "bb5ca99668fa7f281142cc95648af28fa4b4a6d640b3b80c7ad2fb3091cdfde0"
+      },
+      "compute/consumer/softmax.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/compute/consumer/softmax.cuh",
+        "bytes": 34826,
+        "sha256": "0256ea5ea3a4a3c987ef38145f5cac2a2cce950ac73d8ff4e660be57f0c9b324"
+      },
+      "compute/epilogue/lse_writer.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/compute/epilogue/lse_writer.cuh",
+        "bytes": 3924,
+        "sha256": "ae19e3fabcf16aa180f0d01ad787f3111628167bac61c61f9b1a7310ce77e904"
+      },
+      "compute/epilogue/output_writer.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/compute/epilogue/output_writer.cuh",
+        "bytes": 8623,
+        "sha256": "e13bdb7a9be88dd1c6cf3b444ca62a4cd2a27475fb7c7f7fe9c22fb157e93c71"
+      },
+      "compute/epilogue.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/compute/epilogue.cuh",
+        "bytes": 9738,
+        "sha256": "20a435fd6908800e59a918762512031daff5a2a17ebb5c0a5816394074afc1cb"
+      },
+      "compute/mainloop.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/compute/mainloop.cuh",
+        "bytes": 46415,
+        "sha256": "21e54ae85086a69d386a9c27b9feb6a9cf4e4df698e0cfba905ecb1f1be26779"
+      },
+      "compute/producer/load_k.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/compute/producer/load_k.cuh",
+        "bytes": 5840,
+        "sha256": "a8c0a5667252584de7295ca9cd0aab5e2949c47f3fa92818726f9068ecd82d5f"
+      },
+      "compute/producer/load_q.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/compute/producer/load_q.cuh",
+        "bytes": 4086,
+        "sha256": "ce2bd82830ecc0d047bf87e475ff715b651b4f90b77d574904efe7ef4288a099"
+      },
+      "compute/producer/load_v.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/compute/producer/load_v.cuh",
+        "bytes": 4622,
+        "sha256": "b50aa7cdac1065d08e88f8ec46ce3c11ad8d47ac9a8ef99e404c56967146dabd"
+      },
+      "kernel/attention_kernel.h": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/kernel/attention_kernel.h",
+        "bytes": 10868,
+        "sha256": "d94b2241e939e6de3c1b502c71a489bee066017b089f4f5fdfbfc7cd836e772f"
+      },
+      "kernel/scheduler.h": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/kernel/scheduler.h",
+        "bytes": 8351,
+        "sha256": "813e63330b2a7f87cb906931ea4e4af49dae68f67215d6532ff79a9897458df0"
+      },
+      "kernel/traits.h": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/kernel/traits.h",
+        "bytes": 10820,
+        "sha256": "1fa149c6ae81daf22dae279e59416e3a557dcaef174b7a7b465b6997b2b78e5a"
+      },
+      "primitives/barrier.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/primitives/barrier.cuh",
+        "bytes": 7606,
+        "sha256": "2f078b13114c743e31af207c23039602131117587557e4800d67dfcc47cff8b8"
+      },
+      "primitives/pipeline.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/primitives/pipeline.cuh",
+        "bytes": 4094,
+        "sha256": "ab13de3f72d72585b76ce760ed14fbb7b1eb2b6371acf50c874a63cf7055854b"
+      },
+      "primitives/tma.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/primitives/tma.cuh",
+        "bytes": 3773,
+        "sha256": "d5523657f0fd46f9cbe57126e616c37f3e239d3b6df53d1880ccf393dfd340ac"
+      },
+      "primitives/warpgroup.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/primitives/warpgroup.cuh",
+        "bytes": 4160,
+        "sha256": "bbfb5230b56578a87c1bbeceaaac4008d2d414a5b48c9fc3feaf2ebd703575b7"
+      },
+      "quantization/fp4_convert.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/quantization/fp4_convert.cuh",
+        "bytes": 2335,
+        "sha256": "0f3c02de07b7a0d64548fcc5319d5125066fc23c44d922755efe8197ec9ba5dd"
+      },
+      "quantization/fp4_layout.h": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/quantization/fp4_layout.h",
+        "bytes": 5826,
+        "sha256": "bd5f34aa04fb92a1239ae4bb73187729623e394e85cb0bf54a8a51a8d03bd3de"
+      },
+      "utils/copy.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/utils/copy.cuh",
+        "bytes": 2167,
+        "sha256": "d379365f43d0522312faeb12ea596cdcfdf84883f675609501175c8b5efc23dc"
+      },
+      "utils/layout.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/utils/layout.cuh",
+        "bytes": 2445,
+        "sha256": "90613bd1fb793e7c4a1a755e73a3dbce144dcd4f2a604cf806f6da9158437ce2"
+      },
+      "utils/math.cuh": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/include/utils/math.cuh",
+        "bytes": 983,
+        "sha256": "fa68e69f3ef217fa41120d1fc81e500bcfca8d119d43036644ff9a5c4491e7a5"
+      },
+      "binding.cu": {
+        "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/binding.cu",
+        "bytes": 14444,
+        "sha256": "afa83f2f0a61dfbd594a24af98a785f1106c5eb281482d9ed319c216d2345d34"
+      }
+    },
+    "patch": {
+      "file": "/data1/models/svdquant-wjq/research/private_jit/e033/f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6/semantic.patch",
+      "bytes": 9575,
+      "sha256": "c7efe75d295a013ad6e4657386ba2eea0d83cb8aa58be4bee51373c505effd46"
+    },
+    "semantic_files": [
+      "api/launcher.h",
+      "common/params.h",
+      "compute/mainloop.cuh",
+      "binding.cu"
+    ],
+    "structural_invariants": {
+      "unchanged_header_semantics": 26,
+      "unchanged_tma_shared_barriers": true,
+      "true_q_shape_preserved": true,
+      "ds_extent": "128 * correction_table.shape[2]",
+      "producer_row": "ids[(batch * true_q_heads + head) * (true_q_length / 128) + m_block]",
+      "specialization": "D128, BF16 output, noncausal, BlockMean=true, ReturnLSE=false; same original traits branch"
+    },
+    "compilation_performed": false,
+    "cuda_queried": false
+  },
+  "coarse_geometry": {
+    "boundaries": [
+      0,
+      11,
+      22,
+      33,
+      44,
+      55,
+      66,
+      77,
+      88,
+      99,
+      110,
+      121,
+      132,
+      143,
+      154,
+      165,
+      177
+    ],
+    "ids": {
+      "shape": [
+        1,
+        56,
+        177
+      ],
+      "dtype": "torch.int32",
+      "finite": true,
+      "sha256": "121f617fc170cace5fdb8038b68a6b50ee0aff2c2c638adcb6d5df8a4d9d6957"
+    },
+    "intervals": [
+      {
+        "center": 0,
+        "group_start": 0,
+        "group_end": 11,
+        "token_start": 0,
+        "padded_token_end": 1408,
+        "valid_tokens": 1408,
+        "mean_denominator": 1408,
+        "padding_tokens": 0
+      },
+      {
+        "center": 1,
+        "group_start": 11,
+        "group_end": 22,
+        "token_start": 1408,
+        "padded_token_end": 2816,
+        "valid_tokens": 1408,
+        "mean_denominator": 1408,
+        "padding_tokens": 0
+      },
+      {
+        "center": 2,
+        "group_start": 22,
+        "group_end": 33,
+        "token_start": 2816,
+        "padded_token_end": 4224,
+        "valid_tokens": 1408,
+        "mean_denominator": 1408,
+        "padding_tokens": 0
+      },
+      {
+        "center": 3,
+        "group_start": 33,
+        "group_end": 44,
+        "token_start": 4224,
+        "padded_token_end": 5632,
+        "valid_tokens": 1408,
+        "mean_denominator": 1408,
+        "padding_tokens": 0
+      },
+      {
+        "center": 4,
+        "group_start": 44,
+        "group_end": 55,
+        "token_start": 5632,
+        "padded_token_end": 7040,
+        "valid_tokens": 1408,
+        "mean_denominator": 1408,
+        "padding_tokens": 0
+      },
+      {
+        "center": 5,
+        "group_start": 55,
+        "group_end": 66,
+        "token_start": 7040,
+        "padded_token_end": 8448,
+        "valid_tokens": 1408,
+        "mean_denominator": 1408,
+        "padding_tokens": 0
+      },
+      {
+        "center": 6,
+        "group_start": 66,
+        "group_end": 77,
+        "token_start": 8448,
+        "padded_token_end": 9856,
+        "valid_tokens": 1408,
+        "mean_denominator": 1408,
+        "padding_tokens": 0
+      },
+      {
+        "center": 7,
+        "group_start": 77,
+        "group_end": 88,
+        "token_start": 9856,
+        "padded_token_end": 11264,
+        "valid_tokens": 1408,
+        "mean_denominator": 1408,
+        "padding_tokens": 0
+      },
+      {
+        "center": 8,
+        "group_start": 88,
+        "group_end": 99,
+        "token_start": 11264,
+        "padded_token_end": 12672,
+        "valid_tokens": 1408,
+        "mean_denominator": 1408,
+        "padding_tokens": 0
+      },
+      {
+        "center": 9,
+        "group_start": 99,
+        "group_end": 110,
+        "token_start": 12672,
+        "padded_token_end": 14080,
+        "valid_tokens": 1408,
+        "mean_denominator": 1408,
+        "padding_tokens": 0
+      },
+      {
+        "center": 10,
+        "group_start": 110,
+        "group_end": 121,
+        "token_start": 14080,
+        "padded_token_end": 15488,
+        "valid_tokens": 1408,
+        "mean_denominator": 1408,
+        "padding_tokens": 0
+      },
+      {
+        "center": 11,
+        "group_start": 121,
+        "group_end": 132,
+        "token_start": 15488,
+        "padded_token_end": 16896,
+        "valid_tokens": 1408,
+        "mean_denominator": 1408,
+        "padding_tokens": 0
+      },
+      {
+        "center": 12,
+        "group_start": 132,
+        "group_end": 143,
+        "token_start": 16896,
+        "padded_token_end": 18304,
+        "valid_tokens": 1408,
+        "mean_denominator": 1408,
+        "padding_tokens": 0
+      },
+      {
+        "center": 13,
+        "group_start": 143,
+        "group_end": 154,
+        "token_start": 18304,
+        "padded_token_end": 19712,
+        "valid_tokens": 1408,
+        "mean_denominator": 1408,
+        "padding_tokens": 0
+      },
+      {
+        "center": 14,
+        "group_start": 154,
+        "group_end": 165,
+        "token_start": 19712,
+        "padded_token_end": 21120,
+        "valid_tokens": 1408,
+        "mean_denominator": 1408,
+        "padding_tokens": 0
+      },
+      {
+        "center": 15,
+        "group_start": 165,
+        "group_end": 177,
+        "token_start": 21120,
+        "padded_token_end": 22656,
+        "valid_tokens": 1419,
+        "mean_denominator": 1536,
+        "padding_tokens": 117
+      }
+    ],
+    "map_policy": "Assign j over [floor(j*G/16), floor((j+1)*G/16)); not floor(g*16/G).",
+    "static_metadata": "The fixed geometry ID map is uploaded once outside timing and resident for all arms; data-dependent centers are recomputed every call."
+  },
+  "inputs": [
+    {
+      "block": 0,
+      "capture": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/capture/block0.pt",
+        "sha256": "5c8882219a165d9c4835ee80f132455f875fc21a2bd122c1b20c64cfed7b603c",
+        "bytes": 1292661823
+      },
+      "outputs": {
+        "global": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E033/benchmark/block0_global.pt",
+            "bytes": 323120723,
+            "sha256": "d414cac8b88cdd9334f18067785aed29d524066131708454e4bf07cc837f9bfc"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "628168109e58c98dd28d2a8fefd0fa1ba027117bb1a2053c94a824147820be65"
+          }
+        },
+        "fullblock": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E033/benchmark/block0_fullblock.pt",
+            "bytes": 323120744,
+            "sha256": "0b6ca282e0d096f22be84b4af83c87868ee396f6b54e79ab3fcbdcf5d4c1ae33"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "60706d916c522ef6817f4d31b56ff31ce33a76c88e5d6b796114583999b99372"
+          }
+        },
+        "codebook": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E033/benchmark/block0_codebook.pt",
+            "bytes": 323120737,
+            "sha256": "72e8a9fc203231285717f5bede7cc82c29a15b2c27df83dd0c642804e74122ba"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "a1a83de85ebd7f164a1c44b6a708dfe00f1b7646788304026daa3a0ed4b66216"
+          }
+        },
+        "bf16": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block0_bf16_shift0.pt",
+            "sha256": "49b2698d53d398e429da75d1288e3e9925af8527d65bf56d1d9f1220ef11df1d",
+            "bytes": 323120758
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "840d01f656bbeb6069a9ced5ae357c0bd3a3e027be9a593d3f5ae1d989957e41"
+          }
+        }
+      }
+    },
+    {
+      "block": 24,
+      "capture": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/capture/block24.pt",
+        "sha256": "a71b06ec3f2eeea330c46837d425c458787ba6044c823ee86a8b8b518301a5c4",
+        "bytes": 1292661837
+      },
+      "outputs": {
+        "global": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E033/benchmark/block24_global.pt",
+            "bytes": 323120730,
+            "sha256": "0add508885da402eb2ae29189edcce1a3fe616a849cef661bd7a9ea0f40bd73d"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "4de28609619218825cdd1deba1d25bd06aebb5296f29f98a83f8e3a9d8d1287c"
+          }
+        },
+        "fullblock": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E033/benchmark/block24_fullblock.pt",
+            "bytes": 323120751,
+            "sha256": "6ed3120725ec0efb4294e4307450626fd677b04da917b730827072fc1b4d4e29"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "008b3cd3d250f4f6d60e9592c2a7c57df5415118fbcae9890ead728d042f4612"
+          }
+        },
+        "codebook": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E033/benchmark/block24_codebook.pt",
+            "bytes": 323120744,
+            "sha256": "851db8382daff7343e5132810861e31738378db5d08d16eb13b06f54ff85b0f7"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "86dabb60698692ece2d31b8fa6e821f59ddfeef1d2fc8df45a340aad11baf891"
+          }
+        },
+        "bf16": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block24_bf16_shift0.pt",
+            "sha256": "64a4ae741a59da0eb84d46343e8f57437510eadb6105d8ecf5c7f60e13c0bb6f",
+            "bytes": 323120765
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "36ca72f3600e64caa6cb6b662feaf4cdec0b1d7f3144f69278c41c7e7defad0c"
+          }
+        }
+      }
+    },
+    {
+      "block": 48,
+      "capture": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/capture/block48.pt",
+        "sha256": "308020a78bd3a8d160a463753a4bf10894c889f5daf3312499ddc32bba54c285",
+        "bytes": 1292661837
+      },
+      "outputs": {
+        "global": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E033/benchmark/block48_global.pt",
+            "bytes": 323120730,
+            "sha256": "1d40d8af05e593f9c43e10f7812d471ab6b66f01458348c0f362ea83c1d2c730"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "a6193e9ea8b0f80696a5b3f6e52aa07e924b9afe89d1d2e9a76360819ee05b94"
+          }
+        },
+        "fullblock": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E033/benchmark/block48_fullblock.pt",
+            "bytes": 323120751,
+            "sha256": "477bf0d25bc991f5b77cb6eefa254e28c486ab9507af4dc5f8f100b337db1ce4"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "9afaf5b788d0cdc660f8e11e171f193c9dc71cf272dbd1488813c31e7fac6f82"
+          }
+        },
+        "codebook": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E033/benchmark/block48_codebook.pt",
+            "bytes": 323120744,
+            "sha256": "82ac94ddcf0ae857b1ea2cd7948f176da2e997fffcd9398989989b9eda0ef10a"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "191a5f27d7f11dd58a8e57715f8c08c21a24114bfebfacc78c7e1321ba0d57bd"
+          }
+        },
+        "bf16": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block48_bf16_shift0.pt",
+            "sha256": "5011ace47ddf9af22664ab2ab45467c6b8ee95ff341d6bd9aec6c142de55cbc3",
+            "bytes": 323120765
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "4afddcfd0f746131c2d6ecf93e08ed952001ba932959e3d5c9cae828a3b56e8e"
+          }
+        }
+      }
+    }
+  ],
+  "cuda_initialized": false,
+  "seconds": 6.347126007080078
+}

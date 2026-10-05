@@ -1,0 +1,59 @@
+{
+  "status": "failed_stop",
+  "gpu": 5,
+  "start_epoch": 1790961561.0691288,
+  "deadline_epoch": 1790963202.7657955,
+  "command": [
+    "/data1/models/svdquant-wjq/conda-envs/svdquant-ptq/bin/python",
+    "-u",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/eval_mjvideo_e021.py",
+    "--manifest",
+    "/home/wjq/workspace/svdquant-exp/results/research/E021/generation_manifest.draft.json",
+    "--samples",
+    "/data1/models/svdquant-wjq/research/20261003/E021",
+    "--model",
+    "/data1/models/svdquant-wjq/models/MJ-VIDEO-2B",
+    "--tokenizer",
+    "/data1/models/svdquant-wjq/research/20261003/E021/tokenizer",
+    "--mjvideo-repo",
+    "/data1/models/svdquant-wjq/third_party/MJ-Video",
+    "--output",
+    "/home/wjq/workspace/svdquant-exp/results/research/E021/mjvideo_scores.json",
+    "--variants",
+    "bf16",
+    "packed_step0000",
+    "packed_step0064",
+    "svd_lr",
+    "--num-segments",
+    "8",
+    "--video-template",
+    "{variant}/{case_id}/video.mp4"
+  ],
+  "source_sha256": "fc86183ebf006bf0fe492ca21c7a5658185ac835c6d93aaea9a62bef53e638a0",
+  "prior_launcher_sha256": "776ea576de014cae89e75b06b0eadcffd5837357d60a02da88ab6f6869e6be80",
+  "fix": "Append existing VBench site-packages for missing decord; same official evaluator math; record actual sample indices and model attention fallback.",
+  "gpu_before": {
+    "index": 5,
+    "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+    "memory_mib": 0,
+    "utilization_percent": 0,
+    "samples": [
+      {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0
+      },
+      {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0
+      }
+    ]
+  },
+  "pid": 1602509,
+  "returncode": 1,
+  "error": "Traceback (most recent call last):\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/resume_wan_qad_mjvideo.py\", line 30, in main\n    if code:raise RuntimeError(f'MJ evaluator exit {code}')\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: MJ evaluator exit 1\n",
+  "seconds": 5.382321834564209
+}

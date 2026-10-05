@@ -1,0 +1,61 @@
+{
+  "status": "ready_to_wait",
+  "model_calls": 0,
+  "subprocesses_launched": 0,
+  "asset_wait": "download + supervisor complete AND original processes exited; deadline + 120s",
+  "evaluation_gpu_wait_seconds": 1800,
+  "stages": [
+    {
+      "name": "reference_check",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_wan14b_reference.py",
+        "--manifest",
+        "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E049_wan14b_reference_manifest.json",
+        "--prompt-ids",
+        "161",
+        "192",
+        "269",
+        "316",
+        "--check-only"
+      ],
+      "result": "/home/wjq/workspace/svdquant-exp/results/research/E049/check_bf16.json",
+      "timeout": 300,
+      "env": "native_cpu"
+    },
+    {
+      "name": "generation",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/launch_wan14b_reference.py"
+      ],
+      "result": "/home/wjq/workspace/svdquant-exp/results/research/E049/launcher.json",
+      "timeout": null,
+      "env": "native_cpu"
+    },
+    {
+      "name": "evaluation",
+      "command": [
+        "/data1/models/svdquant-wjq/conda-envs/mjvideo/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/launch_wan14b_reference_evaluation.py"
+      ],
+      "result": "/home/wjq/workspace/svdquant-exp/results/research/E049/evaluation_launcher.json",
+      "timeout": null,
+      "env": "mj_cpu"
+    },
+    {
+      "name": "summary",
+      "command": [
+        "/data1/models/svdquant-wjq/conda-envs/mjvideo/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/summarize_wan14b_reference.py"
+      ],
+      "result": "/home/wjq/workspace/svdquant-exp/results/research/E049/evaluation_summary.json",
+      "timeout": 180,
+      "env": "mj_cpu"
+    }
+  ]
+}

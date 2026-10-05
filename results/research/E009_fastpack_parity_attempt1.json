@@ -1,0 +1,95 @@
+{
+  "status": "failed",
+  "started": 1790932120.897874,
+  "torch": "2.11.0+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "cuda_visible_devices": "0",
+  "scope": "packing correctness; no performance measurement",
+  "seed": 20261002,
+  "reference": "unchanged function ASTs from frozen E005 and H3 common",
+  "source_sha256": {
+    "scripts/research/test_h3_nvfp4_fastpack.py": "883f157e3e3cbd4479d9e3cd269ca6e942345495eb29225ea0e18402dbc7c7b5",
+    "scripts/research/h3_nvfp4_fastpack.py": "f5a22a9e3f23d7903403017575e1a63c1cb42e04b0230256a5808902bbc198b7",
+    "scripts/research/probe_h3_native_contract.py": "0be4b1fb4a67f52e2c618ef492f49e1285cc14b57c2e6ceffbc6fa578a011c83",
+    "scripts/minimax_h3_svdquant_common.py": "d0fca20f98a40c3aa20773faa47e6d6b986811f6cd03802723021fd50383ae61",
+    "scripts/research/wan_native_nvfp4.py": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa"
+  },
+  "cases": [
+    {
+      "name": "e2m1_signed_midpoints_and_zero",
+      "shape": [
+        17,
+        32
+      ],
+      "domain_flags": [
+        0,
+        0
+      ],
+      "byte_mismatches": {
+        "codes": 0,
+        "global_scale": 0,
+        "swizzled_scales_including_padding": 0
+      },
+      "reference_stats": {
+        "exact_midpoints": 224,
+        "negative_exact_midpoints": 112,
+        "legacy_rne_code_changes": 112,
+        "near_midpoints_atol_1e-6_including_exact": 224,
+        "nonzero_subnormal_scales": 0,
+        "zero_scales": 0,
+        "all_zero_input_groups": 0,
+        "nonzero_input_groups_with_zero_scale": 0,
+        "nonfinite_normalized_values": 0,
+        "scales_at_448": 2,
+        "elements": 544,
+        "groups": 34,
+        "global_scale": 1.0,
+        "midpoint_fraction": 0.4117647058823529,
+        "changed_code_fraction": 0.20588235294117646,
+        "scale_padding_excluded": true
+      },
+      "decoded_equal_historical_qdq": true,
+      "decoded_vs_qdq_byte_differences": 32,
+      "decode_zero_sign_note": "E005 keeps a negative-zero nibble for small negative z; historical signed15 QDQ uses +0. Equal values are required; the packed bytes themselves match E005 exactly.",
+      "seconds_not_benchmark": 1.321448802947998
+    },
+    {
+      "name": "e4m3_midpoints_including_subnormals",
+      "shape": [
+        127,
+        32
+      ],
+      "domain_flags": [
+        0,
+        1
+      ],
+      "byte_mismatches": {
+        "codes": 0,
+        "global_scale": 0,
+        "swizzled_scales_including_padding": 0
+      },
+      "reference_stats": {
+        "exact_midpoints": 0,
+        "negative_exact_midpoints": 0,
+        "legacy_rne_code_changes": 0,
+        "near_midpoints_atol_1e-6_including_exact": 0,
+        "nonzero_subnormal_scales": 12,
+        "zero_scales": 2,
+        "all_zero_input_groups": 0,
+        "nonzero_input_groups_with_zero_scale": 2,
+        "nonfinite_normalized_values": 0,
+        "scales_at_448": 4,
+        "elements": 4064,
+        "groups": 254,
+        "global_scale": 1.0,
+        "midpoint_fraction": 0.0,
+        "changed_code_fraction": 0.0,
+        "scale_padding_excluded": true
+      }
+    }
+  ],
+  "rejections": {},
+  "error": "ValueError('H3 legacy NVFP4 invalid/nonfinite input or nonzero group with zero E4M3 scale')",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/test_h3_nvfp4_fastpack.py\", line 141, in run\n    validate_flags([got.domain_flags])\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_fastpack.py\", line 132, in validate_flags\n    raise ValueError('H3 legacy NVFP4 invalid/nonfinite input or nonzero group with zero E4M3 scale')\nValueError: H3 legacy NVFP4 invalid/nonfinite input or nonzero group with zero E4M3 scale\n"
+}

@@ -1,0 +1,547 @@
+{
+  "experiment": "E019_lse_diagnostic",
+  "phase": "check",
+  "status": "complete",
+  "attention_calls": 0,
+  "complete_dit_calls": 0,
+  "scope": "Fixed-packet return_lse diagnosis only; original E019 exact gate unchanged",
+  "environment": {
+    "python": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+    "torch": "2.11.0+cu128",
+    "torch_cuda": "12.8",
+    "packages": {
+      "torch": "2.11.0+cu128",
+      "triton": "3.6.0",
+      "flashinfer-python": "0.7.0.post1"
+    }
+  },
+  "sources": {
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/csrc/nvfp4_attention_sm120/nvfp4_attention_sm120_binding.cu": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/csrc/nvfp4_attention_sm120/nvfp4_attention_sm120_binding.cu",
+      "sha256": "9a847598ef4a36cc078a73722c2826d16b8bc489acfb031cac5f9957b4c5619c",
+      "bytes": 14272
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/csrc/nvfp4_attention_sm120/nvfp4_attention_sm120_quantize.cu": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/csrc/nvfp4_attention_sm120/nvfp4_attention_sm120_quantize.cu",
+      "sha256": "86abc2a339444943c16baaab8943d212d30af4c1428371f99e844b6795a68aca",
+      "bytes": 24519
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/api/launcher.h": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/api/launcher.h",
+      "sha256": "38244efc7aa841d9015824bf5cb8fd0939749ad002d4eb0c32881d43fd5afc67",
+      "bytes": 6172
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/block_info.h": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/block_info.h",
+      "sha256": "42db5a7f19200de6901a154b320cfdd7d0425eb10cb340c55ae27d07429b1104",
+      "bytes": 2726
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/cute_extension.h": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/cute_extension.h",
+      "sha256": "ebff69dd5d2c225ef95b030e20a1b8c0569708246650787ebf3fcbca630b2e7f",
+      "bytes": 22592
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/gemm_with_interleave.h": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/gemm_with_interleave.h",
+      "sha256": "5210c3d93bfa81a5ae8b16c9806f298bf0a12bd93b403334624bc1516875bb4e",
+      "bytes": 3267
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/params.h": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/params.h",
+      "sha256": "5c37f98a6be483dd7010f5c8f56c17bb6b5916f31071e27cee605c7ef94c23e9",
+      "bytes": 3221
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/static_switch.h": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/static_switch.h",
+      "sha256": "b0bb66150d434516418a75483d583a8e1872c8f560ef8fba111eda3e1c35f888",
+      "bytes": 4005
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/consumer/delta_correction.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/consumer/delta_correction.cuh",
+      "sha256": "db067b790c872f5e5538ea7996392a8e1315a92c5868416722bc66eef618b0fe",
+      "bytes": 2968
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/consumer/pv_gemm.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/consumer/pv_gemm.cuh",
+      "sha256": "5fa9f7d7f651f1739f965b644550627daa1ccbd7b39590538459ec7851a0c9b0",
+      "bytes": 8404
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/consumer/qk_gemm.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/consumer/qk_gemm.cuh",
+      "sha256": "1abe2386bbcd837c5bf89eae3a69dc197b3e0c964e5a73886467006687c02cd6",
+      "bytes": 6890
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/consumer/softmax.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/consumer/softmax.cuh",
+      "sha256": "57fa09d6e5884abe2b9ce94f492d1a222ce6e6bddbc3ab364818a6d913d12cb6",
+      "bytes": 34364
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/epilogue/lse_writer.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/epilogue/lse_writer.cuh",
+      "sha256": "a61414278ee4e367a0a0a08b9bfaac254559fb7f54c49cf9a3dfb2c5ddd614b5",
+      "bytes": 3880
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/epilogue/output_writer.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/epilogue/output_writer.cuh",
+      "sha256": "298bf6d9f0c1de78f7ddacd37a9d33d147d9f87a14fbb7b902db7036505f1285",
+      "bytes": 8579
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/epilogue.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/epilogue.cuh",
+      "sha256": "d5fe649afe69c7486c4e08ff38959902c857c5aebe74c0286b601931dacfb6e4",
+      "bytes": 9694
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/mainloop.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/mainloop.cuh",
+      "sha256": "0c36b7ecf8ed705ca9b852560a4dba17840b0bf494f50fd8511d3f8f77268f5e",
+      "bytes": 46004
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/producer/load_k.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/producer/load_k.cuh",
+      "sha256": "a1849b4ce1244611fc2e7b7e45509391e00c08908dabc3fd80f8a57ac2aff4d8",
+      "bytes": 5796
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/producer/load_q.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/producer/load_q.cuh",
+      "sha256": "678617b648a9a0c8b2305d3af9ac579a0210b93469b79898d9cf1bf524fe300c",
+      "bytes": 4042
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/producer/load_v.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/producer/load_v.cuh",
+      "sha256": "ccd40b66e4490e0ce2346c0d590acb7159ca184e03d4728ed7711b66953a4300",
+      "bytes": 4578
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/kernel/attention_kernel.h": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/kernel/attention_kernel.h",
+      "sha256": "2b0b243876f98aff40d7c5b6f392916ff8d30e4d1ad31a8e9c282668ed382031",
+      "bytes": 10764
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/kernel/scheduler.h": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/kernel/scheduler.h",
+      "sha256": "30abd8e4316675ff1865578ba4136483e3391bd48f426c442dd08e9619f5d2b6",
+      "bytes": 8307
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/kernel/traits.h": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/kernel/traits.h",
+      "sha256": "423ee6287a89c951fa9a6d819b9a16f557dd27a335d8aa0a325554b21bce630b",
+      "bytes": 10710
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/primitives/barrier.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/primitives/barrier.cuh",
+      "sha256": "a0ad7fa0ffcc16a79c90bcb0a95076885201076e66f88ab7e09989b3892c292b",
+      "bytes": 7562
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/primitives/pipeline.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/primitives/pipeline.cuh",
+      "sha256": "96be5ba090aa05935c867b8eedecf50e4028ada3e49d1ef6a04c019e882c954d",
+      "bytes": 4050
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/primitives/tma.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/primitives/tma.cuh",
+      "sha256": "27a9434e47de9645717f8fb6d88c2c97b165c7a4f9d247a63b2083d2b5438783",
+      "bytes": 3575
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/primitives/warpgroup.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/primitives/warpgroup.cuh",
+      "sha256": "3667ca52c48e849ed7b0b500948fecc061fb4a9f8dd480733d6e9a4e7a46ad1c",
+      "bytes": 4116
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/quantization/fp4_convert.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/quantization/fp4_convert.cuh",
+      "sha256": "5af96f4c370a4cfba96fa9ef6ff1debbf545593403350863cdb7e1c3096ed746",
+      "bytes": 2291
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/quantization/fp4_layout.h": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/quantization/fp4_layout.h",
+      "sha256": "2adee11761e3d670614f6980c071b596d02069af1c9f70fe455798331d8f6bdb",
+      "bytes": 5782
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/utils/copy.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/utils/copy.cuh",
+      "sha256": "de6ddcffe5bd01b979c6e1a45e083572fb219875288e5df1e39888e842a811a6",
+      "bytes": 2123
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/utils/layout.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/utils/layout.cuh",
+      "sha256": "487f9816ec70648f11de06a0775908608766d06728b16a2b1a160d59eb25a558",
+      "bytes": 2401
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/utils/math.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/utils/math.cuh",
+      "sha256": "a43dc22c1e19b941704b50ab1ceb84ca85311171a457ade7eb695bb425e57a74",
+      "bytes": 939
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/jit/nvfp4_attention_sm120.py": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/jit/nvfp4_attention_sm120.py",
+      "sha256": "bcae2efa6c36cc8aa4f0c2c8ccd803af3b0a55f8300e227157680c4e5296d115",
+      "bytes": 3386
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/nvfp4_attention_sm120.py": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/nvfp4_attention_sm120.py",
+      "sha256": "040738c6d6af5584ca9b375bb59468d7011506862ff0a162f1f51a72149abefc",
+      "bytes": 19507
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/attention/attention.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/attention/attention.py",
+      "sha256": "1126b2e19184299cbfc611dcf66e46d0fd1a7bfa1d616f2ed38bc60ba19679ae",
+      "bytes": 13461
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/vram/layers.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/vram/layers.py",
+      "sha256": "4597374ac9166a2576544fb9b746360ee4c0441e96fd7af4300fcc739abd26cf",
+      "bytes": 25504
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/base_pipeline.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/base_pipeline.py",
+      "sha256": "aa5e3729bcbe4a6969b32dc78602abadf6d7832317014c2d192d73c021aa6728",
+      "bytes": 26272
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/flow_match.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/flow_match.py",
+      "sha256": "4639571d6986fef53094bc166f3b3a8fdf5790435d28528ead7f0a929d5d2a52",
+      "bytes": 20775
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_audio_vae.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_audio_vae.py",
+      "sha256": "ce6dc03b73a0596df22a6aa89e6db9183017bd5d0e2e99b547a6bfee53a7ef2c",
+      "bytes": 19869
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit.py",
+      "sha256": "bd617a4312c70405e916707e1908100b484b2259dfbeba4af7de5bb145206d80",
+      "bytes": 18207
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit_comfy.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit_comfy.py",
+      "sha256": "e8a2eb4cb986ba384052100fdc03984446f3fa35d0ab1e9ebfacffc039a2e8ff",
+      "bytes": 3011
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_text_encoder.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_text_encoder.py",
+      "sha256": "f874a56ce992070976b534dc42e0639221fe8c88cb29d9b3e2cadf6de553a9cf",
+      "bytes": 9391
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_video_vae.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_video_vae.py",
+      "sha256": "3dd4da5c90135c904fa5f1d4f70dd43e2571e394ce437bb168a5110f71076bf4",
+      "bytes": 31730
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/pipelines/minimax_h3_audio_video.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/pipelines/minimax_h3_audio_video.py",
+      "sha256": "7f5ff890d796dcfac3551e235741bdfbd4dbcae91aae3b6e4c3817dce38eecd6",
+      "bytes": 56577
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/utils/data/audio_video.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/utils/data/audio_video.py",
+      "sha256": "9d30fdd4538475d2d6aae7fe64cca2d78012e904366ec85d81e48720874d9dd0",
+      "bytes": 8947
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_manifest.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_manifest.json",
+      "sha256": "9469815d0c1d3d51bc793c2e3eaba08c80b35969ef2fab3776667db6b61fa79d",
+      "bytes": 13391
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_paired_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_paired_plan.md",
+      "sha256": "1e616ceacc92085cd938a90d5e99faac5d41a7c7e4e51844445b8775c06fc3e4",
+      "bytes": 7695
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_manifest.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_manifest.json",
+      "sha256": "56299b66ebf8be315e2bebc3ae684eefb7781abd1a5e984e7aab3ecee4265f65",
+      "bytes": 6437
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_plan.md",
+      "sha256": "af609cb182415d336a9f96f85fb7ee62fc2c2a15d23fca688d34763f7f7742c7",
+      "bytes": 5158
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E016_h3_full_attention_manifest.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E016_h3_full_attention_manifest.json",
+      "sha256": "5b1e91c55e002b1be9b42d4392c9c55e81a02197aaeb7d47a53e11cafc7fab48",
+      "bytes": 26097
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E016_h3_full_attention_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E016_h3_full_attention_plan.md",
+      "sha256": "2bc49c56fe430c9221a77a73b94a494f8df1615412be64065bf335be06af9523",
+      "bytes": 5972
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E017_h3_fp4_video_manifest.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E017_h3_fp4_video_manifest.json",
+      "sha256": "b1c1d47ae8e516e564b89973f31094f3c9476112518c7b02f00ab51433bfb60f",
+      "bytes": 12246
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E017_h3_fp4_video_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E017_h3_fp4_video_plan.md",
+      "sha256": "7f4fc987bbed09b1ec663608ef2a5ee281f4368236535eaaf112390f250357f2",
+      "bytes": 4302
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E018_h3_query_phase_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E018_h3_query_phase_plan.md",
+      "sha256": "91e1634ceb94470a92ef98e0c64ba17ef5649de909cf2631d50e44a5b7d64c0b",
+      "bytes": 4758
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E019_h3_partition_contract_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E019_h3_partition_contract_plan.md",
+      "sha256": "96fd22c890df8f702a795f37baabf74227e04daaf8ff4794ad965b60e6844353",
+      "bytes": 4981
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/infer_minimax_h3_svdquant_standard.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/infer_minimax_h3_svdquant_standard.py",
+      "sha256": "1966ce25cbf7fb630e620a84f64ca9219afd0120e0fe07078dc8250e221961a1",
+      "bytes": 4465
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/minimax_h3_svdquant_common.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/minimax_h3_svdquant_common.py",
+      "sha256": "d0fca20f98a40c3aa20773faa47e6d6b986811f6cd03802723021fd50383ae61",
+      "bytes": 14656
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_native_nvfp4.py",
+      "sha256": "43cb697faa4c5276fcb4432f696e36ed9f69f84b7b8a27a6f1c4ef986fc7f19b",
+      "bytes": 28771
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/capture_h3_query_phase.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/capture_h3_query_phase.py",
+      "sha256": "4fdd2f95a795ac5f9184fd124be663676007b36037103630d8e3f3411cba344d",
+      "bytes": 15470
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_fp4_attention.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_fp4_attention.py",
+      "sha256": "76de03ce6f458342e7ed4b67e1a4f700c6784de4978963408e2bdc7d725fb47b",
+      "bytes": 20815
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_nvfp4.py",
+      "sha256": "13ca884a8f6c7d93258870970c9f4b204f7cc42af0038f549b825321bb899d0a",
+      "bytes": 14615
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_fastpack.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_fastpack.py",
+      "sha256": "f5a22a9e3f23d7903403017575e1a63c1cb42e04b0230256a5808902bbc198b7",
+      "bytes": 7255
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_zero_sf_compat.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_zero_sf_compat.py",
+      "sha256": "ccaaa71670a48bb8667c286fff0ae08556b568fa6d77184200a39e4b6cc00048",
+      "bytes": 5281
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_plain_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_plain_native_nvfp4.py",
+      "sha256": "36ea5e95e3bf8858b3e545157d0505be2fa03e353b432dde4cdc785f085086f0",
+      "bytes": 10532
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/nvfp4_attention_fixed_scale.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/nvfp4_attention_fixed_scale.py",
+      "sha256": "ec77c32618513fc981293590d95428a98670f0bd3b29bb1c79b545ed15b8c731",
+      "bytes": 4581
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_conditional_response.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_conditional_response.py",
+      "sha256": "4886b367c3ca1934cb2b3d23858d2dd06649681279c3cfaabbaab62d31b3627e",
+      "bytes": 32900
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_full_fp4_attention.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_full_fp4_attention.py",
+      "sha256": "acec36874c0e2c407a3b7470e71f53467030d5ee285212928cb078e4f9786623",
+      "bytes": 29739
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_modality_pulse.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_modality_pulse.py",
+      "sha256": "e836578688580885fd46f54b0d45eef7b975932bfe5872f764feb8e4b86c820c",
+      "bytes": 13825
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_native_contract.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_native_contract.py",
+      "sha256": "0be4b1fb4a67f52e2c618ef492f49e1285cc14b57c2e6ceffbc6fa578a011c83",
+      "bytes": 15329
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_partition_contract.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_partition_contract.py",
+      "sha256": "404c968268648fc50a9ad2180e7daeb308ce7d9b72bc7adc49ae6046a7f8612d",
+      "bytes": 17578
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_plain_baseline.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_plain_baseline.py",
+      "sha256": "bf1383b51e9ea45c53a583ad541f68f9d0dce0db97de5acaf767fb0f69dcf47c",
+      "bytes": 25031
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_query_phase.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_query_phase.py",
+      "sha256": "bac67d603b9dc51d361a76b7cca9aa1bcf3b1a8a367111da141edd3941fb6a9f",
+      "bytes": 12001
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/profile_h3_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/profile_h3_native_nvfp4.py",
+      "sha256": "6fbabdfb87a333d35b66fdf4a1976ae1ea2e575a5b5bb83e60d930a75e99d45e",
+      "bytes": 26846
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_fp4_attention_video.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_fp4_attention_video.py",
+      "sha256": "14f3666e1766f0f61798ed2e58b8822350f4e470210b6a603738663516510a37",
+      "bytes": 27737
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py",
+      "sha256": "41e6e4eb1d9df554e5ea109b9bad3d1df83e9b64788137511262a82a0f34431f",
+      "bytes": 28742
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py",
+      "sha256": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa",
+      "bytes": 22773
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/E019_lse_diagnostic.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/E019_lse_diagnostic.py",
+      "sha256": "f13b4d2020c338f53283a213b601a668633fd3251d34e88e50b6174343c59e72",
+      "bytes": 11367
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E019_lse_diagnostic_amendment.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E019_lse_diagnostic_amendment.md",
+      "sha256": "68e1f535e04288ace25bb1a027b8ec0cdd2acd7644f10ce8cd08803a4bfd2fd3",
+      "bytes": 1454
+    }
+  },
+  "prior_reports": {
+    "probe_run.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E019/probe_run.json",
+      "sha256": "055e23be0ce40c3a2bad8aec53d9d470b1c24d17493d9b06d391d7cdb92e168f",
+      "bytes": 38239
+    },
+    "probe_check.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E019/probe_check.json",
+      "sha256": "7c04acafa91d60e636738b1c15f1a14355f9dd0342c63b26ec29f3905e3d93a3",
+      "bytes": 38412
+    },
+    "frozen_contract.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E019/frozen_contract.json",
+      "sha256": "864fa42e2403af5d092639da33437b2edd3d4c9cd0500595bc054456115beb99",
+      "bytes": 17301
+    }
+  },
+  "e018_probe": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E018/probe_run.json",
+    "sha256": "ab66aafd6fa6fcd3b13f108087ae96a95f303fc51e2efe9abfa4a91898b3c8db",
+    "bytes": 83510
+  },
+  "input_files": {
+    "q_packets": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block0_global_mean_shift0_q_packets.pt",
+      "sha256": "5ef10b610884014a46d5e623748674a22f872191c756ad865c2dd53ea7b49bc3",
+      "bytes": 91351301
+    },
+    "kv_packets": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block0_kv_packets.pt",
+      "sha256": "d463108b80fbf06df5600d497eaf518bcb56161232dd96275451805af99a71f7",
+      "bytes": 182700609
+    },
+    "correction": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E019/block0/correction.pt",
+      "sha256": "5e50ba57a17512dc23d63d79e624895bd0ba2a35ef2c534f42c388a59c7bd4b0",
+      "bytes": 5076542
+    },
+    "reference": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block0_global_mean_shift0.pt",
+      "sha256": "68ee811560619f10fb906c3a79713cad42e3986ccde5e7461263560027d1019d",
+      "bytes": 323120935
+    }
+  },
+  "input_tensors": {
+    "correction": {
+      "shape": [
+        1,
+        56,
+        1,
+        22656
+      ],
+      "dtype": "torch.float32",
+      "sha256": "bd64a216a2046b092393fc93d60823a0b798a479d23361b94e230ae967a0d85a"
+    },
+    "k_fp4": {
+      "shape": [
+        1,
+        56,
+        22656,
+        64
+      ],
+      "dtype": "torch.uint8",
+      "sha256": "4361b8af6d237fe36ab46fb32ffaabdc67bbdd46a3acd91e9b80e9983492d8f5"
+    },
+    "k_scale": {
+      "shape": [
+        1,
+        56,
+        22656,
+        8
+      ],
+      "dtype": "torch.float8_e4m3fn",
+      "sha256": "1ab639b2b3d9eee2da99c7e39e8d4e85ab12f0761fc2c0f0b7ea9dbfa41f8214"
+    },
+    "q_fp4": {
+      "shape": [
+        1,
+        56,
+        22656,
+        64
+      ],
+      "dtype": "torch.uint8",
+      "sha256": "3c170081fb652575fd861ba140af14e91db7b720b5003203041eecb9ce306f32"
+    },
+    "q_scale": {
+      "shape": [
+        1,
+        56,
+        22656,
+        8
+      ],
+      "dtype": "torch.float8_e4m3fn",
+      "sha256": "e4448911dee17947afd42c2ab241bcd2dea2118da38753e6f61493e80d905191"
+    },
+    "v_fp4_t": {
+      "shape": [
+        1,
+        56,
+        128,
+        11328
+      ],
+      "dtype": "torch.uint8",
+      "sha256": "4cf4cad4139a4db5dd96ae78df97a2e34756dfb65eda8484d8c44e3923e41ade"
+    },
+    "v_scale_t": {
+      "shape": [
+        1,
+        56,
+        128,
+        1416
+      ],
+      "dtype": "torch.float8_e4m3fn",
+      "sha256": "83865fb66cbfbcc65477fcda279a6325396b4a9e43280b9c24c9d7e9a0dae57e"
+    }
+  },
+  "input_finite": {
+    "q_scale": true,
+    "k_scale": true,
+    "v_scale_t": true,
+    "correction": true
+  },
+  "reference_tensor": {
+    "shape": [
+      22539,
+      56,
+      128
+    ],
+    "dtype": "torch.bfloat16",
+    "sha256": "628168109e58c98dd28d2a8fefd0fa1ba027117bb1a2053c94a824147820be65"
+  },
+  "block": 0,
+  "valid_length": 22539,
+  "padded_length": 22656,
+  "call_order": [
+    false,
+    true
+  ],
+  "original_e019_gate": "failed_stop, unchanged",
+  "original_attention_calls": 1,
+  "cuda_initialized": false,
+  "seconds_total": 1.6803466170094907
+}

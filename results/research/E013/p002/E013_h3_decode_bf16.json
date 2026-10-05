@@ -1,0 +1,1279 @@
+{
+  "experiment": "E013",
+  "phase": "decode",
+  "arm": "bf16",
+  "status": "complete",
+  "scope": "Behavior feasibility; no paper or quality-equivalence claim",
+  "correctness_binding": {
+    "original_report_sha256": "2caef6a433089207b62bb8ef2d508f06f975af8dc70d109f18f1ab2171fc82e0",
+    "original_status_retained": "failed_stop",
+    "inherited_complete_stages": [
+      "offload_bf16",
+      "resident_bf16",
+      "legacy_formula_reference"
+    ],
+    "resume_report": "/home/wjq/workspace/svdquant-exp/results/research/E009_h3_native_resume.json",
+    "resume_report_sha256": "5212123739b807e86c2cbbb6d22f157a0a8aa36703ba36f0c2464edbdb2184e8",
+    "real_sf0_proof": "/home/wjq/workspace/svdquant-exp/results/research/E009_h3_sf0_domain_v2.json",
+    "real_sf0_proof_sha256": "bbffff52a0b1851b1d72ebbce0c5cf7f7e4317c64c40655af4a64f03ab8bbe97",
+    "slow_fast_all_50_blocks_and_two_endpoints_exact": true,
+    "reference_fast_checks": {
+      "compatibility": "h3_e005_sf0_canonical_zero_numeric_equivalence_v1",
+      "checked_calls": 200,
+      "invalid_calls": 0,
+      "calls_with_nonzero_input_zero_sf": 1,
+      "affected_call_indices_zero_based": [
+        7
+      ],
+      "count_scope": "Call-level flags only; not a count of affected tensor groups or elements"
+    }
+  },
+  "export_manifest": {
+    "file": "/data1/models/svdquant-wjq/research/20261002/E009/legacy_export/manifest.json",
+    "sha256": "0b92e3e9f6a937ca7a6ebff6c4dfe4e6ad4e918224525ab5bf12a4e1baddfec0"
+  },
+  "sdpa_enabled": {
+    "flash": true,
+    "math": true,
+    "mem_efficient": true,
+    "cudnn": true
+  },
+  "profile_precondition": {
+    "native": "/home/wjq/workspace/svdquant-exp/results/research/E009_profile_native.json",
+    "sha256": "47f8a7abdd6491be93ddabafa66a3fcb64dd86c7edf4882781d935ab3ad3f494"
+  },
+  "sources": {
+    "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py": {
+      "sha256": "41e6e4eb1d9df554e5ea109b9bad3d1df83e9b64788137511262a82a0f34431f",
+      "bytes": 28742,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/41e6e4eb1d9d_run_h3_native_paired_video.py"
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_manifest.json": {
+      "sha256": "9469815d0c1d3d51bc793c2e3eaba08c80b35969ef2fab3776667db6b61fa79d",
+      "bytes": 13391,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/9469815d0c1d_E010_h3_heldout_manifest.json"
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_paired_plan.md": {
+      "sha256": "1e616ceacc92085cd938a90d5e99faac5d41a7c7e4e51844445b8775c06fc3e4",
+      "bytes": 7695,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/1e616ceacc92_E010_h3_heldout_paired_plan.md"
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/minimax_h3_svdquant_common.py": {
+      "sha256": "d0fca20f98a40c3aa20773faa47e6d6b986811f6cd03802723021fd50383ae61",
+      "bytes": 14656,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/d0fca20f98a4_minimax_h3_svdquant_common.py"
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/infer_minimax_h3_svdquant_standard.py": {
+      "sha256": "1966ce25cbf7fb630e620a84f64ca9219afd0120e0fe07078dc8250e221961a1",
+      "bytes": 4465,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/1966ce25cbf7_infer_minimax_h3_svdquant_standard.py"
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_native_nvfp4.py": {
+      "sha256": "43cb697faa4c5276fcb4432f696e36ed9f69f84b7b8a27a6f1c4ef986fc7f19b",
+      "bytes": 28771,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/43cb697faa4c_bench_h3_native_nvfp4.py"
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/profile_h3_native_nvfp4.py": {
+      "sha256": "6fbabdfb87a333d35b66fdf4a1976ae1ea2e575a5b5bb83e60d930a75e99d45e",
+      "bytes": 26846,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/6fbabdfb87a3_profile_h3_native_nvfp4.py"
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_nvfp4.py": {
+      "sha256": "13ca884a8f6c7d93258870970c9f4b204f7cc42af0038f549b825321bb899d0a",
+      "bytes": 14615,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/13ca884a8f6c_h3_native_nvfp4.py"
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py": {
+      "sha256": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa",
+      "bytes": 22773,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/ab63bbb13cd0_wan_native_nvfp4.py"
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_fastpack.py": {
+      "sha256": "f5a22a9e3f23d7903403017575e1a63c1cb42e04b0230256a5808902bbc198b7",
+      "bytes": 7255,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/f5a22a9e3f23_h3_nvfp4_fastpack.py"
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_zero_sf_compat.py": {
+      "sha256": "ccaaa71670a48bb8667c286fff0ae08556b568fa6d77184200a39e4b6cc00048",
+      "bytes": 5281,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/ccaaa71670a4_h3_nvfp4_zero_sf_compat.py"
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_native_contract.py": {
+      "sha256": "0be4b1fb4a67f52e2c618ef492f49e1285cc14b57c2e6ceffbc6fa578a011c83",
+      "bytes": 15329,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/0be4b1fb4a67_probe_h3_native_contract.py"
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_modality_pulse.py": {
+      "sha256": "e836578688580885fd46f54b0d45eef7b975932bfe5872f764feb8e4b86c820c",
+      "bytes": 13825,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/e83657868858_probe_h3_modality_pulse.py"
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/pipelines/minimax_h3_audio_video.py": {
+      "sha256": "7f5ff890d796dcfac3551e235741bdfbd4dbcae91aae3b6e4c3817dce38eecd6",
+      "bytes": 56577,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/7f5ff890d796_minimax_h3_audio_video.py"
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/base_pipeline.py": {
+      "sha256": "aa5e3729bcbe4a6969b32dc78602abadf6d7832317014c2d192d73c021aa6728",
+      "bytes": 26272,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/aa5e3729bcbe_base_pipeline.py"
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/flow_match.py": {
+      "sha256": "4639571d6986fef53094bc166f3b3a8fdf5790435d28528ead7f0a929d5d2a52",
+      "bytes": 20775,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/4639571d6986_flow_match.py"
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit.py": {
+      "sha256": "bd617a4312c70405e916707e1908100b484b2259dfbeba4af7de5bb145206d80",
+      "bytes": 18207,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/bd617a4312c7_minimax_h3_dit.py"
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit_comfy.py": {
+      "sha256": "e8a2eb4cb986ba384052100fdc03984446f3fa35d0ab1e9ebfacffc039a2e8ff",
+      "bytes": 3011,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/e8a2eb4cb986_minimax_h3_dit_comfy.py"
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_text_encoder.py": {
+      "sha256": "f874a56ce992070976b534dc42e0639221fe8c88cb29d9b3e2cadf6de553a9cf",
+      "bytes": 9391,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/f874a56ce992_minimax_h3_text_encoder.py"
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_video_vae.py": {
+      "sha256": "3dd4da5c90135c904fa5f1d4f70dd43e2571e394ce437bb168a5110f71076bf4",
+      "bytes": 31730,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/3dd4da5c9013_minimax_h3_video_vae.py"
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_audio_vae.py": {
+      "sha256": "ce6dc03b73a0596df22a6aa89e6db9183017bd5d0e2e99b547a6bfee53a7ef2c",
+      "bytes": 19869,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/ce6dc03b73a0_minimax_h3_audio_vae.py"
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/attention/attention.py": {
+      "sha256": "1126b2e19184299cbfc611dcf66e46d0fd1a7bfa1d616f2ed38bc60ba19679ae",
+      "bytes": 13461,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/1126b2e19184_attention.py"
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/vram/layers.py": {
+      "sha256": "4597374ac9166a2576544fb9b746360ee4c0441e96fd7af4300fcc739abd26cf",
+      "bytes": 25504,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/4597374ac916_layers.py"
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/utils/data/audio_video.py": {
+      "sha256": "9d30fdd4538475d2d6aae7fe64cca2d78012e904366ec85d81e48720874d9dd0",
+      "bytes": 8947,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/9d30fdd45384_audio_video.py"
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_behavior_probe.py": {
+      "sha256": "986d1aeeb59c7edceeae585eb9ad62b7d020f75fdc82cbeeb9ef1734389a9206",
+      "bytes": 26757,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/986d1aeeb59c_run_h3_behavior_probe.py"
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E013_h3_behavior_manifest.json": {
+      "sha256": "07d357e50d60f3ab03ce20f944dc075350747a248fa971de731ffaf5f78d1f5f",
+      "bytes": 10174,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/07d357e50d60_E013_h3_behavior_manifest.json"
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E013_h3_behavior_plan.md": {
+      "sha256": "79fc499eacdb5ae046870e33630a74e067dace3840541db291f1cc4f77ee02a1",
+      "bytes": 5634,
+      "snapshot": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/sources/79fc499eacdb_E013_h3_behavior_plan.md"
+    }
+  },
+  "settings": {
+    "height": 576,
+    "width": 1024,
+    "num_frames": 124,
+    "num_inference_steps": 50,
+    "cfg_scale": 1.0,
+    "flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "noise_dtype": "bfloat16",
+    "tiled": true,
+    "tile_size": 256,
+    "tile_overlap": 64,
+    "fps": 24,
+    "audio_sample_rate": 32000
+  },
+  "cases": [],
+  "torch": "2.11.0+cu128",
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "5",
+    "DIFFSYNTH_ROOT": "/home/wjq/workspace/DiffSynth-Studio",
+    "MINIMAX_H3_MODEL_ROOT": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3",
+    "MINIMAX_H3_DIT_PATH": "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors",
+    "DIFFSYNTH_ATTENTION_IMPLEMENTATION": "torch",
+    "DIFFSYNTH_SKIP_DOWNLOAD": "True",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1"
+  },
+  "manifest": {
+    "experiment": "E013",
+    "status": "preregistered_not_run",
+    "scope": "One bounded projected-behavior readiness screen; no method or benchmark claim",
+    "prompt_origin": "Researcher-written before any E013 generation; numeric ids local to E013, unrelated to calibration prompt ids",
+    "cases": [
+      {
+        "prompt_id": 1,
+        "seed": 49771,
+        "direction": "toward",
+        "prompt": "A single continuous five-second wide shot of two matte toy balls on a flat white tabletop, viewed from a fixed overhead camera. One saturated blue ball stays at center-right. One saturated red ball starts at center-left. The red ball rolls steadily in a straight horizontal line toward the blue ball, without touching it. Both balls remain fully visible and separate, at constant size, on the same plane. Uniform lighting, ample empty space, no other objects, no cuts, no text.",
+        "prompt_sha256": "1a2d3137e51665aab40e9358a385d126e8866bdb24fe56f562c75ca60a515d93"
+      },
+      {
+        "prompt_id": 2,
+        "seed": 49771,
+        "direction": "away",
+        "prompt": "A single continuous five-second wide shot of two matte toy balls on a flat white tabletop, viewed from a fixed overhead camera. One saturated blue ball stays at center-right. One saturated red ball starts at center-left. The red ball rolls steadily in a straight horizontal line away from the blue ball. Both balls remain fully visible and separate, at constant size, on the same plane. Uniform lighting, ample empty space, no other objects, no cuts, no text.",
+        "prompt_sha256": "d09cc89afdaa70b82164a6a46748b8b0f48cc37c4e957bab873ecf56d2869f76"
+      },
+      {
+        "prompt_id": 3,
+        "seed": 59526,
+        "direction": "toward",
+        "prompt": "A single continuous five-second wide shot of two matte toy balls on a flat white tabletop, viewed from a fixed overhead camera. One saturated blue ball stays at center-right. One saturated red ball starts at center-left. The red ball rolls steadily in a straight horizontal line toward the blue ball, without touching it. Both balls remain fully visible and separate, at constant size, on the same plane. Uniform lighting, ample empty space, no other objects, no cuts, no text.",
+        "prompt_sha256": "1a2d3137e51665aab40e9358a385d126e8866bdb24fe56f562c75ca60a515d93"
+      },
+      {
+        "prompt_id": 4,
+        "seed": 59526,
+        "direction": "away",
+        "prompt": "A single continuous five-second wide shot of two matte toy balls on a flat white tabletop, viewed from a fixed overhead camera. One saturated blue ball stays at center-right. One saturated red ball starts at center-left. The red ball rolls steadily in a straight horizontal line away from the blue ball. Both balls remain fully visible and separate, at constant size, on the same plane. Uniform lighting, ample empty space, no other objects, no cuts, no text.",
+        "prompt_sha256": "d09cc89afdaa70b82164a6a46748b8b0f48cc37c4e957bab873ecf56d2869f76"
+      }
+    ],
+    "settings": {
+      "height": 576,
+      "width": 1024,
+      "num_frames": 124,
+      "num_inference_steps": 50,
+      "cfg_scale": 1.0,
+      "flow_shift": 12.0,
+      "audio_flow_shift": 3.0,
+      "rand_device": "cpu",
+      "noise_dtype": "bfloat16",
+      "tiled": true,
+      "tile_size": 256,
+      "tile_overlap": 64,
+      "fps": 24,
+      "audio_sample_rate": 32000
+    },
+    "assets_cpu_header_inventory": [
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/audio_vae/model.safetensors",
+        "bytes": 605429308,
+        "header_sha256": "c1a7c0a5c9f1905ba1f1659df4180f94ccf8ba614a07f526edb31bef2b37f3e2"
+      },
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/chat_template.json",
+        "bytes": 5499,
+        "sha256": "5c72a170d2a4a1a3bc5adad2e689ae28138a9700e5b8c96c0266331e86c0acce"
+      },
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/merges.txt",
+        "bytes": 1671839,
+        "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+      },
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/preprocessor_config.json",
+        "bytes": 390,
+        "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516"
+      },
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/tokenizer.json",
+        "bytes": 7032403,
+        "sha256": "a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7"
+      },
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/tokenizer_config.json",
+        "bytes": 11003,
+        "sha256": "a07e942ac874baa13758de8d1fbdb186683cc03416b5589e1b6671c6b3057c68"
+      },
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/video_preprocessor_config.json",
+        "bytes": 385,
+        "sha256": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13"
+      },
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/vocab.json",
+        "bytes": 2776833,
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+      },
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00001-of-00014.safetensors",
+        "bytes": 4932328944,
+        "header_sha256": "32712107eb5949c61fa26b55d214994350248c426ea7b6876040d64e285d3da3"
+      },
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00002-of-00014.safetensors",
+        "bytes": 4875990528,
+        "header_sha256": "b622f05ed0230c2f66d211f3f221f33a38d81d76bd433af1bb99a693ecd1735f"
+      },
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00003-of-00014.safetensors",
+        "bytes": 4875990552,
+        "header_sha256": "01f4d186967bf36ec9787e77f990b60233eb600fb70bf739c9a2f7c84ab346b8"
+      },
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00004-of-00014.safetensors",
+        "bytes": 4875990584,
+        "header_sha256": "6026f2f31ca41e615f7d479e24695e454a59325c8c34b06e554b9a23206f2115"
+      },
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00005-of-00014.safetensors",
+        "bytes": 4875990584,
+        "header_sha256": "30c3e43cb136e77434f0a97289393e2bb52eecca2edd966190c89a13c1b005c2"
+      },
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00006-of-00014.safetensors",
+        "bytes": 4875990584,
+        "header_sha256": "6fd5d3ddcf98bf167afb4d046008ff0f3f75e803e31432e6a9e36c156b0485f7"
+      },
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00007-of-00014.safetensors",
+        "bytes": 4875990584,
+        "header_sha256": "6d70bc9a31a58eba604055568c6aaf9410b9c96a696af0151b2b712270128d90"
+      },
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00008-of-00014.safetensors",
+        "bytes": 4875990584,
+        "header_sha256": "f5d07b15ff8d41fda25501926411ad2e9fd8faa4952f9ae0feb3bbd8179ff26b"
+      },
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00009-of-00014.safetensors",
+        "bytes": 4875990584,
+        "header_sha256": "ee6c0932c161957b0a01929065cb91e0d54378a3d0226539b1d3102e6198e431"
+      },
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00010-of-00014.safetensors",
+        "bytes": 4875990584,
+        "header_sha256": "dcfb1fb907a61995853e05f97dfd0825cd8bdf6a563a5fb20a0b83cff983ab32"
+      },
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00011-of-00014.safetensors",
+        "bytes": 4875990584,
+        "header_sha256": "e69411e947a509c9289f12fa15ccf2c64a9ed15fae9c1ab9d37491fae391c47f"
+      },
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00012-of-00014.safetensors",
+        "bytes": 4875990584,
+        "header_sha256": "f53e1c4bc2736f6f4e6abaa8d2170af7c4d43d9033b9237ac4fb3ea5f5e2d821"
+      },
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00013-of-00014.safetensors",
+        "bytes": 4875990584,
+        "header_sha256": "78c39cd9273303d9a1f7dff63ee438ea687760ad2e4702a608d83541084ce6bf"
+      },
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00014-of-00014.safetensors",
+        "bytes": 3270697008,
+        "header_sha256": "9f2d992b76049d6bb33addd60958da35fcb23f4346539f0ae670f299c8e36c83"
+      },
+      {
+        "path": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/video_vae/source/model.safetensors",
+        "bytes": 10415548320,
+        "header_sha256": "0633bbfd57caa33ed9e0afb6bdcd2ff418a6efbd4818dac5fe7b42fc36968bd9"
+      }
+    ],
+    "asset_root": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA",
+    "asset_hash_policy": "Reuse E010 complete full-SHA inventory; verify source report SHA and every asset size/mtime plus header/small-file hash before reuse",
+    "asset_reference_report": "/home/wjq/workspace/svdquant-exp/results/research/E010_h3_prepare.json",
+    "asset_reference_sha256": "325f8aab98f76fbb57666b1014a9fa2a8d2111d4048b52882f475a5bb745a8e8",
+    "wall_budget_seconds": 5400,
+    "stages": {
+      "teacher_seed1": [
+        1,
+        2
+      ],
+      "teacher_seed2": [
+        3,
+        4
+      ],
+      "native": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "gate": "Both first-seed BF16 cases must pass automated validity, projected-direction behavior, and manual semantic check before seed2. All four BF16 must pass before native. Any teacher unknown stops expansion; do not replace prompts/seeds. Once native starts, complete all four unless wall/resource/numeric failure; any native unknown prevents mechanism followup qualification."
+  },
+  "manifest_file": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E013_h3_behavior_manifest.json",
+    "sha256": "07d357e50d60f3ab03ce20f944dc075350747a248fa971de731ffaf5f78d1f5f",
+    "bytes": 10174
+  },
+  "plan": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E013_h3_behavior_plan.md",
+    "sha256": "79fc499eacdb5ae046870e33630a74e067dace3840541db291f1cc4f77ee02a1",
+    "bytes": 5634
+  },
+  "assets": {
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/audio_vae/model.safetensors": {
+      "sha256": "37dddc2f3e6d5d5139d823d5ea283bbf304dadcb885b1ccda818aa13dade5ea2",
+      "bytes": 605429308,
+      "mtime_ns": 1788632776913420084
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/chat_template.json": {
+      "sha256": "5c72a170d2a4a1a3bc5adad2e689ae28138a9700e5b8c96c0266331e86c0acce",
+      "bytes": 5499,
+      "mtime_ns": 1788658242680045398
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/merges.txt": {
+      "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+      "bytes": 1671839,
+      "mtime_ns": 1788658242773048407
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/preprocessor_config.json": {
+      "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+      "bytes": 390,
+      "mtime_ns": 1788658242666044946
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/tokenizer.json": {
+      "sha256": "a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7",
+      "bytes": 7032403,
+      "mtime_ns": 1788658242669045043
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/tokenizer_config.json": {
+      "sha256": "a07e942ac874baa13758de8d1fbdb186683cc03416b5589e1b6671c6b3057c68",
+      "bytes": 11003,
+      "mtime_ns": 1788658242770048310
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/video_preprocessor_config.json": {
+      "sha256": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+      "bytes": 385,
+      "mtime_ns": 1788658242794049086
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/vocab.json": {
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+      "bytes": 2776833,
+      "mtime_ns": 1788658242815049765
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00001-of-00014.safetensors": {
+      "sha256": "6b9dfbc930e505402ae9d7e5091a9d7d656cda5f34614f01cfe70bfb0cca27cb",
+      "bytes": 4932328944,
+      "mtime_ns": 1788629922958863273
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00002-of-00014.safetensors": {
+      "sha256": "d8bb44b4ff303fe76fe9e894022fb3dc71b15a2e716592790fe0e3c3e60478fa",
+      "bytes": 4875990528,
+      "mtime_ns": 1788630116142068295
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00003-of-00014.safetensors": {
+      "sha256": "54f22e8b3168f8dc962fac0d313607ebf52a12b433d4cf3098a0d82d9f042940",
+      "bytes": 4875990552,
+      "mtime_ns": 1788630296217852307
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00004-of-00014.safetensors": {
+      "sha256": "ad09c74d3c13ee29b5d0d84548fd8a3424a651564eaccd519946c296e59c557f",
+      "bytes": 4875990584,
+      "mtime_ns": 1788630488130789007
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00005-of-00014.safetensors": {
+      "sha256": "fc993c8a0e2a5b0570f383e1a95dc3a1281d1b224b6f3ee908f4827941e1dfc2",
+      "bytes": 4875990584,
+      "mtime_ns": 1788630684991863268
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00006-of-00014.safetensors": {
+      "sha256": "82f05620d1f718a90c362b221d6a184ff1a0f53301d706882d3df49695fa1974",
+      "bytes": 4875990584,
+      "mtime_ns": 1788630871619726808
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00007-of-00014.safetensors": {
+      "sha256": "fb91da8cb01ff4de3eef0eab1c3e769a734b3a1aafc61734068638a0d6c86934",
+      "bytes": 4875990584,
+      "mtime_ns": 1788631072238149408
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00008-of-00014.safetensors": {
+      "sha256": "431ca56535c8781944ce3801f5eb61c45531e853ecc5846d936ebaf4761b764f",
+      "bytes": 4875990584,
+      "mtime_ns": 1788631256230039725
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00009-of-00014.safetensors": {
+      "sha256": "3825e3f4302f4d2f7d76aa7430d2ce0864fde6b9e540a5806bf0d8e38e4d9f47",
+      "bytes": 4875990584,
+      "mtime_ns": 1788631454829375317
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00010-of-00014.safetensors": {
+      "sha256": "aded5a4d1d5e22dbd8b6f79266b6eb88c840411b09527c53917a1419ace22e2f",
+      "bytes": 4875990584,
+      "mtime_ns": 1788631650962613846
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00011-of-00014.safetensors": {
+      "sha256": "3820ffe8d8d6477f6fe8d614ef3c87abb264ee39accebf43a1507b970d80946f",
+      "bytes": 4875990584,
+      "mtime_ns": 1788631843681743781
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00012-of-00014.safetensors": {
+      "sha256": "05ad2d08ce71963121c9b03f1d9ec5d7641052f4b23c6c12b80d71065eb8e98e",
+      "bytes": 4875990584,
+      "mtime_ns": 1788632031806727587
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00013-of-00014.safetensors": {
+      "sha256": "b64f2289871261fdd1abbd3b78bcd66011b341de3dc8eeb2ed1a473ee7c8d95c",
+      "bytes": 4875990584,
+      "mtime_ns": 1788632225117876355
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00014-of-00014.safetensors": {
+      "sha256": "e45b6c9998c77ee5a6577f9f47bc76416c1d4d387169e50c4c9d3134ea51b13b",
+      "bytes": 3270697008,
+      "mtime_ns": 1788632346224728475
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/video_vae/source/model.safetensors": {
+      "sha256": "5f0c2e161d895a9fee7645ca32d4a7e3a22b90cacfcbeba62ec999cdbbefe0d3",
+      "bytes": 10415548320,
+      "mtime_ns": 1788632761991945753
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors": {
+      "sha256": "a32572fb90b5508b201ec7c2eddcc184b13ddfd3c6f6d2cf06a0b46535d541b4",
+      "bytes": 40225724176,
+      "mtime_ns": 1788628641816315374
+    }
+  },
+  "inherited_asset_sha_reference": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E010_h3_prepare.json",
+    "sha256": "325f8aab98f76fbb57666b1014a9fa2a8d2111d4048b52882f475a5bb745a8e8",
+    "bytes": 18395
+  },
+  "asset_validation": "E010 full SHA reused; every size/mtime checked; no repeated full-weight hash",
+  "cpu_check_reference": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E013/E013_h3_check.json",
+    "sha256": "812b7f62e1b7eff76017113a152feec170add1ad2c68ab22a3f7c10ba93adcc2",
+    "bytes": 38381
+  },
+  "cpu_cases": [
+    {
+      "prompt_id": 1,
+      "seed": 49771,
+      "text_tokens": 96,
+      "text_tag_values": [
+        1
+      ],
+      "tags": {
+        "sha256": "4a4f2f92563815f49caf78a146f493888ae5f22d9aa8ff4fd89e72d86d68b7ae",
+        "shape": [
+          96
+        ],
+        "dtype": "torch.int64"
+      },
+      "token_ids": [
+        32,
+        3175,
+        19259,
+        4236,
+        43863,
+        6884,
+        6552,
+        315,
+        1378,
+        64157,
+        21357,
+        20332,
+        389,
+        264,
+        10063,
+        4158,
+        88471,
+        11,
+        19334,
+        504,
+        264,
+        8356,
+        31015,
+        6249,
+        13,
+        3776,
+        49485,
+        6303,
+        4935,
+        26558,
+        518,
+        4126,
+        6701,
+        13,
+        3776,
+        49485,
+        2518,
+        4935,
+        8471,
+        518,
+        4126,
+        7950,
+        13,
+        576,
+        2518,
+        4935,
+        27373,
+        41971,
+        304,
+        264,
+        7678,
+        16202,
+        1555,
+        8841,
+        279,
+        6303,
+        4935,
+        11,
+        2041,
+        30587,
+        432,
+        13,
+        11733,
+        20332,
+        7146,
+        7225,
+        9434,
+        323,
+        8651,
+        11,
+        518,
+        6783,
+        1379,
+        11,
+        389,
+        279,
+        1852,
+        11031,
+        13,
+        47889,
+        17716,
+        11,
+        41753,
+        4287,
+        3550,
+        11,
+        902,
+        1008,
+        6171,
+        11,
+        902,
+        15104,
+        11,
+        902,
+        1467,
+        13
+      ],
+      "cu_seqlens": [
+        0,
+        21822,
+        21824
+      ],
+      "seq_len": 21824,
+      "expected_sdpa_calls_per_dit": 102,
+      "initial_noise": {
+        "video_latents": {
+          "sha256": "eea1e6bdf497ddb2fdf965b9ac2eba6064aeddabb5bc9a42ce0495d6647b8666",
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        "audio_latents": {
+          "sha256": "6498590d98477373fce29d66070192298947cf9c3c773b5ad93d43985d81ed32",
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16"
+        }
+      }
+    },
+    {
+      "prompt_id": 2,
+      "seed": 49771,
+      "text_tokens": 93,
+      "text_tag_values": [
+        1
+      ],
+      "tags": {
+        "sha256": "130502b04b7366bebb77d9ba0bc350f26911a0dea93999713f1d2a2d5e273dab",
+        "shape": [
+          93
+        ],
+        "dtype": "torch.int64"
+      },
+      "token_ids": [
+        32,
+        3175,
+        19259,
+        4236,
+        43863,
+        6884,
+        6552,
+        315,
+        1378,
+        64157,
+        21357,
+        20332,
+        389,
+        264,
+        10063,
+        4158,
+        88471,
+        11,
+        19334,
+        504,
+        264,
+        8356,
+        31015,
+        6249,
+        13,
+        3776,
+        49485,
+        6303,
+        4935,
+        26558,
+        518,
+        4126,
+        6701,
+        13,
+        3776,
+        49485,
+        2518,
+        4935,
+        8471,
+        518,
+        4126,
+        7950,
+        13,
+        576,
+        2518,
+        4935,
+        27373,
+        41971,
+        304,
+        264,
+        7678,
+        16202,
+        1555,
+        3123,
+        504,
+        279,
+        6303,
+        4935,
+        13,
+        11733,
+        20332,
+        7146,
+        7225,
+        9434,
+        323,
+        8651,
+        11,
+        518,
+        6783,
+        1379,
+        11,
+        389,
+        279,
+        1852,
+        11031,
+        13,
+        47889,
+        17716,
+        11,
+        41753,
+        4287,
+        3550,
+        11,
+        902,
+        1008,
+        6171,
+        11,
+        902,
+        15104,
+        11,
+        902,
+        1467,
+        13
+      ],
+      "cu_seqlens": [
+        0,
+        21819,
+        21824
+      ],
+      "seq_len": 21824,
+      "expected_sdpa_calls_per_dit": 102,
+      "initial_noise": {
+        "video_latents": {
+          "sha256": "eea1e6bdf497ddb2fdf965b9ac2eba6064aeddabb5bc9a42ce0495d6647b8666",
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        "audio_latents": {
+          "sha256": "6498590d98477373fce29d66070192298947cf9c3c773b5ad93d43985d81ed32",
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16"
+        }
+      }
+    },
+    {
+      "prompt_id": 3,
+      "seed": 59526,
+      "text_tokens": 96,
+      "text_tag_values": [
+        1
+      ],
+      "tags": {
+        "sha256": "4a4f2f92563815f49caf78a146f493888ae5f22d9aa8ff4fd89e72d86d68b7ae",
+        "shape": [
+          96
+        ],
+        "dtype": "torch.int64"
+      },
+      "token_ids": [
+        32,
+        3175,
+        19259,
+        4236,
+        43863,
+        6884,
+        6552,
+        315,
+        1378,
+        64157,
+        21357,
+        20332,
+        389,
+        264,
+        10063,
+        4158,
+        88471,
+        11,
+        19334,
+        504,
+        264,
+        8356,
+        31015,
+        6249,
+        13,
+        3776,
+        49485,
+        6303,
+        4935,
+        26558,
+        518,
+        4126,
+        6701,
+        13,
+        3776,
+        49485,
+        2518,
+        4935,
+        8471,
+        518,
+        4126,
+        7950,
+        13,
+        576,
+        2518,
+        4935,
+        27373,
+        41971,
+        304,
+        264,
+        7678,
+        16202,
+        1555,
+        8841,
+        279,
+        6303,
+        4935,
+        11,
+        2041,
+        30587,
+        432,
+        13,
+        11733,
+        20332,
+        7146,
+        7225,
+        9434,
+        323,
+        8651,
+        11,
+        518,
+        6783,
+        1379,
+        11,
+        389,
+        279,
+        1852,
+        11031,
+        13,
+        47889,
+        17716,
+        11,
+        41753,
+        4287,
+        3550,
+        11,
+        902,
+        1008,
+        6171,
+        11,
+        902,
+        15104,
+        11,
+        902,
+        1467,
+        13
+      ],
+      "cu_seqlens": [
+        0,
+        21822,
+        21824
+      ],
+      "seq_len": 21824,
+      "expected_sdpa_calls_per_dit": 102,
+      "initial_noise": {
+        "video_latents": {
+          "sha256": "be7648a7ac5e47427c1baaae5f00c99b78419a12b9521b094b9277f69ba21bd3",
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        "audio_latents": {
+          "sha256": "c2e8d8bef8b80eb877432349f1a817815758ca17d8ee34bd56c8d79ae5d69dbd",
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16"
+        }
+      }
+    },
+    {
+      "prompt_id": 4,
+      "seed": 59526,
+      "text_tokens": 93,
+      "text_tag_values": [
+        1
+      ],
+      "tags": {
+        "sha256": "130502b04b7366bebb77d9ba0bc350f26911a0dea93999713f1d2a2d5e273dab",
+        "shape": [
+          93
+        ],
+        "dtype": "torch.int64"
+      },
+      "token_ids": [
+        32,
+        3175,
+        19259,
+        4236,
+        43863,
+        6884,
+        6552,
+        315,
+        1378,
+        64157,
+        21357,
+        20332,
+        389,
+        264,
+        10063,
+        4158,
+        88471,
+        11,
+        19334,
+        504,
+        264,
+        8356,
+        31015,
+        6249,
+        13,
+        3776,
+        49485,
+        6303,
+        4935,
+        26558,
+        518,
+        4126,
+        6701,
+        13,
+        3776,
+        49485,
+        2518,
+        4935,
+        8471,
+        518,
+        4126,
+        7950,
+        13,
+        576,
+        2518,
+        4935,
+        27373,
+        41971,
+        304,
+        264,
+        7678,
+        16202,
+        1555,
+        3123,
+        504,
+        279,
+        6303,
+        4935,
+        13,
+        11733,
+        20332,
+        7146,
+        7225,
+        9434,
+        323,
+        8651,
+        11,
+        518,
+        6783,
+        1379,
+        11,
+        389,
+        279,
+        1852,
+        11031,
+        13,
+        47889,
+        17716,
+        11,
+        41753,
+        4287,
+        3550,
+        11,
+        902,
+        1008,
+        6171,
+        11,
+        902,
+        15104,
+        11,
+        902,
+        1467,
+        13
+      ],
+      "cu_seqlens": [
+        0,
+        21819,
+        21824
+      ],
+      "seq_len": 21824,
+      "expected_sdpa_calls_per_dit": 102,
+      "initial_noise": {
+        "video_latents": {
+          "sha256": "be7648a7ac5e47427c1baaae5f00c99b78419a12b9521b094b9277f69ba21bd3",
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        "audio_latents": {
+          "sha256": "c2e8d8bef8b80eb877432349f1a817815758ca17d8ee34bd56c8d79ae5d69dbd",
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16"
+        }
+      }
+    }
+  ],
+  "schedule_cpu": {
+    "video": [
+      1000.0,
+      998.3021850585938,
+      996.539794921875,
+      994.708984375,
+      992.8057861328125,
+      990.82568359375,
+      988.7639770507812,
+      986.6156616210938,
+      984.3749389648438,
+      982.0360107421875,
+      979.5918579101562,
+      977.0355834960938,
+      974.3589477539062,
+      971.5535888671875,
+      968.60986328125,
+      965.5172119140625,
+      962.26416015625,
+      958.8377685546875,
+      955.223876953125,
+      951.4066772460938,
+      947.368408203125,
+      943.0894775390625,
+      938.5475463867188,
+      933.7176513671875,
+      928.5714111328125,
+      923.076904296875,
+      917.1974487304688,
+      910.8909912109375,
+      904.1095581054688,
+      896.7971801757812,
+      888.888916015625,
+      880.3088989257812,
+      870.9677124023438,
+      860.759521484375,
+      849.5574951171875,
+      837.2093505859375,
+      823.5294799804688,
+      808.2901000976562,
+      791.2088012695312,
+      771.9297485351562,
+      750.0,
+      724.8321533203125,
+      695.6521606445312,
+      661.4173583984375,
+      620.6896362304688,
+      571.4285278320312,
+      510.6383056640625,
+      433.73492431640625,
+      333.33331298828125,
+      196.72129821777344
+    ],
+    "audio": [
+      1000.0,
+      993.2432861328125,
+      986.3013305664062,
+      979.1666259765625,
+      971.8309326171875,
+      964.28564453125,
+      956.5216674804688,
+      948.5293579101562,
+      940.2985229492188,
+      931.8182373046875,
+      923.0769653320312,
+      914.0625610351562,
+      904.7619018554688,
+      895.1612548828125,
+      885.2459106445312,
+      874.9999389648438,
+      864.4066772460938,
+      853.4482421875,
+      842.1052856445312,
+      830.3571166992188,
+      818.1818237304688,
+      805.5556640625,
+      792.4529418945312,
+      778.8462524414062,
+      764.7058715820312,
+      750.0,
+      734.69384765625,
+      718.7499389648438,
+      702.1276245117188,
+      684.7826538085938,
+      666.6666259765625,
+      647.7272338867188,
+      627.9069213867188,
+      607.142822265625,
+      585.3658447265625,
+      562.5,
+      538.4615478515625,
+      513.1578979492188,
+      486.4864501953125,
+      458.3332824707031,
+      428.5714111328125,
+      397.05877685546875,
+      363.6363830566406,
+      328.1250305175781,
+      290.32257080078125,
+      249.99996948242188,
+      206.8965606689453,
+      160.7142791748047,
+      111.1111068725586,
+      57.69230651855469
+    ]
+  },
+  "cpu_embedding_contract": {
+    "source": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E010/prepare/p036.pt",
+      "sha256": "fc54887b3e504de37471c5f88bd2d235a6af192abdd5f09d382365011bc99c20",
+      "bytes": 12455935
+    },
+    "embedding": {
+      "sha256": "440bbff8dce8199957df602f7c8100506c21c14a0b6e24a73715019e21435db3",
+      "shape": [
+        813,
+        5120
+      ],
+      "dtype": "torch.bfloat16"
+    },
+    "rank": 2,
+    "token_axis": 0,
+    "channels": 5120
+  },
+  "prepared_reference": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E013/E013_h3_prepare.json",
+    "sha256": "9859c0afd52bec0d83a2b5ec6f56b94e2ca5364b8eb13bb27bcb2f0aadec119a",
+    "bytes": 46791
+  },
+  "case": {
+    "prompt_id": 2,
+    "seed": 49771,
+    "direction": "away",
+    "prompt": "A single continuous five-second wide shot of two matte toy balls on a flat white tabletop, viewed from a fixed overhead camera. One saturated blue ball stays at center-right. One saturated red ball starts at center-left. The red ball rolls steadily in a straight horizontal line away from the blue ball. Both balls remain fully visible and separate, at constant size, on the same plane. Uniform lighting, ample empty space, no other objects, no cuts, no text.",
+    "prompt_sha256": "d09cc89afdaa70b82164a6a46748b8b0f48cc37c4e957bab873ecf56d2869f76"
+  },
+  "denoiser_reference": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E013/p002/E013_h3_denoise_bf16.json",
+    "sha256": "293826fd79004c51558191e2bf0649c81edef09806e565b442874676f778f393",
+    "bytes": 357058
+  },
+  "video": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/p002_bf16.mp4",
+  "video_file": {
+    "file": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/p002_bf16.mp4",
+    "sha256": "9f119f2f9110b984c41e29a74c2b196309dace585fde29a12128a378876f89eb",
+    "bytes": 2185598
+  },
+  "media": {
+    "frames": 124,
+    "width": 1024,
+    "height": 576,
+    "fps": 24.0,
+    "audio_streams": 1,
+    "audio_sample_rate": 32000
+  },
+  "audio_pcm_file": {
+    "file": "/data1/models/svdquant-wjq/research/20261002/E013/p002/decode_bf16/audio.pt",
+    "sha256": "1a13d6039fcd9991d58535ffd7896e89622f7e839a070c82d39fa08566048df3",
+    "bytes": 1326363
+  },
+  "audio_pcm": {
+    "sha256": "26b993badfaa8bb73c5e84b804a50cd2b813bd1e5c256125f44d9fe6d1f5d175",
+    "shape": [
+      2,
+      165600
+    ],
+    "dtype": "torch.float32"
+  },
+  "audio_samples_before_aac": 165600,
+  "seconds_including_diagnostics": 11.13991286791861,
+  "peak_allocated_gib_process": 7.394482612609863
+}

@@ -1,0 +1,236 @@
+{
+  "experiment": "E083",
+  "arms": [
+    "bf16_sage3",
+    "bf16_sage3_center128"
+  ],
+  "cases": [
+    {
+      "case_id": "vbench0161_r0",
+      "prompt_id": 161,
+      "source": "VBench_full_info.json",
+      "source_index_zero_based": 161,
+      "replica": 0,
+      "seed": 38001610,
+      "prompt": "A person is clapping",
+      "prompt_sha256": "268d62ce600baae94ac9ce2a33755b342aa42cc2b1386c4ee19501048f0015c8",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "reason": "repeated human hand contact"
+    },
+    {
+      "case_id": "vbench0161_r1",
+      "prompt_id": 161,
+      "source": "VBench_full_info.json",
+      "source_index_zero_based": 161,
+      "replica": 1,
+      "seed": 38001611,
+      "prompt": "A person is clapping",
+      "prompt_sha256": "268d62ce600baae94ac9ce2a33755b342aa42cc2b1386c4ee19501048f0015c8",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "reason": "repeated human hand contact"
+    }
+  ],
+  "settings": {
+    "height": 576,
+    "width": 1024,
+    "num_frames": 124,
+    "num_inference_steps": 20,
+    "cfg_scale": 1.0,
+    "flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "noise_dtype": "bfloat16",
+    "tiled": true,
+    "tile_size": 256,
+    "tile_overlap": 64,
+    "fps": 24,
+    "audio_sample_rate": 32000
+  },
+  "source_manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E038_center_video_manifest.json",
+    "bytes": 6535,
+    "sha256": "00c2880c71bd33e394c327324b44ba5dcf54605e7618f337e1bdac21bd514259"
+  },
+  "expected_schedule": {
+    "video": {
+      "timesteps": [
+        1000.0,
+        995.6331787109375,
+        990.82568359375,
+        985.50732421875,
+        979.5918579101562,
+        972.9729614257812,
+        965.5172119140625,
+        957.0552368164062,
+        947.368408203125,
+        936.1702270507812,
+        923.076904296875,
+        907.56298828125,
+        888.888916015625,
+        865.9793701171875,
+        837.2092895507812,
+        800.0,
+        750.0,
+        679.2453002929688,
+        571.4285888671875,
+        387.0968017578125
+      ],
+      "sigmas": [
+        1.0,
+        0.9956331849098206,
+        0.9908256530761719,
+        0.9855073094367981,
+        0.9795918464660645,
+        0.9729729890823364,
+        0.9655172228813171,
+        0.9570552110671997,
+        0.9473683834075928,
+        0.936170220375061,
+        0.9230769276618958,
+        0.9075629711151123,
+        0.8888888955116272,
+        0.8659793734550476,
+        0.8372092843055725,
+        0.800000011920929,
+        0.75,
+        0.6792452931404114,
+        0.5714285969734192,
+        0.3870967924594879
+      ]
+    },
+    "audio": {
+      "timesteps": [
+        1000.0,
+        982.7586059570312,
+        964.28564453125,
+        944.4444580078125,
+        923.0769653320312,
+        900.0,
+        874.9999389648438,
+        847.8260498046875,
+        818.1818237304688,
+        785.7144165039062,
+        750.0,
+        710.5263061523438,
+        666.6666870117188,
+        617.64697265625,
+        562.5,
+        500.0,
+        428.57147216796875,
+        346.1539001464844,
+        250.0,
+        136.3636474609375
+      ],
+      "sigmas": [
+        1.0,
+        0.9827585816383362,
+        0.964285671710968,
+        0.944444477558136,
+        0.9230769872665405,
+        0.8999999761581421,
+        0.8749999403953552,
+        0.8478260636329651,
+        0.8181818127632141,
+        0.7857143878936768,
+        0.75,
+        0.7105262875556946,
+        0.6666666865348816,
+        0.6176469922065735,
+        0.5625,
+        0.5,
+        0.4285714626312256,
+        0.3461538851261139,
+        0.25,
+        0.13636364042758942
+      ]
+    }
+  },
+  "data_dir": "/data1/models/svdquant-wjq/research/20261005/E083",
+  "report_dir": "/home/wjq/workspace/svdquant-exp/results/research/E083",
+  "budget": {
+    "generation_gpus": {
+      "0": 0,
+      "1": 1
+    },
+    "wall_seconds_per_replica": 1800,
+    "dit_calls_per_replica": 40,
+    "max_peak_gib": 60,
+    "new_videos_total": 4
+  },
+  "frozen_runtime_sources": [
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/minimax_h3_svdquant_common.py",
+      "bytes": 14656,
+      "sha256": "d0fca20f98a40c3aa20773faa47e6d6b986811f6cd03802723021fd50383ae61"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py",
+      "bytes": 28742,
+      "sha256": "41e6e4eb1d9df554e5ea109b9bad3d1df83e9b64788137511262a82a0f34431f"
+    },
+    {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/pipelines/minimax_h3_audio_video.py",
+      "bytes": 56577,
+      "sha256": "7f5ff890d796dcfac3551e235741bdfbd4dbcae91aae3b6e4c3817dce38eecd6"
+    },
+    {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_video_vae.py",
+      "bytes": 31730,
+      "sha256": "3dd4da5c90135c904fa5f1d4f70dd43e2571e394ce437bb168a5110f71076bf4"
+    },
+    {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_audio_vae.py",
+      "bytes": 19869,
+      "sha256": "ce6dc03b73a0596df22a6aa89e6db9183017bd5d0e2e99b547a6bfee53a7ef2c"
+    },
+    {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/utils/data/audio_video.py",
+      "bytes": 8947,
+      "sha256": "9d30fdd4538475d2d6aae7fe64cca2d78012e904366ec85d81e48720874d9dd0"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_sage3_interaction.py",
+      "bytes": 8138,
+      "sha256": "4b61d42934329ac2f5a6fd4cd3d4aa454d32e6ee3ec2132a5070d226a4cac8ae"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell/sageattn3/api.py",
+      "sha256": "9aec83f8d7165e3b563ba4fc91f6ca5e09b07ef3445b6db5d1105912e35dfb90",
+      "bytes": 5491
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell/fp4attn_cuda.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "187cffbe0c480ea244e041307e5f9e4156576b1a93af9dfc5901a3c00f05d946",
+      "bytes": 7917040
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell/fp4quant_cuda.cpython-312-x86_64-linux-gnu.so",
+      "sha256": "556704d9fffe007e2fa42cb92577d589d2f2132593c3ccae18a157f224092068",
+      "bytes": 500224
+    }
+  ],
+  "source_runner": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_bf16_action_reference.py",
+    "bytes": 25228,
+    "sha256": "c4b4c4d8161c53f60e4fdb3be26e04af384150f0a091da6c764d81c8a5c1e46f"
+  },
+  "runner": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_bf16_attention_video.py",
+    "sha256": "2f1ecc80d5de8f81c2137a7171c55c4a1dff4e6bf3f54b65bf934b792a36dbbe",
+    "bytes": 27007
+  },
+  "reused_quantized_denoiser": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E038/denoise_bf16.json",
+    "bytes": 1003066,
+    "sha256": "37448e7c69db3e519b4bce9c90d77d43adf0668dcf5112cbc1abe0eb859caed3"
+  },
+  "reused_quantized_decode": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E038/decode_bf16.json",
+    "bytes": 30255,
+    "sha256": "d125b5fc994d2644433245f663c34bb3ee217c3d08beacbc564ba8165c7bdc6d"
+  }
+}

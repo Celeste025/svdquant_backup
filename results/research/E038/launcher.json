@@ -1,0 +1,166 @@
+{
+  "experiment": "E038",
+  "phase": "run",
+  "status": "failed_preserved",
+  "start_epoch": 1790993311.5763862,
+  "deadline_epoch": 1790995711.5763862,
+  "wall_budget_seconds": 2400,
+  "launcher_check_sha256": "c3334d964b413f29e9799b3a82e75030fe78bca3f777e274d7a4df71a0d781cf",
+  "stages": [
+    {
+      "name": "prepare",
+      "status": "complete",
+      "reused": true,
+      "result": "/home/wjq/workspace/svdquant-exp/results/research/E038/prepare.json",
+      "result_sha256": "ee89d2fae123d043424033e50f800258ebc2486992bff3f941d546f2beaa1cb3"
+    },
+    {
+      "name": "denoise_bf16",
+      "phase": "denoise",
+      "arm": "bf16",
+      "status": "failed_stop",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_center_video.py",
+        "--phase",
+        "denoise",
+        "--manifest",
+        "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E038_center_video_manifest.json",
+        "--prepare-report",
+        "/home/wjq/workspace/svdquant-exp/results/research/E038/prepare.json",
+        "--deadline-unix",
+        "1790995112.233192",
+        "--arm",
+        "bf16"
+      ],
+      "gpu_before": {
+        "index": 0,
+        "uuid": "GPU-f2d2bf35-6009-bfec-9e68-dfffd5b077c4",
+        "memory_mib": 0,
+        "utilization_percent": 0,
+        "samples": [
+          {
+            "index": 0,
+            "uuid": "GPU-f2d2bf35-6009-bfec-9e68-dfffd5b077c4",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 0,
+            "uuid": "GPU-f2d2bf35-6009-bfec-9e68-dfffd5b077c4",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E038_denoise_bf16.log",
+      "start_epoch": 1790993312.2333927,
+      "deadline_epoch": 1790995112.233192,
+      "pid": 423117,
+      "process_group": 423117,
+      "returncode": 1,
+      "end_epoch": 1790993317.5555477,
+      "seconds": 5.322154998779297
+    },
+    {
+      "name": "denoise_global_mean",
+      "phase": "denoise",
+      "arm": "global_mean",
+      "status": "terminated_after_failure",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_center_video.py",
+        "--phase",
+        "denoise",
+        "--manifest",
+        "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E038_center_video_manifest.json",
+        "--prepare-report",
+        "/home/wjq/workspace/svdquant-exp/results/research/E038/prepare.json",
+        "--deadline-unix",
+        "1790995112.8913279",
+        "--arm",
+        "global_mean"
+      ],
+      "gpu_before": {
+        "index": 1,
+        "uuid": "GPU-d69766fc-a299-bc28-48a0-41ce331b0359",
+        "memory_mib": 0,
+        "utilization_percent": 0,
+        "samples": [
+          {
+            "index": 1,
+            "uuid": "GPU-d69766fc-a299-bc28-48a0-41ce331b0359",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 1,
+            "uuid": "GPU-d69766fc-a299-bc28-48a0-41ce331b0359",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E038_denoise_global_mean.log",
+      "start_epoch": 1790993312.891535,
+      "deadline_epoch": 1790995112.8913279,
+      "pid": 423128,
+      "process_group": 423128,
+      "returncode": -15,
+      "end_epoch": 1790993317.669094
+    },
+    {
+      "name": "denoise_coarse16",
+      "phase": "denoise",
+      "arm": "coarse16",
+      "status": "terminated_after_failure",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_center_video.py",
+        "--phase",
+        "denoise",
+        "--manifest",
+        "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E038_center_video_manifest.json",
+        "--prepare-report",
+        "/home/wjq/workspace/svdquant-exp/results/research/E038/prepare.json",
+        "--deadline-unix",
+        "1790995113.5516334",
+        "--arm",
+        "coarse16"
+      ],
+      "gpu_before": {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0,
+        "samples": [
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E038_denoise_coarse16.log",
+      "start_epoch": 1790993313.551832,
+      "deadline_epoch": 1790995113.5516334,
+      "pid": 423140,
+      "process_group": 423140,
+      "returncode": -15,
+      "end_epoch": 1790993317.7825696
+    }
+  ],
+  "max_dit_calls": 480,
+  "seconds_total": 6.2061848640441895,
+  "error": "Traceback (most recent call last):\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/launch_h3_center_video.py\", line 182, in main\n    else: run(args,manifest,report,output)\n          ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/launch_h3_center_video.py\", line 158, in run\n    wait_until_done(True)\n    ~~~~~~~~~~~~~~~^^^^^^\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/launch_h3_center_video.py\", line 141, in wait_until_done\n    raise RuntimeError(f'{name} exited {code}; see {entry[\"log\"]}')\nRuntimeError: denoise_bf16 exited 1; see /home/wjq/workspace/svdquant-exp/results/logs/E038_denoise_bf16.log\n"
+}

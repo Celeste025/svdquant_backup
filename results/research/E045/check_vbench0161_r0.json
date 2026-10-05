@@ -1,0 +1,172 @@
+{
+  "experiment": "E045",
+  "status": "complete",
+  "phase": "check",
+  "steps": [],
+  "actual_counts": {
+    "teacher_dit": 0,
+    "native_dit": 0,
+    "native_gemm": 0,
+    "dit_sdpa": 0,
+    "fastpack_checks": 0,
+    "teacher_scheduler": 0,
+    "shadow_scheduler": 0,
+    "candidate_scheduler": 0,
+    "public_vae_decode": 0,
+    "decoder_chunks": 0,
+    "text_encoder": 0
+  },
+  "case": {
+    "case_id": "vbench0161_r0",
+    "prompt_id": 161,
+    "source_index_zero_based": 161,
+    "replica": 0,
+    "prompt": "A person is clapping",
+    "prompt_sha256": "268d62ce600baae94ac9ce2a33755b342aa42cc2b1386c4ee19501048f0015c8",
+    "source_dimensions": [
+      "human_action"
+    ],
+    "seed": 43001610
+  },
+  "settings": {
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "num_inference_steps": 50,
+    "guidance_scale": 6.0,
+    "flow_shift": 8.0,
+    "fps": 16,
+    "scheduler": "UniPCMultistepScheduler",
+    "transformer_dtype": "bfloat16",
+    "text_encoder_dtype": "bfloat16",
+    "vae_dtype": "float32",
+    "latent_update_dtype": "float32",
+    "max_sequence_length": 512,
+    "prompt_extension": false,
+    "attention_backend_dit": "torch SDPA FLASH_ATTENTION",
+    "compile": false,
+    "offload": false,
+    "vae_tiling": false
+  },
+  "manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E045_wan_terminal_intervention_manifest.json",
+    "bytes": 4604,
+    "sha256": "8848ddc8b7ce0387de7f8a7e3a3f9f39e1a414dc502a8d0ae7088aec49bcde32"
+  },
+  "plan": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E045_wan_terminal_intervention_plan.md",
+    "bytes": 3562,
+    "sha256": "aa342675265fbdd4bf7d48126c853789c69b5a56159835b38f63bd32f2c3e5bd"
+  },
+  "reference_worker": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E043/worker_161.json",
+    "bytes": 66036,
+    "sha256": "9f3d7db93d90bf3bd53a32d910195fbb6da18217ea69801f0f75db394f8715af"
+  },
+  "initial_noise": {
+    "artifact": {
+      "file": "/data1/models/svdquant-wjq/research/20261003/E043/vbench0161_r0/initial_noise.pt",
+      "bytes": 8388243,
+      "sha256": "eba3fb75465390aec45f1a9ff53c91aaaf29ca67ab294fae696c3f849025ef22"
+    },
+    "tensor": {
+      "shape": [
+        1,
+        16,
+        21,
+        60,
+        104
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "sha256": "f84b94dbc32cb259a06ddd4c3e0b7ff69de93a0a5b9d68dc32ee65fbe9a3b7e5"
+    }
+  },
+  "embeddings": {
+    "artifact": {
+      "file": "/data1/models/svdquant-wjq/research/20261003/E043/prompt_161/embeddings.pt",
+      "bytes": 8390525,
+      "sha256": "2396f353d30d6c05b28cb742e3f031e4ab87b0bb84afc2dbc5d23d656a1cb9e3"
+    },
+    "prompt_embeds": {
+      "shape": [
+        1,
+        512,
+        4096
+      ],
+      "dtype": "torch.bfloat16",
+      "finite": true,
+      "sha256": "d9a788f5fd4263628e4f5f1972b35e80066f2e7a2da493f2e0548d7b1a5a7a5c"
+    },
+    "negative_prompt_embeds": {
+      "shape": [
+        1,
+        512,
+        4096
+      ],
+      "dtype": "torch.bfloat16",
+      "finite": true,
+      "sha256": "456357048efc248aeebc704df130cd35cd66d132a43ae48e3c98e64bf500ca0e"
+    },
+    "seconds": 0.2799851819872856,
+    "actual_text_encoder_calls": 2
+  },
+  "checkpoint_identity": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E044/checkpoint_identity.json",
+    "bytes": 2902,
+    "sha256": "ee3bca97733becccd257d24a6d422138c0e4d1b28f4cb75fefda5e926994527e"
+  },
+  "sources": [
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_wan_terminal_intervention.py",
+      "bytes": 17782,
+      "sha256": "1dda5f84170b4b0e0d1b8e57d4aeb0d82f1e8983bfa7bb2c3429296a2385d947"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_vanilla_wan_reference.py",
+      "bytes": 15853,
+      "sha256": "e51e102122e1c15ce46c59c8b4cddf88e50640eb17b2e69f02e447177e165479"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_vanilla_wan_native_v2.py",
+      "bytes": 18210,
+      "sha256": "b219e44365a67ab672b277f449a109d712bee07466b084786e70de8a371382a5"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py",
+      "bytes": 22773,
+      "sha256": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/wan_nvfp4_fastpack.py",
+      "bytes": 8997,
+      "sha256": "98e7e81b0aeab229006fbd721be1da24f4eb435b424de9cc95a3b136f277ebd0"
+    },
+    {
+      "file": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/pipelines/wan/pipeline_wan.py",
+      "bytes": 32040,
+      "sha256": "2a5fcd905ad0fbcbd76240e02007e73ab3583f927da8b9fe0fbe5a4a54d792aa"
+    },
+    {
+      "file": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/schedulers/scheduling_unipc_multistep.py",
+      "bytes": 56242,
+      "sha256": "5bfe1dcf55ebea6dbbf624d3af676b2529b81fbcaf493150d562ec9e1aba3872"
+    },
+    {
+      "file": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/models/autoencoders/autoencoder_kl_wan.py",
+      "bytes": 54261,
+      "sha256": "a38de0c53adcb81887a0b48d44e3fb59737d7b1e4779a666febe83be666e8fa8"
+    }
+  ],
+  "environment": {
+    "python": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "extension": "/data1/models/svdquant-wjq/research/cache/e044/torch_extensions/deepcompressor_C/deepcompressor_C.so",
+    "config_class": "DiffusionPtqRunConfig"
+  },
+  "cpu_snapshot_fixture": "noncallable state restored; instance step closure absent; CPU sigma retained",
+  "cuda_available": false,
+  "model_weights_loaded": false,
+  "seconds_total": 0.6669144101906568
+}

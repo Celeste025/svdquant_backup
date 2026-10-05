@@ -1,0 +1,76 @@
+{
+  "operation": "wan14b_matched_full_ptq",
+  "experiment": null,
+  "manifest_experiment": "E052",
+  "prepared_only": true,
+  "phase": "check",
+  "status": "failed_preserved",
+  "pid": 2985302,
+  "start_epoch": 1791042098.6426635,
+  "source": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/ptq_wan14b_matched_calibration.py",
+    "resolved": "/home/wjq/workspace/svdquant-exp/scripts/research/ptq_wan14b_matched_calibration.py",
+    "bytes": 11428,
+    "mtime_ns": 1791042096227690489,
+    "sha256": "b19ae72ee275c9bd4c90cb03ecbdab5fe8fe55495033902de484d10ecbe2c1a0"
+  },
+  "manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E052_wan14b_ptq_resource_manifest.json",
+    "resolved": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E052_wan14b_ptq_resource_manifest.json",
+    "bytes": 14795,
+    "mtime_ns": 1791039793172941992,
+    "sha256": "23a67000b31102a6bfbd31ed77c00f1b6f4032b724b8fc8b67fc775fbf0c6202"
+  },
+  "layer_events": [],
+  "model_weights_loaded": false,
+  "output_directory_contract": {
+    "run_dir": null,
+    "checkpoint_dir": null
+  },
+  "execution_note": "Prepared worker only. Execution budget/launcher/protocol are separate; a complete resource pilot alone is not a full-model feasibility guarantee.",
+  "sources": [
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/ptq_wan14b_matched_calibration.py",
+      "resolved": "/home/wjq/workspace/svdquant-exp/scripts/research/ptq_wan14b_matched_calibration.py",
+      "bytes": 11428,
+      "mtime_ns": 1791042096227690489,
+      "sha256": "b19ae72ee275c9bd4c90cb03ecbdab5fe8fe55495033902de484d10ecbe2c1a0"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E052_wan14b_ptq_resource_manifest.json",
+      "resolved": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E052_wan14b_ptq_resource_manifest.json",
+      "bytes": 14795,
+      "mtime_ns": 1791039793172941992,
+      "sha256": "23a67000b31102a6bfbd31ed77c00f1b6f4032b724b8fc8b67fc775fbf0c6202"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/ptq_wan_matched_calibration.py",
+      "resolved": "/home/wjq/workspace/svdquant-exp/scripts/research/ptq_wan_matched_calibration.py",
+      "bytes": 14917,
+      "mtime_ns": 1791012246983347385,
+      "sha256": "b11b7bb024507868373b3eec1314509cff8584bc51c4cb68a7b3ede3fe2c01e0"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/wan14b_ptq_resource.py",
+      "resolved": "/home/wjq/workspace/svdquant-exp/scripts/research/wan14b_ptq_resource.py",
+      "bytes": 26882,
+      "mtime_ns": 1791040414485378140,
+      "sha256": "9ce43f14ef2cea3833abdc4f41b9622580a4f4871f8d62e685636b25981c2dc2"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/app/diffusion/ptq.py",
+      "resolved": "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/app/diffusion/ptq.py",
+      "bytes": 18671,
+      "mtime_ns": 1787732740009187908,
+      "sha256": "9ba38f2739391985526b1453262b095f3480d14bd11bc76c5e0e6561638bd1a9"
+    }
+  ],
+  "environment": {
+    "python": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+    "torch": "2.11.0+cu128",
+    "diffusers": "0.40.0",
+    "cuda": "12.8"
+  },
+  "error": "Traceback (most recent call last):\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/ptq_wan14b_matched_calibration.py\", line 167, in main\n    config = check_inputs(args, m, report)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/ptq_wan14b_matched_calibration.py\", line 32, in check_inputs\n    config, report['configuration'] = resource_pilot.parse_config(config_input)\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/wan14b_ptq_resource.py\", line 36, in parse_config\n    from deepcompressor.app.diffusion.config import DiffusionPtqRunConfig\n  File \"/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/app/diffusion/config.py\", line 12, in <module>\n    from deepcompressor.app.llm.config import LlmCacheConfig, LlmQuantConfig\n  File \"/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/app/llm/config.py\", line 13, in <module>\n    from deepcompressor.data.utils import ScaleUtils\n  File \"/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/data/__init__.py\", line 3, in <module>\n    from .dtype import QDType, QuantDataType\n  File \"/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/data/dtype.py\", line 8, in <module>\n    from .codebook import Codebook\n  File \"/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/data/codebook.py\", line 8, in <module>\n    from deepcompressor.csrc.load import _C\n  File \"/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/csrc/load.py\", line 12, in <module>\n    _C = load(\n         ^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/utils/cpp_extension.py\", line 1818, in load\n    return _jit_compile(\n           ^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/utils/cpp_extension.py\", line 2268, in _jit_compile\n    _write_ninja_file_and_build_library(\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/utils/cpp_extension.py\", line 2382, in _write_ninja_file_and_build_library\n    verify_ninja_availability()\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/utils/cpp_extension.py\", line 2448, in verify_ninja_availability\n    raise RuntimeError(\"Ninja is required to load C++ extensions (pip install ninja to get it)\")\nRuntimeError: Ninja is required to load C++ extensions (pip install ninja to get it)\n",
+  "seconds": 4.1729042530059814
+}

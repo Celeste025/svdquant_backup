@@ -1,0 +1,60 @@
+{
+  "status": "failed_stop",
+  "task": "mjvideo",
+  "gpu": 5,
+  "start_epoch": 1790961402.7657955,
+  "deadline_epoch": 1790963202.7657955,
+  "command": [
+    "/data1/models/svdquant-wjq/conda-envs/svdquant-ptq/bin/python",
+    "-u",
+    "/home/wjq/workspace/svdquant-exp/scripts/eval_mjvideo_rcm_vbench51.py",
+    "--manifest",
+    "/home/wjq/workspace/svdquant-exp/results/research/E021/generation_manifest.draft.json",
+    "--samples",
+    "/data1/models/svdquant-wjq/research/20261003/E021",
+    "--model",
+    "/data1/models/svdquant-wjq/models/MJ-VIDEO-2B",
+    "--tokenizer",
+    "/data1/models/svdquant-wjq/research/20261003/E021/tokenizer",
+    "--mjvideo-repo",
+    "/data1/models/svdquant-wjq/third_party/MJ-Video",
+    "--output",
+    "/home/wjq/workspace/svdquant-exp/results/research/E021/mjvideo_scores.json",
+    "--variants",
+    "bf16",
+    "packed_step0000",
+    "packed_step0064",
+    "svd_lr",
+    "--num-segments",
+    "8",
+    "--video-template",
+    "{variant}/{case_id}/video.mp4"
+  ],
+  "script_sha256": "c3a26c979762866e45635eac210651a59cc6c8f97f8f67ea4e37957e9674f1fc",
+  "protocol_sha256": "5c98acd789c32386567f1af899400604ac26745526ee6d31e400c6e19fd9cc78",
+  "generation_sha256": "eefa9a263c7a3a1c7711bf74f9bdd418c55f8ea0086042688f06a1f7fa56dd83",
+  "gpu_before": {
+    "index": 5,
+    "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+    "memory_mib": 0,
+    "utilization_percent": 0,
+    "samples": [
+      {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0
+      },
+      {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0
+      }
+    ]
+  },
+  "pid": 1568185,
+  "returncode": 1,
+  "error": "Traceback (most recent call last):\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/launch_wan_qad_evaluation.py\", line 42, in main\n    if code:raise RuntimeError(f'{a.task} exited {code}')\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: mjvideo exited 1\n",
+  "seconds": 5.285008430480957
+}

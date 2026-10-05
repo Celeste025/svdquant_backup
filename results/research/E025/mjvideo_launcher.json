@@ -1,0 +1,87 @@
+{
+  "experiment": "E025",
+  "status": "complete",
+  "metric": "mjvideo",
+  "attempt": 1,
+  "gpu": 5,
+  "start_epoch": 1790978981.9444478,
+  "deadline_epoch": 1790979281.9444478,
+  "script": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/eval_mjvideo_e021.py",
+    "sha256": "fc86183ebf006bf0fe492ca21c7a5658185ac835c6d93aaea9a62bef53e638a0",
+    "bytes": 8566
+  },
+  "launcher": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/launch_fastwan_decoder_evaluation.py",
+    "sha256": "e85c8b121933de04d7580497fe7cf2f5b2cae72310e6f71a4fabeb50c8ba54f9",
+    "bytes": 10745
+  },
+  "log": "/home/wjq/workspace/svdquant-exp/results/logs/E025_mjvideo.log",
+  "manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E025/evaluation_manifest.json",
+    "sha256": "d1de5338cc78a3ac91ef371e51cff9c1b800f1e5a42bbf2297fffd5e0108bdcf",
+    "bytes": 7029
+  },
+  "generation_report": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E025/decode_run.json",
+    "sha256": "2f0fdc583978dad4687a02bf8eaa589ba1d9cf9fe04ef23ce9bebf484f3ed3ca",
+    "bytes": 172368
+  },
+  "generation_launcher": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E025/decode_launcher.json",
+    "sha256": "e1d687a26dc2a5306d9510c245e2b11ca3ac00bd4fd36e54e1db279997e3240e",
+    "bytes": 1782
+  },
+  "command": [
+    "/data1/models/svdquant-wjq/conda-envs/mjvideo/bin/python",
+    "-u",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/eval_mjvideo_e021.py",
+    "--manifest",
+    "/home/wjq/workspace/svdquant-exp/results/research/E025/evaluation_manifest.json",
+    "--output",
+    "/home/wjq/workspace/svdquant-exp/results/research/E025/mjvideo.json",
+    "--samples",
+    "/data1/models/svdquant-wjq/research/20261003/E025/decoded",
+    "--model",
+    "/data1/models/svdquant-wjq/models/MJ-VIDEO-2B",
+    "--tokenizer",
+    "/data1/models/svdquant-wjq/research/20261003/E021/tokenizer",
+    "--mjvideo-repo",
+    "/data1/models/svdquant-wjq/third_party/MJ-Video",
+    "--variants",
+    "fastwan_full_vae_fp32",
+    "--video-template",
+    "{case_id}.mp4",
+    "--num-segments",
+    "8"
+  ],
+  "gpu_before": {
+    "index": 5,
+    "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+    "memory_mib": 0,
+    "utilization_percent": 0,
+    "samples": [
+      {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0
+      },
+      {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0
+      }
+    ]
+  },
+  "pid": 1406108,
+  "returncode": 0,
+  "result": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E025/mjvideo.json",
+    "sha256": "58c65fedcc0969ebe03ac1ec45fd2035ab59c48a2e3d9a052e5aeef303c0bbd1",
+    "bytes": 35792
+  },
+  "end_epoch": 1790978994.27518,
+  "seconds": 12.330732583999634
+}

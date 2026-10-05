@@ -1,0 +1,148 @@
+{
+  "experiment": "E048",
+  "status": "complete",
+  "start_epoch": 1791015142.7071154,
+  "source": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/continue_matched_wan_native.py",
+    "bytes": 8517,
+    "sha256": "606b4a4e0441aea3de542d45cfa968c4ad96e4781d48638447659c4cb311b866"
+  },
+  "manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E048_matched_wan_native_manifest.json",
+    "bytes": 8575,
+    "sha256": "698c71c6e6989fd276544b7c852557bfdb0b92881b427f49056ba3d589f2400e"
+  },
+  "stages": [
+    {
+      "name": "native_check",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_matched_wan_native.py",
+        "--manifest",
+        "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E048_matched_wan_native_manifest.json",
+        "--arm",
+        "svdquant_nvfp4",
+        "--prompt-ids",
+        "161",
+        "192",
+        "269",
+        "316",
+        "--check-only"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E048_chain_native_check.log",
+      "status": "complete",
+      "start_epoch": 1791032813.6917663,
+      "cuda_visible_devices": "",
+      "timeout_seconds": 300,
+      "pid": 901407,
+      "returncode": 0,
+      "result": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E048/check_svdquant_nvfp4.json",
+        "bytes": 15172,
+        "sha256": "18b056f57c7e6d2e300e6865cf2090de3b578a49971d98a358af491b2d160339"
+      },
+      "seconds": 7.32748556137085
+    },
+    {
+      "name": "generation",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/launch_matched_wan_native.py"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E048_chain_generation.log",
+      "status": "complete",
+      "start_epoch": 1791032821.0196676,
+      "cuda_visible_devices": "",
+      "timeout_seconds": null,
+      "pid": 902948,
+      "returncode": 0,
+      "result": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E048/launcher.json",
+        "bytes": 9075,
+        "sha256": "868cf2650049122896eaee684c7d1321e55c3f4d440f76764930a32415a29b8d"
+      },
+      "seconds": 1034.9913783073425
+    },
+    {
+      "name": "evaluation",
+      "command": [
+        "/data1/models/svdquant-wjq/conda-envs/mjvideo/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/launch_wan_matched_native_evaluation.py"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E048_chain_evaluation.log",
+      "status": "complete",
+      "start_epoch": 1791033856.1294894,
+      "cuda_visible_devices": "",
+      "timeout_seconds": null,
+      "pid": 1135949,
+      "returncode": 0,
+      "result": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E048/evaluation_launcher.json",
+        "bytes": 5715,
+        "sha256": "ffe3307da3b207c46c0f6316a7346965cc503b9ddb8c152b14ffc0d60aa66eee"
+      },
+      "seconds": 71.11625695228577
+    },
+    {
+      "name": "summary_v2",
+      "command": [
+        "/data1/models/svdquant-wjq/conda-envs/mjvideo/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/summarize_matched_wan_native_v2.py"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E048_chain_summary_v2.log",
+      "status": "complete",
+      "start_epoch": 1791033927.2460299,
+      "cuda_visible_devices": "",
+      "timeout_seconds": 120,
+      "pid": 1160949,
+      "returncode": 0,
+      "result": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E048/evaluation_summary.json",
+        "bytes": 161571,
+        "sha256": "570b45fc00b20f39ba768a7f1f435f9e007ab20c78a3eaff1c334266a82c2ca0"
+      },
+      "seconds": 1.668419361114502
+    }
+  ],
+  "ptq_wait": {
+    "pid": 818406,
+    "process_identity": [
+      818406,
+      "202860142"
+    ],
+    "deadline_epoch": 1791035266.0963457,
+    "status": "complete",
+    "worker_exited": true,
+    "ptq_run": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E047/ptq_run.json",
+      "bytes": 88144,
+      "sha256": "68976fa1a5b8fb8ce6b606503f78839370af1f5cab6fbcc3c4a9874ec996c4a3"
+    },
+    "ptq_launcher": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E047/ptq_launcher.json",
+      "bytes": 2649,
+      "sha256": "9bc8ba2e8e6a14a3695300c55e84fc661eda6e7c992e364443905ff47683fed7"
+    }
+  },
+  "evaluation_gpu_wait": {
+    "start_epoch": 1791033856.011402,
+    "deadline_epoch": 1791035656.011402,
+    "status": "complete",
+    "seconds": 0.11751985549926758,
+    "gpu_at_ready": {
+      "0": {
+        "memory_used_mib": 0,
+        "utilization_pct": 0
+      },
+      "1": {
+        "memory_used_mib": 0,
+        "utilization_pct": 0
+      }
+    }
+  },
+  "seconds": 18786.20761322975
+}

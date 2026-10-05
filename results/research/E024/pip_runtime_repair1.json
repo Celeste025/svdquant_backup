@@ -1,0 +1,71 @@
+{
+  "version": "1",
+  "pip_version": "26.2.1",
+  "install": [
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/71/c5/d208c66344bb785d800adb61aef512290d3473052b9e7697890f0547aff2/remote_pdb-2.1.0-py2.py3-none-any.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "94f73a92ac1248cf16189211011f97096bdada8a7baac8c79372663bbb57b5d0"
+          },
+          "hash": "sha256=94f73a92ac1248cf16189211011f97096bdada8a7baac8c79372663bbb57b5d0"
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": true,
+      "metadata": {
+        "metadata_version": "2.1",
+        "name": "remote-pdb",
+        "version": "2.1.0",
+        "platform": [
+          "UNKNOWN"
+        ],
+        "summary": "Remote vanilla PDB (over TCP sockets) *done right*: no extras, proper handling around connection failures and CI. Based on `pdbx <https://pypi.python.org/pypi/pdbx>`_.",
+        "description": "========\nOverview\n========\n\n\n\nRemote vanilla PDB (over TCP sockets) *done right*: no extras, proper handling around connection failures and CI. Based\non `pdbx <https://pypi.python.org/pypi/pdbx>`_.\n\n* Free software: BSD 2-Clause License\n\nInstallation\n============\n\n::\n\n    pip install remote-pdb\n\nUsage\n=====\n\nTo open a remote PDB on first available port:\n\n.. code:: python\n\n    from remote_pdb import set_trace\n    set_trace() # you'll see the port number in the logs\n\nTo use some specific host/port:\n\n.. code:: python\n\n    from remote_pdb import RemotePdb\n    RemotePdb('127.0.0.1', 4444).set_trace()\n\nTo connect just run ``telnet 127.0.0.1 4444``.  When you are finished\ndebugging, either exit the debugger, or press Control-], then Control-d.\n\nAlternately, one can connect with NetCat: ``nc -C 127.0.0.1 4444`` or Socat: ``socat readline\ntcp:127.0.0.1:4444`` (for line editing and history support).  When finished debugging, either exit\nthe debugger, or press Control-c.\n\nNote that newer Ubuntu disabled readline support in socat, so if you get\n``unknown device/address \"readline\"`` try using rlwrap like this::\n\n    rlwrap socat - tcp:127.0.0.1:4444\n\nUsing in containers\n===================\n\nIf you want to connect from the host to remote-pdb running inside the container you should make sure that:\n\n* The port you will use is mapped (eg: ``-p 4444:4444``).\n* The host is set to ``0.0.0.0`` (``localhost` or ``127.0.0.1`` will not work because\n  Docker doesn't map the port on the local interface).\n\nIntegration with breakpoint() in Python 3.7+\n============================================\n\nIf you are using Python 3.7 one can use the new ``breakpoint()`` built in to invoke\nremote PDB. In this case the following environment variable must be set:\n\n.. code:: bash\n\n    PYTHONBREAKPOINT=remote_pdb.set_trace\n\nThe debugger can then be invoked as follows, without any imports:\n\n.. code:: python\n\n    breakpoint()\n\nAs the ``breakpoint()`` function does not take any arguments, environment variables can be used to\nspecify the host and port that the server should listen to. For example, to run ``script.py`` in such a\nway as to make ``telnet 127.0.0.1 4444`` the correct way of connecting, one would run:\n\n.. code:: bash\n\n    PYTHONBREAKPOINT=remote_pdb.set_trace REMOTE_PDB_HOST=127.0.0.1 REMOTE_PDB_PORT=4444 python script.py\n\nIf ``REMOTE_PDB_HOST`` is omitted then a default value of 127.0.0.1 will be used. If ``REMOTE_PDB_PORT`` is\nomitted then the first available port will be used. The connection information will be logged to the console,\nas with calls to ``remote_pdb.set_trace()``.\n\nTo quiet the output, set ``REMOTE_PDB_QUIET=1``, this will prevent\n``RemotePdb`` from producing any output -- you'll probably want to specify\n``REMOTE_PDB_PORT`` as well since the randomized port won't be printed.\n\n\nNote about OS X\n===============\n\nIn certain scenarios (backgrounded processes) OS X will prevent readline to be imported (and readline is a dependency of pdb).\nA workaround (run this early):\n\n.. code:: python\n\n    import signal\n    signal.signal(signal.SIGTTOU, signal.SIG_IGN)\n\nSee `#9 <https://github.com/ionelmc/python-remote-pdb/issues/9>`_ and `cpython#14892 <http://bugs.python.org/issue14892>`_.\n\nRequirements\n============\n\nPython 2.6, 2.7, 3.2, 3.3 and PyPy are supported.\n\nSimilar projects\n================\n\n* `qdb <https://pypi.python.org/pypi/qdb>`_\n\n\nChangelog\n=========\n\n2.1.0 (2020-07-24)\n------------------\n\n* Changed logging to use ``remote_pdb`` logger instead of the root one.\n  Contributed by Terence Honles in `#24 <https://github.com/ionelmc/python-remote-pdb/pull/24>`_.\n\n2.0.0 (2019-07-31)\n------------------\n\n* Fixed inconsistency with normal use of ``pdb`` - `BdbQuit` will now be raised on quitting.\n  Contributed by Anthony Sottile in `#18 <https://github.com/ionelmc/python-remote-pdb/pull/18>`_.\n  **BACKWARDS INCOMPATIBLE**.\n* Added ``REMOTE_PDB_QUIET=1`` to silence output.\n  Contributed by Anthony Sottile in `#19 <https://github.com/ionelmc/python-remote-pdb/pull/19>`_.\n\n1.3.0 (2019-03-13)\n------------------\n\n* Documented support for Python 3.7's ``breakpoint()``.\n* Added support for setting the socket listening host/port through the ``REMOTE_PDB_HOST``/``REMOTE_PDB_PORT``\n  environment variables. Contributed by Matthew Wilkes in `#14 <https://github.com/ionelmc/python-remote-pdb/pull/14>`_.\n* Removed use of `rw` file wrappers around sockets (turns out socket's ``makefile`` is very buggy in Python 3.6 and\n  later - `output is discarded <https://bugs.python.org/issue35928>`_). Contributed in `#13\n  <https://github.com/ionelmc/python-remote-pdb/pull/13>`_.\n\n1.2.0 (2015-09-26)\n------------------\n\n* Always print/log listening address.\n\n1.1.3 (2015-07-06)\n------------------\n\n* Corrected the default frame tracing starts from.\n\n1.1.2 (2015-07-06)\n------------------\n\n* Small readme update.\n\n1.1.1 (2015-07-06)\n------------------\n\n* Remove bogus ``remote_pdb`` console script.\n\n1.1.0 (2015-06-21)\n------------------\n\n* Fixed buffering issues when running on Python 3 and Windows.\n\n1.0.0 (2015-06-15)\n------------------\n\n* Added support for PDB++.\n\n0.2.1 (2014-03-07)\n------------------\n\n* First release on PyPI.\n\n\n",
+        "home_page": "https://github.com/ionelmc/python-remote-pdb",
+        "author": "Ionel Cristian Mărieș",
+        "author_email": "contact@ionelmc.ro",
+        "license": "BSD-2-Clause",
+        "classifier": [
+          "Development Status :: 5 - Production/Stable",
+          "Intended Audience :: Developers",
+          "License :: OSI Approved :: BSD License",
+          "Operating System :: Unix",
+          "Operating System :: POSIX",
+          "Operating System :: Microsoft :: Windows",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 2.7",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3.5",
+          "Programming Language :: Python :: 3.6",
+          "Programming Language :: Python :: 3.7",
+          "Programming Language :: Python :: 3.8",
+          "Programming Language :: Python :: Implementation :: CPython",
+          "Programming Language :: Python :: Implementation :: PyPy",
+          "Topic :: Utilities"
+        ],
+        "requires_python": ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
+        "project_url": [
+          "Documentation, https://python-remote-pdb.readthedocs.io/",
+          "Changelog, https://python-remote-pdb.readthedocs.io/en/latest/changelog.html",
+          "Issue Tracker, https://github.com/ionelmc/python-remote-pdb/issues"
+        ]
+      }
+    }
+  ],
+  "environment": {
+    "implementation_name": "cpython",
+    "implementation_version": "3.12.13",
+    "os_name": "posix",
+    "platform_machine": "x86_64",
+    "platform_release": "6.8.0-87-generic",
+    "platform_system": "Linux",
+    "platform_version": "#88-Ubuntu SMP PREEMPT_DYNAMIC Sat Oct 11 09:28:41 UTC 2025",
+    "python_full_version": "3.12.13",
+    "platform_python_implementation": "CPython",
+    "python_version": "3.12",
+    "sys_platform": "linux"
+  }
+}

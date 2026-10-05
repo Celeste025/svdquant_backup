@@ -1,0 +1,317 @@
+{
+  "experiment": "E046",
+  "status": "complete",
+  "phase": "check",
+  "prompt_id": 192,
+  "cases": [],
+  "actual_counts": {
+    "native_dit": 0,
+    "bf16_dit": 0,
+    "native_gemm": 0,
+    "dit_sdpa": 0,
+    "fastpack_checks": 0,
+    "native_scheduler": 0,
+    "repair_scheduler": 0,
+    "public_vae_decode": 0,
+    "text_encoder": 0
+  },
+  "manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E046_wan_terminal_repair_manifest.json",
+    "bytes": 7770,
+    "sha256": "c6bc81a332f12ddefdc8dd8f0169a0b8df6ba1ccac51f701ed8b63065ee78982"
+  },
+  "sources": [
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_vanilla_wan_native_v2.py",
+      "bytes": 18210,
+      "sha256": "b219e44365a67ab672b277f449a109d712bee07466b084786e70de8a371382a5"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_vanilla_wan_reference.py",
+      "bytes": 15853,
+      "sha256": "e51e102122e1c15ce46c59c8b4cddf88e50640eb17b2e69f02e447177e165479"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E046_wan_terminal_repair_manifest.json",
+      "bytes": 7770,
+      "sha256": "c6bc81a332f12ddefdc8dd8f0169a0b8df6ba1ccac51f701ed8b63065ee78982"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E044_vanilla_wan_native_plan.md",
+      "bytes": 3454,
+      "sha256": "1d08948da708f69b677c599ad2cd6e9ad095779f26777aea54a8e4bff136649b"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py",
+      "bytes": 22773,
+      "sha256": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/wan_nvfp4_fastpack.py",
+      "bytes": 8997,
+      "sha256": "98e7e81b0aeab229006fbd721be1da24f4eb435b424de9cc95a3b136f277ebd0"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/wan_mainweight_qad.py",
+      "bytes": 11654,
+      "sha256": "09a81e1a7b33c59a8e09d57f31046eec68c25c4626ed2bd1a788902e9f077cd8"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/infer_rcm_wan_4step.py",
+      "bytes": 13488,
+      "sha256": "9212636afac8d7c98a82f3fb98c6efb0a0ed366ea83db65866f64cfcf99e02fb"
+    },
+    {
+      "file": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/pipelines/wan/pipeline_wan.py",
+      "bytes": 32040,
+      "sha256": "2a5fcd905ad0fbcbd76240e02007e73ab3583f927da8b9fe0fbe5a4a54d792aa"
+    },
+    {
+      "file": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/models/transformers/transformer_wan.py",
+      "bytes": 31082,
+      "sha256": "74741d74c9fa4b9d02be83de9840b37a732080a795aa2d19037c03e312c76907"
+    },
+    {
+      "file": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/models/autoencoders/autoencoder_kl_wan.py",
+      "bytes": 54261,
+      "sha256": "a38de0c53adcb81887a0b48d44e3fb59737d7b1e4779a666febe83be666e8fa8"
+    },
+    {
+      "file": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/schedulers/scheduling_unipc_multistep.py",
+      "bytes": 56242,
+      "sha256": "5bfe1dcf55ebea6dbbf624d3af676b2529b81fbcaf493150d562ec9e1aba3872"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/app/diffusion/ptq.py",
+      "bytes": 18671,
+      "sha256": "9ba38f2739391985526b1453262b095f3480d14bd11bc76c5e0e6561638bd1a9"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/app/diffusion/nn/struct.py",
+      "bytes": 89584,
+      "sha256": "a056765b4c41f29f849017145861bb5402a01b54d28df19d187190a39bfab4ce"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/app/diffusion/quant/weight.py",
+      "bytes": 22802,
+      "sha256": "4a30ae25c506930bc687a1f0a3a267bb795f3db37ad78d0faf7cf488533f4512"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/app/diffusion/quant/activation.py",
+      "bytes": 14071,
+      "sha256": "a8e483529ce0883d5311247944d550d896c962ed3096e7d8af5ef6b52e89c821"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/csrc/load.py",
+      "bytes": 951,
+      "sha256": "a07e2e59183f5c35b2c8ba379d3bc3117ec4b5e359c2577af6d56194656ba1f5"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/csrc/quantize/quantize.cu",
+      "bytes": 4126,
+      "sha256": "df5086015798a594699a17b7a3743c0e9b96e5a75d8c7fe1e289643e40ca0b8f"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_wan_bf16_terminal_repair.py",
+      "bytes": 17700,
+      "sha256": "7a7b9fa594b98ec57c64a9231b302bc44542214d27fe97904e72e55c7e404775"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_wan_terminal_intervention_v2.py",
+      "bytes": 19174,
+      "sha256": "e4dd56e4290ad40c0461a5ba63119d92ea99e45d43f428b892430a10f9248c5d"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E046_wan_terminal_repair_plan.md",
+      "bytes": 3317,
+      "sha256": "31912544ab812caf722f3d2bf737c15cd4e05ac16671869f9ff5deb60e2fca62"
+    }
+  ],
+  "references": {
+    "192": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E043/worker_192.json",
+      "bytes": 66077,
+      "sha256": "cf709635d6e573524b8c698555051d3af453fe6d6b070ad0ed8106170b8899a9"
+    }
+  },
+  "settings": {
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "num_inference_steps": 50,
+    "guidance_scale": 6.0,
+    "flow_shift": 8.0,
+    "fps": 16,
+    "scheduler": "UniPCMultistepScheduler",
+    "transformer_dtype": "bfloat16",
+    "text_encoder_dtype": "bfloat16",
+    "vae_dtype": "float32",
+    "latent_update_dtype": "float32",
+    "max_sequence_length": 512,
+    "prompt_extension": false,
+    "attention_backend_dit": "torch SDPA FLASH_ATTENTION",
+    "compile": false,
+    "offload": false,
+    "vae_tiling": false
+  },
+  "selected_cases": [
+    {
+      "case_id": "vbench0192_r0",
+      "prompt_id": 192,
+      "source_index_zero_based": 192,
+      "replica": 0,
+      "prompt": "A person is folding clothes",
+      "prompt_sha256": "aa6ec2715d998696d460049e712e873297a1760ffd3340b4f3f11fa0c3ab3fd2",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "seed": 43001920
+    },
+    {
+      "case_id": "vbench0192_r1",
+      "prompt_id": 192,
+      "source_index_zero_based": 192,
+      "replica": 1,
+      "prompt": "A person is folding clothes",
+      "prompt_sha256": "aa6ec2715d998696d460049e712e873297a1760ffd3340b4f3f11fa0c3ab3fd2",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "seed": 43001921
+    }
+  ],
+  "inherited_asset_provenance": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E043/base_transformer_provenance.json",
+    "bytes": 1325,
+    "sha256": "2967ac89b4a5a97f04b0e4e7cba0efffa98d11b0954c38d4250fed9d9162b201"
+  },
+  "inherited_te_vae_receipt": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E024/assets_manifest_attempt3.json",
+    "bytes": 27582,
+    "sha256": "8c851f0b442558d412d212e28dbb0c8b959184c1ed87cea5ec9b53ec91d71026"
+  },
+  "environment": {
+    "python": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "diffusers": "0.40.0",
+    "diffusers_path": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/__init__.py",
+    "PATH": "/home/wjq/.conda/envs/convrot-wan/bin:/usr/local/cuda/bin:/home/wjq/.local/bin:/opt/anaconda3/bin:/home/wjq/.codex/packages/app-server-daemon/releases/0.158.0-x86_64-unknown-linux-musl/codex-path:/home/wjq/.codex/tmp/arg0/codex-arg0vSUAs7:/home/wjq/.codex/tmp/arg0/codex-arg05WBOtG:/home/wjq/.local/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/cuda/bin",
+    "TORCH_EXTENSIONS_DIR": "/data1/models/svdquant-wjq/research/cache/e044/torch_extensions",
+    "TORCH_CUDA_ARCH_LIST": "12.0+PTX"
+  },
+  "cpu_target_count": 300,
+  "checkpoint_identity": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E044/checkpoint_identity.json",
+    "bytes": 2902,
+    "sha256": "ee3bca97733becccd257d24a6d422138c0e4d1b28f4cb75fefda5e926994527e"
+  },
+  "checkpoint_stat": [
+    {
+      "file": "/data1/models/svdquant-wjq/ckpts/wan2.1-1.3b-real-nvfp4-s16/model.pt",
+      "resolved": "/data1/models/svdquant-wjq/ckpts/wan2.1-1.3b-real-nvfp4-s16/model.pt",
+      "bytes": 2844493647
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/ckpts/wan2.1-1.3b-real-nvfp4-s16/scale.pt",
+      "resolved": "/data1/models/svdquant-wjq/ckpts/wan2.1-1.3b-real-nvfp4-s16/scale.pt",
+      "bytes": 348257123
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/ckpts/wan2.1-1.3b-real-nvfp4-s16/wgts.pt",
+      "resolved": "/data1/models/svdquant-wjq/ckpts/wan2.1-1.3b-real-nvfp4-s16/wgts.pt",
+      "bytes": 17563
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/ckpts/wan2.1-1.3b-real-nvfp4-s16/branch.pt",
+      "resolved": "/data1/models/svdquant-wjq/runs/wan_s16_real_nvfp4/diffusion/cache/quant/qdiff.64/branch/w.4-x.4-y.16-w.4/w.sfp4_e2m1_all-x.sfp4_e2m1_all-y.bf16-w.sint4/w.v16.sfp8_e4m3_nan.tsnr.fp32-x.v16.sfp8_e4m3_nan.tsnr.fp32-y.tnsr.bf16-w.v64.bf16/w.skip.[e+rs+rtp+s+tpi+tpo]-x.skip.[e+rs+rtp+s+tan+tn+tpi+tpo]-y.skip.[]-w.include.[tan+tn]/lowrank.r32/smooth.proj.OutputsError.GridSearch.Layer.d2.en1.sn1/smooth.proj.[a.AbsMax.b.AbsMax]/smooth.proj.g10.bn2.lr.nf/smooth.proj.skip.[rc+tan+tn]/lowrank.OutputsError.Manual.Layer.d2.en1.sn1/lowrank.i100.r32.earlystop/lowrank.skip.[rc+tan+tn]/wan2.1-1.3b.pt",
+      "bytes": 78793247
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/ckpts/wan2.1-1.3b-real-nvfp4-s16/smooth.pt",
+      "resolved": "/data1/models/svdquant-wjq/runs/wan_s16_real_nvfp4/diffusion/cache/quant/qdiff.64/smooth/w.4-x.4-y.16-w.4/w.sfp4_e2m1_all-x.sfp4_e2m1_all-y.bf16-w.sint4/w.v16.sfp8_e4m3_nan.tsnr.fp32-x.v16.sfp8_e4m3_nan.tsnr.fp32-y.tnsr.bf16-w.v64.bf16/w.skip.[e+rs+rtp+s+tpi+tpo]-x.skip.[e+rs+rtp+s+tan+tn+tpi+tpo]-y.skip.[]-w.include.[tan+tn]/lowrank.r32/smooth.proj.OutputsError.GridSearch.Layer.d2.en1.sn1/smooth.proj.[a.AbsMax.b.AbsMax]/smooth.proj.g10.bn2.lr.nf/smooth.proj.skip.[rc+tan+tn]/wan2.1-1.3b.pt",
+      "bytes": 2244411
+    }
+  ],
+  "loader_import": {
+    "status": "complete",
+    "extension": "/data1/models/svdquant-wjq/research/cache/e044/torch_extensions/deepcompressor_C/deepcompressor_C.so",
+    "config_class": "DiffusionPtqRunConfig",
+    "blocks": 30
+  },
+  "native_references": {
+    "vbench0192_r0": {
+      "worker": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E044/worker_svdquant_nvfp4_161_192.json",
+        "bytes": 723711,
+        "sha256": "a15ef503d42ea7510d4fcf106f87d035e30e0ab4b737798cdfa4d0d8cd71c739"
+      },
+      "final_latents": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E044/svdquant_nvfp4/vbench0192_r0/final_latents.pt",
+          "bytes": 8388243,
+          "sha256": "fc0ccb1fd82a6596219305a2d7ce9b714dd6025074526bee959f3cdc87aa9c24"
+        },
+        "tensor": {
+          "shape": [
+            1,
+            16,
+            21,
+            60,
+            104
+          ],
+          "dtype": "torch.float32",
+          "finite": true,
+          "sha256": "fa2f575945893258a571fc3c1af15829146bf32030519d239862d40d38699472"
+        }
+      }
+    },
+    "vbench0192_r1": {
+      "worker": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E044/worker_svdquant_nvfp4_161_192.json",
+        "bytes": 723711,
+        "sha256": "a15ef503d42ea7510d4fcf106f87d035e30e0ab4b737798cdfa4d0d8cd71c739"
+      },
+      "final_latents": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E044/svdquant_nvfp4/vbench0192_r1/final_latents.pt",
+          "bytes": 8388243,
+          "sha256": "bbcdd62747231740532d6cc4e65145b5c1764e97b0fd5f11c1d96e31946a5e28"
+        },
+        "tensor": {
+          "shape": [
+            1,
+            16,
+            21,
+            60,
+            104
+          ],
+          "dtype": "torch.float32",
+          "finite": true,
+          "sha256": "f81cc791f6d8b87781b54dcd64ded5746e736afc6d4493d6d6b770620cb48793"
+        }
+      }
+    }
+  },
+  "cpu_api": {
+    "snapshot_without_callable_step": true,
+    "robust_tensor_record_source": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_wan_terminal_intervention_v2.py",
+      "bytes": 19174,
+      "sha256": "e4dd56e4290ad40c0461a5ba63119d92ea99e45d43f428b892430a10f9248c5d"
+    },
+    "transformer_forward_parameters": [
+      "self",
+      "hidden_states",
+      "timestep",
+      "encoder_hidden_states",
+      "encoder_hidden_states_image",
+      "return_dict",
+      "attention_kwargs"
+    ]
+  },
+  "cuda_available": false,
+  "model_weights_loaded": false,
+  "prepared_case_count": 2,
+  "seconds_total": 0.7344620830845088
+}

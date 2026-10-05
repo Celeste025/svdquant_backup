@@ -1,0 +1,666 @@
+{
+  "experiment": "E003",
+  "status": "complete",
+  "native_fp4": false,
+  "intervention": "replace selected block0 output rows by fixed quantized donor; rest BF16",
+  "cases": [
+    {
+      "prompt_id": 1,
+      "step": 0,
+      "input": "/home/wjq/workspace/svdquant-exp/results/calib/minimax_h3_svdquant_standard_8p64s/p1/sample_p1_s00.pt",
+      "tokens": 22400,
+      "hidden_shape": [
+        22400,
+        5376
+      ],
+      "partitions": {
+        "video": {
+          "tokens": 21312,
+          "indices_sha256": "f5ebdfe99092b25b31e6e4d744f3036283be6492663f02162844a9fbe48f4e70",
+          "token_tag_counts": {
+            "0": 21312
+          }
+        },
+        "audio": {
+          "tokens": 414,
+          "indices_sha256": "0e4191211759e33ccf798497b934df3619995518acf315220d4562f2798cafab",
+          "token_tag_counts": {
+            "2": 414
+          }
+        },
+        "text": {
+          "tokens": 658,
+          "indices_sha256": "e79ad07c72abc57477ff860ac4b62527a3039fa0862025e352ef115b1c07536b",
+          "token_tag_counts": {
+            "1": 658
+          }
+        },
+        "pad_or_unassigned": {
+          "tokens": 16,
+          "indices_sha256": "e462282ef988b3255eecca3dd6f283528750b3f97ea1fd4386c4512dd1574a76",
+          "token_tag_counts": {
+            "-1": 16
+          }
+        }
+      },
+      "teacher_output_shapes": [
+        [
+          21312,
+          96
+        ],
+        [
+          414,
+          32
+        ]
+      ],
+      "teacher_output_sha256": [
+        "8986659ea4dbda2beca7f4e8c87bcd37a1fcc4b667d97cecfe9e76cbcb116962",
+        "6d0c424d6370d2edcffe03f6874e736757e0613d4e4a299fecf47286ee005323"
+      ],
+      "teacher_block0_sha256": "b4badac14f7eb3c50112f78170aea14e57d4ad1e6a3d31571a2495366283a1c1",
+      "local": {
+        "plain_w4a4": {
+          "all": {
+            "err2": 935883497.9353492,
+            "ref2": 797304450685.2981,
+            "nmse": 0.0011738094489889526,
+            "max_abs": 2816.0,
+            "numel": 120422400
+          },
+          "video": {
+            "err2": 16014813.746751491,
+            "ref2": 2550460683.1879025,
+            "nmse": 0.006279184718399212,
+            "max_abs": 22.0,
+            "numel": 114573312
+          },
+          "audio": {
+            "err2": 42545.49092213322,
+            "ref2": 35575181.13902797,
+            "nmse": 0.0011959318142573962,
+            "max_abs": 12.0,
+            "numel": 2225664
+          },
+          "text": {
+            "err2": 919813886.1527073,
+            "ref2": 794717446990.8053,
+            "nmse": 0.0011574099570049446,
+            "max_abs": 2816.0,
+            "numel": 3537408
+          },
+          "pad_or_unassigned": {
+            "err2": 12252.544968372637,
+            "ref2": 967830.165691636,
+            "nmse": 0.012659808923827722,
+            "max_abs": 11.0,
+            "numel": 86016
+          },
+          "output_sha256": "12258502b291f1570a33e516d50899ae4fd7ec751cc5c487d37dfc5171922651"
+        },
+        "corrected_svdquant": {
+          "all": {
+            "err2": 833149564.4756253,
+            "ref2": 797304450685.2981,
+            "nmse": 0.001044957874949171,
+            "max_abs": 1536.0,
+            "numel": 120422400
+          },
+          "video": {
+            "err2": 23697169.105060857,
+            "ref2": 2550460683.1879025,
+            "nmse": 0.009291328920013386,
+            "max_abs": 30.0,
+            "numel": 114573312
+          },
+          "audio": {
+            "err2": 47224.60413659758,
+            "ref2": 35575181.13902797,
+            "nmse": 0.001327459274263246,
+            "max_abs": 12.0,
+            "numel": 2225664
+          },
+          "text": {
+            "err2": 809384349.2698556,
+            "ref2": 794717446990.8053,
+            "nmse": 0.0010184554929989098,
+            "max_abs": 1536.0,
+            "numel": 3537408
+          },
+          "pad_or_unassigned": {
+            "err2": 20821.496572137028,
+            "ref2": 967830.165691636,
+            "nmse": 0.021513585038194647,
+            "max_abs": 12.0,
+            "numel": 86016
+          },
+          "output_sha256": "f557b3456fbd436bc5337583d6eaca881989b5aefb26c68437a67d75afa66e79"
+        }
+      },
+      "arms": [
+        {
+          "arm": "bf16_zero_pulse",
+          "donor": null,
+          "subset": "all",
+          "pulse_local": {
+            "err2": 0.0,
+            "ref2": 797304450685.2981,
+            "nmse": 0.0,
+            "max_abs": 0.0,
+            "numel": 120422400
+          },
+          "video": {
+            "err2": 0.0,
+            "ref2": 12846486.890349228,
+            "nmse": 0.0,
+            "max_abs": 0.0,
+            "numel": 2045952
+          },
+          "audio": {
+            "err2": 0.0,
+            "ref2": 15386.566117632867,
+            "nmse": 0.0,
+            "max_abs": 0.0,
+            "numel": 13248
+          },
+          "seconds_including_disk_offload_not_benchmark": 8.727936744689941,
+          "sdpa_calls": 102
+        },
+        {
+          "arm": "plain_full",
+          "donor": "plain_w4a4",
+          "subset": "all",
+          "pulse_local": {
+            "err2": 935883497.9353492,
+            "ref2": 797304450685.2981,
+            "nmse": 0.0011738094489889526,
+            "max_abs": 2816.0,
+            "numel": 120422400
+          },
+          "video": {
+            "err2": 15051.595246513301,
+            "ref2": 12846486.890349228,
+            "nmse": 0.001171650691351317,
+            "max_abs": 0.453125,
+            "numel": 2045952
+          },
+          "audio": {
+            "err2": 27.72855305516714,
+            "ref2": 15386.566117632867,
+            "nmse": 0.0018021274430680453,
+            "max_abs": 0.17578125,
+            "numel": 13248
+          },
+          "seconds_including_disk_offload_not_benchmark": 8.748514652252197,
+          "sdpa_calls": 102
+        },
+        {
+          "arm": "corrected_full",
+          "donor": "corrected_svdquant",
+          "subset": "all",
+          "pulse_local": {
+            "err2": 833149564.4756253,
+            "ref2": 797304450685.2981,
+            "nmse": 0.001044957874949171,
+            "max_abs": 1536.0,
+            "numel": 120422400
+          },
+          "video": {
+            "err2": 17109.624513787843,
+            "ref2": 12846486.890349228,
+            "nmse": 0.0013318524091314994,
+            "max_abs": 0.71875,
+            "numel": 2045952
+          },
+          "audio": {
+            "err2": 12.903524462381029,
+            "ref2": 15386.566117632867,
+            "nmse": 0.0008386227546634792,
+            "max_abs": 0.1484375,
+            "numel": 13248
+          },
+          "seconds_including_disk_offload_not_benchmark": 8.754874467849731,
+          "sdpa_calls": 102
+        },
+        {
+          "arm": "corrected_text_only",
+          "donor": "corrected_svdquant",
+          "subset": "text",
+          "pulse_local": {
+            "err2": 809384349.2698556,
+            "ref2": 797304450685.2981,
+            "nmse": 0.001015150923306868,
+            "max_abs": 1536.0,
+            "numel": 120422400
+          },
+          "video": {
+            "err2": 3755.0910637948973,
+            "ref2": 12846486.890349228,
+            "nmse": 0.000292304899841206,
+            "max_abs": 0.3828125,
+            "numel": 2045952
+          },
+          "audio": {
+            "err2": 6.582487400693935,
+            "ref2": 15386.566117632867,
+            "nmse": 0.0004278074360692126,
+            "max_abs": 0.12109375,
+            "numel": 13248
+          },
+          "seconds_including_disk_offload_not_benchmark": 8.76972246170044,
+          "sdpa_calls": 102
+        },
+        {
+          "arm": "corrected_video_only",
+          "donor": "corrected_svdquant",
+          "subset": "video",
+          "pulse_local": {
+            "err2": 23697169.10506085,
+            "ref2": 797304450685.2981,
+            "nmse": 2.9721606451202786e-05,
+            "max_abs": 30.0,
+            "numel": 120422400
+          },
+          "video": {
+            "err2": 12327.638328414865,
+            "ref2": 12846486.890349228,
+            "nmse": 0.0009596116380795015,
+            "max_abs": 0.46875,
+            "numel": 2045952
+          },
+          "audio": {
+            "err2": 2.7499870853409902,
+            "ref2": 15386.566117632867,
+            "nmse": 0.00017872649844785898,
+            "max_abs": 0.0625,
+            "numel": 13248
+          },
+          "seconds_including_disk_offload_not_benchmark": 8.782082319259644,
+          "sdpa_calls": 102
+        }
+      ],
+      "teacher_sdpa_calls": 102,
+      "qkv_dtypes": [
+        [
+          "torch.bfloat16",
+          "torch.bfloat16",
+          "torch.bfloat16"
+        ]
+      ],
+      "block_bf16_replay": {
+        "err2": 0.0,
+        "ref2": 797304450685.2981,
+        "nmse": 0.0,
+        "max_abs": 0.0,
+        "numel": 120422400
+      },
+      "seconds_total": 61.280635595321655
+    },
+    {
+      "prompt_id": 1,
+      "step": 19,
+      "input": "/home/wjq/workspace/svdquant-exp/results/calib/minimax_h3_svdquant_standard_8p64s/p1/sample_p1_s19.pt",
+      "tokens": 22400,
+      "hidden_shape": [
+        22400,
+        5376
+      ],
+      "partitions": {
+        "video": {
+          "tokens": 21312,
+          "indices_sha256": "f5ebdfe99092b25b31e6e4d744f3036283be6492663f02162844a9fbe48f4e70",
+          "token_tag_counts": {
+            "0": 21312
+          }
+        },
+        "audio": {
+          "tokens": 414,
+          "indices_sha256": "0e4191211759e33ccf798497b934df3619995518acf315220d4562f2798cafab",
+          "token_tag_counts": {
+            "2": 414
+          }
+        },
+        "text": {
+          "tokens": 658,
+          "indices_sha256": "e79ad07c72abc57477ff860ac4b62527a3039fa0862025e352ef115b1c07536b",
+          "token_tag_counts": {
+            "1": 658
+          }
+        },
+        "pad_or_unassigned": {
+          "tokens": 16,
+          "indices_sha256": "e462282ef988b3255eecca3dd6f283528750b3f97ea1fd4386c4512dd1574a76",
+          "token_tag_counts": {
+            "-1": 16
+          }
+        }
+      },
+      "teacher_output_shapes": [
+        [
+          21312,
+          96
+        ],
+        [
+          414,
+          32
+        ]
+      ],
+      "teacher_output_sha256": [
+        "c0b2ae969af22e1c25adcaccffbded110bc45ac892c0a84bfe93074e2fee53fb",
+        "8a72a628d88afd5f1db9f04df477a4590ae0a3e08a7ddbc1e4ac3e5beea02315"
+      ],
+      "teacher_block0_sha256": "77e1dd88608d7bff42b39978d1969d4191c3f9245e497c00e57f65b3ac842be1",
+      "local": {
+        "plain_w4a4": {
+          "all": {
+            "err2": 462596226.8520383,
+            "ref2": 370166077205.99115,
+            "nmse": 0.001249699135976232,
+            "max_abs": 2560.0,
+            "numel": 120422400
+          },
+          "video": {
+            "err2": 52064703.53168342,
+            "ref2": 43917761232.713524,
+            "nmse": 0.001185504499097768,
+            "max_abs": 56.0,
+            "numel": 114573312
+          },
+          "audio": {
+            "err2": 61887.471294090574,
+            "ref2": 88214957.7659011,
+            "nmse": 0.0007015530343314721,
+            "max_abs": 16.0,
+            "numel": 2225664
+          },
+          "text": {
+            "err2": 410402062.380714,
+            "ref2": 326133531403.0659,
+            "nmse": 0.0012583865897355438,
+            "max_abs": 2560.0,
+            "numel": 3537408
+          },
+          "pad_or_unassigned": {
+            "err2": 67573.46834665618,
+            "ref2": 26569612.445714094,
+            "nmse": 0.0025432613473274942,
+            "max_abs": 24.0,
+            "numel": 86016
+          },
+          "output_sha256": "7dadd89906898bfcde9499a84022e5091c93376a908f8ff9569fd3ed147f2d35"
+        },
+        "corrected_svdquant": {
+          "all": {
+            "err2": 458028068.7440787,
+            "ref2": 370166077205.99115,
+            "nmse": 0.0012373583019850676,
+            "max_abs": 1536.0,
+            "numel": 120422400
+          },
+          "video": {
+            "err2": 93825558.10403088,
+            "ref2": 43917761232.713524,
+            "nmse": 0.0021363920990157843,
+            "max_abs": 64.0,
+            "numel": 114573312
+          },
+          "audio": {
+            "err2": 60756.74979896838,
+            "ref2": 88214957.7659011,
+            "nmse": 0.000688735236491305,
+            "max_abs": 20.0,
+            "numel": 2225664
+          },
+          "text": {
+            "err2": 364027974.1960553,
+            "ref2": 326133531403.0659,
+            "nmse": 0.0011161930287571563,
+            "max_abs": 1536.0,
+            "numel": 3537408
+          },
+          "pad_or_unassigned": {
+            "err2": 113779.69419343858,
+            "ref2": 26569612.445714094,
+            "nmse": 0.004282324193697158,
+            "max_abs": 24.0,
+            "numel": 86016
+          },
+          "output_sha256": "8952d3e237c3e53877e60a984b832c909787bb5515cafd6a2458fa2ce0216173"
+        }
+      },
+      "arms": [
+        {
+          "arm": "bf16_zero_pulse",
+          "donor": null,
+          "subset": "all",
+          "pulse_local": {
+            "err2": 0.0,
+            "ref2": 370166077205.99115,
+            "nmse": 0.0,
+            "max_abs": 0.0,
+            "numel": 120422400
+          },
+          "video": {
+            "err2": 0.0,
+            "ref2": 3788942.913425618,
+            "nmse": 0.0,
+            "max_abs": 0.0,
+            "numel": 2045952
+          },
+          "audio": {
+            "err2": 0.0,
+            "ref2": 8887.736937939508,
+            "nmse": 0.0,
+            "max_abs": 0.0,
+            "numel": 13248
+          },
+          "seconds_including_disk_offload_not_benchmark": 8.786824226379395,
+          "sdpa_calls": 102
+        },
+        {
+          "arm": "plain_full",
+          "donor": "plain_w4a4",
+          "subset": "all",
+          "pulse_local": {
+            "err2": 462596226.8520383,
+            "ref2": 370166077205.99115,
+            "nmse": 0.001249699135976232,
+            "max_abs": 2560.0,
+            "numel": 120422400
+          },
+          "video": {
+            "err2": 839.3267168715707,
+            "ref2": 3788942.913425618,
+            "nmse": 0.0002215200218239044,
+            "max_abs": 0.5078125,
+            "numel": 2045952
+          },
+          "audio": {
+            "err2": 3.504603307614161,
+            "ref2": 8887.736937939508,
+            "nmse": 0.0003943189736696519,
+            "max_abs": 0.1015625,
+            "numel": 13248
+          },
+          "seconds_including_disk_offload_not_benchmark": 8.799956560134888,
+          "sdpa_calls": 102
+        },
+        {
+          "arm": "corrected_full",
+          "donor": "corrected_svdquant",
+          "subset": "all",
+          "pulse_local": {
+            "err2": 458028068.7440787,
+            "ref2": 370166077205.99115,
+            "nmse": 0.0012373583019850676,
+            "max_abs": 1536.0,
+            "numel": 120422400
+          },
+          "video": {
+            "err2": 910.8034132125119,
+            "ref2": 3788942.913425618,
+            "nmse": 0.0002403845700565191,
+            "max_abs": 0.74560546875,
+            "numel": 2045952
+          },
+          "audio": {
+            "err2": 2.9013083530380754,
+            "ref2": 8887.736937939508,
+            "nmse": 0.00032643949447391064,
+            "max_abs": 0.093017578125,
+            "numel": 13248
+          },
+          "seconds_including_disk_offload_not_benchmark": 8.830149173736572,
+          "sdpa_calls": 102
+        },
+        {
+          "arm": "corrected_text_only",
+          "donor": "corrected_svdquant",
+          "subset": "text",
+          "pulse_local": {
+            "err2": 364027974.1960553,
+            "ref2": 370166077205.99115,
+            "nmse": 0.000983417975368607,
+            "max_abs": 1536.0,
+            "numel": 120422400
+          },
+          "video": {
+            "err2": 458.3682600769215,
+            "ref2": 3788942.913425618,
+            "nmse": 0.00012097523519099594,
+            "max_abs": 0.61328125,
+            "numel": 2045952
+          },
+          "audio": {
+            "err2": 1.6834296823226396,
+            "ref2": 8887.736937939508,
+            "nmse": 0.00018941038580209352,
+            "max_abs": 0.109375,
+            "numel": 13248
+          },
+          "seconds_including_disk_offload_not_benchmark": 8.816894292831421,
+          "sdpa_calls": 102
+        },
+        {
+          "arm": "corrected_video_only",
+          "donor": "corrected_svdquant",
+          "subset": "video",
+          "pulse_local": {
+            "err2": 93825558.10403092,
+            "ref2": 370166077205.99115,
+            "nmse": 0.0002534688181375912,
+            "max_abs": 64.0,
+            "numel": 120422400
+          },
+          "video": {
+            "err2": 757.1182954741696,
+            "ref2": 3788942.913425618,
+            "nmse": 0.00019982309387439465,
+            "max_abs": 0.56158447265625,
+            "numel": 2045952
+          },
+          "audio": {
+            "err2": 1.1163935071272135,
+            "ref2": 8887.736937939508,
+            "nmse": 0.000125610547985687,
+            "max_abs": 0.08984375,
+            "numel": 13248
+          },
+          "seconds_including_disk_offload_not_benchmark": 8.809929132461548,
+          "sdpa_calls": 102
+        }
+      ],
+      "teacher_sdpa_calls": 102,
+      "qkv_dtypes": [
+        [
+          "torch.bfloat16",
+          "torch.bfloat16",
+          "torch.bfloat16"
+        ]
+      ],
+      "block_bf16_replay": {
+        "err2": 0.0,
+        "ref2": 370166077205.99115,
+        "nmse": 0.0,
+        "max_abs": 0.0,
+        "numel": 120422400
+      },
+      "seconds_total": 58.08241415023804
+    }
+  ],
+  "vram_limit_gib": 35.0,
+  "limitations": [
+    "one calibration prompt, two captured timesteps",
+    "not free rollout or final video quality",
+    "fixed legacy-calibrated state with corrected runtime hook; not recalibrated",
+    "E001 default Sage attention differs; E003 forces actual BF16 torch SDPA and recomputes every donor",
+    "pulse amplitudes not energy normalized, so this is not intrinsic equal-energy sensitivity",
+    "old codebook tie rule retained",
+    "audio/pad pulses not independently tested",
+    "nonlinear full pulse is not sum of modality pulses",
+    "no novelty or performance claim"
+  ],
+  "files": {
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_modality_pulse.py": {
+      "sha256": "e836578688580885fd46f54b0d45eef7b975932bfe5872f764feb8e4b86c820c",
+      "bytes": 13825
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/minimax_h3_svdquant_common.py": {
+      "sha256": "d0fca20f98a40c3aa20773faa47e6d6b986811f6cd03802723021fd50383ae61",
+      "bytes": 14656
+    },
+    "/home/wjq/workspace/svdquant-exp/results/checkpoints/minimax_h3_svdquant_standard_8p64s/quant_state.pt": {
+      "sha256": "e5ccf2d809f0b03e6a0eaef400e4f610ccfc37478eb3715d75040cf07446652d",
+      "bytes": 301607239
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors": {
+      "sha256": "a32572fb90b5508b201ec7c2eddcc184b13ddfd3c6f6d2cf06a0b46535d541b4",
+      "bytes": 40225724176
+    },
+    "/home/wjq/workspace/svdquant-exp/results/calib/minimax_h3_svdquant_standard_8p64s/p1/sample_p1_s00.pt": {
+      "sha256": "c89050f015479c3aa097f090f2a600cbd232dc63d86ce430d9a29c33c27e5404",
+      "bytes": 13723182
+    },
+    "/home/wjq/workspace/svdquant-exp/results/calib/minimax_h3_svdquant_standard_8p64s/p1/sample_p1_s19.pt": {
+      "sha256": "bfd16e24702c5e80c7d3cd616e871541c594748a7f4828f3578bb6342de1a05c",
+      "bytes": 13723182
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit.py": {
+      "sha256": "bd617a4312c70405e916707e1908100b484b2259dfbeba4af7de5bb145206d80",
+      "bytes": 18207
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit_comfy.py": {
+      "sha256": "e8a2eb4cb986ba384052100fdc03984446f3fa35d0ab1e9ebfacffc039a2e8ff",
+      "bytes": 3011
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/attention/attention.py": {
+      "sha256": "1126b2e19184299cbfc611dcf66e46d0fd1a7bfa1d616f2ed38bc60ba19679ae",
+      "bytes": 13461
+    }
+  },
+  "attention_implementation": "torch",
+  "attention_contract": "Actual torch SDPA calls audited for BF16 Q/K/V; E001 default Sage backend differs, all E003 donors/references recomputed",
+  "state_config": {
+    "rank": 32,
+    "num_grids": 10,
+    "max_lowrank_iters": 50,
+    "lowrank_early_stop": "first_non_improvement",
+    "group_size": 16,
+    "element_size": 128,
+    "sample_size": 64,
+    "sample_batch_size": 1,
+    "quant": "real-NVFP4 W4A4",
+    "objective": "H3 block OutputsError"
+  },
+  "model_file": "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors",
+  "torch": "2.11.0+cu128",
+  "cuda": "12.8",
+  "device": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "0",
+    "DIFFSYNTH_ROOT": "/home/wjq/workspace/DiffSynth-Studio",
+    "MINIMAX_H3_DIT_PATH": "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors",
+    "SVDQUANT_DATA_ROOT": "/data1/models/svdquant-wjq",
+    "DIFFSYNTH_ATTENTION_IMPLEMENTATION": "torch"
+  },
+  "peak_gpu_gib": 36.22491502761841
+}

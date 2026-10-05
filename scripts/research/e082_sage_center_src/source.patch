@@ -1,0 +1,653 @@
+--- official/api.cu
++++ private/api.cu
+@@ -31,7 +31,7 @@
+ #define CHECK_CONTIGUOUS(x) TORCH_CHECK(x.is_contiguous(), #x " must be contiguous")
+ 
+ 
+-void set_params_fprop(Flash_fwd_params &params,
++void set_params_fprop(E082_Flash_fwd_params &params,
+                       // sizes
+                       const size_t b,
+                       const size_t seqlen_q,
+@@ -155,7 +155,7 @@
+     params.scale_softmax_rp_dropout = params.rp_dropout * params.scale_softmax;
+     TORCH_CHECK(p_dropout < 1.f);
+     #ifdef FLASHATTENTION_DISABLE_DROPOUT
+-        TORCH_CHECK(p_dropout == 0.0f, "This flash attention build does not support dropout.");
++        TORCH_CHECK(p_dropout == 0.0f, "This e082_flash attention build does not support dropout.");
+     #endif
+ 
+     // Causal is the special case where window_size_right == 0 and window_size_left < 0.
+@@ -174,30 +174,18 @@
+ 
+     #ifdef FLASHATTENTION_DISABLE_LOCAL
+         TORCH_CHECK(params.is_causal || (window_size_left < 0 && window_size_right < 0),
+-            "This flash attention build does not support local attention.");
++            "This e082_flash attention build does not support local attention.");
+     #endif
+ 
+     params.is_seqlens_k_cumulative = true;
+     params.is_bf16 = is_bf16;
+     #ifdef FLASHATTENTION_DISABLE_UNEVEN_K
+-        TORCH_CHECK(d == d_rounded, "This flash attention build does not support headdim not being a multiple of 32.");
++        TORCH_CHECK(d == d_rounded, "This e082_flash attention build does not support headdim not being a multiple of 32.");
+     #endif
+ }
+ 
+-template<bool IsBF16>
+-void run_mha_fwd_dispatch_dtype(Flash_fwd_params &params, cudaStream_t stream) {
+-    using OType = std::conditional_t<IsBF16, cutlass::bfloat16_t, cutlass::half_t>;
+-    if (params.d == 64) {
+-        run_mha_fwd_<cutlass::nv_float4_t<cutlass::float_e2m1_t>, 64, OType>(params, stream);
+-    } else if (params.d == 128) {
+-        run_mha_fwd_<cutlass::nv_float4_t<cutlass::float_e2m1_t>, 128, OType>(params, stream);
+-    }
+-}
+-
+-void run_mha_fwd(Flash_fwd_params &params, cudaStream_t stream, bool force_split_kernel = false) {
+-    BOOL_SWITCH(params.is_bf16, IsBF16, ([&] {
+-        run_mha_fwd_dispatch_dtype<IsBF16>(params, stream);
+-    }));
++void run_mha_fwd(E082_Flash_fwd_params &params, cudaStream_t stream) {
++    run_mha_fwd_<cutlass::nv_float4_t<cutlass::float_e2m1_t>, 128, cutlass::bfloat16_t>(params, stream);
+ }
+ 
+ std::vector<at::Tensor>
+@@ -208,6 +196,7 @@
+         const at::Tensor &sfk,
+         const at::Tensor &sfv,
+         const at::Tensor &delta_s,
++        const at::Tensor &center128_mu,
+         int unpadded_k,
+         c10::optional<at::Tensor> &out_,             // batch_size x seqlen_q x num_heads x head_size
+         const float softmax_scale,
+@@ -253,6 +242,15 @@
+     const int num_heads_k = k.size(1);
+     
+     TORCH_CHECK(batch_size > 0, "batch size must be postive");
++    TORCH_CHECK(unpacked_head_size == 128 && is_bf16 && !is_causal && per_block_mean,
++                "E082 supports only D128/BF16/noncausal/blockmean");
++    TORCH_CHECK(seqlen_q % 128 == 0 && seqlen_k % 128 == 0 && seqlen_k > 0,
++                "E082 requires positive padded key length and 128-aligned Q/K");
++    TORCH_CHECK(unpadded_k > 0 && unpadded_k <= seqlen_k, "Invalid unpadded length");
++    CHECK_DEVICE(center128_mu); CHECK_CONTIGUOUS(center128_mu);
++    TORCH_CHECK(center128_mu.scalar_type() == at::ScalarType::BFloat16, "Mean must be BF16");
++    TORCH_CHECK(center128_mu.device() == q.device(), "Mean must use Q device");
++    CHECK_SHAPE(center128_mu, batch_size, num_heads, seqlen_k / 128, 128);
+     TORCH_CHECK(unpacked_head_size <= 256, "FlashAttention forward only supports head dimension at most 256");
+     TORCH_CHECK(num_heads % num_heads_k == 0, "Number of heads in key/value must divide number of heads in query");
+     TORCH_CHECK(num_heads == num_heads_k, "We do not support MQA/GQA yet");
+@@ -286,7 +284,7 @@
+     auto softmax_lse = torch::empty({batch_size, num_heads, seqlen_q}, opts.dtype(at::kFloat));
+     at::Tensor p;
+ 
+-    Flash_fwd_params params;
++    E082_Flash_fwd_params params;
+     set_params_fprop(params,
+                      batch_size,
+                      seqlen_q, seqlen_k, unpadded_k,
+@@ -307,6 +305,7 @@
+                      per_block_mean,
+                      is_bf16
+                     );
++    params.center128_mu_ptr = center128_mu.data_ptr();
+     // TODO: 132 sm count?
+     auto tile_count_semaphore = is_causal ? torch::full({1}, 132, opts.dtype(torch::kInt32)) : torch::empty({1}, opts.dtype(torch::kInt32));
+     params.tile_count_semaphore = tile_count_semaphore.data_ptr<int>();
+@@ -336,6 +335,6 @@
+ 
+ 
+ PYBIND11_MODULE(TORCH_EXTENSION_NAME, m) {
+-    m.doc() = "FlashAttention";
++    m.doc() = "E082 private Sage3 center128; D128/BF16/noncausal/blockmean only";
+     m.def("fwd", &mha_fwd, "Forward pass");
+ }
+--- official/block_info.h
++++ private/block_info.h
+@@ -1,7 +1,7 @@
+ /*
+  * Copyright (c) 2025 by SageAttention team.
+  * 
+- * This code is based on code from FlashAttention3, https://github.com/Dao-AILab/flash-attention
++ * This code is based on code from FlashAttention3, https://github.com/Dao-AILab/e082_flash-attention
+  * Copyright (c) 2024, Jay Shah, Ganesh Bikshandi, Ying Zhang, Vijay Thakkar, Pradeep Ramani, Tri Dao.
+  * Licensed under the Apache License, Version 2.0 (the "License");
+  * you may not use this file except in compliance with the License.
+@@ -18,7 +18,7 @@
+ 
+ #pragma once
+ 
+-namespace flash {
++namespace e082_flash {
+ 
+ ////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+@@ -57,4 +57,4 @@
+ 
+ ////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+-}  // namespace flash
++}  // namespace e082_flash
+--- official/blockscaled_layout.h
++++ private/blockscaled_layout.h
+@@ -40,7 +40,7 @@
+ #include "cute/int_tuple.hpp"
+ #include "cute/atom/mma_traits_sm100.hpp"
+ 
+-namespace flash {
++namespace e082_flash {
+ 
+ /////////////////////////////////////////////////////////////////////////////////////////////////
+ using namespace cute;
+@@ -146,4 +146,4 @@
+ };
+ 
+ 
+-} // namespace flash
++} // namespace e082_flash
+--- official/epilogue_tma_ws.h
++++ private/epilogue_tma_ws.h
+@@ -23,7 +23,7 @@
+ #include "named_barrier.h"
+ #include "utils.h"
+ 
+-namespace flash {
++namespace e082_flash {
+ 
+ using namespace cute;
+ 
+@@ -210,7 +210,7 @@
+         #pragma unroll
+         for (int k = 0; k < size(tOpO); ++k) { tOpO(k) = get<1>(tOcO(_0{}, _0{}, k)) < get<1>(epilogue_params.shape_O); }
+         // Clear_OOB_K must be false since we don't want to write zeros to gmem
+-        flash::copy</*Is_even_MN=*/false, /*Is_even_K=*/false, /*Clear_OOB_MN=*/false, /*Clear_OOB_K=*/false>(
++        e082_flash::copy</*Is_even_MN=*/false, /*Is_even_K=*/false, /*Clear_OOB_MN=*/false, /*Clear_OOB_K=*/false>(
+             gmem_tiled_copy_O, tOrO, tOgO, tOcO, tOpO, get<0>(epilogue_params.shape_O) - m_block * kBlockM
+         );
+         static_assert(kBlockM <= NumMmaThreads);
+@@ -219,4 +219,4 @@
+ 
+ };
+ 
+-} // namespace flash
++} // namespace e082_flash
+--- official/kernel_traits.h
++++ private/kernel_traits.h
+@@ -60,7 +60,7 @@
+         alignas(16) typename cutlass::PipelineTmaAsync<1>::SharedStorage pipeline_q;
+         alignas(16) typename cutlass::PipelineTmaAsync<kStages>::SharedStorage pipeline_k;
+         alignas(16) typename cutlass::PipelineTmaAsync<kStages>::SharedStorage pipeline_v;
+-        alignas(16) typename flash::OrderedSequenceBarrierVarGroupSize<EpiStages, 2>::SharedStorage barrier_o;
++        alignas(16) typename e082_flash::OrderedSequenceBarrierVarGroupSize<EpiStages, 2>::SharedStorage barrier_o;
+         int tile_count_semaphore;
+     };
+   };
+@@ -150,7 +150,7 @@
+     using SmemCopyAtomSF = Copy_Atom<UniversalCopy<ElementSF>, ElementSF>;
+     using SmemCopyAtomDS = Copy_Atom<UniversalCopy<float>, float>;
+ 
+-    using BlkScaledConfig = flash::BlockScaledConfig<SFVectorSize>;
++    using BlkScaledConfig = e082_flash::BlockScaledConfig<SFVectorSize>;
+     using LayoutSF = typename BlkScaledConfig::LayoutSF;
+     using SfAtom = typename BlkScaledConfig::SfAtom;
+     using SmemLayoutAtomSFQ = decltype(BlkScaledConfig::deduce_smem_layoutSFQ(TiledMmaQK{}, TileShape_MNK{}));
+@@ -197,6 +197,6 @@
+     using MainloopPipelineQ = cutlass::PipelineTmaAsync<1>;
+     using PipelineParamsQ = typename MainloopPipelineQ::Params;
+     using PipelineStateQ = typename cutlass::PipelineState<1>;
+-    using EpilogueBarrier = typename flash::OrderedSequenceBarrierVarGroupSize<EpiStages, 2>;
++    using EpilogueBarrier = typename e082_flash::OrderedSequenceBarrierVarGroupSize<EpiStages, 2>;
+ };
+ 
+--- official/kernel_ws.h
++++ private/kernel_ws.h
+@@ -33,13 +33,13 @@
+ #include "named_barrier.h"
+ #include "softmax_fused.h"
+ 
+-namespace flash {
++namespace e082_flash {
+ 
+ using namespace cute;
+ 
+ template <typename Ktraits, bool Is_causal, typename TileScheduler>
+ __global__ void __launch_bounds__(Ktraits::kNWarps * cutlass::NumThreadsPerWarp, 1)
+-    compute_attn_ws(CUTE_GRID_CONSTANT Flash_fwd_params const params,
++    compute_attn_ws(CUTE_GRID_CONSTANT E082_Flash_fwd_params const params,
+                     CUTE_GRID_CONSTANT typename CollectiveMainloopFwd<Ktraits, Is_causal>::Params const mainloop_params,
+                     CUTE_GRID_CONSTANT typename CollectiveEpilogueFwd<Ktraits>::Params const epilogue_params,
+                     CUTE_GRID_CONSTANT typename TileScheduler::Params const scheduler_params
+@@ -178,8 +178,8 @@
+         for (auto work_tile_info = scheduler.get_initial_work(); work_tile_info.is_valid(scheduler_params); work_tile_info = scheduler.get_next_work(scheduler_params, work_tile_info)) {
+             // Attention output (GEMM-II) accumulator.
+             Tensor tOrO = partition_fragment_C(tiled_mma_pv, select<0, 2>(TileShape_MNK{}));
+-            // flash::Softmax<2 * (2 * kBlockM / NumMmaThreads)> softmax;
+-            flash::SoftmaxFused<2 * (2 * kBlockM / NumMmaThreads)> softmax_fused;
++            // e082_flash::Softmax<2 * (2 * kBlockM / NumMmaThreads)> softmax;
++            e082_flash::SoftmaxFused<2 * (2 * kBlockM / NumMmaThreads)> softmax_fused;
+             auto block_coord = work_tile_info.get_block_coord(scheduler_params);
+             auto [m_block, bidh, bidb] = block_coord;
+ 
+@@ -190,7 +190,7 @@
+             }
+ 
+             collective_mainloop.mma(mainloop_params, pipeline_q, pipeline_k, pipeline_v, smem_pipe_read_q, smem_pipe_read_k, smem_pipe_read_v,
+-                                    tOrO, softmax_fused, n_block_max, threadIdx.x - NumCopyThreads, work_idx, m_block, shared_storage);
++                                    tOrO, softmax_fused, n_block_max, threadIdx.x - NumCopyThreads, work_idx, m_block, bidh + bidb * get<2>(mainloop_params.shape_Q), shared_storage);
+             barrier_o.wait();
+             collective_epilogue.mma_store(shared_storage, tiled_mma_pv, tOrO, threadIdx.x - NumCopyThreads); 
+             barrier_o.arrive();
+@@ -199,4 +199,4 @@
+     }
+ }
+ 
+-} // namespace flash
++} // namespace e082_flash
+--- official/launch.h
++++ private/launch.h
+@@ -30,16 +30,16 @@
+ 
+ 
+ template<typename Kernel_traits, bool Is_causal>
+-void run_flash_fwd(Flash_fwd_params &params, cudaStream_t stream) {
++void run_flash_fwd(E082_Flash_fwd_params &params, cudaStream_t stream) {
+     using Element = typename Kernel_traits::Element;
+     using ElementSF = typename Kernel_traits::ElementSF;
+     using ElementOut = typename Kernel_traits::ElementOut;
+     using TileShape_MNK = typename Kernel_traits::TileShape_MNK;
+     using ClusterShape = typename Kernel_traits::ClusterShape_MNK;
+-    using CollectiveMainloop = flash::CollectiveMainloopFwd<Kernel_traits, Is_causal>;
+-    using CollectiveEpilogue = flash::CollectiveEpilogueFwd<Kernel_traits>;
+-    // using Scheduler = flash::SingleTileScheduler;
+-    using Scheduler = flash::StaticPersistentTileScheduler;
++    using CollectiveMainloop = e082_flash::CollectiveMainloopFwd<Kernel_traits, Is_causal>;
++    using CollectiveEpilogue = e082_flash::CollectiveEpilogueFwd<Kernel_traits>;
++    // using Scheduler = e082_flash::SingleTileScheduler;
++    using Scheduler = e082_flash::StaticPersistentTileScheduler;
+     typename CollectiveMainloop::Params mainloop_params =
+         CollectiveMainloop::to_underlying_arguments({
+             static_cast<Element const*>(params.q_ptr),
+@@ -61,7 +61,8 @@
+             static_cast<float const*>(params.delta_s_ptr),
+             {params.seqlen_s, params.seqlen_k, params.h_k, params.b},
+             {params.ds_row_stride, _1{}, params.ds_head_stride, params.ds_batch_stride},
+-            params.scale_softmax_log2
++            params.scale_softmax_log2,
++            static_cast<cutlass::bfloat16_t const*>(params.center128_mu_ptr)
+         });
+     typename CollectiveEpilogue::Params epilogue_params =
+         CollectiveEpilogue::to_underlying_arguments({
+@@ -78,7 +79,7 @@
+     typename Scheduler::Params scheduler_params = Scheduler::to_underlying_arguments(scheduler_args);
+     // Get the ptr to kernel function.
+     void *kernel;
+-    kernel = (void *)flash::compute_attn_ws<Kernel_traits, Is_causal, Scheduler>;
++    kernel = (void *)e082_flash::compute_attn_ws<Kernel_traits, Is_causal, Scheduler>;
+     int smem_size = sizeof(typename Kernel_traits::SharedStorage);
+     if (smem_size >= 48 * 1024) {
+        C10_CUDA_CHECK(cudaFuncSetAttribute(kernel, cudaFuncAttributeMaxDynamicSharedMemorySize, smem_size));
+@@ -97,17 +98,7 @@
+ 
+ 
+ template<typename T, int Headdim, typename O = cutlass::bfloat16_t>
+-void run_mha_fwd_(Flash_fwd_params &params, cudaStream_t stream) {
+-    BOOL_SWITCH(params.is_causal, Is_causal, [&] {
+-        BOOL_SWITCH(params.per_block_mean, per_block, [&] {
+-            if constexpr (Headdim == 64 || Headdim == 128) {
+-                run_flash_fwd<
+-                    Flash_fwd_kernel_traits<Headdim, 128, 128, 3, 1, per_block, T, O>,
+-                    Is_causal
+-                >(params, stream);
+-            } else {
+-                static_assert(Headdim == 64 || Headdim == 128, "Unsupported Headdim");
+-            }
+-        });
+-    });
++void run_mha_fwd_(E082_Flash_fwd_params &params, cudaStream_t stream) {
++    static_assert(Headdim == 128, "E082 supports only D128");
++    run_flash_fwd<Flash_fwd_kernel_traits<128, 128, 128, 3, 1, true, T, O>, false>(params, stream);
+ }
+--- official/mainloop_tma_ws.h
++++ private/mainloop_tma_ws.h
+@@ -28,7 +28,7 @@
+ 
+ #include "utils.h"
+ #include "named_barrier.h"
+-namespace flash {
++namespace e082_flash {
+ 
+ using namespace cute;
+ 
+@@ -174,6 +174,7 @@
+         ShapeQKV const shape_ds;
+         StrideQKV const stride_ds;
+         float const softmax_scale_log2;
++        cutlass::bfloat16_t const* ptr_center128_mu;
+     };
+ 
+     // Device side kernel params
+@@ -194,6 +195,7 @@
+         TMA_SFVt tma_load_SFVt;
+         TMA_DS tma_load_DS;
+         float const softmax_scale_log2;
++        cutlass::bfloat16_t const* ptr_center128_mu;
+     };
+ 
+ 
+@@ -261,7 +263,7 @@
+                 tma_load_K, tma_load_sfk,
+                 tma_load_Vt, tma_load_sfvt,
+                 tma_load_ds, 
+-                args.softmax_scale_log2};
++                args.softmax_scale_log2, args.ptr_center128_mu};
+     }
+ 
+     /// Issue Tma Descriptor Prefetch -- ideally from a single thread for best performance
+@@ -585,6 +587,7 @@
+         int thread_idx,
+         int work_idx,
+         int m_block,
++        int batch_head,
+         SharedStorage& shared_storage
+         ) {
+ 
+@@ -668,6 +671,26 @@
+         int const seqlen_k = get<0>(mainloop_params.shape_K);
+         int const unpadded_seqlen_k = get<0>(mainloop_params.unpadded_shape_K);
+         int n_block = n_block_count - 1;
++        static_assert(!Is_causal && kBlockN == 128 && kBlockK == 128);
++        Tensor center_coords = thread_mma_pv.partition_C(
++            make_identity_tensor(select<0, 2>(TileShape_MNK{})));
++        Tensor center_coords_view = make_tensor(center_coords.data(), e082_flash::convert_to_reduction_layout(center_coords.layout()));
++        auto add_center128 = [&](auto& acc, int key_block) {
++            Tensor out_view = make_tensor(acc.data(), e082_flash::convert_to_reduction_layout(acc.layout()));
++            CUTLASS_PRAGMA_UNROLL
++            for (int mi = 0; mi < size<0>(out_view); ++mi) {
++                CUTLASS_PRAGMA_UNROLL
++                for (int ni = 0; ni < size<1>(out_view); ++ni) {
++                    int channel = int(get<1>(center_coords_view(mi, ni)));
++                    int index = (batch_head * n_block_count + key_block) * 128 + channel;
++                    float mu = float(mainloop_params.ptr_center128_mu[index]);
++                    // This branch also preserves exact signed zero in no-op controls.
++                    if (mu != 0.f) {
++                        out_view(mi, ni) += softmax_fused.center128_mass(mi) * mu;
++                    }
++                }
++            }
++        };
+ 
+         auto copy_k_block = [&](auto block_id) {
+             auto tSsK_stage = tSsK(_, _, _, smem_pipe_read_k.index());
+@@ -709,7 +732,7 @@
+         ++smem_pipe_read_q;
+ 
+         Tensor tSrS = partition_fragment_C(tiled_mma_qk, select<0, 1>(TileShape_MNK{}));
+-        Tensor tSrS_converion_view = make_tensor(tSrS.data(), flash::convert_to_conversion_layout(tSrS.layout()));
++        Tensor tSrS_converion_view = make_tensor(tSrS.data(), e082_flash::convert_to_conversion_layout(tSrS.layout()));
+         Tensor AbsMaxP = make_tensor_like<float>(
+             make_layout(shape(group<1, 4>(flatten(tSrS_converion_view.layout()(make_coord(_0{}, _), _, _)))))
+         );
+@@ -755,7 +778,7 @@
+             CUTLASS_PRAGMA_UNROLL
+             for (int i = 0; i < size(AbsMaxP_stagek); i += 4) {
+                 uint32_t& tmp = SFP_uint32_view(i / 4);
+-                flash::packed_float_to_ue4m3(
++                e082_flash::packed_float_to_ue4m3(
+                     AbsMaxP_stagek(i), 
+                     AbsMaxP_stagek(i + 1), 
+                     AbsMaxP_stagek(i + 2), 
+@@ -772,7 +795,7 @@
+             for (int mma_m = 0; mma_m < size<1>(tOrP); ++mma_m) {
+                     CUTLASS_PRAGMA_UNROLL
+                     for (int i = 0; i < 4; ++i) {
+-                        flash::packed_float_to_e2m1(
++                        e082_flash::packed_float_to_e2m1(
+                             acc_conversion_stagek(make_coord(_0{}, i), mma_m),
+                             acc_conversion_stagek(make_coord(_1{}, i), mma_m),
+                             acc_conversion_stagek(make_coord(_2{}, i), mma_m),
+@@ -814,13 +837,14 @@
+             }
+         }
+         
++        add_center128(tOrO_store, n_block);
+         n_block--;
+         constexpr int n_masking_steps = !Is_causal ? 1 : cute::ceil_div(kBlockM, kBlockN) + 1;
+         // // Only go through these if Is_causal, since n_masking_steps = 1 when !Is_causal
+         CUTLASS_PRAGMA_UNROLL
+         for (int masking_step = 0; masking_step < n_masking_steps - 1 && n_block >= 0; ++masking_step, --n_block) {
+             Tensor tSrS = partition_fragment_C(tiled_mma_qk, select<0, 1>(TileShape_MNK{}));
+-            Tensor tSrS_converion_view = make_tensor(tSrS.data(), flash::convert_to_conversion_layout(tSrS.layout()));
++            Tensor tSrS_converion_view = make_tensor(tSrS.data(), e082_flash::convert_to_conversion_layout(tSrS.layout()));
+             consumer_wait(pipeline_k, smem_pipe_read_k);
+             copy_k_block(_0{});
+             add_delta_s(tSrS);
+@@ -864,7 +888,7 @@
+         #pragma unroll 1
+         for (; n_block >= 0; --n_block) {
+             Tensor tSrS = partition_fragment_C(tiled_mma_qk, select<0, 1>(TileShape_MNK{}));
+-            Tensor tSrS_converion_view = make_tensor(tSrS.data(), flash::convert_to_conversion_layout(tSrS.layout()));
++            Tensor tSrS_converion_view = make_tensor(tSrS.data(), e082_flash::convert_to_conversion_layout(tSrS.layout()));
+             consumer_wait(pipeline_k, smem_pipe_read_k);
+             copy_k_block(_0{});
+             add_delta_s(tSrS);
+@@ -896,6 +920,7 @@
+                     ++smem_pipe_read_v;
+                 }
+             }
++            add_center128(tOrO, n_block);
+             softmax_fused.rescale_o(tOrO_store, tOrO);
+         }
+         softmax_fused.finalize(tOrO_store);
+@@ -904,5 +929,5 @@
+ 
+ };
+ 
+-} // namespace flash
+-
++} // namespace e082_flash
++
+--- official/named_barrier.h
++++ private/named_barrier.h
+@@ -18,7 +18,7 @@
+ #include "cutlass/arch/barrier.h"
+ #include "cutlass/pipeline/sm90_pipeline.hpp"
+ 
+-namespace flash {
++namespace e082_flash {
+ 
+ enum class FP4NamedBarriers {
+     QueryEmpty = 1,
+@@ -42,7 +42,7 @@
+   static constexpr int SequenceDepth = SequenceDepth_;
+   static constexpr int SequenceLength = SequenceLength_;
+   using Barrier = cutlass::arch::ClusterBarrier;
+-  using SharedStorage = flash::OrderedSequenceBarrierVarGroupSizeSharedStorage<SequenceDepth, SequenceLength>;
++  using SharedStorage = e082_flash::OrderedSequenceBarrierVarGroupSizeSharedStorage<SequenceDepth, SequenceLength>;
+   
+ 
+   struct Params {
+@@ -116,4 +116,4 @@
+   }
+ };
+  
+- } // flash+ } // e082_flash--- official/params.h
++++ private/params.h
+@@ -31,13 +31,14 @@
+ 
+ ////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+-struct Qkv_params {
++struct E082_Qkv_params {
+     using index_t = int64_t;
+     // The QKV matrices.
+     void *__restrict__ q_ptr;
+     void *__restrict__ k_ptr;
+     void *__restrict__ v_ptr;
+     void *__restrict__ delta_s_ptr;
++    void const* __restrict__ center128_mu_ptr;
+     // The QKV scale factor matrices.
+     void *__restrict__ sfq_ptr;
+     void *__restrict__ sfk_ptr;
+@@ -75,7 +76,7 @@
+ 
+ ////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+-struct Flash_fwd_params : public Qkv_params {
++struct E082_Flash_fwd_params : public E082_Qkv_params {
+ 
+     // The O matrix (output).
+     void * __restrict__ o_ptr;
+--- official/softmax_fused.h
++++ private/softmax_fused.h
+@@ -20,7 +20,7 @@
+ #include "cutlass/numeric_types.h"
+ #include "utils.h"
+ 
+-namespace flash {
++namespace e082_flash {
+ 
+ using namespace cute;
+ 
+@@ -28,7 +28,7 @@
+ struct SoftmaxFused{
+ 
+     using TensorT = decltype(make_fragment_like<float>(Shape<Int<Rows>>{}));
+-    TensorT row_sum, row_max, scores_scale;
++    TensorT row_sum, row_max, scores_scale, center128_mass;
+     static constexpr float fp8_scalexfp4_scale = 1.f / (448 * 6);
+     static constexpr float fp8_scalexfp4_scale_log2 = -11.392317422778762f; //log2f(fp8_scalexfp4_scale)
+     static constexpr float fp4_scale_log2 = -2.584962500721156f; // log2f(fp4_scale)
+@@ -42,8 +42,8 @@
+         TensorMax& AbsMaxP,
+         const float softmax_scale_log2
+     ) {
+-        Tensor acc_reduction_view = make_tensor(acc.data(), flash::convert_to_reduction_layout(acc.layout()));
+-        Tensor acc_conversion_view = make_tensor(acc.data(), flash::convert_to_conversion_layout(acc.layout()));
++        Tensor acc_reduction_view = make_tensor(acc.data(), e082_flash::convert_to_reduction_layout(acc.layout()));
++        Tensor acc_conversion_view = make_tensor(acc.data(), e082_flash::convert_to_conversion_layout(acc.layout()));
+         Tensor acc_conversion_flatten = group_modes<1, 5>(group_modes<0, 2>(flatten(acc_conversion_view)));
+         
+         if constexpr (FirstTile) {
+@@ -72,11 +72,11 @@
+                                         : (row_max(mi) * softmax_scale_log2 + fp8_scalexfp4_scale_log2);
+                 CUTLASS_PRAGMA_UNROLL
+                 for (int ni = 0; ni < size<1>(acc_reduction_view); ni++) {
+-                    acc_reduction_view(mi, ni) = flash::ptx_exp2(acc_reduction_view(mi, ni) * softmax_scale_log2 - max_scaled);
++                    acc_reduction_view(mi, ni) = e082_flash::ptx_exp2(acc_reduction_view(mi, ni) * softmax_scale_log2 - max_scaled);
+                 }
+                 CUTLASS_PRAGMA_UNROLL
+                 for (int sfi = 0; sfi < size<1>(AbsMaxP); sfi++) {
+-                    AbsMaxP(mi, sfi) = flash::ptx_exp2(AbsMaxP(mi, sfi) * softmax_scale_log2 - max_scaled + fp4_scale_log2);
++                    AbsMaxP(mi, sfi) = e082_flash::ptx_exp2(AbsMaxP(mi, sfi) * softmax_scale_log2 - max_scaled + fp4_scale_log2);
+                 }
+             }
+             CUTLASS_PRAGMA_UNROLL
+@@ -110,7 +110,7 @@
+                 float scores_max_cur = !InfCheck
+                                         ? row_max(mi)
+                                         : (row_max(mi) == -INFINITY ? 0.0f : row_max(mi));
+-                scores_scale(mi) = flash::ptx_exp2((scores_max_prev(mi) - scores_max_cur) * softmax_scale_log2);
++                scores_scale(mi) = e082_flash::ptx_exp2((scores_max_prev(mi) - scores_max_cur) * softmax_scale_log2);
+ 
+                 const float max_scaled = InfCheck
+                                         ? (row_max(mi) == -INFINITY ? 0.f : (row_max(mi) * softmax_scale_log2 + fp8_scalexfp4_scale_log2))
+@@ -118,15 +118,30 @@
+                 row_sum(mi) = row_sum(mi) * scores_scale(mi);
+                 CUTLASS_PRAGMA_UNROLL
+                 for (int ni = 0; ni < size<1>(acc_reduction_view); ni++) {
+-                    acc_reduction_view(mi, ni) = flash::ptx_exp2(acc_reduction_view(mi, ni) * softmax_scale_log2 - max_scaled);
++                    acc_reduction_view(mi, ni) = e082_flash::ptx_exp2(acc_reduction_view(mi, ni) * softmax_scale_log2 - max_scaled);
+                     row_sum(mi) += acc_reduction_view(mi, ni);
+                 }
+                 CUTLASS_PRAGMA_UNROLL
+                 for (int sfi = 0; sfi < size<1>(AbsMaxP); sfi++) {
+-                    AbsMaxP(mi, sfi) = flash::ptx_exp2(AbsMaxP(mi, sfi) * softmax_scale_log2 - max_scaled + fp4_scale_log2);
++                    AbsMaxP(mi, sfi) = e082_flash::ptx_exp2(AbsMaxP(mi, sfi) * softmax_scale_log2 - max_scaled + fp4_scale_log2);
+                 }
+                 // scores_scale(mi) = max_scaled;
+             }
++        }
++        // E082: sum the actual unquantized exp values, before P normalization.
++        // Each quad owns a complete row across the 128-key tile.
++        CUTLASS_PRAGMA_UNROLL
++        for (int mi = 0; mi < size<0>(acc_reduction_view); ++mi) {
++            float mass = 0.f;
++            CUTLASS_PRAGMA_UNROLL
++            for (int ni = 0; ni < size<1>(acc_reduction_view); ++ni) {
++                mass += acc_reduction_view(mi, ni);
++            }
++            CUTLASS_PRAGMA_UNROLL
++            for (int offset = 1; offset < RowReductionThr; offset <<= 1) {
++                mass += __shfl_xor_sync(int32_t(-1), mass, offset);
++            }
++            center128_mass(mi) = mass;
+         }
+         CUTLASS_PRAGMA_UNROLL
+         for (int i = 0; i < size(AbsMaxP); ++i) {
+@@ -138,7 +153,7 @@
+ 
+     template<typename TensorAcc>
+     CUTLASS_DEVICE void finalize(TensorAcc& o_store) {
+-        Tensor o_store_reduction_view = make_tensor(o_store.data(), flash::convert_to_reduction_layout(o_store.layout()));
++        Tensor o_store_reduction_view = make_tensor(o_store.data(), e082_flash::convert_to_reduction_layout(o_store.layout()));
+         CUTLASS_PRAGMA_UNROLL
+         for (int mi = 0; mi < size(row_max); ++mi) {
+             CUTLASS_PRAGMA_UNROLL
+@@ -157,8 +172,8 @@
+ 
+     template<typename TensorAcc>
+     CUTLASS_DEVICE void rescale_o(TensorAcc& o_store, TensorAcc const& o_tmp) {
+-        Tensor o_store_reduction_view = make_tensor(o_store.data(), flash::convert_to_reduction_layout(o_store.layout()));
+-        Tensor o_tmp_reduction_view = make_tensor(o_tmp.data(), flash::convert_to_reduction_layout(o_tmp.layout()));
++        Tensor o_store_reduction_view = make_tensor(o_store.data(), e082_flash::convert_to_reduction_layout(o_store.layout()));
++        Tensor o_tmp_reduction_view = make_tensor(o_tmp.data(), e082_flash::convert_to_reduction_layout(o_tmp.layout()));
+         CUTLASS_PRAGMA_UNROLL
+         for (int mi = 0; mi < size(row_max); ++mi) {
+             CUTLASS_PRAGMA_UNROLL
+@@ -171,4 +186,4 @@
+ 
+ 
+ };
+-} // namespace flash+} // namespace e082_flash--- official/tile_scheduler.h
++++ private/tile_scheduler.h
+@@ -1,7 +1,7 @@
+ /*
+  * Copyright (c) 2025 by SageAttention team.
+  * 
+- * This code is based on code from FlashAttention3, https://github.com/Dao-AILab/flash-attention
++ * This code is based on code from FlashAttention3, https://github.com/Dao-AILab/e082_flash-attention
+  * Copyright (c) 2024, Jay Shah, Ganesh Bikshandi, Ying Zhang, Vijay Thakkar, Pradeep Ramani, Tri Dao.
+  * Licensed under the Apache License, Version 2.0 (the "License");
+  * you may not use this file except in compliance with the License.
+@@ -20,7 +20,7 @@
+ 
+ #include "cutlass/fast_math.h"
+ 
+-namespace flash {
++namespace e082_flash {
+ 
+ ///////////////////////////////////////////////////////////////////////////////
+ 
+@@ -301,4 +301,4 @@
+ 
+ };
+ 
+-} // flash
++} // e082_flash
+--- official/utils.h
++++ private/utils.h
+@@ -33,7 +33,7 @@
+ #include <cutlass/numeric_conversion.h>
+ #include <cutlass/numeric_types.h>
+ 
+-namespace flash {
++namespace e082_flash {
+ 
+ using namespace cute;
+ 
+@@ -405,4 +405,4 @@
+     }
+ }
+ 
+-}  // namespace flash
++}  // namespace e082_flash

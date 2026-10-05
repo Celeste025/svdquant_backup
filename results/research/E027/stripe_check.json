@@ -1,0 +1,52 @@
+{
+  "experiment": "E027",
+  "component": "bf16_correction_stripe",
+  "status": "complete",
+  "phase": "check",
+  "stripe_launches": 0,
+  "actual_dit_calls": 0,
+  "actual_attention_calls": 0,
+  "geometry": {
+    "heads": 56,
+    "query_groups": 177,
+    "key_tiles": 177,
+    "valid_tokens": 22539,
+    "padded_tokens": 22656,
+    "m": 16,
+    "n": 128,
+    "k": 128,
+    "useful_mean_rows": 1,
+    "repeated_unused_rows": 15,
+    "ctas": 9912,
+    "tiles_per_launch": 1754424
+  },
+  "scope": "Isolated BF16 MMA+FP32 accumulation traversing full K. Three scalar checksum stores per tile. Not fused latency, not a lower bound, and not an attention or end-to-end speedup measurement.",
+  "source": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_bf16_correction_stripe.py",
+    "bytes": 9140,
+    "sha256": "1575f5b4240f307f9731a0b2026af696b95464a1b445c9b03765b14438621329"
+  },
+  "capture_report": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E018/capture_run.json",
+    "bytes": 401662,
+    "sha256": "5c386556e330a12ed1692b68937a183af2843162de9be92b061a8a263a0996dc"
+  },
+  "input": {
+    "file": "/data1/models/svdquant-wjq/research/20261002/E018/capture/block0.pt",
+    "sha256": "5c8882219a165d9c4835ee80f132455f875fc21a2bd122c1b20c64cfed7b603c",
+    "bytes": 1292661823
+  },
+  "official_source": {
+    "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/nvfp4_attention_sm120.py",
+    "bytes": 19507,
+    "sha256": "040738c6d6af5584ca9b375bb59468d7011506862ff0a162f1f51a72149abefc"
+  },
+  "source_case": {
+    "prompt_id": 36,
+    "seed": 59526,
+    "step": 14,
+    "arm": "block_mean"
+  },
+  "cuda_initialized": false,
+  "seconds": 2.231659412384033
+}

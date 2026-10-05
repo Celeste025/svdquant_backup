@@ -1,0 +1,113 @@
+{
+  "experiment": "E045",
+  "status": "failed_preserved",
+  "start_epoch": 1791006648.4574084,
+  "deadline_epoch": 1791007848.4574084,
+  "manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E045_wan_terminal_intervention_manifest.json",
+    "bytes": 4604,
+    "sha256": "8848ddc8b7ce0387de7f8a7e3a3f9f39e1a414dc502a8d0ae7088aec49bcde32"
+  },
+  "runner": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_wan_terminal_intervention.py",
+    "bytes": 17782,
+    "sha256": "1dda5f84170b4b0e0d1b8e57d4aeb0d82f1e8983bfa7bb2c3429296a2385d947"
+  },
+  "launcher": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/launch_wan_terminal_intervention.py",
+    "bytes": 3730,
+    "sha256": "3c96ae844bab1853378d0f586091269f117cec68fab1cda3a557c4ab1e75e09b"
+  },
+  "workers": [
+    {
+      "gpu": 0,
+      "case_id": "vbench0161_r0",
+      "pid": 3451474,
+      "deadline_epoch": 1791007548.666266,
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_wan_terminal_intervention.py",
+        "--case-id",
+        "vbench0161_r0",
+        "--manifest",
+        "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E045_wan_terminal_intervention_manifest.json",
+        "--output",
+        "/home/wjq/workspace/svdquant-exp/results/research/E045/worker_vbench0161_r0.json",
+        "--deadline-unix",
+        "1791007548.666266"
+      ],
+      "output": "/home/wjq/workspace/svdquant-exp/results/research/E045/worker_vbench0161_r0.json",
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E045_worker_vbench0161_r0.log",
+      "status": "stopped_with_launcher",
+      "gpu_at_start": {
+        "memory_used_mib": 0,
+        "utilization_pct": 0
+      },
+      "returncode": 1
+    },
+    {
+      "gpu": 1,
+      "case_id": "vbench0161_r1",
+      "pid": 3451480,
+      "deadline_epoch": 1791007548.7752435,
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_wan_terminal_intervention.py",
+        "--case-id",
+        "vbench0161_r1",
+        "--manifest",
+        "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E045_wan_terminal_intervention_manifest.json",
+        "--output",
+        "/home/wjq/workspace/svdquant-exp/results/research/E045/worker_vbench0161_r1.json",
+        "--deadline-unix",
+        "1791007548.7752435"
+      ],
+      "output": "/home/wjq/workspace/svdquant-exp/results/research/E045/worker_vbench0161_r1.json",
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E045_worker_vbench0161_r1.log",
+      "status": "stopped_with_launcher",
+      "gpu_at_start": {
+        "memory_used_mib": 0,
+        "utilization_pct": 0
+      },
+      "returncode": -15
+    }
+  ],
+  "gpu_before": {
+    "0": {
+      "memory_used_mib": 0,
+      "utilization_pct": 0
+    },
+    "1": {
+      "memory_used_mib": 0,
+      "utilization_pct": 0
+    },
+    "2": {
+      "memory_used_mib": 53785,
+      "utilization_pct": 38
+    },
+    "3": {
+      "memory_used_mib": 50639,
+      "utilization_pct": 0
+    },
+    "4": {
+      "memory_used_mib": 48085,
+      "utilization_pct": 0
+    },
+    "5": {
+      "memory_used_mib": 0,
+      "utilization_pct": 0
+    },
+    "6": {
+      "memory_used_mib": 72599,
+      "utilization_pct": 100
+    },
+    "7": {
+      "memory_used_mib": 72139,
+      "utilization_pct": 100
+    }
+  },
+  "error": "Traceback (most recent call last):\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/launch_wan_terminal_intervention.py\", line 50, in main\n    elif code!=0:raise RuntimeError(f'Worker {proc.pid} exited {code}; preserve log')\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Worker 3451474 exited 1; preserve log\n",
+  "seconds": 174.67347693443298
+}

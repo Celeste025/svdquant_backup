@@ -1,0 +1,363 @@
+{
+  "status": "complete",
+  "path": "/data1/models/svdquant-wjq/research/20261003/E021/tokenizer",
+  "changes": "Only a fresh tokenizer directory; original model/config/code and Python environment unchanged; no network or GPU.",
+  "environment": {
+    "python": "/data1/models/svdquant-wjq/conda-envs/mjvideo/bin/python",
+    "transformers": "4.49.0",
+    "sentencepiece": "0.2.0"
+  },
+  "diagnosis": {
+    "local_model_failure": "Missing required tokenization_internlm2.py; reproduced OSError before tokenizer initialization.",
+    "false_return": "Transformers4.49 tokenization_utils_base.py:2293-2305 catches protobuf DecodeError or any RuntimeError from tokenizer init and returns False. The earlier False was not reproduced in this clean subprocess; its exact cause is not established.",
+    "current_remote_id_offline_result": "tested below, no download"
+  },
+  "assets": [
+    {
+      "source": {
+        "file": "/data1/models/svdquant-wjq/models/MJ-VIDEO-2B/config.json",
+        "sha256": "fbb50f9f529a3360b204370f7243ec1147862043bb0e2cf76d6ae3e8025d82f1",
+        "bytes": 3928
+      },
+      "copy": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E021/tokenizer/config.json",
+        "sha256": "fbb50f9f529a3360b204370f7243ec1147862043bb0e2cf76d6ae3e8025d82f1",
+        "bytes": 3928
+      }
+    },
+    {
+      "source": {
+        "file": "/data1/models/svdquant-wjq/models/MJ-VIDEO-2B/tokenizer.model",
+        "sha256": "f868398fc4e05ee1e8aeba95ddf18ddcc45b8bce55d5093bead5bbf80429b48b",
+        "bytes": 1477754
+      },
+      "copy": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E021/tokenizer/tokenizer.model",
+        "sha256": "f868398fc4e05ee1e8aeba95ddf18ddcc45b8bce55d5093bead5bbf80429b48b",
+        "bytes": 1477754
+      }
+    },
+    {
+      "source": {
+        "file": "/data1/models/svdquant-wjq/models/MJ-VIDEO-2B/tokenizer_config.json",
+        "sha256": "2a0e30fb556e25b8255729fcb67db4e0e1a265e3fb177d9b09316f7c665f31f7",
+        "bytes": 4005
+      },
+      "copy": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E021/tokenizer/tokenizer_config.json",
+        "sha256": "2a0e30fb556e25b8255729fcb67db4e0e1a265e3fb177d9b09316f7c665f31f7",
+        "bytes": 4005
+      }
+    },
+    {
+      "source": {
+        "file": "/data1/models/svdquant-wjq/models/MJ-VIDEO-2B/special_tokens_map.json",
+        "sha256": "8cb729e6fd4c29e8c5be65cb51128735cea0ab56606a186cf8cbb30123c72eae",
+        "bytes": 844
+      },
+      "copy": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E021/tokenizer/special_tokens_map.json",
+        "sha256": "8cb729e6fd4c29e8c5be65cb51128735cea0ab56606a186cf8cbb30123c72eae",
+        "bytes": 844
+      }
+    },
+    {
+      "source": {
+        "file": "/data1/models/svdquant-wjq/models/MJ-VIDEO-2B/added_tokens.json",
+        "sha256": "df59e170102f8d19d3e186cc91c81006c9822ea9fe8ce2b68e7be77195c01db3",
+        "bytes": 179
+      },
+      "copy": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E021/tokenizer/added_tokens.json",
+        "sha256": "df59e170102f8d19d3e186cc91c81006c9822ea9fe8ce2b68e7be77195c01db3",
+        "bytes": 179
+      }
+    },
+    {
+      "source": {
+        "file": "/home/wjq/.cache/huggingface/modules/transformers_modules/OpenGVLab/InternVL2-2B/e4f6747bd20f139e637642c6a058c6bd00b36919/tokenization_internlm2.py",
+        "sha256": "e548dc777a1def2f5339cfe12de8da2d12500d664e3dafa5c585c407e4b806fa",
+        "bytes": 8791
+      },
+      "copy": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E021/tokenizer/tokenization_internlm2.py",
+        "sha256": "e548dc777a1def2f5339cfe12de8da2d12500d664e3dafa5c585c407e4b806fa",
+        "bytes": 8791
+      }
+    }
+  ],
+  "encodings": [
+    {
+      "text": "Hello world",
+      "input_ids": [
+        1,
+        9843,
+        2028
+      ],
+      "attention_mask": [
+        1,
+        1,
+        1
+      ],
+      "decoded": " <s>Hello world",
+      "reference_exact": true
+    },
+    {
+      "text": "A zebra bending down to drink water from a river.",
+      "input_ids": [
+        1,
+        290,
+        1291,
+        49456,
+        55989,
+        1641,
+        442,
+        7177,
+        3181,
+        635,
+        395,
+        14926,
+        281
+      ],
+      "attention_mask": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "decoded": " <s>A zebra bending down to drink water from a river.",
+      "reference_exact": true
+    },
+    {
+      "text": "你好，世界。",
+      "input_ids": [
+        1,
+        77230,
+        60353,
+        68339,
+        60355
+      ],
+      "attention_mask": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "decoded": " <s>你好，世界。",
+      "reference_exact": true
+    },
+    {
+      "text": "<|im_start|>user\nFrame1: <img><IMG_CONTEXT><IMG_CONTEXT></img>\nA drone flying over a snowy forest.<|im_end|>\n<|im_start|>assistant\n",
+      "input_ids": [
+        1,
+        92543,
+        1008,
+        364,
+        4529,
+        312,
+        334,
+        262,
+        92544,
+        92546,
+        92546,
+        92545,
+        364,
+        290,
+        27131,
+        16437,
+        1053,
+        395,
+        11943,
+        282,
+        13780,
+        281,
+        92542,
+        364,
+        92543,
+        525,
+        11353,
+        364
+      ],
+      "attention_mask": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "decoded": " <s><|im_start|>user\nFrame1:  <img> <IMG_CONTEXT> <IMG_CONTEXT> </img>  \nA drone flying over a snowy forest.<|im_end|> \n<|im_start|>assistant\n",
+      "reference_exact": true
+    },
+    {
+      "text": "a zebra bending down to drink water from a river",
+      "input_ids": [
+        1,
+        264,
+        1291,
+        49456,
+        55989,
+        1641,
+        442,
+        7177,
+        3181,
+        635,
+        395,
+        14926
+      ],
+      "attention_mask": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "decoded": " <s>a zebra bending down to drink water from a river",
+      "reference_exact": true
+    },
+    {
+      "text": "a drone flying over a snowy forest.",
+      "input_ids": [
+        1,
+        264,
+        27131,
+        16437,
+        1053,
+        395,
+        11943,
+        282,
+        13780,
+        281
+      ],
+      "attention_mask": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "decoded": " <s>a drone flying over a snowy forest.",
+      "reference_exact": true
+    },
+    {
+      "text": "campus",
+      "input_ids": [
+        1,
+        25671,
+        486
+      ],
+      "attention_mask": [
+        1,
+        1,
+        1
+      ],
+      "decoded": " <s>campus",
+      "reference_exact": true
+    },
+    {
+      "text": "a zebra running to join a herd of its kind",
+      "input_ids": [
+        1,
+        264,
+        1291,
+        49456,
+        4463,
+        442,
+        5299,
+        395,
+        56924,
+        446,
+        1326,
+        3258
+      ],
+      "attention_mask": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "decoded": " <s>a zebra running to join a herd of its kind",
+      "reference_exact": true
+    }
+  ],
+  "class_name": "InternLM2Tokenizer",
+  "vocab_size": 92544,
+  "total_tokens": 92553,
+  "model_llm_vocab_size": 92553,
+  "all_special_ids": [
+    1,
+    2,
+    0,
+    92543,
+    92542,
+    92541,
+    92540,
+    92539,
+    92538,
+    92544,
+    92545,
+    92546,
+    92547,
+    92548,
+    92549,
+    92550,
+    92551,
+    92552
+  ],
+  "full_vocab_equals_cached_InternVL2": true,
+  "chat_template_reference_exact": true,
+  "config_and_tokenizer_assets_unchanged": true,
+  "cuda_initialized": false
+}

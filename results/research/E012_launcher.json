@@ -1,0 +1,56 @@
+{
+  "experiment": "E012",
+  "status": "failed_stop",
+  "gpu": 0,
+  "launcher_sha256": "eaf0ae40a0611016b07d585a9540fedb3aeca653685d3a923d866f2c1b3e3017",
+  "runner_sha256": "4886b367c3ca1934cb2b3d23858d2dd06649681279c3cfaabbaab62d31b3627e",
+  "cpu_check_sha256": "a8da3ce7b6c06da28d7bcc3b7e505a1d69b0350c0480b3b3a8225ebccb2b6bd6",
+  "wall_budget_seconds": 1500,
+  "stages": [
+    {
+      "phase": "prepare",
+      "command": [
+        "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_conditional_response.py",
+        "--phase",
+        "prepare"
+      ],
+      "gpu_before": {
+        "gpu": 0,
+        "uuid": "GPU-f2d2bf35-6009-bfec-9e68-dfffd5b077c4",
+        "used_mib": 0,
+        "utilization_percent": 0
+      },
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E012_h3_prepare.log",
+      "status": "complete",
+      "returncode": 0,
+      "seconds": 21.399884799029678,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E012_h3_prepare.json",
+      "report_sha256": "8431c7cecd62d84bae9dd058e2fecaf0ad5b9ae7e7a6333b739bc10b4f3dd195"
+    },
+    {
+      "phase": "bf16",
+      "command": [
+        "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_conditional_response.py",
+        "--phase",
+        "bf16"
+      ],
+      "gpu_before": {
+        "gpu": 0,
+        "uuid": "GPU-f2d2bf35-6009-bfec-9e68-dfffd5b077c4",
+        "used_mib": 0,
+        "utilization_percent": 0
+      },
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E012_h3_bf16.log",
+      "status": "failed_stop",
+      "returncode": 1,
+      "seconds": 11.634551005903631
+    }
+  ],
+  "error": "RuntimeError('bf16 failed: 1')",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/launch_h3_conditional_response.py\", line 78, in main\n    raise RuntimeError(f'{phase} failed: {result.returncode}')\nRuntimeError: bf16 failed: 1\n",
+  "seconds_total": 33.19150329101831
+}

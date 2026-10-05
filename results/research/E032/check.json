@@ -1,0 +1,435 @@
+{
+  "experiment": "E032",
+  "phase": "check",
+  "status": "complete",
+  "clusters": 16,
+  "lloyd_iterations": 6,
+  "attention_calls": 0,
+  "actual_dit_calls": 0,
+  "geometry": {
+    "heads": 56,
+    "groups": 177,
+    "valid_length": 22539,
+    "padded_length": 22656,
+    "head_dim": 128,
+    "tail_weight": 11
+  },
+  "assignment": "FP32 squared Euclidean norm+bmm, clamp_min0; unweighted E, weighted M; argmin/argmax first-index ties; final actual BF16 C reassignment without M.",
+  "initialization": "Center0 is zero delta initially and movable. Fifteen weighted-farthest real rows. No RNG, selection or adaptive iterations.",
+  "timing_boundary": "Scope1 resident BF16 mu/global to C BF16 and ids int32. Scope2 resident contiguous BF16 HND Q/K to means/Kc, C/id/Qcenter/T16. Init, six Lloyd iterations and rounded-center reassignment included. Full correction gather, packing, KV uploads and attention excluded. Original global/block raw scope remeasured with their required means only; they produce full correction instead of T16. Scopes are not additive.",
+  "scope": "Standard weighted k-means representation baseline. Native accuracy still gathers full correction for the unmodified kernel; no new consumer or end-to-end speed/quality claim.",
+  "sources": {
+    "runner": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_codebook_centers.py",
+      "bytes": 15087,
+      "sha256": "e46c14724d21d8109c0d9b80be551aee3924e15d4052d6dbd2c03088d21adc7e"
+    },
+    "common": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_query_mean_k4.py",
+      "bytes": 11027,
+      "sha256": "ee4406f6a26dc6c671171a97bcda070d7be9f16d4fb599787aa208f7764b1e3a"
+    },
+    "previous": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_adaptive_centers.py",
+      "bytes": 14134,
+      "sha256": "fe6e1810deb3068e3752f76c75795abccc1c82ade8d54957dd3e382993356e89"
+    },
+    "official": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/nvfp4_attention_sm120.py",
+      "bytes": 19507,
+      "sha256": "040738c6d6af5584ca9b375bb59468d7011506862ff0a162f1f51a72149abefc"
+    },
+    "plan": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E032_codebook_center_plan.md",
+      "bytes": 3151,
+      "sha256": "06575ab690379b6b7d1b5714243e71bb4fa6f7d12f7764ba337447c3ef0e5cf0"
+    }
+  },
+  "references": {
+    "capture": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E018/capture_run.json",
+      "bytes": 401662,
+      "sha256": "5c386556e330a12ed1692b68937a183af2843162de9be92b061a8a263a0996dc"
+    },
+    "probe": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E018/probe_run.json",
+      "bytes": 83510,
+      "sha256": "ab66aafd6fa6fcd3b13f108087ae96a95f303fc51e2efe9abfa4a91898b3c8db"
+    },
+    "oracle": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E029/run.json",
+      "bytes": 1730001,
+      "sha256": "c3d518893873a440d770fc5903407658798bece044093927379f57f4f49f0108"
+    },
+    "transfer": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E030/run.json",
+      "bytes": 805487,
+      "sha256": "91c14cea1cbd4fa503cd68b9d1e6036e47ccc49fb80d5318b64fc306bba318c5"
+    },
+    "adaptive": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E031/run.json",
+      "bytes": 1499214,
+      "sha256": "1601e0d882560256b33f51b64ed467fd01cf824f7779b340966b92b49f9ca789"
+    }
+  },
+  "inputs": [
+    {
+      "block": 0,
+      "capture": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/capture/block0.pt",
+        "sha256": "5c8882219a165d9c4835ee80f132455f875fc21a2bd122c1b20c64cfed7b603c",
+        "bytes": 1292661823
+      },
+      "kv_packets": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block0_kv_packets.pt",
+        "sha256": "d463108b80fbf06df5600d497eaf518bcb56161232dd96275451805af99a71f7",
+        "bytes": 182700609
+      },
+      "outputs": {
+        "original_block": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E029/block0/original_block_output.pt",
+            "bytes": 323120779,
+            "sha256": "fbb642e30037d181140271fec76e664dc71f93e3fc4189cb4fb0216b0cc52b8f"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "60706d916c522ef6817f4d31b56ff31ce33a76c88e5d6b796114583999b99372"
+          }
+        },
+        "original_global": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E029/block0/original_global_output.pt",
+            "bytes": 323120850,
+            "sha256": "55dab9a805cadad5b33241018f011fd66f7e05208f7574fc187fcc1d8054da04"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "628168109e58c98dd28d2a8fefd0fa1ba027117bb1a2053c94a824147820be65"
+          }
+        },
+        "euclidean": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E029/block0/euclidean_output.pt",
+            "bytes": 323120744,
+            "sha256": "5136540afb986b7686a83608fda65abc5fb26c7f2aac12311426a4a18a35b29d"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "b4e0b0465870aca36fe9289f82e9fb28612191680dea594c21ae9df7aade0455"
+          }
+        },
+        "transferred_factorable": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E030/block0_factorable_fp32_output.pt",
+            "bytes": 323120963,
+            "sha256": "47e55be2316eb0640ad88712757279ba5f2500da235a6647c8faa966629e3a77"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "126a38fe4c411ba42ade63597a5c706754d9bf83a6e772137f497eb5d58fdfea"
+          }
+        },
+        "adaptive_range1": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E031/block0_range1_output.pt",
+            "bytes": 323120772,
+            "sha256": "1d9dcd0566f8541a3a28bd5b9ce20e8445e7cb5cb783ed5ef7efc8bfa1bbb9d8"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "73a6bbd18544903f292590af2b106cd6dc6fe22915ba29c0338668abb1afde75"
+          }
+        },
+        "bf16": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block0_bf16_shift0.pt",
+            "sha256": "49b2698d53d398e429da75d1288e3e9925af8527d65bf56d1d9f1220ef11df1d",
+            "bytes": 323120758
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "840d01f656bbeb6069a9ced5ae357c0bd3a3e027be9a593d3f5ae1d989957e41"
+          }
+        }
+      }
+    },
+    {
+      "block": 24,
+      "capture": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/capture/block24.pt",
+        "sha256": "a71b06ec3f2eeea330c46837d425c458787ba6044c823ee86a8b8b518301a5c4",
+        "bytes": 1292661837
+      },
+      "kv_packets": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block24_kv_packets.pt",
+        "sha256": "3bc43338a9c158719550f9f943c120298815cad8056aa90964a58788aa919e90",
+        "bytes": 182700619
+      },
+      "outputs": {
+        "original_block": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E029/block24/original_block_output.pt",
+            "bytes": 323120779,
+            "sha256": "baa222ef460f52d76b17510db0df4a03419f2b15c65bac05534630e28d5af0bc"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "008b3cd3d250f4f6d60e9592c2a7c57df5415118fbcae9890ead728d042f4612"
+          }
+        },
+        "original_global": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E029/block24/original_global_output.pt",
+            "bytes": 323120850,
+            "sha256": "4a5d61448371277a7fcb0bfd2bdb7a3762f26b07163cf47a9298897270da974d"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "4de28609619218825cdd1deba1d25bd06aebb5296f29f98a83f8e3a9d8d1287c"
+          }
+        },
+        "euclidean": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E029/block24/euclidean_output.pt",
+            "bytes": 323120744,
+            "sha256": "6b8a18b67d3464205a1f9d2e1304428f674cd832f1bf0892e30f377a2abdb4a4"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "d6c03b4b61acd9b8273e3d0960e3da72b1045f1d65c0f39c1bf48a8357f89dc2"
+          }
+        },
+        "transferred_factorable": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E030/block24_factorable_fp32_output.pt",
+            "bytes": 323120970,
+            "sha256": "bc7c51e7625d059a1c51fbe66b15fd75b34f5cc70414ce2f435e760434d3a237"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "bc5fea007944594b6a4973db283fe53aa0d6e03c48116667380b0bdc9eb558ef"
+          }
+        },
+        "adaptive_range1": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E031/block24_range1_output.pt",
+            "bytes": 323120779,
+            "sha256": "cb94aceae2ca1a15c2196711d22b54687fbb503e8152ee3f95c765b2cb388789"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "56ad898f6950ce1adacd6d8b9d535298bd7ee043e3cb1ae76c9258a01b3b4f91"
+          }
+        },
+        "bf16": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block24_bf16_shift0.pt",
+            "sha256": "64a4ae741a59da0eb84d46343e8f57437510eadb6105d8ecf5c7f60e13c0bb6f",
+            "bytes": 323120765
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "36ca72f3600e64caa6cb6b662feaf4cdec0b1d7f3144f69278c41c7e7defad0c"
+          }
+        }
+      }
+    },
+    {
+      "block": 48,
+      "capture": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/capture/block48.pt",
+        "sha256": "308020a78bd3a8d160a463753a4bf10894c889f5daf3312499ddc32bba54c285",
+        "bytes": 1292661837
+      },
+      "kv_packets": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block48_kv_packets.pt",
+        "sha256": "79b27d7fc0af3a3e6f3b64268682373b9922afe37b3c1522d16742e9f5e5288b",
+        "bytes": 182700619
+      },
+      "outputs": {
+        "original_block": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E029/block48/original_block_output.pt",
+            "bytes": 323120779,
+            "sha256": "36e7119ce4476e4f2147cc24918678b66b746a39cb4aa816b101b136dc33974d"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "9afaf5b788d0cdc660f8e11e171f193c9dc71cf272dbd1488813c31e7fac6f82"
+          }
+        },
+        "original_global": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E029/block48/original_global_output.pt",
+            "bytes": 323120850,
+            "sha256": "35a683c8412d2e2c795aa7c471587ef9a0cdf6b5a3221112b799ab8d18860eae"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "a6193e9ea8b0f80696a5b3f6e52aa07e924b9afe89d1d2e9a76360819ee05b94"
+          }
+        },
+        "euclidean": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E029/block48/euclidean_output.pt",
+            "bytes": 323120744,
+            "sha256": "9a403533c262cba3e62c1c9844902d25efcae564ba90aec0ee95b1647527f446"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "90f1059087d2251a603063df2b883403440ab04b83a8f24f23ab09d0d245e1ab"
+          }
+        },
+        "transferred_factorable": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E030/block48_factorable_fp32_output.pt",
+            "bytes": 323120970,
+            "sha256": "ad12f924fc38e525a163df8b0e28c2b75d851fda1f0b69aa2b31c5867dd09fc3"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "7b772957ca673bf0fdca4e0a5d58c7db56b7ff1338ec88bc209e94d1e77acf65"
+          }
+        },
+        "adaptive_range1": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E031/block48_range1_output.pt",
+            "bytes": 323120779,
+            "sha256": "51673c6f415bd853be9ecde8e7aa8d2807621fdfdbaf7a79604be9dd678a01d1"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "59eb3c76ad9492bff6d045f3d7610a05056cb8c79f50420b8345685df6f89a0b"
+          }
+        },
+        "bf16": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block48_bf16_shift0.pt",
+            "sha256": "5011ace47ddf9af22664ab2ab45467c6b8ee95ff341d6bd9aec6c142de55cbc3",
+            "bytes": 323120765
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "4afddcfd0f746131c2d6ecf93e08ed952001ba932959e3d5c9cae828a3b56e8e"
+          }
+        }
+      }
+    }
+  ],
+  "fixture": {
+    "status": "complete",
+    "small_direct_distance_reference": true,
+    "actual_bf16_reassignment": true,
+    "empty_centers_retained": true,
+    "degenerate_tie_chooses_first": true,
+    "scope": "CPU structural and formula fixture only; no GPU/native evidence."
+  },
+  "cuda_initialized": false,
+  "seconds": 8.025922536849976
+}

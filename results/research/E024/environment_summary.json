@@ -1,0 +1,170 @@
+{
+  "status": "environment_ready_small_forwards_passed",
+  "checked_at_utc": "2026-10-02T19:30:58.467805+00:00",
+  "scope": "Official environment install, CPU package checks, one small official NVFP4 GEMM and one SM120 FP4 attention. No model load or generation.",
+  "environment": "/data1/models/svdquant-wjq/research/envs/fastwan-qad-20261003",
+  "source_dir": "/data1/models/svdquant-wjq/third_party/FastVideo-8444c089",
+  "source_commit": "8444c0897a8b96848eb85b6e5750ef486f79fc92",
+  "official_tracked_source_unchanged": true,
+  "versions": {
+    "torch": "2.12.0+cu130",
+    "torchvision": "0.27.0+cu130",
+    "torchaudio": "2.11.0+cu130",
+    "fastvideo": "0.2.1",
+    "fastvideo-kernel": "0.3.5",
+    "flashinfer-python": "0.7.0.post1",
+    "transformers": "5.15.1",
+    "diffusers": "0.40.0",
+    "nvidia-cutlass-dsl": "4.8.0",
+    "ninja": "1.13.2",
+    "taehv": "0.0.0+g011dfc21"
+  },
+  "torch_build": "2.12.0+cu130",
+  "cuda_build": "13.0",
+  "gpu": {
+    "name": "NVIDIA RTX PRO 5000 72GB Blackwell",
+    "capability": [
+      12,
+      0
+    ],
+    "total_bytes": 76368510976
+  },
+  "backend": "arch=sm_120 kernel=fastvideo-kernel-cutlass scheme=sage3-fp4-sm120",
+  "actual_calls": {
+    "nvfp4_linear_quantize": 2,
+    "nvfp4_gemm": 1,
+    "fp4_attention": 1
+  },
+  "model_calls": 0,
+  "outputs": {
+    "linear": {
+      "shape": [
+        1,
+        256,
+        128
+      ],
+      "dtype": "torch.bfloat16",
+      "finite": true,
+      "sha256": "302f3094a6d78f60d560bed5853c3406d3dc2a39f56a2c8931102586a0d0e65f"
+    },
+    "attention": {
+      "shape": [
+        1,
+        2,
+        256,
+        128
+      ],
+      "dtype": "torch.bfloat16",
+      "finite": true,
+      "sha256": "0d66539ae3cff4e563d29d2a24e83a50099f76c9b374c284c3ff03758de99522"
+    }
+  },
+  "all_gpu_imports_passed": true,
+  "raw_smoke": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E024/environment_gpu_smoke_resume1.json",
+    "bytes": 6669,
+    "sha256": "10ee7e781e63720791b570b5504083101a035d600633cd7b57beaa9bdcaf356f"
+  },
+  "smoke_result_interpretation": "Both forward calls completed and synchronized; finite BF16 outputs and SHA were persisted. Raw status failed only while formatting profiler FunctionEventAvg.name. No CUDA kernel timing/name summary survived, no peak memory value persisted; do not treat this as kernel failure or a performance measurement. Allocator 10GiB cap was enabled. No GPU rerun for formatting.",
+  "failure_history": [
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E024/environment_cpu_check_attempt0.json",
+      "reason": "remote-pdb missing plus documented no-visible-GPU Triton import limitation; no CUDA initialized"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E024/environment_gpu_smoke.json",
+      "reason": "ninja existed inside environment but bin missing from PATH; stopped before GEMM/attention"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E024/environment_gpu_smoke_resume1.json",
+      "reason": "successful forwards, profiler record formatting failed after saved outputs"
+    }
+  ],
+  "cpu_check": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E024/environment_cpu_check_repair1.json",
+    "bytes": 12437,
+    "sha256": "268cc300a56cb4c8c98fdb4685366fdb1cfd6dfd554e559ff6de9e46a18fa5f0"
+  },
+  "packaging_policy": "Minimal inference subset from official pyproject; no training/server/eval extras. pip check reports omitted unrelated umbrella dependencies, so this is not a fully installed development environment. Actual official VideoGenerator/linear/attention imports passed in GPU smoke.",
+  "pip_check": {
+    "file": "/data1/models/svdquant-wjq/research/20261003/E024/environment/logs/pip_check.txt",
+    "bytes": 1047,
+    "sha256": "7b89cc4b36bf7db20860c8c2687fa84ba75ea00532379ac42293982111cfef0e"
+  },
+  "runtime_env": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E024/runtime_env.sh",
+    "bytes": 783,
+    "sha256": "1c97b7d0c5d5aa12f6dbb96964bf71e4b45386632d300d0c86fd32a3bfffba5c"
+  },
+  "flashinfer_workspace_base": "/data1/models/svdquant-wjq/research/20261003/E024/environment/flashinfer_workspace",
+  "flashinfer_cache_dir": "/data1/models/svdquant-wjq/research/20261003/E024/environment/flashinfer_workspace/.cache/flashinfer",
+  "cache_note": "Initial smoke inadvertently used FlashInfer default HOME cache because this library ignores XDG_CACHE_HOME; ~19.5MB arch120f cache copied to DATA1 after job exit, all copied .so byte-identical. Existing shared root cache left untouched. Future runtime explicitly sets FLASHINFER_WORKSPACE_BASE, CUDA_CACHE_PATH, TORCH_EXTENSIONS_DIR and all pip/TMP caches to DATA1.",
+  "cache_binaries": [
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261003/E024/environment/flashinfer_workspace/.cache/flashinfer/0.7.0.post1/120f/cached_ops/fp4_quantization_120f/fp4_quantization_120f.so",
+      "bytes": 2800080,
+      "sha256": "5c1d022765b605ffd70c2414a4c0063c718348a610e3197e17ce0ec23bca8fe3"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261003/E024/environment/flashinfer_workspace/.cache/flashinfer/0.7.0.post1/120f/cached_ops/fp4_gemm_cutlass_sm120/fp4_gemm_cutlass_sm120.so",
+      "bytes": 5209024,
+      "sha256": "3f275a991aa96262a82d51441c65afcc99f3bc0a9711e8be6f6031e78ffeaa56"
+    }
+  ],
+  "taehv_original": {
+    "file": "/data1/models/svdquant-wjq/models/TAEHV-011dfc21/taehv.py",
+    "bytes": 26475,
+    "sha256": "99545f093b36c16297ad182ce18a5dce2ebc98bb611f5e8dfa2dce431ba39ce2"
+  },
+  "taehv_installed": {
+    "file": "/data1/models/svdquant-wjq/research/envs/fastwan-qad-20261003/lib/python3.12/site-packages/taehv.py",
+    "bytes": 26475,
+    "sha256": "99545f093b36c16297ad182ce18a5dce2ebc98bb611f5e8dfa2dce431ba39ce2"
+  },
+  "taehv_packaging_only": true,
+  "source_files": {
+    "/home/wjq/workspace/svdquant-exp/results/research/E024/environment_freeze.txt": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E024/environment_freeze.txt",
+      "bytes": 2203,
+      "sha256": "8eca271040414dd09999b2aacf0fd0aa026bb877c63a6d1fd38a54e580cf6028"
+    },
+    "/home/wjq/workspace/svdquant-exp/results/research/E024/pip_torch.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E024/pip_torch.json",
+      "bytes": 201914,
+      "sha256": "ea5eb50f7e7568ed53e1418224cf57a71e55f728801c490ed9de4a4be26339cc"
+    },
+    "/home/wjq/workspace/svdquant-exp/results/research/E024/pip_runtime.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E024/pip_runtime.json",
+      "bytes": 897184,
+      "sha256": "04b9e78b2b0d7d3e4a6d13e078f8f128e7ef19d2ed355ca5d262d4330eee51a7"
+    },
+    "/home/wjq/workspace/svdquant-exp/results/research/E024/pip_runtime_repair1.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E024/pip_runtime_repair1.json",
+      "bytes": 8201,
+      "sha256": "27f7f94b5f2a4cf88a7dc9714f93060dfae46f703da99693dee075cbf03cd648"
+    },
+    "/home/wjq/workspace/svdquant-exp/results/research/E024/pip_fastvideo.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E024/pip_fastvideo.json",
+      "bytes": 20893,
+      "sha256": "90fe17e8863a4c23453726d3473ac39023a390645002dfa8c72812da8c601515"
+    },
+    "/home/wjq/workspace/svdquant-exp/results/research/E024/pip_taehv.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E024/pip_taehv.json",
+      "bytes": 1105,
+      "sha256": "646bb39436e7df18ffbede4378a4081ef9eb7b5b783ae66467e680657042c8e2"
+    },
+    "/home/wjq/workspace/svdquant-exp/results/research/E024/checker_smoke_resume1_source.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E024/checker_smoke_resume1_source.py",
+      "bytes": 6038,
+      "sha256": "c3a0c22087ffda019235f6cf31e63d379d518c5748d72cfbf115b8eaaac6a3fb"
+    }
+  },
+  "gpu1_final_state": "1, 0, 0",
+  "live_handle": null,
+  "gpu_smoke_wall_seconds": 123.99345564842224,
+  "kernel_arch_receipt": {
+    "file": "/data1/models/svdquant-wjq/research/20261003/E024/environment/logs/fp4attn_elfs.txt",
+    "bytes": 33,
+    "sha256": "c3b3633d029420bd45bd2011a34d87398f93b71fc12785176d890706455b7fa4"
+  }
+}

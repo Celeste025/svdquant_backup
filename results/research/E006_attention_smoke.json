@@ -1,0 +1,285 @@
+{
+  "experiment": "E006_native_attention_prerequisite",
+  "status": "complete",
+  "cases": [
+    {
+      "case": "aligned",
+      "shape": [
+        1,
+        2,
+        128,
+        128
+      ],
+      "vs_bf16_sdpa": {
+        "err2": 22.650309011834224,
+        "ref2": 664.073326012458,
+        "nmse": 0.03410814457469913,
+        "maxabs": 0.18603515625,
+        "finite": true
+      },
+      "packed_shapes": [
+        [
+          1,
+          2,
+          128,
+          64
+        ],
+        [
+          1,
+          2,
+          128,
+          64
+        ],
+        [
+          1,
+          2,
+          128,
+          64
+        ],
+        [
+          1,
+          2,
+          128,
+          8
+        ],
+        [
+          1,
+          2,
+          128,
+          8
+        ],
+        [
+          1,
+          2,
+          128,
+          8
+        ],
+        [
+          1,
+          2,
+          1,
+          128
+        ]
+      ],
+      "seconds_with_first_compile_not_latency": 105.98678612709045,
+      "cuda_kernels": [
+        "void nvfp4_attention::attention_kernel_ws<nvfp4_attention::Flash_fwd_kernel_traits<128, 128, 128, 3, 1, true, cutlass::nv_float4_t<cutlass::float_e2m1_t>, cutlass::bfloat16_t, float>, false, false, nvfp4_attention::StaticPersistentTileScheduler>(Flash_fwd_params, nvfp4_attention::CollectiveMainloopFwd<nvfp4_attention::Flash_fwd_kernel_traits<128, 128, 128, 3, 1, true, cutlass::nv_float4_t<cutlass::float_e2m1_t>, cutlass::bfloat16_t, float>, false>::Params, nvfp4_attention::CollectiveEpilogueFwd<nvfp4_attention::Flash_fwd_kernel_traits<128, 128, 128, 3, 1, true, cutlass::nv_float4_t<cutlass::float_e2m1_t>, cutlass::bfloat16_t, float> >::Params, nvfp4_attention::StaticPersistentTileScheduler::Params)"
+      ],
+      "repeat_equal": true
+    },
+    {
+      "case": "unaligned",
+      "shape": [
+        1,
+        2,
+        257,
+        128
+      ],
+      "vs_bf16_sdpa": {
+        "err2": 23.77111412286081,
+        "ref2": 679.7728842707149,
+        "nmse": 0.03496920026217775,
+        "maxabs": 0.12451171875,
+        "finite": true
+      },
+      "packed_shapes": [
+        [
+          1,
+          2,
+          384,
+          64
+        ],
+        [
+          1,
+          2,
+          384,
+          64
+        ],
+        [
+          1,
+          2,
+          128,
+          192
+        ],
+        [
+          1,
+          2,
+          384,
+          8
+        ],
+        [
+          1,
+          2,
+          384,
+          8
+        ],
+        [
+          1,
+          2,
+          128,
+          24
+        ],
+        [
+          1,
+          2,
+          3,
+          384
+        ]
+      ],
+      "seconds_with_first_compile_not_latency": 0.046311378479003906
+    },
+    {
+      "case": "short_zero",
+      "shape": [
+        1,
+        2,
+        16,
+        128
+      ],
+      "vs_bf16_sdpa": {
+        "err2": 0.0,
+        "ref2": 0.0,
+        "nmse": 0.0,
+        "maxabs": 0.0,
+        "finite": true
+      },
+      "packed_shapes": [
+        [
+          1,
+          2,
+          128,
+          64
+        ],
+        [
+          1,
+          2,
+          128,
+          64
+        ],
+        [
+          1,
+          2,
+          128,
+          64
+        ],
+        [
+          1,
+          2,
+          128,
+          8
+        ],
+        [
+          1,
+          2,
+          128,
+          8
+        ],
+        [
+          1,
+          2,
+          128,
+          8
+        ],
+        [
+          1,
+          2,
+          1,
+          128
+        ]
+      ],
+      "seconds_with_first_compile_not_latency": 0.0008826255798339844
+    },
+    {
+      "case": "two_sequences",
+      "shape": [
+        2,
+        2,
+        129,
+        128
+      ],
+      "vs_bf16_sdpa": {
+        "err2": 46.93584869829556,
+        "ref2": 1276.5029001315693,
+        "nmse": 0.036769088964433906,
+        "maxabs": 0.224609375,
+        "finite": true
+      },
+      "packed_shapes": [
+        [
+          2,
+          2,
+          256,
+          64
+        ],
+        [
+          2,
+          2,
+          256,
+          64
+        ],
+        [
+          2,
+          2,
+          128,
+          128
+        ],
+        [
+          2,
+          2,
+          256,
+          8
+        ],
+        [
+          2,
+          2,
+          256,
+          8
+        ],
+        [
+          2,
+          2,
+          128,
+          16
+        ],
+        [
+          2,
+          2,
+          2,
+          256
+        ]
+      ],
+      "seconds_with_first_compile_not_latency": 0.0008864402770996094,
+      "unmodified_sequence_maxdiff": 0.0
+    }
+  ],
+  "limitations": [
+    "synthetic inputs only",
+    "not native projection + attention interaction experiment",
+    "not a performance benchmark",
+    "official source quantization, no model quality claim"
+  ],
+  "torch": "2.11.0+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "capability": [
+    12,
+    0
+  ],
+  "package_versions": {
+    "flashinfer-python": "0.7.0.post1",
+    "apache-tvm-ffi": "0.1.14.post1",
+    "cuda-python": "12.9.7"
+  },
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "0",
+    "FLASHINFER_WORKSPACE_BASE": "/data1/models/svdquant-wjq/research/cache/flashinfer",
+    "CUDA_HOME": "/usr/local/cuda",
+    "MAX_JOBS": "4"
+  },
+  "source": {
+    "path": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/nvfp4_attention_sm120.py",
+    "sha256": "040738c6d6af5584ca9b375bb59468d7011506862ff0a162f1f51a72149abefc"
+  },
+  "script_sha256": "0a5164065def799cf2a20549d35311dff634e35d4ef2bcaa8478bc7d24758a4a",
+  "peak_gpu_gib": 0.010792732238769531
+}

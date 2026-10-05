@@ -1,0 +1,530 @@
+{
+  "experiment": "E030",
+  "phase": "check",
+  "status": "complete",
+  "rank": 16,
+  "attempted_dit_calls": 0,
+  "complete_dit_calls": 0,
+  "capture_attention_calls": 0,
+  "attention_probe_calls": 0,
+  "arms": [
+    "bf16_center",
+    "factorable_fp32"
+  ],
+  "scope": "Fixed donor p30/s14 Euclidean right basis transferred to p36/s14, same layers/heads. Exploratory transfer, not held-out quality. One BF16-center arm plus FP32 factorable T17+A arithmetic. Full correction materialized; no performance claim.",
+  "sources": {
+    "runner": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_transferred_centers.py",
+      "bytes": 15310,
+      "sha256": "c9f0779db71b37aaece3d8957069d7cbac135f9c95571fb70610ede7a3f9cee5"
+    },
+    "common": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_query_mean_k4.py",
+      "bytes": 11027,
+      "sha256": "ee4406f6a26dc6c671171a97bcda070d7be9f16d4fb599787aa208f7764b1e3a"
+    },
+    "capture_helper": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/capture_h3_query_phase.py",
+      "bytes": 15470,
+      "sha256": "4fdd2f95a795ac5f9184fd124be663676007b36037103630d8e3f3411cba344d"
+    },
+    "rollout_helper": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_fp4_attention_video.py",
+      "bytes": 27737,
+      "sha256": "14f3666e1766f0f61798ed2e58b8822350f4e470210b6a603738663516510a37"
+    },
+    "loader_helper": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py",
+      "bytes": 28742,
+      "sha256": "41e6e4eb1d9df554e5ea109b9bad3d1df83e9b64788137511262a82a0f34431f"
+    },
+    "router": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_fp4_attention.py",
+      "bytes": 20815,
+      "sha256": "76de03ce6f458342e7ed4b67e1a4f700c6784de4978963408e2bdc7d725fb47b"
+    },
+    "official": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/nvfp4_attention_sm120.py",
+      "bytes": 19507,
+      "sha256": "040738c6d6af5584ca9b375bb59468d7011506862ff0a162f1f51a72149abefc"
+    }
+  },
+  "donor": {
+    "case": {
+      "prompt_id": 30,
+      "seed": 49771,
+      "step": 14,
+      "arm": "block_mean"
+    },
+    "source_report": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E017/E017_denoise_block_mean.json",
+      "bytes": 2774442,
+      "sha256": "2c420d7ff566ec3858711139cdad1b320e09a457ed2860b32b9b0f45cb765eee"
+    },
+    "prepared": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E010/prepare/p030.pt",
+      "sha256": "deacde742b509e24536d225f8e8fb21b892e71c2653e58e0026e822865f1108a",
+      "bytes": 9257279
+    },
+    "step_files": {
+      "video": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E017/denoise_block_mean/p030/s14_video.pt",
+        "bytes": 12278575,
+        "sha256": "913a14ac5fc42b182e9e542492c197c2802a61a87c3b9fad21c3b003bf4395ae"
+      },
+      "audio": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E017/denoise_block_mean/p030/s14_audio.pt",
+        "bytes": 82287,
+        "sha256": "946eefd91ead5d707353b821800e67719f21ce51f5c084d17a704ade9bc1c1e3"
+      }
+    },
+    "attention_contract": {
+      "expected_cu": [
+        0,
+        22227,
+        22272
+      ],
+      "expected_refiner_cu": [
+        0,
+        501,
+        501
+      ]
+    },
+    "input_signature": {
+      "args": [],
+      "kwargs": {
+        "audio_pos_info": {
+          "position_ids": {
+            "shape": [
+              414
+            ],
+            "dtype": "torch.int64",
+            "sha256": "9b73f57a9457a9748d2618ab9a6739255440483d9e01a1518e5bf94314116ee4"
+          }
+        },
+        "audio_x": {
+          "shape": [
+            1,
+            22272,
+            32
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "4ff3982f78f4a8c24337c4958a004a8e84a435bb607e86316d082218e47d4062"
+        },
+        "control_hints": null,
+        "img_pos_for_infer_output_info": {
+          "position_ids": {
+            "shape": [
+              21312
+            ],
+            "dtype": "torch.int64",
+            "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+          }
+        },
+        "img_pos_info": {
+          "position_ids": {
+            "shape": [
+              21312
+            ],
+            "dtype": "torch.int64",
+            "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+          }
+        },
+        "img_position_ids": {
+          "shape": [
+            1,
+            22272,
+            3
+          ],
+          "dtype": "torch.float64",
+          "sha256": "e6877f45135838155bcbd84cb76f8041530417a26ec06c6c32fcbdf36bc6f528"
+        },
+        "inverse_indices": {
+          "shape": [
+            22272
+          ],
+          "dtype": "torch.int64",
+          "sha256": "3bf3b79818aa1a60ce0b7b6e92e5cedc975ec37af7ef738ba17821403e496ab7"
+        },
+        "packed_seq_params": {
+          "cu_seqlens_q": {
+            "shape": [
+              3
+            ],
+            "dtype": "torch.int32",
+            "sha256": "d04d6c79bfd36def0c4998385a1bb77293f03ecd957d1cf0519334babdcbdbe1"
+          },
+          "max_seqlen_q": 22227
+        },
+        "prompt_embeds": {
+          "shape": [
+            501,
+            5120
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "77df337b4e39402cacd97c1596a94f2f67a83733b02e67ff086b8f4fab6b6803"
+        },
+        "refiner_packed_seq_params": {
+          "cu_seqlens_q": {
+            "shape": [
+              3
+            ],
+            "dtype": "torch.int32",
+            "sha256": "187f0d141fe6c634179d935c7684e2a1fd20d3ad068b31a52b0c391316934142"
+          },
+          "max_seqlen_q": 501
+        },
+        "skip_mask_out_condition": true,
+        "text_pos_info": {
+          "position_ids": {
+            "shape": [
+              501
+            ],
+            "dtype": "torch.int64",
+            "sha256": "6c0fa99e682ba28af74b65991fc7decf5b0b2db50feb016088acc9eb0d8365b0"
+          }
+        },
+        "token_tags": {
+          "shape": [
+            22272
+          ],
+          "dtype": "torch.int64",
+          "sha256": "6fc1450d272abe0fae1540ebed39f6a0c980f72dfa5ac3da37975d7258674e73"
+        },
+        "unique_timesteps": {
+          "shape": [
+            2
+          ],
+          "dtype": "torch.float32",
+          "sha256": "78032fc0a7f2cb7a35df43d26cb0d77d6f4350ee38b869da8b91b270c2bf772c"
+        },
+        "update_mask": null,
+        "use_gradient_checkpointing": false,
+        "use_gradient_checkpointing_offload": false,
+        "x": {
+          "shape": [
+            1,
+            22272,
+            96
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "c352079e45ece8954a1cd61710faacebb411e1f9ed7033e90c768dec2c49e136"
+        }
+      }
+    },
+    "signature_matches_saved_call": true,
+    "raw_reference_signature": {
+      "audio": {
+        "shape": [
+          414,
+          32
+        ],
+        "dtype": "torch.bfloat16",
+        "sha256": "b13e5e71d8469cc2d72ef897fe184e300c8ee03af354f221ee64f0fd05a2d8bf"
+      },
+      "video": {
+        "shape": [
+          21312,
+          96
+        ],
+        "dtype": "torch.bfloat16",
+        "sha256": "7dbd8d5aa41f12c6771565eb0788887e4a49f6d9cc1058883f8ea63bf4dd0ebb"
+      }
+    },
+    "saved_raw_signature": {
+      "video": {
+        "shape": [
+          21312,
+          96
+        ],
+        "dtype": "torch.bfloat16",
+        "sha256": "7dbd8d5aa41f12c6771565eb0788887e4a49f6d9cc1058883f8ea63bf4dd0ebb"
+      },
+      "audio": {
+        "shape": [
+          414,
+          32
+        ],
+        "dtype": "torch.bfloat16",
+        "sha256": "b13e5e71d8469cc2d72ef897fe184e300c8ee03af354f221ee64f0fd05a2d8bf"
+      }
+    }
+  },
+  "manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E017_h3_fp4_video_manifest.json",
+    "bytes": 12246,
+    "sha256": "b1c1d47ae8e516e564b89973f31094f3c9476112518c7b02f00ab51433bfb60f"
+  },
+  "export_manifest": {
+    "file": "/data1/models/svdquant-wjq/research/20261002/E009/legacy_export/manifest.json",
+    "bytes": 306476,
+    "sha256": "0b92e3e9f6a937ca7a6ebff6c4dfe4e6ad4e918224525ab5bf12a4e1baddfec0"
+  },
+  "target_reports": {
+    "E018/capture_run.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E018/capture_run.json",
+      "bytes": 401662,
+      "sha256": "5c386556e330a12ed1692b68937a183af2843162de9be92b061a8a263a0996dc"
+    },
+    "E018/probe_run.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E018/probe_run.json",
+      "bytes": 83510,
+      "sha256": "ab66aafd6fa6fcd3b13f108087ae96a95f303fc51e2efe9abfa4a91898b3c8db"
+    },
+    "E029/run.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E029/run.json",
+      "bytes": 1730001,
+      "sha256": "c3d518893873a440d770fc5903407658798bece044093927379f57f4f49f0108"
+    }
+  },
+  "targets": [
+    {
+      "block": 0,
+      "capture": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/capture/block0.pt",
+        "sha256": "5c8882219a165d9c4835ee80f132455f875fc21a2bd122c1b20c64cfed7b603c",
+        "bytes": 1292661823
+      },
+      "kv_packets": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block0_kv_packets.pt",
+        "sha256": "d463108b80fbf06df5600d497eaf518bcb56161232dd96275451805af99a71f7",
+        "bytes": 182700609
+      },
+      "references": {
+        "original_block": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E029/block0/original_block_output.pt",
+            "bytes": 323120779,
+            "sha256": "fbb642e30037d181140271fec76e664dc71f93e3fc4189cb4fb0216b0cc52b8f"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "60706d916c522ef6817f4d31b56ff31ce33a76c88e5d6b796114583999b99372"
+          }
+        },
+        "original_global": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E029/block0/original_global_output.pt",
+            "bytes": 323120850,
+            "sha256": "55dab9a805cadad5b33241018f011fd66f7e05208f7574fc187fcc1d8054da04"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "628168109e58c98dd28d2a8fefd0fa1ba027117bb1a2053c94a824147820be65"
+          }
+        },
+        "euclidean": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E029/block0/euclidean_output.pt",
+            "bytes": 323120744,
+            "sha256": "5136540afb986b7686a83608fda65abc5fb26c7f2aac12311426a4a18a35b29d"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "b4e0b0465870aca36fe9289f82e9fb28612191680dea594c21ae9df7aade0455"
+          }
+        },
+        "bf16": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block0_bf16_shift0.pt",
+            "sha256": "49b2698d53d398e429da75d1288e3e9925af8527d65bf56d1d9f1220ef11df1d",
+            "bytes": 323120758
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "840d01f656bbeb6069a9ced5ae357c0bd3a3e027be9a593d3f5ae1d989957e41"
+          }
+        }
+      }
+    },
+    {
+      "block": 24,
+      "capture": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/capture/block24.pt",
+        "sha256": "a71b06ec3f2eeea330c46837d425c458787ba6044c823ee86a8b8b518301a5c4",
+        "bytes": 1292661837
+      },
+      "kv_packets": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block24_kv_packets.pt",
+        "sha256": "3bc43338a9c158719550f9f943c120298815cad8056aa90964a58788aa919e90",
+        "bytes": 182700619
+      },
+      "references": {
+        "original_block": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E029/block24/original_block_output.pt",
+            "bytes": 323120779,
+            "sha256": "baa222ef460f52d76b17510db0df4a03419f2b15c65bac05534630e28d5af0bc"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "008b3cd3d250f4f6d60e9592c2a7c57df5415118fbcae9890ead728d042f4612"
+          }
+        },
+        "original_global": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E029/block24/original_global_output.pt",
+            "bytes": 323120850,
+            "sha256": "4a5d61448371277a7fcb0bfd2bdb7a3762f26b07163cf47a9298897270da974d"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "4de28609619218825cdd1deba1d25bd06aebb5296f29f98a83f8e3a9d8d1287c"
+          }
+        },
+        "euclidean": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E029/block24/euclidean_output.pt",
+            "bytes": 323120744,
+            "sha256": "6b8a18b67d3464205a1f9d2e1304428f674cd832f1bf0892e30f377a2abdb4a4"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "d6c03b4b61acd9b8273e3d0960e3da72b1045f1d65c0f39c1bf48a8357f89dc2"
+          }
+        },
+        "bf16": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block24_bf16_shift0.pt",
+            "sha256": "64a4ae741a59da0eb84d46343e8f57437510eadb6105d8ecf5c7f60e13c0bb6f",
+            "bytes": 323120765
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "36ca72f3600e64caa6cb6b662feaf4cdec0b1d7f3144f69278c41c7e7defad0c"
+          }
+        }
+      }
+    },
+    {
+      "block": 48,
+      "capture": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/capture/block48.pt",
+        "sha256": "308020a78bd3a8d160a463753a4bf10894c889f5daf3312499ddc32bba54c285",
+        "bytes": 1292661837
+      },
+      "kv_packets": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block48_kv_packets.pt",
+        "sha256": "79b27d7fc0af3a3e6f3b64268682373b9922afe37b3c1522d16742e9f5e5288b",
+        "bytes": 182700619
+      },
+      "references": {
+        "original_block": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E029/block48/original_block_output.pt",
+            "bytes": 323120779,
+            "sha256": "36e7119ce4476e4f2147cc24918678b66b746a39cb4aa816b101b136dc33974d"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "9afaf5b788d0cdc660f8e11e171f193c9dc71cf272dbd1488813c31e7fac6f82"
+          }
+        },
+        "original_global": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E029/block48/original_global_output.pt",
+            "bytes": 323120850,
+            "sha256": "35a683c8412d2e2c795aa7c471587ef9a0cdf6b5a3221112b799ab8d18860eae"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "a6193e9ea8b0f80696a5b3f6e52aa07e924b9afe89d1d2e9a76360819ee05b94"
+          }
+        },
+        "euclidean": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E029/block48/euclidean_output.pt",
+            "bytes": 323120744,
+            "sha256": "9a403533c262cba3e62c1c9844902d25efcae564ba90aec0ee95b1647527f446"
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "90f1059087d2251a603063df2b883403440ab04b83a8f24f23ab09d0d245e1ab"
+          }
+        },
+        "bf16": {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block48_bf16_shift0.pt",
+            "sha256": "5011ace47ddf9af22664ab2ab45467c6b8ee95ff341d6bd9aec6c142de55cbc3",
+            "bytes": 323120765
+          },
+          "tensor": {
+            "shape": [
+              22539,
+              56,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "4afddcfd0f746131c2d6ecf93e08ed952001ba932959e3d5c9cae828a3b56e8e"
+          }
+        }
+      }
+    }
+  ],
+  "cuda_initialized": false,
+  "seconds": 9.667475700378418
+}

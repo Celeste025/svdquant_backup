@@ -1,0 +1,177 @@
+{
+  "status": "complete",
+  "source": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_fp4_attention.py",
+    "sha256": "2f57032b38bc23f606a6dabf4c7c2175a3709a5d84d040dc4f25aa77b98c0be7",
+    "bytes": 19193
+  },
+  "cuda_initialized": false,
+  "modes": [
+    {
+      "mode": "bf16",
+      "main_helper_calls": 50,
+      "refiner_helper_calls": 2,
+      "fp4_calls": 0,
+      "original_bf16_segments": 102,
+      "expected_cu": [
+        0,
+        129,
+        133
+      ],
+      "expected_refiner_cu": [
+        0,
+        7,
+        7
+      ],
+      "actual_cu_checks": [
+        {
+          "kind": "refiner",
+          "actual": [
+            0,
+            7,
+            7
+          ],
+          "expected": [
+            0,
+            7,
+            7
+          ],
+          "exact": true
+        },
+        {
+          "kind": "main",
+          "actual": [
+            0,
+            129,
+            133
+          ],
+          "expected": [
+            0,
+            129,
+            133
+          ],
+          "exact": true
+        }
+      ],
+      "diagnostics": true,
+      "finite_flag_count": 52,
+      "finite": true,
+      "timing_boundary": "Context exit checks tiny cu metadata and optional finite flags after the caller end synchronization",
+      "latency_attribution_limit": "Low-bit main uses prebound CPU boundaries and deferred cu validation; original BF16 helper retains per-layer cu.tolist(). Whole-forward differences include this routing/synchronization change, not FP4 arithmetic alone."
+    },
+    {
+      "mode": "block_mean",
+      "main_helper_calls": 50,
+      "refiner_helper_calls": 2,
+      "fp4_calls": 50,
+      "original_bf16_segments": 52,
+      "expected_cu": [
+        0,
+        129,
+        133
+      ],
+      "expected_refiner_cu": [
+        0,
+        7,
+        7
+      ],
+      "actual_cu_checks": [
+        {
+          "kind": "refiner",
+          "actual": [
+            0,
+            7,
+            7
+          ],
+          "expected": [
+            0,
+            7,
+            7
+          ],
+          "exact": true
+        },
+        {
+          "kind": "main",
+          "actual": [
+            0,
+            129,
+            133
+          ],
+          "expected": [
+            0,
+            129,
+            133
+          ],
+          "exact": true
+        }
+      ],
+      "diagnostics": true,
+      "finite_flag_count": 252,
+      "finite": true,
+      "timing_boundary": "Context exit checks tiny cu metadata and optional finite flags after the caller end synchronization",
+      "latency_attribution_limit": "Low-bit main uses prebound CPU boundaries and deferred cu validation; original BF16 helper retains per-layer cu.tolist(). Whole-forward differences include this routing/synchronization change, not FP4 arithmetic alone."
+    },
+    {
+      "mode": "global_mean",
+      "main_helper_calls": 50,
+      "refiner_helper_calls": 2,
+      "fp4_calls": 50,
+      "original_bf16_segments": 52,
+      "expected_cu": [
+        0,
+        129,
+        133
+      ],
+      "expected_refiner_cu": [
+        0,
+        7,
+        7
+      ],
+      "actual_cu_checks": [
+        {
+          "kind": "refiner",
+          "actual": [
+            0,
+            7,
+            7
+          ],
+          "expected": [
+            0,
+            7,
+            7
+          ],
+          "exact": true
+        },
+        {
+          "kind": "main",
+          "actual": [
+            0,
+            129,
+            133
+          ],
+          "expected": [
+            0,
+            129,
+            133
+          ],
+          "exact": true
+        }
+      ],
+      "diagnostics": true,
+      "finite_flag_count": 252,
+      "finite": true,
+      "timing_boundary": "Context exit checks tiny cu metadata and optional finite flags after the caller end synchronization",
+      "latency_attribution_limit": "Low-bit main uses prebound CPU boundaries and deferred cu validation; original BF16 helper retains per-layer cu.tolist(). Whole-forward differences include this routing/synchronization change, not FP4 arithmetic alone."
+    }
+  ],
+  "checks": [
+    "original bound forwards restored",
+    "valid/padding/refiner routes",
+    "exact scale and N flags",
+    "contiguous official QKV",
+    "padded Q output cropped",
+    "wrong boundary rejected",
+    "separate native attention kernel matcher"
+  ],
+  "scope": "Mock routing only; no actual official quantizer, GPU kernel, or numerical accuracy proof"
+}

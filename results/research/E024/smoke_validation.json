@@ -1,0 +1,203 @@
+{
+  "status": "complete",
+  "scope": "One completed official product smoke; saved tensors/receipts and software media decode only.",
+  "source_report": "/home/wjq/workspace/svdquant-exp/results/research/E024/smoke_run.json",
+  "worker_pid": 3578802,
+  "worker_exited": true,
+  "launcher_returncode": 0,
+  "cuda_initialized": false,
+  "gpu_used": false,
+  "trajectory_id": "vbench_128_r0",
+  "prompt": "A space shuttle launching into orbit, with flames and smoke billowing out from the engines",
+  "seed": 20261110,
+  "files": {
+    "latents": {
+      "path": "/data1/models/svdquant-wjq/research/20261003/E024/videos/smoke/vbench_128_r0_latents.pt",
+      "bytes": 20968735,
+      "sha256": "c59a8f6c24565fbd65e18a91425759b0ceb380acf5e54ccb4ecaa8d10d3dc715",
+      "match": true
+    },
+    "video": {
+      "path": "/data1/models/svdquant-wjq/research/20261003/E024/videos/smoke/vbench_128_r0.mp4",
+      "bytes": 518422,
+      "sha256": "7667dbc2fbf52d72aba3714edb3cd41b7de2f79d14300417612f4f7e06f9fad1",
+      "match": true
+    }
+  },
+  "tensors": {
+    "final_latents": {
+      "shape": [
+        1,
+        16,
+        21,
+        60,
+        104
+      ],
+      "dtype": "torch.float32",
+      "sha256": "66bf5cd6a21067dd0ae68b340322967dafb31cec246259e1bd3163cd5acd3fa6",
+      "finite": true
+    },
+    "trajectory": {
+      "shape": [
+        1,
+        3,
+        16,
+        21,
+        60,
+        104
+      ],
+      "dtype": "torch.bfloat16",
+      "sha256": "392af0a09ba1b48c4a91be5576c20490304506982ed0b3b23134a45d204024a1",
+      "finite": true
+    },
+    "trajectory_timesteps": {
+      "shape": [
+        3
+      ],
+      "dtype": "torch.int64",
+      "sha256": "0e905c2e6f9ca9fd491f290c547fd2b919b27388de97cc1fa79b54c1d21c58e8",
+      "finite": true
+    }
+  },
+  "steps": [
+    {
+      "step": 0,
+      "shape": [
+        1,
+        16,
+        21,
+        60,
+        104
+      ],
+      "dtype": "torch.bfloat16",
+      "sha256": "7be2daa0fc808f04f162e23259e891f50ce28fc8c9ff0f0434c19d2f8d03e02e",
+      "finite": true
+    },
+    {
+      "step": 1,
+      "shape": [
+        1,
+        16,
+        21,
+        60,
+        104
+      ],
+      "dtype": "torch.bfloat16",
+      "sha256": "200e55ecbc194003eb1610323e0d12c474132ca3a837362d8f21637e5493d2e2",
+      "finite": true
+    },
+    {
+      "step": 2,
+      "shape": [
+        1,
+        16,
+        21,
+        60,
+        104
+      ],
+      "dtype": "torch.bfloat16",
+      "sha256": "e098fd2c61369f13d1e1d66c59ace0c49c512b19fad0a40ea1dbdd1969620b6f",
+      "finite": true
+    }
+  ],
+  "final_equals_last_step": true,
+  "actual_timesteps": [
+    999,
+    857,
+    599
+  ],
+  "scheduler": {
+    "class_name": "fastvideo.models.schedulers.scheduling_flow_unipc_multistep.FlowUniPCMultistepScheduler",
+    "config": {
+      "num_train_timesteps": 1000,
+      "solver_order": 2,
+      "prediction_type": "flow_prediction",
+      "shift": 3.0,
+      "use_dynamic_shifting": false,
+      "thresholding": false,
+      "dynamic_thresholding_ratio": 0.995,
+      "sample_max_value": 1.0,
+      "predict_x0": true,
+      "solver_type": "bh2",
+      "lower_order_final": true,
+      "disable_corrector": [],
+      "solver_p": null,
+      "timestep_spacing": "linspace",
+      "steps_offset": 0,
+      "final_sigmas_type": "zero",
+      "_use_default_values": [
+        "dynamic_thresholding_ratio",
+        "disable_corrector",
+        "sample_max_value",
+        "num_train_timesteps",
+        "solver_p",
+        "prediction_type",
+        "predict_x0",
+        "lower_order_final",
+        "timestep_spacing",
+        "solver_order",
+        "use_dynamic_shifting",
+        "kwargs",
+        "solver_type",
+        "final_sigmas_type",
+        "thresholding",
+        "steps_offset"
+      ]
+    },
+    "timesteps": [
+      999,
+      857,
+      599
+    ],
+    "sigmas": [
+      0.9998887777328491,
+      0.8570202589035034,
+      0.5998798608779907,
+      0.0
+    ]
+  },
+  "actual_calls_recomputed": {
+    "dit": 3,
+    "nvfp4_gemm": 900,
+    "fp4_attention": 90,
+    "dense_cross_attention": 90
+  },
+  "attention_counts": {
+    "fastvideo.attention.backends.attn_qat_infer.AttnQatInferImpl": 90,
+    "fastvideo.attention.backends.sdpa.SDPAImpl": 90
+  },
+  "gemm_backends": {
+    "cutlass": 900
+  },
+  "backend_receipt": "arch=sm_120 kernel=fastvideo-kernel-cutlass scheme=sage3-fp4-sm120",
+  "video": {
+    "decoded_frames": 81,
+    "width": 832,
+    "height": 480,
+    "fps": 16.0,
+    "decoder": "imageio_ffmpeg software RGB24; no GPU",
+    "decoded_rgb24_sha256": "3016ae7c558e571293cb46ffd94022b03344c08ca1d7b9b3a8293c025491e2a2",
+    "decoded_rgb_mean_0_1": [
+      0.33965259726625296,
+      0.1723805484078326,
+      0.16721575860034976
+    ]
+  },
+  "contact_sheet": {
+    "path": "/data1/models/svdquant-wjq/research/20261003/E024/contact_sheets/smoke_vbench_128_r0.png",
+    "sha256": "1203d583366e178d9796b5ccac61e12f3ea7602ce2b90abed3401ffd3f8f5aff",
+    "frame_indices": [
+      0,
+      20,
+      40,
+      60,
+      80
+    ]
+  },
+  "limitations": [
+    "Per-step velocity/model inputs were not saved; this checks saved step states and recorded execution receipts, not an independent model/scheduler replay.",
+    "The pre-encode uint8 frames and floating TAEHV output were not saved as tensors. Their reported hashes/statistics are not independently recomputed from lossy MP4.",
+    "Static frame samples do not establish motion quality or an advantage over another model."
+  ],
+  "seconds": 0.8325414657592773
+}

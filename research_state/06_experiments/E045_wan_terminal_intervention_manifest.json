@@ -1,0 +1,129 @@
+{
+  "model_dir": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers",
+  "python": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+  "svd_checkpoint": "/data1/models/svdquant-wjq/ckpts/wan2.1-1.3b-real-nvfp4-s16",
+  "checkpoint_identity": "/home/wjq/workspace/svdquant-exp/results/research/E044/checkpoint_identity.json",
+  "settings": {
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "num_inference_steps": 50,
+    "guidance_scale": 6.0,
+    "flow_shift": 8.0,
+    "fps": 16,
+    "scheduler": "UniPCMultistepScheduler",
+    "transformer_dtype": "bfloat16",
+    "text_encoder_dtype": "bfloat16",
+    "vae_dtype": "float32",
+    "latent_update_dtype": "float32",
+    "max_sequence_length": 512,
+    "prompt_extension": false,
+    "attention_backend_dit": "torch SDPA FLASH_ATTENTION",
+    "compile": false,
+    "offload": false,
+    "vae_tiling": false
+  },
+  "negative_prompt": "Bright tones, overexposed, static, blurred details, subtitles, style, works, paintings, images, static, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, misshapen limbs, fused fingers, still picture, messy background, three legs, many people in the background, walking backwards",
+  "negative_prompt_sha256": "e488b06083693241fbe71bed61a3eb0035f4ec96d858d235be1662c226452fac",
+  "reference_dir": "/home/wjq/workspace/svdquant-exp/results/research/E043",
+  "reference_manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E043_vanilla_wan_manifest.json",
+    "sha256": "8844e616bee677d563bd662e4b66db88dde4b63be076d8d0e01273b759d8e4e9"
+  },
+  "experiment": "E045",
+  "mode": "exploration_same_state_mechanism",
+  "status": "preregistered",
+  "data_dir": "/data1/models/svdquant-wjq/research/20261003/E045",
+  "report_dir": "/home/wjq/workspace/svdquant-exp/results/research/E045",
+  "cases": [
+    {
+      "case_id": "vbench0161_r0",
+      "prompt_id": 161,
+      "source_index_zero_based": 161,
+      "replica": 0,
+      "prompt": "A person is clapping",
+      "prompt_sha256": "268d62ce600baae94ac9ce2a33755b342aa42cc2b1386c4ee19501048f0015c8",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "seed": 43001610
+    },
+    {
+      "case_id": "vbench0161_r1",
+      "prompt_id": 161,
+      "source_index_zero_based": 161,
+      "replica": 1,
+      "prompt": "A person is clapping",
+      "prompt_sha256": "268d62ce600baae94ac9ce2a33755b342aa42cc2b1386c4ee19501048f0015c8",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "seed": 43001611
+    }
+  ],
+  "corners": [
+    "teacher",
+    "native_terminal",
+    "first_only",
+    "rest_only"
+  ],
+  "arm": "svdquant_nvfp4",
+  "capture_step_index": 49,
+  "selection": "Both existing clap replicas, selected after visible E044 detail defects; diagnostic, not held-out or population evidence.",
+  "parent_manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E044_vanilla_wan_native_manifest.json",
+    "sha256": "4ec454f7db4398491307deab8f75ca6bd3b89db132f87bec2dc0c4addde5de70"
+  },
+  "intervention": {
+    "state": "Same original teacher input, timestep, cond/uncond embeddings and pre-step UniPC history",
+    "cfg": "Actual BF16 uncond + 6*(cond-uncond), no pre-casting",
+    "first_only": "Teacher final clone, copy actual native_terminal latent index 0",
+    "rest_only": "Teacher final clone, copy actual native_terminal latent indices 1:",
+    "scaling_rotation_or_training": false
+  },
+  "readout": {
+    "latent_slices": 21,
+    "output_frames": 81,
+    "spaces": [
+      "diffusion_normalized",
+      "vae_denormalized",
+      "rgb_pre_internal_clamp",
+      "rgb_post_internal_clamp"
+    ],
+    "metrics": [
+      "actual cond/uncond/CFG prediction difference",
+      "actual terminal latent difference",
+      "per-frame RGB mean squared differences for all corners",
+      "four-corner nonlinear interaction"
+    ],
+    "media": "Eight full videos and fixed nine-frame sheets",
+    "quality_judge": false
+  },
+  "budget": {
+    "gpus": [
+      0,
+      1
+    ],
+    "worker_timeout_seconds": 900,
+    "launcher_timeout_seconds": 1200,
+    "bf16_dit": 200,
+    "native_dit": 4,
+    "dit": 204,
+    "native_gemm": 1200,
+    "dit_sdpa": 12240,
+    "scheduler": 104,
+    "public_vae_decode": 8,
+    "text_encoder": 0,
+    "training_updates": 0
+  },
+  "worker_groups": [
+    {
+      "gpu": 0,
+      "case_id": "vbench0161_r0"
+    },
+    {
+      "gpu": 1,
+      "case_id": "vbench0161_r1"
+    }
+  ]
+}

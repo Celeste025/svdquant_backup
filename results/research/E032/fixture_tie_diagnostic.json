@@ -1,0 +1,37 @@
+{
+  "status": "complete",
+  "cuda_initialized": false,
+  "snapshot": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E032/source_before_fixture_tie_fix.py",
+    "bytes": 14916,
+    "sha256": "68bc6328863b14b554c8e0519e9997756329dcfb8c542b7de3008f7c7aae078f"
+  },
+  "failed_check": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E032/check_before_fixture_tie_fix.json",
+    "bytes": 16081,
+    "sha256": "77c63d12e9cc2644df2dae3d13b7f45a77c4345fd08660cc4fc25fa44cca77a4"
+  },
+  "first_divergence": [
+    {
+      "added_center_index": 9,
+      "head": 1,
+      "existing_centers": 9,
+      "norm_bmm_argmax": 8,
+      "direct_argmax": 1,
+      "candidates": [
+        {
+          "group": 1,
+          "weighted_norm_bmm": 99.99993896484375,
+          "weighted_direct": 100.0
+        },
+        {
+          "group": 8,
+          "weighted_norm_bmm": 100.0,
+          "weighted_direct": 100.0
+        }
+      ],
+      "direct_tie": true
+    }
+  ],
+  "conclusion": "Synthetic mathematical equal distances have differing FP32 norm+bmm roundoff. Production contract stays norm+bmm and first argmax of its computed scores. Center-order equality between formulas is not a universal arithmetic gate; replacement fixture is deterministic non-symmetric, while all-zero tie and empty-cluster tests remain."
+}

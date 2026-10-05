@@ -1,0 +1,332 @@
+[
+  {
+    "case": "vbench0161_r0",
+    "label": "拍手",
+    "seed": 38001610,
+    "settings": {
+      "height": 576,
+      "width": 1024,
+      "num_frames": 124,
+      "num_inference_steps": 20,
+      "cfg_scale": 1.0,
+      "flow_shift": 12.0,
+      "audio_flow_shift": 3.0,
+      "rand_device": "cpu",
+      "noise_dtype": "bfloat16",
+      "tiled": true,
+      "tile_size": 256,
+      "tile_overlap": 64,
+      "fps": 24,
+      "audio_sample_rate": 32000
+    },
+    "bf16": "/data1/models/svdquant-wjq/research/20261004/E073/decode_full_bf16_r0/vbench0161_r0.mp4",
+    "sha256": {
+      "bf16": "9841e16d4337331536a47382570a9a9d619aa95ce3c9734790380aed8d6b8bba",
+      "sage": "b24ddc77f3072ba302c518e6abd3bad7910afb5ccc2cd9e309c79f21421f734b",
+      "center": "51bc69a5e03feefdc73842c71a55f789f1c2d6c2c48ad3d17955060a86266d67"
+    },
+    "initial_noise_sha256": {
+      "video_latents": "b3be07832d06581bebfb84c374414c163f3734a4cfe5000ca68d22d3201fbee1",
+      "audio_latents": "210d3e45214954804375dc4fe43398c67d189f81dd42b8c5a0f58d49d813d0ce"
+    },
+    "embedding_sha256": "bf05ef8db67e2d1de28dc409afa4216b721479e7dda961854be0d636ce319398",
+    "schedule": {
+      "video": {
+        "timesteps": [
+          1000.0,
+          995.6331787109375,
+          990.82568359375,
+          985.50732421875,
+          979.5918579101562,
+          972.9729614257812,
+          965.5172119140625,
+          957.0552368164062,
+          947.368408203125,
+          936.1702270507812,
+          923.076904296875,
+          907.56298828125,
+          888.888916015625,
+          865.9793701171875,
+          837.2092895507812,
+          800.0,
+          750.0,
+          679.2453002929688,
+          571.4285888671875,
+          387.0968017578125
+        ],
+        "sigmas": [
+          1.0,
+          0.9956331849098206,
+          0.9908256530761719,
+          0.9855073094367981,
+          0.9795918464660645,
+          0.9729729890823364,
+          0.9655172228813171,
+          0.9570552110671997,
+          0.9473683834075928,
+          0.936170220375061,
+          0.9230769276618958,
+          0.9075629711151123,
+          0.8888888955116272,
+          0.8659793734550476,
+          0.8372092843055725,
+          0.800000011920929,
+          0.75,
+          0.6792452931404114,
+          0.5714285969734192,
+          0.3870967924594879
+        ]
+      },
+      "audio": {
+        "timesteps": [
+          1000.0,
+          982.7586059570312,
+          964.28564453125,
+          944.4444580078125,
+          923.0769653320312,
+          900.0,
+          874.9999389648438,
+          847.8260498046875,
+          818.1818237304688,
+          785.7144165039062,
+          750.0,
+          710.5263061523438,
+          666.6666870117188,
+          617.64697265625,
+          562.5,
+          500.0,
+          428.57147216796875,
+          346.1539001464844,
+          250.0,
+          136.3636474609375
+        ],
+        "sigmas": [
+          1.0,
+          0.9827585816383362,
+          0.964285671710968,
+          0.944444477558136,
+          0.9230769872665405,
+          0.8999999761581421,
+          0.8749999403953552,
+          0.8478260636329651,
+          0.8181818127632141,
+          0.7857143878936768,
+          0.75,
+          0.7105262875556946,
+          0.6666666865348816,
+          0.6176469922065735,
+          0.5625,
+          0.5,
+          0.4285714626312256,
+          0.3461538851261139,
+          0.25,
+          0.13636364042758942
+        ]
+      }
+    },
+    "backbone": "Original BF16 main linears in all three arms",
+    "report_sources": {
+      "reference_denoise": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E073/denoise_full_bf16_r0.json",
+        "sha256": "286955f9dcbca72433b235e1cfdb7b590cc60ba0deacf84a6b5525ffe058fa08",
+        "bytes": 522028
+      },
+      "launcher": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E083/launcher_r0.json",
+        "sha256": "b2f36235b2e98b9eb29dec8171a6786bc5821696389b64d2a708419b2f8f9bb7",
+        "bytes": 1385
+      },
+      "sage": {
+        "denoise": {
+          "file": "/home/wjq/workspace/svdquant-exp/results/research/E083/denoise_bf16_sage3_r0.json",
+          "sha256": "0a5b3a9b78160960a874f83f9da045ef0308c7b271a8f49aee89a8f4f6000477",
+          "bytes": 337018
+        },
+        "decode": {
+          "file": "/home/wjq/workspace/svdquant-exp/results/research/E083/decode_bf16_sage3_r0.json",
+          "sha256": "d3fd1822af4556ac83db20db573822bcdb54f921384cc2d71ec962546aefbfac",
+          "bytes": 20313
+        }
+      },
+      "center": {
+        "denoise": {
+          "file": "/home/wjq/workspace/svdquant-exp/results/research/E083/denoise_bf16_sage3_center128_r0.json",
+          "sha256": "e8c0436184e4e72cc074b43d0b0ca7d3809ed2970d800ca84cf537f4c9fe4296",
+          "bytes": 338639
+        },
+        "decode": {
+          "file": "/home/wjq/workspace/svdquant-exp/results/research/E083/decode_bf16_sage3_center128_r0.json",
+          "sha256": "0c3bb84df9ca814a848bcd73006bd5de5166281a833bc1fdd8b827c29e902720",
+          "bytes": 20393
+        }
+      }
+    },
+    "sage": "/data1/models/svdquant-wjq/research/20261005/E083/decode_bf16_sage3_r0/vbench0161_r0.mp4",
+    "center": "/data1/models/svdquant-wjq/research/20261005/E083/decode_bf16_sage3_center128_r0/vbench0161_r0.mp4"
+  },
+  {
+    "case": "vbench0161_r1",
+    "label": "拍手",
+    "seed": 38001611,
+    "settings": {
+      "height": 576,
+      "width": 1024,
+      "num_frames": 124,
+      "num_inference_steps": 20,
+      "cfg_scale": 1.0,
+      "flow_shift": 12.0,
+      "audio_flow_shift": 3.0,
+      "rand_device": "cpu",
+      "noise_dtype": "bfloat16",
+      "tiled": true,
+      "tile_size": 256,
+      "tile_overlap": 64,
+      "fps": 24,
+      "audio_sample_rate": 32000
+    },
+    "bf16": "/data1/models/svdquant-wjq/research/20261004/E073/decode_full_bf16_r1/vbench0161_r1.mp4",
+    "sha256": {
+      "bf16": "48c1e91f58d6ace5f4a63fe62a4d7c37299f7d3518614f0f64485b028675496c",
+      "sage": "98613f495b0e0768e9a57a9ac9912e43dd983f053a0ba755fce0e93ce12f53b9",
+      "center": "eef6eb3fd24e4ba46e025551ed912c4b22488b0178724bbb0d9bb2d88608a2ce"
+    },
+    "initial_noise_sha256": {
+      "video_latents": "fbd6088062078f77f2e434eafd55a608efe0ad84feea3309be7b8894c2fd1170",
+      "audio_latents": "9c215154eaa7e3644142960823c5ed10a7989e5f5e20ccb25c145e41f4fe31bc"
+    },
+    "embedding_sha256": "bf05ef8db67e2d1de28dc409afa4216b721479e7dda961854be0d636ce319398",
+    "schedule": {
+      "video": {
+        "timesteps": [
+          1000.0,
+          995.6331787109375,
+          990.82568359375,
+          985.50732421875,
+          979.5918579101562,
+          972.9729614257812,
+          965.5172119140625,
+          957.0552368164062,
+          947.368408203125,
+          936.1702270507812,
+          923.076904296875,
+          907.56298828125,
+          888.888916015625,
+          865.9793701171875,
+          837.2092895507812,
+          800.0,
+          750.0,
+          679.2453002929688,
+          571.4285888671875,
+          387.0968017578125
+        ],
+        "sigmas": [
+          1.0,
+          0.9956331849098206,
+          0.9908256530761719,
+          0.9855073094367981,
+          0.9795918464660645,
+          0.9729729890823364,
+          0.9655172228813171,
+          0.9570552110671997,
+          0.9473683834075928,
+          0.936170220375061,
+          0.9230769276618958,
+          0.9075629711151123,
+          0.8888888955116272,
+          0.8659793734550476,
+          0.8372092843055725,
+          0.800000011920929,
+          0.75,
+          0.6792452931404114,
+          0.5714285969734192,
+          0.3870967924594879
+        ]
+      },
+      "audio": {
+        "timesteps": [
+          1000.0,
+          982.7586059570312,
+          964.28564453125,
+          944.4444580078125,
+          923.0769653320312,
+          900.0,
+          874.9999389648438,
+          847.8260498046875,
+          818.1818237304688,
+          785.7144165039062,
+          750.0,
+          710.5263061523438,
+          666.6666870117188,
+          617.64697265625,
+          562.5,
+          500.0,
+          428.57147216796875,
+          346.1539001464844,
+          250.0,
+          136.3636474609375
+        ],
+        "sigmas": [
+          1.0,
+          0.9827585816383362,
+          0.964285671710968,
+          0.944444477558136,
+          0.9230769872665405,
+          0.8999999761581421,
+          0.8749999403953552,
+          0.8478260636329651,
+          0.8181818127632141,
+          0.7857143878936768,
+          0.75,
+          0.7105262875556946,
+          0.6666666865348816,
+          0.6176469922065735,
+          0.5625,
+          0.5,
+          0.4285714626312256,
+          0.3461538851261139,
+          0.25,
+          0.13636364042758942
+        ]
+      }
+    },
+    "backbone": "Original BF16 main linears in all three arms",
+    "report_sources": {
+      "reference_denoise": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E073/denoise_full_bf16_r1.json",
+        "sha256": "b94471c8425e70ef23606cfe5987e7bcc8ea53d90544015dea4044159da984f6",
+        "bytes": 522035
+      },
+      "launcher": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E083/launcher_r1.json",
+        "sha256": "ce1c892cb82d40a718a1ebc05dccebd10c8632c030ee19e675f305336430fe0f",
+        "bytes": 1388
+      },
+      "sage": {
+        "denoise": {
+          "file": "/home/wjq/workspace/svdquant-exp/results/research/E083/denoise_bf16_sage3_r1.json",
+          "sha256": "2898012971397817636637c31b545f58049a99154af6a1f0b550d203873bebab",
+          "bytes": 337056
+        },
+        "decode": {
+          "file": "/home/wjq/workspace/svdquant-exp/results/research/E083/decode_bf16_sage3_r1.json",
+          "sha256": "ad9bebca69fab9187db4b353a1ed30bb19ea58aedc6baf19eff561c4ce909cb8",
+          "bytes": 20312
+        }
+      },
+      "center": {
+        "denoise": {
+          "file": "/home/wjq/workspace/svdquant-exp/results/research/E083/denoise_bf16_sage3_center128_r1.json",
+          "sha256": "efdccc44140d9aeb5583902eb5ced3dd748de33111a933899927a887b4790fb4",
+          "bytes": 338638
+        },
+        "decode": {
+          "file": "/home/wjq/workspace/svdquant-exp/results/research/E083/decode_bf16_sage3_center128_r1.json",
+          "sha256": "eb307a9a4e40c05f11bd0d77c4c25f3a05dc2a4bd7e281a4d443a37b5c0c4732",
+          "bytes": 20393
+        }
+      }
+    },
+    "sage": "/data1/models/svdquant-wjq/research/20261005/E083/decode_bf16_sage3_r1/vbench0161_r1.mp4",
+    "center": "/data1/models/svdquant-wjq/research/20261005/E083/decode_bf16_sage3_center128_r1/vbench0161_r1.mp4"
+  }
+]

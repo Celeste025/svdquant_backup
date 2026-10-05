@@ -1,0 +1,200 @@
+{
+  "experiment": "E038",
+  "status": "preregistered",
+  "scope": "Four preselected motion tasks with two seeds; three attention choices under the same native SVD linear weights. Exploratory video-quality decision, not population quality equivalence or a novel method.",
+  "settings": {
+    "height": 576,
+    "width": 1024,
+    "num_frames": 124,
+    "num_inference_steps": 20,
+    "cfg_scale": 1.0,
+    "flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "noise_dtype": "bfloat16",
+    "tiled": true,
+    "tile_size": 256,
+    "tile_overlap": 64,
+    "fps": 24,
+    "audio_sample_rate": 32000
+  },
+  "cases": [
+    {
+      "case_id": "vbench0161_r0",
+      "prompt_id": 161,
+      "source": "VBench_full_info.json",
+      "source_index_zero_based": 161,
+      "replica": 0,
+      "seed": 38001610,
+      "prompt": "A person is clapping",
+      "prompt_sha256": "268d62ce600baae94ac9ce2a33755b342aa42cc2b1386c4ee19501048f0015c8",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "reason": "repeated human hand contact"
+    },
+    {
+      "case_id": "vbench0161_r1",
+      "prompt_id": 161,
+      "source": "VBench_full_info.json",
+      "source_index_zero_based": 161,
+      "replica": 1,
+      "seed": 38001611,
+      "prompt": "A person is clapping",
+      "prompt_sha256": "268d62ce600baae94ac9ce2a33755b342aa42cc2b1386c4ee19501048f0015c8",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "reason": "repeated human hand contact"
+    },
+    {
+      "case_id": "vbench0192_r0",
+      "prompt_id": 192,
+      "source": "VBench_full_info.json",
+      "source_index_zero_based": 192,
+      "replica": 0,
+      "seed": 38001920,
+      "prompt": "A person is folding clothes",
+      "prompt_sha256": "aa6ec2715d998696d460049e712e873297a1760ffd3340b4f3f11fa0c3ab3fd2",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "reason": "human object manipulation"
+    },
+    {
+      "case_id": "vbench0192_r1",
+      "prompt_id": 192,
+      "source": "VBench_full_info.json",
+      "source_index_zero_based": 192,
+      "replica": 1,
+      "seed": 38001921,
+      "prompt": "A person is folding clothes",
+      "prompt_sha256": "aa6ec2715d998696d460049e712e873297a1760ffd3340b4f3f11fa0c3ab3fd2",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "reason": "human object manipulation"
+    },
+    {
+      "case_id": "vbench0269_r0",
+      "prompt_id": 269,
+      "source": "VBench_full_info.json",
+      "source_index_zero_based": 269,
+      "replica": 0,
+      "seed": 38002690,
+      "prompt": "a car turning a corner",
+      "prompt_sha256": "001a0c3a3d7b8056dd7da15d2e5defab45ef67f09121f92d01f8cee28f8761da",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "reason": "rigid object turning trajectory"
+    },
+    {
+      "case_id": "vbench0269_r1",
+      "prompt_id": 269,
+      "source": "VBench_full_info.json",
+      "source_index_zero_based": 269,
+      "replica": 1,
+      "seed": 38002691,
+      "prompt": "a car turning a corner",
+      "prompt_sha256": "001a0c3a3d7b8056dd7da15d2e5defab45ef67f09121f92d01f8cee28f8761da",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "reason": "rigid object turning trajectory"
+    },
+    {
+      "case_id": "vbench0316_r0",
+      "prompt_id": 316,
+      "source": "VBench_full_info.json",
+      "source_index_zero_based": 316,
+      "replica": 0,
+      "seed": 38003160,
+      "prompt": "an elephant spraying itself with water using its trunk to cool down",
+      "prompt_sha256": "35016d0bb7763724492babd8ae1a2e882a285fe779c0a3fe0b1d8720721882ba",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "reason": "articulated animal and water motion"
+    },
+    {
+      "case_id": "vbench0316_r1",
+      "prompt_id": 316,
+      "source": "VBench_full_info.json",
+      "source_index_zero_based": 316,
+      "replica": 1,
+      "seed": 38003161,
+      "prompt": "an elephant spraying itself with water using its trunk to cool down",
+      "prompt_sha256": "35016d0bb7763724492babd8ae1a2e882a285fe779c0a3fe0b1d8720721882ba",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "reason": "articulated animal and water motion"
+    }
+  ],
+  "arms": [
+    "bf16",
+    "global_mean",
+    "coarse16"
+  ],
+  "export_dir": "/data1/models/svdquant-wjq/research/20261002/E009/legacy_export",
+  "python": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+  "python_decode": "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+  "python_evaluate": "/data1/models/svdquant-wjq/conda-envs/mjvideo/bin/python",
+  "environment": {
+    "CUDA_HOME": "/usr/local/cuda",
+    "FLASHINFER_WORKSPACE_BASE": "/data1/models/svdquant-wjq/research/cache/flashinfer",
+    "TMPDIR": "/data1/models/svdquant-wjq/research/cache/tmp",
+    "TORCH_EXTENSIONS_DIR": "/data1/models/svdquant-wjq/research/cache/torch_extensions",
+    "MAX_JOBS": "4"
+  },
+  "data_dir": "/data1/models/svdquant-wjq/research/20261003/E038",
+  "report_dir": "/home/wjq/workspace/svdquant-exp/results/research/E038",
+  "prompt_source": {
+    "file": "/home/wjq/workspace/ViDiT-Q/eval/video/Vbench/vbench/VBench_full_info.json",
+    "sha256": "5dd2de80ee43cda750b2b72ea7023657c0b90d3702041c7e4608c65dbe50dccd",
+    "index_convention": "zero-based, not legacy H3 prompt IDs",
+    "selection": "Purposive four motion types chosen before any E038 model output; no output-based filtering."
+  },
+  "budget": {
+    "prepare_wall_seconds": 600,
+    "denoise_wall_seconds_per_arm": 1800,
+    "decode_wall_seconds_per_arm": 600,
+    "evaluation_wall_seconds": 1200,
+    "max_dit_calls": 480,
+    "max_peak_allocated_gib": 60,
+    "videos": 24,
+    "generation_gpus": {
+      "bf16": 0,
+      "global_mean": 1,
+      "coarse16": 5
+    }
+  },
+  "evaluation": {
+    "primary": [
+      "MJ-VIDEO total",
+      "alignment",
+      "fineness",
+      "coherence"
+    ],
+    "raw_only": [
+      "safety",
+      "bias/fairness"
+    ],
+    "auxiliary": [
+      "AMT",
+      "RAFT dynamic degree",
+      "DINO consistency"
+    ],
+    "unit": "prompt and paired seed; frames/questions are not independent replicates",
+    "claim_limit": "No general quality equivalence, significance or whole-model sequence-parallel speed claim."
+  }
+}

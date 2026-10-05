@@ -1,0 +1,90 @@
+{
+  "status": "complete",
+  "definition": "Full124frame 1024x576 paired distances to same BF16 reference; not quality percentages",
+  "rows": [
+    {
+      "case_id": "vbench0161_r0",
+      "before": {
+        "lpips_alex": 0.27125553954993525,
+        "l1_mae": 0.056544210539543976,
+        "l2_rmse": 0.09434207606199486
+      },
+      "after": {
+        "lpips_alex": 0.2653242732969023,
+        "l1_mae": 0.057155958724311784,
+        "l2_rmse": 0.0954010992903102
+      }
+    },
+    {
+      "case_id": "vbench0161_r1",
+      "before": {
+        "lpips_alex": 0.36828579537330136,
+        "l1_mae": 0.11803116649720892,
+        "l2_rmse": 0.20863612963530692
+      },
+      "after": {
+        "lpips_alex": 0.42654244409453484,
+        "l1_mae": 0.16491433924504012,
+        "l2_rmse": 0.23654398720123276
+      }
+    }
+  ],
+  "verified_media": [
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261004/E073/decode_full_bf16_r0/vbench0161_r0.mp4",
+      "sha256": "9841e16d4337331536a47382570a9a9d619aa95ce3c9734790380aed8d6b8bba",
+      "bytes": 4476547
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261004/E079/decode_svd_sage3_r0/vbench0161_r0.mp4",
+      "sha256": "6271c7091636c36b6ef71af77f809a135c6c1426c9acdde518d6977f032f266a",
+      "bytes": 4639601
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261005/E082/decode_svd_sage3_center128_r0/vbench0161_r0.mp4",
+      "sha256": "71cd6e2a6e72cf80cd57918135b0459c4c95318429e61873d22262e79c760880",
+      "bytes": 4506877
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261004/E073/decode_full_bf16_r1/vbench0161_r1.mp4",
+      "sha256": "48c1e91f58d6ace5f4a63fe62a4d7c37299f7d3518614f0f64485b028675496c",
+      "bytes": 4190349
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261004/E079/decode_svd_sage3_r1/vbench0161_r1.mp4",
+      "sha256": "7400733faa0c0666c89ed9d005cbbf5cdb4acb6e325f9e4a201549adc3e8d93d",
+      "bytes": 4674887
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261005/E082/decode_svd_sage3_center128_r1/vbench0161_r1.mp4",
+      "sha256": "2017fc279f4cea8dbcc84e41ad14afe54e95e20bd97b75810bf5e89757be0736",
+      "bytes": 4783802
+    }
+  ],
+  "checked_pairs": 4,
+  "max_normalized_reduction_difference": 2.7755575615628914e-17,
+  "sources": [
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/summarize_e082_videos.py",
+      "sha256": "a3613053bdf3ae432be2c83353a3b533a2b842a7478c8442c1d2a013681c1148",
+      "bytes": 2622
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E082/metrics.json",
+      "sha256": "adee5a63c11a45e8e3429e4485c4321d6190e42a4710a28a2049b556a5342000",
+      "bytes": 112119
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E079/metrics.json",
+      "sha256": "cd1a049b39060a05ed547326a47a210084b3a61a508b98ae83ba5a3fa7e467fd",
+      "bytes": 448357
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E082/triplets.json",
+      "sha256": "593a073fd311ce4626a61b1114dcbd4076f6ecd584ada511d2612a0915027cc2",
+      "bytes": 2474
+    }
+  ],
+  "scope": "Independent stdlib aggregation of saved per-frame outputs and media SHA; no rerun of LPIPS network",
+  "seconds": 0.026030711829662323
+}

@@ -209,17 +209,30 @@ def nvfp4_qdq(tensor: torch.Tensor, *, group_size: int = 16, element_size: int =
 
 
 class DynamicActivationQDQ:
-    def __init__(self, smooth: torch.Tensor | None, element_size: int = 128):
+    def __init__(self, smooth: torch.Tensor | None, element_size: int = 128,
+                 branch: LowRankBranch | None = None):
         self.smooth = smooth
         self.element_size = element_size
         self.calls = 0
+        self.branch = branch
+        self.branch_output: torch.Tensor | None = None
+
+    def clear(self) -> None:
+        self.branch_output = None
 
     def __call__(self, _module: nn.Module, args: tuple[Any, ...]):
+        self.clear()
         x = args[0]
         if self.smooth is not None:
             x = x / self.smooth.to(device=x.device, dtype=x.dtype)
         self.calls += 1
-        return (nvfp4_qdq(x, element_size=self.element_size), *args[1:])
+        quantized = nvfp4_qdq(x, element_size=self.element_size)
+        # Forward hooks receive the inputs AFTER pre-hooks have replaced them.
+        # Compute the high-precision branch here, before losing x to A4 Q/DQ.
+        # Keep the module reference: inference may move it to CUDA after install.
+        if self.branch is not None:
+            self.branch_output = self.branch(x)
+        return (quantized, *args[1:])
 
 
 @dataclass
@@ -231,14 +244,14 @@ class RuntimeHooks:
     def remove(self) -> None:
         for handle in self.handles:
             handle.remove()
+        self.handles.clear()
+        self.act.clear()
 
 
 def install_runtime_hooks(
     linear: nn.Linear, smooth: torch.Tensor | None, a: torch.Tensor | None, b: torch.Tensor | None,
     *, element_size: int = 128,
 ) -> RuntimeHooks:
-    act = DynamicActivationQDQ(smooth=smooth, element_size=element_size)
-    handles = [linear.register_forward_pre_hook(act)]
     branch = None
     if a is not None and b is not None:
         branch = LowRankBranch(linear.in_features, linear.out_features, rank=a.shape[0])
@@ -246,10 +259,20 @@ def install_runtime_hooks(
         branch.b.weight.data.copy_(b.to(branch.b.weight))
         branch.to(device=linear.weight.device, dtype=linear.weight.dtype)
 
-        def add_branch(_module, inputs, output):
-            return output + branch(inputs[0])
+    act = DynamicActivationQDQ(smooth=smooth, element_size=element_size, branch=branch)
+    handles = [linear.register_forward_pre_hook(act)]
+    if branch is not None:
+        def add_branch(_module, _inputs, output):
+            branch_output = act.branch_output
+            act.clear()
+            # always_call also runs when a pre-hook or the main Linear raises.
+            if output is None:
+                return None
+            if branch_output is None:
+                raise RuntimeError("H3 low-rank branch output missing for this call")
+            return output + branch_output
 
-        handles.append(linear.register_forward_hook(add_branch))
+        handles.append(linear.register_forward_hook(add_branch, always_call=True))
     return RuntimeHooks(act=act, handles=handles, branch=branch)
 
 

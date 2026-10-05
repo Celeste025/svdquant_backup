@@ -1,0 +1,63 @@
+{
+  "experiment": "E022_temporal",
+  "status": "complete",
+  "scope": "Compile and stdlib-only static schema fixtures; no actual video opened and no model loaded.",
+  "source": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/evaluate_wan_qad_expanded_temporal.py",
+    "bytes": 14887,
+    "sha256": "43fc139d1fcad03aeb2a175244a63944780f91a3b7a1a23c9609d6911c1dc71d"
+  },
+  "inherited_e021_source": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/evaluate_wan_qad_temporal.py",
+    "bytes": 13845,
+    "sha256": "486d06b8a26f3d592bb32a2d74625681f75045005cf5c613bcf3f2e9cdc8359a"
+  },
+  "manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E022/video_test_manifest.json",
+    "bytes": 87710,
+    "sha256": "6904a3690ab47a759d5a2d794cf7798e778a6959d1e41f87bf52a48853314213"
+  },
+  "schema_checks": {
+    "baselines": {
+      "expected_rows": 48,
+      "dino_real_pairs": 24,
+      "rejected": [
+        "running",
+        "missing_row",
+        "wrong_seed"
+      ]
+    },
+    "selected": {
+      "expected_rows": 16,
+      "dino_real_pairs": 8,
+      "rejected": [
+        "running",
+        "missing_row",
+        "wrong_seed"
+      ]
+    }
+  },
+  "amt_raft_loop_source_exact_e021": true,
+  "dino_normalization_unchanged": true,
+  "actual_media_checked": false,
+  "model_load_checks_performed": false,
+  "torch_imported": false,
+  "cuda_initialized": false,
+  "local_weight_presence": {
+    "amt": {
+      "file": "/home/wjq/.cache/vbench/amt_model/amt-s.pth",
+      "exists": true,
+      "bytes": 12038359
+    },
+    "raft": {
+      "file": "/home/wjq/.cache/vbench/raft_model/models/raft-things.pth",
+      "exists": true,
+      "bytes": 21108000
+    },
+    "dino": {
+      "file": "/home/wjq/.cache/torch/hub/checkpoints/dino_vitbase16_pretrain.pth",
+      "exists": true,
+      "bytes": 343242485
+    }
+  }
+}

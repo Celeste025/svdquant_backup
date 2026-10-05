@@ -1,0 +1,7 @@
+# E045 执行恢复说明（科学干预不变）
+
+首次两worker都实际完成100次BF16 DiT与50次scheduler更新，末步capture已写入DATA1并校验SHA。随后在诊断signature中对单元素int64零stride tensor执行byte view失败，尚未native前向/解码。launcher174.67秒；两worker已退出。失败源保留，JSON/log归档results/research/E045/attempt01；两实际capture保留原路径，绝不覆盖。
+
+v2仅从保存的实际末步sample、两支输出、实际BF16 CFG及完整pre-last scheduler状态恢复，重放一次官方scheduler.step作为B；再进行已冻结native末步与四角解码，不重跑teacher200次DiT。重放保留各tensor原CPU/GPU设备和CFG顺序。恢复来源、旧调用数和新增调用数分别记录，总调用预算不变。修复signature须以实际capture的单元素tensor验证，但不新增模型smoke。
+
+原运行最终B tensor未保存，只有最后步rms/min/max及既有E043终态。必须明确新B来自snapshot重放；不能把同一个recovered B/所谓shadow的自比较零差当独立验证。独立读出报告B对E043实际final差异和对本次最后标量的差异，原shadow_vs_teacher标为不可用。角定义、真实native误差、once-denorm、预/后clamp、病例选择和决策边界均不变。恢复发生在任何native结果出现之前，不依据效果筛选。

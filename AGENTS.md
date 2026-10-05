@@ -31,9 +31,10 @@ tables and JSON reports under `results/`.
 - `third_party/deepcompressor/`: vendored and locally patched PTQ runtime.
   Treat its modifications as project code; do not overwrite it from upstream.
 - `configs/`: small project-local experiment configurations.
-- `results/`: generated artifacts. Git retains MJ-VIDEO outputs, sample
-  manifests, and per-case `mjvideo_metrics.json`; broad intermediate reports,
-  videos, and tensor artifacts remain local by default.
+- `results/`: generated artifacts. Git retains MJ-VIDEO records, selected sample
+  manifests, and `results/research/` numerical JSON/CSV, report figures, configs
+  and source snapshots. Videos, tensors, logs, archives and private blind-review
+  mappings remain local. See `.gitignore` and `docs/repository_contents.md`.
 
 ## Current rCM-Wan setup
 

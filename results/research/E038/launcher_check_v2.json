@@ -1,0 +1,73 @@
+{
+  "experiment": "E038",
+  "status": "complete",
+  "phase": "check",
+  "cuda_initialized": false,
+  "files": {
+    "/home/wjq/workspace/svdquant-exp/scripts/research/launch_h3_center_video_v2.py": "98cb900b665cad367148a31000775a82767b450fbbf5a46fdb1b7e239831b51f",
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E038_center_video_manifest.json": "00c2880c71bd33e394c327324b44ba5dcf54605e7618f337e1bdac21bd514259",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/launch_h3_plain_baseline.py": "9fee4c6a0f690b6354081698f39e85a140e102a43ebe692501f84081f44c80fb",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/resume_h3_plain_baseline.py": "f9f4e997e67590edda670f7b0c1b01bb3697ecae4fe8b40a12a153b4597253b1",
+    "/home/wjq/workspace/svdquant-exp/results/research/E038/prepare_check.json": "9b5547e2cd318b28e669eadd80c9ed8aee79c7cafc542946ca0a3da9cf57dc87",
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/vram/layers.py": "4597374ac9166a2576544fb9b746360ee4c0441e96fd7af4300fcc739abd26cf",
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_audio_vae.py": "ce6dc03b73a0596df22a6aa89e6db9183017bd5d0e2e99b547a6bfee53a7ef2c",
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_text_encoder.py": "f874a56ce992070976b534dc42e0639221fe8c88cb29d9b3e2cadf6de553a9cf",
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_video_vae.py": "3dd4da5c90135c904fa5f1d4f70dd43e2571e394ce437bb168a5110f71076bf4",
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/pipelines/minimax_h3_audio_video.py": "7f5ff890d796dcfac3551e235741bdfbd4dbcae91aae3b6e4c3817dce38eecd6",
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/utils/data/audio_video.py": "9d30fdd4538475d2d6aae7fe64cca2d78012e904366ec85d81e48720874d9dd0",
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E038_center_video_plan.md": "24f126d678d2b4273b691d51ece8808a171a4a8fca46b67cd13842e48f5983a8",
+    "/home/wjq/workspace/svdquant-exp/scripts/minimax_h3_svdquant_common.py": "d0fca20f98a40c3aa20773faa47e6d6b986811f6cd03802723021fd50383ae61",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/prepare_decode_h3_center_video.py": "e2f304660de66dd3a1bf4c2ab59df04af86429c0a1de09e7e6a4302e530eba0a",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_plain_baseline.py": "bf1383b51e9ea45c53a583ad541f68f9d0dce0db97de5acaf767fb0f69dcf47c",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py": "41e6e4eb1d9df554e5ea109b9bad3d1df83e9b64788137511262a82a0f34431f",
+    "/home/wjq/workspace/svdquant-exp/results/research/E038/check_coarse16_v2.json": "5f79bbdcbb92d256bc01c0c66a87c8f409be7395439d7880a02380d81ba1724a",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_center_video_v2.py": "f69c3c64a73ec19556b4668ea4047e58e1b192180f0becdaf2930b40ada01f3b",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_coarse16_attention.py": "6495ce0fe2eb8cd4b52fe076348cd8e5d76523316ac5ff1a1d7408c049593039",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_fp4_attention.py": "76de03ce6f458342e7ed4b67e1a4f700c6784de4978963408e2bdc7d725fb47b",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/codebook_attention_sm120.py": "dc2b139eca6e971d21b1ff8a47895124fd0e77088e311494fc9c75a5df524372"
+  },
+  "gpu_assignments": {
+    "bf16": 0,
+    "global_mean": 1,
+    "coarse16": 5
+  },
+  "commands": {
+    "prepare": [
+      "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+      "/home/wjq/workspace/svdquant-exp/scripts/research/prepare_decode_h3_center_video.py",
+      "--phase",
+      "prepare"
+    ],
+    "denoise": [
+      "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+      "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_center_video_v2.py",
+      "--phase",
+      "denoise",
+      "--arm",
+      "ARM"
+    ],
+    "decode": [
+      "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+      "/home/wjq/workspace/svdquant-exp/scripts/research/prepare_decode_h3_center_video.py",
+      "--phase",
+      "decode",
+      "--arm",
+      "ARM"
+    ]
+  },
+  "limits": {
+    "prepare_wall_seconds": 600,
+    "denoise_wall_seconds_per_arm": 1800,
+    "decode_wall_seconds_per_arm": 600,
+    "evaluation_wall_seconds": 1200,
+    "max_dit_calls": 480,
+    "max_peak_allocated_gib": 60,
+    "videos": 24,
+    "generation_gpus": {
+      "bf16": 0,
+      "global_mean": 1,
+      "coarse16": 5
+    }
+  },
+  "scope": "Generation only; evaluation has its own launcher. Complete prepare is reused."
+}

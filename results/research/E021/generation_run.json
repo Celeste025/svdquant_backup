@@ -1,0 +1,1369 @@
+{
+  "experiment": "E021",
+  "status": "complete",
+  "manifest": {
+    "experiment": "E021",
+    "status": "draft_not_generated",
+    "settings": {
+      "seed": 20261004,
+      "height": 480,
+      "width": 832,
+      "frames": 77,
+      "fps": 16,
+      "steps": 4,
+      "sigma_max": 80.0,
+      "guidance": 0.0,
+      "max_sequence_length": 512,
+      "attention": "BF16_FLASH_ATTENTION",
+      "vae_core": 128,
+      "vae_halo": 0
+    },
+    "inventory": {
+      "path": "/home/wjq/workspace/svdquant-exp/results/research/E020/E020_cache_inventory.json",
+      "sha256": "873bcc3955ad0008ed8d486b2a4aca78f5f61237f9db6e01559eec953b1afc5d"
+    },
+    "model": {
+      "base_assets": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers",
+      "explicit_rcm_transformer": "/data1/models/svdquant-wjq/models/rcm-Wan2.1-T2V-1.3B-Diffusers/transformer"
+    },
+    "cases": [
+      {
+        "case_id": "vbench_066",
+        "prompt": "a zebra bending down to drink water from a river",
+        "dimensions": [
+          "subject_consistency",
+          "dynamic_degree",
+          "motion_smoothness"
+        ],
+        "seed": 20261004
+      },
+      {
+        "case_id": "vbench_091",
+        "prompt": "a drone flying over a snowy forest.",
+        "dimensions": [
+          "aesthetic_quality",
+          "imaging_quality",
+          "overall_consistency"
+        ],
+        "seed": 20261004
+      },
+      {
+        "case_id": "vbench_182",
+        "prompt": "campus",
+        "dimensions": [
+          "scene",
+          "background_consistency"
+        ],
+        "seed": 20261004
+      },
+      {
+        "case_id": "vbench_067",
+        "prompt": "a zebra running to join a herd of its kind",
+        "dimensions": [
+          "subject_consistency",
+          "dynamic_degree",
+          "motion_smoothness"
+        ],
+        "seed": 20261004
+      }
+    ],
+    "arms": [
+      {
+        "name": "bf16",
+        "weights": "/data1/models/svdquant-wjq/models/rcm-Wan2.1-T2V-1.3B-Diffusers/transformer",
+        "native_calls_per_video": 0
+      },
+      {
+        "name": "packed_step0000",
+        "weights": "/data1/models/svdquant-wjq/research/20261003/E020/packed_step0000.pt",
+        "native_calls_per_video": 1200
+      },
+      {
+        "name": "packed_step0064",
+        "weights": "/data1/models/svdquant-wjq/research/20261003/E020/packed_step0064.pt",
+        "native_calls_per_video": 1200
+      },
+      {
+        "name": "svd_lr",
+        "weights": "/data1/models/svdquant-wjq/ckpts/rcm-wan2.1-1.3b-real-nvfp4-s16",
+        "native_calls_per_video": 1200
+      }
+    ],
+    "sampling": {
+      "schedule": "rCM TrigFlow -> RectifiedFlow",
+      "angles": "[atan(80), 1.5, 1.4, 1.0, 0.0] in FP64",
+      "latent_shape": [
+        1,
+        16,
+        20,
+        60,
+        104
+      ],
+      "shared": "Per case: one saved FP64 initial latent, four saved FP32 update noises, one BF16 embedding; all arms load identical tensors",
+      "rng": "CUDA Generator reset to fixed seed for each prompt; initial FP32 draw then four FP32 draws, including last zero-coefficient update"
+    },
+    "seed_history": {
+      "claim": "Same integer seed used previously; no global unseen-seed claim. The four prompt/noise generation pairs are separate from the fixed E020 train/development cache records.",
+      "known_same_seed_record": "/home/wjq/workspace/svdquant-exp/results/vbench/rcm_lowrank_8prompt_e10_vbench20/generated/0004/run_config.json",
+      "note": "A seed integer also used for training shuffle is not by itself data leakage. Prompt selection comes from the E020 inventory, not scores."
+    },
+    "comparison_scope": "Whole deployed recipe comparison. SVD includes its frozen smooth/LR and legacy non-target quantization recipe; differences from plain QAD are not attributed solely to LR.",
+    "limits": [
+      "Four development prompts, one seed; not a final held-out benchmark or a quality conclusion.",
+      "Candidate prompts were already in a public/planned VBench manifest; absence of prior media was checked only in inventory-listed local roots.",
+      "No E020 training/validation cache state is injected into these free rollouts.",
+      "Wall times include diagnostics; this generator is not an unbiased latency benchmark."
+    ],
+    "expected_full_run": {
+      "videos": 16,
+      "dit_calls": 64,
+      "native_fp4_calls": 14400
+    }
+  },
+  "requested_arms": [
+    "bf16",
+    "packed_step0000",
+    "packed_step0064",
+    "svd_lr"
+  ],
+  "requested_cases": [
+    "vbench_066",
+    "vbench_091",
+    "vbench_182",
+    "vbench_067"
+  ],
+  "deadline_unix": 1790962271.853267,
+  "environment": {
+    "torch": "2.11.0+cu128",
+    "diffusers": "0.33.1",
+    "cuda": "12.8",
+    "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+    "cuda_visible_devices": "0"
+  },
+  "artifact_dir": "/data1/models/svdquant-wjq/research/20261003/E021",
+  "shared_inputs": {
+    "vbench_066": {
+      "artifact": {
+        "path": "/data1/models/svdquant-wjq/research/20261003/E021/shared_inputs/vbench_066.pt",
+        "bytes": 52121271,
+        "sha256": "f3fa4f8e7527c33b240520062f1bd16f75a07d5d65ed56fea6e18bb9d540750d"
+      },
+      "initial_latent_sha256": "cd1f85945fced052017877ed0c6b57793a5469ed3c595ece6425b04ce628b224",
+      "initial_noise_sha256": "07c477d1016a5d7f849dcfc239c30f17115363df607c4b1ea0ef7602ffaf6557",
+      "noise_sha256": [
+        "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+        "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+        "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+        "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7"
+      ],
+      "embedding_sha256": "6ba550d571d81678d31585e91b6622fbbcbe8efd87bac91e5dc078e49f8a82fc"
+    },
+    "vbench_091": {
+      "artifact": {
+        "path": "/data1/models/svdquant-wjq/research/20261003/E021/shared_inputs/vbench_091.pt",
+        "bytes": 52121271,
+        "sha256": "7e0ff0a13731777f6376974d957d6ae9bc05cac452dbde1871658135cf63ee4f"
+      },
+      "initial_latent_sha256": "cd1f85945fced052017877ed0c6b57793a5469ed3c595ece6425b04ce628b224",
+      "initial_noise_sha256": "07c477d1016a5d7f849dcfc239c30f17115363df607c4b1ea0ef7602ffaf6557",
+      "noise_sha256": [
+        "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+        "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+        "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+        "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7"
+      ],
+      "embedding_sha256": "314b1f01253fea20601c8c60fe3e53a71442a97e6e85019a69098f56539bc8c9"
+    },
+    "vbench_182": {
+      "artifact": {
+        "path": "/data1/models/svdquant-wjq/research/20261003/E021/shared_inputs/vbench_182.pt",
+        "bytes": 52121207,
+        "sha256": "46a2cf72380e6716b2ed8606751ec810fee43fbf63321c8f9a04cbf9e9627dee"
+      },
+      "initial_latent_sha256": "cd1f85945fced052017877ed0c6b57793a5469ed3c595ece6425b04ce628b224",
+      "initial_noise_sha256": "07c477d1016a5d7f849dcfc239c30f17115363df607c4b1ea0ef7602ffaf6557",
+      "noise_sha256": [
+        "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+        "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+        "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+        "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7"
+      ],
+      "embedding_sha256": "5ee6bb28f9a1df9cfd6d0c759a9d1842dc800a49449bd39eb2c72db173278033"
+    },
+    "vbench_067": {
+      "artifact": {
+        "path": "/data1/models/svdquant-wjq/research/20261003/E021/shared_inputs/vbench_067.pt",
+        "bytes": 52121271,
+        "sha256": "cc6fbf50ff0a0909c2dfb1f1d6e73c83f6069002ce85b0288c9aa6d36eb70133"
+      },
+      "initial_latent_sha256": "cd1f85945fced052017877ed0c6b57793a5469ed3c595ece6425b04ce628b224",
+      "initial_noise_sha256": "07c477d1016a5d7f849dcfc239c30f17115363df607c4b1ea0ef7602ffaf6557",
+      "noise_sha256": [
+        "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+        "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+        "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+        "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7"
+      ],
+      "embedding_sha256": "640a656637b2b05d36e0a7e746b44ec89723f7375641d9fca2a92b9b99ea602b"
+    }
+  },
+  "arms": {
+    "bf16": {
+      "status": "complete",
+      "native_modules": 0,
+      "cases": {
+        "vbench_066": {
+          "status": "complete",
+          "prompt": "a zebra bending down to drink water from a river",
+          "seed": 20261004,
+          "shared_inputs": "/data1/models/svdquant-wjq/research/20261003/E021/shared_inputs/vbench_066.pt",
+          "initial_latent_sha256": "cd1f85945fced052017877ed0c6b57793a5469ed3c595ece6425b04ce628b224",
+          "noise_sha256": [
+            "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+            "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+            "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+            "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "timestep": 988.0,
+              "actual_native_mm_calls": 0,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 0,
+              "noise_sha256": "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+              "latent_after_sha256": "c577b193378221d5e07bab0c4aa26120d1ec27c42c72a321053cc0086e3e2b57"
+            },
+            {
+              "step": 1,
+              "timestep": 932.0,
+              "actual_native_mm_calls": 0,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 0,
+              "noise_sha256": "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+              "latent_after_sha256": "c5484981c7c6debe188999d25a2ed7b31483807e50654cc88e9f52ccc5363d75"
+            },
+            {
+              "step": 2,
+              "timestep": 852.0,
+              "actual_native_mm_calls": 0,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 0,
+              "noise_sha256": "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+              "latent_after_sha256": "3cd7e26c1d909649a98ca666a9f838de463ec1b618c17efbd3e9f37bb00edc92"
+            },
+            {
+              "step": 3,
+              "timestep": 608.0,
+              "actual_native_mm_calls": 0,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 0,
+              "noise_sha256": "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7",
+              "latent_after_sha256": "8e11f5712cab064d48cc71ceeb114b75f51bd540bdd348e1fafb623ccc0e2f5c"
+            }
+          ],
+          "actual_native_mm_calls": 0,
+          "actual_dit_calls": 4,
+          "final_latent": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/bf16/vbench_066/final_latent.pt",
+            "bytes": 15976076,
+            "sha256": "9c8507a9548e992a2a87470b5dc449a8709e78dc32413d004418fc42835c3376"
+          },
+          "final_latent_sha256": "8e11f5712cab064d48cc71ceeb114b75f51bd540bdd348e1fafb623ccc0e2f5c",
+          "video": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/bf16/vbench_066/video.mp4",
+            "bytes": 789841,
+            "sha256": "cd7f580aa6a9d84d694a40ddc08768647b95aeeba041ed491eab2d471e1e44c1",
+            "frames": 77,
+            "height": 480,
+            "width": 832,
+            "fps": 16
+          }
+        },
+        "vbench_091": {
+          "status": "complete",
+          "prompt": "a drone flying over a snowy forest.",
+          "seed": 20261004,
+          "shared_inputs": "/data1/models/svdquant-wjq/research/20261003/E021/shared_inputs/vbench_091.pt",
+          "initial_latent_sha256": "cd1f85945fced052017877ed0c6b57793a5469ed3c595ece6425b04ce628b224",
+          "noise_sha256": [
+            "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+            "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+            "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+            "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "timestep": 988.0,
+              "actual_native_mm_calls": 0,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 0,
+              "noise_sha256": "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+              "latent_after_sha256": "1ef5a837b72a988da9eebbbc84c3af423188b38f477dbfc267045c69261d5fcc"
+            },
+            {
+              "step": 1,
+              "timestep": 932.0,
+              "actual_native_mm_calls": 0,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 0,
+              "noise_sha256": "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+              "latent_after_sha256": "f73409ee3c3ae686080d2b2f845a8eae692bcae12e8cebaf32fed21597332932"
+            },
+            {
+              "step": 2,
+              "timestep": 852.0,
+              "actual_native_mm_calls": 0,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 0,
+              "noise_sha256": "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+              "latent_after_sha256": "94cc3e0f719958a5d3f5a5af47ab306a819dfeff98bece4637178fb1af9e4f9e"
+            },
+            {
+              "step": 3,
+              "timestep": 608.0,
+              "actual_native_mm_calls": 0,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 0,
+              "noise_sha256": "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7",
+              "latent_after_sha256": "6dc9870f63fd21a34d751d3c7b99eb2bc63ed45303c6b4a6532c3da1efc4a65f"
+            }
+          ],
+          "actual_native_mm_calls": 0,
+          "actual_dit_calls": 4,
+          "final_latent": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/bf16/vbench_091/final_latent.pt",
+            "bytes": 15976076,
+            "sha256": "f4ef1c1b928eca1f7ccafc0753ca558c0679572c8d130cc4f449b8e7b3425539"
+          },
+          "final_latent_sha256": "6dc9870f63fd21a34d751d3c7b99eb2bc63ed45303c6b4a6532c3da1efc4a65f",
+          "video": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/bf16/vbench_091/video.mp4",
+            "bytes": 1146827,
+            "sha256": "07bd9e392adfa0c9ba7c8d1fc2055d929159504d336b2ee2fa62df52bd29ca3e",
+            "frames": 77,
+            "height": 480,
+            "width": 832,
+            "fps": 16
+          }
+        },
+        "vbench_182": {
+          "status": "complete",
+          "prompt": "campus",
+          "seed": 20261004,
+          "shared_inputs": "/data1/models/svdquant-wjq/research/20261003/E021/shared_inputs/vbench_182.pt",
+          "initial_latent_sha256": "cd1f85945fced052017877ed0c6b57793a5469ed3c595ece6425b04ce628b224",
+          "noise_sha256": [
+            "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+            "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+            "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+            "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "timestep": 988.0,
+              "actual_native_mm_calls": 0,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 0,
+              "noise_sha256": "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+              "latent_after_sha256": "8f95d2d5d2620e38822a19596f313f444866d671e918cfb2a95caa26c4bae89a"
+            },
+            {
+              "step": 1,
+              "timestep": 932.0,
+              "actual_native_mm_calls": 0,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 0,
+              "noise_sha256": "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+              "latent_after_sha256": "49071ba190531f577ddfaf518b0160e2ece78c41ce1d72b241f16254d1e3d3de"
+            },
+            {
+              "step": 2,
+              "timestep": 852.0,
+              "actual_native_mm_calls": 0,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 0,
+              "noise_sha256": "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+              "latent_after_sha256": "228c83c5b865682fc337ae9fde694a46b90d37e60b7ae2b5c4886625a13f60bb"
+            },
+            {
+              "step": 3,
+              "timestep": 608.0,
+              "actual_native_mm_calls": 0,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 0,
+              "noise_sha256": "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7",
+              "latent_after_sha256": "a84469b1019ad14de39e6d74092c06683dec41a21345076587f37627fd0a042c"
+            }
+          ],
+          "actual_native_mm_calls": 0,
+          "actual_dit_calls": 4,
+          "final_latent": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/bf16/vbench_182/final_latent.pt",
+            "bytes": 15976076,
+            "sha256": "7fe62c7f128436a3c03d9b5737bb584564a177d218e199e7d7ad0f47e1f69271"
+          },
+          "final_latent_sha256": "a84469b1019ad14de39e6d74092c06683dec41a21345076587f37627fd0a042c",
+          "video": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/bf16/vbench_182/video.mp4",
+            "bytes": 252880,
+            "sha256": "99acc89f551e99287e876271424f17d1f3ab4de3a3ce76d19f6e761c8ff1c65a",
+            "frames": 77,
+            "height": 480,
+            "width": 832,
+            "fps": 16
+          }
+        },
+        "vbench_067": {
+          "status": "complete",
+          "prompt": "a zebra running to join a herd of its kind",
+          "seed": 20261004,
+          "shared_inputs": "/data1/models/svdquant-wjq/research/20261003/E021/shared_inputs/vbench_067.pt",
+          "initial_latent_sha256": "cd1f85945fced052017877ed0c6b57793a5469ed3c595ece6425b04ce628b224",
+          "noise_sha256": [
+            "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+            "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+            "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+            "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "timestep": 988.0,
+              "actual_native_mm_calls": 0,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 0,
+              "noise_sha256": "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+              "latent_after_sha256": "063464a481fc3f59e693afe2ebad1220a6bc960b481f2c3e0027a3eba8594a93"
+            },
+            {
+              "step": 1,
+              "timestep": 932.0,
+              "actual_native_mm_calls": 0,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 0,
+              "noise_sha256": "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+              "latent_after_sha256": "6fe67bfcaab827f8d0b72c3b6da22e4bdc218b4c4d58e9e0523028e503d4b690"
+            },
+            {
+              "step": 2,
+              "timestep": 852.0,
+              "actual_native_mm_calls": 0,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 0,
+              "noise_sha256": "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+              "latent_after_sha256": "2913599fc54ec9757c9186d139169cca2b2f4d3a579fc684b9f81d743908305e"
+            },
+            {
+              "step": 3,
+              "timestep": 608.0,
+              "actual_native_mm_calls": 0,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 0,
+              "noise_sha256": "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7",
+              "latent_after_sha256": "554f3bc3176502908af9ae23a6491b6b8ef045a9dcb921cbd5a04e82513e9b14"
+            }
+          ],
+          "actual_native_mm_calls": 0,
+          "actual_dit_calls": 4,
+          "final_latent": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/bf16/vbench_067/final_latent.pt",
+            "bytes": 15976076,
+            "sha256": "9f9f0376b7087e1a956c48a0c8b1ab4c7337e008bdb295eb2d168783f92282b4"
+          },
+          "final_latent_sha256": "554f3bc3176502908af9ae23a6491b6b8ef045a9dcb921cbd5a04e82513e9b14",
+          "video": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/bf16/vbench_067/video.mp4",
+            "bytes": 778181,
+            "sha256": "a0b3e276bffd483fd55d753273c63e2ba080e7007dcb6a75932ebe695fd093d5",
+            "frames": 77,
+            "height": 480,
+            "width": 832,
+            "fps": 16
+          }
+        }
+      }
+    },
+    "packed_step0000": {
+      "status": "complete",
+      "native_modules": 300,
+      "cases": {
+        "vbench_066": {
+          "status": "complete",
+          "prompt": "a zebra bending down to drink water from a river",
+          "seed": 20261004,
+          "shared_inputs": "/data1/models/svdquant-wjq/research/20261003/E021/shared_inputs/vbench_066.pt",
+          "initial_latent_sha256": "cd1f85945fced052017877ed0c6b57793a5469ed3c595ece6425b04ce628b224",
+          "noise_sha256": [
+            "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+            "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+            "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+            "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "timestep": 988.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+              "latent_after_sha256": "6156461a145f0be1580fc0af2df1a08ddee976d0b5ffc90f24b7efad50af5de3"
+            },
+            {
+              "step": 1,
+              "timestep": 932.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+              "latent_after_sha256": "4df3191dd83151294e9ab5909bbec340dfca514987ea07c18389ba0f2654eb55"
+            },
+            {
+              "step": 2,
+              "timestep": 852.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+              "latent_after_sha256": "9180eedc1675acdc6db3a85165fd50055ae70cb20f3a55a6941913f121f7414c"
+            },
+            {
+              "step": 3,
+              "timestep": 608.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7",
+              "latent_after_sha256": "a2741aeeb546fa6d35d0501b1f1209f1b8d51206bc0c4fcb1143e9c5d77c0adc"
+            }
+          ],
+          "actual_native_mm_calls": 1200,
+          "actual_dit_calls": 4,
+          "final_latent": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/packed_step0000/vbench_066/final_latent.pt",
+            "bytes": 15976076,
+            "sha256": "cdeba24c72d4335825085dba10e9bf5985ae4c8569c53f642c020cadbaab1af1"
+          },
+          "final_latent_sha256": "a2741aeeb546fa6d35d0501b1f1209f1b8d51206bc0c4fcb1143e9c5d77c0adc",
+          "video": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/packed_step0000/vbench_066/video.mp4",
+            "bytes": 865408,
+            "sha256": "5f04cf2c4de6da165d0f68050f7dc6d9b68ab71a034e9c017d222cc73f232f54",
+            "frames": 77,
+            "height": 480,
+            "width": 832,
+            "fps": 16
+          }
+        },
+        "vbench_091": {
+          "status": "complete",
+          "prompt": "a drone flying over a snowy forest.",
+          "seed": 20261004,
+          "shared_inputs": "/data1/models/svdquant-wjq/research/20261003/E021/shared_inputs/vbench_091.pt",
+          "initial_latent_sha256": "cd1f85945fced052017877ed0c6b57793a5469ed3c595ece6425b04ce628b224",
+          "noise_sha256": [
+            "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+            "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+            "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+            "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "timestep": 988.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+              "latent_after_sha256": "4df6ea94b2ae34f3adb3d5b8810f394e0634949e6b9c99dd2653468139148508"
+            },
+            {
+              "step": 1,
+              "timestep": 932.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+              "latent_after_sha256": "4d7ddeb6c584077bfcb4419f2a2b256de9fb0c78f0add240e16c55e67b1444b3"
+            },
+            {
+              "step": 2,
+              "timestep": 852.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+              "latent_after_sha256": "3b1fc007d9d428e74d32546a965edc81b00f86f00e413b85d41dc13ff15dfbec"
+            },
+            {
+              "step": 3,
+              "timestep": 608.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7",
+              "latent_after_sha256": "f22123df3a20678fd1da1a7d6b1138e2b8266f12d41bb8812fa74876302f3950"
+            }
+          ],
+          "actual_native_mm_calls": 1200,
+          "actual_dit_calls": 4,
+          "final_latent": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/packed_step0000/vbench_091/final_latent.pt",
+            "bytes": 15976076,
+            "sha256": "a85e215a7b1157c71a90018393ea6f817100f1c21263414f274068386f317993"
+          },
+          "final_latent_sha256": "f22123df3a20678fd1da1a7d6b1138e2b8266f12d41bb8812fa74876302f3950",
+          "video": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/packed_step0000/vbench_091/video.mp4",
+            "bytes": 1840010,
+            "sha256": "e4358f5c508ace71f62b0ea913d000f7aaa4629fab4759391b663a533a47b37e",
+            "frames": 77,
+            "height": 480,
+            "width": 832,
+            "fps": 16
+          }
+        },
+        "vbench_182": {
+          "status": "complete",
+          "prompt": "campus",
+          "seed": 20261004,
+          "shared_inputs": "/data1/models/svdquant-wjq/research/20261003/E021/shared_inputs/vbench_182.pt",
+          "initial_latent_sha256": "cd1f85945fced052017877ed0c6b57793a5469ed3c595ece6425b04ce628b224",
+          "noise_sha256": [
+            "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+            "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+            "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+            "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "timestep": 988.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+              "latent_after_sha256": "b03d711302b00e3b5d1b52a749f5ddb0fb142ca9da05836dc90cce660a81ed00"
+            },
+            {
+              "step": 1,
+              "timestep": 932.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+              "latent_after_sha256": "d0bd61dc9a9cf7d7e6df4f92024c580e543d48eb5f3e862eb7fb13dbfd12bd1d"
+            },
+            {
+              "step": 2,
+              "timestep": 852.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+              "latent_after_sha256": "63538ba155102ee228e71221a99b108a428db3d21124ee8b7a7ce5fb7e456361"
+            },
+            {
+              "step": 3,
+              "timestep": 608.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7",
+              "latent_after_sha256": "c606c78286ca252be1759da817672fc3c726ecb4b3b8333fe71c2f9c132ea58c"
+            }
+          ],
+          "actual_native_mm_calls": 1200,
+          "actual_dit_calls": 4,
+          "final_latent": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/packed_step0000/vbench_182/final_latent.pt",
+            "bytes": 15976076,
+            "sha256": "9c11edbd3c316e0c708074821078f058ec36f0ec0232f7e52694c652a2240224"
+          },
+          "final_latent_sha256": "c606c78286ca252be1759da817672fc3c726ecb4b3b8333fe71c2f9c132ea58c",
+          "video": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/packed_step0000/vbench_182/video.mp4",
+            "bytes": 464725,
+            "sha256": "65147821b72da9c998b81a0a69cd8225d031e3d1d62551f32de6848578755652",
+            "frames": 77,
+            "height": 480,
+            "width": 832,
+            "fps": 16
+          }
+        },
+        "vbench_067": {
+          "status": "complete",
+          "prompt": "a zebra running to join a herd of its kind",
+          "seed": 20261004,
+          "shared_inputs": "/data1/models/svdquant-wjq/research/20261003/E021/shared_inputs/vbench_067.pt",
+          "initial_latent_sha256": "cd1f85945fced052017877ed0c6b57793a5469ed3c595ece6425b04ce628b224",
+          "noise_sha256": [
+            "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+            "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+            "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+            "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "timestep": 988.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+              "latent_after_sha256": "4512d82fe12ac356cabfedc75e885398cb2efc185e7682bd40ccc941ad3c72b6"
+            },
+            {
+              "step": 1,
+              "timestep": 932.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+              "latent_after_sha256": "23d2ad8cfc7a18578a72e7b9c9d82d89c1b192464962b4d5ea30bbb8c190b6b8"
+            },
+            {
+              "step": 2,
+              "timestep": 852.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+              "latent_after_sha256": "420e2ace09f63050658232ac13ef797213da15c1fc828e5d186180a4a4fdd1ce"
+            },
+            {
+              "step": 3,
+              "timestep": 608.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7",
+              "latent_after_sha256": "13c55c12cb588537c6a82f33db21da590073bfcbcf56b98b4656df57aea6f7bd"
+            }
+          ],
+          "actual_native_mm_calls": 1200,
+          "actual_dit_calls": 4,
+          "final_latent": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/packed_step0000/vbench_067/final_latent.pt",
+            "bytes": 15976076,
+            "sha256": "fc04ddd7db3d681e73487d882450d7ae23aca38a42b98f64c8df607a8b675b9d"
+          },
+          "final_latent_sha256": "13c55c12cb588537c6a82f33db21da590073bfcbcf56b98b4656df57aea6f7bd",
+          "video": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/packed_step0000/vbench_067/video.mp4",
+            "bytes": 965244,
+            "sha256": "108508a85c99aecea86ce6807094e38de7f025cb342c50f2fb55fc37ab6010e6",
+            "frames": 77,
+            "height": 480,
+            "width": 832,
+            "fps": 16
+          }
+        }
+      }
+    },
+    "packed_step0064": {
+      "status": "complete",
+      "native_modules": 300,
+      "cases": {
+        "vbench_066": {
+          "status": "complete",
+          "prompt": "a zebra bending down to drink water from a river",
+          "seed": 20261004,
+          "shared_inputs": "/data1/models/svdquant-wjq/research/20261003/E021/shared_inputs/vbench_066.pt",
+          "initial_latent_sha256": "cd1f85945fced052017877ed0c6b57793a5469ed3c595ece6425b04ce628b224",
+          "noise_sha256": [
+            "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+            "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+            "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+            "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "timestep": 988.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+              "latent_after_sha256": "2fd2d242f7225c59db18f71b07e4d851c5c0a5e8e7e2b85604ba384ae7fae470"
+            },
+            {
+              "step": 1,
+              "timestep": 932.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+              "latent_after_sha256": "c6e705927ed45e395723a4026ce0e65a01646eff462be5551501b78a5f81dbeb"
+            },
+            {
+              "step": 2,
+              "timestep": 852.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+              "latent_after_sha256": "e4773cd735662fc12c8f5d44a76ed34173b497e32d65e2033f7d5aaf264dab7f"
+            },
+            {
+              "step": 3,
+              "timestep": 608.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7",
+              "latent_after_sha256": "a18780fffc57b267118e9856b84b91dfbb5a94572e7a151762891d74c27aaa8b"
+            }
+          ],
+          "actual_native_mm_calls": 1200,
+          "actual_dit_calls": 4,
+          "final_latent": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/packed_step0064/vbench_066/final_latent.pt",
+            "bytes": 15976076,
+            "sha256": "87efda793da40a7b5e92715f7a88c52ca864abeb16572ed028cc5125cfb0be85"
+          },
+          "final_latent_sha256": "a18780fffc57b267118e9856b84b91dfbb5a94572e7a151762891d74c27aaa8b",
+          "video": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/packed_step0064/vbench_066/video.mp4",
+            "bytes": 671135,
+            "sha256": "163079cf44577334bdd38e16d5d9c5c905f30094367e94c0510155f693a8299a",
+            "frames": 77,
+            "height": 480,
+            "width": 832,
+            "fps": 16
+          }
+        },
+        "vbench_091": {
+          "status": "complete",
+          "prompt": "a drone flying over a snowy forest.",
+          "seed": 20261004,
+          "shared_inputs": "/data1/models/svdquant-wjq/research/20261003/E021/shared_inputs/vbench_091.pt",
+          "initial_latent_sha256": "cd1f85945fced052017877ed0c6b57793a5469ed3c595ece6425b04ce628b224",
+          "noise_sha256": [
+            "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+            "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+            "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+            "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "timestep": 988.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+              "latent_after_sha256": "075193c8c1ea1ca92eb1fdab18f7a787c5f67966b1ef946fedb94f588b14ee48"
+            },
+            {
+              "step": 1,
+              "timestep": 932.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+              "latent_after_sha256": "51251edd0e4914d95c8401ee1c5e2d42c69ea1e4d3f8e4de0021a43c5cce3ded"
+            },
+            {
+              "step": 2,
+              "timestep": 852.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+              "latent_after_sha256": "88cbc3cdf830eec2f9adc975734436246fcd3a61f31e01eb5aa4f215c2cfd330"
+            },
+            {
+              "step": 3,
+              "timestep": 608.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7",
+              "latent_after_sha256": "ca476cbecd9a4b242a2902dc08acad560ea5bfc1d6ae9183fd553cfebe9cdec8"
+            }
+          ],
+          "actual_native_mm_calls": 1200,
+          "actual_dit_calls": 4,
+          "final_latent": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/packed_step0064/vbench_091/final_latent.pt",
+            "bytes": 15976076,
+            "sha256": "771cf56d6b42301b554e2a19cf478518bcc44fd6f1ada09481868ea9d4cb1c0d"
+          },
+          "final_latent_sha256": "ca476cbecd9a4b242a2902dc08acad560ea5bfc1d6ae9183fd553cfebe9cdec8",
+          "video": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/packed_step0064/vbench_091/video.mp4",
+            "bytes": 489566,
+            "sha256": "060e183c69b124bb25216ab9017f76bb11157cdb271a6cb90df9d49ada544024",
+            "frames": 77,
+            "height": 480,
+            "width": 832,
+            "fps": 16
+          }
+        },
+        "vbench_182": {
+          "status": "complete",
+          "prompt": "campus",
+          "seed": 20261004,
+          "shared_inputs": "/data1/models/svdquant-wjq/research/20261003/E021/shared_inputs/vbench_182.pt",
+          "initial_latent_sha256": "cd1f85945fced052017877ed0c6b57793a5469ed3c595ece6425b04ce628b224",
+          "noise_sha256": [
+            "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+            "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+            "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+            "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "timestep": 988.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+              "latent_after_sha256": "6a6537763e52fc3c0dda8e5c56e0a086452951f847e7a8a7c3ae6d5a99ab5f92"
+            },
+            {
+              "step": 1,
+              "timestep": 932.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+              "latent_after_sha256": "cdebaf3e687f78480c170b2c2295c761de7b09b9543568f7408bc0dda9506fbf"
+            },
+            {
+              "step": 2,
+              "timestep": 852.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+              "latent_after_sha256": "dc50ee8fce1e1b8173650cb842aa6d1609392e86ed916f09ece66aec216cc873"
+            },
+            {
+              "step": 3,
+              "timestep": 608.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7",
+              "latent_after_sha256": "30d9332f9491591b3b083fed5b438e17c1672946d0246e5d58564b04b3e7e28f"
+            }
+          ],
+          "actual_native_mm_calls": 1200,
+          "actual_dit_calls": 4,
+          "final_latent": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/packed_step0064/vbench_182/final_latent.pt",
+            "bytes": 15976076,
+            "sha256": "337d5a3428dec6df9e64677c882d5bfa53ba309b171a3cfdb052f3345301764f"
+          },
+          "final_latent_sha256": "30d9332f9491591b3b083fed5b438e17c1672946d0246e5d58564b04b3e7e28f",
+          "video": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/packed_step0064/vbench_182/video.mp4",
+            "bytes": 328876,
+            "sha256": "9a7d98a707cf83246531b1e964cd2407a01c2b0f495b1fb85e836d728f921722",
+            "frames": 77,
+            "height": 480,
+            "width": 832,
+            "fps": 16
+          }
+        },
+        "vbench_067": {
+          "status": "complete",
+          "prompt": "a zebra running to join a herd of its kind",
+          "seed": 20261004,
+          "shared_inputs": "/data1/models/svdquant-wjq/research/20261003/E021/shared_inputs/vbench_067.pt",
+          "initial_latent_sha256": "cd1f85945fced052017877ed0c6b57793a5469ed3c595ece6425b04ce628b224",
+          "noise_sha256": [
+            "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+            "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+            "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+            "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "timestep": 988.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+              "latent_after_sha256": "4ebc18f04dff7aad17cb7e462c602a718e914ec53ff18c26a5857458eee41c9f"
+            },
+            {
+              "step": 1,
+              "timestep": 932.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+              "latent_after_sha256": "4ea61ecc974fb43f03c5c5907a8082bcac203115a0e04a6eaf66226c39f09365"
+            },
+            {
+              "step": 2,
+              "timestep": 852.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+              "latent_after_sha256": "dcb454040076d582351bd7ebcc330f4dc383a34b6b2211c33706b1a96c108902"
+            },
+            {
+              "step": 3,
+              "timestep": 608.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7",
+              "latent_after_sha256": "d5532edab2ebd9fb2a81d6711578030e044727c2023bb6b5104bab1a7922d3a5"
+            }
+          ],
+          "actual_native_mm_calls": 1200,
+          "actual_dit_calls": 4,
+          "final_latent": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/packed_step0064/vbench_067/final_latent.pt",
+            "bytes": 15976076,
+            "sha256": "4f845b2363c6525cec08eab90de747426298c6b5e754167ce848b560ea64e164"
+          },
+          "final_latent_sha256": "d5532edab2ebd9fb2a81d6711578030e044727c2023bb6b5104bab1a7922d3a5",
+          "video": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/packed_step0064/vbench_067/video.mp4",
+            "bytes": 808856,
+            "sha256": "7833bc99936a36f80090195c4effb04892dc06b9eadac9fc4fa2bc79dadc0cfa",
+            "frames": 77,
+            "height": 480,
+            "width": 832,
+            "fps": 16
+          }
+        }
+      }
+    },
+    "svd_lr": {
+      "status": "complete",
+      "native_modules": 300,
+      "cases": {
+        "vbench_066": {
+          "status": "complete",
+          "prompt": "a zebra bending down to drink water from a river",
+          "seed": 20261004,
+          "shared_inputs": "/data1/models/svdquant-wjq/research/20261003/E021/shared_inputs/vbench_066.pt",
+          "initial_latent_sha256": "cd1f85945fced052017877ed0c6b57793a5469ed3c595ece6425b04ce628b224",
+          "noise_sha256": [
+            "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+            "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+            "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+            "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "timestep": 988.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+              "latent_after_sha256": "91492e4a68b04d72fd3fbe38b089fae27e6dcf8e91120a2e07555779a6cece1d"
+            },
+            {
+              "step": 1,
+              "timestep": 932.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+              "latent_after_sha256": "450d20e808f41b6ec0315ef3d97adf26f9e14efcbe8986a087748939ade6d500"
+            },
+            {
+              "step": 2,
+              "timestep": 852.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+              "latent_after_sha256": "46e73911785ba5036480881e4c32b058d5f16a8aee059de0b7371711c11a99b0"
+            },
+            {
+              "step": 3,
+              "timestep": 608.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7",
+              "latent_after_sha256": "e7d853f7fe9e7cbfd80d18bc51cc50920831b5ff5f96551a593aa96949ebc86d"
+            }
+          ],
+          "actual_native_mm_calls": 1200,
+          "actual_dit_calls": 4,
+          "final_latent": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/svd_lr/vbench_066/final_latent.pt",
+            "bytes": 15976076,
+            "sha256": "0cd775f643bfe00b27cbd4ad56ec4bf4a99abc4229cbfadaf03e2b0bb20d61eb"
+          },
+          "final_latent_sha256": "e7d853f7fe9e7cbfd80d18bc51cc50920831b5ff5f96551a593aa96949ebc86d",
+          "video": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/svd_lr/vbench_066/video.mp4",
+            "bytes": 936108,
+            "sha256": "5c58d0b12e4f672b01bd9bb0d585eec6b8f20e88bee0f4582992d88d652a104e",
+            "frames": 77,
+            "height": 480,
+            "width": 832,
+            "fps": 16
+          }
+        },
+        "vbench_091": {
+          "status": "complete",
+          "prompt": "a drone flying over a snowy forest.",
+          "seed": 20261004,
+          "shared_inputs": "/data1/models/svdquant-wjq/research/20261003/E021/shared_inputs/vbench_091.pt",
+          "initial_latent_sha256": "cd1f85945fced052017877ed0c6b57793a5469ed3c595ece6425b04ce628b224",
+          "noise_sha256": [
+            "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+            "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+            "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+            "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "timestep": 988.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+              "latent_after_sha256": "10a7d8c2961d90d85bfabd827f55585a53a080b3080b29012e2f2130ed37fb50"
+            },
+            {
+              "step": 1,
+              "timestep": 932.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+              "latent_after_sha256": "fd86ad058ffaf57ac58ecc527f1ba409a58e070e96c18a22e338a739ec09942e"
+            },
+            {
+              "step": 2,
+              "timestep": 852.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+              "latent_after_sha256": "c831f3cc1daa98f3919821e842e93250c3d2e00cfc2e5576d29c4f0f6cd0abd8"
+            },
+            {
+              "step": 3,
+              "timestep": 608.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7",
+              "latent_after_sha256": "126c866f8058bb11c875b7b654ecd9c6aecac5cd2eaa999028eb355a2f0675b5"
+            }
+          ],
+          "actual_native_mm_calls": 1200,
+          "actual_dit_calls": 4,
+          "final_latent": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/svd_lr/vbench_091/final_latent.pt",
+            "bytes": 15976076,
+            "sha256": "f11f35fb8689dedc674cf3c9c42f1599e92a95524ad64926491889ad59c1f0b1"
+          },
+          "final_latent_sha256": "126c866f8058bb11c875b7b654ecd9c6aecac5cd2eaa999028eb355a2f0675b5",
+          "video": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/svd_lr/vbench_091/video.mp4",
+            "bytes": 1488304,
+            "sha256": "f715c8cb11a1f3c3b782986da5d4db4f0e77a5eb04cc9300777c88f0fd1ece6a",
+            "frames": 77,
+            "height": 480,
+            "width": 832,
+            "fps": 16
+          }
+        },
+        "vbench_182": {
+          "status": "complete",
+          "prompt": "campus",
+          "seed": 20261004,
+          "shared_inputs": "/data1/models/svdquant-wjq/research/20261003/E021/shared_inputs/vbench_182.pt",
+          "initial_latent_sha256": "cd1f85945fced052017877ed0c6b57793a5469ed3c595ece6425b04ce628b224",
+          "noise_sha256": [
+            "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+            "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+            "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+            "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "timestep": 988.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+              "latent_after_sha256": "c29e3bbf2c48bd7b8b5cfe99649ab6a480f4f87910bc5de7d4ddce3bee134719"
+            },
+            {
+              "step": 1,
+              "timestep": 932.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+              "latent_after_sha256": "8dcbd1ef005c3dee133071afc9260af42bd26e82ce98a9bc1390096d9119c277"
+            },
+            {
+              "step": 2,
+              "timestep": 852.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+              "latent_after_sha256": "7c5e232f6fd107eb43406aa93c58e540a847885f79000b338c0e9f5a14fbc048"
+            },
+            {
+              "step": 3,
+              "timestep": 608.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7",
+              "latent_after_sha256": "716e3e8f2713cb1488165229cd62210c53e0c719add9d3b1c82e1964c319e96c"
+            }
+          ],
+          "actual_native_mm_calls": 1200,
+          "actual_dit_calls": 4,
+          "final_latent": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/svd_lr/vbench_182/final_latent.pt",
+            "bytes": 15976076,
+            "sha256": "435f0fb9a40f07a5e0c62d91ad9bd9401081a52e5c8f426ccd0a5694b594482a"
+          },
+          "final_latent_sha256": "716e3e8f2713cb1488165229cd62210c53e0c719add9d3b1c82e1964c319e96c",
+          "video": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/svd_lr/vbench_182/video.mp4",
+            "bytes": 319425,
+            "sha256": "214d3fc5d093abc5223c8ae6cbb739de663114ab7c8e0f0b922a570bb42206ec",
+            "frames": 77,
+            "height": 480,
+            "width": 832,
+            "fps": 16
+          }
+        },
+        "vbench_067": {
+          "status": "complete",
+          "prompt": "a zebra running to join a herd of its kind",
+          "seed": 20261004,
+          "shared_inputs": "/data1/models/svdquant-wjq/research/20261003/E021/shared_inputs/vbench_067.pt",
+          "initial_latent_sha256": "cd1f85945fced052017877ed0c6b57793a5469ed3c595ece6425b04ce628b224",
+          "noise_sha256": [
+            "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+            "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+            "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+            "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "timestep": 988.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "00283f79bd78bad355e06827647c7d12a04635abb730d1752cd92274d908ab67",
+              "latent_after_sha256": "2c6a9e0502be792f32e5a58513f8b763d4ff426262ae0761ad0707f480b457e5"
+            },
+            {
+              "step": 1,
+              "timestep": 932.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "be518773ff9318dd5a9fa66ee68a89e3aaa44429d2e37d409f6a59d83f151f85",
+              "latent_after_sha256": "7e8ea17f837b894dc525a0708e40096e1fd3eeecbba3da2d90ae5c03d7d2b234"
+            },
+            {
+              "step": 2,
+              "timestep": 852.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "793b8027415ccf8463be5a68b3f93820778bbcc41503e7411777b82320eaa2e1",
+              "latent_after_sha256": "4472bda9933f71f8f7eb064de83469bcfdec37962029236ece1669457edd761e"
+            },
+            {
+              "step": 3,
+              "timestep": 608.0,
+              "actual_native_mm_calls": 300,
+              "actual_sdpa_calls": 60,
+              "validated_fastpack_flags": 300,
+              "noise_sha256": "cbe8eb5d3252496e282145536f97a74748922bd94547c8c038b98d3bc92b47c7",
+              "latent_after_sha256": "763065115a968bf929695d284a777e6955de64cada6d5a84a527c133e11d8a36"
+            }
+          ],
+          "actual_native_mm_calls": 1200,
+          "actual_dit_calls": 4,
+          "final_latent": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/svd_lr/vbench_067/final_latent.pt",
+            "bytes": 15976076,
+            "sha256": "8e605bd5030f146833b7884feb4a80828d10d999083763740f672d1b4364a824"
+          },
+          "final_latent_sha256": "763065115a968bf929695d284a777e6955de64cada6d5a84a527c133e11d8a36",
+          "video": {
+            "path": "/data1/models/svdquant-wjq/research/20261003/E021/svd_lr/vbench_067/video.mp4",
+            "bytes": 898578,
+            "sha256": "dc0c14f5bd1e81e37fe437d7d2b3d11242a3e13cc23ae5cc57ff39f95ae6348e",
+            "frames": 77,
+            "height": 480,
+            "width": 832,
+            "fps": 16
+          }
+        }
+      }
+    }
+  },
+  "sources": {
+    "/home/wjq/workspace/svdquant-exp/scripts/research/generate_wan_qad_comparison.py": "860b6050107d37084351c7d521a7fa7e3a56936f1d7ae2649e33f002b9e9b46f",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/wan_mainweight_qad.py": "09a81e1a7b33c59a8e09d57f31046eec68c25c4626ed2bd1a788902e9f077cd8",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/wan_nvfp4_fastpack.py": "98e7e81b0aeab229006fbd721be1da24f4eb435b424de9cc95a3b136f277ebd0",
+    "/home/wjq/workspace/svdquant-exp/scripts/infer_rcm_wan_4step.py": "9212636afac8d7c98a82f3fb98c6efb0a0ed366ea83db65866f64cfcf99e02fb",
+    "/home/wjq/workspace/svdquant-exp/results/research/E021/generation_manifest.draft.json": "48afb7003ba352cbea0d3e8816c8d324b24e48ecb69d5c3294369eedc844affe",
+    "/data1/models/svdquant-wjq/models/rcm-Wan2.1-T2V-1.3B-Diffusers/transformer/config.json": "0b093fa072e9ff28763febe9b964ee582f566733a6d6709deb9dfba1bde16b81",
+    "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/vae/config.json": "f0c1cc1d7decb5badc384f54691746a27a9aeff49f7ebca974e583389342d527"
+  },
+  "packed_artifacts": {
+    "packed_step0000": {
+      "path": "/data1/models/svdquant-wjq/research/20261003/E020/packed_step0000.pt",
+      "bytes": 843691134,
+      "sha256": "e0b1a4e318e1aaee7c43032ab4167b701c0ea03f45e62d79c890782625b87ccc"
+    },
+    "packed_step0064": {
+      "path": "/data1/models/svdquant-wjq/research/20261003/E020/packed_step0064.pt",
+      "bytes": 843691134,
+      "sha256": "d8a013b5a4fb869b36d29f8786291959d02d4116a1eea1b5ddbd14f8b13d7790"
+    }
+  },
+  "elapsed_seconds_not_benchmark": 289.51926040649414,
+  "peak_allocated_gib_not_benchmark": 10.801382541656494,
+  "schedule": {
+    "t_steps": [
+      0.9876543209876543,
+      0.933781061416858,
+      0.852895394823775,
+      0.608979049230431,
+      0.0
+    ],
+    "timesteps_bf16": [
+      988.0,
+      932.0,
+      852.0,
+      608.0
+    ]
+  },
+  "actual_totals": {
+    "native_mm_calls": 14400,
+    "sdpa_calls": 3840,
+    "dit_calls": 64,
+    "videos": 16
+  }
+}

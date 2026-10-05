@@ -1,0 +1,718 @@
+{
+  "experiment": "E017",
+  "phase": "decode",
+  "arm": "block_mean",
+  "status": "complete",
+  "attempted_dit_calls": 0,
+  "complete_dit_calls": 0,
+  "deadline_unix": 1790953516.5300398,
+  "scope": "Matched-initial-condition free rollout of two existing official attention recipes; no new method",
+  "manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E017_h3_fp4_video_manifest.json",
+    "sha256": "b1c1d47ae8e516e564b89973f31094f3c9476112518c7b02f00ab51433bfb60f",
+    "bytes": 12246
+  },
+  "plan": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E017_h3_fp4_video_plan.md",
+    "sha256": "7f4fc987bbed09b1ec663608ef2a5ee281f4368236535eaaf112390f250357f2",
+    "bytes": 4302
+  },
+  "sources": {
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/csrc/nvfp4_attention_sm120/nvfp4_attention_sm120_binding.cu": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/csrc/nvfp4_attention_sm120/nvfp4_attention_sm120_binding.cu",
+      "sha256": "9a847598ef4a36cc078a73722c2826d16b8bc489acfb031cac5f9957b4c5619c",
+      "bytes": 14272
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/csrc/nvfp4_attention_sm120/nvfp4_attention_sm120_quantize.cu": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/csrc/nvfp4_attention_sm120/nvfp4_attention_sm120_quantize.cu",
+      "sha256": "86abc2a339444943c16baaab8943d212d30af4c1428371f99e844b6795a68aca",
+      "bytes": 24519
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/api/launcher.h": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/api/launcher.h",
+      "sha256": "38244efc7aa841d9015824bf5cb8fd0939749ad002d4eb0c32881d43fd5afc67",
+      "bytes": 6172
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/block_info.h": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/block_info.h",
+      "sha256": "42db5a7f19200de6901a154b320cfdd7d0425eb10cb340c55ae27d07429b1104",
+      "bytes": 2726
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/cute_extension.h": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/cute_extension.h",
+      "sha256": "ebff69dd5d2c225ef95b030e20a1b8c0569708246650787ebf3fcbca630b2e7f",
+      "bytes": 22592
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/gemm_with_interleave.h": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/gemm_with_interleave.h",
+      "sha256": "5210c3d93bfa81a5ae8b16c9806f298bf0a12bd93b403334624bc1516875bb4e",
+      "bytes": 3267
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/params.h": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/params.h",
+      "sha256": "5c37f98a6be483dd7010f5c8f56c17bb6b5916f31071e27cee605c7ef94c23e9",
+      "bytes": 3221
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/static_switch.h": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/common/static_switch.h",
+      "sha256": "b0bb66150d434516418a75483d583a8e1872c8f560ef8fba111eda3e1c35f888",
+      "bytes": 4005
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/consumer/delta_correction.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/consumer/delta_correction.cuh",
+      "sha256": "db067b790c872f5e5538ea7996392a8e1315a92c5868416722bc66eef618b0fe",
+      "bytes": 2968
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/consumer/pv_gemm.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/consumer/pv_gemm.cuh",
+      "sha256": "5fa9f7d7f651f1739f965b644550627daa1ccbd7b39590538459ec7851a0c9b0",
+      "bytes": 8404
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/consumer/qk_gemm.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/consumer/qk_gemm.cuh",
+      "sha256": "1abe2386bbcd837c5bf89eae3a69dc197b3e0c964e5a73886467006687c02cd6",
+      "bytes": 6890
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/consumer/softmax.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/consumer/softmax.cuh",
+      "sha256": "57fa09d6e5884abe2b9ce94f492d1a222ce6e6bddbc3ab364818a6d913d12cb6",
+      "bytes": 34364
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/epilogue/lse_writer.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/epilogue/lse_writer.cuh",
+      "sha256": "a61414278ee4e367a0a0a08b9bfaac254559fb7f54c49cf9a3dfb2c5ddd614b5",
+      "bytes": 3880
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/epilogue/output_writer.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/epilogue/output_writer.cuh",
+      "sha256": "298bf6d9f0c1de78f7ddacd37a9d33d147d9f87a14fbb7b902db7036505f1285",
+      "bytes": 8579
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/epilogue.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/epilogue.cuh",
+      "sha256": "d5fe649afe69c7486c4e08ff38959902c857c5aebe74c0286b601931dacfb6e4",
+      "bytes": 9694
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/mainloop.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/mainloop.cuh",
+      "sha256": "0c36b7ecf8ed705ca9b852560a4dba17840b0bf494f50fd8511d3f8f77268f5e",
+      "bytes": 46004
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/producer/load_k.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/producer/load_k.cuh",
+      "sha256": "a1849b4ce1244611fc2e7b7e45509391e00c08908dabc3fd80f8a57ac2aff4d8",
+      "bytes": 5796
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/producer/load_q.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/producer/load_q.cuh",
+      "sha256": "678617b648a9a0c8b2305d3af9ac579a0210b93469b79898d9cf1bf524fe300c",
+      "bytes": 4042
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/producer/load_v.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/compute/producer/load_v.cuh",
+      "sha256": "ccd40b66e4490e0ce2346c0d590acb7159ca184e03d4728ed7711b66953a4300",
+      "bytes": 4578
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/kernel/attention_kernel.h": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/kernel/attention_kernel.h",
+      "sha256": "2b0b243876f98aff40d7c5b6f392916ff8d30e4d1ad31a8e9c282668ed382031",
+      "bytes": 10764
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/kernel/scheduler.h": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/kernel/scheduler.h",
+      "sha256": "30abd8e4316675ff1865578ba4136483e3391bd48f426c442dd08e9619f5d2b6",
+      "bytes": 8307
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/kernel/traits.h": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/kernel/traits.h",
+      "sha256": "423ee6287a89c951fa9a6d819b9a16f557dd27a335d8aa0a325554b21bce630b",
+      "bytes": 10710
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/primitives/barrier.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/primitives/barrier.cuh",
+      "sha256": "a0ad7fa0ffcc16a79c90bcb0a95076885201076e66f88ab7e09989b3892c292b",
+      "bytes": 7562
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/primitives/pipeline.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/primitives/pipeline.cuh",
+      "sha256": "96be5ba090aa05935c867b8eedecf50e4028ada3e49d1ef6a04c019e882c954d",
+      "bytes": 4050
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/primitives/tma.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/primitives/tma.cuh",
+      "sha256": "27a9434e47de9645717f8fb6d88c2c97b165c7a4f9d247a63b2083d2b5438783",
+      "bytes": 3575
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/primitives/warpgroup.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/primitives/warpgroup.cuh",
+      "sha256": "3667ca52c48e849ed7b0b500948fecc061fb4a9f8dd480733d6e9a4e7a46ad1c",
+      "bytes": 4116
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/quantization/fp4_convert.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/quantization/fp4_convert.cuh",
+      "sha256": "5af96f4c370a4cfba96fa9ef6ff1debbf545593403350863cdb7e1c3096ed746",
+      "bytes": 2291
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/quantization/fp4_layout.h": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/quantization/fp4_layout.h",
+      "sha256": "2adee11761e3d670614f6980c071b596d02069af1c9f70fe455798331d8f6bdb",
+      "bytes": 5782
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/utils/copy.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/utils/copy.cuh",
+      "sha256": "de6ddcffe5bd01b979c6e1a45e083572fb219875288e5df1e39888e842a811a6",
+      "bytes": 2123
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/utils/layout.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/utils/layout.cuh",
+      "sha256": "487f9816ec70648f11de06a0775908608766d06728b16a2b1a160d59eb25a558",
+      "bytes": 2401
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/utils/math.cuh": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/data/include/flashinfer/attention/sm120/nvfp4_attention_sm120/utils/math.cuh",
+      "sha256": "a43dc22c1e19b941704b50ab1ceb84ca85311171a457ade7eb695bb425e57a74",
+      "bytes": 939
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/jit/nvfp4_attention_sm120.py": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/jit/nvfp4_attention_sm120.py",
+      "sha256": "bcae2efa6c36cc8aa4f0c2c8ccd803af3b0a55f8300e227157680c4e5296d115",
+      "bytes": 3386
+    },
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/nvfp4_attention_sm120.py": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/nvfp4_attention_sm120.py",
+      "sha256": "040738c6d6af5584ca9b375bb59468d7011506862ff0a162f1f51a72149abefc",
+      "bytes": 19507
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/attention/attention.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/attention/attention.py",
+      "sha256": "1126b2e19184299cbfc611dcf66e46d0fd1a7bfa1d616f2ed38bc60ba19679ae",
+      "bytes": 13461
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/vram/layers.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/vram/layers.py",
+      "sha256": "4597374ac9166a2576544fb9b746360ee4c0441e96fd7af4300fcc739abd26cf",
+      "bytes": 25504
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/base_pipeline.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/base_pipeline.py",
+      "sha256": "aa5e3729bcbe4a6969b32dc78602abadf6d7832317014c2d192d73c021aa6728",
+      "bytes": 26272
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/flow_match.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/flow_match.py",
+      "sha256": "4639571d6986fef53094bc166f3b3a8fdf5790435d28528ead7f0a929d5d2a52",
+      "bytes": 20775
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_audio_vae.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_audio_vae.py",
+      "sha256": "ce6dc03b73a0596df22a6aa89e6db9183017bd5d0e2e99b547a6bfee53a7ef2c",
+      "bytes": 19869
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit.py",
+      "sha256": "bd617a4312c70405e916707e1908100b484b2259dfbeba4af7de5bb145206d80",
+      "bytes": 18207
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit_comfy.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit_comfy.py",
+      "sha256": "e8a2eb4cb986ba384052100fdc03984446f3fa35d0ab1e9ebfacffc039a2e8ff",
+      "bytes": 3011
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_text_encoder.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_text_encoder.py",
+      "sha256": "f874a56ce992070976b534dc42e0639221fe8c88cb29d9b3e2cadf6de553a9cf",
+      "bytes": 9391
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_video_vae.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_video_vae.py",
+      "sha256": "3dd4da5c90135c904fa5f1d4f70dd43e2571e394ce437bb168a5110f71076bf4",
+      "bytes": 31730
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/pipelines/minimax_h3_audio_video.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/pipelines/minimax_h3_audio_video.py",
+      "sha256": "7f5ff890d796dcfac3551e235741bdfbd4dbcae91aae3b6e4c3817dce38eecd6",
+      "bytes": 56577
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/utils/data/audio_video.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/utils/data/audio_video.py",
+      "sha256": "9d30fdd4538475d2d6aae7fe64cca2d78012e904366ec85d81e48720874d9dd0",
+      "bytes": 8947
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_manifest.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_manifest.json",
+      "sha256": "9469815d0c1d3d51bc793c2e3eaba08c80b35969ef2fab3776667db6b61fa79d",
+      "bytes": 13391
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_paired_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_paired_plan.md",
+      "sha256": "1e616ceacc92085cd938a90d5e99faac5d41a7c7e4e51844445b8775c06fc3e4",
+      "bytes": 7695
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_manifest.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_manifest.json",
+      "sha256": "56299b66ebf8be315e2bebc3ae684eefb7781abd1a5e984e7aab3ecee4265f65",
+      "bytes": 6437
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_plan.md",
+      "sha256": "af609cb182415d336a9f96f85fb7ee62fc2c2a15d23fca688d34763f7f7742c7",
+      "bytes": 5158
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E016_h3_full_attention_manifest.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E016_h3_full_attention_manifest.json",
+      "sha256": "5b1e91c55e002b1be9b42d4392c9c55e81a02197aaeb7d47a53e11cafc7fab48",
+      "bytes": 26097
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E016_h3_full_attention_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E016_h3_full_attention_plan.md",
+      "sha256": "2bc49c56fe430c9221a77a73b94a494f8df1615412be64065bf335be06af9523",
+      "bytes": 5972
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E017_h3_fp4_video_manifest.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E017_h3_fp4_video_manifest.json",
+      "sha256": "b1c1d47ae8e516e564b89973f31094f3c9476112518c7b02f00ab51433bfb60f",
+      "bytes": 12246
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E017_h3_fp4_video_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E017_h3_fp4_video_plan.md",
+      "sha256": "7f4fc987bbed09b1ec663608ef2a5ee281f4368236535eaaf112390f250357f2",
+      "bytes": 4302
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/infer_minimax_h3_svdquant_standard.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/infer_minimax_h3_svdquant_standard.py",
+      "sha256": "1966ce25cbf7fb630e620a84f64ca9219afd0120e0fe07078dc8250e221961a1",
+      "bytes": 4465
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/minimax_h3_svdquant_common.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/minimax_h3_svdquant_common.py",
+      "sha256": "d0fca20f98a40c3aa20773faa47e6d6b986811f6cd03802723021fd50383ae61",
+      "bytes": 14656
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_native_nvfp4.py",
+      "sha256": "43cb697faa4c5276fcb4432f696e36ed9f69f84b7b8a27a6f1c4ef986fc7f19b",
+      "bytes": 28771
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_fp4_attention.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_fp4_attention.py",
+      "sha256": "76de03ce6f458342e7ed4b67e1a4f700c6784de4978963408e2bdc7d725fb47b",
+      "bytes": 20815
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_nvfp4.py",
+      "sha256": "13ca884a8f6c7d93258870970c9f4b204f7cc42af0038f549b825321bb899d0a",
+      "bytes": 14615
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_fastpack.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_fastpack.py",
+      "sha256": "f5a22a9e3f23d7903403017575e1a63c1cb42e04b0230256a5808902bbc198b7",
+      "bytes": 7255
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_zero_sf_compat.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_zero_sf_compat.py",
+      "sha256": "ccaaa71670a48bb8667c286fff0ae08556b568fa6d77184200a39e4b6cc00048",
+      "bytes": 5281
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_plain_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_plain_native_nvfp4.py",
+      "sha256": "36ea5e95e3bf8858b3e545157d0505be2fa03e353b432dde4cdc785f085086f0",
+      "bytes": 10532
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_conditional_response.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_conditional_response.py",
+      "sha256": "4886b367c3ca1934cb2b3d23858d2dd06649681279c3cfaabbaab62d31b3627e",
+      "bytes": 32900
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_full_fp4_attention.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_full_fp4_attention.py",
+      "sha256": "acec36874c0e2c407a3b7470e71f53467030d5ee285212928cb078e4f9786623",
+      "bytes": 29739
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_modality_pulse.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_modality_pulse.py",
+      "sha256": "e836578688580885fd46f54b0d45eef7b975932bfe5872f764feb8e4b86c820c",
+      "bytes": 13825
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_native_contract.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_native_contract.py",
+      "sha256": "0be4b1fb4a67f52e2c618ef492f49e1285cc14b57c2e6ceffbc6fa578a011c83",
+      "bytes": 15329
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_plain_baseline.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_plain_baseline.py",
+      "sha256": "bf1383b51e9ea45c53a583ad541f68f9d0dce0db97de5acaf767fb0f69dcf47c",
+      "bytes": 25031
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/profile_h3_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/profile_h3_native_nvfp4.py",
+      "sha256": "6fbabdfb87a333d35b66fdf4a1976ae1ea2e575a5b5bb83e60d930a75e99d45e",
+      "bytes": 26846
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_fp4_attention_video.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_fp4_attention_video.py",
+      "sha256": "14f3666e1766f0f61798ed2e58b8822350f4e470210b6a603738663516510a37",
+      "bytes": 27737
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py",
+      "sha256": "41e6e4eb1d9df554e5ea109b9bad3d1df83e9b64788137511262a82a0f34431f",
+      "bytes": 28742
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py",
+      "sha256": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa",
+      "bytes": 22773
+    }
+  },
+  "inherited_references": {
+    "e010_manifest": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_manifest.json",
+      "sha256": "9469815d0c1d3d51bc793c2e3eaba08c80b35969ef2fab3776667db6b61fa79d",
+      "bytes": 13391
+    },
+    "e010_prepare": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E010_h3_prepare.json",
+      "sha256": "325f8aab98f76fbb57666b1014a9fa2a8d2111d4048b52882f475a5bb745a8e8",
+      "bytes": 18395
+    },
+    "e010_summary": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E010_summary.json",
+      "sha256": "7635fca99da42739caae3c0efd2bc712ee5192d71dacdbce084c82b134623acb",
+      "bytes": 353235
+    },
+    "e010_denoisers": {
+      "bf16": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E010_h3_denoise_bf16.json",
+        "sha256": "7f4eff2df63c112e6dcab5504c80e485b76e601ccf32d10d4f64127a25a48eeb",
+        "bytes": 274839
+      },
+      "native": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E010_h3_denoise_native.json",
+        "sha256": "df5bf29e251917e8d2ca7f33a1442904a178c7fc20a836959b52b38d0251a1b9",
+        "bytes": 388573
+      }
+    },
+    "e010_decode": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E010_h3_decode.json",
+      "sha256": "150d57592588c5b27fc2b22889c34078be8e8d15cfb9a9949c34729471acfc39",
+      "bytes": 42832
+    },
+    "e016_manifest": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E016_h3_full_attention_manifest.json",
+      "sha256": "5b1e91c55e002b1be9b42d4392c9c55e81a02197aaeb7d47a53e11cafc7fab48",
+      "bytes": 26097
+    },
+    "e016_check": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E016/E016_check_bf16_original.json",
+      "sha256": "3ac9c5a9c87383c88b30d6f97470b26e841ccbfb446a6d20adb42c5f97c1f636",
+      "bytes": 57751
+    },
+    "e016_summary": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E016/independent_summary.json",
+      "sha256": "2a4856da0037f54ad98dd5b7c8177633e6781ffdf2a05a1f2d358de1c9441ce7",
+      "bytes": 497349
+    },
+    "e016_freeze": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E016/frozen_contract.json",
+      "sha256": "8daeba8b27e7541ac3974f2851c4a6d2a57882bc6b14856535e1aa9af0f524a0",
+      "bytes": 14692
+    }
+  },
+  "prepared_reference": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E010_h3_prepare.json",
+    "sha256": "325f8aab98f76fbb57666b1014a9fa2a8d2111d4048b52882f475a5bb745a8e8",
+    "bytes": 18395
+  },
+  "inherited_assets": {
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/audio_vae/model.safetensors": {
+      "sha256": "37dddc2f3e6d5d5139d823d5ea283bbf304dadcb885b1ccda818aa13dade5ea2",
+      "bytes": 605429308,
+      "mtime_ns": 1788632776913420084
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/chat_template.json": {
+      "sha256": "5c72a170d2a4a1a3bc5adad2e689ae28138a9700e5b8c96c0266331e86c0acce",
+      "bytes": 5499,
+      "mtime_ns": 1788658242680045398
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/merges.txt": {
+      "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+      "bytes": 1671839,
+      "mtime_ns": 1788658242773048407
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/preprocessor_config.json": {
+      "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+      "bytes": 390,
+      "mtime_ns": 1788658242666044946
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/tokenizer.json": {
+      "sha256": "a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7",
+      "bytes": 7032403,
+      "mtime_ns": 1788658242669045043
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/tokenizer_config.json": {
+      "sha256": "a07e942ac874baa13758de8d1fbdb186683cc03416b5589e1b6671c6b3057c68",
+      "bytes": 11003,
+      "mtime_ns": 1788658242770048310
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/video_preprocessor_config.json": {
+      "sha256": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+      "bytes": 385,
+      "mtime_ns": 1788658242794049086
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/vocab.json": {
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+      "bytes": 2776833,
+      "mtime_ns": 1788658242815049765
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00001-of-00014.safetensors": {
+      "sha256": "6b9dfbc930e505402ae9d7e5091a9d7d656cda5f34614f01cfe70bfb0cca27cb",
+      "bytes": 4932328944,
+      "mtime_ns": 1788629922958863273
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00002-of-00014.safetensors": {
+      "sha256": "d8bb44b4ff303fe76fe9e894022fb3dc71b15a2e716592790fe0e3c3e60478fa",
+      "bytes": 4875990528,
+      "mtime_ns": 1788630116142068295
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00003-of-00014.safetensors": {
+      "sha256": "54f22e8b3168f8dc962fac0d313607ebf52a12b433d4cf3098a0d82d9f042940",
+      "bytes": 4875990552,
+      "mtime_ns": 1788630296217852307
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00004-of-00014.safetensors": {
+      "sha256": "ad09c74d3c13ee29b5d0d84548fd8a3424a651564eaccd519946c296e59c557f",
+      "bytes": 4875990584,
+      "mtime_ns": 1788630488130789007
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00005-of-00014.safetensors": {
+      "sha256": "fc993c8a0e2a5b0570f383e1a95dc3a1281d1b224b6f3ee908f4827941e1dfc2",
+      "bytes": 4875990584,
+      "mtime_ns": 1788630684991863268
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00006-of-00014.safetensors": {
+      "sha256": "82f05620d1f718a90c362b221d6a184ff1a0f53301d706882d3df49695fa1974",
+      "bytes": 4875990584,
+      "mtime_ns": 1788630871619726808
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00007-of-00014.safetensors": {
+      "sha256": "fb91da8cb01ff4de3eef0eab1c3e769a734b3a1aafc61734068638a0d6c86934",
+      "bytes": 4875990584,
+      "mtime_ns": 1788631072238149408
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00008-of-00014.safetensors": {
+      "sha256": "431ca56535c8781944ce3801f5eb61c45531e853ecc5846d936ebaf4761b764f",
+      "bytes": 4875990584,
+      "mtime_ns": 1788631256230039725
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00009-of-00014.safetensors": {
+      "sha256": "3825e3f4302f4d2f7d76aa7430d2ce0864fde6b9e540a5806bf0d8e38e4d9f47",
+      "bytes": 4875990584,
+      "mtime_ns": 1788631454829375317
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00010-of-00014.safetensors": {
+      "sha256": "aded5a4d1d5e22dbd8b6f79266b6eb88c840411b09527c53917a1419ace22e2f",
+      "bytes": 4875990584,
+      "mtime_ns": 1788631650962613846
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00011-of-00014.safetensors": {
+      "sha256": "3820ffe8d8d6477f6fe8d614ef3c87abb264ee39accebf43a1507b970d80946f",
+      "bytes": 4875990584,
+      "mtime_ns": 1788631843681743781
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00012-of-00014.safetensors": {
+      "sha256": "05ad2d08ce71963121c9b03f1d9ec5d7641052f4b23c6c12b80d71065eb8e98e",
+      "bytes": 4875990584,
+      "mtime_ns": 1788632031806727587
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00013-of-00014.safetensors": {
+      "sha256": "b64f2289871261fdd1abbd3b78bcd66011b341de3dc8eeb2ed1a473ee7c8d95c",
+      "bytes": 4875990584,
+      "mtime_ns": 1788632225117876355
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00014-of-00014.safetensors": {
+      "sha256": "e45b6c9998c77ee5a6577f9f47bc76416c1d4d387169e50c4c9d3134ea51b13b",
+      "bytes": 3270697008,
+      "mtime_ns": 1788632346224728475
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/video_vae/source/model.safetensors": {
+      "sha256": "5f0c2e161d895a9fee7645ca32d4a7e3a22b90cacfcbeba62ec999cdbbefe0d3",
+      "bytes": 10415548320,
+      "mtime_ns": 1788632761991945753
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors": {
+      "sha256": "a32572fb90b5508b201ec7c2eddcc184b13ddfd3c6f6d2cf06a0b46535d541b4",
+      "bytes": 40225724176,
+      "mtime_ns": 1788628641816315374
+    }
+  },
+  "asset_policy": "Inherited E010 full SHA; current size/mtime checked, no repeated model hash",
+  "export_manifest": {
+    "file": "/data1/models/svdquant-wjq/research/20261002/E009/legacy_export/manifest.json",
+    "sha256": "0b92e3e9f6a937ca7a6ebff6c4dfe4e6ad4e918224525ab5bf12a4e1baddfec0",
+    "bytes": 306476
+  },
+  "settings": {
+    "height": 576,
+    "width": 1024,
+    "num_frames": 124,
+    "num_inference_steps": 20,
+    "cfg_scale": 1.0,
+    "flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "noise_dtype": "bfloat16",
+    "tiled": true,
+    "tile_size": 256,
+    "tile_overlap": 64,
+    "fps": 24,
+    "audio_sample_rate": 32000
+  },
+  "environment": {
+    "python": "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+    "torch": "2.11.0+cu128",
+    "torch_cuda": "12.8",
+    "attention_implementation": "torch",
+    "sdpa_enabled": {
+      "flash": true,
+      "math": true,
+      "mem_efficient": true,
+      "cudnn": true
+    }
+  },
+  "cpu_check_reference": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E017/E017_check_block_mean.json",
+    "sha256": "8c2d5f4f6d1a02331ab4dfdb1370fa2f465185665af3d1cb7a675dbee9bba65b",
+    "bytes": 46613
+  },
+  "denoiser_reference": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E017/E017_denoise_block_mean.json",
+    "sha256": "2c420d7ff566ec3858711139cdad1b320e09a457ed2860b32b9b0f45cb765eee",
+    "bytes": 2774442
+  },
+  "av_version": "18.1.0",
+  "cases": [
+    {
+      "prompt_id": 30,
+      "seed": 49771,
+      "prompt": "# Core Summary\nA 5-second cinematic text animation set against a deep black void, featuring three lines of white, handwritten-style Chinese text appearing sequentially with 35mm film grain and subtle light leaks. Continuous shot. The first line fades in with a slight jitter, followed rapidly by the second and third lines, culminating in a full display of the philosophical message before fading.\n\n# Scene\n[shot1][00:00-00:05]\nDeep black background with high-contrast 35mm film grain overlay. Subtle dust particles float slowly in the void, illuminated by a faint, unseen top light source. A soft, warm vignette borders the frame. No physical architecture or terrain.\n**Audio Description**: Low-frequency ambient hum, subtle film projector mechanical noise, silence otherwise.\n\n# Subjects Description\nNone. The primary visual elements are the text lines themselves, styled as handwritten white characters with slight imperfections.\n\n# Dynamic Narrative\n[shot1][00:00-00:05]\nThe frame begins pure black. At 00:00, the first line of text `\"最烂的剧本，往往有最好的演员。\"` writes itself onto the center screen in a crooked, white handwritten font, appearing as if drawn by an invisible pen with slight jitter. By 00:01.5, the second line `\"演员：你。\"` snaps in below the first, slightly smaller and sharper. At 00:02.5, the third line `\"评分：无法评分，因为人生不需要。\"` fades in beneath the second, completing the stanza. The camera holds static on the full text arrangement. A subtle light leak flickers across the right edge at 00:04. The text remains visible until the clip ends, with film grain continuously shifting over the black background.\n\n# Style, Color & Aesthetics\nMonochromatic palette with deep blacks and bright white text. High-contrast film noir aesthetic. 35mm film grain, slight chromatic aberration on text edges, and organic dust textures create a tactile, analog movie feel. Lighting is minimal, focusing entirely on the legibility of the text against the void.\n\n# Atmosphere & Emotion\nIntrospective, melancholic, and philosophical. The darkness and grain evoke a sense of nostalgia and seriousness, while the message delivers a poignant, empowering twist about the nature of life and self-agency.",
+      "prompt_sha256": "fba1ea309896aa765c8f4c1311d0c8cc2b8921df6637f420e740d058da3eb822",
+      "reason": "5-second text animation with ambient sound",
+      "status": "complete",
+      "variant": "block_mean",
+      "settings": {
+        "height": 576,
+        "width": 1024,
+        "num_frames": 124,
+        "num_inference_steps": 20,
+        "cfg_scale": 1.0,
+        "flow_shift": 12.0,
+        "audio_flow_shift": 3.0,
+        "rand_device": "cpu",
+        "noise_dtype": "bfloat16",
+        "tiled": true,
+        "tile_size": 256,
+        "tile_overlap": 64,
+        "fps": 24,
+        "audio_sample_rate": 32000
+      },
+      "video": "/data1/models/svdquant-wjq/research/20261002/E017/decode_block_mean/p030_block_mean.mp4",
+      "video_sha256": "6de6c1ed443c909f71f141a0420701e0d5d841343c1c80fe2baa2526e1e2596e",
+      "video_file": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E017/decode_block_mean/p030_block_mean.mp4",
+        "sha256": "6de6c1ed443c909f71f141a0420701e0d5d841343c1c80fe2baa2526e1e2596e",
+        "bytes": 3125704
+      },
+      "media": {
+        "frames": 124,
+        "width": 1024,
+        "height": 576,
+        "fps": 24.0,
+        "audio_streams": 1,
+        "audio_sample_rate": 32000,
+        "audio_channels": 2
+      },
+      "final_latents": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E017/denoise_block_mean/p030/final_latents.pt",
+        "sha256": "38db259ae19d9b996522f28e57742669d7bde4657fdb88fea1d2a71a6369712c",
+        "bytes": 4120341
+      },
+      "audio_pcm_file": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E017/decode_block_mean/p030_block_mean.audio.pt",
+        "sha256": "e66c77f4c61079d9e5be5e99fc6440ab807e43668224f3b093eea5204c8a1d6b",
+        "bytes": 1326539
+      },
+      "audio_pcm": {
+        "shape": [
+          2,
+          165600
+        ],
+        "dtype": "torch.float32",
+        "sha256": "9c16bb5eacc2e6084c0e619cbde51cd70a2bf6081021e1688ec1dfe2393250e2"
+      },
+      "audio_samples_before_aac": 165600
+    },
+    {
+      "prompt_id": 36,
+      "seed": 59526,
+      "prompt": "# Core Summary\nA 5-second cinematic product showcase for \"超能植愈香氛洗衣液\" (Chaoneng Plant Healing Fragrance Laundry Detergent), blending macro ingredient artistry with a heroic product reveal. The clip uses a two-shot structure: first, an extreme close-up of natural ingredients swirling in liquid to establish the \"plant healing\" concept; second, a polished medium shot of the 2.8kg bottle with dynamic lighting and key selling point text overlays. The visual style mimics high-end perfume commercials with luminous, layered lighting and fluid motion.\n\n# Scene\n[shot1][00:00-00:02]\nA macro studio environment with a shallow depth of field. The background is a soft, out-of-focus bokeh of natural greens and warm golds. A pool of pearlescent, viscous liquid fills the lower frame, catching directional sunlight that creates caustic reflections. Floating on the surface are delicate French Iris petals and small chips of sandalwood.\n\n[shot2][00:02-00:05]\nA clean, minimalist product stage with a textured stone pedestal in the center. The background is a gradient of soft white to pale sage green, illuminated by volumetric light beams (Tyndall effect) cutting through a subtle mist. The lighting is bright and high-key, casting sharp but soft shadows to emphasize the bottle's contours.\n\n# Subjects Description\n- **Product**: A 2.8kg large capacity bottle of \"超能植愈香氛洗衣液\". The bottle design is sleek, featuring a translucent green-tinted plastic body showing the liquid inside, with a premium white and gold label. The cap is a sturdy, ergonomic pump or screw top in dark green or wood texture.\n- **Ingredients**: Visual representations of French Iris (pale purple/white petals), Sandalwood (brown woody chips), and a swirl of green-gold liquid detergent.\n\n# Dynamic Narrative\n[shot1][00:00-00:02]\nExtreme close-up. Slow motion. French Iris petals and sandalwood chips gently drop into the pearlescent green liquid, creating a viscous, satisfying ripple effect. Light refracts through the liquid swirls, highlighting the texture of the natural oils. The motion is fluid and hypnotic, emphasizing the \"100% natural plant精油\" concept. Sound of a soft liquid splash and a delicate chime.\n\n[shot2][00:02-00:05]\nCut to medium shot. The 2.8kg bottle stands firmly on the stone pedestal. A beam of light sweeps across the label from left to right, making the gold text gleam. Soft mist swirls around the base of the bottle. White text fades in elegantly on the right side: `\"Yves Cassar 专属调香\"` followed by `\"720h 持久留香\"`. The bottle remains static while the light and mist create dynamic movement. Sound of a low, luxurious bass swell and a subtle wind whoosh.\n\n# Style, Color & Aesthetics\n- **Visual Style**: High-end commercial cinematography, resembling luxury perfume advertisements.\n- **Color Palette**: Dominant sage greens, pearlescent whites, and accents of gold and pale purple.\n- **Lighting**: Bright, luminous, and layered. Use of rim lighting to separate the bottle from the background. Volumetric haze for atmosphere.\n- **Texture**: Emphasis on fluid viscosity, petal delicacy, and smooth plastic/glass surfaces.\n- **Quality**: High resolution, sharp focus on product details, smooth motion blur for liquid elements.\n\n# Atmosphere & Emotion\n- **Atmosphere**: Fresh, luxurious, natural, and serene.\n- **Emotion**: Trust in quality, sensory pleasure, and premium elegance. The clip aims to evoke the feeling of a high-end spa or garden through visual cues.",
+      "prompt_sha256": "27ecdc7b8cf31078396b8fd42cd7f4b25a300cf9da0a31a1cca6ed4db75d198b",
+      "reason": "5-second macro liquid/product sequence with sound effects",
+      "status": "complete",
+      "variant": "block_mean",
+      "settings": {
+        "height": 576,
+        "width": 1024,
+        "num_frames": 124,
+        "num_inference_steps": 20,
+        "cfg_scale": 1.0,
+        "flow_shift": 12.0,
+        "audio_flow_shift": 3.0,
+        "rand_device": "cpu",
+        "noise_dtype": "bfloat16",
+        "tiled": true,
+        "tile_size": 256,
+        "tile_overlap": 64,
+        "fps": 24,
+        "audio_sample_rate": 32000
+      },
+      "video": "/data1/models/svdquant-wjq/research/20261002/E017/decode_block_mean/p036_block_mean.mp4",
+      "video_sha256": "cbfc1f48a256888d04e591704fd131c40e487fb6385b82f75064385542b7847c",
+      "video_file": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E017/decode_block_mean/p036_block_mean.mp4",
+        "sha256": "cbfc1f48a256888d04e591704fd131c40e487fb6385b82f75064385542b7847c",
+        "bytes": 5960366
+      },
+      "media": {
+        "frames": 124,
+        "width": 1024,
+        "height": 576,
+        "fps": 24.0,
+        "audio_streams": 1,
+        "audio_sample_rate": 32000,
+        "audio_channels": 2
+      },
+      "final_latents": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E017/denoise_block_mean/p036/final_latents.pt",
+        "sha256": "2f5293588beab14aa42f0c80eff9d016862feef11544d08f6db521fa8fd8472c",
+        "bytes": 4120341
+      },
+      "audio_pcm_file": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E017/decode_block_mean/p036_block_mean.audio.pt",
+        "sha256": "9358856f0714cca96378d7349165cff24d66af4bf3aa4382d6a2cfd22322d12a",
+        "bytes": 1326539
+      },
+      "audio_pcm": {
+        "shape": [
+          2,
+          165600
+        ],
+        "dtype": "torch.float32",
+        "sha256": "6f751b7c28c00e5155fe7c7d9b54c64ea80bb6ab4a6f51700f91b57050afa8aa"
+      },
+      "audio_samples_before_aac": 165600
+    }
+  ],
+  "seconds_total": 22.73730558110401,
+  "peak_allocated_bytes": 7939765248,
+  "peak_reserved_bytes": 8774483968
+}

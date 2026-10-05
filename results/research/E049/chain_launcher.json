@@ -1,0 +1,153 @@
+{
+  "experiment": "E049",
+  "status": "complete",
+  "start_epoch": 1791036092.8629062,
+  "source": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/continue_wan14b_reference.py",
+    "bytes": 9156,
+    "sha256": "8fbde0d9c2be3cdbd3960e0ca34b199ab5de6c5b24297e83fcb0ba50f3bacd5a"
+  },
+  "manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E049_wan14b_reference_manifest.json",
+    "bytes": 9727,
+    "sha256": "8cc2c92fc497445b7f22290f2221073ae7699b1983ccb510786f1a1622716849"
+  },
+  "stages": [
+    {
+      "name": "reference_check",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_wan14b_reference.py",
+        "--manifest",
+        "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E049_wan14b_reference_manifest.json",
+        "--prompt-ids",
+        "161",
+        "192",
+        "269",
+        "316",
+        "--check-only"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E049_chain_reference_check.log",
+      "status": "complete",
+      "start_epoch": 1791036257.8719912,
+      "cuda_visible_devices": "",
+      "timeout_seconds": 300,
+      "pid": 1681789,
+      "returncode": 0,
+      "result": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E049/check_bf16.json",
+        "bytes": 34051,
+        "sha256": "22a0a5f3091bf958e317672ddc835b34e1162e3553bf5f508fd24f3b2c09dae3"
+      },
+      "seconds": 5.524750471115112
+    },
+    {
+      "name": "generation",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/launch_wan14b_reference.py"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E049_chain_generation.log",
+      "status": "complete",
+      "start_epoch": 1791036263.3970551,
+      "cuda_visible_devices": "",
+      "timeout_seconds": null,
+      "pid": 1683283,
+      "returncode": 0,
+      "result": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E049/launcher.json",
+        "bytes": 7349,
+        "sha256": "5289225c3b853b0ba2a39b2a2e65b2b84d98a9a477b3c619eaf6ae36e4eadf14"
+      },
+      "seconds": 1897.1658205986023
+    },
+    {
+      "name": "evaluation",
+      "command": [
+        "/data1/models/svdquant-wjq/conda-envs/mjvideo/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/launch_wan14b_reference_evaluation.py"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E049_chain_evaluation.log",
+      "status": "complete",
+      "start_epoch": 1791038160.665498,
+      "cuda_visible_devices": "",
+      "timeout_seconds": null,
+      "pid": 2101085,
+      "returncode": 0,
+      "result": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E049/evaluation_launcher.json",
+        "bytes": 5697,
+        "sha256": "0b0a946005cd2f2295d26b06da7f8b2832f8fb938da87a7c079dd23af3803562"
+      },
+      "seconds": 70.93540334701538
+    },
+    {
+      "name": "summary",
+      "command": [
+        "/data1/models/svdquant-wjq/conda-envs/mjvideo/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/summarize_wan14b_reference.py"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E049_chain_summary.log",
+      "status": "complete",
+      "start_epoch": 1791038231.6012938,
+      "cuda_visible_devices": "",
+      "timeout_seconds": 180,
+      "pid": 2126150,
+      "returncode": 0,
+      "result": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E049/evaluation_summary.json",
+        "bytes": 247500,
+        "sha256": "48e880410ce36e3c6a4be75fbb0f5ba43c9f15136967678dd7262cf09d6f3dff"
+      },
+      "seconds": 1.7694692611694336
+    }
+  ],
+  "asset_wait": {
+    "worker_pid": 3654983,
+    "supervisor_pid": 3654981,
+    "process_identities": {
+      "3654983": [
+        3654983,
+        "204137160"
+      ],
+      "3654981": [
+        3654981,
+        "204137156"
+      ]
+    },
+    "deadline_epoch": 1791037236.3767138,
+    "status": "complete",
+    "original_processes_exited": true,
+    "download": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/asset_wan14b/download.json",
+      "bytes": 16328,
+      "sha256": "ad8b7167a4d4773bad27846d1f900178b95e521731aa79a474445d4a9d162dfb"
+    },
+    "supervisor": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/asset_wan14b/supervisor.json",
+      "bytes": 595,
+      "sha256": "ef3d6ab455b6d47af516bca304e07ce57b408f389beaf9b4055f121a733a149d"
+    }
+  },
+  "evaluation_gpu_wait": {
+    "start_epoch": 1791038160.563231,
+    "deadline_epoch": 1791039960.563231,
+    "status": "complete",
+    "seconds": 0.1017763614654541,
+    "gpu_at_ready": {
+      "0": {
+        "memory_used_mib": 0,
+        "utilization_pct": 0
+      },
+      "1": {
+        "memory_used_mib": 0,
+        "utilization_pct": 0
+      }
+    }
+  },
+  "seconds": 2140.508164167404
+}

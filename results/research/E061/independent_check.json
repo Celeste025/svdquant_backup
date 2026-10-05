@@ -1,0 +1,704 @@
+{
+  "experiment": "E061",
+  "status": "complete",
+  "reviewer": "independent NumPy CPU recomputation",
+  "seconds": 0.8229910279624164,
+  "cuda_initialized": false,
+  "new_model_forwards": 0,
+  "files_written": [
+    "/home/wjq/workspace/svdquant-exp/results/research/E061/independent_check.json"
+  ],
+  "evaluation": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E061/evaluate.json",
+    "sha256": "101a5c0b718c5020947ebd54c6214e64fbd2903473e05e1b51a8db415503afa0"
+  },
+  "check": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E061/check.json",
+    "sha256": "40cb0a3d1c086f4fca32d510cc074bbed2bf5f457cb0cd37e82ff446ac02cf61"
+  },
+  "runner": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_lowrank_initialization.py",
+    "sha256": "334ab1747c8aad44f3f309d0bbcaa873f65c2bf382da6a495811447f12d35d65"
+  },
+  "verification": {
+    "actual_saved_pt_files_hashed_and_loaded": 21,
+    "fresh_legacy_fields_byte_exact": {
+      "actual_dit_inputs": true,
+      "raw_outputs": true,
+      "velocities": true
+    },
+    "fresh_legacy_modal_arrays_byte_exact": 4,
+    "all_nine_actual_inputs_match_checked_signatures": true,
+    "all_nine_raw_and_velocity_arrays_match_recorded_signatures": true,
+    "all_nine_runtime_counters_valid": true,
+    "fresh_new_arm_actual_inputs": [
+      {
+        "case_id": "e010_p030_s05",
+        "position": "source_teacher",
+        "arm": "error_init",
+        "actual_input_byte_exact_to_legacy": true,
+        "actual_input_signature_exact_to_teacher": true
+      },
+      {
+        "case_id": "e010_p030_s05",
+        "position": "source_teacher",
+        "arm": "weight_init",
+        "actual_input_byte_exact_to_legacy": true,
+        "actual_input_signature_exact_to_teacher": true
+      },
+      {
+        "case_id": "e010_p030_s05",
+        "position": "next_teacher",
+        "arm": "error_init",
+        "actual_input_byte_exact_to_legacy": true,
+        "actual_input_signature_exact_to_teacher": true
+      },
+      {
+        "case_id": "e010_p030_s05",
+        "position": "next_teacher",
+        "arm": "weight_init",
+        "actual_input_byte_exact_to_legacy": true,
+        "actual_input_signature_exact_to_teacher": true
+      },
+      {
+        "case_id": "e010_p036_s14",
+        "position": "source_teacher",
+        "arm": "error_init",
+        "actual_input_byte_exact_to_legacy": true,
+        "actual_input_signature_exact_to_teacher": true
+      },
+      {
+        "case_id": "e010_p036_s14",
+        "position": "source_teacher",
+        "arm": "weight_init",
+        "actual_input_byte_exact_to_legacy": true,
+        "actual_input_signature_exact_to_teacher": true
+      },
+      {
+        "case_id": "e010_p036_s14",
+        "position": "next_teacher",
+        "arm": "error_init",
+        "actual_input_byte_exact_to_legacy": true,
+        "actual_input_signature_exact_to_teacher": true
+      },
+      {
+        "case_id": "e010_p036_s14",
+        "position": "next_teacher",
+        "arm": "weight_init",
+        "actual_input_byte_exact_to_legacy": true,
+        "actual_input_signature_exact_to_teacher": true
+      }
+    ],
+    "teacher_comparison_scope": "E014 stores input signatures only; E015/E059/E061 concrete captures independently rehashed. New arms byte-compared with concrete E059 inputs.",
+    "attempted_dit_calls": 9,
+    "complete_dit_calls": 9,
+    "shifted_calls": 0,
+    "reported_metric_max_absolute_delta": 9.313225746154785e-10,
+    "reported_metric_max_relative_delta": 3.7448460074476775e-16
+  },
+  "formula": {
+    "velocity_sse": "sum((v_arm.astype(float64)-v_BF16.astype(float64))**2)",
+    "channel_centered_sse": "Subtract each batch/channel error mean over axes >=2 before squared summation.",
+    "primary_gate": "For each of four teacher inputs: video raw SSE(weight_init) <= 0.8*SSE(legacy_selected) and <=0.8*SSE(error_init); all four must pass.",
+    "numerical_backend": "NumPy float64; saved BF16 decoded via uint16->uint32 left shift 16 -> float32 -> float64; no runner/summary metric imports."
+  },
+  "primary_all_four_gate": false,
+  "primary_points_passed": 0,
+  "cases": [
+    {
+      "case_id": "e010_p030_s05",
+      "position": "source_teacher",
+      "modalities": {
+        "video": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "channel_center_axes": [
+            2,
+            3,
+            4
+          ],
+          "arms": {
+            "legacy_selected": {
+              "sse": 346491.5250428308,
+              "channel_centered_sse": 333923.3186070127,
+              "nmse": 0.06541152286508105,
+              "reference_energy": 5297102.251502542,
+              "elements": 2045952
+            },
+            "plain": {
+              "sse": 294452.93970612856,
+              "channel_centered_sse": 285724.1715200366,
+              "nmse": 0.05558755065047233,
+              "reference_energy": 5297102.251502542,
+              "elements": 2045952
+            },
+            "error_init": {
+              "sse": 333252.39478129434,
+              "channel_centered_sse": 304936.5033407233,
+              "nmse": 0.06291220727082739,
+              "reference_energy": 5297102.251502542,
+              "elements": 2045952
+            },
+            "weight_init": {
+              "sse": 305875.0324209124,
+              "channel_centered_sse": 275047.46362969175,
+              "nmse": 0.05774384142464871,
+              "reference_energy": 5297102.251502542,
+              "elements": 2045952
+            }
+          },
+          "raw_ratios": {
+            "legacy_selected": 0.8827778179656842,
+            "error_init": 0.9178479651186031,
+            "plain": 1.038790893805249
+          },
+          "channel_centered_ratios": {
+            "legacy_selected": 0.8236845057035065,
+            "error_init": 0.9019827426904191,
+            "plain": 0.962632815300346
+          }
+        },
+        "audio": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "channel_center_axes": [
+            2
+          ],
+          "arms": {
+            "legacy_selected": {
+              "sse": 1579.6451022453557,
+              "channel_centered_sse": 664.2025574939911,
+              "nmse": 0.10223895444054644,
+              "reference_energy": 15450.520898704457,
+              "elements": 13248
+            },
+            "plain": {
+              "sse": 2561.002036058734,
+              "channel_centered_sse": 363.4007231001632,
+              "nmse": 0.16575506113023522,
+              "reference_energy": 15450.520898704457,
+              "elements": 13248
+            },
+            "error_init": {
+              "sse": 2026.9305681041924,
+              "channel_centered_sse": 723.5466071651495,
+              "nmse": 0.13118849399272697,
+              "reference_energy": 15450.520898704457,
+              "elements": 13248
+            },
+            "weight_init": {
+              "sse": 1330.245152981027,
+              "channel_centered_sse": 669.2369651769419,
+              "nmse": 0.08609710712682636,
+              "reference_energy": 15450.520898704457,
+              "elements": 13248
+            }
+          },
+          "raw_ratios": {
+            "legacy_selected": 0.8421164672306305,
+            "error_init": 0.656285505736498,
+            "plain": 0.5194236998843679
+          },
+          "channel_centered_ratios": {
+            "legacy_selected": 1.0075796270672992,
+            "error_init": 0.924939677070711,
+            "plain": 1.8415950289468244
+          }
+        }
+      },
+      "primary_gate_by_baseline": {
+        "legacy_selected": false,
+        "error_init": false
+      },
+      "primary_teacher_gate": false
+    },
+    {
+      "case_id": "e010_p030_s05",
+      "position": "next_teacher",
+      "modalities": {
+        "video": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "channel_center_axes": [
+            2,
+            3,
+            4
+          ],
+          "arms": {
+            "legacy_selected": {
+              "sse": 253829.43407028803,
+              "channel_centered_sse": 241974.20389048674,
+              "nmse": 0.050811947003116725,
+              "reference_energy": 4995467.58274621,
+              "elements": 2045952
+            },
+            "plain": {
+              "sse": 224938.32677985542,
+              "channel_centered_sse": 220052.38148164738,
+              "nmse": 0.04502848293056038,
+              "reference_energy": 4995467.58274621,
+              "elements": 2045952
+            },
+            "error_init": {
+              "sse": 260251.45389545304,
+              "channel_centered_sse": 244127.30580691976,
+              "nmse": 0.05209751631545617,
+              "reference_energy": 4995467.58274621,
+              "elements": 2045952
+            },
+            "weight_init": {
+              "sse": 234810.26649333118,
+              "channel_centered_sse": 220292.92961459135,
+              "nmse": 0.0470046622471017,
+              "reference_energy": 4995467.58274621,
+              "elements": 2045952
+            }
+          },
+          "raw_ratios": {
+            "legacy_selected": 0.9250710712624043,
+            "error_init": 0.9022438221907418,
+            "plain": 1.043887317269579
+          },
+          "channel_centered_ratios": {
+            "legacy_selected": 0.9103984064115035,
+            "error_init": 0.9023690688202695,
+            "plain": 1.0010931403301537
+          }
+        },
+        "audio": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "channel_center_axes": [
+            2
+          ],
+          "arms": {
+            "legacy_selected": {
+              "sse": 1915.3087303149905,
+              "channel_centered_sse": 1026.7653788355346,
+              "nmse": 0.12605422102692154,
+              "reference_energy": 15194.324432070673,
+              "elements": 13248
+            },
+            "plain": {
+              "sse": 1408.9238313184246,
+              "channel_centered_sse": 379.109446244212,
+              "nmse": 0.09272698089456402,
+              "reference_energy": 15194.324432070673,
+              "elements": 13248
+            },
+            "error_init": {
+              "sse": 2382.5109882345487,
+              "channel_centered_sse": 1023.9628177766617,
+              "nmse": 0.15680269293222282,
+              "reference_energy": 15194.324432070673,
+              "elements": 13248
+            },
+            "weight_init": {
+              "sse": 1925.8838286315918,
+              "channel_centered_sse": 945.8904451168685,
+              "nmse": 0.12675021105687512,
+              "reference_energy": 15194.324432070673,
+              "elements": 13248
+            }
+          },
+          "raw_ratios": {
+            "legacy_selected": 1.0055213544162471,
+            "error_init": 0.8083420551435443,
+            "plain": 1.366918342796014
+          },
+          "channel_centered_ratios": {
+            "legacy_selected": 0.9212332871893408,
+            "error_init": 0.9237546800485271,
+            "plain": 2.495032646871984
+          }
+        }
+      },
+      "primary_gate_by_baseline": {
+        "legacy_selected": false,
+        "error_init": false
+      },
+      "primary_teacher_gate": false
+    },
+    {
+      "case_id": "e010_p036_s14",
+      "position": "source_teacher",
+      "modalities": {
+        "video": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "channel_center_axes": [
+            2,
+            3,
+            4
+          ],
+          "arms": {
+            "legacy_selected": {
+              "sse": 53315.13453603556,
+              "channel_centered_sse": 52825.084601985014,
+              "nmse": 0.012059323118851554,
+              "reference_energy": 4421071.896870521,
+              "elements": 2045952
+            },
+            "plain": {
+              "sse": 53243.380246287124,
+              "channel_centered_sse": 52664.31352856413,
+              "nmse": 0.012043093052609194,
+              "reference_energy": 4421071.896870521,
+              "elements": 2045952
+            },
+            "error_init": {
+              "sse": 53543.4850432612,
+              "channel_centered_sse": 53010.59385741041,
+              "nmse": 0.012110973603745788,
+              "reference_energy": 4421071.896870521,
+              "elements": 2045952
+            },
+            "weight_init": {
+              "sse": 53213.59707807662,
+              "channel_centered_sse": 52613.46036113812,
+              "nmse": 0.012036356412964952,
+              "reference_energy": 4421071.896870521,
+              "elements": 2045952
+            }
+          },
+          "raw_ratios": {
+            "legacy_selected": 0.9980955228033738,
+            "error_init": 0.9938388775979367,
+            "plain": 0.9994406221379496
+          },
+          "channel_centered_ratios": {
+            "legacy_selected": 0.9959938683971564,
+            "error_init": 0.9925084126138917,
+            "plain": 0.9990343903866052
+          }
+        },
+        "audio": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "channel_center_axes": [
+            2
+          ],
+          "arms": {
+            "legacy_selected": {
+              "sse": 160.00146270015745,
+              "channel_centered_sse": 129.41448605721644,
+              "nmse": 0.014027332685171721,
+              "reference_energy": 11406.406783899467,
+              "elements": 13248
+            },
+            "plain": {
+              "sse": 172.81666366558312,
+              "channel_centered_sse": 141.2146133159199,
+              "nmse": 0.015150841710250046,
+              "reference_energy": 11406.406783899467,
+              "elements": 13248
+            },
+            "error_init": {
+              "sse": 184.70981704360207,
+              "channel_centered_sse": 154.20970824829635,
+              "nmse": 0.016193514797694774,
+              "reference_energy": 11406.406783899467,
+              "elements": 13248
+            },
+            "weight_init": {
+              "sse": 157.11604077897738,
+              "channel_centered_sse": 114.75798265049886,
+              "nmse": 0.013774367665087313,
+              "reference_energy": 11406.406783899467,
+              "elements": 13248
+            }
+          },
+          "raw_ratios": {
+            "legacy_selected": 0.9819662778546759,
+            "error_init": 0.8506101261628612,
+            "plain": 0.9091486749391947
+          },
+          "channel_centered_ratios": {
+            "legacy_selected": 0.8867475824905902,
+            "error_init": 0.7441683403338302,
+            "plain": 0.8126494840428923
+          }
+        }
+      },
+      "primary_gate_by_baseline": {
+        "legacy_selected": false,
+        "error_init": false
+      },
+      "primary_teacher_gate": false
+    },
+    {
+      "case_id": "e010_p036_s14",
+      "position": "next_teacher",
+      "modalities": {
+        "video": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "channel_center_axes": [
+            2,
+            3,
+            4
+          ],
+          "arms": {
+            "legacy_selected": {
+              "sse": 43626.13557533629,
+              "channel_centered_sse": 43189.9003130687,
+              "nmse": 0.009888495450676828,
+              "reference_energy": 4411807.215055173,
+              "elements": 2045952
+            },
+            "plain": {
+              "sse": 44499.22492674875,
+              "channel_centered_sse": 43999.57565324193,
+              "nmse": 0.010086393796831454,
+              "reference_energy": 4411807.215055173,
+              "elements": 2045952
+            },
+            "error_init": {
+              "sse": 45969.76817712931,
+              "channel_centered_sse": 45559.03873196938,
+              "nmse": 0.010419713721909404,
+              "reference_energy": 4411807.215055173,
+              "elements": 2045952
+            },
+            "weight_init": {
+              "sse": 46184.81006578295,
+              "channel_centered_sse": 45669.49269723815,
+              "nmse": 0.0104684560803515,
+              "reference_energy": 4411807.215055173,
+              "elements": 2045952
+            }
+          },
+          "raw_ratios": {
+            "legacy_selected": 1.0586500375681496,
+            "error_init": 1.00467789804432,
+            "plain": 1.0378789774835153
+          },
+          "channel_centered_ratios": {
+            "legacy_selected": 1.0574113940110013,
+            "error_init": 1.0024244138669955,
+            "plain": 1.0379530261190866
+          }
+        },
+        "audio": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "channel_center_axes": [
+            2
+          ],
+          "arms": {
+            "legacy_selected": {
+              "sse": 148.75581939183843,
+              "channel_centered_sse": 120.7973397055328,
+              "nmse": 0.013507416553154817,
+              "reference_energy": 11012.899380606927,
+              "elements": 13248
+            },
+            "plain": {
+              "sse": 144.9604522129389,
+              "channel_centered_sse": 117.42265099950723,
+              "nmse": 0.013162787309961788,
+              "reference_energy": 11012.899380606927,
+              "elements": 13248
+            },
+            "error_init": {
+              "sse": 145.9292595492546,
+              "channel_centered_sse": 122.97722323178598,
+              "nmse": 0.013250757544033091,
+              "reference_energy": 11012.899380606927,
+              "elements": 13248
+            },
+            "weight_init": {
+              "sse": 125.51382508300526,
+              "channel_centered_sse": 97.47709265669098,
+              "nmse": 0.01139698282398074,
+              "reference_energy": 11012.899380606927,
+              "elements": 13248
+            }
+          },
+          "raw_ratios": {
+            "legacy_selected": 0.8437574112807559,
+            "error_init": 0.8601004724528282,
+            "plain": 0.8658487412734639
+          },
+          "channel_centered_ratios": {
+            "legacy_selected": 0.8069473458133308,
+            "error_init": 0.7926434675872241,
+            "plain": 0.8301387494402597
+          }
+        }
+      },
+      "primary_gate_by_baseline": {
+        "legacy_selected": false,
+        "error_init": false
+      },
+      "primary_teacher_gate": false
+    }
+  ],
+  "sources": [
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261004/E061/evaluate/legacy_selected/e010_p030_s05_source_teacher.pt",
+      "sha256": "dd89bf48a97591079cd483089de6860d7ddb140c438f7e929761a56a66a3ff99",
+      "bytes": 20326256,
+      "sha256_recomputed": true
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261004/E061/evaluate/error_init/e010_p030_s05_source_teacher.pt",
+      "sha256": "d0dbf618907fcdc0cf716219b4cd4658bfe94e903b1315cbc3fd0c764474bb27",
+      "bytes": 20326256,
+      "sha256_recomputed": true
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261004/E061/evaluate/error_init/e010_p030_s05_next_teacher.pt",
+      "sha256": "e8a25e40aa0461e1576800e03660943599ada2673ba85f4c640ee2fb01daefe8",
+      "bytes": 20325616,
+      "sha256_recomputed": true
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261004/E061/evaluate/error_init/e010_p036_s14_source_teacher.pt",
+      "sha256": "1472798132800e512de8321bbb57926ae9981f951a0c1825438e69a13989ae7d",
+      "bytes": 23618352,
+      "sha256_recomputed": true
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261004/E061/evaluate/error_init/e010_p036_s14_next_teacher.pt",
+      "sha256": "6f1c4b029b07885ea09f13655e4605d5537ac836909572c586dfc05816a32bad",
+      "bytes": 23617712,
+      "sha256_recomputed": true
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261004/E061/evaluate/weight_init/e010_p030_s05_source_teacher.pt",
+      "sha256": "5c1ab85053b540b5ae3addd24092030e16a2eeb382a4c15f62e59736de2b8f40",
+      "bytes": 20326256,
+      "sha256_recomputed": true
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261004/E061/evaluate/weight_init/e010_p030_s05_next_teacher.pt",
+      "sha256": "f201bed0a2aaa3dacef11cb3c36e91b044d1b62a1e22676561cf6803d6e12d8d",
+      "bytes": 20325616,
+      "sha256_recomputed": true
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261004/E061/evaluate/weight_init/e010_p036_s14_source_teacher.pt",
+      "sha256": "ca9074d97a221da03cdc99b2c302eebf5ef6c1a1f46d1423bff3d11e95fc6015",
+      "bytes": 23618352,
+      "sha256_recomputed": true
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261004/E061/evaluate/weight_init/e010_p036_s14_next_teacher.pt",
+      "sha256": "d10a3b2361c1e817447c75bcc91313a59dd8001fae18b5142135a4fb56e45dcf",
+      "bytes": 23617712,
+      "sha256_recomputed": true
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261004/E059/evaluate/zero/e010_p030_s05_source_teacher.pt",
+      "sha256": "02d02bf8d845c95d2db16d69182e0931f8a123e9133da295122907b59816ba81",
+      "bytes": 20346032,
+      "sha256_recomputed": true
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/bf16/e010_p030_s05.pt",
+      "sha256": "3ed6e13f3f30451f2b42c575206088c2c0f1a5a937e1cdb366388136ef40e15c",
+      "bytes": 8243737,
+      "sha256_recomputed": true
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/plain/e010_p030_s05.pt",
+      "sha256": "6cafd450e567f8b35aba63f1d030f59f0cf051e8b849e8de823b504157f6382d",
+      "bytes": 8243737,
+      "sha256_recomputed": true
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261004/E059/evaluate/zero/e010_p030_s05_next_teacher.pt",
+      "sha256": "91d6dda3884ac51d35c05aaf8f033d0acfc278464debffb352958b0a7674c6f3",
+      "bytes": 20345392,
+      "sha256_recomputed": true
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/bf16/e010_p030_s05/BB.pt",
+      "sha256": "cd1614a4e1918379f36a7edcf5d3fdb8be8c9fcb1591fe927e84852c20fffa61",
+      "bytes": 24434093,
+      "sha256_recomputed": true
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/plain/e010_p030_s05/BB.pt",
+      "sha256": "c1a365eed3bd393df03dfc8ea6763fd87bdf3644e86b33c3e2d7e23afe01a6ee",
+      "bytes": 24434093,
+      "sha256_recomputed": true
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261004/E059/evaluate/zero/e010_p036_s14_source_teacher.pt",
+      "sha256": "6930a070526a8ba477b3d552569e9a38743fcdc3b1981097d129ad201314252d",
+      "bytes": 23638128,
+      "sha256_recomputed": true
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/bf16/e010_p036_s14.pt",
+      "sha256": "ce7df07cb7243301b978743992c1a977815dd14510af6be80dee567c45ec04e7",
+      "bytes": 8243737,
+      "sha256_recomputed": true
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/plain/e010_p036_s14.pt",
+      "sha256": "45047b2b1cedc593774be811de866a43ef99062beac8210978ea08b96f026bf9",
+      "bytes": 8243737,
+      "sha256_recomputed": true
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261004/E059/evaluate/zero/e010_p036_s14_next_teacher.pt",
+      "sha256": "d9752f998983df97b0c5bd146257905b7f5f8566cee311397b0ed2a4d30ce6e3",
+      "bytes": 23637488,
+      "sha256_recomputed": true
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/bf16/e010_p036_s14/BB.pt",
+      "sha256": "dc44755a2f5aaeee68ac4a7446c58eb13944b7deaffa59f3210d9fca18d091e5",
+      "bytes": 27726189,
+      "sha256_recomputed": true
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/plain/e010_p036_s14/BB.pt",
+      "sha256": "6575aedb9132c1434b7adcbc7e956c7cc835c21bef373b8f3d1bec5878b802fa",
+      "bytes": 27726189,
+      "sha256_recomputed": true
+    }
+  ],
+  "conclusion": "Prespecified investment gate fails at all four teacher inputs. Stop this fixed-smooth one-seed initialization comparison. This does not refute matched carry-Q/full official PTQ or establish a new mechanism.",
+  "limitations": [
+    "Four old diagnostic teacher inputs, not independent quality/generalization evaluation.",
+    "Current local randomized SVD with one matched seed per layer and legacy frozen smoothing; no carry-Q or smoothing recalibration.",
+    "Recomputed actual saved outputs and recorded runtime counters; did not rerun GPU or independently revalidate the new packed export bodies.",
+    "Audio and channel-centered readouts are auxiliary and do not replace the preregistered uncentered-video gate."
+  ]
+}

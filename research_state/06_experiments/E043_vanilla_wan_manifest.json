@@ -1,0 +1,163 @@
+{
+  "experiment": "E043",
+  "mode": "exploration_baseline_readiness",
+  "status": "preregistered",
+  "scope": "Original non-distilled Wan2.1 reference on the same four public action prompts used by E038; not a causal cross-model comparison, quantization result, or novel method.",
+  "model_dir": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers",
+  "python": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+  "data_dir": "/data1/models/svdquant-wjq/research/20261003/E043",
+  "report_dir": "/home/wjq/workspace/svdquant-exp/results/research/E043",
+  "prompt_source": {
+    "file": "/home/wjq/workspace/ViDiT-Q/eval/video/Vbench/vbench/VBench_full_info.json",
+    "sha256": "5dd2de80ee43cda750b2b72ea7023657c0b90d3702041c7e4608c65dbe50dccd",
+    "index_convention": "zero-based, not legacy H3 prompt IDs",
+    "selection": "Purposive four motion types chosen before any E038 model output; no output-based filtering."
+  },
+  "cases": [
+    {
+      "case_id": "vbench0161_r0",
+      "prompt_id": 161,
+      "source_index_zero_based": 161,
+      "replica": 0,
+      "prompt": "A person is clapping",
+      "prompt_sha256": "268d62ce600baae94ac9ce2a33755b342aa42cc2b1386c4ee19501048f0015c8",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "seed": 43001610
+    },
+    {
+      "case_id": "vbench0161_r1",
+      "prompt_id": 161,
+      "source_index_zero_based": 161,
+      "replica": 1,
+      "prompt": "A person is clapping",
+      "prompt_sha256": "268d62ce600baae94ac9ce2a33755b342aa42cc2b1386c4ee19501048f0015c8",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "seed": 43001611
+    },
+    {
+      "case_id": "vbench0192_r0",
+      "prompt_id": 192,
+      "source_index_zero_based": 192,
+      "replica": 0,
+      "prompt": "A person is folding clothes",
+      "prompt_sha256": "aa6ec2715d998696d460049e712e873297a1760ffd3340b4f3f11fa0c3ab3fd2",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "seed": 43001920
+    },
+    {
+      "case_id": "vbench0192_r1",
+      "prompt_id": 192,
+      "source_index_zero_based": 192,
+      "replica": 1,
+      "prompt": "A person is folding clothes",
+      "prompt_sha256": "aa6ec2715d998696d460049e712e873297a1760ffd3340b4f3f11fa0c3ab3fd2",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "seed": 43001921
+    },
+    {
+      "case_id": "vbench0269_r0",
+      "prompt_id": 269,
+      "source_index_zero_based": 269,
+      "replica": 0,
+      "prompt": "a car turning a corner",
+      "prompt_sha256": "001a0c3a3d7b8056dd7da15d2e5defab45ef67f09121f92d01f8cee28f8761da",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "seed": 43002690
+    },
+    {
+      "case_id": "vbench0269_r1",
+      "prompt_id": 269,
+      "source_index_zero_based": 269,
+      "replica": 1,
+      "prompt": "a car turning a corner",
+      "prompt_sha256": "001a0c3a3d7b8056dd7da15d2e5defab45ef67f09121f92d01f8cee28f8761da",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "seed": 43002691
+    },
+    {
+      "case_id": "vbench0316_r0",
+      "prompt_id": 316,
+      "source_index_zero_based": 316,
+      "replica": 0,
+      "prompt": "an elephant spraying itself with water using its trunk to cool down",
+      "prompt_sha256": "35016d0bb7763724492babd8ae1a2e882a285fe779c0a3fe0b1d8720721882ba",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "seed": 43003160
+    },
+    {
+      "case_id": "vbench0316_r1",
+      "prompt_id": 316,
+      "source_index_zero_based": 316,
+      "replica": 1,
+      "prompt": "an elephant spraying itself with water using its trunk to cool down",
+      "prompt_sha256": "35016d0bb7763724492babd8ae1a2e882a285fe779c0a3fe0b1d8720721882ba",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "seed": 43003161
+    }
+  ],
+  "negative_prompt": "Bright tones, overexposed, static, blurred details, subtitles, style, works, paintings, images, static, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, misshapen limbs, fused fingers, still picture, messy background, three legs, many people in the background, walking backwards",
+  "negative_prompt_sha256": "e488b06083693241fbe71bed61a3eb0035f4ec96d858d235be1662c226452fac",
+  "settings": {
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "num_inference_steps": 50,
+    "guidance_scale": 6.0,
+    "flow_shift": 8.0,
+    "fps": 16,
+    "scheduler": "UniPCMultistepScheduler",
+    "transformer_dtype": "bfloat16",
+    "text_encoder_dtype": "bfloat16",
+    "vae_dtype": "float32",
+    "latent_update_dtype": "float32",
+    "max_sequence_length": 512,
+    "prompt_extension": false,
+    "attention_backend_dit": "torch SDPA FLASH_ATTENTION",
+    "compile": false,
+    "offload": false,
+    "vae_tiling": false
+  },
+  "budget": {
+    "gpus": {
+      "161": 0,
+      "192": 1,
+      "269": 2,
+      "316": 3
+    },
+    "worker_seconds": 1500,
+    "launcher_seconds": 1800,
+    "planned_videos": 8,
+    "planned_dit_calls": 800,
+    "planned_scheduler_steps": 400,
+    "planned_public_vae_decodes": 8
+  },
+  "primary_recipe_sources": [
+    "https://github.com/Wan-Video/Wan2.1",
+    "https://huggingface.co/Wan-AI/Wan2.1-T2V-1.3B-Diffusers"
+  ],
+  "evaluation": "All samples retained. Fixed contact frames [0,10,20,30,40,50,60,70,80], MJ total/alignment/fineness/coherence and existing full-frame temporal readout; no sample selected to improve a score. Qualitative review for pervasive stripe failure and readable requested action; no proxy pass threshold."
+}

@@ -1,0 +1,96 @@
+{
+  "experiment": "E010",
+  "status": "complete",
+  "gpu": 0,
+  "source_sha256": "b863017df6b50c930ff1a3625498ac3b0ab66945dfbfac446606f89a78e30540",
+  "runner_sha256": "41e6e4eb1d9df554e5ea109b9bad3d1df83e9b64788137511262a82a0f34431f",
+  "cpu_check_sha256": "fb4a81d54212ffff3eeb66cfcf62aca8cd046bb0ba20c6e3131fa8f3e20ee543",
+  "stages": [
+    {
+      "name": "prepare",
+      "command": [
+        "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py",
+        "--phase",
+        "prepare"
+      ],
+      "gpu_before": {
+        "gpu": 0,
+        "uuid": "GPU-f2d2bf35-6009-bfec-9e68-dfffd5b077c4",
+        "used_mib": 0,
+        "utilization_percent": 0
+      },
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E010_h3_prepare.log",
+      "status": "complete",
+      "returncode": 0,
+      "seconds": 250.14167239982635
+    },
+    {
+      "name": "denoise_bf16",
+      "command": [
+        "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py",
+        "--phase",
+        "denoise",
+        "--arm",
+        "bf16"
+      ],
+      "gpu_before": {
+        "gpu": 0,
+        "uuid": "GPU-f2d2bf35-6009-bfec-9e68-dfffd5b077c4",
+        "used_mib": 0,
+        "utilization_percent": 0
+      },
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E010_h3_denoise_bf16.log",
+      "status": "complete",
+      "returncode": 0,
+      "seconds": 333.81360628199764
+    },
+    {
+      "name": "denoise_native",
+      "command": [
+        "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py",
+        "--phase",
+        "denoise",
+        "--arm",
+        "native"
+      ],
+      "gpu_before": {
+        "gpu": 0,
+        "uuid": "GPU-f2d2bf35-6009-bfec-9e68-dfffd5b077c4",
+        "used_mib": 0,
+        "utilization_percent": 0
+      },
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E010_h3_denoise_native.log",
+      "status": "complete",
+      "returncode": 0,
+      "seconds": 295.6789780841209
+    },
+    {
+      "name": "decode",
+      "command": [
+        "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py",
+        "--phase",
+        "decode"
+      ],
+      "gpu_before": {
+        "gpu": 0,
+        "uuid": "GPU-f2d2bf35-6009-bfec-9e68-dfffd5b077c4",
+        "used_mib": 0,
+        "utilization_percent": 0
+      },
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E010_h3_decode.log",
+      "status": "complete",
+      "returncode": 0,
+      "seconds": 49.7463863780722
+    }
+  ],
+  "wall_budget_seconds": 3600,
+  "seconds_total": 929.7024235709105
+}

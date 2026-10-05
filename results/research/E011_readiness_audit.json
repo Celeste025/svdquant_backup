@@ -1,0 +1,40 @@
+{
+  "experiment": "E011_readiness_audit",
+  "status": "not_ready_not_executed",
+  "execution_scope": "CPU static audit and import only",
+  "gpu_launched": false,
+  "packages_installed": false,
+  "probe_script_implemented": false,
+  "custom_kernel_written": false,
+  "official_commit": "ae5b629ebb41e41f86b3ea2ab5a3283f13ac151a",
+  "official_utils_cpu_import_succeeded": true,
+  "torch_cuda_initialized_after_import": false,
+  "reason": [
+    "No locally installed or verified SM120 SpargeAttn/SLA sparse consumer.",
+    "Official K tail zeros masked rows before normalization; zero/zero can propagate to similarity and compare False. Boolean outputs alone cannot establish semantic validity at real H3 lengths 22384/22432.",
+    "E006 saved post-RoPE QKV SHA/shape only, not tensor artifacts; a new 12-case experiment requires recapture."
+  ],
+  "interpretation": "Not a negative mechanism result or an observed GPU domain failure. Parent stopped implementation before GPU smoke or full-grid execution. Full-block-only guards cannot answer full-length cost/quality.",
+  "files": {
+    "/home/wjq/workspace/svdquant-exp/research_state/00_state/sparge_router_feasibility.md": {
+      "sha256": "4cddb2c62ad0f4623377a8a2aa977e6eec70a4e6cad890e36cf58964428e3dad",
+      "bytes": 6489
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E011_h3_sparse_router_plan.md": {
+      "sha256": "9e657161c7793826faf9bd62c77eca4d6bcb3dd764a146eef392e02ed78e9766",
+      "bytes": 5368
+    },
+    "/tmp/E011_sparge_source/spas_sage_attn/utils.py": {
+      "sha256": "eecf9109d12bbf34e853e327c4fa8f1b60e66dca74ec1a6ca355236bbbd06325",
+      "bytes": 18494
+    },
+    "/tmp/E011_sparge_source/spas_sage_attn/core.py": {
+      "sha256": "24656fd6de6952e99bcba78ec56109d9c2075df3675efab80ca7541c32c8d3e7",
+      "bytes": 17191
+    },
+    "/tmp/E011_sparge_source/setup.py": {
+      "sha256": "1d9f247af85a08f2a3a56e16bccc19fa29fd3912ca6ac286e01cfd69d74938c3",
+      "bytes": 8482
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "status": "ready_to_run",
+  "model_calls": 0,
+  "subprocesses_launched": 0,
+  "evaluation_gpu_wait_seconds": 1800,
+  "stages": [
+    {
+      "name": "plain_check",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_wan14b_plain_native.py",
+        "--manifest",
+        "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E051_wan14b_plain_native_manifest.json",
+        "--prompt-ids",
+        "161",
+        "192",
+        "269",
+        "316",
+        "--check-only"
+      ],
+      "result": "/home/wjq/workspace/svdquant-exp/results/research/E051/check_plain.json",
+      "timeout": 300,
+      "env": "native_cpu"
+    },
+    {
+      "name": "generation",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/launch_wan14b_plain_native.py"
+      ],
+      "result": "/home/wjq/workspace/svdquant-exp/results/research/E051/launcher.json",
+      "timeout": null,
+      "env": "native_cpu"
+    },
+    {
+      "name": "evaluation",
+      "command": [
+        "/data1/models/svdquant-wjq/conda-envs/mjvideo/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/launch_wan14b_plain_native_evaluation.py"
+      ],
+      "result": "/home/wjq/workspace/svdquant-exp/results/research/E051/evaluation_launcher.json",
+      "timeout": null,
+      "env": "mj_cpu"
+    },
+    {
+      "name": "summary",
+      "command": [
+        "/data1/models/svdquant-wjq/conda-envs/mjvideo/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/summarize_wan14b_plain_native.py"
+      ],
+      "result": "/home/wjq/workspace/svdquant-exp/results/research/E051/evaluation_summary.json",
+      "timeout": 180,
+      "env": "mj_cpu"
+    }
+  ]
+}

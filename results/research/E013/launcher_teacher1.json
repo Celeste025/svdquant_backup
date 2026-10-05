@@ -1,0 +1,122 @@
+{
+  "experiment": "E013",
+  "batch": "teacher1",
+  "status": "complete",
+  "freeze_sha256": "7b2da5e04dbcb610bb767bf801a16327f0baf354c492c08cb1a7b4f37fe164d2",
+  "budget": {
+    "start_epoch": 1790942777.7227502,
+    "wall_budget_seconds": 5400
+  },
+  "stages": [
+    {
+      "phase": "denoise",
+      "arm": "bf16",
+      "case": 1,
+      "gpu_before": {
+        "gpu": 0,
+        "uuid": "GPU-f2d2bf35-6009-bfec-9e68-dfffd5b077c4",
+        "memory_mib": 0,
+        "utilization": 0
+      },
+      "command": [
+        "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_behavior_probe.py",
+        "--phase",
+        "denoise",
+        "--arm",
+        "bf16",
+        "--case-ids",
+        "1"
+      ],
+      "seconds": 397.75504755973816,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E013/p001/E013_h3_denoise_bf16.json",
+      "report_sha256": "85a6dced76b27d8df8b9b99e4f5d9dbdd996793036dda817560d7ff2c79f26c4",
+      "peak_allocated_gib": 40.78051567077637,
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E013_denoise_bf16_p001.log"
+    },
+    {
+      "phase": "decode",
+      "arm": "bf16",
+      "case": 1,
+      "gpu_before": {
+        "gpu": 0,
+        "uuid": "GPU-f2d2bf35-6009-bfec-9e68-dfffd5b077c4",
+        "memory_mib": 0,
+        "utilization": 0
+      },
+      "command": [
+        "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_behavior_probe.py",
+        "--phase",
+        "decode",
+        "--arm",
+        "bf16",
+        "--case-ids",
+        "1"
+      ],
+      "seconds": 16.96749758720398,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E013/p001/E013_h3_decode_bf16.json",
+      "report_sha256": "1d51e2fe2a069c18ee61e2cc91c0c5dc1163a6dce09bfe8d7c62698301ec0b33",
+      "peak_allocated_gib": 7.394482612609863,
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E013_decode_bf16_p001.log"
+    },
+    {
+      "phase": "denoise",
+      "arm": "bf16",
+      "case": 2,
+      "gpu_before": {
+        "gpu": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization": 0
+      },
+      "command": [
+        "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_behavior_probe.py",
+        "--phase",
+        "denoise",
+        "--arm",
+        "bf16",
+        "--case-ids",
+        "2"
+      ],
+      "seconds": 418.6060538291931,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E013/p002/E013_h3_denoise_bf16.json",
+      "report_sha256": "293826fd79004c51558191e2bf0649c81edef09806e565b442874676f778f393",
+      "peak_allocated_gib": 40.780487060546875,
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E013_denoise_bf16_p002.log"
+    },
+    {
+      "phase": "decode",
+      "arm": "bf16",
+      "case": 2,
+      "gpu_before": {
+        "gpu": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization": 0
+      },
+      "command": [
+        "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_behavior_probe.py",
+        "--phase",
+        "decode",
+        "--arm",
+        "bf16",
+        "--case-ids",
+        "2"
+      ],
+      "seconds": 17.2667396068573,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E013/p002/E013_h3_decode_bf16.json",
+      "report_sha256": "ec7a7e0bc9e0c9711e0ff4fa64fa6dc784a2c0581bddf301090811ee5d38e9f1",
+      "peak_allocated_gib": 7.394482612609863,
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E013_decode_bf16_p002.log"
+    }
+  ],
+  "seconds_total": 436.2288534641266,
+  "elapsed_since_first_gpu": 452.4637529850006
+}

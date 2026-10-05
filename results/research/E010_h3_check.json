@@ -1,0 +1,280 @@
+{
+  "experiment": "E010",
+  "phase": "check",
+  "arm": null,
+  "status": "complete",
+  "scope": "two original-PTQ-heldout prompts; paired free generation diagnostic, no benchmark claim",
+  "correctness_binding": {
+    "original_report_sha256": "2caef6a433089207b62bb8ef2d508f06f975af8dc70d109f18f1ab2171fc82e0",
+    "original_status_retained": "failed_stop",
+    "inherited_complete_stages": [
+      "offload_bf16",
+      "resident_bf16",
+      "legacy_formula_reference"
+    ],
+    "resume_report": "/home/wjq/workspace/svdquant-exp/results/research/E009_h3_native_resume.json",
+    "resume_report_sha256": "5212123739b807e86c2cbbb6d22f157a0a8aa36703ba36f0c2464edbdb2184e8",
+    "real_sf0_proof": "/home/wjq/workspace/svdquant-exp/results/research/E009_h3_sf0_domain_v2.json",
+    "real_sf0_proof_sha256": "bbffff52a0b1851b1d72ebbce0c5cf7f7e4317c64c40655af4a64f03ab8bbe97",
+    "slow_fast_all_50_blocks_and_two_endpoints_exact": true,
+    "reference_fast_checks": {
+      "compatibility": "h3_e005_sf0_canonical_zero_numeric_equivalence_v1",
+      "checked_calls": 200,
+      "invalid_calls": 0,
+      "calls_with_nonzero_input_zero_sf": 1,
+      "affected_call_indices_zero_based": [
+        7
+      ],
+      "count_scope": "Call-level flags only; not a count of affected tensor groups or elements"
+    }
+  },
+  "export_manifest": {
+    "file": "/data1/models/svdquant-wjq/research/20261002/E009/legacy_export/manifest.json",
+    "sha256": "0b92e3e9f6a937ca7a6ebff6c4dfe4e6ad4e918224525ab5bf12a4e1baddfec0"
+  },
+  "sdpa_enabled": {
+    "flash": true,
+    "math": true,
+    "mem_efficient": true,
+    "cudnn": true
+  },
+  "profile_precondition": {
+    "native": "/home/wjq/workspace/svdquant-exp/results/research/E009_profile_native.json",
+    "sha256": "47f8a7abdd6491be93ddabafa66a3fcb64dd86c7edf4882781d935ab3ad3f494"
+  },
+  "sources": {
+    "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py": {
+      "sha256": "41e6e4eb1d9df554e5ea109b9bad3d1df83e9b64788137511262a82a0f34431f",
+      "bytes": 28742
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_manifest.json": {
+      "sha256": "9469815d0c1d3d51bc793c2e3eaba08c80b35969ef2fab3776667db6b61fa79d",
+      "bytes": 13391
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_paired_plan.md": {
+      "sha256": "1e616ceacc92085cd938a90d5e99faac5d41a7c7e4e51844445b8775c06fc3e4",
+      "bytes": 7695
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/minimax_h3_svdquant_common.py": {
+      "sha256": "d0fca20f98a40c3aa20773faa47e6d6b986811f6cd03802723021fd50383ae61",
+      "bytes": 14656
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/infer_minimax_h3_svdquant_standard.py": {
+      "sha256": "1966ce25cbf7fb630e620a84f64ca9219afd0120e0fe07078dc8250e221961a1",
+      "bytes": 4465
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_native_nvfp4.py": {
+      "sha256": "43cb697faa4c5276fcb4432f696e36ed9f69f84b7b8a27a6f1c4ef986fc7f19b",
+      "bytes": 28771
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/profile_h3_native_nvfp4.py": {
+      "sha256": "6fbabdfb87a333d35b66fdf4a1976ae1ea2e575a5b5bb83e60d930a75e99d45e",
+      "bytes": 26846
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_nvfp4.py": {
+      "sha256": "13ca884a8f6c7d93258870970c9f4b204f7cc42af0038f549b825321bb899d0a",
+      "bytes": 14615
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py": {
+      "sha256": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa",
+      "bytes": 22773
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_fastpack.py": {
+      "sha256": "f5a22a9e3f23d7903403017575e1a63c1cb42e04b0230256a5808902bbc198b7",
+      "bytes": 7255
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_zero_sf_compat.py": {
+      "sha256": "ccaaa71670a48bb8667c286fff0ae08556b568fa6d77184200a39e4b6cc00048",
+      "bytes": 5281
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_native_contract.py": {
+      "sha256": "0be4b1fb4a67f52e2c618ef492f49e1285cc14b57c2e6ceffbc6fa578a011c83",
+      "bytes": 15329
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_modality_pulse.py": {
+      "sha256": "e836578688580885fd46f54b0d45eef7b975932bfe5872f764feb8e4b86c820c",
+      "bytes": 13825
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/pipelines/minimax_h3_audio_video.py": {
+      "sha256": "7f5ff890d796dcfac3551e235741bdfbd4dbcae91aae3b6e4c3817dce38eecd6",
+      "bytes": 56577
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/base_pipeline.py": {
+      "sha256": "aa5e3729bcbe4a6969b32dc78602abadf6d7832317014c2d192d73c021aa6728",
+      "bytes": 26272
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/flow_match.py": {
+      "sha256": "4639571d6986fef53094bc166f3b3a8fdf5790435d28528ead7f0a929d5d2a52",
+      "bytes": 20775
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit.py": {
+      "sha256": "bd617a4312c70405e916707e1908100b484b2259dfbeba4af7de5bb145206d80",
+      "bytes": 18207
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit_comfy.py": {
+      "sha256": "e8a2eb4cb986ba384052100fdc03984446f3fa35d0ab1e9ebfacffc039a2e8ff",
+      "bytes": 3011
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_text_encoder.py": {
+      "sha256": "f874a56ce992070976b534dc42e0639221fe8c88cb29d9b3e2cadf6de553a9cf",
+      "bytes": 9391
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_video_vae.py": {
+      "sha256": "3dd4da5c90135c904fa5f1d4f70dd43e2571e394ce437bb168a5110f71076bf4",
+      "bytes": 31730
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_audio_vae.py": {
+      "sha256": "ce6dc03b73a0596df22a6aa89e6db9183017bd5d0e2e99b547a6bfee53a7ef2c",
+      "bytes": 19869
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/attention/attention.py": {
+      "sha256": "1126b2e19184299cbfc611dcf66e46d0fd1a7bfa1d616f2ed38bc60ba19679ae",
+      "bytes": 13461
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/vram/layers.py": {
+      "sha256": "4597374ac9166a2576544fb9b746360ee4c0441e96fd7af4300fcc739abd26cf",
+      "bytes": 25504
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/utils/data/audio_video.py": {
+      "sha256": "9d30fdd4538475d2d6aae7fe64cca2d78012e904366ec85d81e48720874d9dd0",
+      "bytes": 8947
+    }
+  },
+  "settings": {
+    "height": 576,
+    "width": 1024,
+    "num_frames": 124,
+    "num_inference_steps": 20,
+    "cfg_scale": 1.0,
+    "flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "noise_dtype": "bfloat16",
+    "tiled": true,
+    "tile_size": 256,
+    "tile_overlap": 64,
+    "fps": 24,
+    "audio_sample_rate": 32000
+  },
+  "cases": [
+    {
+      "prompt_id": 30,
+      "seed": 49771,
+      "text_tokens": 501,
+      "text_tag_values": [
+        1
+      ],
+      "initial_noise": {
+        "video_latents": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "eea1e6bdf497ddb2fdf965b9ac2eba6064aeddabb5bc9a42ce0495d6647b8666"
+        },
+        "audio_latents": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "6498590d98477373fce29d66070192298947cf9c3c773b5ad93d43985d81ed32"
+        }
+      }
+    },
+    {
+      "prompt_id": 36,
+      "seed": 59526,
+      "text_tokens": 813,
+      "text_tag_values": [
+        1
+      ],
+      "initial_noise": {
+        "video_latents": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "be7648a7ac5e47427c1baaae5f00c99b78419a12b9521b094b9277f69ba21bd3"
+        },
+        "audio_latents": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "c2e8d8bef8b80eb877432349f1a817815758ca17d8ee34bd56c8d79ae5d69dbd"
+        }
+      }
+    }
+  ],
+  "torch": "2.11.0+cu128",
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "DIFFSYNTH_ROOT": "/home/wjq/workspace/DiffSynth-Studio",
+    "MINIMAX_H3_MODEL_ROOT": "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3",
+    "MINIMAX_H3_DIT_PATH": "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors",
+    "DIFFSYNTH_ATTENTION_IMPLEMENTATION": "torch",
+    "DIFFSYNTH_SKIP_DOWNLOAD": "True",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1"
+  },
+  "schedule_cpu": {
+    "video": [
+      1000.0,
+      995.6331787109375,
+      990.82568359375,
+      985.50732421875,
+      979.5918579101562,
+      972.9729614257812,
+      965.5172119140625,
+      957.0552368164062,
+      947.368408203125,
+      936.1702270507812,
+      923.076904296875,
+      907.56298828125,
+      888.888916015625,
+      865.9793701171875,
+      837.2092895507812,
+      800.0,
+      750.0,
+      679.2453002929688,
+      571.4285888671875,
+      387.0968017578125
+    ],
+    "audio": [
+      1000.0,
+      982.7586059570312,
+      964.28564453125,
+      944.4444580078125,
+      923.0769653320312,
+      900.0,
+      874.9999389648438,
+      847.8260498046875,
+      818.1818237304688,
+      785.7144165039062,
+      750.0,
+      710.5263061523438,
+      666.6666870117188,
+      617.64697265625,
+      562.5,
+      500.0,
+      428.57147216796875,
+      346.1539001464844,
+      250.0,
+      136.3636474609375
+    ]
+  },
+  "cuda_initialized": false,
+  "seconds_total": 0.4894429109990597
+}

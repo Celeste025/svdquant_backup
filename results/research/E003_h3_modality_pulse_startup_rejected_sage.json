@@ -1,0 +1,57 @@
+{
+  "experiment": "E003",
+  "status": "failed",
+  "native_fp4": false,
+  "intervention": "replace selected block0 output rows by fixed quantized donor; rest BF16",
+  "cases": [],
+  "vram_limit_gib": 35.0,
+  "limitations": [
+    "one calibration prompt, two captured timesteps",
+    "not free rollout or final video quality",
+    "fixed legacy-calibrated state with corrected runtime hook; not recalibrated",
+    "old codebook tie rule retained",
+    "audio/pad pulses not independently tested",
+    "nonlinear full pulse is not sum of modality pulses",
+    "no novelty or performance claim"
+  ],
+  "files": {
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_modality_pulse.py": {
+      "sha256": "c751e2ec574df394ec3bd39efc5a0ef54845d0106f6b17508d196951820c2ff5",
+      "bytes": 12352
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/minimax_h3_svdquant_common.py": {
+      "sha256": "d0fca20f98a40c3aa20773faa47e6d6b986811f6cd03802723021fd50383ae61",
+      "bytes": 14656
+    },
+    "/home/wjq/workspace/svdquant-exp/results/checkpoints/minimax_h3_svdquant_standard_8p64s/quant_state.pt": {
+      "sha256": "e5ccf2d809f0b03e6a0eaef400e4f610ccfc37478eb3715d75040cf07446652d",
+      "bytes": 301607239
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors": {
+      "sha256": "a32572fb90b5508b201ec7c2eddcc184b13ddfd3c6f6d2cf06a0b46535d541b4",
+      "bytes": 40225724176
+    },
+    "/home/wjq/workspace/svdquant-exp/results/calib/minimax_h3_svdquant_standard_8p64s/p1/sample_p1_s00.pt": {
+      "sha256": "c89050f015479c3aa097f090f2a600cbd232dc63d86ce430d9a29c33c27e5404",
+      "bytes": 13723182
+    },
+    "/home/wjq/workspace/svdquant-exp/results/calib/minimax_h3_svdquant_standard_8p64s/p1/sample_p1_s19.pt": {
+      "sha256": "bfd16e24702c5e80c7d3cd616e871541c594748a7f4828f3578bb6342de1a05c",
+      "bytes": 13723182
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit.py": {
+      "sha256": "bd617a4312c70405e916707e1908100b484b2259dfbeba4af7de5bb145206d80",
+      "bytes": 18207
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit_comfy.py": {
+      "sha256": "e8a2eb4cb986ba384052100fdc03984446f3fa35d0ab1e9ebfacffc039a2e8ff",
+      "bytes": 3011
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/attention/attention.py": {
+      "sha256": "1126b2e19184299cbfc611dcf66e46d0fd1a7bfa1d616f2ed38bc60ba19679ae",
+      "bytes": 13461
+    }
+  },
+  "attention_implementation": "sage_attention",
+  "error": "Traceback (most recent call last):\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_modality_pulse.py\", line 243, in main\n    try:execute(args,report)\n        ^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/utils/_contextlib.py\", line 124, in decorate_context\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_modality_pulse.py\", line 92, in execute\n    raise RuntimeError('E003 requires BF16 attention, got SageAttention; resolve environment before running')\nRuntimeError: E003 requires BF16 attention, got SageAttention; resolve environment before running\n"
+}

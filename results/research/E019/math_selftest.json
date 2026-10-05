@@ -1,0 +1,64 @@
+{
+  "experiment": "E019",
+  "status": "complete",
+  "source": {
+    "/home/wjq/workspace/svdquant-exp/scripts/research/analyze_h3_partition_contract.py": "4217f31c9c6e119c475f9d80acb90d6f95b7298a5e3ced244de9d8abd087034c",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/summarize_h3_plain_baseline.py": "aba4cf019d0f3a56647175d0cb6ae19182d52f1e742d11c84a2128fb25a983af"
+  },
+  "methods": {
+    "threads": 6,
+    "accumulation": "FP64 CPU",
+    "score": "(FP64 decoded Q @ decoded K.T + actual saved FP32 correction) * original scale; not native QK accumulator replay",
+    "codes": "One shared E2 RNE code tensor from 6 exp(z-group16max), unaffected by scale-storage variants",
+    "native_sf": "R32(448 exp(groupmax-running128max)); E4 RNE from exactly that common FP32 input",
+    "geometry": "Fixed128 tiles,16microgroups,reverse traversal; split11264 keeps global groups; all117 tail pads masked",
+    "denominator": "Mathematical FP64 unquantized or represented P; native is actually FP32 online row_sum",
+    "ceil": "Per-group canonical reference plus ldexp; E4 subnormal/zero exceptions retained",
+    "sage": "Paper SF1=R32(exp(tilemax-runningmax)/2688), innerE4=R8(R32(448exp(groupmax-tilemax))); shared codes; mathematical paper control",
+    "caveats": [
+      "Counterexamples establish possibility only; no quality/novel-method claim",
+      "FP32SF1, exp/libm, casts and underflow are explicit mathematical boundaries",
+      "No native reciprocal-floor feedback into shared E2 codes; floor events separately reported",
+      "Rows/heads/layers correlated; no arbitrary significance threshold"
+    ]
+  },
+  "analytic_counterexample": {
+    "no_p_fp64": {
+      "full": 0.4347826086956523,
+      "split": 0.4347826086956522
+    },
+    "e2_fp32sf": {
+      "full": 0.43478261165737375,
+      "split": 0.4347826086956523
+    },
+    "e2_e4sf": {
+      "full": 0.4440993788819876,
+      "split": 0.4347826086956523
+    },
+    "pnq_represented_lse": {
+      "full": 0.44,
+      "split": 0.4347826086956523
+    },
+    "pnq_true_lse_negative": {
+      "full": 0.44,
+      "split": 0.4347826086956523
+    },
+    "ceil_log2": {
+      "full": 0.43478260952376285,
+      "split": 0.43478260952376285
+    },
+    "sage_tile_sf1": {
+      "full": 0.4347826269981655,
+      "split": 0.4347826167941094
+    }
+  },
+  "tests": [
+    "E2 midpoint RNE",
+    "native/PNQ analytic example",
+    "noP and integer-reference composability",
+    "correct/wrong represented merge distinguishable",
+    "tail mask/valid group event denominator"
+  ],
+  "seconds_total": 0.014225030783563852,
+  "cuda_initialized": false
+}

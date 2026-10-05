@@ -1,0 +1,263 @@
+{
+  "experiment": "E044",
+  "mode": "exploration_baseline_readiness",
+  "status": "preregistered",
+  "scope": "Whole deployed recipe comparison; frozen old SVD smooth/LR and non-target PTQ differs from plain. No training, no attention quantization.",
+  "model_dir": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers",
+  "python": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+  "data_dir": "/data1/models/svdquant-wjq/research/20261003/E044",
+  "report_dir": "/home/wjq/workspace/svdquant-exp/results/research/E044",
+  "prompt_source": {
+    "file": "/home/wjq/workspace/ViDiT-Q/eval/video/Vbench/vbench/VBench_full_info.json",
+    "sha256": "5dd2de80ee43cda750b2b72ea7023657c0b90d3702041c7e4608c65dbe50dccd",
+    "index_convention": "zero-based, not legacy H3 prompt IDs",
+    "selection": "Purposive four motion types chosen before any E038 model output; no output-based filtering."
+  },
+  "cases": [
+    {
+      "case_id": "vbench0161_r0",
+      "prompt_id": 161,
+      "source_index_zero_based": 161,
+      "replica": 0,
+      "prompt": "A person is clapping",
+      "prompt_sha256": "268d62ce600baae94ac9ce2a33755b342aa42cc2b1386c4ee19501048f0015c8",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "seed": 43001610
+    },
+    {
+      "case_id": "vbench0161_r1",
+      "prompt_id": 161,
+      "source_index_zero_based": 161,
+      "replica": 1,
+      "prompt": "A person is clapping",
+      "prompt_sha256": "268d62ce600baae94ac9ce2a33755b342aa42cc2b1386c4ee19501048f0015c8",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "seed": 43001611
+    },
+    {
+      "case_id": "vbench0192_r0",
+      "prompt_id": 192,
+      "source_index_zero_based": 192,
+      "replica": 0,
+      "prompt": "A person is folding clothes",
+      "prompt_sha256": "aa6ec2715d998696d460049e712e873297a1760ffd3340b4f3f11fa0c3ab3fd2",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "seed": 43001920
+    },
+    {
+      "case_id": "vbench0192_r1",
+      "prompt_id": 192,
+      "source_index_zero_based": 192,
+      "replica": 1,
+      "prompt": "A person is folding clothes",
+      "prompt_sha256": "aa6ec2715d998696d460049e712e873297a1760ffd3340b4f3f11fa0c3ab3fd2",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "seed": 43001921
+    },
+    {
+      "case_id": "vbench0269_r0",
+      "prompt_id": 269,
+      "source_index_zero_based": 269,
+      "replica": 0,
+      "prompt": "a car turning a corner",
+      "prompt_sha256": "001a0c3a3d7b8056dd7da15d2e5defab45ef67f09121f92d01f8cee28f8761da",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "seed": 43002690
+    },
+    {
+      "case_id": "vbench0269_r1",
+      "prompt_id": 269,
+      "source_index_zero_based": 269,
+      "replica": 1,
+      "prompt": "a car turning a corner",
+      "prompt_sha256": "001a0c3a3d7b8056dd7da15d2e5defab45ef67f09121f92d01f8cee28f8761da",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "seed": 43002691
+    },
+    {
+      "case_id": "vbench0316_r0",
+      "prompt_id": 316,
+      "source_index_zero_based": 316,
+      "replica": 0,
+      "prompt": "an elephant spraying itself with water using its trunk to cool down",
+      "prompt_sha256": "35016d0bb7763724492babd8ae1a2e882a285fe779c0a3fe0b1d8720721882ba",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "seed": 43003160
+    },
+    {
+      "case_id": "vbench0316_r1",
+      "prompt_id": 316,
+      "source_index_zero_based": 316,
+      "replica": 1,
+      "prompt": "an elephant spraying itself with water using its trunk to cool down",
+      "prompt_sha256": "35016d0bb7763724492babd8ae1a2e882a285fe779c0a3fe0b1d8720721882ba",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "seed": 43003161
+    }
+  ],
+  "negative_prompt": "Bright tones, overexposed, static, blurred details, subtitles, style, works, paintings, images, static, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, misshapen limbs, fused fingers, still picture, messy background, three legs, many people in the background, walking backwards",
+  "negative_prompt_sha256": "e488b06083693241fbe71bed61a3eb0035f4ec96d858d235be1662c226452fac",
+  "settings": {
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "num_inference_steps": 50,
+    "guidance_scale": 6.0,
+    "flow_shift": 8.0,
+    "fps": 16,
+    "scheduler": "UniPCMultistepScheduler",
+    "transformer_dtype": "bfloat16",
+    "text_encoder_dtype": "bfloat16",
+    "vae_dtype": "float32",
+    "latent_update_dtype": "float32",
+    "max_sequence_length": 512,
+    "prompt_extension": false,
+    "attention_backend_dit": "torch SDPA FLASH_ATTENTION",
+    "compile": false,
+    "offload": false,
+    "vae_tiling": false
+  },
+  "budget": {
+    "total_videos": 16,
+    "dit_calls": 1600,
+    "scheduler_calls": 800,
+    "vae_decodes": 16,
+    "native_gemm": 480000,
+    "dit_sdpa": 96000,
+    "text_encoder": 0,
+    "training_updates": 0,
+    "gpus": [
+      0,
+      1,
+      5
+    ],
+    "worker_timeout_seconds": 1800,
+    "launcher_timeout_seconds": 3600
+  },
+  "primary_recipe_sources": [
+    "https://github.com/Wan-Video/Wan2.1",
+    "https://huggingface.co/Wan-AI/Wan2.1-T2V-1.3B-Diffusers"
+  ],
+  "evaluation": {
+    "reference": "E043 completed eight-video scores, no repeated inference",
+    "new_videos": 16,
+    "variants": [
+      "plain_nvfp4",
+      "svdquant_nvfp4"
+    ],
+    "mjvideo": {
+      "num_segments": 8,
+      "actual_indices": [
+        0,
+        10,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70
+      ],
+      "primary": [
+        "total",
+        "alignment",
+        "fineness",
+        "coherence_consistency"
+      ]
+    },
+    "temporal": [
+      "motion_smoothness",
+      "dynamic_degree",
+      "subject_consistency"
+    ]
+  },
+  "arms": [
+    "plain_nvfp4",
+    "svdquant_nvfp4"
+  ],
+  "reference_dir": "/home/wjq/workspace/svdquant-exp/results/research/E043",
+  "svd_checkpoint": "/data1/models/svdquant-wjq/ckpts/wan2.1-1.3b-real-nvfp4-s16",
+  "checkpoint_identity": "/home/wjq/workspace/svdquant-exp/results/research/E044/checkpoint_identity.json",
+  "reference_manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E043_vanilla_wan_manifest.json",
+    "sha256": "8844e616bee677d563bd662e4b66db88dde4b63be076d8d0e01273b759d8e4e9"
+  },
+  "expected_new_totals": {
+    "videos": 16,
+    "dit": 1600,
+    "native_gemm": 480000,
+    "dit_sdpa": 96000,
+    "scheduler": 800,
+    "public_vae_decode": 16,
+    "text_encoder": 0
+  },
+  "worker_groups": [
+    {
+      "gpu": 0,
+      "arm": "plain_nvfp4",
+      "prompt_ids": [
+        161,
+        192
+      ]
+    },
+    {
+      "gpu": 1,
+      "arm": "svdquant_nvfp4",
+      "prompt_ids": [
+        161,
+        192
+      ]
+    },
+    {
+      "gpu": 5,
+      "arm": "plain_nvfp4",
+      "prompt_ids": [
+        316
+      ]
+    },
+    {
+      "gpu": 0,
+      "arm": "svdquant_nvfp4",
+      "prompt_ids": [
+        269
+      ]
+    },
+    {
+      "gpu": 1,
+      "arm": "plain_nvfp4",
+      "prompt_ids": [
+        269
+      ]
+    },
+    {
+      "gpu": 5,
+      "arm": "svdquant_nvfp4",
+      "prompt_ids": [
+        316
+      ]
+    }
+  ]
+}

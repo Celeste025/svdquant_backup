@@ -1,0 +1,33 @@
+{
+  "experiment": "E070_bridge",
+  "phase": "check",
+  "status": "failed_stop",
+  "budget_start_unix": null,
+  "deadline_unix": null,
+  "wall_budget_seconds": 900,
+  "data_byte_limit": 4294967296,
+  "data_bytes": 0,
+  "attempted_prefix_calls": 0,
+  "complete_prefix_calls": 0,
+  "attempted_wrapper_calls": 0,
+  "complete_wrapper_calls": 0,
+  "complete_dit_calls": 0,
+  "activation_packs": 0,
+  "new_candidate_weights": 0,
+  "calibration_fit_calls": 0,
+  "text_encoder_calls": 0,
+  "video_vae_calls": 0,
+  "audio_vae_calls": 0,
+  "runtime_totals": {
+    "sdpa_calls": 0,
+    "scaled_mm_calls": 0,
+    "disk_loads": 0
+  },
+  "prefix_cases": [],
+  "wrapper_cases": [],
+  "scope": "Actual packed-sequence bridge only; not a complete calibration, quantization or quality result",
+  "error": "RuntimeError('Unexpected DeepCompressor installation')",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_calibration_bridge.py\", line 487, in main\n    cases, manifest, api = prerequisites(report)\n                           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_calibration_bridge.py\", line 120, in prerequisites\n    api = load_api(report)\n          ^^^^^^^^^^^^^^^^\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_calibration_bridge.py\", line 79, in load_api\n    require(all(Path(p).is_relative_to(DC.resolve()) for p in paths.values()), 'Unexpected DeepCompressor installation')\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_calibration_bridge.py\", line 43, in require\n    raise RuntimeError(message)\nRuntimeError: Unexpected DeepCompressor installation\n",
+  "seconds_total": 0.10996143217198551,
+  "cuda_initialized": false
+}

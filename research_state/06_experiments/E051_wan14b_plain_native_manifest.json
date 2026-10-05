@@ -1,0 +1,257 @@
+{
+  "experiment": "E051",
+  "status": "preregistered",
+  "mode": "exploration_baseline_readiness",
+  "arm": "wan14b_plain_nvfp4",
+  "scope": "Original Wan14B untrained plain native NVFP4 W4A4 complete paired eight-video diagnostic; no SVDQuant claim. Streaming layerwise pack from BF16 teacher weights, same E049 actual noise/TE/settings.",
+  "model_dir": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-14B-Diffusers-38ec498c",
+  "component_dir": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers",
+  "python": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+  "data_dir": "/data1/models/svdquant-wjq/research/20261003/E051",
+  "report_dir": "/home/wjq/workspace/svdquant-exp/results/research/E051",
+  "reference_dir": "/home/wjq/workspace/svdquant-exp/results/research/E049",
+  "reference_manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E049_wan14b_reference_manifest.json",
+    "bytes": 9727,
+    "sha256": "8cc2c92fc497445b7f22290f2221073ae7699b1983ccb510786f1a1622716849"
+  },
+  "reference_workers": {
+    "161": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E049/worker_161.json",
+      "bytes": 123345,
+      "sha256": "b351e08f36480722d75bfdea86d57aba46303a5ca12b01b0e1a3ce417b584a64"
+    },
+    "192": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E049/worker_192.json",
+      "bytes": 123360,
+      "sha256": "60be567616089e397bd6d81e34c38493d459015e1414545db7c2bb8d3dd7e1b1"
+    },
+    "269": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E049/worker_269.json",
+      "bytes": 123611,
+      "sha256": "39345b60ef28c221087b545e993ee4f1d5154ba4a1c01faf25d9a4569a2397b0"
+    },
+    "316": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E049/worker_316.json",
+      "bytes": 123763,
+      "sha256": "aa03e81032119797b39b15d7a5ddfa213a69420d1da39d6056331e5cc881337e"
+    }
+  },
+  "asset_download": "/home/wjq/workspace/svdquant-exp/results/research/asset_wan14b/download.json",
+  "asset_supervisor": "/home/wjq/workspace/svdquant-exp/results/research/asset_wan14b/supervisor.json",
+  "component_reuse": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/asset_wan14b/component_reuse.json",
+    "bytes": 8084,
+    "sha256": "58fc48c1b5ec3230947822734553eb0d60680df0eeb3a093d9b0bf7e1c93c539"
+  },
+  "model_repo": "Wan-AI/Wan2.1-T2V-14B-Diffusers",
+  "model_revision": "38ec498cb3208fb688890f8cc7e94ede2cbd7f68",
+  "model_metadata": [
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-14B-Diffusers-38ec498c/README.md",
+      "bytes": 18130,
+      "sha256": "a8371c257da24b53abca003c12ef4421fbd81eb9dfe7d3e49960016080beb51b"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-14B-Diffusers-38ec498c/model_index.json",
+      "bytes": 400,
+      "sha256": "b8b28e022329acf975e027579a1d2dc3de44dba28f4c909b98a880fbf5b0de7d"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-14B-Diffusers-38ec498c/transformer/config.json",
+      "bytes": 466,
+      "sha256": "2992fe554957b20824172ebcb91070286fa4a35d94bd9a1c806cee136539719c"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-14B-Diffusers-38ec498c/scheduler/scheduler_config.json",
+      "bytes": 751,
+      "sha256": "3fed2abbd9bbc301a74db01947198057ec5049808910dccab320925bf27bea6e"
+    }
+  ],
+  "prompt_source": {
+    "file": "/home/wjq/workspace/ViDiT-Q/eval/video/Vbench/vbench/VBench_full_info.json",
+    "sha256": "5dd2de80ee43cda750b2b72ea7023657c0b90d3702041c7e4608c65dbe50dccd",
+    "index_convention": "zero-based, not legacy H3 prompt IDs",
+    "selection": "Purposive four motion types chosen before any E038 model output; no output-based filtering."
+  },
+  "cases": [
+    {
+      "case_id": "vbench0161_r0",
+      "prompt_id": 161,
+      "source_index_zero_based": 161,
+      "replica": 0,
+      "prompt": "A person is clapping",
+      "prompt_sha256": "268d62ce600baae94ac9ce2a33755b342aa42cc2b1386c4ee19501048f0015c8",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "seed": 43001610
+    },
+    {
+      "case_id": "vbench0161_r1",
+      "prompt_id": 161,
+      "source_index_zero_based": 161,
+      "replica": 1,
+      "prompt": "A person is clapping",
+      "prompt_sha256": "268d62ce600baae94ac9ce2a33755b342aa42cc2b1386c4ee19501048f0015c8",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "seed": 43001611
+    },
+    {
+      "case_id": "vbench0192_r0",
+      "prompt_id": 192,
+      "source_index_zero_based": 192,
+      "replica": 0,
+      "prompt": "A person is folding clothes",
+      "prompt_sha256": "aa6ec2715d998696d460049e712e873297a1760ffd3340b4f3f11fa0c3ab3fd2",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "seed": 43001920
+    },
+    {
+      "case_id": "vbench0192_r1",
+      "prompt_id": 192,
+      "source_index_zero_based": 192,
+      "replica": 1,
+      "prompt": "A person is folding clothes",
+      "prompt_sha256": "aa6ec2715d998696d460049e712e873297a1760ffd3340b4f3f11fa0c3ab3fd2",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "seed": 43001921
+    },
+    {
+      "case_id": "vbench0269_r0",
+      "prompt_id": 269,
+      "source_index_zero_based": 269,
+      "replica": 0,
+      "prompt": "a car turning a corner",
+      "prompt_sha256": "001a0c3a3d7b8056dd7da15d2e5defab45ef67f09121f92d01f8cee28f8761da",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "seed": 43002690
+    },
+    {
+      "case_id": "vbench0269_r1",
+      "prompt_id": 269,
+      "source_index_zero_based": 269,
+      "replica": 1,
+      "prompt": "a car turning a corner",
+      "prompt_sha256": "001a0c3a3d7b8056dd7da15d2e5defab45ef67f09121f92d01f8cee28f8761da",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "seed": 43002691
+    },
+    {
+      "case_id": "vbench0316_r0",
+      "prompt_id": 316,
+      "source_index_zero_based": 316,
+      "replica": 0,
+      "prompt": "an elephant spraying itself with water using its trunk to cool down",
+      "prompt_sha256": "35016d0bb7763724492babd8ae1a2e882a285fe779c0a3fe0b1d8720721882ba",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "seed": 43003160
+    },
+    {
+      "case_id": "vbench0316_r1",
+      "prompt_id": 316,
+      "source_index_zero_based": 316,
+      "replica": 1,
+      "prompt": "an elephant spraying itself with water using its trunk to cool down",
+      "prompt_sha256": "35016d0bb7763724492babd8ae1a2e882a285fe779c0a3fe0b1d8720721882ba",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "seed": 43003161
+    }
+  ],
+  "negative_prompt": "Bright tones, overexposed, static, blurred details, subtitles, style, works, paintings, images, static, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, misshapen limbs, fused fingers, still picture, messy background, three legs, many people in the background, walking backwards",
+  "negative_prompt_sha256": "e488b06083693241fbe71bed61a3eb0035f4ec96d858d235be1662c226452fac",
+  "settings": {
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "num_inference_steps": 50,
+    "guidance_scale": 5.0,
+    "flow_shift": 3.0,
+    "fps": 16,
+    "scheduler": "UniPCMultistepScheduler",
+    "transformer_dtype": "bfloat16",
+    "text_encoder_dtype": "bfloat16",
+    "vae_dtype": "float32",
+    "latent_update_dtype": "float32",
+    "max_sequence_length": 512,
+    "prompt_extension": false,
+    "attention_backend_dit": "torch SDPA FLASH_ATTENTION",
+    "compile": false,
+    "offload": false,
+    "vae_tiling": false,
+    "text_encoder_execution": "reused actual E043 embeddings; no text encoder or tokenizer loaded"
+  },
+  "worker_groups": [
+    {
+      "prompt_id": 161,
+      "gpu": 0
+    },
+    {
+      "prompt_id": 192,
+      "gpu": 1
+    },
+    {
+      "prompt_id": 269,
+      "gpu": 0
+    },
+    {
+      "prompt_id": 316,
+      "gpu": 1
+    }
+  ],
+  "budget": {
+    "worker_timeout_seconds": 5400,
+    "launcher_timeout_seconds": 12000,
+    "evaluation_timeout_seconds": 900,
+    "summary_timeout_seconds": 180
+  },
+  "expected_new_totals": {
+    "videos": 8,
+    "dit": 800,
+    "dit_sdpa": 64000,
+    "scheduler": 400,
+    "public_vae_decode": 8,
+    "text_encoder": 0,
+    "native_gemm": 320000,
+    "activation_packs": 320000
+  },
+  "primary_recipe_sources": [
+    "https://huggingface.co/Wan-AI/Wan2.1-T2V-14B-Diffusers/blob/38ec498cb3208fb688890f8cc7e94ede2cbd7f68/README.md",
+    "https://huggingface.co/Wan-AI/Wan2.1-T2V-14B-Diffusers/blob/38ec498cb3208fb688890f8cc7e94ede2cbd7f68/scheduler/scheduler_config.json"
+  ],
+  "evaluation": "All eight E049 cases retained. Same MJ/AMT/RAFT/DINO implementation; pair every plain video to its existing E049 BF16 reference without rerendering or rescoring. Read all plain fixed previews before new scores; no filtering.",
+  "limits": [
+    "Untrained plain, no smoothing/low-rank/calibration/QAD; this cannot stand for a strong SVDQuant baseline.",
+    "Quantize already-BF16 teacher values using existing legacy Wan E4M3 ties-up/E2M1 signed ties-larger; this is not standard RNE.",
+    "Model, sampler, actual noise, embedding, VAE and attention match E049. No causal model-scale comparison with1.3B.",
+    "Eight repeatedly observed diagnostic cases are not held-out/generalization evidence.",
+    "Measured wall/peaks include conversion, checks, media and diagnostics; no optimized serving-speed claim."
+  ],
+  "reference_summary": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E049/evaluation_summary.json",
+    "bytes": 247500,
+    "sha256": "48e880410ce36e3c6a4be75fbb0f5ba43c9f15136967678dd7262cf09d6f3dff"
+  }
+}

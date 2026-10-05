@@ -1,0 +1,37 @@
+{
+  "experiment": "E065b",
+  "session": "research-e065b-h3-carry-q",
+  "start_epoch": 1791068843.932757,
+  "deadline_unix": 1791072443.932757,
+  "gpu": 0,
+  "gpu_before": "0, 0",
+  "source_sha256": "1903d7a523b9be08ee256c91d78c1da7882aec41cd2f4061b851c2b776a2838a",
+  "command": [
+    "timeout",
+    "--kill-after=15s",
+    "3600",
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+    "-c",
+    "import sys,runpy; sys.path.append('/home/wjq/.venvs/minimax-h3-svdquant-recovered/lib/python3.12/site-packages'); p=sys.argv.pop(1); runpy.run_path(p,run_name='__main__')",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/resume_h3_carry_q_v2.py",
+    "--phase",
+    "evaluate",
+    "--deadline-unix",
+    "1791072443.932757"
+  ],
+  "environment": {
+    "CUDA_HOME": "/usr/local/cuda",
+    "FLASHINFER_WORKSPACE_BASE": "/data1/models/svdquant-wjq/research/cache/flashinfer",
+    "TMPDIR": "/data1/models/svdquant-wjq/research/cache/tmp",
+    "TORCH_EXTENSIONS_DIR": "/data1/models/svdquant-wjq/research/cache/torch_extensions",
+    "MAX_JOBS": "4",
+    "CUDA_VISIBLE_DEVICES": "0",
+    "PYTHONUNBUFFERED": "1",
+    "PATH": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin:/data1/models/svdquant-wjq/conda-envs/convrot-wan/bin:/home/wjq/.local/bin:/opt/anaconda3/bin:/home/wjq/.codex/packages/app-server-daemon/releases/0.158.0-x86_64-unknown-linux-musl/codex-path:/home/wjq/.codex/tmp/arg0/codex-arg0vSUAs7:/home/wjq/.codex/tmp/arg0/codex-arg05WBOtG:/home/wjq/.local/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/cuda/bin",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "log": "/home/wjq/workspace/svdquant-exp/results/logs/E065b_h3_carry_q.log",
+  "reused_prefix_layers": 39,
+  "new_full_dit_limit": 9,
+  "new_candidate_native_limit": 20608
+}

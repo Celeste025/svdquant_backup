@@ -1,0 +1,2252 @@
+{
+  "experiment": "E014",
+  "status": "complete",
+  "phase": "check",
+  "format": "h3-plain-native-nvfp4-v1",
+  "recipe": {
+    "label": "plain_h3_recipe",
+    "input_dtype": "bfloat16",
+    "group_size": 16,
+    "rank": 0,
+    "smoothing": null,
+    "weight_source": "Original BF16 checkpoint W, without rescaling or low-rank subtraction",
+    "global": "max(max(abs(x)),1e-12)/2688 then clamp_min(1e-12), FP32",
+    "group_scale": "max(amax(group)/6,1e-12)/global, clamp FP32 tiny then E4M3FN RNE",
+    "e2m1": "E005 signed nibble convention; ties to numerically smaller value; negative rounded zero uses nibble8",
+    "zero_sf": "h3_e005_sf0_canonical_zero_numeric_equivalence_v1",
+    "main": "packed NVFP4 F.scaled_mm with E4M3 block scale and FP32 tensor globals",
+    "out": "BF16 native main including unchanged original bias; no additional branch"
+  },
+  "sources": {
+    "/home/wjq/workspace/svdquant-exp/scripts/research/export_h3_plain_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/export_h3_plain_nvfp4.py",
+      "sha256": "8ffad08ff4b84d6062564075f74f62402e69ae8b949f1550bd4cd325c43170f8",
+      "bytes": 17315
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_plain_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_plain_native_nvfp4.py",
+      "sha256": "36ea5e95e3bf8858b3e545157d0505be2fa03e353b432dde4cdc785f085086f0",
+      "bytes": 10532
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_plan.md",
+      "sha256": "af609cb182415d336a9f96f85fb7ee62fc2c2a15d23fca688d34763f7f7742c7",
+      "bytes": 5158
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_manifest.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_manifest.json",
+      "sha256": "56299b66ebf8be315e2bebc3ae684eefb7781abd1a5e984e7aab3ecee4265f65",
+      "bytes": 6437
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/minimax_h3_svdquant_common.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/minimax_h3_svdquant_common.py",
+      "sha256": "d0fca20f98a40c3aa20773faa47e6d6b986811f6cd03802723021fd50383ae61",
+      "bytes": 14656
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_nvfp4.py",
+      "sha256": "13ca884a8f6c7d93258870970c9f4b204f7cc42af0038f549b825321bb899d0a",
+      "bytes": 14615
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py",
+      "sha256": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa",
+      "bytes": 22773
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_zero_sf_compat.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_zero_sf_compat.py",
+      "sha256": "ccaaa71670a48bb8667c286fff0ae08556b568fa6d77184200a39e4b6cc00048",
+      "bytes": 5281
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_fastpack.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_fastpack.py",
+      "sha256": "f5a22a9e3f23d7903403017575e1a63c1cb42e04b0230256a5808902bbc198b7",
+      "bytes": 7255
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_native_contract.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_native_contract.py",
+      "sha256": "0be4b1fb4a67f52e2c618ef492f49e1285cc14b57c2e6ceffbc6fa578a011c83",
+      "bytes": 15329
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_modality_pulse.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_modality_pulse.py",
+      "sha256": "e836578688580885fd46f54b0d45eef7b975932bfe5872f764feb8e4b86c820c",
+      "bytes": 13825
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/smoke_nvfp4_systems_20261002.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/smoke_nvfp4_systems_20261002.py",
+      "sha256": "e92b0ef9570087bdeac0b8c86f0b174e97a11014a28237b40541cae24cbaa3e0",
+      "bytes": 4375
+    }
+  },
+  "source_checkpoint": {
+    "file": "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors",
+    "sha256": "a32572fb90b5508b201ec7c2eddcc184b13ddfd3c6f6d2cf06a0b46535d541b4",
+    "bytes": 40225724176,
+    "mtime_ns": 1788628641816315374
+  },
+  "asset_inventory_reference": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E010_h3_prepare.json",
+    "sha256": "325f8aab98f76fbb57666b1014a9fa2a8d2111d4048b52882f475a5bb745a8e8",
+    "bytes": 18395
+  },
+  "asset_validation": "Established E010 full SHA reused; all asset size/mtime checked; no repeated model hash",
+  "torch_version": "2.11.0+cu128",
+  "checkpoint_layout": [
+    {
+      "name": "blocks.0.attn.qkv_proj",
+      "key": "blocks.0.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.0.attn.out_proj",
+      "key": "blocks.0.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.0.mlp.fc1",
+      "key": "blocks.0.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.0.mlp.fc2",
+      "key": "blocks.0.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.1.attn.qkv_proj",
+      "key": "blocks.1.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.1.attn.out_proj",
+      "key": "blocks.1.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.1.mlp.fc1",
+      "key": "blocks.1.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.1.mlp.fc2",
+      "key": "blocks.1.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.2.attn.qkv_proj",
+      "key": "blocks.2.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.2.attn.out_proj",
+      "key": "blocks.2.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.2.mlp.fc1",
+      "key": "blocks.2.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.2.mlp.fc2",
+      "key": "blocks.2.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.3.attn.qkv_proj",
+      "key": "blocks.3.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.3.attn.out_proj",
+      "key": "blocks.3.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.3.mlp.fc1",
+      "key": "blocks.3.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.3.mlp.fc2",
+      "key": "blocks.3.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.4.attn.qkv_proj",
+      "key": "blocks.4.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.4.attn.out_proj",
+      "key": "blocks.4.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.4.mlp.fc1",
+      "key": "blocks.4.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.4.mlp.fc2",
+      "key": "blocks.4.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.5.attn.qkv_proj",
+      "key": "blocks.5.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.5.attn.out_proj",
+      "key": "blocks.5.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.5.mlp.fc1",
+      "key": "blocks.5.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.5.mlp.fc2",
+      "key": "blocks.5.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.6.attn.qkv_proj",
+      "key": "blocks.6.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.6.attn.out_proj",
+      "key": "blocks.6.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.6.mlp.fc1",
+      "key": "blocks.6.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.6.mlp.fc2",
+      "key": "blocks.6.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.7.attn.qkv_proj",
+      "key": "blocks.7.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.7.attn.out_proj",
+      "key": "blocks.7.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.7.mlp.fc1",
+      "key": "blocks.7.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.7.mlp.fc2",
+      "key": "blocks.7.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.8.attn.qkv_proj",
+      "key": "blocks.8.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.8.attn.out_proj",
+      "key": "blocks.8.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.8.mlp.fc1",
+      "key": "blocks.8.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.8.mlp.fc2",
+      "key": "blocks.8.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.9.attn.qkv_proj",
+      "key": "blocks.9.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.9.attn.out_proj",
+      "key": "blocks.9.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.9.mlp.fc1",
+      "key": "blocks.9.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.9.mlp.fc2",
+      "key": "blocks.9.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.10.attn.qkv_proj",
+      "key": "blocks.10.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.10.attn.out_proj",
+      "key": "blocks.10.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.10.mlp.fc1",
+      "key": "blocks.10.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.10.mlp.fc2",
+      "key": "blocks.10.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.11.attn.qkv_proj",
+      "key": "blocks.11.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.11.attn.out_proj",
+      "key": "blocks.11.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.11.mlp.fc1",
+      "key": "blocks.11.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.11.mlp.fc2",
+      "key": "blocks.11.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.12.attn.qkv_proj",
+      "key": "blocks.12.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.12.attn.out_proj",
+      "key": "blocks.12.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.12.mlp.fc1",
+      "key": "blocks.12.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.12.mlp.fc2",
+      "key": "blocks.12.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.13.attn.qkv_proj",
+      "key": "blocks.13.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.13.attn.out_proj",
+      "key": "blocks.13.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.13.mlp.fc1",
+      "key": "blocks.13.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.13.mlp.fc2",
+      "key": "blocks.13.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.14.attn.qkv_proj",
+      "key": "blocks.14.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.14.attn.out_proj",
+      "key": "blocks.14.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.14.mlp.fc1",
+      "key": "blocks.14.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.14.mlp.fc2",
+      "key": "blocks.14.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.15.attn.qkv_proj",
+      "key": "blocks.15.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.15.attn.out_proj",
+      "key": "blocks.15.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.15.mlp.fc1",
+      "key": "blocks.15.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.15.mlp.fc2",
+      "key": "blocks.15.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.16.attn.qkv_proj",
+      "key": "blocks.16.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.16.attn.out_proj",
+      "key": "blocks.16.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.16.mlp.fc1",
+      "key": "blocks.16.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.16.mlp.fc2",
+      "key": "blocks.16.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.17.attn.qkv_proj",
+      "key": "blocks.17.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.17.attn.out_proj",
+      "key": "blocks.17.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.17.mlp.fc1",
+      "key": "blocks.17.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.17.mlp.fc2",
+      "key": "blocks.17.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.18.attn.qkv_proj",
+      "key": "blocks.18.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.18.attn.out_proj",
+      "key": "blocks.18.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.18.mlp.fc1",
+      "key": "blocks.18.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.18.mlp.fc2",
+      "key": "blocks.18.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.19.attn.qkv_proj",
+      "key": "blocks.19.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.19.attn.out_proj",
+      "key": "blocks.19.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.19.mlp.fc1",
+      "key": "blocks.19.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.19.mlp.fc2",
+      "key": "blocks.19.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.20.attn.qkv_proj",
+      "key": "blocks.20.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.20.attn.out_proj",
+      "key": "blocks.20.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.20.mlp.fc1",
+      "key": "blocks.20.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.20.mlp.fc2",
+      "key": "blocks.20.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.21.attn.qkv_proj",
+      "key": "blocks.21.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.21.attn.out_proj",
+      "key": "blocks.21.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.21.mlp.fc1",
+      "key": "blocks.21.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.21.mlp.fc2",
+      "key": "blocks.21.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.22.attn.qkv_proj",
+      "key": "blocks.22.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.22.attn.out_proj",
+      "key": "blocks.22.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.22.mlp.fc1",
+      "key": "blocks.22.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.22.mlp.fc2",
+      "key": "blocks.22.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.23.attn.qkv_proj",
+      "key": "blocks.23.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.23.attn.out_proj",
+      "key": "blocks.23.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.23.mlp.fc1",
+      "key": "blocks.23.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.23.mlp.fc2",
+      "key": "blocks.23.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.24.attn.qkv_proj",
+      "key": "blocks.24.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.24.attn.out_proj",
+      "key": "blocks.24.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.24.mlp.fc1",
+      "key": "blocks.24.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.24.mlp.fc2",
+      "key": "blocks.24.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.25.attn.qkv_proj",
+      "key": "blocks.25.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.25.attn.out_proj",
+      "key": "blocks.25.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.25.mlp.fc1",
+      "key": "blocks.25.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.25.mlp.fc2",
+      "key": "blocks.25.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.26.attn.qkv_proj",
+      "key": "blocks.26.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.26.attn.out_proj",
+      "key": "blocks.26.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.26.mlp.fc1",
+      "key": "blocks.26.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.26.mlp.fc2",
+      "key": "blocks.26.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.27.attn.qkv_proj",
+      "key": "blocks.27.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.27.attn.out_proj",
+      "key": "blocks.27.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.27.mlp.fc1",
+      "key": "blocks.27.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.27.mlp.fc2",
+      "key": "blocks.27.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.28.attn.qkv_proj",
+      "key": "blocks.28.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.28.attn.out_proj",
+      "key": "blocks.28.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.28.mlp.fc1",
+      "key": "blocks.28.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.28.mlp.fc2",
+      "key": "blocks.28.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.29.attn.qkv_proj",
+      "key": "blocks.29.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.29.attn.out_proj",
+      "key": "blocks.29.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.29.mlp.fc1",
+      "key": "blocks.29.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.29.mlp.fc2",
+      "key": "blocks.29.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.30.attn.qkv_proj",
+      "key": "blocks.30.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.30.attn.out_proj",
+      "key": "blocks.30.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.30.mlp.fc1",
+      "key": "blocks.30.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.30.mlp.fc2",
+      "key": "blocks.30.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.31.attn.qkv_proj",
+      "key": "blocks.31.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.31.attn.out_proj",
+      "key": "blocks.31.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.31.mlp.fc1",
+      "key": "blocks.31.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.31.mlp.fc2",
+      "key": "blocks.31.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.32.attn.qkv_proj",
+      "key": "blocks.32.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.32.attn.out_proj",
+      "key": "blocks.32.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.32.mlp.fc1",
+      "key": "blocks.32.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.32.mlp.fc2",
+      "key": "blocks.32.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.33.attn.qkv_proj",
+      "key": "blocks.33.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.33.attn.out_proj",
+      "key": "blocks.33.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.33.mlp.fc1",
+      "key": "blocks.33.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.33.mlp.fc2",
+      "key": "blocks.33.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.34.attn.qkv_proj",
+      "key": "blocks.34.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.34.attn.out_proj",
+      "key": "blocks.34.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.34.mlp.fc1",
+      "key": "blocks.34.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.34.mlp.fc2",
+      "key": "blocks.34.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.35.attn.qkv_proj",
+      "key": "blocks.35.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.35.attn.out_proj",
+      "key": "blocks.35.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.35.mlp.fc1",
+      "key": "blocks.35.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.35.mlp.fc2",
+      "key": "blocks.35.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.36.attn.qkv_proj",
+      "key": "blocks.36.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.36.attn.out_proj",
+      "key": "blocks.36.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.36.mlp.fc1",
+      "key": "blocks.36.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.36.mlp.fc2",
+      "key": "blocks.36.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.37.attn.qkv_proj",
+      "key": "blocks.37.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.37.attn.out_proj",
+      "key": "blocks.37.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.37.mlp.fc1",
+      "key": "blocks.37.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.37.mlp.fc2",
+      "key": "blocks.37.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.38.attn.qkv_proj",
+      "key": "blocks.38.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.38.attn.out_proj",
+      "key": "blocks.38.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.38.mlp.fc1",
+      "key": "blocks.38.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.38.mlp.fc2",
+      "key": "blocks.38.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.39.attn.qkv_proj",
+      "key": "blocks.39.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.39.attn.out_proj",
+      "key": "blocks.39.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.39.mlp.fc1",
+      "key": "blocks.39.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.39.mlp.fc2",
+      "key": "blocks.39.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.40.attn.qkv_proj",
+      "key": "blocks.40.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.40.attn.out_proj",
+      "key": "blocks.40.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.40.mlp.fc1",
+      "key": "blocks.40.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.40.mlp.fc2",
+      "key": "blocks.40.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.41.attn.qkv_proj",
+      "key": "blocks.41.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.41.attn.out_proj",
+      "key": "blocks.41.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.41.mlp.fc1",
+      "key": "blocks.41.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.41.mlp.fc2",
+      "key": "blocks.41.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.42.attn.qkv_proj",
+      "key": "blocks.42.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.42.attn.out_proj",
+      "key": "blocks.42.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.42.mlp.fc1",
+      "key": "blocks.42.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.42.mlp.fc2",
+      "key": "blocks.42.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.43.attn.qkv_proj",
+      "key": "blocks.43.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.43.attn.out_proj",
+      "key": "blocks.43.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.43.mlp.fc1",
+      "key": "blocks.43.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.43.mlp.fc2",
+      "key": "blocks.43.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.44.attn.qkv_proj",
+      "key": "blocks.44.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.44.attn.out_proj",
+      "key": "blocks.44.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.44.mlp.fc1",
+      "key": "blocks.44.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.44.mlp.fc2",
+      "key": "blocks.44.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.45.attn.qkv_proj",
+      "key": "blocks.45.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.45.attn.out_proj",
+      "key": "blocks.45.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.45.mlp.fc1",
+      "key": "blocks.45.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.45.mlp.fc2",
+      "key": "blocks.45.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.46.attn.qkv_proj",
+      "key": "blocks.46.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.46.attn.out_proj",
+      "key": "blocks.46.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.46.mlp.fc1",
+      "key": "blocks.46.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.46.mlp.fc2",
+      "key": "blocks.46.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.47.attn.qkv_proj",
+      "key": "blocks.47.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.47.attn.out_proj",
+      "key": "blocks.47.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.47.mlp.fc1",
+      "key": "blocks.47.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.47.mlp.fc2",
+      "key": "blocks.47.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.48.attn.qkv_proj",
+      "key": "blocks.48.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.48.attn.out_proj",
+      "key": "blocks.48.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.48.mlp.fc1",
+      "key": "blocks.48.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.48.mlp.fc2",
+      "key": "blocks.48.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.49.attn.qkv_proj",
+      "key": "blocks.49.attn.qkv_proj.weight",
+      "shape": [
+        21504,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.49.attn.out_proj",
+      "key": "blocks.49.attn.out_proj.weight",
+      "shape": [
+        5376,
+        7168
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.49.mlp.fc1",
+      "key": "blocks.49.mlp.fc1.weight",
+      "shape": [
+        28672,
+        5376
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    },
+    {
+      "name": "blocks.49.mlp.fc2",
+      "key": "blocks.49.mlp.fc2.weight",
+      "shape": [
+        5376,
+        14336
+      ],
+      "dtype": "BF16",
+      "bias_key": null
+    }
+  ],
+  "target_count": 200,
+  "cpu_fixtures": [
+    {
+      "name": "actual_bf16_weight_prefix",
+      "input_shape": [
+        32,
+        64
+      ],
+      "input_sha256": "d44c441ea660fc6c131bbc575a1747d9611740c13954033521c213461837d3e9",
+      "roundtrip": {
+        "exact": true,
+        "changed_elements": 0,
+        "elements": 2048,
+        "err2": 0.0,
+        "ref2": 32.87282547354698,
+        "nmse": 0.0,
+        "max_abs": 0.0,
+        "zero_sign_differences": 66,
+        "nonzero_byte_differences": 0
+      },
+      "quant_stats": {
+        "exact_midpoints": 2,
+        "negative_exact_midpoints": 0,
+        "legacy_rne_code_changes": 2,
+        "near_midpoints_atol_1e-6_including_exact": 2,
+        "nonzero_subnormal_scales": 0,
+        "zero_scales": 0,
+        "all_zero_input_groups": 0,
+        "nonzero_input_groups_with_zero_scale": 0,
+        "nonfinite_normalized_values": 0,
+        "scales_at_448": 1,
+        "elements": 2048,
+        "groups": 128,
+        "global_scale": 0.00019763765158131719,
+        "midpoint_fraction": 0.0009765625,
+        "changed_code_fraction": 0.0009765625,
+        "scale_padding_excluded": true
+      }
+    },
+    {
+      "name": "random",
+      "input_shape": [
+        32,
+        64
+      ],
+      "input_sha256": "db8c8601b837fed65f3dd94a4c592fce77039897e6574cdbabea7b4bc71103c1",
+      "roundtrip": {
+        "exact": true,
+        "changed_elements": 0,
+        "elements": 2048,
+        "err2": 0.0,
+        "ref2": 2050.54727935791,
+        "nmse": 0.0,
+        "max_abs": 0.0,
+        "zero_sign_differences": 66,
+        "nonzero_byte_differences": 0
+      },
+      "quant_stats": {
+        "exact_midpoints": 0,
+        "negative_exact_midpoints": 0,
+        "legacy_rne_code_changes": 0,
+        "near_midpoints_atol_1e-6_including_exact": 1,
+        "nonzero_subnormal_scales": 0,
+        "zero_scales": 0,
+        "all_zero_input_groups": 0,
+        "nonzero_input_groups_with_zero_scale": 0,
+        "nonfinite_normalized_values": 0,
+        "scales_at_448": 1,
+        "elements": 2048,
+        "groups": 128,
+        "global_scale": 0.0012032644590362906,
+        "midpoint_fraction": 0.0,
+        "changed_code_fraction": 0.0,
+        "scale_padding_excluded": true
+      }
+    },
+    {
+      "name": "all_zero",
+      "input_shape": [
+        32,
+        64
+      ],
+      "input_sha256": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7",
+      "roundtrip": {
+        "exact": true,
+        "changed_elements": 0,
+        "elements": 2048,
+        "err2": 0.0,
+        "ref2": 0.0,
+        "nmse": 0.0,
+        "max_abs": 0.0,
+        "zero_sign_differences": 0,
+        "nonzero_byte_differences": 0
+      },
+      "quant_stats": {
+        "exact_midpoints": 0,
+        "negative_exact_midpoints": 0,
+        "legacy_rne_code_changes": 0,
+        "near_midpoints_atol_1e-6_including_exact": 0,
+        "nonzero_subnormal_scales": 0,
+        "zero_scales": 0,
+        "all_zero_input_groups": 128,
+        "nonzero_input_groups_with_zero_scale": 0,
+        "nonfinite_normalized_values": 0,
+        "scales_at_448": 0,
+        "elements": 2048,
+        "groups": 128,
+        "global_scale": 9.999999960041972e-13,
+        "midpoint_fraction": 0.0,
+        "changed_code_fraction": 0.0,
+        "scale_padding_excluded": true
+      }
+    },
+    {
+      "name": "nonzero_groups_zero_sf",
+      "input_shape": [
+        32,
+        64
+      ],
+      "input_sha256": "019d78ead97d285730b34d7cd2fbf88c625c8b837f601a4e6196cf4efe6667a4",
+      "roundtrip": {
+        "exact": true,
+        "changed_elements": 0,
+        "elements": 2048,
+        "err2": 0.0,
+        "ref2": 9.945616171461687e+39,
+        "nmse": 0.0,
+        "max_abs": 0.0,
+        "zero_sign_differences": 2032,
+        "nonzero_byte_differences": 0
+      },
+      "quant_stats": {
+        "exact_midpoints": 0,
+        "negative_exact_midpoints": 0,
+        "legacy_rne_code_changes": 0,
+        "near_midpoints_atol_1e-6_including_exact": 0,
+        "nonzero_subnormal_scales": 0,
+        "zero_scales": 127,
+        "all_zero_input_groups": 0,
+        "nonzero_input_groups_with_zero_scale": 127,
+        "nonfinite_normalized_values": 0,
+        "scales_at_448": 1,
+        "elements": 2048,
+        "groups": 128,
+        "global_scale": 3.710108284905062e+16,
+        "midpoint_fraction": 0.0,
+        "changed_code_fraction": 0.0,
+        "scale_padding_excluded": true
+      }
+    }
+  ],
+  "payload_bias_leading_shape_exact": true,
+  "cuda_initialized": false,
+  "scope": "Header plus small CPU arithmetic; no native GEMM or full-model run",
+  "seconds_total": 0.0384650151245296
+}

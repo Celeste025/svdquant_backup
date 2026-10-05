@@ -1,0 +1,21 @@
+{
+  "experiment": "E062",
+  "phase": "check",
+  "status": "failed_stop",
+  "start_epoch": 1791059866.2300878,
+  "deadline_unix": null,
+  "attempted_dit_calls": 0,
+  "complete_dit_calls": 0,
+  "attempted_native_fc1_calls": 0,
+  "complete_native_fc1_calls": 0,
+  "tensor_bytes": 0,
+  "tensor_byte_limit": 4294967296,
+  "cases": [],
+  "teacher_replays": [],
+  "down_weights": {},
+  "scope": "Two BF16 historical replays and six full-input native fc1 replays; local sampled diagnostic; no quality claim",
+  "null_scope": "Roll eu by 256 of 512 fixed video rows; preserves marginals, breaks content conditions, noncausal",
+  "projection": "Per-output-channel center then remove centered teacher gated-down output direction; same basis for all terms",
+  "error": "Traceback (most recent call last):\n  File \"scripts/research/probe_h3_swiglu_interaction.py\", line 453, in main\n    manifest, cases = prerequisites(report)\n                      ^^^^^^^^^^^^^^^^^^^^^\n  File \"scripts/research/probe_h3_swiglu_interaction.py\", line 41, in prerequisites\n    checked = old.load_complete(base.REPORTS/'check.json')\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_crossmodal_propagation.py\", line 48, in load_complete\n    value = json.loads(Path(path).read_text())\n                       ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/pathlib.py\", line 1027, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/pathlib.py\", line 1013, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/wjq/workspace/svdquant-exp/results/research/E014/check.json'\n",
+  "elapsed_seconds": 0.14841914176940918
+}

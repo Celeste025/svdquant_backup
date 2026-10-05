@@ -1,0 +1,22 @@
+{
+  "experiment": "E082",
+  "phase": "native_validation",
+  "status": "failed_stop",
+  "passed": false,
+  "rows": [],
+  "sources": {
+    "validate_h3_center128_native.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/validate_h3_center128_native.py",
+      "sha256": "2ef8a08f7abeeb7782c69ea03fae162cf9eb8d5fec5ed312194cdfddf3f7f051",
+      "bytes": 4293
+    },
+    "E082_center128_video_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E082_center128_video_plan.md",
+      "sha256": "19ae45686f6aeb9b20e2525e68d2aa6f15d95a96824cbd9fd3d71834342c2c0c",
+      "bytes": 2740
+    }
+  },
+  "error": "Traceback (most recent call last):\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/validate_h3_center128_native.py\", line 57, in <module>\n    try:run()\n        ^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/utils/_contextlib.py\", line 124, in decorate_context\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/validate_h3_center128_native.py\", line 25, in run\n    center.load_extension();report['private_contract']=contract()\n    ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/e082_sage_center.py\", line 77, in load_extension\n    module = cpp_extension.load(\n             ^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/utils/cpp_extension.py\", line 1818, in load\n    return _jit_compile(\n           ^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/utils/cpp_extension.py\", line 2268, in _jit_compile\n    _write_ninja_file_and_build_library(\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/utils/cpp_extension.py\", line 2382, in _write_ninja_file_and_build_library\n    verify_ninja_availability()\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/utils/cpp_extension.py\", line 2448, in verify_ninja_availability\n    raise RuntimeError(\"Ninja is required to load C++ extensions (pip install ninja to get it)\")\nRuntimeError: Ninja is required to load C++ extensions (pip install ninja to get it)\n",
+  "seconds": 0.022401167079806328,
+  "peak_allocated_bytes": 0
+}

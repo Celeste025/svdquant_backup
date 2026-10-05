@@ -1,0 +1,3417 @@
+{
+  "experiment": "E081",
+  "status": "complete",
+  "source_report": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E081/probe.json",
+    "sha256": "ff903a33cbd785c63b3cbfc87e6106dc220623c0ea7442f8719eeeb446bc39ad",
+    "bytes": 69181
+  },
+  "E080_report": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E080/v2/pv_probe_v2.json",
+    "sha256": "b81ec6c3ecc10f2af42bac6fa2c2be30070ca0838abb4c69c8a11a24f1b0e847",
+    "bytes": 66180
+  },
+  "verified_executed_sources": {
+    "probe_h3_center_mass.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_center_mass.py",
+      "sha256": "b17a8dd5e8efeddbe9fde8ead1fcee547a09c5e2494d27b8d12463b25ab3dc3c",
+      "bytes": 10499
+    },
+    "e080_pv_contract.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/e080_pv_contract.py",
+      "sha256": "f205be50215c9e579eb46f2463a713a0c7426aff38d002de0519e3b87590c69e",
+      "bytes": 6993
+    },
+    "E081_center_mass_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E081_center_mass_plan.md",
+      "sha256": "61a6f459f3d1816556aaebf3ba69128383ac930a671f185ec62d5e2a10001f13",
+      "bytes": 2893
+    }
+  },
+  "independent_sources": {
+    "verify_e081_center.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/verify_e081_center.py",
+      "sha256": "207ec915cfe6571149e8894f3a6ab50b2ca77c3c23a6d0bcadd5e386d5c24044",
+      "bytes": 12842
+    },
+    "verify_e080_pv.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/verify_e080_pv.py",
+      "sha256": "2f9668f1577cdcd693cdd09f61c12437c1d387e90f1bbbea82d714e29b1a0864",
+      "bytes": 9404
+    }
+  },
+  "environment": {
+    "python": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+    "numpy": "2.5.2",
+    "torch": "2.11.0+cu128",
+    "CUDA_VISIBLE_DEVICES": ""
+  },
+  "method": "CPU NumPy FP64 arithmetic; torch only loads saved CPU tensors",
+  "rows": [
+    {
+      "case_id": "vbench0161_r0",
+      "block": 0,
+      "step": 14,
+      "verified_outputs": {
+        "file": "/data1/models/svdquant-wjq/research/20261005/E081/center_vbench0161_r0_b0.pt",
+        "sha256": "79f2b21aa561352f6541dfb2e90a00c1f9bade8461eda640b4ed31e37e4ea029",
+        "bytes": 45425006
+      },
+      "verified_E080_outputs": {
+        "file": "/data1/models/svdquant-wjq/research/20261004/E080/v2/pv2_vbench0161_r0_b0.pt",
+        "sha256": "165b7e0c4052229ec706dd7bb19ce7ab2d050d7e67171f4d7a27ae57718a3130",
+        "bytes": 37166127
+      },
+      "conditions": [
+        {
+          "condition": "native_qk",
+          "oracle_vs_full": {
+            "sse": 303.38585362659603,
+            "reference_energy": 480545.88403745653,
+            "contrast_sse": 191.02981101765516,
+            "contrast_reference_energy": 4901.997906265646,
+            "contrast_gain": 0.9810394854015295,
+            "contrast_cosine": 0.9805254536059951
+          },
+          "arms": {
+            "base": {
+              "vs_pv_oracle": {
+                "sse": 490.29090933814535,
+                "reference_energy": 481072.1910377541,
+                "contrast_sse": 143.16664328953453,
+                "contrast_reference_energy": 4907.138911556457,
+                "contrast_gain": 0.9953943837923459,
+                "contrast_cosine": 0.9856047236537957
+              },
+              "vs_full_attention": {
+                "sse": 782.8662023268304,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 332.0571172205109,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9766472497513642,
+                "contrast_cosine": 0.9665352692892991
+              }
+            },
+            "center32": {
+              "vs_pv_oracle": {
+                "sse": 186.37460800530295,
+                "reference_energy": 481072.1910377541,
+                "contrast_sse": 109.32916118233105,
+                "contrast_reference_energy": 4907.138911556457,
+                "contrast_gain": 0.9944005126001828,
+                "contrast_cosine": 0.9889365820943427
+              },
+              "vs_full_attention": {
+                "sse": 490.6131619253838,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 298.28944304306754,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9756452158747809,
+                "contrast_cosine": 0.9697759436003088
+              }
+            },
+            "center128": {
+              "vs_pv_oracle": {
+                "sse": 194.92680804499503,
+                "reference_energy": 481072.1910377541,
+                "contrast_sse": 112.75043162649237,
+                "contrast_reference_energy": 4907.138911556457,
+                "contrast_gain": 0.993989234451076,
+                "contrast_cosine": 0.9885888482344065
+              },
+              "vs_full_attention": {
+                "sse": 493.598115866531,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 301.15939383419186,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.975289740573535,
+                "contrast_cosine": 0.9694827067773188
+              }
+            },
+            "residual32": {
+              "vs_pv_oracle": {
+                "sse": 364.4886970256843,
+                "reference_energy": 481072.1910377541,
+                "contrast_sse": 135.73281177152137,
+                "contrast_reference_energy": 4907.138911556457,
+                "contrast_gain": 0.9950023764576376,
+                "contrast_cosine": 0.9863287512649084
+              },
+              "vs_full_attention": {
+                "sse": 661.8208854744171,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 323.9181033465653,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9763267593517684,
+                "contrast_cosine": 0.9673088299722213
+              }
+            },
+            "residual128": {
+              "vs_pv_oracle": {
+                "sse": 371.1066085715804,
+                "reference_energy": 481072.1910377541,
+                "contrast_sse": 136.46339261082332,
+                "contrast_reference_energy": 4907.138911556457,
+                "contrast_gain": 0.9946368125846333,
+                "contrast_cosine": 0.9862485504040874
+              },
+              "vs_full_attention": {
+                "sse": 665.0468669455176,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 325.488539375345,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9758751475104438,
+                "contrast_cosine": 0.9671380981002916
+              }
+            },
+            "massfix32": {
+              "vs_pv_oracle": {
+                "sse": 232.9003929441404,
+                "reference_energy": 481072.1910377541,
+                "contrast_sse": 116.94091242845941,
+                "contrast_reference_energy": 4907.138911556457,
+                "contrast_gain": 0.9947925393758337,
+                "contrast_cosine": 0.988185945851316
+              },
+              "vs_full_attention": {
+                "sse": 532.3820366471605,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 306.606394632023,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9759657239010587,
+                "contrast_cosine": 0.968976185400254
+              }
+            },
+            "massfix128": {
+              "vs_pv_oracle": {
+                "sse": 238.0258290615535,
+                "reference_energy": 481072.1910377541,
+                "contrast_sse": 119.36682118983595,
+                "contrast_reference_energy": 4907.138911556457,
+                "contrast_gain": 0.9947468237943551,
+                "contrast_cosine": 0.9879441511358625
+              },
+              "vs_full_attention": {
+                "sse": 535.3321743628065,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 307.641143891426,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9760618575696687,
+                "contrast_cosine": 0.9688790376004346
+              }
+            }
+          },
+          "E080_replay_exact": {
+            "base": true,
+            "center32": true,
+            "center128": true
+          },
+          "groups": [
+            {
+              "group": 32,
+              "factorial_closure_relative_energy": 1.7238691360943029e-10,
+              "correction_identity_relative_energy": 2.4726306678584607e-10,
+              "correction_identity_fp64_subtraction_relative_energy": 2.4726306711028243e-10,
+              "massfix_identity_relative_energy": 2.454169686755788e-10,
+              "attributions": {
+                "vs_pv_oracle": {
+                  "output": {
+                    "base_sse": 490.29090933814535,
+                    "v_change_energy": 221.55859699221824,
+                    "mass_change_energy": 171.2576304423443,
+                    "twice_base_error_dot_v": -347.3608093046793,
+                    "twice_base_error_dot_mass": -428.64814683634927,
+                    "twice_v_dot_mass": 79.276443441604,
+                    "sum_without_rounding_residual": 186.37462407328331,
+                    "rounding_residual_energy": 8.138259811919101e-08,
+                    "rounding_contribution_to_center_sse": -1.6067980333909066e-05,
+                    "reconstructed_center_sse": 186.37460800530297,
+                    "actual_center_sse": 186.37460800530295,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 143.16664328953453,
+                    "v_change_energy": 53.783357366195766,
+                    "mass_change_energy": 24.195379887152715,
+                    "twice_base_error_dot_v": -61.21718888420892,
+                    "twice_base_error_dot_mass": -50.42111074822782,
+                    "twice_v_dot_mass": -0.1779236524936949,
+                    "sum_without_rounding_residual": 109.32915725795257,
+                    "rounding_residual_energy": 8.101474804145133e-08,
+                    "rounding_contribution_to_center_sse": 3.9243784903460966e-06,
+                    "reconstructed_center_sse": 109.32916118233106,
+                    "actual_center_sse": 109.32916118233105,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                },
+                "vs_full_attention": {
+                  "output": {
+                    "base_sse": 782.8662023268304,
+                    "v_change_energy": 221.55859699221824,
+                    "mass_change_energy": 171.2576304423443,
+                    "twice_base_error_dot_v": -342.6039138446315,
+                    "twice_base_error_dot_mass": -421.7417961220142,
+                    "twice_v_dot_mass": 79.276443441604,
+                    "sum_without_rounding_residual": 490.6131632363512,
+                    "rounding_residual_energy": 8.138259811919101e-08,
+                    "rounding_contribution_to_center_sse": -1.3109673391211092e-06,
+                    "reconstructed_center_sse": 490.6131619253839,
+                    "actual_center_sse": 490.6131619253838,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 332.0571172205109,
+                    "v_change_energy": 53.783357366195766,
+                    "mass_change_energy": 24.195379887152715,
+                    "twice_base_error_dot_v": -61.9223712401414,
+                    "twice_base_error_dot_mass": -49.64610247564064,
+                    "twice_v_dot_mass": -0.1779236524936949,
+                    "sum_without_rounding_residual": 298.28945710558366,
+                    "rounding_residual_energy": 8.101474804145133e-08,
+                    "rounding_contribution_to_center_sse": -1.4062516202821357e-05,
+                    "reconstructed_center_sse": 298.2894430430675,
+                    "actual_center_sse": 298.28944304306754,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                }
+              },
+              "classifications": {
+                "vs_pv_oracle": {
+                  "group": 32,
+                  "reference": "vs_pv_oracle",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center32": -61.986933786536206,
+                    "residual32": -25.658687509071765,
+                    "massfix32": -52.497509436073805
+                  },
+                  "center_absolute_sse_improvement": 303.9163013328424,
+                  "massfix_fraction_of_center_gain": 0.846912506059083,
+                  "removing_massfix_fraction_of_center_gain": 0.586062966149732,
+                  "massfix_at_least_80pct_center_gain": true,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "mass_correction_explains_most_local_gain"
+                },
+                "vs_full_attention": {
+                  "group": 32,
+                  "reference": "vs_full_attention",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center32": -37.33116074404717,
+                    "residual32": -15.461814099605153,
+                    "massfix32": -31.995782285042107
+                  },
+                  "center_absolute_sse_improvement": 292.2530404014466,
+                  "massfix_fraction_of_center_gain": 0.8570797598396176,
+                  "removing_massfix_fraction_of_center_gain": 0.5858201622602721,
+                  "massfix_at_least_80pct_center_gain": true,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "mass_correction_explains_most_local_gain"
+                }
+              }
+            },
+            {
+              "group": 128,
+              "factorial_closure_relative_energy": 1.735224459313303e-10,
+              "correction_identity_relative_energy": 2.5535249090128507e-10,
+              "correction_identity_fp64_subtraction_relative_energy": 2.5535249794747065e-10,
+              "massfix_identity_relative_energy": 2.5010364501266315e-10,
+              "attributions": {
+                "vs_pv_oracle": {
+                  "output": {
+                    "base_sse": 490.29090933814535,
+                    "v_change_energy": 218.22007791590687,
+                    "mass_change_energy": 164.95287512101362,
+                    "twice_base_error_dot_v": -337.4043786824718,
+                    "twice_base_error_dot_mass": -417.21795539760546,
+                    "twice_v_dot_mass": 76.08532819052886,
+                    "sum_without_rounding_residual": 194.92685648551742,
+                    "rounding_residual_energy": 7.969162451243001e-08,
+                    "rounding_contribution_to_center_sse": -4.8440522352811345e-05,
+                    "reconstructed_center_sse": 194.92680804499506,
+                    "actual_center_sse": 194.92680804499503,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 143.16664328953453,
+                    "v_change_energy": 52.0237400274806,
+                    "mass_change_energy": 20.713189426780367,
+                    "twice_base_error_dot_v": -58.72699070619178,
+                    "twice_base_error_dot_mass": -44.51301152647893,
+                    "twice_v_dot_mass": 0.08686116815969952,
+                    "sum_without_rounding_residual": 112.75043167928449,
+                    "rounding_residual_energy": 8.02566151394687e-08,
+                    "rounding_contribution_to_center_sse": -5.279210063799578e-08,
+                    "reconstructed_center_sse": 112.75043162649239,
+                    "actual_center_sse": 112.75043162649237,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                },
+                "vs_full_attention": {
+                  "output": {
+                    "base_sse": 782.8662023268304,
+                    "v_change_energy": 218.22007791590687,
+                    "mass_change_energy": 164.95287512101362,
+                    "twice_base_error_dot_v": -336.0394132972194,
+                    "twice_base_error_dot_mass": -412.4869030850375,
+                    "twice_v_dot_mass": 76.08532819052886,
+                    "sum_without_rounding_residual": 493.5981671720228,
+                    "rounding_residual_energy": 7.969162451243001e-08,
+                    "rounding_contribution_to_center_sse": -5.130549181704213e-05,
+                    "reconstructed_center_sse": 493.598115866531,
+                    "actual_center_sse": 493.598115866531,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 332.0571172205109,
+                    "v_change_energy": 52.0237400274806,
+                    "mass_change_energy": 20.713189426780367,
+                    "twice_base_error_dot_v": -58.59231787264658,
+                    "twice_base_error_dot_mass": -45.12916275586534,
+                    "twice_v_dot_mass": 0.08686116815969952,
+                    "sum_without_rounding_residual": 301.1594272144197,
+                    "rounding_residual_energy": 8.02566151394687e-08,
+                    "rounding_contribution_to_center_sse": -3.338022789442106e-05,
+                    "reconstructed_center_sse": 301.1593938341918,
+                    "actual_center_sse": 301.15939383419186,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                }
+              },
+              "classifications": {
+                "vs_pv_oracle": {
+                  "group": 128,
+                  "reference": "vs_pv_oracle",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center128": -60.2426224242805,
+                    "residual128": -24.308894677948345,
+                    "massfix128": -51.45212270346398
+                  },
+                  "center_absolute_sse_improvement": 295.3641012931503,
+                  "massfix_fraction_of_center_gain": 0.8540817220919393,
+                  "removing_massfix_fraction_of_center_gain": 0.5964834580615674,
+                  "massfix_at_least_80pct_center_gain": true,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "mass_correction_explains_most_local_gain"
+                },
+                "vs_full_attention": {
+                  "group": 128,
+                  "reference": "vs_full_attention",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center128": -36.94987541939331,
+                    "residual128": -15.04974094310506,
+                    "massfix128": -31.618944236997926
+                  },
+                  "center_absolute_sse_improvement": 289.2680864602994,
+                  "massfix_fraction_of_center_gain": 0.8557253273011735,
+                  "removing_massfix_fraction_of_center_gain": 0.5926984659004794,
+                  "massfix_at_least_80pct_center_gain": true,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "mass_correction_explains_most_local_gain"
+                }
+              }
+            }
+          ],
+          "base_simulator_vs_native": {
+            "sse": 0.08869285463508342,
+            "reference_energy": 462108.3078224128,
+            "contrast_sse": 0.07519447363112769,
+            "contrast_reference_energy": 5005.958037534522,
+            "contrast_gain": 0.9999751280071526,
+            "contrast_cosine": 0.9999924895225214
+          },
+          "native_vs_full": {
+            "sse": 784.5194583554378,
+            "reference_energy": 480545.88403745653,
+            "contrast_sse": 333.29001909336813,
+            "contrast_reference_energy": 4901.997906265646,
+            "contrast_gain": 0.9766085285826657,
+            "contrast_cosine": 0.9664145744518534
+          },
+          "native_gap_energy_ratio": 0.00011305373460208026
+        },
+        {
+          "condition": "exact_qk",
+          "oracle_vs_full": {
+            "sse": 0.0,
+            "reference_energy": 480545.88403745653,
+            "contrast_sse": 0.0,
+            "contrast_reference_energy": 4901.997906265646,
+            "contrast_gain": 1.0,
+            "contrast_cosine": 1.0000000000000002
+          },
+          "arms": {
+            "base": {
+              "vs_pv_oracle": {
+                "sse": 491.0418457476162,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 135.67853375994255,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9919422485156072,
+                "contrast_cosine": 0.9862567367732883
+              },
+              "vs_full_attention": {
+                "sse": 491.0418457476162,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 135.67853375994255,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9919422485156072,
+                "contrast_cosine": 0.9862567367732883
+              }
+            },
+            "center32": {
+              "vs_pv_oracle": {
+                "sse": 185.4593253507094,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 103.45898648937434,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.993842843894843,
+                "contrast_cosine": 0.9895029214158007
+              },
+              "vs_full_attention": {
+                "sse": 185.4593253507094,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 103.45898648937434,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.993842843894843,
+                "contrast_cosine": 0.9895029214158007
+              }
+            },
+            "center128": {
+              "vs_pv_oracle": {
+                "sse": 194.18853901400198,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 106.2656368957562,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9929420390034193,
+                "contrast_cosine": 0.9892088335087935
+              },
+              "vs_full_attention": {
+                "sse": 194.18853901400198,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 106.2656368957562,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9929420390034193,
+                "contrast_cosine": 0.9892088335087935
+              }
+            },
+            "residual32": {
+              "vs_pv_oracle": {
+                "sse": 363.7031957622695,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 130.395862788239,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9916264231399063,
+                "contrast_cosine": 0.9867767865972907
+              },
+              "vs_full_attention": {
+                "sse": 363.7031957622695,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 130.395862788239,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9916264231399063,
+                "contrast_cosine": 0.9867767865972907
+              }
+            },
+            "residual128": {
+              "vs_pv_oracle": {
+                "sse": 371.62835845709463,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 131.4461787824118,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9911910979372012,
+                "contrast_cosine": 0.9866643000350201
+              },
+              "vs_full_attention": {
+                "sse": 371.62835845709463,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 131.4461787824118,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9911910979372012,
+                "contrast_cosine": 0.9866643000350201
+              }
+            },
+            "massfix32": {
+              "vs_pv_oracle": {
+                "sse": 234.88777063992163,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 109.53115720970351,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9941586747076556,
+                "contrast_cosine": 0.988901048942325
+              },
+              "vs_full_attention": {
+                "sse": 234.88777063992163,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 109.53115720970351,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9941586747076556,
+                "contrast_cosine": 0.988901048942325
+              }
+            },
+            "massfix128": {
+              "vs_pv_oracle": {
+                "sse": 239.9735499188273,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 111.48386871465209,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9936931831364257,
+                "contrast_cosine": 0.9886985825776815
+              },
+              "vs_full_attention": {
+                "sse": 239.9735499188273,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 111.48386871465209,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9936931831364257,
+                "contrast_cosine": 0.9886985825776815
+              }
+            }
+          },
+          "E080_replay_exact": {
+            "base": true,
+            "center32": true,
+            "center128": true
+          },
+          "groups": [
+            {
+              "group": 32,
+              "factorial_closure_relative_energy": 1.7376566027709753e-10,
+              "correction_identity_relative_energy": 2.5103139290334134e-10,
+              "correction_identity_fp64_subtraction_relative_energy": 2.51031387195628e-10,
+              "massfix_identity_relative_energy": 2.4134197705009645e-10,
+              "attributions": {
+                "vs_pv_oracle": {
+                  "output": {
+                    "base_sse": 491.0418457476162,
+                    "v_change_energy": 218.427376465031,
+                    "mass_change_energy": 171.38559250688917,
+                    "twice_base_error_dot_v": -345.7660264503777,
+                    "twice_base_error_dot_mass": -427.5396676145837,
+                    "twice_v_dot_mass": 77.9102023769259,
+                    "sum_without_rounding_residual": 185.45932303150084,
+                    "rounding_residual_energy": 8.127423029071115e-08,
+                    "rounding_contribution_to_center_sse": 2.3192085651543533e-06,
+                    "reconstructed_center_sse": 185.4593253507094,
+                    "actual_center_sse": 185.4593253507094,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 135.67853375994255,
+                    "v_change_energy": 54.56199159756986,
+                    "mass_change_energy": 22.73108904250124,
+                    "twice_base_error_dot_v": -59.84466256927341,
+                    "twice_base_error_dot_mass": -48.8784655927403,
+                    "twice_v_dot_mass": -0.7894923347745515,
+                    "sum_without_rounding_residual": 103.45899390322539,
+                    "rounding_residual_energy": 8.112605111351849e-08,
+                    "rounding_contribution_to_center_sse": -7.413851065512214e-06,
+                    "reconstructed_center_sse": 103.45898648937433,
+                    "actual_center_sse": 103.45898648937434,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                },
+                "vs_full_attention": {
+                  "output": {
+                    "base_sse": 491.0418457476162,
+                    "v_change_energy": 218.427376465031,
+                    "mass_change_energy": 171.38559250688917,
+                    "twice_base_error_dot_v": -345.7660264503777,
+                    "twice_base_error_dot_mass": -427.5396676145837,
+                    "twice_v_dot_mass": 77.9102023769259,
+                    "sum_without_rounding_residual": 185.45932303150084,
+                    "rounding_residual_energy": 8.127423029071115e-08,
+                    "rounding_contribution_to_center_sse": 2.3192085651543533e-06,
+                    "reconstructed_center_sse": 185.4593253507094,
+                    "actual_center_sse": 185.4593253507094,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 135.67853375994255,
+                    "v_change_energy": 54.56199159756986,
+                    "mass_change_energy": 22.73108904250124,
+                    "twice_base_error_dot_v": -59.84466256927341,
+                    "twice_base_error_dot_mass": -48.8784655927403,
+                    "twice_v_dot_mass": -0.7894923347745515,
+                    "sum_without_rounding_residual": 103.45899390322539,
+                    "rounding_residual_energy": 8.112605111351849e-08,
+                    "rounding_contribution_to_center_sse": -7.413851065512214e-06,
+                    "reconstructed_center_sse": 103.45898648937433,
+                    "actual_center_sse": 103.45898648937434,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                }
+              },
+              "classifications": {
+                "vs_pv_oracle": {
+                  "group": 32,
+                  "reference": "vs_pv_oracle",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center32": -62.23146215403583,
+                    "residual32": -25.932341833611417,
+                    "massfix32": -52.1654269032199
+                  },
+                  "center_absolute_sse_improvement": 305.58252039690683,
+                  "massfix_fraction_of_center_gain": 0.8382484533964444,
+                  "removing_massfix_fraction_of_center_gain": 0.5832921011975668,
+                  "massfix_at_least_80pct_center_gain": true,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "mass_correction_explains_most_local_gain"
+                },
+                "vs_full_attention": {
+                  "group": 32,
+                  "reference": "vs_full_attention",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center32": -62.23146215403583,
+                    "residual32": -25.932341833611417,
+                    "massfix32": -52.1654269032199
+                  },
+                  "center_absolute_sse_improvement": 305.58252039690683,
+                  "massfix_fraction_of_center_gain": 0.8382484533964444,
+                  "removing_massfix_fraction_of_center_gain": 0.5832921011975668,
+                  "massfix_at_least_80pct_center_gain": true,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "mass_correction_explains_most_local_gain"
+                }
+              }
+            },
+            {
+              "group": 128,
+              "factorial_closure_relative_energy": 1.7832515138906207e-10,
+              "correction_identity_relative_energy": 2.545221055166899e-10,
+              "correction_identity_fp64_subtraction_relative_energy": 2.5452210474705027e-10,
+              "massfix_identity_relative_energy": 2.5289022927532406e-10,
+              "attributions": {
+                "vs_pv_oracle": {
+                  "output": {
+                    "base_sse": 491.0418457476162,
+                    "v_change_energy": 214.02980730089814,
+                    "mass_change_energy": 164.2313594784136,
+                    "twice_base_error_dot_v": -333.4432945914197,
+                    "twice_base_error_dot_mass": -415.29965530720256,
+                    "twice_v_dot_mass": 73.6285196121313,
+                    "sum_without_rounding_residual": 194.18858224043697,
+                    "rounding_residual_energy": 8.058329602083962e-08,
+                    "rounding_contribution_to_center_sse": -4.322643505402986e-05,
+                    "reconstructed_center_sse": 194.18853901400192,
+                    "actual_center_sse": 194.18853901400198,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 135.67853375994255,
+                    "v_change_energy": 52.353137035553566,
+                    "mass_change_energy": 19.313112016328667,
+                    "twice_base_error_dot_v": -56.585492013084306,
+                    "twice_base_error_dot_mass": -43.50777706161914,
+                    "twice_v_dot_mass": -0.9858787417473677,
+                    "sum_without_rounding_residual": 106.26563499537397,
+                    "rounding_residual_energy": 8.073016412252322e-08,
+                    "rounding_contribution_to_center_sse": 1.9003822160415977e-06,
+                    "reconstructed_center_sse": 106.26563689575619,
+                    "actual_center_sse": 106.2656368957562,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                },
+                "vs_full_attention": {
+                  "output": {
+                    "base_sse": 491.0418457476162,
+                    "v_change_energy": 214.02980730089814,
+                    "mass_change_energy": 164.2313594784136,
+                    "twice_base_error_dot_v": -333.4432945914197,
+                    "twice_base_error_dot_mass": -415.29965530720256,
+                    "twice_v_dot_mass": 73.6285196121313,
+                    "sum_without_rounding_residual": 194.18858224043697,
+                    "rounding_residual_energy": 8.058329602083962e-08,
+                    "rounding_contribution_to_center_sse": -4.322643505402986e-05,
+                    "reconstructed_center_sse": 194.18853901400192,
+                    "actual_center_sse": 194.18853901400198,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 135.67853375994255,
+                    "v_change_energy": 52.353137035553566,
+                    "mass_change_energy": 19.313112016328667,
+                    "twice_base_error_dot_v": -56.585492013084306,
+                    "twice_base_error_dot_mass": -43.50777706161914,
+                    "twice_v_dot_mass": -0.9858787417473677,
+                    "sum_without_rounding_residual": 106.26563499537397,
+                    "rounding_residual_energy": 8.073016412252322e-08,
+                    "rounding_contribution_to_center_sse": 1.9003822160415977e-06,
+                    "reconstructed_center_sse": 106.26563689575619,
+                    "actual_center_sse": 106.2656368957562,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                }
+              },
+              "classifications": {
+                "vs_pv_oracle": {
+                  "group": 128,
+                  "reference": "vs_pv_oracle",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center128": -60.45376973558171,
+                    "residual128": -24.31839329471266,
+                    "massfix128": -51.12971491187983
+                  },
+                  "center_absolute_sse_improvement": 296.8533067336142,
+                  "massfix_fraction_of_center_gain": 0.8457655351438912,
+                  "removing_massfix_fraction_of_center_gain": 0.5977357011634065,
+                  "massfix_at_least_80pct_center_gain": true,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "mass_correction_explains_most_local_gain"
+                },
+                "vs_full_attention": {
+                  "group": 128,
+                  "reference": "vs_full_attention",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center128": -60.45376973558171,
+                    "residual128": -24.31839329471266,
+                    "massfix128": -51.12971491187983
+                  },
+                  "center_absolute_sse_improvement": 296.8533067336142,
+                  "massfix_fraction_of_center_gain": 0.8457655351438912,
+                  "removing_massfix_fraction_of_center_gain": 0.5977357011634065,
+                  "massfix_at_least_80pct_center_gain": true,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "mass_correction_explains_most_local_gain"
+                }
+              }
+            }
+          ],
+          "base_simulator_vs_native": {
+            "sse": 488.18389942680966,
+            "reference_energy": 462108.3078224128,
+            "contrast_sse": 376.3650398119558,
+            "contrast_reference_energy": 5005.958037534522,
+            "contrast_gain": 0.9578237212921078,
+            "contrast_cosine": 0.9622453608199466
+          },
+          "native_vs_full": {
+            "sse": 784.5194583554378,
+            "reference_energy": 480545.88403745653,
+            "contrast_sse": 333.29001909336813,
+            "contrast_reference_energy": 4901.997906265646,
+            "contrast_gain": 0.9766085285826657,
+            "contrast_cosine": 0.9664145744518534
+          },
+          "native_gap_energy_ratio": 0.6222712441705059
+        }
+      ]
+    },
+    {
+      "case_id": "vbench0161_r0",
+      "block": 24,
+      "step": 14,
+      "verified_outputs": {
+        "file": "/data1/models/svdquant-wjq/research/20261005/E081/center_vbench0161_r0_b24.pt",
+        "sha256": "c2a322882128646267d820f375161c633ea15ce71e116271cfaae2f3d1e5a3de",
+        "bytes": 45425035
+      },
+      "verified_E080_outputs": {
+        "file": "/data1/models/svdquant-wjq/research/20261004/E080/v2/pv2_vbench0161_r0_b24.pt",
+        "sha256": "125d11a88f1f9a517b8984c62f4fa6ac127a1eef1ce569021e23b3ad4315cf8d",
+        "bytes": 37166152
+      },
+      "conditions": [
+        {
+          "condition": "native_qk",
+          "oracle_vs_full": {
+            "sse": 91522.9436030278,
+            "reference_energy": 27910672.417726375,
+            "contrast_sse": 77017.40784823544,
+            "contrast_reference_energy": 5708395.186270062,
+            "contrast_gain": 0.9909315391799508,
+            "contrast_cosine": 0.9932410101064711
+          },
+          "arms": {
+            "base": {
+              "vs_pv_oracle": {
+                "sse": 57928.76900076669,
+                "reference_energy": 27843367.626927875,
+                "contrast_sse": 34829.003134804865,
+                "contrast_reference_energy": 5681879.8779342035,
+                "contrast_gain": 0.9909157077824103,
+                "contrast_cosine": 0.9969348008637773
+              },
+              "vs_full_attention": {
+                "sse": 149216.08746618824,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 111087.20367660951,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9819559423911344,
+                "contrast_cosine": 0.9902230650468861
+              }
+            },
+            "center32": {
+              "vs_pv_oracle": {
+                "sse": 34619.54158081943,
+                "reference_energy": 27843367.626927875,
+                "contrast_sse": 24270.837252622427,
+                "contrast_reference_energy": 5681879.8779342035,
+                "contrast_gain": 0.9925036044044349,
+                "contrast_cosine": 0.9978671709691271
+              },
+              "vs_full_attention": {
+                "sse": 126196.68040509436,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 100950.56554432996,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9834995415468415,
+                "contrast_cosine": 0.9911189862811628
+              }
+            },
+            "center128": {
+              "vs_pv_oracle": {
+                "sse": 36324.50239270473,
+                "reference_energy": 27843367.626927875,
+                "contrast_sse": 25681.88827876102,
+                "contrast_reference_energy": 5681879.8779342035,
+                "contrast_gain": 0.9924026709265451,
+                "contrast_cosine": 0.9977422558483978
+              },
+              "vs_full_attention": {
+                "sse": 127672.78388005361,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 101537.36166114174,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9834712736296594,
+                "contrast_cosine": 0.9910672199654789
+              }
+            },
+            "residual32": {
+              "vs_pv_oracle": {
+                "sse": 44999.75283019933,
+                "reference_energy": 27843367.626927875,
+                "contrast_sse": 27807.965049472965,
+                "contrast_reference_energy": 5681879.8779342035,
+                "contrast_gain": 0.9899536226956295,
+                "contrast_cosine": 0.9975634347922808
+              },
+              "vs_full_attention": {
+                "sse": 136652.96181400013,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 104393.93736136271,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9809696165330322,
+                "contrast_cosine": 0.9908141963551395
+              }
+            },
+            "residual128": {
+              "vs_pv_oracle": {
+                "sse": 46011.59090216165,
+                "reference_energy": 27843367.626927875,
+                "contrast_sse": 28764.259542842196,
+                "contrast_reference_energy": 5681879.8779342035,
+                "contrast_gain": 0.9903827736220836,
+                "contrast_cosine": 0.9974761097260859
+              },
+              "vs_full_attention": {
+                "sse": 137466.67319249833,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 104562.04022489453,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9814658120023557,
+                "contrast_cosine": 0.9907990758675231
+              }
+            },
+            "massfix32": {
+              "vs_pv_oracle": {
+                "sse": 44590.735783149445,
+                "reference_energy": 27843367.626927875,
+                "contrast_sse": 31191.37137321969,
+                "contrast_reference_energy": 5681879.8779342035,
+                "contrast_gain": 0.9934656926965225,
+                "contrast_cosine": 0.9972519631216573
+              },
+              "vs_full_attention": {
+                "sse": 135801.98233730588,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 107543.33108295669,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9844858703161139,
+                "contrast_cosine": 0.9905411102322714
+              }
+            },
+            "massfix128": {
+              "vs_pv_oracle": {
+                "sse": 45337.220089797316,
+                "reference_energy": 27843367.626927875,
+                "contrast_sse": 31642.455860091108,
+                "contrast_reference_energy": 5681879.8779342035,
+                "contrast_gain": 0.9929356052383346,
+                "contrast_cosine": 0.9972127374419814
+              },
+              "vs_full_attention": {
+                "sse": 136517.73422116216,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 107958.35056470575,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9839614040410979,
+                "contrast_cosine": 0.9905029838157879
+              }
+            }
+          },
+          "E080_replay_exact": {
+            "base": true,
+            "center32": true,
+            "center128": true
+          },
+          "groups": [
+            {
+              "group": 32,
+              "factorial_closure_relative_energy": 6.192505217050066e-11,
+              "correction_identity_relative_energy": 3.1056410446751426e-10,
+              "correction_identity_fp64_subtraction_relative_energy": 3.105640940240917e-10,
+              "massfix_identity_relative_energy": 3.0818616555068513e-10,
+              "attributions": {
+                "vs_pv_oracle": {
+                  "output": {
+                    "base_sse": 57928.76900076669,
+                    "v_change_energy": 54454.49161712453,
+                    "mass_change_energy": 8195.517335155377,
+                    "twice_base_error_dot_v": -67383.5077876919,
+                    "twice_base_error_dot_mass": -21533.55055277262,
+                    "twice_v_dot_mass": 2957.823461736043,
+                    "sum_without_rounding_residual": 34619.54307431812,
+                    "rounding_residual_energy": 4.062767880594562e-06,
+                    "rounding_contribution_to_center_sse": -0.0014934987046110902,
+                    "reconstructed_center_sse": 34619.541580819416,
+                    "actual_center_sse": 34619.54158081943,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 34829.003134804865,
+                    "v_change_energy": 37929.20002425236,
+                    "mass_change_energy": 2250.436917850258,
+                    "twice_base_error_dot_v": -44950.238109584265,
+                    "twice_base_error_dot_mass": -5888.068679435435,
+                    "twice_v_dot_mass": 100.5064462058401,
+                    "sum_without_rounding_residual": 24270.83973409362,
+                    "rounding_residual_energy": 4.0591963239455e-06,
+                    "rounding_contribution_to_center_sse": -0.0024814711938245864,
+                    "reconstructed_center_sse": 24270.837252622427,
+                    "actual_center_sse": 24270.837252622427,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                },
+                "vs_full_attention": {
+                  "output": {
+                    "base_sse": 149216.08746618824,
+                    "v_change_energy": 54454.49161712453,
+                    "mass_change_energy": 8195.517335155377,
+                    "twice_base_error_dot_v": -67017.61726931269,
+                    "twice_base_error_dot_mass": -21609.622464037766,
+                    "twice_v_dot_mass": 2957.823461736043,
+                    "sum_without_rounding_residual": 126196.68014685373,
+                    "rounding_residual_energy": 4.062767880594562e-06,
+                    "rounding_contribution_to_center_sse": 0.0002582406003844427,
+                    "reconstructed_center_sse": 126196.68040509433,
+                    "actual_center_sse": 126196.68040509436,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 111087.20367660951,
+                    "v_change_energy": 37929.20002425236,
+                    "mass_change_energy": 2250.436917850258,
+                    "twice_base_error_dot_v": -44622.46633949916,
+                    "twice_base_error_dot_mass": -5794.309511503079,
+                    "twice_v_dot_mass": 100.5064462058401,
+                    "sum_without_rounding_residual": 100950.57121391573,
+                    "rounding_residual_energy": 4.0591963239455e-06,
+                    "rounding_contribution_to_center_sse": -0.005669585767313384,
+                    "reconstructed_center_sse": 100950.56554432996,
+                    "actual_center_sse": 100950.56554432996,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                }
+              },
+              "classifications": {
+                "vs_pv_oracle": {
+                  "group": 32,
+                  "reference": "vs_pv_oracle",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center32": -40.23773993823131,
+                    "residual32": -22.318817391745792,
+                    "massfix32": -23.024886334872253
+                  },
+                  "center_absolute_sse_improvement": 23309.22741994726,
+                  "massfix_fraction_of_center_gain": 0.57222116277449,
+                  "removing_massfix_fraction_of_center_gain": 0.4453262676778751,
+                  "massfix_at_least_80pct_center_gain": false,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "both_factors_warrant_attention"
+                },
+                "vs_full_attention": {
+                  "group": 32,
+                  "reference": "vs_full_attention",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center32": -15.4268936091157,
+                    "residual32": -8.419417681779695,
+                    "massfix32": -8.989717768817618
+                  },
+                  "center_absolute_sse_improvement": 23019.40706109388,
+                  "massfix_fraction_of_center_gain": 0.5827302629160305,
+                  "removing_massfix_fraction_of_center_gain": 0.4542376517846278,
+                  "massfix_at_least_80pct_center_gain": false,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "both_factors_warrant_attention"
+                }
+              }
+            },
+            {
+              "group": 128,
+              "factorial_closure_relative_energy": 6.433101863504035e-11,
+              "correction_identity_relative_energy": 3.428734224725438e-10,
+              "correction_identity_fp64_subtraction_relative_energy": 3.4287338701775455e-10,
+              "massfix_identity_relative_energy": 3.3973190106255047e-10,
+              "attributions": {
+                "vs_pv_oracle": {
+                  "output": {
+                    "base_sse": 57928.76900076669,
+                    "v_change_energy": 52347.17689254476,
+                    "mass_change_energy": 7429.743040345684,
+                    "twice_base_error_dot_v": -64264.35499114979,
+                    "twice_base_error_dot_mass": -20021.291951315055,
+                    "twice_v_dot_mass": 2904.4658522800564,
+                    "sum_without_rounding_residual": 36324.50784347235,
+                    "rounding_residual_energy": 4.0323568443475294e-06,
+                    "rounding_contribution_to_center_sse": -0.005450767607759968,
+                    "reconstructed_center_sse": 36324.50239270474,
+                    "actual_center_sse": 36324.50239270473,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 34829.003134804865,
+                    "v_change_energy": 36597.59393015426,
+                    "mass_change_energy": 1902.9539052596122,
+                    "twice_base_error_dot_v": -42662.337522116926,
+                    "twice_base_error_dot_mass": -5089.501179973372,
+                    "twice_v_dot_mass": 104.18004473064182,
+                    "sum_without_rounding_residual": 25681.89231285908,
+                    "rounding_residual_energy": 4.025545263590274e-06,
+                    "rounding_contribution_to_center_sse": -0.004034098062478915,
+                    "reconstructed_center_sse": 25681.888278761016,
+                    "actual_center_sse": 25681.88827876102,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                },
+                "vs_full_attention": {
+                  "output": {
+                    "base_sse": 149216.08746618824,
+                    "v_change_energy": 52347.17689254476,
+                    "mass_change_energy": 7429.743040345684,
+                    "twice_base_error_dot_v": -64096.59116623469,
+                    "twice_base_error_dot_mass": -20128.096285371772,
+                    "twice_v_dot_mass": 2904.4658522800564,
+                    "sum_without_rounding_residual": 127672.78579975228,
+                    "rounding_residual_energy": 4.0323568443475294e-06,
+                    "rounding_contribution_to_center_sse": -0.0019196986915392103,
+                    "reconstructed_center_sse": 127672.78388005358,
+                    "actual_center_sse": 127672.78388005361,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 111087.20367660951,
+                    "v_change_energy": 36597.59393015426,
+                    "mass_change_energy": 1902.9539052596122,
+                    "twice_base_error_dot_v": -43122.75738186923,
+                    "twice_base_error_dot_mass": -5031.807017163377,
+                    "twice_v_dot_mass": 104.18004473064182,
+                    "sum_without_rounding_residual": 101537.36715772141,
+                    "rounding_residual_energy": 4.025545263590274e-06,
+                    "rounding_contribution_to_center_sse": -0.0054965796806631766,
+                    "reconstructed_center_sse": 101537.36166114174,
+                    "actual_center_sse": 101537.36166114174,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                }
+              },
+              "classifications": {
+                "vs_pv_oracle": {
+                  "group": 128,
+                  "reference": "vs_pv_oracle",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center128": -37.294537724038335,
+                    "residual128": -20.5721238413461,
+                    "massfix128": -21.73626184047295
+                  },
+                  "center_absolute_sse_improvement": 21604.26660806196,
+                  "massfix_fraction_of_center_gain": 0.5828269544808637,
+                  "removing_massfix_fraction_of_center_gain": 0.4483877506789349,
+                  "massfix_at_least_80pct_center_gain": false,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "both_factors_warrant_attention"
+                },
+                "vs_full_attention": {
+                  "group": 128,
+                  "reference": "vs_full_attention",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center128": -14.437654781034425,
+                    "residual128": -7.8740935198105095,
+                    "massfix128": -8.510043025959568
+                  },
+                  "center_absolute_sse_improvement": 21543.30358613463,
+                  "massfix_fraction_of_center_gain": 0.5894338904084703,
+                  "removing_massfix_fraction_of_center_gain": 0.4546140880058949,
+                  "massfix_at_least_80pct_center_gain": false,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "both_factors_warrant_attention"
+                }
+              }
+            }
+          ],
+          "base_simulator_vs_native": {
+            "sse": 4.337087627720266,
+            "reference_energy": 26839390.40141584,
+            "contrast_sse": 2.803648159127861,
+            "contrast_reference_energy": 5613577.352602808,
+            "contrast_gain": 0.9999919772223043,
+            "contrast_cosine": 0.9999997503079946
+          },
+          "native_vs_full": {
+            "sse": 149278.8949912761,
+            "reference_energy": 27910672.417726375,
+            "contrast_sse": 111149.13902068602,
+            "contrast_reference_energy": 5708395.186270062,
+            "contrast_gain": 0.9819592927638107,
+            "contrast_cosine": 0.9902176072721305
+          },
+          "native_gap_energy_ratio": 2.905358877404423e-05
+        },
+        {
+          "condition": "exact_qk",
+          "oracle_vs_full": {
+            "sse": 0.0,
+            "reference_energy": 27910672.417726375,
+            "contrast_sse": 0.0,
+            "contrast_reference_energy": 5708395.186270062,
+            "contrast_gain": 1.0,
+            "contrast_cosine": 0.9999999999999999
+          },
+          "arms": {
+            "base": {
+              "vs_pv_oracle": {
+                "sse": 58392.69137193602,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 34216.00686829046,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9898022414732571,
+                "contrast_cosine": 0.9970074974251152
+              },
+              "vs_full_attention": {
+                "sse": 58392.69137193602,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 34216.00686829046,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9898022414732571,
+                "contrast_cosine": 0.9970074974251152
+              }
+            },
+            "center32": {
+              "vs_pv_oracle": {
+                "sse": 34555.99149517741,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 23900.92718159179,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9915888986707763,
+                "contrast_cosine": 0.9979133695773702
+              },
+              "vs_full_attention": {
+                "sse": 34555.99149517741,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 23900.92718159179,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9915888986707763,
+                "contrast_cosine": 0.9979133695773702
+              }
+            },
+            "center128": {
+              "vs_pv_oracle": {
+                "sse": 36198.52039041414,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 25394.31665110931,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9914954368949397,
+                "contrast_cosine": 0.9977815737716574
+              },
+              "vs_full_attention": {
+                "sse": 36198.52039041414,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 25394.31665110931,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9914954368949397,
+                "contrast_cosine": 0.9977815737716574
+              }
+            },
+            "residual32": {
+              "vs_pv_oracle": {
+                "sse": 45530.00366276363,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 27207.350873771848,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9888445117301509,
+                "contrast_cosine": 0.9976348793156797
+              },
+              "vs_full_attention": {
+                "sse": 45530.00366276363,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 27207.350873771848,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9888445117301509,
+                "contrast_cosine": 0.9976348793156797
+              }
+            },
+            "residual128": {
+              "vs_pv_oracle": {
+                "sse": 46380.772031413806,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 28343.11626059757,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9893315900446603,
+                "contrast_cosine": 0.9975309041609456
+              },
+              "vs_full_attention": {
+                "sse": 46380.772031413806,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 28343.11626059757,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9893315900446603,
+                "contrast_cosine": 0.9975309041609456
+              }
+            },
+            "massfix32": {
+              "vs_pv_oracle": {
+                "sse": 44332.120474257084,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 30812.904588106525,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9925466211469592,
+                "contrast_cosine": 0.9972995754877602
+              },
+              "vs_full_attention": {
+                "sse": 44332.120474257084,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 30812.904588106525,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9925466211469592,
+                "contrast_cosine": 0.9972995754877602
+              }
+            },
+            "massfix128": {
+              "vs_pv_oracle": {
+                "sse": 45109.37809536542,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 31230.155808092193,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9919660842658251,
+                "contrast_cosine": 0.9972641186765235
+              },
+              "vs_full_attention": {
+                "sse": 45109.37809536542,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 31230.155808092193,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9919660842658251,
+                "contrast_cosine": 0.9972641186765235
+              }
+            }
+          },
+          "E080_replay_exact": {
+            "base": true,
+            "center32": true,
+            "center128": true
+          },
+          "groups": [
+            {
+              "group": 32,
+              "factorial_closure_relative_energy": 6.325651548242889e-11,
+              "correction_identity_relative_energy": 2.970865044337491e-10,
+              "correction_identity_fp64_subtraction_relative_energy": 2.9708652375208807e-10,
+              "massfix_identity_relative_energy": 2.9807339706806166e-10,
+              "attributions": {
+                "vs_pv_oracle": {
+                  "output": {
+                    "base_sse": 58392.69137193602,
+                    "v_change_energy": 53588.94757938999,
+                    "mass_change_energy": 8555.057514150603,
+                    "twice_base_error_dot_v": -66451.63528856236,
+                    "twice_base_error_dot_mass": -22615.628411829537,
+                    "twice_v_dot_mass": 3086.5636377135193,
+                    "sum_without_rounding_residual": 34555.99640279823,
+                    "rounding_residual_energy": 4.1262580925259226e-06,
+                    "rounding_contribution_to_center_sse": -0.004907620796741455,
+                    "reconstructed_center_sse": 34555.99149517743,
+                    "actual_center_sse": 34555.99149517741,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 34216.00686829046,
+                    "v_change_energy": 37418.733494276836,
+                    "mass_change_energy": 2134.140705862062,
+                    "twice_base_error_dot_v": -44427.38948879545,
+                    "twice_base_error_dot_mass": -5537.242986046,
+                    "twice_v_dot_mass": 96.68201839371152,
+                    "sum_without_rounding_residual": 23900.930611981617,
+                    "rounding_residual_energy": 4.1078818877564726e-06,
+                    "rounding_contribution_to_center_sse": -0.0034303898304507566,
+                    "reconstructed_center_sse": 23900.927181591785,
+                    "actual_center_sse": 23900.92718159179,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                },
+                "vs_full_attention": {
+                  "output": {
+                    "base_sse": 58392.69137193602,
+                    "v_change_energy": 53588.94757938999,
+                    "mass_change_energy": 8555.057514150603,
+                    "twice_base_error_dot_v": -66451.63528856236,
+                    "twice_base_error_dot_mass": -22615.628411829537,
+                    "twice_v_dot_mass": 3086.5636377135193,
+                    "sum_without_rounding_residual": 34555.99640279823,
+                    "rounding_residual_energy": 4.1262580925259226e-06,
+                    "rounding_contribution_to_center_sse": -0.004907620796741455,
+                    "reconstructed_center_sse": 34555.99149517743,
+                    "actual_center_sse": 34555.99149517741,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 34216.00686829046,
+                    "v_change_energy": 37418.733494276836,
+                    "mass_change_energy": 2134.140705862062,
+                    "twice_base_error_dot_v": -44427.38948879545,
+                    "twice_base_error_dot_mass": -5537.242986046,
+                    "twice_v_dot_mass": 96.68201839371152,
+                    "sum_without_rounding_residual": 23900.930611981617,
+                    "rounding_residual_energy": 4.1078818877564726e-06,
+                    "rounding_contribution_to_center_sse": -0.0034303898304507566,
+                    "reconstructed_center_sse": 23900.927181591785,
+                    "actual_center_sse": 23900.92718159179,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                }
+              },
+              "classifications": {
+                "vs_pv_oracle": {
+                  "group": 32,
+                  "reference": "vs_pv_oracle",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center32": -40.821375615193354,
+                    "residual32": -22.027906929726303,
+                    "massfix32": -24.07933350446072
+                  },
+                  "center_absolute_sse_improvement": 23836.699876758605,
+                  "massfix_fraction_of_center_gain": 0.5898707023361212,
+                  "removing_massfix_fraction_of_center_gain": 0.46038303222864174,
+                  "massfix_at_least_80pct_center_gain": false,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "both_factors_warrant_attention"
+                },
+                "vs_full_attention": {
+                  "group": 32,
+                  "reference": "vs_full_attention",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center32": -40.821375615193354,
+                    "residual32": -22.027906929726303,
+                    "massfix32": -24.07933350446072
+                  },
+                  "center_absolute_sse_improvement": 23836.699876758605,
+                  "massfix_fraction_of_center_gain": 0.5898707023361212,
+                  "removing_massfix_fraction_of_center_gain": 0.46038303222864174,
+                  "massfix_at_least_80pct_center_gain": false,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "both_factors_warrant_attention"
+                }
+              }
+            },
+            {
+              "group": 128,
+              "factorial_closure_relative_energy": 6.502244198265769e-11,
+              "correction_identity_relative_energy": 3.295690477841732e-10,
+              "correction_identity_fp64_subtraction_relative_energy": 3.2956904620587265e-10,
+              "massfix_identity_relative_energy": 3.225382732885707e-10,
+              "attributions": {
+                "vs_pv_oracle": {
+                  "output": {
+                    "base_sse": 58392.69137193602,
+                    "v_change_energy": 51427.52876236722,
+                    "mass_change_energy": 7768.38091649245,
+                    "twice_base_error_dot_v": -63439.44810288942,
+                    "twice_base_error_dot_mass": -21051.694193063056,
+                    "twice_v_dot_mass": 3101.0630219098935,
+                    "sum_without_rounding_residual": 36198.5217767531,
+                    "rounding_residual_energy": 4.050700958917795e-06,
+                    "rounding_contribution_to_center_sse": -0.0013863389584844316,
+                    "reconstructed_center_sse": 36198.52039041414,
+                    "actual_center_sse": 36198.52039041414,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 34216.00686829046,
+                    "v_change_energy": 35787.397616692266,
+                    "mass_change_energy": 1863.208015275352,
+                    "twice_base_error_dot_v": -41660.28822438515,
+                    "twice_base_error_dot_mass": -4849.059075473623,
+                    "twice_v_dot_mass": 37.05311239982485,
+                    "sum_without_rounding_residual": 25394.318312799132,
+                    "rounding_residual_energy": 4.0865847225849985e-06,
+                    "rounding_contribution_to_center_sse": -0.0016616898148741658,
+                    "reconstructed_center_sse": 25394.31665110932,
+                    "actual_center_sse": 25394.31665110931,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                },
+                "vs_full_attention": {
+                  "output": {
+                    "base_sse": 58392.69137193602,
+                    "v_change_energy": 51427.52876236722,
+                    "mass_change_energy": 7768.38091649245,
+                    "twice_base_error_dot_v": -63439.44810288942,
+                    "twice_base_error_dot_mass": -21051.694193063056,
+                    "twice_v_dot_mass": 3101.0630219098935,
+                    "sum_without_rounding_residual": 36198.5217767531,
+                    "rounding_residual_energy": 4.050700958917795e-06,
+                    "rounding_contribution_to_center_sse": -0.0013863389584844316,
+                    "reconstructed_center_sse": 36198.52039041414,
+                    "actual_center_sse": 36198.52039041414,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 34216.00686829046,
+                    "v_change_energy": 35787.397616692266,
+                    "mass_change_energy": 1863.208015275352,
+                    "twice_base_error_dot_v": -41660.28822438515,
+                    "twice_base_error_dot_mass": -4849.059075473623,
+                    "twice_v_dot_mass": 37.05311239982485,
+                    "sum_without_rounding_residual": 25394.318312799132,
+                    "rounding_residual_energy": 4.0865847225849985e-06,
+                    "rounding_contribution_to_center_sse": -0.0016616898148741658,
+                    "reconstructed_center_sse": 25394.31665110932,
+                    "actual_center_sse": 25394.31665110931,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                }
+              },
+              "classifications": {
+                "vs_pv_oracle": {
+                  "group": 128,
+                  "reference": "vs_pv_oracle",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center128": -38.0084741087796,
+                    "residual128": -20.57092944048685,
+                    "massfix128": -22.748246337819356
+                  },
+                  "center_absolute_sse_improvement": 22194.17098152188,
+                  "massfix_fraction_of_center_gain": 0.598504593283968,
+                  "removing_massfix_fraction_of_center_gain": 0.45878044507619,
+                  "massfix_at_least_80pct_center_gain": false,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "both_factors_warrant_attention"
+                },
+                "vs_full_attention": {
+                  "group": 128,
+                  "reference": "vs_full_attention",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center128": -38.0084741087796,
+                    "residual128": -20.57092944048685,
+                    "massfix128": -22.748246337819356
+                  },
+                  "center_absolute_sse_improvement": 22194.17098152188,
+                  "massfix_fraction_of_center_gain": 0.598504593283968,
+                  "removing_massfix_fraction_of_center_gain": 0.45878044507619,
+                  "massfix_at_least_80pct_center_gain": false,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "both_factors_warrant_attention"
+                }
+              }
+            }
+          ],
+          "base_simulator_vs_native": {
+            "sse": 106044.05542785113,
+            "reference_energy": 26839390.40141584,
+            "contrast_sse": 90864.18092893252,
+            "contrast_reference_energy": 5613577.352602808,
+            "contrast_gain": 0.9930442123312271,
+            "contrast_cosine": 0.9919165845522182
+          },
+          "native_vs_full": {
+            "sse": 149278.8949912761,
+            "reference_energy": 27910672.417726375,
+            "contrast_sse": 111149.13902068602,
+            "contrast_reference_energy": 5708395.186270062,
+            "contrast_gain": 0.9819592927638107,
+            "contrast_cosine": 0.9902176072721305
+          },
+          "native_gap_energy_ratio": 0.7103754046012223
+        }
+      ]
+    },
+    {
+      "case_id": "vbench0161_r1",
+      "block": 0,
+      "step": 14,
+      "verified_outputs": {
+        "file": "/data1/models/svdquant-wjq/research/20261005/E081/center_vbench0161_r1_b0.pt",
+        "sha256": "887d84a409849c6a7a09852fcec81c9e43cdb16a875e03f5957f9c596221e6ab",
+        "bytes": 45425006
+      },
+      "verified_E080_outputs": {
+        "file": "/data1/models/svdquant-wjq/research/20261004/E080/v2/pv2_vbench0161_r1_b0.pt",
+        "sha256": "aea04d2221af9e8ca9c99d8bb94f6f18a9def521e3dfaa061959497a9ac6d558",
+        "bytes": 37166127
+      },
+      "conditions": [
+        {
+          "condition": "native_qk",
+          "oracle_vs_full": {
+            "sse": 326.9074343788867,
+            "reference_energy": 477626.14001848403,
+            "contrast_sse": 217.2703433145167,
+            "contrast_reference_energy": 7163.932130694591,
+            "contrast_gain": 0.9782609057471964,
+            "contrast_cosine": 0.9847570229987771
+          },
+          "arms": {
+            "base": {
+              "vs_pv_oracle": {
+                "sse": 498.63881260446306,
+                "reference_energy": 477979.0163975482,
+                "contrast_sse": 149.90192615092428,
+                "contrast_reference_energy": 7069.727682389393,
+                "contrast_gain": 0.9983715624419426,
+                "contrast_cosine": 0.9895317426024729
+              },
+              "vs_full_attention": {
+                "sse": 811.4221260825877,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 363.5572923020062,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.976906185835775,
+                "contrast_cosine": 0.9746861083077465
+              }
+            },
+            "center32": {
+              "vs_pv_oracle": {
+                "sse": 193.7363950190225,
+                "reference_energy": 477979.0163975482,
+                "contrast_sse": 107.5250510913607,
+                "contrast_reference_energy": 7069.727682389393,
+                "contrast_gain": 0.998112818248224,
+                "contrast_cosine": 0.9924546585123172
+              },
+              "vs_full_attention": {
+                "sse": 512.1507770742489,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 320.22317888557325,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9767176536462017,
+                "contrast_cosine": 0.9776298819109567
+              }
+            },
+            "center128": {
+              "vs_pv_oracle": {
+                "sse": 203.38333050136464,
+                "reference_energy": 477979.0163975482,
+                "contrast_sse": 112.12932333111755,
+                "contrast_reference_energy": 7069.727682389393,
+                "contrast_gain": 0.9970149527342382,
+                "contrast_cosine": 0.9921207922924298
+              },
+              "vs_full_attention": {
+                "sse": 517.388290979606,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 324.6745611432204,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9756448956852791,
+                "contrast_cosine": 0.977302579615105
+              }
+            },
+            "residual32": {
+              "vs_pv_oracle": {
+                "sse": 369.8397269325825,
+                "reference_energy": 477979.0163975482,
+                "contrast_sse": 143.20153332920026,
+                "contrast_reference_energy": 7069.727682389393,
+                "contrast_gain": 0.9970406175750394,
+                "contrast_cosine": 0.9899693614481955
+              },
+              "vs_full_attention": {
+                "sse": 680.8602328169075,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 355.23838997083055,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.97570570503031,
+                "contrast_cosine": 0.9752189591161827
+              }
+            },
+            "residual128": {
+              "vs_pv_oracle": {
+                "sse": 375.90715080171344,
+                "reference_energy": 477979.0163975482,
+                "contrast_sse": 144.42250750613414,
+                "contrast_reference_energy": 7069.727682389393,
+                "contrast_gain": 0.9964566571660455,
+                "contrast_cosine": 0.9898752697069166
+              },
+              "vs_full_attention": {
+                "sse": 682.7214922431798,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 357.3299719929704,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.975068660330803,
+                "contrast_cosine": 0.975060689850108
+              }
+            },
+            "massfix32": {
+              "vs_pv_oracle": {
+                "sse": 243.5789112686265,
+                "reference_energy": 477979.0163975482,
+                "contrast_sse": 114.61584726215438,
+                "contrast_reference_energy": 7069.727682389393,
+                "contrast_gain": 0.9994437693916634,
+                "contrast_cosine": 0.9919824908885405
+              },
+              "vs_full_attention": {
+                "sse": 563.7560659249126,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 328.9324368923467,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9779181439729934,
+                "contrast_cosine": 0.9770629253687272
+              }
+            },
+            "massfix128": {
+              "vs_pv_oracle": {
+                "sse": 248.7950673880335,
+                "reference_energy": 477979.0163975482,
+                "contrast_sse": 118.04502552183827,
+                "contrast_reference_energy": 7069.727682389393,
+                "contrast_gain": 0.9989298854705687,
+                "contrast_cosine": 0.9917375919991682
+              },
+              "vs_full_attention": {
+                "sse": 568.7689800035905,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 331.3381687535271,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9774824480274841,
+                "contrast_cosine": 0.9768887891775435
+              }
+            }
+          },
+          "E080_replay_exact": {
+            "base": true,
+            "center32": true,
+            "center128": true
+          },
+          "groups": [
+            {
+              "group": 32,
+              "factorial_closure_relative_energy": 1.7323895760467102e-10,
+              "correction_identity_relative_energy": 2.569665380693643e-10,
+              "correction_identity_fp64_subtraction_relative_energy": 2.569665261837772e-10,
+              "massfix_identity_relative_energy": 2.530636771856486e-10,
+              "attributions": {
+                "vs_pv_oracle": {
+                  "output": {
+                    "base_sse": 498.63881260446306,
+                    "v_change_energy": 226.84721257073687,
+                    "mass_change_energy": 167.44482411043552,
+                    "twice_base_error_dot_v": -355.6462982426175,
+                    "twice_base_error_dot_mass": -422.504725446272,
+                    "twice_v_dot_mass": 78.95656011152519,
+                    "sum_without_rounding_residual": 193.73638570827114,
+                    "rounding_residual_energy": 8.198509421666939e-08,
+                    "rounding_contribution_to_center_sse": 9.310751370290754e-06,
+                    "reconstructed_center_sse": 193.73639501902252,
+                    "actual_center_sse": 193.7363950190225,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 149.90192615092428,
+                    "v_change_energy": 60.60692755532675,
+                    "mass_change_energy": 27.162818479528877,
+                    "twice_base_error_dot_v": -67.30732037705079,
+                    "twice_base_error_dot_mass": -62.44889736829877,
+                    "twice_v_dot_mass": -0.3904013120034979,
+                    "sum_without_rounding_residual": 107.52505312842685,
+                    "rounding_residual_energy": 8.140271688699163e-08,
+                    "rounding_contribution_to_center_sse": -2.0370661561536937e-06,
+                    "reconstructed_center_sse": 107.5250510913607,
+                    "actual_center_sse": 107.5250510913607,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                },
+                "vs_full_attention": {
+                  "output": {
+                    "base_sse": 811.4221260825877,
+                    "v_change_energy": 226.84721257073687,
+                    "mass_change_energy": 167.44482411043552,
+                    "twice_base_error_dot_v": -357.40910583641727,
+                    "twice_base_error_dot_mass": -415.11088426811074,
+                    "twice_v_dot_mass": 78.95656011152519,
+                    "sum_without_rounding_residual": 512.1507327707573,
+                    "rounding_residual_energy": 8.198509421666939e-08,
+                    "rounding_contribution_to_center_sse": 4.43034916659481e-05,
+                    "reconstructed_center_sse": 512.1507770742489,
+                    "actual_center_sse": 512.1507770742489,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 363.5572923020062,
+                    "v_change_energy": 60.60692755532675,
+                    "mass_change_energy": 27.162818479528877,
+                    "twice_base_error_dot_v": -68.92582988650244,
+                    "twice_base_error_dot_mass": -61.7876738891884,
+                    "twice_v_dot_mass": -0.3904013120034979,
+                    "sum_without_rounding_residual": 320.2231332491675,
+                    "rounding_residual_energy": 8.140271688699163e-08,
+                    "rounding_contribution_to_center_sse": 4.5636405803450686e-05,
+                    "reconstructed_center_sse": 320.2231788855733,
+                    "actual_center_sse": 320.22317888557325,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                }
+              },
+              "classifications": {
+                "vs_pv_oracle": {
+                  "group": 32,
+                  "reference": "vs_pv_oracle",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center32": -61.14694842803971,
+                    "residual32": -25.830136446688577,
+                    "massfix32": -51.1512330946766
+                  },
+                  "center_absolute_sse_improvement": 304.90241758544056,
+                  "massfix_fraction_of_center_gain": 0.8365296128370743,
+                  "removing_massfix_fraction_of_center_gain": 0.5775727634701744,
+                  "massfix_at_least_80pct_center_gain": true,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "mass_correction_explains_most_local_gain"
+                },
+                "vs_full_attention": {
+                  "group": 32,
+                  "reference": "vs_full_attention",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center32": -36.88232541219594,
+                    "residual32": -16.090501980271544,
+                    "massfix32": -30.522468169972893
+                  },
+                  "center_absolute_sse_improvement": 299.2713490083388,
+                  "massfix_fraction_of_center_gain": 0.8275635505314418,
+                  "removing_massfix_fraction_of_center_gain": 0.5637340704403937,
+                  "massfix_at_least_80pct_center_gain": true,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "mass_correction_explains_most_local_gain"
+                }
+              }
+            },
+            {
+              "group": 128,
+              "factorial_closure_relative_energy": 1.7032195225642175e-10,
+              "correction_identity_relative_energy": 2.5845500322693953e-10,
+              "correction_identity_fp64_subtraction_relative_energy": 2.5845498125552196e-10,
+              "massfix_identity_relative_energy": 2.555313093139353e-10,
+              "attributions": {
+                "vs_pv_oracle": {
+                  "output": {
+                    "base_sse": 498.63881260446306,
+                    "v_change_energy": 225.4425164340313,
+                    "mass_change_energy": 161.8592162676489,
+                    "twice_base_error_dot_v": -348.17417823678096,
+                    "twice_base_error_dot_mass": -411.7029614840785,
+                    "twice_v_dot_mass": 77.31993236263146,
+                    "sum_without_rounding_residual": 203.3833379479152,
+                    "rounding_residual_energy": 7.913526532033641e-08,
+                    "rounding_contribution_to_center_sse": -7.446550685440352e-06,
+                    "reconstructed_center_sse": 203.38333050136453,
+                    "actual_center_sse": 203.38333050136464,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 149.90192615092428,
+                    "v_change_energy": 59.86514683368836,
+                    "mass_change_energy": 24.745069557978958,
+                    "twice_base_error_dot_v": -65.3445654784785,
+                    "twice_base_error_dot_mass": -56.601970187064964,
+                    "twice_v_dot_mass": -0.43624786498430546,
+                    "sum_without_rounding_residual": 112.12935901206383,
+                    "rounding_residual_energy": 7.91636992443671e-08,
+                    "rounding_contribution_to_center_sse": -3.568094628463412e-05,
+                    "reconstructed_center_sse": 112.12932333111755,
+                    "actual_center_sse": 112.12932333111755,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                },
+                "vs_full_attention": {
+                  "output": {
+                    "base_sse": 811.4221260825877,
+                    "v_change_energy": 225.4425164340313,
+                    "mass_change_energy": 161.8592162676489,
+                    "twice_base_error_dot_v": -354.1431502734393,
+                    "twice_base_error_dot_mass": -404.5123623466461,
+                    "twice_v_dot_mass": 77.31993236263146,
+                    "sum_without_rounding_residual": 517.388278526814,
+                    "rounding_residual_energy": 7.913526532033641e-08,
+                    "rounding_contribution_to_center_sse": 1.2452791959701276e-05,
+                    "reconstructed_center_sse": 517.3882909796059,
+                    "actual_center_sse": 517.388290979606,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 363.5572923020062,
+                    "v_change_energy": 59.86514683368836,
+                    "mass_change_energy": 24.745069557978958,
+                    "twice_base_error_dot_v": -66.09246714272413,
+                    "twice_base_error_dot_mass": -56.964193106458055,
+                    "twice_v_dot_mass": -0.43624786498430546,
+                    "sum_without_rounding_residual": 324.674600579507,
+                    "rounding_residual_energy": 7.91636992443671e-08,
+                    "rounding_contribution_to_center_sse": -3.943628658731548e-05,
+                    "reconstructed_center_sse": 324.6745611432204,
+                    "actual_center_sse": 324.6745611432204,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                }
+              },
+              "classifications": {
+                "vs_pv_oracle": {
+                  "group": 128,
+                  "reference": "vs_pv_oracle",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center128": -59.21229447842939,
+                    "residual128": -24.613339094424735,
+                    "massfix128": -50.10515405157881
+                  },
+                  "center_absolute_sse_improvement": 295.2554821030984,
+                  "massfix_fraction_of_center_gain": 0.8461951102035362,
+                  "removing_massfix_fraction_of_center_gain": 0.5843204639977059,
+                  "massfix_at_least_80pct_center_gain": true,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "mass_correction_explains_most_local_gain"
+                },
+                "vs_full_attention": {
+                  "group": 128,
+                  "reference": "vs_full_attention",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center128": -36.23685202208233,
+                    "residual128": -15.861119595142592,
+                    "massfix128": -29.904674555830347
+                  },
+                  "center_absolute_sse_improvement": 294.0338351029817,
+                  "massfix_fraction_of_center_gain": 0.8252558621153616,
+                  "removing_massfix_fraction_of_center_gain": 0.5622931157078159,
+                  "massfix_at_least_80pct_center_gain": true,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "mass_correction_explains_most_local_gain"
+                }
+              }
+            }
+          ],
+          "base_simulator_vs_native": {
+            "sse": 0.07765863420521812,
+            "reference_energy": 459514.57608116046,
+            "contrast_sse": 0.06501315139197716,
+            "contrast_reference_energy": 7198.594547541066,
+            "contrast_gain": 0.9999443422584595,
+            "contrast_cosine": 0.9999954853932804
+          },
+          "native_vs_full": {
+            "sse": 812.7806794101916,
+            "reference_energy": 477626.14001848403,
+            "contrast_sse": 364.6861791534048,
+            "contrast_reference_energy": 7163.932130694591,
+            "contrast_gain": 0.976966297538407,
+            "contrast_cosine": 0.9746113325194342
+          },
+          "native_gap_energy_ratio": 9.554685067264697e-05
+        },
+        {
+          "condition": "exact_qk",
+          "oracle_vs_full": {
+            "sse": 0.0,
+            "reference_energy": 477626.14001848403,
+            "contrast_sse": 0.0,
+            "contrast_reference_energy": 7163.932130694591,
+            "contrast_gain": 1.0,
+            "contrast_cosine": 1.0
+          },
+          "arms": {
+            "base": {
+              "vs_pv_oracle": {
+                "sse": 509.5120321744335,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 146.8917209293582,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9988111137604238,
+                "contrast_cosine": 0.9898798419924545
+              },
+              "vs_full_attention": {
+                "sse": 509.5120321744335,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 146.8917209293582,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9988111137604238,
+                "contrast_cosine": 0.9898798419924545
+              }
+            },
+            "center32": {
+              "vs_pv_oracle": {
+                "sse": 198.83727008897185,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 112.19402913253613,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9981253779251178,
+                "contrast_cosine": 0.9922332735989061
+              },
+              "vs_full_attention": {
+                "sse": 198.83727008897185,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 112.19402913253613,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9981253779251178,
+                "contrast_cosine": 0.9922332735989061
+              }
+            },
+            "center128": {
+              "vs_pv_oracle": {
+                "sse": 209.74154695264872,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 116.812258396224,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.998385487760101,
+                "contrast_cosine": 0.9919210834907409
+              },
+              "vs_full_attention": {
+                "sse": 209.74154695264872,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 116.812258396224,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.998385487760101,
+                "contrast_cosine": 0.9919210834907409
+              }
+            },
+            "residual32": {
+              "vs_pv_oracle": {
+                "sse": 379.2153328611174,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 140.1868023223953,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9973946797707149,
+                "contrast_cosine": 0.9903106875817971
+              },
+              "vs_full_attention": {
+                "sse": 379.2153328611174,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 140.1868023223953,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9973946797707149,
+                "contrast_cosine": 0.9903106875817971
+              }
+            },
+            "residual128": {
+              "vs_pv_oracle": {
+                "sse": 386.7867508383788,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 141.94791572434553,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.996871079233288,
+                "contrast_cosine": 0.9901820187023463
+              },
+              "vs_full_attention": {
+                "sse": 386.7867508383788,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 141.94791572434553,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.996871079233288,
+                "contrast_cosine": 0.9901820187023463
+              }
+            },
+            "massfix32": {
+              "vs_pv_oracle": {
+                "sse": 248.11956600963146,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 119.24863013994366,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9995418115522045,
+                "contrast_cosine": 0.9917722936424368
+              },
+              "vs_full_attention": {
+                "sse": 248.11956600963146,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 119.24863013994366,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9995418115522045,
+                "contrast_cosine": 0.9917722936424368
+              }
+            },
+            "massfix128": {
+              "vs_pv_oracle": {
+                "sse": 252.80279977770925,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 122.39742332216008,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 1.0003255335317156,
+                "contrast_cosine": 0.9915707854455298
+              },
+              "vs_full_attention": {
+                "sse": 252.80279977770925,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 122.39742332216008,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 1.0003255335317156,
+                "contrast_cosine": 0.9915707854455298
+              }
+            }
+          },
+          "E080_replay_exact": {
+            "base": true,
+            "center32": true,
+            "center128": true
+          },
+          "groups": [
+            {
+              "group": 32,
+              "factorial_closure_relative_energy": 1.70629160258668e-10,
+              "correction_identity_relative_energy": 2.469247064862703e-10,
+              "correction_identity_fp64_subtraction_relative_energy": 2.469246966501251e-10,
+              "massfix_identity_relative_energy": 2.4169699534967334e-10,
+              "attributions": {
+                "vs_pv_oracle": {
+                  "output": {
+                    "base_sse": 509.5120321744335,
+                    "v_change_energy": 222.36735965410392,
+                    "mass_change_energy": 172.2211380078518,
+                    "twice_base_error_dot_v": -352.6640589674201,
+                    "twice_base_error_dot_mass": -433.6136041726539,
+                    "twice_v_dot_mass": 81.01443703616812,
+                    "sum_without_rounding_residual": 198.83730373248338,
+                    "rounding_residual_energy": 8.115171937243604e-08,
+                    "rounding_contribution_to_center_sse": -3.3643511619193106e-05,
+                    "reconstructed_center_sse": 198.83727008897176,
+                    "actual_center_sse": 198.83727008897185,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 146.8917209293582,
+                    "v_change_energy": 60.66462932993964,
+                    "mass_change_energy": 25.071938207419166,
+                    "twice_base_error_dot_v": -67.36954793690253,
+                    "twice_base_error_dot_mass": -52.71502899683369,
+                    "twice_v_dot_mass": -0.3496756116747762,
+                    "sum_without_rounding_residual": 112.19403592130601,
+                    "rounding_residual_energy": 8.101023229830711e-08,
+                    "rounding_contribution_to_center_sse": -6.788769866751219e-06,
+                    "reconstructed_center_sse": 112.19402913253614,
+                    "actual_center_sse": 112.19402913253613,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                },
+                "vs_full_attention": {
+                  "output": {
+                    "base_sse": 509.5120321744335,
+                    "v_change_energy": 222.36735965410392,
+                    "mass_change_energy": 172.2211380078518,
+                    "twice_base_error_dot_v": -352.6640589674201,
+                    "twice_base_error_dot_mass": -433.6136041726539,
+                    "twice_v_dot_mass": 81.01443703616812,
+                    "sum_without_rounding_residual": 198.83730373248338,
+                    "rounding_residual_energy": 8.115171937243604e-08,
+                    "rounding_contribution_to_center_sse": -3.3643511619193106e-05,
+                    "reconstructed_center_sse": 198.83727008897176,
+                    "actual_center_sse": 198.83727008897185,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 146.8917209293582,
+                    "v_change_energy": 60.66462932993964,
+                    "mass_change_energy": 25.071938207419166,
+                    "twice_base_error_dot_v": -67.36954793690253,
+                    "twice_base_error_dot_mass": -52.71502899683369,
+                    "twice_v_dot_mass": -0.3496756116747762,
+                    "sum_without_rounding_residual": 112.19403592130601,
+                    "rounding_residual_energy": 8.101023229830711e-08,
+                    "rounding_contribution_to_center_sse": -6.788769866751219e-06,
+                    "reconstructed_center_sse": 112.19402913253614,
+                    "actual_center_sse": 112.19402913253613,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                }
+              },
+              "classifications": {
+                "vs_pv_oracle": {
+                  "group": 32,
+                  "reference": "vs_pv_oracle",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center32": -60.974960838432345,
+                    "residual32": -25.57284049941896,
+                    "massfix32": -51.30251096313919
+                  },
+                  "center_absolute_sse_improvement": 310.6747620854617,
+                  "massfix_fraction_of_center_gain": 0.8413701338665455,
+                  "removing_massfix_fraction_of_center_gain": 0.5806009524601372,
+                  "massfix_at_least_80pct_center_gain": true,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "mass_correction_explains_most_local_gain"
+                },
+                "vs_full_attention": {
+                  "group": 32,
+                  "reference": "vs_full_attention",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center32": -60.974960838432345,
+                    "residual32": -25.57284049941896,
+                    "massfix32": -51.30251096313919
+                  },
+                  "center_absolute_sse_improvement": 310.6747620854617,
+                  "massfix_fraction_of_center_gain": 0.8413701338665455,
+                  "removing_massfix_fraction_of_center_gain": 0.5806009524601372,
+                  "massfix_at_least_80pct_center_gain": true,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "mass_correction_explains_most_local_gain"
+                }
+              }
+            },
+            {
+              "group": 128,
+              "factorial_closure_relative_energy": 1.7089519721282273e-10,
+              "correction_identity_relative_energy": 2.527879231470154e-10,
+              "correction_identity_fp64_subtraction_relative_energy": 2.5278792399944246e-10,
+              "massfix_identity_relative_energy": 2.4675867035657104e-10,
+              "attributions": {
+                "vs_pv_oracle": {
+                  "output": {
+                    "base_sse": 509.5120321744335,
+                    "v_change_energy": 220.75387892490352,
+                    "mass_change_energy": 167.02148763094044,
+                    "twice_base_error_dot_v": -343.4791602609582,
+                    "twice_base_error_dot_mass": -423.7307200276647,
+                    "twice_v_dot_mass": 79.66403157941805,
+                    "sum_without_rounding_residual": 209.7415500210726,
+                    "rounding_residual_energy": 7.9883151609012e-08,
+                    "rounding_contribution_to_center_sse": -3.0684239052816155e-06,
+                    "reconstructed_center_sse": 209.74154695264872,
+                    "actual_center_sse": 209.74154695264872,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 146.8917209293582,
+                    "v_change_energy": 60.08685797140349,
+                    "mass_change_energy": 22.550679459354292,
+                    "twice_base_error_dot_v": -65.03066317641614,
+                    "twice_base_error_dot_mass": -47.04497706655238,
+                    "twice_v_dot_mass": -0.6413686955881168,
+                    "sum_without_rounding_residual": 116.81224942155934,
+                    "rounding_residual_energy": 8.018788366230417e-08,
+                    "rounding_contribution_to_center_sse": 8.974664684526507e-06,
+                    "reconstructed_center_sse": 116.81225839622402,
+                    "actual_center_sse": 116.812258396224,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                },
+                "vs_full_attention": {
+                  "output": {
+                    "base_sse": 509.5120321744335,
+                    "v_change_energy": 220.75387892490352,
+                    "mass_change_energy": 167.02148763094044,
+                    "twice_base_error_dot_v": -343.4791602609582,
+                    "twice_base_error_dot_mass": -423.7307200276647,
+                    "twice_v_dot_mass": 79.66403157941805,
+                    "sum_without_rounding_residual": 209.7415500210726,
+                    "rounding_residual_energy": 7.9883151609012e-08,
+                    "rounding_contribution_to_center_sse": -3.0684239052816155e-06,
+                    "reconstructed_center_sse": 209.74154695264872,
+                    "actual_center_sse": 209.74154695264872,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 146.8917209293582,
+                    "v_change_energy": 60.08685797140349,
+                    "mass_change_energy": 22.550679459354292,
+                    "twice_base_error_dot_v": -65.03066317641614,
+                    "twice_base_error_dot_mass": -47.04497706655238,
+                    "twice_v_dot_mass": -0.6413686955881168,
+                    "sum_without_rounding_residual": 116.81224942155934,
+                    "rounding_residual_energy": 8.018788366230417e-08,
+                    "rounding_contribution_to_center_sse": 8.974664684526507e-06,
+                    "reconstructed_center_sse": 116.81225839622402,
+                    "actual_center_sse": 116.812258396224,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                }
+              },
+              "classifications": {
+                "vs_pv_oracle": {
+                  "group": 128,
+                  "reference": "vs_pv_oracle",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center128": -58.83481964939292,
+                    "residual128": -24.086826921888903,
+                    "massfix128": -50.38335037961161
+                  },
+                  "center_absolute_sse_improvement": 299.7704852217848,
+                  "massfix_fraction_of_center_gain": 0.8563525932407865,
+                  "removing_massfix_fraction_of_center_gain": 0.5906025196401288,
+                  "massfix_at_least_80pct_center_gain": true,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "mass_correction_explains_most_local_gain"
+                },
+                "vs_full_attention": {
+                  "group": 128,
+                  "reference": "vs_full_attention",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center128": -58.83481964939292,
+                    "residual128": -24.086826921888903,
+                    "massfix128": -50.38335037961161
+                  },
+                  "center_absolute_sse_improvement": 299.7704852217848,
+                  "massfix_fraction_of_center_gain": 0.8563525932407865,
+                  "removing_massfix_fraction_of_center_gain": 0.5906025196401288,
+                  "massfix_at_least_80pct_center_gain": true,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "mass_correction_explains_most_local_gain"
+                }
+              }
+            }
+          ],
+          "base_simulator_vs_native": {
+            "sse": 518.9034306125334,
+            "reference_energy": 459514.57608116046,
+            "contrast_sse": 416.9776038324664,
+            "contrast_reference_energy": 7198.594547541066,
+            "contrast_gain": 0.9776302201036736,
+            "contrast_cosine": 0.9712480884688126
+          },
+          "native_vs_full": {
+            "sse": 812.7806794101916,
+            "reference_energy": 477626.14001848403,
+            "contrast_sse": 364.6861791534048,
+            "contrast_reference_energy": 7163.932130694591,
+            "contrast_gain": 0.976966297538407,
+            "contrast_cosine": 0.9746113325194342
+          },
+          "native_gap_energy_ratio": 0.6384298295440347
+        }
+      ]
+    },
+    {
+      "case_id": "vbench0161_r1",
+      "block": 24,
+      "step": 14,
+      "verified_outputs": {
+        "file": "/data1/models/svdquant-wjq/research/20261005/E081/center_vbench0161_r1_b24.pt",
+        "sha256": "489677e51db50b3293f4b476383415f713f8ba943f24c70829754d7400585608",
+        "bytes": 45425035
+      },
+      "verified_E080_outputs": {
+        "file": "/data1/models/svdquant-wjq/research/20261004/E080/v2/pv2_vbench0161_r1_b24.pt",
+        "sha256": "4ba0a4d87b584195fabd5009f69fd2af82b517849c5f3f6ce34a94d4ca1ce90e",
+        "bytes": 37166152
+      },
+      "conditions": [
+        {
+          "condition": "native_qk",
+          "oracle_vs_full": {
+            "sse": 106248.9720780258,
+            "reference_energy": 30595142.11941489,
+            "contrast_sse": 93568.5939096319,
+            "contrast_reference_energy": 6856596.830403379,
+            "contrast_gain": 0.9850366284571931,
+            "contrast_cosine": 0.9931541955966092
+          },
+          "arms": {
+            "base": {
+              "vs_pv_oracle": {
+                "sse": 64747.84297746689,
+                "reference_energy": 30433092.450401157,
+                "contrast_sse": 39430.968686780645,
+                "contrast_reference_energy": 6744969.812527895,
+                "contrast_gain": 0.991644866425325,
+                "contrast_cosine": 0.9970759166199448
+              },
+              "vs_full_attention": {
+                "sse": 171754.8437205902,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 132083.3128525591,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9768843336305473,
+                "contrast_cosine": 0.9903290186917391
+              }
+            },
+            "center32": {
+              "vs_pv_oracle": {
+                "sse": 37510.83269587837,
+                "reference_energy": 30433092.450401157,
+                "contrast_sse": 27192.328572534603,
+                "contrast_reference_energy": 6744969.812527895,
+                "contrast_gain": 0.9937675747086863,
+                "contrast_cosine": 0.9979846631269927
+              },
+              "vs_full_attention": {
+                "sse": 143817.11155592225,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 119836.19741129383,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9789731017628776,
+                "contrast_cosine": 0.9912292427999461
+              }
+            },
+            "center128": {
+              "vs_pv_oracle": {
+                "sse": 39067.948270445966,
+                "reference_energy": 30433092.450401157,
+                "contrast_sse": 28392.288058398542,
+                "contrast_reference_energy": 6744969.812527895,
+                "contrast_gain": 0.9930895189628374,
+                "contrast_cosine": 0.9978967706309059
+              },
+              "vs_full_attention": {
+                "sse": 145950.9175064694,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 121838.96333850212,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9782475422935539,
+                "contrast_cosine": 0.9910835913681336
+              }
+            },
+            "residual32": {
+              "vs_pv_oracle": {
+                "sse": 48359.126176867256,
+                "reference_energy": 30433092.450401157,
+                "contrast_sse": 30418.629157074232,
+                "contrast_reference_energy": 6744969.812527895,
+                "contrast_gain": 0.9916061491531128,
+                "contrast_cosine": 0.9977501935984096
+              },
+              "vs_full_attention": {
+                "sse": 155307.9717231145,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 122940.51593763387,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9768557599598863,
+                "contrast_cosine": 0.9910084389606301
+              }
+            },
+            "residual128": {
+              "vs_pv_oracle": {
+                "sse": 49396.60627869472,
+                "reference_energy": 30433092.450401157,
+                "contrast_sse": 31125.98538434184,
+                "contrast_reference_energy": 6744969.812527895,
+                "contrast_gain": 0.9913373006429661,
+                "contrast_cosine": 0.9976983017270256
+              },
+              "vs_full_attention": {
+                "sse": 156899.94462134037,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 124477.27522338106,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9765308062445911,
+                "contrast_cosine": 0.990895909170223
+              }
+            },
+            "massfix32": {
+              "vs_pv_oracle": {
+                "sse": 50545.79155911262,
+                "reference_energy": 30433092.450401157,
+                "contrast_sse": 36059.662350588726,
+                "contrast_reference_energy": 6744969.812527895,
+                "contrast_gain": 0.9938062941323829,
+                "contrast_cosine": 0.9973237023200123
+              },
+              "vs_full_attention": {
+                "sse": 156910.2338702997,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 128833.99571997885,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9790016770289347,
+                "contrast_cosine": 0.9905630753572489
+              }
+            },
+            "massfix128": {
+              "vs_pv_oracle": {
+                "sse": 51243.228520723584,
+                "reference_energy": 30433092.450401157,
+                "contrast_sse": 36499.743705903384,
+                "contrast_reference_energy": 6744969.812527895,
+                "contrast_gain": 0.9933970901430015,
+                "contrast_cosine": 0.9972913459759345
+              },
+              "vs_full_attention": {
+                "sse": 157629.86502988345,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 129247.48033164183,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9786010744776026,
+                "contrast_cosine": 0.9905334744743023
+              }
+            }
+          },
+          "E080_replay_exact": {
+            "base": true,
+            "center32": true,
+            "center128": true
+          },
+          "groups": [
+            {
+              "group": 32,
+              "factorial_closure_relative_energy": 5.751981425472686e-11,
+              "correction_identity_relative_energy": 3.173329878107827e-10,
+              "correction_identity_fp64_subtraction_relative_energy": 3.1733297537090525e-10,
+              "massfix_identity_relative_energy": 3.139602291501687e-10,
+              "attributions": {
+                "vs_pv_oracle": {
+                  "output": {
+                    "base_sse": 64747.84297746689,
+                    "v_change_energy": 64078.6051570124,
+                    "mass_change_energy": 8515.9090589007,
+                    "twice_base_error_dot_v": -80467.32195761203,
+                    "twice_base_error_dot_mass": -22717.96047725497,
+                    "twice_v_dot_mass": 3353.7589316613557,
+                    "sum_without_rounding_residual": 37510.833690174346,
+                    "rounding_residual_energy": 4.368530534732451e-06,
+                    "rounding_contribution_to_center_sse": -0.0009942959624803375,
+                    "reconstructed_center_sse": 37510.83269587838,
+                    "actual_center_sse": 37510.83269587837,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 39430.968686780645,
+                    "v_change_energy": 45351.85571767608,
+                    "mass_change_energy": 2105.467078740432,
+                    "twice_base_error_dot_v": -54364.19524738249,
+                    "twice_base_error_dot_mass": -5476.773414932346,
+                    "twice_v_dot_mass": 145.00758885055888,
+                    "sum_without_rounding_residual": 27192.330409732876,
+                    "rounding_residual_energy": 4.382687228600947e-06,
+                    "rounding_contribution_to_center_sse": -0.0018371982738201022,
+                    "reconstructed_center_sse": 27192.328572534603,
+                    "actual_center_sse": 27192.328572534603,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                },
+                "vs_full_attention": {
+                  "output": {
+                    "base_sse": 171754.8437205902,
+                    "v_change_energy": 64078.6051570124,
+                    "mass_change_energy": 8515.9090589007,
+                    "twice_base_error_dot_v": -80525.47715448808,
+                    "twice_base_error_dot_mass": -23360.51890919119,
+                    "twice_v_dot_mass": 3353.7589316613557,
+                    "sum_without_rounding_residual": 143817.1208044854,
+                    "rounding_residual_energy": 4.368530534732451e-06,
+                    "rounding_contribution_to_center_sse": -0.009248563137704958,
+                    "reconstructed_center_sse": 143817.11155592225,
+                    "actual_center_sse": 143817.11155592225,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 132083.3128525591,
+                    "v_change_energy": 45351.85571767608,
+                    "mass_change_energy": 2105.467078740432,
+                    "twice_base_error_dot_v": -54494.652632601305,
+                    "twice_base_error_dot_mass": -5354.784211320686,
+                    "twice_v_dot_mass": 145.00758885055888,
+                    "sum_without_rounding_residual": 119836.20639390417,
+                    "rounding_residual_energy": 4.382687228600947e-06,
+                    "rounding_contribution_to_center_sse": -0.008982610347214728,
+                    "reconstructed_center_sse": 119836.19741129382,
+                    "actual_center_sse": 119836.19741129383,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                }
+              },
+              "classifications": {
+                "vs_pv_oracle": {
+                  "group": 32,
+                  "reference": "vs_pv_oracle",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center32": -42.06628210157882,
+                    "residual32": -25.311602745288564,
+                    "massfix32": -21.934400846830947
+                  },
+                  "center_absolute_sse_improvement": 27237.01028158852,
+                  "massfix_fraction_of_center_gain": 0.5214247551962218,
+                  "removing_massfix_fraction_of_center_gain": 0.39829237382643407,
+                  "massfix_at_least_80pct_center_gain": false,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "both_factors_warrant_attention"
+                },
+                "vs_full_attention": {
+                  "group": 32,
+                  "reference": "vs_full_attention",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center32": -16.266051984022578,
+                    "residual32": -9.575783507003388,
+                    "massfix32": -8.642906091451852
+                  },
+                  "center_absolute_sse_improvement": 27937.73216466795,
+                  "massfix_fraction_of_center_gain": 0.5313462725891562,
+                  "removing_massfix_fraction_of_center_gain": 0.41130253878388884,
+                  "massfix_at_least_80pct_center_gain": false,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "both_factors_warrant_attention"
+                }
+              }
+            },
+            {
+              "group": 128,
+              "factorial_closure_relative_energy": 5.821502557373701e-11,
+              "correction_identity_relative_energy": 3.4199300953191637e-10,
+              "correction_identity_fp64_subtraction_relative_energy": 3.419929804457806e-10,
+              "massfix_identity_relative_energy": 3.399642378173449e-10,
+              "attributions": {
+                "vs_pv_oracle": {
+                  "output": {
+                    "base_sse": 64747.84297746689,
+                    "v_change_energy": 62130.65191564661,
+                    "mass_change_energy": 7844.010984347257,
+                    "twice_base_error_dot_v": -77481.88861441879,
+                    "twice_base_error_dot_mass": -21348.625441090568,
+                    "twice_v_dot_mass": 3175.9596318242666,
+                    "sum_without_rounding_residual": 39067.95145377567,
+                    "rounding_residual_energy": 4.258465135661583e-06,
+                    "rounding_contribution_to_center_sse": -0.003183329714128468,
+                    "reconstructed_center_sse": 39067.94827044596,
+                    "actual_center_sse": 39067.948270445966,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 39430.968686780645,
+                    "v_change_energy": 43983.32016995571,
+                    "mass_change_energy": 1870.2015927578414,
+                    "twice_base_error_dot_v": -52288.30347239452,
+                    "twice_base_error_dot_mass": -4801.426573635104,
+                    "twice_v_dot_mass": 197.53083516118983,
+                    "sum_without_rounding_residual": 28392.291238625767,
+                    "rounding_residual_energy": 4.285739362384433e-06,
+                    "rounding_contribution_to_center_sse": -0.0031802272255327946,
+                    "reconstructed_center_sse": 28392.288058398542,
+                    "actual_center_sse": 28392.288058398542,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                },
+                "vs_full_attention": {
+                  "output": {
+                    "base_sse": 171754.8437205902,
+                    "v_change_energy": 62130.65191564661,
+                    "mass_change_energy": 7844.010984347257,
+                    "twice_base_error_dot_v": -76985.55101489645,
+                    "twice_base_error_dot_mass": -21968.989675054017,
+                    "twice_v_dot_mass": 3175.9596318242666,
+                    "sum_without_rounding_residual": 145950.92556245785,
+                    "rounding_residual_energy": 4.258465135661583e-06,
+                    "rounding_contribution_to_center_sse": -0.008055988480188117,
+                    "reconstructed_center_sse": 145950.91750646938,
+                    "actual_center_sse": 145950.9175064694,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 132083.3128525591,
+                    "v_change_energy": 43983.32016995571,
+                    "mass_change_energy": 1870.2015927578414,
+                    "twice_base_error_dot_v": -51589.35779913374,
+                    "twice_base_error_dot_mass": -4706.0341136751,
+                    "twice_v_dot_mass": 197.53083516118983,
+                    "sum_without_rounding_residual": 121838.97353762499,
+                    "rounding_residual_energy": 4.285739362384433e-06,
+                    "rounding_contribution_to_center_sse": -0.01019912289189325,
+                    "reconstructed_center_sse": 121838.9633385021,
+                    "actual_center_sse": 121838.96333850212,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                }
+              },
+              "classifications": {
+                "vs_pv_oracle": {
+                  "group": 128,
+                  "reference": "vs_pv_oracle",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center128": -39.6613902890292,
+                    "residual128": -23.70926349486979,
+                    "massfix128": -20.85724224271547
+                  },
+                  "center_absolute_sse_improvement": 25679.894707020925,
+                  "massfix_fraction_of_center_gain": 0.525882781483957,
+                  "removing_massfix_fraction_of_center_gain": 0.4022079578630392,
+                  "massfix_at_least_80pct_center_gain": false,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "both_factors_warrant_attention"
+                },
+                "vs_full_attention": {
+                  "group": 128,
+                  "reference": "vs_full_attention",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center128": -15.023696365791272,
+                    "residual128": -8.648896751590707,
+                    "massfix128": -8.223918688246822
+                  },
+                  "center_absolute_sse_improvement": 25803.926214120787,
+                  "massfix_fraction_of_center_gain": 0.5473964920492246,
+                  "removing_massfix_fraction_of_center_gain": 0.4243163239584555,
+                  "massfix_at_least_80pct_center_gain": false,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "both_factors_warrant_attention"
+                }
+              }
+            }
+          ],
+          "base_simulator_vs_native": {
+            "sse": 3.044825285581414,
+            "reference_energy": 29370486.623299144,
+            "contrast_sse": 2.732774316183299,
+            "contrast_reference_energy": 6672003.485227299,
+            "contrast_gain": 0.9999944445616262,
+            "contrast_cosine": 0.9999997952190877
+          },
+          "native_vs_full": {
+            "sse": 171868.1725319298,
+            "reference_energy": 30595142.11941489,
+            "contrast_sse": 132234.62659635334,
+            "contrast_reference_energy": 6856596.830403379,
+            "contrast_gain": 0.9768961206551068,
+            "contrast_cosine": 0.9903177416082137
+          },
+          "native_gap_energy_ratio": 1.7716050858780987e-05
+        },
+        {
+          "condition": "exact_qk",
+          "oracle_vs_full": {
+            "sse": 0.0,
+            "reference_energy": 30595142.11941489,
+            "contrast_sse": 0.0,
+            "contrast_reference_energy": 6856596.830403379,
+            "contrast_gain": 1.0,
+            "contrast_cosine": 1.0
+          },
+          "arms": {
+            "base": {
+              "vs_pv_oracle": {
+                "sse": 64888.12139149309,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 40212.62636184308,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9920611394165747,
+                "contrast_cosine": 0.9970654626693787
+              },
+              "vs_full_attention": {
+                "sse": 64888.12139149309,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 40212.62636184308,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9920611394165747,
+                "contrast_cosine": 0.9970654626693787
+              }
+            },
+            "center32": {
+              "vs_pv_oracle": {
+                "sse": 37834.603694609876,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 27820.299590244336,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9940187856395888,
+                "contrast_cosine": 0.9979710818673083
+              },
+              "vs_full_attention": {
+                "sse": 37834.603694609876,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 27820.299590244336,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9940187856395888,
+                "contrast_cosine": 0.9979710818673083
+              }
+            },
+            "center128": {
+              "vs_pv_oracle": {
+                "sse": 39736.48628182779,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 29174.263197541906,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9933737297634293,
+                "contrast_cosine": 0.9978731159315574
+              },
+              "vs_full_attention": {
+                "sse": 39736.48628182779,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 29174.263197541906,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9933737297634293,
+                "contrast_cosine": 0.9978731159315574
+              }
+            },
+            "residual32": {
+              "vs_pv_oracle": {
+                "sse": 48888.82641090892,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 31526.552474419208,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9920034933673899,
+                "contrast_cosine": 0.9977042120220241
+              },
+              "vs_full_attention": {
+                "sse": 48888.82641090892,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 31526.552474419208,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9920034933673899,
+                "contrast_cosine": 0.9977042120220241
+              }
+            },
+            "residual128": {
+              "vs_pv_oracle": {
+                "sse": 50320.17579227398,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 32480.95742886722,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.991663121135094,
+                "contrast_cosine": 0.9976351692069686
+              },
+              "vs_full_attention": {
+                "sse": 50320.17579227398,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 32480.95742886722,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.991663121135094,
+                "contrast_cosine": 0.9976351692069686
+              }
+            },
+            "massfix32": {
+              "vs_pv_oracle": {
+                "sse": 50685.893343238975,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 36422.24428792964,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.994076430057678,
+                "contrast_cosine": 0.9973406520327244
+              },
+              "vs_full_attention": {
+                "sse": 50685.893343238975,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 36422.24428792964,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.994076430057678,
+                "contrast_cosine": 0.9973406520327244
+              }
+            },
+            "massfix128": {
+              "vs_pv_oracle": {
+                "sse": 51417.99892979106,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 36849.869353771384,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.993771750543484,
+                "contrast_cosine": 0.9973095643177489
+              },
+              "vs_full_attention": {
+                "sse": 51417.99892979106,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 36849.869353771384,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.993771750543484,
+                "contrast_cosine": 0.9973095643177489
+              }
+            }
+          },
+          "E080_replay_exact": {
+            "base": true,
+            "center32": true,
+            "center128": true
+          },
+          "groups": [
+            {
+              "group": 32,
+              "factorial_closure_relative_energy": 5.8036803400780655e-11,
+              "correction_identity_relative_energy": 3.193149624160686e-10,
+              "correction_identity_fp64_subtraction_relative_energy": 3.1931497401126883e-10,
+              "massfix_identity_relative_energy": 3.172538458615518e-10,
+              "attributions": {
+                "vs_pv_oracle": {
+                  "output": {
+                    "base_sse": 64888.12139149309,
+                    "v_change_energy": 63699.8604294229,
+                    "mass_change_energy": 8538.929000339447,
+                    "twice_base_error_dot_v": -79699.15541000706,
+                    "twice_base_error_dot_mass": -22741.157048593566,
+                    "twice_v_dot_mass": 3148.006294760195,
+                    "sum_without_rounding_residual": 37834.604657415,
+                    "rounding_residual_energy": 4.375208320402208e-06,
+                    "rounding_contribution_to_center_sse": -0.0009628051246889249,
+                    "reconstructed_center_sse": 37834.603694609876,
+                    "actual_center_sse": 37834.603694609876,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 40212.62636184308,
+                    "v_change_energy": 45695.8829689938,
+                    "mass_change_energy": 2537.710773181707,
+                    "twice_base_error_dot_v": -54381.95685641766,
+                    "twice_base_error_dot_mass": -6328.092847095145,
+                    "twice_v_dot_mass": 84.12708593888048,
+                    "sum_without_rounding_residual": 27820.297486444666,
+                    "rounding_residual_energy": 4.378205832551484e-06,
+                    "rounding_contribution_to_center_sse": 0.002103799679728112,
+                    "reconstructed_center_sse": 27820.299590244347,
+                    "actual_center_sse": 27820.299590244336,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                },
+                "vs_full_attention": {
+                  "output": {
+                    "base_sse": 64888.12139149309,
+                    "v_change_energy": 63699.8604294229,
+                    "mass_change_energy": 8538.929000339447,
+                    "twice_base_error_dot_v": -79699.15541000706,
+                    "twice_base_error_dot_mass": -22741.157048593566,
+                    "twice_v_dot_mass": 3148.006294760195,
+                    "sum_without_rounding_residual": 37834.604657415,
+                    "rounding_residual_energy": 4.375208320402208e-06,
+                    "rounding_contribution_to_center_sse": -0.0009628051246889249,
+                    "reconstructed_center_sse": 37834.603694609876,
+                    "actual_center_sse": 37834.603694609876,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 40212.62636184308,
+                    "v_change_energy": 45695.8829689938,
+                    "mass_change_energy": 2537.710773181707,
+                    "twice_base_error_dot_v": -54381.95685641766,
+                    "twice_base_error_dot_mass": -6328.092847095145,
+                    "twice_v_dot_mass": 84.12708593888048,
+                    "sum_without_rounding_residual": 27820.297486444666,
+                    "rounding_residual_energy": 4.378205832551484e-06,
+                    "rounding_contribution_to_center_sse": 0.002103799679728112,
+                    "reconstructed_center_sse": 27820.299590244347,
+                    "actual_center_sse": 27820.299590244336,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                }
+              },
+              "classifications": {
+                "vs_pv_oracle": {
+                  "group": 32,
+                  "reference": "vs_pv_oracle",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center32": -41.692558078018216,
+                    "residual32": -24.656739380779324,
+                    "massfix32": -21.887254159458603
+                  },
+                  "center_absolute_sse_improvement": 27053.517696883217,
+                  "massfix_fraction_of_center_gain": 0.5249678879981781,
+                  "removing_massfix_fraction_of_center_gain": 0.40860574362839996,
+                  "massfix_at_least_80pct_center_gain": false,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "both_factors_warrant_attention"
+                },
+                "vs_full_attention": {
+                  "group": 32,
+                  "reference": "vs_full_attention",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center32": -41.692558078018216,
+                    "residual32": -24.656739380779324,
+                    "massfix32": -21.887254159458603
+                  },
+                  "center_absolute_sse_improvement": 27053.517696883217,
+                  "massfix_fraction_of_center_gain": 0.5249678879981781,
+                  "removing_massfix_fraction_of_center_gain": 0.40860574362839996,
+                  "massfix_at_least_80pct_center_gain": false,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "both_factors_warrant_attention"
+                }
+              }
+            },
+            {
+              "group": 128,
+              "factorial_closure_relative_energy": 5.936216586505319e-11,
+              "correction_identity_relative_energy": 3.456893123966016e-10,
+              "correction_identity_fp64_subtraction_relative_energy": 3.456892866306426e-10,
+              "massfix_identity_relative_energy": 3.4174636203523364e-10,
+              "attributions": {
+                "vs_pv_oracle": {
+                  "output": {
+                    "base_sse": 64888.12139149309,
+                    "v_change_energy": 62085.12317619735,
+                    "mass_change_energy": 7835.117257878666,
+                    "twice_base_error_dot_v": -76653.06877541647,
+                    "twice_base_error_dot_mass": -21305.2397195807,
+                    "twice_v_dot_mass": 2886.436257630397,
+                    "sum_without_rounding_residual": 39736.489588202334,
+                    "rounding_residual_energy": 4.321961381267354e-06,
+                    "rounding_contribution_to_center_sse": -0.0033063745468945335,
+                    "reconstructed_center_sse": 39736.48628182778,
+                    "actual_center_sse": 39736.48628182779,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 40212.62636184308,
+                    "v_change_energy": 44623.76119140204,
+                    "mass_change_energy": 2265.3058487750322,
+                    "twice_base_error_dot_v": -52355.430124377905,
+                    "twice_base_error_dot_mass": -5628.062856846725,
+                    "twice_v_dot_mass": 56.06474079040402,
+                    "sum_without_rounding_residual": 29174.26516158593,
+                    "rounding_residual_energy": 4.314064667076543e-06,
+                    "rounding_contribution_to_center_sse": -0.0019640440266502214,
+                    "reconstructed_center_sse": 29174.263197541903,
+                    "actual_center_sse": 29174.263197541906,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                },
+                "vs_full_attention": {
+                  "output": {
+                    "base_sse": 64888.12139149309,
+                    "v_change_energy": 62085.12317619735,
+                    "mass_change_energy": 7835.117257878666,
+                    "twice_base_error_dot_v": -76653.06877541647,
+                    "twice_base_error_dot_mass": -21305.2397195807,
+                    "twice_v_dot_mass": 2886.436257630397,
+                    "sum_without_rounding_residual": 39736.489588202334,
+                    "rounding_residual_energy": 4.321961381267354e-06,
+                    "rounding_contribution_to_center_sse": -0.0033063745468945335,
+                    "reconstructed_center_sse": 39736.48628182778,
+                    "actual_center_sse": 39736.48628182779,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  },
+                  "neighbor_difference": {
+                    "base_sse": 40212.62636184308,
+                    "v_change_energy": 44623.76119140204,
+                    "mass_change_energy": 2265.3058487750322,
+                    "twice_base_error_dot_v": -52355.430124377905,
+                    "twice_base_error_dot_mass": -5628.062856846725,
+                    "twice_v_dot_mass": 56.06474079040402,
+                    "sum_without_rounding_residual": 29174.26516158593,
+                    "rounding_residual_energy": 4.314064667076543e-06,
+                    "rounding_contribution_to_center_sse": -0.0019640440266502214,
+                    "reconstructed_center_sse": 29174.263197541903,
+                    "actual_center_sse": 29174.263197541906,
+                    "note": "SSE effects include the explicit 2<dV,dM> interaction and are not additive percentages."
+                  }
+                }
+              },
+              "classifications": {
+                "vs_pv_oracle": {
+                  "group": 128,
+                  "reference": "vs_pv_oracle",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center128": -38.76153997110896,
+                    "residual128": -22.450866640637535,
+                    "massfix128": -20.758995903783372
+                  },
+                  "center_absolute_sse_improvement": 25151.6351096653,
+                  "massfix_fraction_of_center_gain": 0.5355565315324458,
+                  "removing_massfix_fraction_of_center_gain": 0.42079528683918743,
+                  "massfix_at_least_80pct_center_gain": false,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "both_factors_warrant_attention"
+                },
+                "vs_full_attention": {
+                  "group": 128,
+                  "reference": "vs_full_attention",
+                  "center_positive": true,
+                  "output_sse_change_pct": {
+                    "center128": -38.76153997110896,
+                    "residual128": -22.450866640637535,
+                    "massfix128": -20.758995903783372
+                  },
+                  "center_absolute_sse_improvement": 25151.6351096653,
+                  "massfix_fraction_of_center_gain": 0.5355565315324458,
+                  "removing_massfix_fraction_of_center_gain": 0.42079528683918743,
+                  "massfix_at_least_80pct_center_gain": false,
+                  "removing_massfix_loses_at_least_20pct_center_gain": true,
+                  "classification": "both_factors_warrant_attention"
+                }
+              }
+            }
+          ],
+          "base_simulator_vs_native": {
+            "sse": 120104.8083926054,
+            "reference_energy": 29370486.623299144,
+            "contrast_sse": 107680.81116785156,
+            "contrast_reference_energy": 6672003.485227299,
+            "contrast_gain": 1.0006395533586887,
+            "contrast_cosine": 0.9920370481919369
+          },
+          "native_vs_full": {
+            "sse": 171868.1725319298,
+            "reference_energy": 30595142.11941489,
+            "contrast_sse": 132234.62659635334,
+            "contrast_reference_energy": 6856596.830403379,
+            "contrast_gain": 0.9768961206551068,
+            "contrast_cosine": 0.9903177416082137
+          },
+          "native_gap_energy_ratio": 0.6988193719828623
+        }
+      ]
+    }
+  ],
+  "primary_block24_classification": [
+    {
+      "condition": "native_qk",
+      "group": 32,
+      "reference": "vs_pv_oracle",
+      "classification": "both_factors_warrant_attention",
+      "cells": [
+        {
+          "case_id": "vbench0161_r0",
+          "group": 32,
+          "reference": "vs_pv_oracle",
+          "center_positive": true,
+          "output_sse_change_pct": {
+            "center32": -40.23773993823131,
+            "residual32": -22.318817391745792,
+            "massfix32": -23.024886334872253
+          },
+          "center_absolute_sse_improvement": 23309.22741994726,
+          "massfix_fraction_of_center_gain": 0.57222116277449,
+          "removing_massfix_fraction_of_center_gain": 0.4453262676778751,
+          "massfix_at_least_80pct_center_gain": false,
+          "removing_massfix_loses_at_least_20pct_center_gain": true,
+          "classification": "both_factors_warrant_attention"
+        },
+        {
+          "case_id": "vbench0161_r1",
+          "group": 32,
+          "reference": "vs_pv_oracle",
+          "center_positive": true,
+          "output_sse_change_pct": {
+            "center32": -42.06628210157882,
+            "residual32": -25.311602745288564,
+            "massfix32": -21.934400846830947
+          },
+          "center_absolute_sse_improvement": 27237.01028158852,
+          "massfix_fraction_of_center_gain": 0.5214247551962218,
+          "removing_massfix_fraction_of_center_gain": 0.39829237382643407,
+          "massfix_at_least_80pct_center_gain": false,
+          "removing_massfix_loses_at_least_20pct_center_gain": true,
+          "classification": "both_factors_warrant_attention"
+        }
+      ]
+    },
+    {
+      "condition": "native_qk",
+      "group": 32,
+      "reference": "vs_full_attention",
+      "classification": "both_factors_warrant_attention",
+      "cells": [
+        {
+          "case_id": "vbench0161_r0",
+          "group": 32,
+          "reference": "vs_full_attention",
+          "center_positive": true,
+          "output_sse_change_pct": {
+            "center32": -15.4268936091157,
+            "residual32": -8.419417681779695,
+            "massfix32": -8.989717768817618
+          },
+          "center_absolute_sse_improvement": 23019.40706109388,
+          "massfix_fraction_of_center_gain": 0.5827302629160305,
+          "removing_massfix_fraction_of_center_gain": 0.4542376517846278,
+          "massfix_at_least_80pct_center_gain": false,
+          "removing_massfix_loses_at_least_20pct_center_gain": true,
+          "classification": "both_factors_warrant_attention"
+        },
+        {
+          "case_id": "vbench0161_r1",
+          "group": 32,
+          "reference": "vs_full_attention",
+          "center_positive": true,
+          "output_sse_change_pct": {
+            "center32": -16.266051984022578,
+            "residual32": -9.575783507003388,
+            "massfix32": -8.642906091451852
+          },
+          "center_absolute_sse_improvement": 27937.73216466795,
+          "massfix_fraction_of_center_gain": 0.5313462725891562,
+          "removing_massfix_fraction_of_center_gain": 0.41130253878388884,
+          "massfix_at_least_80pct_center_gain": false,
+          "removing_massfix_loses_at_least_20pct_center_gain": true,
+          "classification": "both_factors_warrant_attention"
+        }
+      ]
+    },
+    {
+      "condition": "native_qk",
+      "group": 128,
+      "reference": "vs_pv_oracle",
+      "classification": "both_factors_warrant_attention",
+      "cells": [
+        {
+          "case_id": "vbench0161_r0",
+          "group": 128,
+          "reference": "vs_pv_oracle",
+          "center_positive": true,
+          "output_sse_change_pct": {
+            "center128": -37.294537724038335,
+            "residual128": -20.5721238413461,
+            "massfix128": -21.73626184047295
+          },
+          "center_absolute_sse_improvement": 21604.26660806196,
+          "massfix_fraction_of_center_gain": 0.5828269544808637,
+          "removing_massfix_fraction_of_center_gain": 0.4483877506789349,
+          "massfix_at_least_80pct_center_gain": false,
+          "removing_massfix_loses_at_least_20pct_center_gain": true,
+          "classification": "both_factors_warrant_attention"
+        },
+        {
+          "case_id": "vbench0161_r1",
+          "group": 128,
+          "reference": "vs_pv_oracle",
+          "center_positive": true,
+          "output_sse_change_pct": {
+            "center128": -39.6613902890292,
+            "residual128": -23.70926349486979,
+            "massfix128": -20.85724224271547
+          },
+          "center_absolute_sse_improvement": 25679.894707020925,
+          "massfix_fraction_of_center_gain": 0.525882781483957,
+          "removing_massfix_fraction_of_center_gain": 0.4022079578630392,
+          "massfix_at_least_80pct_center_gain": false,
+          "removing_massfix_loses_at_least_20pct_center_gain": true,
+          "classification": "both_factors_warrant_attention"
+        }
+      ]
+    },
+    {
+      "condition": "native_qk",
+      "group": 128,
+      "reference": "vs_full_attention",
+      "classification": "both_factors_warrant_attention",
+      "cells": [
+        {
+          "case_id": "vbench0161_r0",
+          "group": 128,
+          "reference": "vs_full_attention",
+          "center_positive": true,
+          "output_sse_change_pct": {
+            "center128": -14.437654781034425,
+            "residual128": -7.8740935198105095,
+            "massfix128": -8.510043025959568
+          },
+          "center_absolute_sse_improvement": 21543.30358613463,
+          "massfix_fraction_of_center_gain": 0.5894338904084703,
+          "removing_massfix_fraction_of_center_gain": 0.4546140880058949,
+          "massfix_at_least_80pct_center_gain": false,
+          "removing_massfix_loses_at_least_20pct_center_gain": true,
+          "classification": "both_factors_warrant_attention"
+        },
+        {
+          "case_id": "vbench0161_r1",
+          "group": 128,
+          "reference": "vs_full_attention",
+          "center_positive": true,
+          "output_sse_change_pct": {
+            "center128": -15.023696365791272,
+            "residual128": -8.648896751590707,
+            "massfix128": -8.223918688246822
+          },
+          "center_absolute_sse_improvement": 25803.926214120787,
+          "massfix_fraction_of_center_gain": 0.5473964920492246,
+          "removing_massfix_fraction_of_center_gain": 0.4243163239584555,
+          "massfix_at_least_80pct_center_gain": false,
+          "removing_massfix_loses_at_least_20pct_center_gain": true,
+          "classification": "both_factors_warrant_attention"
+        }
+      ]
+    },
+    {
+      "condition": "exact_qk",
+      "group": 32,
+      "reference": "vs_pv_oracle",
+      "classification": "both_factors_warrant_attention",
+      "cells": [
+        {
+          "case_id": "vbench0161_r0",
+          "group": 32,
+          "reference": "vs_pv_oracle",
+          "center_positive": true,
+          "output_sse_change_pct": {
+            "center32": -40.821375615193354,
+            "residual32": -22.027906929726303,
+            "massfix32": -24.07933350446072
+          },
+          "center_absolute_sse_improvement": 23836.699876758605,
+          "massfix_fraction_of_center_gain": 0.5898707023361212,
+          "removing_massfix_fraction_of_center_gain": 0.46038303222864174,
+          "massfix_at_least_80pct_center_gain": false,
+          "removing_massfix_loses_at_least_20pct_center_gain": true,
+          "classification": "both_factors_warrant_attention"
+        },
+        {
+          "case_id": "vbench0161_r1",
+          "group": 32,
+          "reference": "vs_pv_oracle",
+          "center_positive": true,
+          "output_sse_change_pct": {
+            "center32": -41.692558078018216,
+            "residual32": -24.656739380779324,
+            "massfix32": -21.887254159458603
+          },
+          "center_absolute_sse_improvement": 27053.517696883217,
+          "massfix_fraction_of_center_gain": 0.5249678879981781,
+          "removing_massfix_fraction_of_center_gain": 0.40860574362839996,
+          "massfix_at_least_80pct_center_gain": false,
+          "removing_massfix_loses_at_least_20pct_center_gain": true,
+          "classification": "both_factors_warrant_attention"
+        }
+      ]
+    },
+    {
+      "condition": "exact_qk",
+      "group": 32,
+      "reference": "vs_full_attention",
+      "classification": "both_factors_warrant_attention",
+      "cells": [
+        {
+          "case_id": "vbench0161_r0",
+          "group": 32,
+          "reference": "vs_full_attention",
+          "center_positive": true,
+          "output_sse_change_pct": {
+            "center32": -40.821375615193354,
+            "residual32": -22.027906929726303,
+            "massfix32": -24.07933350446072
+          },
+          "center_absolute_sse_improvement": 23836.699876758605,
+          "massfix_fraction_of_center_gain": 0.5898707023361212,
+          "removing_massfix_fraction_of_center_gain": 0.46038303222864174,
+          "massfix_at_least_80pct_center_gain": false,
+          "removing_massfix_loses_at_least_20pct_center_gain": true,
+          "classification": "both_factors_warrant_attention"
+        },
+        {
+          "case_id": "vbench0161_r1",
+          "group": 32,
+          "reference": "vs_full_attention",
+          "center_positive": true,
+          "output_sse_change_pct": {
+            "center32": -41.692558078018216,
+            "residual32": -24.656739380779324,
+            "massfix32": -21.887254159458603
+          },
+          "center_absolute_sse_improvement": 27053.517696883217,
+          "massfix_fraction_of_center_gain": 0.5249678879981781,
+          "removing_massfix_fraction_of_center_gain": 0.40860574362839996,
+          "massfix_at_least_80pct_center_gain": false,
+          "removing_massfix_loses_at_least_20pct_center_gain": true,
+          "classification": "both_factors_warrant_attention"
+        }
+      ]
+    },
+    {
+      "condition": "exact_qk",
+      "group": 128,
+      "reference": "vs_pv_oracle",
+      "classification": "both_factors_warrant_attention",
+      "cells": [
+        {
+          "case_id": "vbench0161_r0",
+          "group": 128,
+          "reference": "vs_pv_oracle",
+          "center_positive": true,
+          "output_sse_change_pct": {
+            "center128": -38.0084741087796,
+            "residual128": -20.57092944048685,
+            "massfix128": -22.748246337819356
+          },
+          "center_absolute_sse_improvement": 22194.17098152188,
+          "massfix_fraction_of_center_gain": 0.598504593283968,
+          "removing_massfix_fraction_of_center_gain": 0.45878044507619,
+          "massfix_at_least_80pct_center_gain": false,
+          "removing_massfix_loses_at_least_20pct_center_gain": true,
+          "classification": "both_factors_warrant_attention"
+        },
+        {
+          "case_id": "vbench0161_r1",
+          "group": 128,
+          "reference": "vs_pv_oracle",
+          "center_positive": true,
+          "output_sse_change_pct": {
+            "center128": -38.76153997110896,
+            "residual128": -22.450866640637535,
+            "massfix128": -20.758995903783372
+          },
+          "center_absolute_sse_improvement": 25151.6351096653,
+          "massfix_fraction_of_center_gain": 0.5355565315324458,
+          "removing_massfix_fraction_of_center_gain": 0.42079528683918743,
+          "massfix_at_least_80pct_center_gain": false,
+          "removing_massfix_loses_at_least_20pct_center_gain": true,
+          "classification": "both_factors_warrant_attention"
+        }
+      ]
+    },
+    {
+      "condition": "exact_qk",
+      "group": 128,
+      "reference": "vs_full_attention",
+      "classification": "both_factors_warrant_attention",
+      "cells": [
+        {
+          "case_id": "vbench0161_r0",
+          "group": 128,
+          "reference": "vs_full_attention",
+          "center_positive": true,
+          "output_sse_change_pct": {
+            "center128": -38.0084741087796,
+            "residual128": -20.57092944048685,
+            "massfix128": -22.748246337819356
+          },
+          "center_absolute_sse_improvement": 22194.17098152188,
+          "massfix_fraction_of_center_gain": 0.598504593283968,
+          "removing_massfix_fraction_of_center_gain": 0.45878044507619,
+          "massfix_at_least_80pct_center_gain": false,
+          "removing_massfix_loses_at_least_20pct_center_gain": true,
+          "classification": "both_factors_warrant_attention"
+        },
+        {
+          "case_id": "vbench0161_r1",
+          "group": 128,
+          "reference": "vs_full_attention",
+          "center_positive": true,
+          "output_sse_change_pct": {
+            "center128": -38.76153997110896,
+            "residual128": -22.450866640637535,
+            "massfix128": -20.758995903783372
+          },
+          "center_absolute_sse_improvement": 25151.6351096653,
+          "massfix_fraction_of_center_gain": 0.5355565315324458,
+          "removing_massfix_fraction_of_center_gain": 0.42079528683918743,
+          "massfix_at_least_80pct_center_gain": false,
+          "removing_massfix_loses_at_least_20pct_center_gain": true,
+          "classification": "both_factors_warrant_attention"
+        }
+      ]
+    }
+  ],
+  "numeric_verification": {
+    "comparisons": 856,
+    "max_absolute_difference": 3.725290298461914e-09,
+    "max_normalized_difference": 4.440892098500626e-16
+  },
+  "cuda_initialized": false,
+  "seconds": 1.335247715935111
+}

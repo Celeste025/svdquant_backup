@@ -1,0 +1,710 @@
+{
+  "experiment": "E048",
+  "status": "complete",
+  "phase": "evaluation_binding",
+  "source_manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E048_matched_wan_native_manifest.json",
+    "bytes": 8575,
+    "sha256": "698c71c6e6989fd276544b7c852557bfdb0b92881b427f49056ba3d589f2400e"
+  },
+  "generation_launcher": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E048/launcher.json",
+    "bytes": 9075,
+    "sha256": "868cf2650049122896eaee684c7d1321e55c3f4d440f76764930a32415a29b8d"
+  },
+  "worker_reports": [
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E048/worker_svdquant_nvfp4_161.json",
+      "bytes": 651531,
+      "sha256": "70c7db9901eba61d736c05981bfa9093ba38a5cfe114d5a184b082e59770c4db"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E048/worker_svdquant_nvfp4_192.json",
+      "bytes": 651575,
+      "sha256": "66b53b1ccfe5100b0725b92c89a9024ece4234d21d1ee34679d574f5b9df6719"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E048/worker_svdquant_nvfp4_269.json",
+      "bytes": 651789,
+      "sha256": "9ec4799d32f0f9ad58cd92149a0fe46722947fc86bdbfa276b3b8281310b6b3f"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E048/worker_svdquant_nvfp4_316.json",
+      "bytes": 651982,
+      "sha256": "3d4828c9d132e4b302a3337eb2517ae36882d379505a313374b7586018d50f06"
+    }
+  ],
+  "inherited": {
+    "E043": {
+      "variant": "vanilla_wan_bf16",
+      "summary": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E043/evaluation_summary.json",
+        "bytes": 225360,
+        "sha256": "e2912b4da3cafdfa27a4a99ad4289d30fab65330a538374f0e0afc10eabd0e3c"
+      },
+      "data_dir": "/data1/models/svdquant-wjq/research/20261003/E043",
+      "evaluation": "reuse_existing"
+    },
+    "E044": {
+      "variant": "svdquant_nvfp4",
+      "summary": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E044/evaluation_summary.json",
+        "bytes": 207899,
+        "sha256": "a924257b1e38335e3e9b0b967bdabd6083c11ae573102d7d2dc5262ef51db1d5"
+      },
+      "data_dir": "/data1/models/svdquant-wjq/research/20261003/E044",
+      "evaluation": "reuse_existing"
+    },
+    "E046": {
+      "variant": "bf16_last",
+      "summary": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E046/evaluation_summary.json",
+        "bytes": 211828,
+        "sha256": "e1129e856ada4029df64e9b64fc0e8145e97869cb989dfee2167f30a3cf31a72"
+      },
+      "data_dir": "/data1/models/svdquant-wjq/research/20261003/E046",
+      "evaluation": "reuse_existing"
+    }
+  },
+  "sampling": {
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "num_inference_steps": 50,
+    "guidance_scale": 6.0,
+    "flow_shift": 8.0,
+    "fps": 16,
+    "scheduler": "UniPCMultistepScheduler",
+    "transformer_dtype": "bfloat16",
+    "text_encoder_dtype": "bfloat16",
+    "vae_dtype": "float32",
+    "latent_update_dtype": "float32",
+    "max_sequence_length": 512,
+    "prompt_extension": false,
+    "attention_backend_dit": "torch SDPA FLASH_ATTENTION",
+    "compile": false,
+    "offload": false,
+    "vae_tiling": false
+  },
+  "metric_sampling": {
+    "mjvideo_indices": [
+      0,
+      10,
+      20,
+      30,
+      40,
+      50,
+      60,
+      70
+    ],
+    "amt_input_frames": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20,
+      22,
+      24,
+      26,
+      28,
+      30,
+      32,
+      34,
+      36,
+      38,
+      40,
+      42,
+      44,
+      46,
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60,
+      62,
+      64,
+      66,
+      68,
+      70,
+      72,
+      74,
+      76,
+      78,
+      80
+    ],
+    "amt_reference_frames": [
+      1,
+      3,
+      5,
+      7,
+      9,
+      11,
+      13,
+      15,
+      17,
+      19,
+      21,
+      23,
+      25,
+      27,
+      29,
+      31,
+      33,
+      35,
+      37,
+      39,
+      41,
+      43,
+      45,
+      47,
+      49,
+      51,
+      53,
+      55,
+      57,
+      59,
+      61,
+      63,
+      65,
+      67,
+      69,
+      71,
+      73,
+      75,
+      77,
+      79
+    ],
+    "raft_frames": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20,
+      22,
+      24,
+      26,
+      28,
+      30,
+      32,
+      34,
+      36,
+      38,
+      40,
+      42,
+      44,
+      46,
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60,
+      62,
+      64,
+      66,
+      68,
+      70,
+      72,
+      74,
+      76,
+      78,
+      80
+    ],
+    "raft_iterations": 20,
+    "dino_frames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80
+    ]
+  },
+  "cases": [
+    {
+      "case_id": "vbench0161_r0",
+      "prompt_id": 161,
+      "source_index_zero_based": 161,
+      "replica": 0,
+      "prompt": "A person is clapping",
+      "prompt_sha256": "268d62ce600baae94ac9ce2a33755b342aa42cc2b1386c4ee19501048f0015c8",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "seed": 43001610
+    },
+    {
+      "case_id": "vbench0161_r1",
+      "prompt_id": 161,
+      "source_index_zero_based": 161,
+      "replica": 1,
+      "prompt": "A person is clapping",
+      "prompt_sha256": "268d62ce600baae94ac9ce2a33755b342aa42cc2b1386c4ee19501048f0015c8",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "seed": 43001611
+    },
+    {
+      "case_id": "vbench0192_r0",
+      "prompt_id": 192,
+      "source_index_zero_based": 192,
+      "replica": 0,
+      "prompt": "A person is folding clothes",
+      "prompt_sha256": "aa6ec2715d998696d460049e712e873297a1760ffd3340b4f3f11fa0c3ab3fd2",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "seed": 43001920
+    },
+    {
+      "case_id": "vbench0192_r1",
+      "prompt_id": 192,
+      "source_index_zero_based": 192,
+      "replica": 1,
+      "prompt": "A person is folding clothes",
+      "prompt_sha256": "aa6ec2715d998696d460049e712e873297a1760ffd3340b4f3f11fa0c3ab3fd2",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "seed": 43001921
+    },
+    {
+      "case_id": "vbench0269_r0",
+      "prompt_id": 269,
+      "source_index_zero_based": 269,
+      "replica": 0,
+      "prompt": "a car turning a corner",
+      "prompt_sha256": "001a0c3a3d7b8056dd7da15d2e5defab45ef67f09121f92d01f8cee28f8761da",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "seed": 43002690
+    },
+    {
+      "case_id": "vbench0269_r1",
+      "prompt_id": 269,
+      "source_index_zero_based": 269,
+      "replica": 1,
+      "prompt": "a car turning a corner",
+      "prompt_sha256": "001a0c3a3d7b8056dd7da15d2e5defab45ef67f09121f92d01f8cee28f8761da",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "seed": 43002691
+    },
+    {
+      "case_id": "vbench0316_r0",
+      "prompt_id": 316,
+      "source_index_zero_based": 316,
+      "replica": 0,
+      "prompt": "an elephant spraying itself with water using its trunk to cool down",
+      "prompt_sha256": "35016d0bb7763724492babd8ae1a2e882a285fe779c0a3fe0b1d8720721882ba",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "seed": 43003160
+    },
+    {
+      "case_id": "vbench0316_r1",
+      "prompt_id": 316,
+      "source_index_zero_based": 316,
+      "replica": 1,
+      "prompt": "an elephant spraying itself with water using its trunk to cool down",
+      "prompt_sha256": "35016d0bb7763724492babd8ae1a2e882a285fe779c0a3fe0b1d8720721882ba",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "seed": 43003161
+    }
+  ],
+  "rows": [
+    {
+      "case_id": "vbench0161_r0",
+      "prompt_id": 161,
+      "replica": 0,
+      "prompt": "A person is clapping",
+      "seed": 43001610,
+      "trajectory_id": "vbench0161_r0",
+      "arm": "svdquant_nvfp4",
+      "video": "/data1/models/svdquant-wjq/research/20261003/E048/svdquant_nvfp4/vbench0161_r0/video.mp4",
+      "video_sha256": "9752cc36031c7de17a7808d4b3893480174c6a0327addc0a4d35cef0e91e7a17",
+      "video_bytes": 1868649,
+      "initial_noise": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E043/vbench0161_r0/initial_noise.pt",
+          "bytes": 8388243,
+          "sha256": "eba3fb75465390aec45f1a9ff53c91aaaf29ca67ab294fae696c3f849025ef22"
+        },
+        "tensor": {
+          "shape": [
+            1,
+            16,
+            21,
+            60,
+            104
+          ],
+          "dtype": "torch.float32",
+          "finite": true,
+          "sha256": "f84b94dbc32cb259a06ddd4c3e0b7ff69de93a0a5b9d68dc32ee65fbe9a3b7e5"
+        }
+      },
+      "embeddings": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E043/prompt_161/embeddings.pt",
+        "bytes": 8390525,
+        "sha256": "2396f353d30d6c05b28cb742e3f031e4ab87b0bb84afc2dbc5d23d656a1cb9e3"
+      }
+    },
+    {
+      "case_id": "vbench0161_r1",
+      "prompt_id": 161,
+      "replica": 1,
+      "prompt": "A person is clapping",
+      "seed": 43001611,
+      "trajectory_id": "vbench0161_r1",
+      "arm": "svdquant_nvfp4",
+      "video": "/data1/models/svdquant-wjq/research/20261003/E048/svdquant_nvfp4/vbench0161_r1/video.mp4",
+      "video_sha256": "e5152e6ecb1fc00792dcbc3407e4f0ce7cf59d8e8b53125f24bf613e2099de90",
+      "video_bytes": 1638712,
+      "initial_noise": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E043/vbench0161_r1/initial_noise.pt",
+          "bytes": 8388243,
+          "sha256": "5d8d50ed60d6be5a88d45e2e389b5c64cc3e74c935fe4418eb13fc02735d03de"
+        },
+        "tensor": {
+          "shape": [
+            1,
+            16,
+            21,
+            60,
+            104
+          ],
+          "dtype": "torch.float32",
+          "finite": true,
+          "sha256": "0efe3db0e8922880626879f10a733e1c7c5f42a8e1c60d7edd289f26ef4bb9e8"
+        }
+      },
+      "embeddings": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E043/prompt_161/embeddings.pt",
+        "bytes": 8390525,
+        "sha256": "2396f353d30d6c05b28cb742e3f031e4ab87b0bb84afc2dbc5d23d656a1cb9e3"
+      }
+    },
+    {
+      "case_id": "vbench0192_r0",
+      "prompt_id": 192,
+      "replica": 0,
+      "prompt": "A person is folding clothes",
+      "seed": 43001920,
+      "trajectory_id": "vbench0192_r0",
+      "arm": "svdquant_nvfp4",
+      "video": "/data1/models/svdquant-wjq/research/20261003/E048/svdquant_nvfp4/vbench0192_r0/video.mp4",
+      "video_sha256": "77b53dfe35fcbaf18a5ebae8e252a18020ad17b0708d209954ef0c519a30b9cf",
+      "video_bytes": 2207191,
+      "initial_noise": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E043/vbench0192_r0/initial_noise.pt",
+          "bytes": 8388243,
+          "sha256": "f79e409dde8080e406da78b78446cc44f4fe5d6871ff963206450152b21c1fc5"
+        },
+        "tensor": {
+          "shape": [
+            1,
+            16,
+            21,
+            60,
+            104
+          ],
+          "dtype": "torch.float32",
+          "finite": true,
+          "sha256": "788ad5567346a183cd23dbcc146ecd103985808b8056da0e20f8fae8bbd8d32a"
+        }
+      },
+      "embeddings": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E043/prompt_192/embeddings.pt",
+        "bytes": 8390525,
+        "sha256": "5e9fa1c9e8cabbac47ab6c23d2b076125e92906d9e4e725f7323330acfacc1f1"
+      }
+    },
+    {
+      "case_id": "vbench0192_r1",
+      "prompt_id": 192,
+      "replica": 1,
+      "prompt": "A person is folding clothes",
+      "seed": 43001921,
+      "trajectory_id": "vbench0192_r1",
+      "arm": "svdquant_nvfp4",
+      "video": "/data1/models/svdquant-wjq/research/20261003/E048/svdquant_nvfp4/vbench0192_r1/video.mp4",
+      "video_sha256": "61612b69458169e90cb9f81fccbf63c4d1238ea03ce80bde16389d52b804b734",
+      "video_bytes": 2032388,
+      "initial_noise": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E043/vbench0192_r1/initial_noise.pt",
+          "bytes": 8388243,
+          "sha256": "54f139d8c873cee67de4c1293819f750c4309bcae136c0e1bee129cc873ca1c9"
+        },
+        "tensor": {
+          "shape": [
+            1,
+            16,
+            21,
+            60,
+            104
+          ],
+          "dtype": "torch.float32",
+          "finite": true,
+          "sha256": "7741190269acf3bf58e86e5f4df1727682fe9912d9cdaf6e9c877ffdf2ab53e7"
+        }
+      },
+      "embeddings": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E043/prompt_192/embeddings.pt",
+        "bytes": 8390525,
+        "sha256": "5e9fa1c9e8cabbac47ab6c23d2b076125e92906d9e4e725f7323330acfacc1f1"
+      }
+    },
+    {
+      "case_id": "vbench0269_r0",
+      "prompt_id": 269,
+      "replica": 0,
+      "prompt": "a car turning a corner",
+      "seed": 43002690,
+      "trajectory_id": "vbench0269_r0",
+      "arm": "svdquant_nvfp4",
+      "video": "/data1/models/svdquant-wjq/research/20261003/E048/svdquant_nvfp4/vbench0269_r0/video.mp4",
+      "video_sha256": "dcede557416320018a00fe731bd69e58ac5c664c20521dd5be7b577d7cb2dce3",
+      "video_bytes": 3060611,
+      "initial_noise": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E043/vbench0269_r0/initial_noise.pt",
+          "bytes": 8388243,
+          "sha256": "ac7115f88cf28245679aee722aa0b15a3f04148dcf47c891c137befcf67ab25f"
+        },
+        "tensor": {
+          "shape": [
+            1,
+            16,
+            21,
+            60,
+            104
+          ],
+          "dtype": "torch.float32",
+          "finite": true,
+          "sha256": "57725cbbd79ede72c76b9e33dcd4c2d90301a04ee668b151e91469eda38a5e4b"
+        }
+      },
+      "embeddings": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E043/prompt_269/embeddings.pt",
+        "bytes": 8390525,
+        "sha256": "f059dcdd496afc5e1e60f2e9a2b77b0f76aae83792083898cd89f5f812920e4f"
+      }
+    },
+    {
+      "case_id": "vbench0269_r1",
+      "prompt_id": 269,
+      "replica": 1,
+      "prompt": "a car turning a corner",
+      "seed": 43002691,
+      "trajectory_id": "vbench0269_r1",
+      "arm": "svdquant_nvfp4",
+      "video": "/data1/models/svdquant-wjq/research/20261003/E048/svdquant_nvfp4/vbench0269_r1/video.mp4",
+      "video_sha256": "f547376092aad9b5b2940f42ff9ec2b1164799d0d0a82feb0ad42a138814872f",
+      "video_bytes": 5178989,
+      "initial_noise": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E043/vbench0269_r1/initial_noise.pt",
+          "bytes": 8388243,
+          "sha256": "c37f943bc83515dad0c376dd86570078e9059197ffdfb6ea2b538b9a8c135afa"
+        },
+        "tensor": {
+          "shape": [
+            1,
+            16,
+            21,
+            60,
+            104
+          ],
+          "dtype": "torch.float32",
+          "finite": true,
+          "sha256": "cca6499d1b61bfb7215a6ebf9b17035c6216f45ccac8577634c368f2999488c1"
+        }
+      },
+      "embeddings": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E043/prompt_269/embeddings.pt",
+        "bytes": 8390525,
+        "sha256": "f059dcdd496afc5e1e60f2e9a2b77b0f76aae83792083898cd89f5f812920e4f"
+      }
+    },
+    {
+      "case_id": "vbench0316_r0",
+      "prompt_id": 316,
+      "replica": 0,
+      "prompt": "an elephant spraying itself with water using its trunk to cool down",
+      "seed": 43003160,
+      "trajectory_id": "vbench0316_r0",
+      "arm": "svdquant_nvfp4",
+      "video": "/data1/models/svdquant-wjq/research/20261003/E048/svdquant_nvfp4/vbench0316_r0/video.mp4",
+      "video_sha256": "d4895a05cb67dca58621db6f0dc6e1d6c6740241b73f580d3bd5433b6db9ea16",
+      "video_bytes": 2864018,
+      "initial_noise": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E043/vbench0316_r0/initial_noise.pt",
+          "bytes": 8388243,
+          "sha256": "9a1cef4162c8ef2d87256c21c9b335eee015a68fed10763e8167072596e44ef1"
+        },
+        "tensor": {
+          "shape": [
+            1,
+            16,
+            21,
+            60,
+            104
+          ],
+          "dtype": "torch.float32",
+          "finite": true,
+          "sha256": "0765446d720fa2fc53f90b8a13f546990c3b1beba23b11c9520b19ab54225399"
+        }
+      },
+      "embeddings": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E043/prompt_316/embeddings.pt",
+        "bytes": 8390525,
+        "sha256": "a1d9e18a835107dcce1a727868bb61a82bb82382fd52034513cec59365f7cd25"
+      }
+    },
+    {
+      "case_id": "vbench0316_r1",
+      "prompt_id": 316,
+      "replica": 1,
+      "prompt": "an elephant spraying itself with water using its trunk to cool down",
+      "seed": 43003161,
+      "trajectory_id": "vbench0316_r1",
+      "arm": "svdquant_nvfp4",
+      "video": "/data1/models/svdquant-wjq/research/20261003/E048/svdquant_nvfp4/vbench0316_r1/video.mp4",
+      "video_sha256": "8755a04637f0ac8a8f1039fb3838a02e2aa88f77292b95a1247d8127f76459c4",
+      "video_bytes": 3753706,
+      "initial_noise": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E043/vbench0316_r1/initial_noise.pt",
+          "bytes": 8388243,
+          "sha256": "1d3c702e4ff0eda850c3cfcc19cf37db9e766b941679762c4c99858447fbf878"
+        },
+        "tensor": {
+          "shape": [
+            1,
+            16,
+            21,
+            60,
+            104
+          ],
+          "dtype": "torch.float32",
+          "finite": true,
+          "sha256": "2d9dc31831dccca4640c5aeba747b3430a0d273491b96090349a75985331e022"
+        }
+      },
+      "embeddings": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E043/prompt_316/embeddings.pt",
+        "bytes": 8390525,
+        "sha256": "a1d9e18a835107dcce1a727868bb61a82bb82382fd52034513cec59365f7cd25"
+      }
+    }
+  ],
+  "scope": "All eight new matched-calibration SVDQuant videos retained. E043 BF16, E044 old SVD, and E046 bf16_last media/scores are inherited without repeated inference. This is baseline completion, not a new method; these are previously inspected diagnostic cases. No quality filtering; MJ safety/bias criteria remain raw only."
+}

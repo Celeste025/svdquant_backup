@@ -1,0 +1,305 @@
+{
+  "status": "complete",
+  "scope": "Post-E018 exploratory, fixed raster-vector coherence; no GPU",
+  "inherited_independent_summary": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E018/independent_summary.json",
+    "sha256": "7338985b4a561561f8c33018a6f08b7d3b97418785b08e45cb67126f829a9950",
+    "bytes": 3119218,
+    "mtime_ns": 1790954819161297565
+  },
+  "inherited_verified_files": 142,
+  "source": {
+    "/home/wjq/workspace/svdquant-exp/scripts/research/analyze_h3_query_phase_coherence.py": "6e285cb125b67218e40e48bc1e2a5e58fbe1998173c7fafa962ac6915d04da3e",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/summarize_h3_plain_baseline.py": "aba4cf019d0f3a56647175d0cb6ae19182d52f1e742d11c84a2128fb25a983af"
+  },
+  "methods": {
+    "frames": [
+      2,
+      34
+    ],
+    "within_frame_tokens": 576,
+    "heads": 56,
+    "head_dim": 128,
+    "threads": 6,
+    "dtype": "FP64 CPU",
+    "basis": [
+      0.9696969696969697,
+      -1.0303030303030303,
+      0.9696969696969697,
+      -1.0303030303030303,
+      0.9696969696969697,
+      -1.0303030303030303,
+      0.9696969696969697,
+      -1.0303030303030303,
+      0.9696969696969697,
+      -1.0303030303030303,
+      0.9696969696969697,
+      -1.0303030303030303,
+      0.9696969696969697,
+      -1.0303030303030303,
+      0.9696969696969697,
+      -1.0303030303030303,
+      0.9696969696969697,
+      -1.0303030303030303,
+      0.9696969696969697,
+      -1.0303030303030303,
+      0.9696969696969697,
+      -1.0303030303030303,
+      0.9696969696969697,
+      -1.0303030303030303,
+      0.9696969696969697,
+      -1.0303030303030303,
+      0.9696969696969697,
+      -1.0303030303030303,
+      0.9696969696969697,
+      -1.0303030303030303,
+      0.9696969696969697,
+      -1.0303030303030303,
+      0.9696969696969697
+    ],
+    "basis_square_sum": 32.969696969696976,
+    "chunk_within_frame_positions": 16,
+    "formula": "A=sum_t c_t E_t / sum_t c_t^2; projection energy=sum_t c_t^2 * ||A||^2",
+    "limits": "No 1/33 significance threshold; no motion alignment or perceptual flicker interpretation; one state and three correlated layers"
+  },
+  "blocks": [
+    {
+      "block": 0,
+      "arms": {
+        "block_0": {
+          "total_error_energy": 228150.9606877024,
+          "a_energy": 108.02501264674852,
+          "projection_energy": 3561.5519321109823,
+          "projection_fraction": 0.015610505962261127
+        },
+        "block_64": {
+          "total_error_energy": 228527.69858409782,
+          "a_energy": 108.90465741365219,
+          "projection_energy": 3590.553553516776,
+          "projection_fraction": 0.01571167773430956
+        },
+        "block_128": {
+          "total_error_energy": 228150.9606877024,
+          "a_energy": 108.02501264674852,
+          "projection_energy": 3561.5519321109823,
+          "projection_fraction": 0.015610505962261127
+        },
+        "global_0": {
+          "total_error_energy": 352879.29728215357,
+          "a_energy": 177.87657524727524,
+          "projection_energy": 5864.536783910166,
+          "projection_fraction": 0.016619101287829383
+        },
+        "delta_64_0": {
+          "total_error_energy": 66622.84151462345,
+          "a_energy": 98.76552838415927,
+          "projection_energy": 3256.2695418777366,
+          "projection_fraction": 0.048876173214001964
+        }
+      },
+      "A0_A64_cosine": 0.5447162351380734,
+      "A0_A64_dot": 59.082070838120686,
+      "controls": {
+        "block128_vector_byte_exact": true,
+        "delta_vector_identity_exact": true,
+        "projection_linearity_residual_energy": 9.185028490227072e-30,
+        "projection_linearity_max_abs": 5.724587470723463e-17,
+        "delta_projection_energy_identity_residual": -2.811165441843597e-12
+      }
+    },
+    {
+      "block": 24,
+      "arms": {
+        "block_0": {
+          "total_error_energy": 36342650.17510277,
+          "a_energy": 25851.943748023197,
+          "projection_energy": 852330.751449977,
+          "projection_fraction": 0.023452630651406996
+        },
+        "block_64": {
+          "total_error_energy": 36365037.34351015,
+          "a_energy": 25938.734917468326,
+          "projection_energy": 855192.2300062286,
+          "projection_fraction": 0.02351688029158176
+        },
+        "block_128": {
+          "total_error_energy": 36342650.17510277,
+          "a_energy": 25851.943748023197,
+          "projection_energy": 852330.751449977,
+          "projection_fraction": 0.023452630651406996
+        },
+        "global_0": {
+          "total_error_energy": 50747315.49038388,
+          "a_energy": 35408.66558510846,
+          "projection_energy": 1167412.974442364,
+          "projection_fraction": 0.023004428178345263
+        },
+        "delta_64_0": {
+          "total_error_energy": 22687000.719995502,
+          "a_energy": 23639.574973620485,
+          "projection_energy": 779389.6233726998,
+          "projection_fraction": 0.034354017659362704
+        }
+      },
+      "A0_A64_cosine": 0.5435561754760737,
+      "A0_A64_dot": 14075.551845935515,
+      "controls": {
+        "block128_vector_byte_exact": true,
+        "delta_vector_identity_exact": true,
+        "projection_linearity_residual_energy": 2.2999223952988705e-27,
+        "projection_linearity_max_abs": 5.828670879282072e-16,
+        "delta_projection_energy_identity_residual": -1.1994305885199347e-10
+      }
+    },
+    {
+      "block": 48,
+      "arms": {
+        "block_0": {
+          "total_error_energy": 1199477282.8568568,
+          "a_energy": 624617.8303299889,
+          "projection_energy": 20593460.587849334,
+          "projection_fraction": 0.017168695799557643
+        },
+        "block_64": {
+          "total_error_energy": 1197440508.2237108,
+          "a_energy": 625736.1426763108,
+          "projection_energy": 20630331.00702504,
+          "projection_fraction": 0.017228689747291227
+        },
+        "block_128": {
+          "total_error_energy": 1199477282.8568568,
+          "a_energy": 624617.8303299889,
+          "projection_energy": 20593460.587849334,
+          "projection_fraction": 0.017168695799557643
+        },
+        "global_0": {
+          "total_error_energy": 2004677010.5510242,
+          "a_energy": 931419.9768183337,
+          "projection_energy": 30708634.387222644,
+          "projection_fraction": 0.015318494812678968
+        },
+        "delta_64_0": {
+          "total_error_energy": 419568195.11098003,
+          "a_energy": 713710.5274478912,
+          "projection_energy": 23530819.81403957,
+          "projection_fraction": 0.05608342121312467
+        }
+      },
+      "A0_A64_cosine": 0.4291933898613924,
+      "A0_A64_dot": 268321.7227792041,
+      "controls": {
+        "block128_vector_byte_exact": true,
+        "delta_vector_identity_exact": true,
+        "projection_linearity_residual_energy": 5.689215721053892e-26,
+        "projection_linearity_max_abs": 2.6645352591003757e-15,
+        "delta_projection_energy_identity_residual": -1.1514533649791374e-08
+      }
+    }
+  ],
+  "files": {
+    "/home/wjq/workspace/svdquant-exp/results/research/E018/independent_summary.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E018/independent_summary.json",
+      "sha256": "7338985b4a561561f8c33018a6f08b7d3b97418785b08e45cb67126f829a9950",
+      "bytes": 3119218,
+      "mtime_ns": 1790954819161297565
+    },
+    "/home/wjq/workspace/svdquant-exp/results/research/E018/probe_run.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E018/probe_run.json",
+      "sha256": "ab66aafd6fa6fcd3b13f108087ae96a95f303fc51e2efe9abfa4a91898b3c8db",
+      "bytes": 83510,
+      "mtime_ns": 1790954475739021447
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E018/probe/block0_bf16_shift0.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block0_bf16_shift0.pt",
+      "sha256": "49b2698d53d398e429da75d1288e3e9925af8527d65bf56d1d9f1220ef11df1d",
+      "bytes": 323120758,
+      "mtime_ns": 1790954432354596939
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E018/probe/block0_block_mean_shift0.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block0_block_mean_shift0.pt",
+      "sha256": "41181e994f44b66378bd5989bd876a5e01027095d45c97c9717538478eee8a24",
+      "bytes": 323120864,
+      "mtime_ns": 1790954436505733240
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E018/probe/block0_block_mean_shift64.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block0_block_mean_shift64.pt",
+      "sha256": "17bc350c64d440ea89ef2d33f1efffa7f6d1f0b54a901b84fe6d23c08431140e",
+      "bytes": 323120935,
+      "mtime_ns": 1790954438713805741
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E018/probe/block0_block_mean_shift128.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block0_block_mean_shift128.pt",
+      "sha256": "d7bd509dd46daef2a046828f85bf800c3dd588eb7122b5765ab3866d45125dff",
+      "bytes": 323120942,
+      "mtime_ns": 1790954440907877782
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E018/probe/block0_global_mean_shift0.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block0_global_mean_shift0.pt",
+      "sha256": "68ee811560619f10fb906c3a79713cad42e3986ccde5e7461263560027d1019d",
+      "bytes": 323120935,
+      "mtime_ns": 1790954442058915576
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E018/probe/block24_bf16_shift0.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block24_bf16_shift0.pt",
+      "sha256": "64a4ae741a59da0eb84d46343e8f57437510eadb6105d8ecf5c7f60e13c0bb6f",
+      "bytes": 323120765,
+      "mtime_ns": 1790954447465093085
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E018/probe/block24_block_mean_shift0.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block24_block_mean_shift0.pt",
+      "sha256": "b7015a15c32782032d13120beef5327f424c87d3b74786aa9f7fc5446bcbe53b",
+      "bytes": 323120935,
+      "mtime_ns": 1790954451883238154
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E018/probe/block24_block_mean_shift64.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block24_block_mean_shift64.pt",
+      "sha256": "048850e3b49ec3d400051445fcc9471454d96e2daa68721098173a3ebd16a9be",
+      "bytes": 323120942,
+      "mtime_ns": 1790954454150312592
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E018/probe/block24_block_mean_shift128.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block24_block_mean_shift128.pt",
+      "sha256": "b9a3a17b0878289170ffc84ef1df6601d514727c7b4c268f4f26972669f3132b",
+      "bytes": 323120949,
+      "mtime_ns": 1790954456380385815
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E018/probe/block24_global_mean_shift0.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block24_global_mean_shift0.pt",
+      "sha256": "dafe411e73fffb9c804e16f079f46ded0b764766ac30b98976ad0ce84aad9e6d",
+      "bytes": 323120942,
+      "mtime_ns": 1790954457547424134
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E018/probe/block48_bf16_shift0.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block48_bf16_shift0.pt",
+      "sha256": "5011ace47ddf9af22664ab2ab45467c6b8ee95ff341d6bd9aec6c142de55cbc3",
+      "bytes": 323120765,
+      "mtime_ns": 1790954463047604730
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E018/probe/block48_block_mean_shift0.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block48_block_mean_shift0.pt",
+      "sha256": "e3e65d4c9edc6f7ff6b81ac18a40d3c5bc5c8b3ce2665e5653dd6c4ee4c7f610",
+      "bytes": 323120935,
+      "mtime_ns": 1790954467195740932
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E018/probe/block48_block_mean_shift64.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block48_block_mean_shift64.pt",
+      "sha256": "3b37a20705453c9bdd5fa5ea93af4b4de5b60335e02d40c682f1a1fc81d41f9c",
+      "bytes": 323120942,
+      "mtime_ns": 1790954469383812777
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E018/probe/block48_block_mean_shift128.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block48_block_mean_shift128.pt",
+      "sha256": "205f4b9a2a498904ad721d40d0f77d3d1ff5d23f3442871f7c71b4584f06bc76",
+      "bytes": 323120949,
+      "mtime_ns": 1790954471568884523
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E018/probe/block48_global_mean_shift0.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block48_global_mean_shift0.pt",
+      "sha256": "84e9daa79f7f9bdff1138468782e909be6ae443e2755bba3345f3b1c39a41bb1",
+      "bytes": 323120942,
+      "mtime_ns": 1790954472714922152
+    }
+  },
+  "seconds_total": 10.315981769934297,
+  "cuda_initialized": false
+}

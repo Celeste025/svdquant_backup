@@ -1,0 +1,879 @@
+{
+  "experiment": "E038",
+  "phase": "decode",
+  "arm": "coarse16",
+  "status": "complete",
+  "actual_dit_calls": 0,
+  "actual_text_encoder_calls": 0,
+  "actual_video_vae_calls": 8,
+  "actual_audio_vae_calls": 8,
+  "deadline_unix": 1790994927.1852753,
+  "manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E038_center_video_manifest.json",
+    "sha256": "00c2880c71bd33e394c327324b44ba5dcf54605e7618f337e1bdac21bd514259",
+    "bytes": 6535
+  },
+  "sources": {
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/vram/layers.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/vram/layers.py",
+      "sha256": "4597374ac9166a2576544fb9b746360ee4c0441e96fd7af4300fcc739abd26cf",
+      "bytes": 25504
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_audio_vae.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_audio_vae.py",
+      "sha256": "ce6dc03b73a0596df22a6aa89e6db9183017bd5d0e2e99b547a6bfee53a7ef2c",
+      "bytes": 19869
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_text_encoder.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_text_encoder.py",
+      "sha256": "f874a56ce992070976b534dc42e0639221fe8c88cb29d9b3e2cadf6de553a9cf",
+      "bytes": 9391
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_video_vae.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_video_vae.py",
+      "sha256": "3dd4da5c90135c904fa5f1d4f70dd43e2571e394ce437bb168a5110f71076bf4",
+      "bytes": 31730
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/pipelines/minimax_h3_audio_video.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/pipelines/minimax_h3_audio_video.py",
+      "sha256": "7f5ff890d796dcfac3551e235741bdfbd4dbcae91aae3b6e4c3817dce38eecd6",
+      "bytes": 56577
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/utils/data/audio_video.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/utils/data/audio_video.py",
+      "sha256": "9d30fdd4538475d2d6aae7fe64cca2d78012e904366ec85d81e48720874d9dd0",
+      "bytes": 8947
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E038_center_video_manifest.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E038_center_video_manifest.json",
+      "sha256": "00c2880c71bd33e394c327324b44ba5dcf54605e7618f337e1bdac21bd514259",
+      "bytes": 6535
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E038_center_video_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E038_center_video_plan.md",
+      "sha256": "24f126d678d2b4273b691d51ece8808a171a4a8fca46b67cd13842e48f5983a8",
+      "bytes": 3180
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/minimax_h3_svdquant_common.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/minimax_h3_svdquant_common.py",
+      "sha256": "d0fca20f98a40c3aa20773faa47e6d6b986811f6cd03802723021fd50383ae61",
+      "bytes": 14656
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/prepare_decode_h3_center_video.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/prepare_decode_h3_center_video.py",
+      "sha256": "e2f304660de66dd3a1bf4c2ab59df04af86429c0a1de09e7e6a4302e530eba0a",
+      "bytes": 18424
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_plain_baseline.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_plain_baseline.py",
+      "sha256": "bf1383b51e9ea45c53a583ad541f68f9d0dce0db97de5acaf767fb0f69dcf47c",
+      "bytes": 25031
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py",
+      "sha256": "41e6e4eb1d9df554e5ea109b9bad3d1df83e9b64788137511262a82a0f34431f",
+      "bytes": 28742
+    }
+  },
+  "settings": {
+    "height": 576,
+    "width": 1024,
+    "num_frames": 124,
+    "num_inference_steps": 20,
+    "cfg_scale": 1.0,
+    "flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "noise_dtype": "bfloat16",
+    "tiled": true,
+    "tile_size": 256,
+    "tile_overlap": 64,
+    "fps": 24,
+    "audio_sample_rate": 32000
+  },
+  "asset_policy": "Existing verified H3 assets and original E010 loader configuration; no repeated asset scan.",
+  "export_manifest": {
+    "file": "/data1/models/svdquant-wjq/research/20261002/E009/legacy_export/manifest.json",
+    "sha256": "0b92e3e9f6a937ca7a6ebff6c4dfe4e6ad4e918224525ab5bf12a4e1baddfec0",
+    "bytes": 306476
+  },
+  "environment": {
+    "python": "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+    "torch": "2.11.0+cu128",
+    "torch_cuda": "12.8",
+    "attention": "torch"
+  },
+  "cpu_check_reference": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E038/prepare_check.json",
+    "sha256": "9b5547e2cd318b28e669eadd80c9ed8aee79c7cafc542946ca0a3da9cf57dc87",
+    "bytes": 16175
+  },
+  "denoiser_reference": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E038/denoise_coarse16.json",
+    "sha256": "9ff47463a1e40e456d2fbde6b330ec0d5ebe29e9eb25f11c36fe3e436241fc8c",
+    "bytes": 1328454
+  },
+  "prepared_reference": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E038/prepare.json",
+    "sha256": "ee89d2fae123d043424033e50f800258ebc2486992bff3f941d546f2beaa1cb3",
+    "bytes": 20932
+  },
+  "av_version": "18.1.0",
+  "cases": [
+    {
+      "case_id": "vbench0161_r0",
+      "prompt_id": 161,
+      "source": "VBench_full_info.json",
+      "source_index_zero_based": 161,
+      "replica": 0,
+      "seed": 38001610,
+      "prompt": "A person is clapping",
+      "prompt_sha256": "268d62ce600baae94ac9ce2a33755b342aa42cc2b1386c4ee19501048f0015c8",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "reason": "repeated human hand contact",
+      "trajectory_id": "vbench0161_r0_coarse16",
+      "status": "complete",
+      "variant": "coarse16",
+      "settings": {
+        "height": 576,
+        "width": 1024,
+        "num_frames": 124,
+        "num_inference_steps": 20,
+        "cfg_scale": 1.0,
+        "flow_shift": 12.0,
+        "audio_flow_shift": 3.0,
+        "rand_device": "cpu",
+        "noise_dtype": "bfloat16",
+        "tiled": true,
+        "tile_size": 256,
+        "tile_overlap": 64,
+        "fps": 24,
+        "audio_sample_rate": 32000
+      },
+      "video": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0161_r0.mp4",
+        "sha256": "b3b0c3416f962b26dcce53f02fab85aed762de0d6c4747e5444d1e8c56e97997",
+        "bytes": 4552554
+      },
+      "video_path": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0161_r0.mp4",
+      "video_sha256": "b3b0c3416f962b26dcce53f02fab85aed762de0d6c4747e5444d1e8c56e97997",
+      "media": {
+        "frames": 124,
+        "width": 1024,
+        "height": 576,
+        "fps": 24.0,
+        "audio_streams": 1,
+        "audio_sample_rate": 32000,
+        "audio_channels": 2
+      },
+      "final_latents": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/denoise_coarse16/vbench0161_r0/final_latents.pt",
+        "sha256": "ad3ad021e75edb9247c317d054623eb0e3a3400322acaa4a9452cbf9d3960897",
+        "bytes": 4120341
+      },
+      "final_tensors": {
+        "audio_latents": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "141f9af189055f451fd561108682db6d7cc430904186dffaffe5b1be717aa5c3"
+        },
+        "video_latents": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "410616c292f20ad4d6dc68ac302201078686fe56e718ddfecfce1795825eaf58"
+        }
+      },
+      "audio_pcm_file": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0161_r0.audio.pt",
+        "sha256": "0d8bba3a309cf6c3e0859c4f30bc8c0cb971d1f877bc69afdf526526187c51c2",
+        "bytes": 1326525
+      },
+      "audio_pcm": {
+        "shape": [
+          2,
+          165600
+        ],
+        "dtype": "torch.float32",
+        "sha256": "158f553e9a133dff1e2a5ad2cec4cd19f616082133689a16d3c6d78ff63b1170"
+      },
+      "audio_samples_before_aac": 165600,
+      "seconds": 11.14436981617473,
+      "peak_allocated_bytes": 7939765248,
+      "peak_reserved_bytes": 8774483968
+    },
+    {
+      "case_id": "vbench0161_r1",
+      "prompt_id": 161,
+      "source": "VBench_full_info.json",
+      "source_index_zero_based": 161,
+      "replica": 1,
+      "seed": 38001611,
+      "prompt": "A person is clapping",
+      "prompt_sha256": "268d62ce600baae94ac9ce2a33755b342aa42cc2b1386c4ee19501048f0015c8",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "reason": "repeated human hand contact",
+      "trajectory_id": "vbench0161_r1_coarse16",
+      "status": "complete",
+      "variant": "coarse16",
+      "settings": {
+        "height": 576,
+        "width": 1024,
+        "num_frames": 124,
+        "num_inference_steps": 20,
+        "cfg_scale": 1.0,
+        "flow_shift": 12.0,
+        "audio_flow_shift": 3.0,
+        "rand_device": "cpu",
+        "noise_dtype": "bfloat16",
+        "tiled": true,
+        "tile_size": 256,
+        "tile_overlap": 64,
+        "fps": 24,
+        "audio_sample_rate": 32000
+      },
+      "video": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0161_r1.mp4",
+        "sha256": "0de28469052997c4a8588de8baf412879d5087efa22c93f90ede1e1f0158fac6",
+        "bytes": 4819619
+      },
+      "video_path": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0161_r1.mp4",
+      "video_sha256": "0de28469052997c4a8588de8baf412879d5087efa22c93f90ede1e1f0158fac6",
+      "media": {
+        "frames": 124,
+        "width": 1024,
+        "height": 576,
+        "fps": 24.0,
+        "audio_streams": 1,
+        "audio_sample_rate": 32000,
+        "audio_channels": 2
+      },
+      "final_latents": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/denoise_coarse16/vbench0161_r1/final_latents.pt",
+        "sha256": "c8e353eff0135858b8cf9d3de470fee2b8679c55e088a425099a99143673da23",
+        "bytes": 4120341
+      },
+      "final_tensors": {
+        "audio_latents": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "24647aeefed2f025b57cdf6687d8da0417ba9310fefc2c07a05aa80b620d189e"
+        },
+        "video_latents": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "7698496707847bff85986d122ee950d9c7ed57129815a61d53b0b40b54ac56ce"
+        }
+      },
+      "audio_pcm_file": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0161_r1.audio.pt",
+        "sha256": "73a971b0b0e3a520ed52658f8956cefc6d6eeb061c809ed1d18a65631457d6c7",
+        "bytes": 1326525
+      },
+      "audio_pcm": {
+        "shape": [
+          2,
+          165600
+        ],
+        "dtype": "torch.float32",
+        "sha256": "34ad0bf6407e59311e561f350496b0eb4201ac13d2954108c4a305b7b417c31d"
+      },
+      "audio_samples_before_aac": 165600,
+      "seconds": 10.27757430402562,
+      "peak_allocated_bytes": 7939765248,
+      "peak_reserved_bytes": 8745123840
+    },
+    {
+      "case_id": "vbench0192_r0",
+      "prompt_id": 192,
+      "source": "VBench_full_info.json",
+      "source_index_zero_based": 192,
+      "replica": 0,
+      "seed": 38001920,
+      "prompt": "A person is folding clothes",
+      "prompt_sha256": "aa6ec2715d998696d460049e712e873297a1760ffd3340b4f3f11fa0c3ab3fd2",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "reason": "human object manipulation",
+      "trajectory_id": "vbench0192_r0_coarse16",
+      "status": "complete",
+      "variant": "coarse16",
+      "settings": {
+        "height": 576,
+        "width": 1024,
+        "num_frames": 124,
+        "num_inference_steps": 20,
+        "cfg_scale": 1.0,
+        "flow_shift": 12.0,
+        "audio_flow_shift": 3.0,
+        "rand_device": "cpu",
+        "noise_dtype": "bfloat16",
+        "tiled": true,
+        "tile_size": 256,
+        "tile_overlap": 64,
+        "fps": 24,
+        "audio_sample_rate": 32000
+      },
+      "video": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0192_r0.mp4",
+        "sha256": "3b5a11433c5f053a9b0d2cc3a93e0b43dae900bef069c3a3a20b89a5863c3cef",
+        "bytes": 5200545
+      },
+      "video_path": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0192_r0.mp4",
+      "video_sha256": "3b5a11433c5f053a9b0d2cc3a93e0b43dae900bef069c3a3a20b89a5863c3cef",
+      "media": {
+        "frames": 124,
+        "width": 1024,
+        "height": 576,
+        "fps": 24.0,
+        "audio_streams": 1,
+        "audio_sample_rate": 32000,
+        "audio_channels": 2
+      },
+      "final_latents": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/denoise_coarse16/vbench0192_r0/final_latents.pt",
+        "sha256": "cde9463cfb4238c099f2c50d60262fec41eb0d3f0ce24dd198431d27503a9e2a",
+        "bytes": 4120341
+      },
+      "final_tensors": {
+        "audio_latents": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "a41ed8371c0117131fce104632e6b6cca9931deced61b003b004c6a281a90f8d"
+        },
+        "video_latents": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "4a8bccc24a41eed6639cdbf6bb056dd0ccfa61a1a4fc8be7fd0b0a3617b5550f"
+        }
+      },
+      "audio_pcm_file": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0192_r0.audio.pt",
+        "sha256": "9b73f629a3b65ec6310338872c8e06c187c40b46009811305858843c0a6f4c89",
+        "bytes": 1326525
+      },
+      "audio_pcm": {
+        "shape": [
+          2,
+          165600
+        ],
+        "dtype": "torch.float32",
+        "sha256": "215b286067775546f80fa95503c6724626fec95fda0ede76d320eac7c210eb5c"
+      },
+      "audio_samples_before_aac": 165600,
+      "seconds": 10.342242921935394,
+      "peak_allocated_bytes": 7939765248,
+      "peak_reserved_bytes": 8745123840
+    },
+    {
+      "case_id": "vbench0192_r1",
+      "prompt_id": 192,
+      "source": "VBench_full_info.json",
+      "source_index_zero_based": 192,
+      "replica": 1,
+      "seed": 38001921,
+      "prompt": "A person is folding clothes",
+      "prompt_sha256": "aa6ec2715d998696d460049e712e873297a1760ffd3340b4f3f11fa0c3ab3fd2",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "reason": "human object manipulation",
+      "trajectory_id": "vbench0192_r1_coarse16",
+      "status": "complete",
+      "variant": "coarse16",
+      "settings": {
+        "height": 576,
+        "width": 1024,
+        "num_frames": 124,
+        "num_inference_steps": 20,
+        "cfg_scale": 1.0,
+        "flow_shift": 12.0,
+        "audio_flow_shift": 3.0,
+        "rand_device": "cpu",
+        "noise_dtype": "bfloat16",
+        "tiled": true,
+        "tile_size": 256,
+        "tile_overlap": 64,
+        "fps": 24,
+        "audio_sample_rate": 32000
+      },
+      "video": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0192_r1.mp4",
+        "sha256": "5ed1ce45f0dc8fa9101379596f1043a6b989eb338fa146aaca940955f57c6efd",
+        "bytes": 5464710
+      },
+      "video_path": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0192_r1.mp4",
+      "video_sha256": "5ed1ce45f0dc8fa9101379596f1043a6b989eb338fa146aaca940955f57c6efd",
+      "media": {
+        "frames": 124,
+        "width": 1024,
+        "height": 576,
+        "fps": 24.0,
+        "audio_streams": 1,
+        "audio_sample_rate": 32000,
+        "audio_channels": 2
+      },
+      "final_latents": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/denoise_coarse16/vbench0192_r1/final_latents.pt",
+        "sha256": "82a3116cfbf6cd76be01f3ac63e9f7b680031588707b291257f652d322146111",
+        "bytes": 4120341
+      },
+      "final_tensors": {
+        "audio_latents": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "c9235cb1326a546041cd0d6263bfac0058e8bf257c220512851baa37c52ebcad"
+        },
+        "video_latents": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "4b7ea59f8a096100de843b2c075a821e4c30827649e3e9279506b1ecc9107fd5"
+        }
+      },
+      "audio_pcm_file": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0192_r1.audio.pt",
+        "sha256": "972eff18e18db9dbfb4a61445be99062755abccbf7e70af741234a463ddf3451",
+        "bytes": 1326525
+      },
+      "audio_pcm": {
+        "shape": [
+          2,
+          165600
+        ],
+        "dtype": "torch.float32",
+        "sha256": "1380031dbea2959407a7edcb75bc5efc934868434c5ce9301d4883236d272cd8"
+      },
+      "audio_samples_before_aac": 165600,
+      "seconds": 10.234411081066355,
+      "peak_allocated_bytes": 7939765248,
+      "peak_reserved_bytes": 8745123840
+    },
+    {
+      "case_id": "vbench0269_r0",
+      "prompt_id": 269,
+      "source": "VBench_full_info.json",
+      "source_index_zero_based": 269,
+      "replica": 0,
+      "seed": 38002690,
+      "prompt": "a car turning a corner",
+      "prompt_sha256": "001a0c3a3d7b8056dd7da15d2e5defab45ef67f09121f92d01f8cee28f8761da",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "reason": "rigid object turning trajectory",
+      "trajectory_id": "vbench0269_r0_coarse16",
+      "status": "complete",
+      "variant": "coarse16",
+      "settings": {
+        "height": 576,
+        "width": 1024,
+        "num_frames": 124,
+        "num_inference_steps": 20,
+        "cfg_scale": 1.0,
+        "flow_shift": 12.0,
+        "audio_flow_shift": 3.0,
+        "rand_device": "cpu",
+        "noise_dtype": "bfloat16",
+        "tiled": true,
+        "tile_size": 256,
+        "tile_overlap": 64,
+        "fps": 24,
+        "audio_sample_rate": 32000
+      },
+      "video": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0269_r0.mp4",
+        "sha256": "d564b92c80fe595a4ef182df7c6e0c382b4e3915b1bdcf7e2d708cebf31fbb5f",
+        "bytes": 13861383
+      },
+      "video_path": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0269_r0.mp4",
+      "video_sha256": "d564b92c80fe595a4ef182df7c6e0c382b4e3915b1bdcf7e2d708cebf31fbb5f",
+      "media": {
+        "frames": 124,
+        "width": 1024,
+        "height": 576,
+        "fps": 24.0,
+        "audio_streams": 1,
+        "audio_sample_rate": 32000,
+        "audio_channels": 2
+      },
+      "final_latents": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/denoise_coarse16/vbench0269_r0/final_latents.pt",
+        "sha256": "35919b992a23aa5295f750024347ca8019d7fb702b0ef33e02296fb1b1865ad3",
+        "bytes": 4120341
+      },
+      "final_tensors": {
+        "audio_latents": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "f7092530c0db5334e5829b3cf457bddef53db9c3cf886d43c973eeba322703b5"
+        },
+        "video_latents": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "7b76590420c66ffc9601ce477582e70329509f5cf18a4541792e33036a72c2c8"
+        }
+      },
+      "audio_pcm_file": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0269_r0.audio.pt",
+        "sha256": "19a6d4e3e6083781a174ffee91b88d2bb3e2975d0bb0b5e618cabfab2e6a7df6",
+        "bytes": 1326525
+      },
+      "audio_pcm": {
+        "shape": [
+          2,
+          165600
+        ],
+        "dtype": "torch.float32",
+        "sha256": "b349fc63720f3b98251d6ff0a1750d380145f8fb573f81a9a4137f77636ceeb6"
+      },
+      "audio_samples_before_aac": 165600,
+      "seconds": 10.819434409029782,
+      "peak_allocated_bytes": 7939765248,
+      "peak_reserved_bytes": 8745123840
+    },
+    {
+      "case_id": "vbench0269_r1",
+      "prompt_id": 269,
+      "source": "VBench_full_info.json",
+      "source_index_zero_based": 269,
+      "replica": 1,
+      "seed": 38002691,
+      "prompt": "a car turning a corner",
+      "prompt_sha256": "001a0c3a3d7b8056dd7da15d2e5defab45ef67f09121f92d01f8cee28f8761da",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "reason": "rigid object turning trajectory",
+      "trajectory_id": "vbench0269_r1_coarse16",
+      "status": "complete",
+      "variant": "coarse16",
+      "settings": {
+        "height": 576,
+        "width": 1024,
+        "num_frames": 124,
+        "num_inference_steps": 20,
+        "cfg_scale": 1.0,
+        "flow_shift": 12.0,
+        "audio_flow_shift": 3.0,
+        "rand_device": "cpu",
+        "noise_dtype": "bfloat16",
+        "tiled": true,
+        "tile_size": 256,
+        "tile_overlap": 64,
+        "fps": 24,
+        "audio_sample_rate": 32000
+      },
+      "video": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0269_r1.mp4",
+        "sha256": "221437a800b60776ab4332ca4cf84901fab93707f43408bc21165c0fb411b34a",
+        "bytes": 9038811
+      },
+      "video_path": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0269_r1.mp4",
+      "video_sha256": "221437a800b60776ab4332ca4cf84901fab93707f43408bc21165c0fb411b34a",
+      "media": {
+        "frames": 124,
+        "width": 1024,
+        "height": 576,
+        "fps": 24.0,
+        "audio_streams": 1,
+        "audio_sample_rate": 32000,
+        "audio_channels": 2
+      },
+      "final_latents": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/denoise_coarse16/vbench0269_r1/final_latents.pt",
+        "sha256": "64d4764bb81733a49d55290e0c54040fb2bd2e33fe782ac1aabf850300cb3f31",
+        "bytes": 4120341
+      },
+      "final_tensors": {
+        "audio_latents": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "41795ad3d0ed21d6038ef84cce05ef6c31f6919697c1f80152bf5f60137c2fbc"
+        },
+        "video_latents": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "60e0c38925132bb96551452a1eeb7c6ce2c890bf7defcb9af76dc80d7d93d008"
+        }
+      },
+      "audio_pcm_file": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0269_r1.audio.pt",
+        "sha256": "9029048e82b9c871f9635c01f977eac6832ae714d1c082711c6a8a76152b80e8",
+        "bytes": 1326525
+      },
+      "audio_pcm": {
+        "shape": [
+          2,
+          165600
+        ],
+        "dtype": "torch.float32",
+        "sha256": "62b1da992ad2d16ad7973b21e4eee48663a8ea0dd3434dbfc523c48b19d9ad65"
+      },
+      "audio_samples_before_aac": 165600,
+      "seconds": 10.575321851996705,
+      "peak_allocated_bytes": 7939765248,
+      "peak_reserved_bytes": 8745123840
+    },
+    {
+      "case_id": "vbench0316_r0",
+      "prompt_id": 316,
+      "source": "VBench_full_info.json",
+      "source_index_zero_based": 316,
+      "replica": 0,
+      "seed": 38003160,
+      "prompt": "an elephant spraying itself with water using its trunk to cool down",
+      "prompt_sha256": "35016d0bb7763724492babd8ae1a2e882a285fe779c0a3fe0b1d8720721882ba",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "reason": "articulated animal and water motion",
+      "trajectory_id": "vbench0316_r0_coarse16",
+      "status": "complete",
+      "variant": "coarse16",
+      "settings": {
+        "height": 576,
+        "width": 1024,
+        "num_frames": 124,
+        "num_inference_steps": 20,
+        "cfg_scale": 1.0,
+        "flow_shift": 12.0,
+        "audio_flow_shift": 3.0,
+        "rand_device": "cpu",
+        "noise_dtype": "bfloat16",
+        "tiled": true,
+        "tile_size": 256,
+        "tile_overlap": 64,
+        "fps": 24,
+        "audio_sample_rate": 32000
+      },
+      "video": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0316_r0.mp4",
+        "sha256": "023f025e9ced77b0bd03228130112ef35be062803b532773d5d8cf4924c4e65c",
+        "bytes": 10183677
+      },
+      "video_path": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0316_r0.mp4",
+      "video_sha256": "023f025e9ced77b0bd03228130112ef35be062803b532773d5d8cf4924c4e65c",
+      "media": {
+        "frames": 124,
+        "width": 1024,
+        "height": 576,
+        "fps": 24.0,
+        "audio_streams": 1,
+        "audio_sample_rate": 32000,
+        "audio_channels": 2
+      },
+      "final_latents": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/denoise_coarse16/vbench0316_r0/final_latents.pt",
+        "sha256": "ee7db14d894d4523806943a24269937ef3d36c4a12688d783ea407eaa07b969e",
+        "bytes": 4120341
+      },
+      "final_tensors": {
+        "audio_latents": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "fad94e2e0d319e0d3de756a8ed63a8aec0835dd673e52ee8bcd77784125805e7"
+        },
+        "video_latents": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "50a2aaaeece6347ba7a8bcf9e686cbb0d346ad6a5b25aafc2a96b0d7b149110d"
+        }
+      },
+      "audio_pcm_file": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0316_r0.audio.pt",
+        "sha256": "4cb8c25363029686f5575e70fa46755cdb7afcdc7c4ffefae012fe1501ea936c",
+        "bytes": 1326525
+      },
+      "audio_pcm": {
+        "shape": [
+          2,
+          165600
+        ],
+        "dtype": "torch.float32",
+        "sha256": "419c30023209044d0967a196bc0ad86f14a1baf18d7a9e418c2add08ffe3d2a0"
+      },
+      "audio_samples_before_aac": 165600,
+      "seconds": 10.272828045999631,
+      "peak_allocated_bytes": 7939765248,
+      "peak_reserved_bytes": 8745123840
+    },
+    {
+      "case_id": "vbench0316_r1",
+      "prompt_id": 316,
+      "source": "VBench_full_info.json",
+      "source_index_zero_based": 316,
+      "replica": 1,
+      "seed": 38003161,
+      "prompt": "an elephant spraying itself with water using its trunk to cool down",
+      "prompt_sha256": "35016d0bb7763724492babd8ae1a2e882a285fe779c0a3fe0b1d8720721882ba",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "reason": "articulated animal and water motion",
+      "trajectory_id": "vbench0316_r1_coarse16",
+      "status": "complete",
+      "variant": "coarse16",
+      "settings": {
+        "height": 576,
+        "width": 1024,
+        "num_frames": 124,
+        "num_inference_steps": 20,
+        "cfg_scale": 1.0,
+        "flow_shift": 12.0,
+        "audio_flow_shift": 3.0,
+        "rand_device": "cpu",
+        "noise_dtype": "bfloat16",
+        "tiled": true,
+        "tile_size": 256,
+        "tile_overlap": 64,
+        "fps": 24,
+        "audio_sample_rate": 32000
+      },
+      "video": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0316_r1.mp4",
+        "sha256": "35fe4beb0913b4dc2231ba25789b31d45970dd15837aa98509976d67b531a63c",
+        "bytes": 6256306
+      },
+      "video_path": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0316_r1.mp4",
+      "video_sha256": "35fe4beb0913b4dc2231ba25789b31d45970dd15837aa98509976d67b531a63c",
+      "media": {
+        "frames": 124,
+        "width": 1024,
+        "height": 576,
+        "fps": 24.0,
+        "audio_streams": 1,
+        "audio_sample_rate": 32000,
+        "audio_channels": 2
+      },
+      "final_latents": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/denoise_coarse16/vbench0316_r1/final_latents.pt",
+        "sha256": "14c3ea913cbc47d26e0b7e46db6b1427b035b5949821f8a49df6611d637287be",
+        "bytes": 4120341
+      },
+      "final_tensors": {
+        "audio_latents": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "6875b5b6c2f7fdc0d3dc741ba47ec0ea6150991917abe23e865aaa353a9b10e4"
+        },
+        "video_latents": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "d27b00baaa96e7b3be93e1e8856d94fa4cd1f54d5ba56e7662987d8d8b95a5e6"
+        }
+      },
+      "audio_pcm_file": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/decode_coarse16/vbench0316_r1.audio.pt",
+        "sha256": "468980de80b74a9bbca33dd3b8651de2a05eeb4c0f0c45c46da9a47f5d72a4d7",
+        "bytes": 1326525
+      },
+      "audio_pcm": {
+        "shape": [
+          2,
+          165600
+        ],
+        "dtype": "torch.float32",
+        "sha256": "729d860020d6dc3b866a58e471251593a02944ab316a7639ae2bf9cd836e7dbd"
+      },
+      "audio_samples_before_aac": 165600,
+      "seconds": 10.267932580085471,
+      "peak_allocated_bytes": 7939765248,
+      "peak_reserved_bytes": 8745123840
+    }
+  ],
+  "seconds_total": 86.15821683197282,
+  "peak_allocated_bytes": 7939765248,
+  "peak_reserved_bytes": 8774483968
+}

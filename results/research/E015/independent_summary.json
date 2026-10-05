@@ -1,0 +1,3160 @@
+{
+  "experiment": "E015",
+  "status": "complete",
+  "summary_sources": {
+    "/home/wjq/workspace/svdquant-exp/scripts/research/summarize_h3_crossmodal_propagation.py": "41e54f3a6a64dac33a6f55ef4b08d5f742ca631eabe8df2234142fe4ad324a83",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/summarize_h3_plain_baseline.py": "aba4cf019d0f3a56647175d0cb6ae19182d52f1e742d11c84a2128fb25a983af"
+  },
+  "numerical_contract": "Independent FP64 CPU reductions of raw tensors; no runner metrics used",
+  "provenance": {
+    "frozen": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E015/frozen_contract.json",
+      "sha256": "dffb7e29c4b05a20a0f49c3d7d3a5046a5d4f794227772704e5cdc6b94c53b01",
+      "bytes": 6138,
+      "mtime_ns": 1790947322863399112
+    },
+    "prepare": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E015/E015_prepare.json",
+      "sha256": "0048594797ef2fba000b10906065a8782f5dce5a2c36f1666cb7e1678fd3034e",
+      "bytes": 154486,
+      "mtime_ns": 1790947210703714286
+    },
+    "check": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E015/check.json",
+      "sha256": "e7bdfb444a11ea8398aa145ac5f2c9017e708bd053bd52bc53b85b62c287c03f",
+      "bytes": 75142,
+      "mtime_ns": 1790947242522759649
+    },
+    "launcher": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E015/launcher.json",
+      "sha256": "1165510057aaf2924f49f1dfbfef844c51bc94b17d897b0687f4d760b9cd6628",
+      "bytes": 4577,
+      "mtime_ns": 1790947507310458827
+    },
+    "e014_full_weight_audit": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E014/independent_summary.json",
+      "sha256": "b5cf4dc298d1d5409942bc96a1276be98d6171bf98909fa1699864a1f7adb460",
+      "bytes": 228487
+    },
+    "source_files": "Frozen source hashes checked; E014 200-weight audit inherited without rehashing weights",
+    "actual_dit_calls": 18,
+    "gpu_uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+    "pids": [
+      2582493,
+      2589422,
+      2607127
+    ]
+  },
+  "cases": [
+    {
+      "case_id": "e010_p030_s05",
+      "source_step": 5,
+      "next_step": 6,
+      "arms": {
+        "bf16": {
+          "corners": {
+            "BB": {
+              "video": {
+                "endpoint": {
+                  "elements": 2045952,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 1855267.939259177,
+                  "output_energy": 1855267.939259177,
+                  "error_l2": 0.0,
+                  "reference_l2": 1362.0822072324331,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 1855267.939259177,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 2045952,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 4995467.5827462105,
+                  "output_energy": 4995467.5827462105,
+                  "error_l2": 0.0,
+                  "reference_l2": 2235.0542684118905,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 4995467.5827462105,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 2045952,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 1886073.662118717,
+                  "output_energy": 1886073.662118717,
+                  "error_l2": 0.0,
+                  "reference_l2": 1373.343970794905,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 1886073.662118717,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              },
+              "audio": {
+                "endpoint": {
+                  "elements": 13248,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 9511.854265754402,
+                  "output_energy": 9511.854265754402,
+                  "error_l2": 0.0,
+                  "reference_l2": 97.52873558984759,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 9511.854265754402,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 13248,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 15194.324432070673,
+                  "output_energy": 15194.324432070673,
+                  "error_l2": 0.0,
+                  "reference_l2": 123.26526044295964,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 15194.324432070673,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 13248,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 10091.50258567679,
+                  "output_energy": 10091.50258567679,
+                  "error_l2": 0.0,
+                  "reference_l2": 100.45647109906255,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 10091.50258567679,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              }
+            }
+          },
+          "first_update_gpu_cpu_exact": true
+        },
+        "svd": {
+          "corners": {
+            "BB": {
+              "video": {
+                "endpoint": {
+                  "elements": 2045952,
+                  "changed_elements": 946012,
+                  "exact": false,
+                  "error_energy": 25.43859647385557,
+                  "reference_energy": 1855267.939259177,
+                  "output_energy": 1854949.2844088266,
+                  "error_l2": 5.043668949669037,
+                  "reference_l2": 1362.0822072324331,
+                  "nmse": 1.37115485777291e-05,
+                  "cosine": 0.999993147325055,
+                  "output_reference_dot": 1855095.892535765,
+                  "max_abs": 0.05859375,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 2045952,
+                  "changed_elements": 2014804,
+                  "exact": false,
+                  "error_energy": 253829.43407028803,
+                  "reference_energy": 4995467.5827462105,
+                  "output_energy": 5160667.78073911,
+                  "error_l2": 503.8148807551123,
+                  "reference_l2": 2235.0542684118905,
+                  "nmse": 0.05081194700311672,
+                  "cosine": 0.9751362927538404,
+                  "output_reference_dot": 4951152.964707516,
+                  "max_abs": 6.875,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 2045952,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 1886073.662118717,
+                  "output_energy": 1886073.662118717,
+                  "error_l2": 0.0,
+                  "reference_l2": 1373.343970794905,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 1886073.662118717,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              },
+              "audio": {
+                "endpoint": {
+                  "elements": 13248,
+                  "changed_elements": 11220,
+                  "exact": false,
+                  "error_energy": 1.4681608051214425,
+                  "reference_energy": 9511.854265754402,
+                  "output_energy": 9480.053905296376,
+                  "error_l2": 1.2116768567243672,
+                  "reference_l2": 97.52873558984759,
+                  "nmse": 0.00015435064122116258,
+                  "cosine": 0.9999240971853139,
+                  "output_reference_dot": 9495.220005122828,
+                  "max_abs": 0.0390625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 13248,
+                  "changed_elements": 13177,
+                  "exact": false,
+                  "error_energy": 1915.3087303149905,
+                  "reference_energy": 15194.324432070673,
+                  "output_energy": 14540.580460091642,
+                  "error_l2": 43.76424031461063,
+                  "reference_l2": 123.26526044295964,
+                  "nmse": 0.12605422102692154,
+                  "cosine": 0.9358133923926367,
+                  "output_reference_dot": 13909.798080923661,
+                  "max_abs": 1.445556640625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 13248,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 10091.50258567679,
+                  "output_energy": 10091.50258567679,
+                  "error_l2": 0.0,
+                  "reference_l2": 100.45647109906255,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 10091.50258567679,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              }
+            },
+            "QB": {
+              "video": {
+                "endpoint": {
+                  "elements": 2045952,
+                  "changed_elements": 1220241,
+                  "exact": false,
+                  "error_energy": 80.12074890110813,
+                  "reference_energy": 1855267.939259177,
+                  "output_energy": 1854622.0129583925,
+                  "error_l2": 8.951019433623644,
+                  "reference_l2": 1362.0822072324331,
+                  "nmse": 4.3185540592643974e-05,
+                  "cosine": 0.9999784186268972,
+                  "output_reference_dot": 1854904.9157343344,
+                  "max_abs": 0.09375,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 2045952,
+                  "changed_elements": 2015780,
+                  "exact": false,
+                  "error_energy": 271646.99809039733,
+                  "reference_energy": 4995467.5827462105,
+                  "output_energy": 5160332.726375025,
+                  "error_l2": 521.1976574106961,
+                  "reference_l2": 2235.0542684118905,
+                  "nmse": 0.05437869300336086,
+                  "cosine": 0.9733803000292911,
+                  "output_reference_dot": 4942076.655515417,
+                  "max_abs": 6.9140625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 2045952,
+                  "changed_elements": 958447,
+                  "exact": false,
+                  "error_energy": 26.652176753954564,
+                  "reference_energy": 1886073.662118717,
+                  "output_energy": 1885792.2234693286,
+                  "error_l2": 5.162574624540992,
+                  "reference_l2": 1373.343970794905,
+                  "nmse": 1.4131037026419686e-05,
+                  "cosine": 0.9999929367379883,
+                  "output_reference_dot": 1885919.6167056458,
+                  "max_abs": 0.0546875,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              },
+              "audio": {
+                "endpoint": {
+                  "elements": 13248,
+                  "changed_elements": 11155,
+                  "exact": false,
+                  "error_energy": 1.3345847686869092,
+                  "reference_energy": 9511.854265754402,
+                  "output_energy": 9479.8807651354,
+                  "error_l2": 1.1552422986918844,
+                  "reference_l2": 97.52873558984759,
+                  "nmse": 0.00014030752904739346,
+                  "cosine": 0.9999311451988685,
+                  "output_reference_dot": 9495.200223060558,
+                  "max_abs": 0.056640625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 13248,
+                  "changed_elements": 13165,
+                  "exact": false,
+                  "error_energy": 1724.9601513017265,
+                  "reference_energy": 15194.324432070673,
+                  "output_energy": 14998.111539322257,
+                  "error_l2": 41.532639589866264,
+                  "reference_l2": 123.26526044295964,
+                  "nmse": 0.11352661047969015,
+                  "cosine": 0.942887715619518,
+                  "output_reference_dot": 14233.737910045602,
+                  "max_abs": 2.078125,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 13248,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 10091.50258567679,
+                  "output_energy": 10091.50258567679,
+                  "error_l2": 0.0,
+                  "reference_l2": 100.45647109906255,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 10091.50258567679,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              }
+            },
+            "BQ": {
+              "video": {
+                "endpoint": {
+                  "elements": 2045952,
+                  "changed_elements": 954245,
+                  "exact": false,
+                  "error_energy": 26.240552374491756,
+                  "reference_energy": 1855267.939259177,
+                  "output_energy": 1854925.1308579613,
+                  "error_l2": 5.1225533061640025,
+                  "reference_l2": 1362.0822072324331,
+                  "nmse": 1.4143807381789722e-05,
+                  "cosine": 0.9999929317114062,
+                  "output_reference_dot": 1855083.4147823823,
+                  "max_abs": 0.0546875,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 2045952,
+                  "changed_elements": 2014591,
+                  "exact": false,
+                  "error_energy": 264125.7292389972,
+                  "reference_energy": 4995467.5827462105,
+                  "output_energy": 5177338.823937312,
+                  "error_l2": 513.9316386826143,
+                  "reference_l2": 2235.0542684118905,
+                  "nmse": 0.052873074414747104,
+                  "cosine": 0.9741918024393836,
+                  "output_reference_dot": 4954340.3387222625,
+                  "max_abs": 6.6015625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 2045952,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 1886073.662118717,
+                  "output_energy": 1886073.662118717,
+                  "error_l2": 0.0,
+                  "reference_l2": 1373.343970794905,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 1886073.662118717,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              },
+              "audio": {
+                "endpoint": {
+                  "elements": 13248,
+                  "changed_elements": 11980,
+                  "exact": false,
+                  "error_energy": 4.313986815686803,
+                  "reference_energy": 9511.854265754402,
+                  "output_energy": 9456.573116546846,
+                  "error_l2": 2.0770139180291505,
+                  "reference_l2": 97.52873558984759,
+                  "nmse": 0.00045353794277720185,
+                  "cosine": 0.9997768159962862,
+                  "output_reference_dot": 9482.05669774278,
+                  "max_abs": 0.0625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 13248,
+                  "changed_elements": 13170,
+                  "exact": false,
+                  "error_energy": 1777.8262905050185,
+                  "reference_energy": 15194.324432070673,
+                  "output_energy": 15455.745773982311,
+                  "error_l2": 42.16427742182971,
+                  "reference_l2": 123.26526044295964,
+                  "nmse": 0.11700594511148907,
+                  "cosine": 0.94203027833493,
+                  "output_reference_dot": 14436.121957773983,
+                  "max_abs": 1.859375,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 13248,
+                  "changed_elements": 10695,
+                  "exact": false,
+                  "error_energy": 1.0338406515074894,
+                  "reference_energy": 10091.50258567679,
+                  "output_energy": 10063.690096094797,
+                  "error_l2": 1.0167795491194191,
+                  "reference_l2": 100.45647109906255,
+                  "nmse": 0.00010244665179740967,
+                  "cosine": 0.9999496580279232,
+                  "output_reference_dot": 10077.07942056004,
+                  "max_abs": 0.03125,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              }
+            },
+            "QQ": {
+              "video": {
+                "endpoint": {
+                  "elements": 2045952,
+                  "changed_elements": 1233740,
+                  "exact": false,
+                  "error_energy": 82.12001627096356,
+                  "reference_energy": 1855267.939259177,
+                  "output_energy": 1854654.2402713331,
+                  "error_l2": 9.062009505124323,
+                  "reference_l2": 1362.0822072324331,
+                  "nmse": 4.426315710697546e-05,
+                  "cosine": 0.9999778784421679,
+                  "output_reference_dot": 1854920.0297571197,
+                  "max_abs": 0.1015625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 2045952,
+                  "changed_elements": 2016812,
+                  "exact": false,
+                  "error_energy": 285924.857876991,
+                  "reference_energy": 4995467.5827462105,
+                  "output_energy": 5252309.982005431,
+                  "error_l2": 534.7194197679667,
+                  "reference_l2": 2235.0542684118905,
+                  "nmse": 0.05723685583798875,
+                  "cosine": 0.9724043056822409,
+                  "output_reference_dot": 4980926.353437325,
+                  "max_abs": 8.390625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 2045952,
+                  "changed_elements": 958447,
+                  "exact": false,
+                  "error_energy": 26.652176753954564,
+                  "reference_energy": 1886073.662118717,
+                  "output_energy": 1885792.2234693286,
+                  "error_l2": 5.162574624540992,
+                  "reference_l2": 1373.343970794905,
+                  "nmse": 1.4131037026419686e-05,
+                  "cosine": 0.9999929367379883,
+                  "output_reference_dot": 1885919.6167056458,
+                  "max_abs": 0.0546875,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              },
+              "audio": {
+                "endpoint": {
+                  "elements": 13248,
+                  "changed_elements": 12140,
+                  "exact": false,
+                  "error_energy": 4.870075584098231,
+                  "reference_energy": 9511.854265754402,
+                  "output_energy": 9457.113939715899,
+                  "error_l2": 2.206824774217072,
+                  "reference_l2": 97.52873558984759,
+                  "nmse": 0.0005120006518215906,
+                  "cosine": 0.9997474237414425,
+                  "output_reference_dot": 9482.049064943101,
+                  "max_abs": 0.0625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 13248,
+                  "changed_elements": 13186,
+                  "exact": false,
+                  "error_energy": 2269.8434221591315,
+                  "reference_energy": 15194.324432070673,
+                  "output_energy": 15068.926472353021,
+                  "error_l2": 47.64287378149152,
+                  "reference_l2": 123.26526044295964,
+                  "nmse": 0.14938758431195343,
+                  "cosine": 0.925004649560645,
+                  "output_reference_dot": 13996.703741132282,
+                  "max_abs": 1.685546875,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 13248,
+                  "changed_elements": 10695,
+                  "exact": false,
+                  "error_energy": 1.0338406515074894,
+                  "reference_energy": 10091.50258567679,
+                  "output_energy": 10063.690096094797,
+                  "error_l2": 1.0167795491194191,
+                  "reference_l2": 100.45647109906255,
+                  "nmse": 0.00010244665179740967,
+                  "cosine": 0.9999496580279232,
+                  "output_reference_dot": 10077.07942056004,
+                  "max_abs": 0.03125,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              }
+            }
+          },
+          "first_update_gpu_cpu_exact": true,
+          "four_corner_decomposition": {
+            "video": {
+              "term_energies": {
+                "base_error": 25.43859647385557,
+                "video_input_delta": 38.52921188388319,
+                "audio_input_delta": 10.243905796674937,
+                "interaction": 21.978269643531235
+              },
+              "twice_signed_cross_terms": {
+                "base_error__video_input_delta": 16.15294054336937,
+                "base_error__audio_input_delta": -9.44194989603875,
+                "base_error__interaction": 10.920110325926544,
+                "video_input_delta__audio_input_delta": 10.5203477233772,
+                "video_input_delta__interaction": -21.48698952642792,
+                "audio_input_delta__interaction": -20.734426697187814
+              },
+              "qq_error_energy": 82.12001627096356,
+              "sum_energy_with_cross_terms": 82.12001627096356,
+              "vector_identity_max_abs": 0.0,
+              "interaction_over_qq_error_energy": 0.2676359630886049,
+              "oracle_restore": {
+                "from_corner": "QQ",
+                "to_corner": "QB",
+                "qq_error_energy": 82.12001627096356,
+                "restored_error_energy": 80.12074890110813,
+                "net_error_energy_reduction": 1.9992673698554313,
+                "relative_error_energy_reduction": 0.024345676738039602,
+                "restored_over_qq_error_energy": 0.9756543232619604,
+                "output_delta_energy": 11.487748743018358,
+                "twice_restored_error_dot_delta": -9.488481373162927,
+                "restored_error_delta_cosine": -0.15637839433524656,
+                "positive_means": "Oracle replacement reduces net endpoint error; negative means it removes cancellation"
+              }
+            },
+            "audio": {
+              "term_energies": {
+                "base_error": 1.4681608051214425,
+                "video_input_delta": 0.3411817755586526,
+                "audio_input_delta": 1.4935198231869435,
+                "interaction": 0.7772587067483983
+              },
+              "twice_signed_cross_terms": {
+                "base_error__video_input_delta": -0.4747578119931859,
+                "base_error__audio_input_delta": 1.3523061873784172,
+                "base_error__interaction": 0.7563740965051693,
+                "video_input_delta__audio_input_delta": 0.6255712995844078,
+                "video_input_delta__interaction": -0.7528743371440214,
+                "audio_input_delta__interaction": -0.7166649608479929
+              },
+              "qq_error_energy": 4.870075584098231,
+              "sum_energy_with_cross_terms": 4.870075584098231,
+              "vector_identity_max_abs": 0.0,
+              "interaction_over_qq_error_energy": 0.1595989001251445,
+              "oracle_restore": {
+                "from_corner": "QQ",
+                "to_corner": "BQ",
+                "qq_error_energy": 4.870075584098231,
+                "restored_error_energy": 4.313986815686803,
+                "net_error_energy_reduction": 0.5560887684114277,
+                "relative_error_energy_reduction": 0.1141848332348616,
+                "restored_over_qq_error_energy": 0.8858151667651384,
+                "output_delta_energy": 0.36556614516302943,
+                "twice_restored_error_dot_delta": 0.1905226232483983,
+                "restored_error_delta_cosine": 0.07585673841111963,
+                "positive_means": "Oracle replacement reduces net endpoint error; negative means it removes cancellation"
+              }
+            }
+          }
+        },
+        "plain": {
+          "corners": {
+            "BB": {
+              "video": {
+                "endpoint": {
+                  "elements": 2045952,
+                  "changed_elements": 897986,
+                  "exact": false,
+                  "error_energy": 23.025770042161867,
+                  "reference_energy": 1855267.939259177,
+                  "output_energy": 1854941.226964157,
+                  "error_l2": 4.798517483782034,
+                  "reference_l2": 1362.0822072324331,
+                  "nmse": 1.2411021370506859e-05,
+                  "cosine": 0.9999937978199228,
+                  "output_reference_dot": 1855093.070226646,
+                  "max_abs": 0.0546875,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 2045952,
+                  "changed_elements": 2011422,
+                  "exact": false,
+                  "error_energy": 224938.32677985542,
+                  "reference_energy": 4995467.5827462105,
+                  "output_energy": 4979532.932481665,
+                  "error_l2": 474.27663528773525,
+                  "reference_l2": 2235.0542684118905,
+                  "nmse": 0.04502848293056037,
+                  "cosine": 0.9774510401329981,
+                  "output_reference_dot": 4875031.09422401,
+                  "max_abs": 6.2421875,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 2045952,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 1886073.662118717,
+                  "output_energy": 1886073.662118717,
+                  "error_l2": 0.0,
+                  "reference_l2": 1373.343970794905,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 1886073.662118717,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              },
+              "audio": {
+                "endpoint": {
+                  "elements": 13248,
+                  "changed_elements": 10544,
+                  "exact": false,
+                  "error_energy": 1.0945673499518307,
+                  "reference_energy": 9511.854265754402,
+                  "output_energy": 9472.172677117182,
+                  "error_l2": 1.0462157282089726,
+                  "reference_l2": 97.52873558984759,
+                  "nmse": 0.00011507402440895351,
+                  "cosine": 0.9999445271990206,
+                  "output_reference_dot": 9491.466187760816,
+                  "max_abs": 0.0390625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 13248,
+                  "changed_elements": 13127,
+                  "exact": false,
+                  "error_energy": 1408.9238313184246,
+                  "reference_energy": 15194.324432070673,
+                  "output_energy": 16924.535750239556,
+                  "error_l2": 37.535634153673556,
+                  "reference_l2": 123.26526044295964,
+                  "nmse": 0.09272698089456402,
+                  "cosine": 0.9575243803550556,
+                  "output_reference_dot": 15354.968175495902,
+                  "max_abs": 1.3515625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 13248,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 10091.50258567679,
+                  "output_energy": 10091.50258567679,
+                  "error_l2": 0.0,
+                  "reference_l2": 100.45647109906255,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 10091.50258567679,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              }
+            },
+            "QB": {
+              "video": {
+                "endpoint": {
+                  "elements": 2045952,
+                  "changed_elements": 1169949,
+                  "exact": false,
+                  "error_energy": 74.39811614724863,
+                  "reference_energy": 1855267.939259177,
+                  "output_energy": 1854560.3934122832,
+                  "error_l2": 8.625434258473518,
+                  "reference_l2": 1362.0822072324331,
+                  "nmse": 4.010100890168801e-05,
+                  "cosine": 0.9999799638585519,
+                  "output_reference_dot": 1854876.9672776568,
+                  "max_abs": 0.1015625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 2045952,
+                  "changed_elements": 2011753,
+                  "exact": false,
+                  "error_energy": 263481.38655953575,
+                  "reference_energy": 4995467.5827462105,
+                  "output_energy": 5008300.738629136,
+                  "error_l2": 513.3043800315128,
+                  "reference_l2": 2235.0542684118905,
+                  "nmse": 0.052744088955670766,
+                  "cosine": 0.9736625875876985,
+                  "output_reference_dot": 4870143.467407905,
+                  "max_abs": 8.265625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 2045952,
+                  "changed_elements": 916484,
+                  "exact": false,
+                  "error_energy": 23.405110265045096,
+                  "reference_energy": 1886073.662118717,
+                  "output_energy": 1885735.7970528281,
+                  "error_l2": 4.837882828784209,
+                  "reference_l2": 1373.343970794905,
+                  "nmse": 1.2409435927732012e-05,
+                  "cosine": 0.9999937987381796,
+                  "output_reference_dot": 1885893.0270306403,
+                  "max_abs": 0.046875,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              },
+              "audio": {
+                "endpoint": {
+                  "elements": 13248,
+                  "changed_elements": 10782,
+                  "exact": false,
+                  "error_energy": 1.154020587739069,
+                  "reference_energy": 9511.854265754402,
+                  "output_energy": 9476.880150556099,
+                  "error_l2": 1.0742535025491278,
+                  "reference_l2": 97.52873558984759,
+                  "nmse": 0.00012132446056221631,
+                  "cosine": 0.9999409221191727,
+                  "output_reference_dot": 9493.79019786138,
+                  "max_abs": 0.05078125,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 13248,
+                  "changed_elements": 13160,
+                  "exact": false,
+                  "error_energy": 1507.7742030919721,
+                  "reference_energy": 15194.324432070673,
+                  "output_energy": 16863.61995079582,
+                  "error_l2": 38.83006828595556,
+                  "reference_l2": 123.26526044295964,
+                  "nmse": 0.09923272402355132,
+                  "cosine": 0.9542617966955526,
+                  "output_reference_dot": 15275.08508988726,
+                  "max_abs": 1.7578125,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 13248,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 10091.50258567679,
+                  "output_energy": 10091.50258567679,
+                  "error_l2": 0.0,
+                  "reference_l2": 100.45647109906255,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 10091.50258567679,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              }
+            },
+            "BQ": {
+              "video": {
+                "endpoint": {
+                  "elements": 2045952,
+                  "changed_elements": 905997,
+                  "exact": false,
+                  "error_energy": 23.403454016337946,
+                  "reference_energy": 1855267.939259177,
+                  "output_energy": 1854935.8915487162,
+                  "error_l2": 4.837711650805362,
+                  "reference_l2": 1362.0822072324331,
+                  "nmse": 1.2614595186549241e-05,
+                  "cosine": 0.9999936961426552,
+                  "output_reference_dot": 1855090.2136769388,
+                  "max_abs": 0.046875,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 2045952,
+                  "changed_elements": 2012206,
+                  "exact": false,
+                  "error_energy": 229020.6032301581,
+                  "reference_energy": 4995467.5827462105,
+                  "output_energy": 4999968.579262683,
+                  "error_l2": 478.5609712775981,
+                  "reference_l2": 2235.0542684118905,
+                  "nmse": 0.045845678995329646,
+                  "cosine": 0.9770875818396716,
+                  "output_reference_dot": 4883207.779389368,
+                  "max_abs": 5.15625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 2045952,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 1886073.662118717,
+                  "output_energy": 1886073.662118717,
+                  "error_l2": 0.0,
+                  "reference_l2": 1373.343970794905,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 1886073.662118717,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              },
+              "audio": {
+                "endpoint": {
+                  "elements": 13248,
+                  "changed_elements": 12039,
+                  "exact": false,
+                  "error_energy": 5.1419887519441545,
+                  "reference_energy": 9511.854265754402,
+                  "output_energy": 9435.800637456297,
+                  "error_l2": 2.2675953677726883,
+                  "reference_l2": 97.52873558984759,
+                  "nmse": 0.0005405874194747594,
+                  "cosine": 0.9997366748942758,
+                  "output_reference_dot": 9471.256457229378,
+                  "max_abs": 0.06640625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 13248,
+                  "changed_elements": 13164,
+                  "exact": false,
+                  "error_energy": 1598.2813909387046,
+                  "reference_energy": 15194.324432070673,
+                  "output_energy": 16507.841645490334,
+                  "error_l2": 39.978511614850106,
+                  "reference_l2": 123.26526044295964,
+                  "nmse": 0.10518936844373356,
+                  "cosine": 0.950400598963965,
+                  "output_reference_dot": 15051.942343311151,
+                  "max_abs": 1.7578125,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 13248,
+                  "changed_elements": 11159,
+                  "exact": false,
+                  "error_energy": 1.6507891389337601,
+                  "reference_energy": 10091.50258567679,
+                  "output_energy": 10050.154600092457,
+                  "error_l2": 1.2848303930611853,
+                  "reference_l2": 100.45647109906255,
+                  "nmse": 0.0001635820954232109,
+                  "cosine": 0.9999201479961277,
+                  "output_reference_dot": 10070.003198315157,
+                  "max_abs": 0.03515625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              }
+            },
+            "QQ": {
+              "video": {
+                "endpoint": {
+                  "elements": 2045952,
+                  "changed_elements": 1173293,
+                  "exact": false,
+                  "error_energy": 72.77758169572121,
+                  "reference_energy": 1855267.939259177,
+                  "output_energy": 1854562.798853671,
+                  "error_l2": 8.530977769032177,
+                  "reference_l2": 1362.0822072324331,
+                  "nmse": 3.9227531590279014e-05,
+                  "cosine": 0.9999804005697568,
+                  "output_reference_dot": 1854878.9802655764,
+                  "max_abs": 0.0859375,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 2045952,
+                  "changed_elements": 2012271,
+                  "exact": false,
+                  "error_energy": 246532.24829737254,
+                  "reference_energy": 4995467.5827462105,
+                  "output_energy": 5034003.544600536,
+                  "error_l2": 496.5201388638456,
+                  "reference_l2": 2235.0542684118905,
+                  "nmse": 0.04935118569258011,
+                  "cosine": 0.9754264176726022,
+                  "output_reference_dot": 4891469.439524687,
+                  "max_abs": 6.484375,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 2045952,
+                  "changed_elements": 916484,
+                  "exact": false,
+                  "error_energy": 23.405110265045096,
+                  "reference_energy": 1886073.662118717,
+                  "output_energy": 1885735.7970528281,
+                  "error_l2": 4.837882828784209,
+                  "reference_l2": 1373.343970794905,
+                  "nmse": 1.2409435927732012e-05,
+                  "cosine": 0.9999937987381796,
+                  "output_reference_dot": 1885893.0270306403,
+                  "max_abs": 0.046875,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              },
+              "audio": {
+                "endpoint": {
+                  "elements": 13248,
+                  "changed_elements": 12081,
+                  "exact": false,
+                  "error_energy": 5.047091473999899,
+                  "reference_energy": 9511.854265754402,
+                  "output_energy": 9435.210949486936,
+                  "error_l2": 2.2465732736770234,
+                  "reference_l2": 97.52873558984759,
+                  "nmse": 0.0005306106814704866,
+                  "cosine": 0.99974180091891,
+                  "output_reference_dot": 9471.00906188367,
+                  "max_abs": 0.0859375,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 13248,
+                  "changed_elements": 13174,
+                  "exact": false,
+                  "error_energy": 1658.0248735684595,
+                  "reference_energy": 15194.324432070673,
+                  "output_energy": 16929.157679482887,
+                  "error_l2": 40.71885157477381,
+                  "reference_l2": 123.26526044295964,
+                  "nmse": 0.10912132888704582,
+                  "cosine": 0.9497719346709512,
+                  "output_reference_dot": 15232.72861899255,
+                  "max_abs": 2.640625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 13248,
+                  "changed_elements": 11159,
+                  "exact": false,
+                  "error_energy": 1.6507891389337601,
+                  "reference_energy": 10091.50258567679,
+                  "output_energy": 10050.154600092457,
+                  "error_l2": 1.2848303930611853,
+                  "reference_l2": 100.45647109906255,
+                  "nmse": 0.0001635820954232109,
+                  "cosine": 0.9999201479961277,
+                  "output_reference_dot": 10070.003198315157,
+                  "max_abs": 0.03515625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              }
+            }
+          },
+          "first_update_gpu_cpu_exact": true,
+          "four_corner_decomposition": {
+            "video": {
+              "term_energies": {
+                "base_error": 23.025770042161867,
+                "video_input_delta": 34.02356491197497,
+                "audio_input_delta": 8.259555227417195,
+                "interaction": 17.01462574312177
+              },
+              "twice_signed_cross_terms": {
+                "base_error__video_input_delta": 17.34878119311179,
+                "base_error__audio_input_delta": -7.8818712532411155,
+                "base_error__interaction": 6.756931681862625,
+                "video_input_delta__audio_input_delta": 8.566854480359325,
+                "video_input_delta__interaction": -18.423556711306446,
+                "audio_input_delta__interaction": -15.913073619740771
+              },
+              "qq_error_energy": 72.77758169572121,
+              "sum_energy_with_cross_terms": 72.77758169572121,
+              "vector_identity_max_abs": 0.0,
+              "interaction_over_qq_error_energy": 0.23378938055758597,
+              "oracle_restore": {
+                "from_corner": "QQ",
+                "to_corner": "QB",
+                "qq_error_energy": 72.77758169572121,
+                "restored_error_energy": 74.39811614724863,
+                "net_error_energy_reduction": -1.6205344515274192,
+                "relative_error_energy_reduction": -0.022266945586386457,
+                "restored_over_qq_error_energy": 1.0222669455863864,
+                "output_delta_energy": 9.361107350798193,
+                "twice_restored_error_dot_delta": -10.981641802325612,
+                "restored_error_delta_cosine": -0.20806196508340263,
+                "positive_means": "Oracle replacement reduces net endpoint error; negative means it removes cancellation"
+              }
+            },
+            "audio": {
+              "term_energies": {
+                "base_error": 1.0945673499518307,
+                "video_input_delta": 0.3101353905076394,
+                "audio_input_delta": 2.183435213708435,
+                "interaction": 0.5138131245766999
+              },
+              "twice_signed_cross_terms": {
+                "base_error__video_input_delta": -0.25068215272040106,
+                "base_error__audio_input_delta": 1.8639861882838886,
+                "base_error__interaction": 0.1454603340534959,
+                "video_input_delta__audio_input_delta": 0.3906368605385069,
+                "video_input_delta__interaction": -0.5753475942474324,
+                "audio_input_delta__interaction": -0.6289132406527642
+              },
+              "qq_error_energy": 5.047091473999899,
+              "sum_energy_with_cross_terms": 5.047091473999899,
+              "vector_identity_max_abs": 0.0,
+              "interaction_over_qq_error_energy": 0.10180380665252635,
+              "oracle_restore": {
+                "from_corner": "QQ",
+                "to_corner": "BQ",
+                "qq_error_energy": 5.047091473999899,
+                "restored_error_energy": 5.1419887519441545,
+                "net_error_energy_reduction": -0.09489727794425562,
+                "relative_error_energy_reduction": -0.018802369331548503,
+                "restored_over_qq_error_energy": 1.0188023693315484,
+                "output_delta_energy": 0.24860092083690688,
+                "twice_restored_error_dot_delta": -0.3434981987811625,
+                "restored_error_delta_cosine": -0.1519069138854724,
+                "positive_means": "Oracle replacement reduces net endpoint error; negative means it removes cancellation"
+              }
+            }
+          }
+        }
+      },
+      "rankings": {
+        "video": {
+          "plain_minus_svd_error_energy": {
+            "BB": -2.412826431693702,
+            "QB": -5.7226327538595,
+            "BQ": -2.83709835815381,
+            "QQ": -9.34243457524235
+          },
+          "lower_error_arm": {
+            "BB": "plain",
+            "QB": "plain",
+            "BQ": "plain",
+            "QQ": "plain"
+          },
+          "opposite_modality_restored_corner": "QB",
+          "qq_to_restore_winner_changed": false,
+          "strict_sign_flip": false,
+          "scope": "Comparing whole recipes under their own actual one-step perturbations; unequal perturbations are not Jacobian normalization"
+        },
+        "audio": {
+          "plain_minus_svd_error_energy": {
+            "BB": -0.37359345516961184,
+            "QB": -0.1805641809478402,
+            "BQ": 0.8280019362573512,
+            "QQ": 0.17701588990166783
+          },
+          "lower_error_arm": {
+            "BB": "plain",
+            "QB": "plain",
+            "BQ": "svd",
+            "QQ": "svd"
+          },
+          "opposite_modality_restored_corner": "BQ",
+          "qq_to_restore_winner_changed": false,
+          "strict_sign_flip": false,
+          "scope": "Comparing whole recipes under their own actual one-step perturbations; unequal perturbations are not Jacobian normalization"
+        }
+      }
+    },
+    {
+      "case_id": "e010_p036_s14",
+      "source_step": 14,
+      "next_step": 15,
+      "arms": {
+        "bf16": {
+          "corners": {
+            "BB": {
+              "video": {
+                "endpoint": {
+                  "elements": 2045952,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 1302989.3353855838,
+                  "output_energy": 1302989.3353855838,
+                  "error_l2": 0.0,
+                  "reference_l2": 1141.4855826446446,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 1302989.3353855838,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 2045952,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 4411807.215055173,
+                  "output_energy": 4411807.215055173,
+                  "error_l2": 0.0,
+                  "reference_l2": 2100.4302452248144,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 4411807.215055173,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 2045952,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 1399254.2971377806,
+                  "output_energy": 1399254.2971377806,
+                  "error_l2": 0.0,
+                  "reference_l2": 1182.9007976739979,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 1399254.2971377806,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              },
+              "audio": {
+                "endpoint": {
+                  "elements": 13248,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 3467.5441698672366,
+                  "output_energy": 3467.5441698672366,
+                  "error_l2": 0.0,
+                  "reference_l2": 58.88585712942656,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 3467.5441698672366,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 13248,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 11012.899380606925,
+                  "output_energy": 11012.899380606925,
+                  "error_l2": 0.0,
+                  "reference_l2": 104.94236218328099,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 11012.899380606925,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 13248,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 4084.106496709457,
+                  "output_energy": 4084.106496709457,
+                  "error_l2": 0.0,
+                  "reference_l2": 63.90701445623522,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 4084.106496709457,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              }
+            }
+          },
+          "first_update_gpu_cpu_exact": true
+        },
+        "svd": {
+          "corners": {
+            "BB": {
+              "video": {
+                "endpoint": {
+                  "elements": 2045952,
+                  "changed_elements": 1561758,
+                  "exact": false,
+                  "error_energy": 116.36454178418899,
+                  "reference_energy": 1302989.3353855838,
+                  "output_energy": 1301864.1360668293,
+                  "error_l2": 10.787239766696066,
+                  "reference_l2": 1141.4855826446446,
+                  "nmse": 8.930582823976384e-05,
+                  "cosine": 0.9999554210891866,
+                  "output_reference_dot": 1302368.5534553146,
+                  "max_abs": 0.1328125,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 2045952,
+                  "changed_elements": 1995786,
+                  "exact": false,
+                  "error_energy": 43626.135575336295,
+                  "reference_energy": 4411807.215055173,
+                  "output_energy": 4450501.564489249,
+                  "error_l2": 208.86870415487402,
+                  "reference_l2": 2100.4302452248144,
+                  "nmse": 0.00988849545067683,
+                  "cosine": 0.9950868246380187,
+                  "output_reference_dot": 4409341.321984543,
+                  "max_abs": 2.6317138671875,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 2045952,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 1399254.2971377806,
+                  "output_energy": 1399254.2971377806,
+                  "error_l2": 0.0,
+                  "reference_l2": 1182.9007976739979,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 1399254.2971377806,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              },
+              "audio": {
+                "endpoint": {
+                  "elements": 13248,
+                  "changed_elements": 11634,
+                  "exact": false,
+                  "error_energy": 0.7778361503733322,
+                  "reference_energy": 3467.5441698672366,
+                  "output_energy": 3453.435442362039,
+                  "error_l2": 0.8819501972182625,
+                  "reference_l2": 58.88585712942656,
+                  "nmse": 0.00022431903164570605,
+                  "cosine": 0.9998896894475225,
+                  "output_reference_dot": 3460.100888039451,
+                  "max_abs": 0.03125,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 13248,
+                  "changed_elements": 13034,
+                  "exact": false,
+                  "error_energy": 148.75581939183843,
+                  "reference_energy": 11012.899380606925,
+                  "output_energy": 11097.9410190336,
+                  "error_l2": 12.196549487122923,
+                  "reference_l2": 104.94236218328099,
+                  "nmse": 0.013507416553154818,
+                  "cosine": 0.993279614267863,
+                  "output_reference_dot": 10981.042290124344,
+                  "max_abs": 0.46875,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 13248,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 4084.106496709457,
+                  "output_energy": 4084.106496709457,
+                  "error_l2": 0.0,
+                  "reference_l2": 63.90701445623522,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 4084.106496709457,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              }
+            },
+            "QB": {
+              "video": {
+                "endpoint": {
+                  "elements": 2045952,
+                  "changed_elements": 1738263,
+                  "exact": false,
+                  "error_energy": 350.53398611255034,
+                  "reference_energy": 1302989.3353855838,
+                  "output_energy": 1301267.179562165,
+                  "error_l2": 18.72255287380838,
+                  "reference_l2": 1141.4855826446446,
+                  "nmse": 0.0002690229126156427,
+                  "cosine": 0.999865618212862,
+                  "output_reference_dot": 1301952.9904808183,
+                  "max_abs": 0.2529296875,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 2045952,
+                  "changed_elements": 1998861,
+                  "exact": false,
+                  "error_energy": 52642.014828295505,
+                  "reference_energy": 4411807.215055173,
+                  "output_energy": 4450629.299554963,
+                  "error_l2": 229.438477218394,
+                  "reference_l2": 2100.4302452248144,
+                  "nmse": 0.011932075057281753,
+                  "cosine": 0.9940696344475769,
+                  "output_reference_dot": 4404897.249890921,
+                  "max_abs": 3.4140625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 2045952,
+                  "changed_elements": 1457895,
+                  "exact": false,
+                  "error_energy": 81.32724419085775,
+                  "reference_energy": 1399254.2971377806,
+                  "output_energy": 1398431.4312946135,
+                  "error_l2": 9.018161907553987,
+                  "reference_l2": 1182.9007976739979,
+                  "nmse": 5.812184701323786e-05,
+                  "cosine": 0.9999709737821235,
+                  "output_reference_dot": 1398802.2005941016,
+                  "max_abs": 0.109375,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              },
+              "audio": {
+                "endpoint": {
+                  "elements": 13248,
+                  "changed_elements": 11566,
+                  "exact": false,
+                  "error_energy": 0.7870008061872795,
+                  "reference_energy": 3467.5441698672366,
+                  "output_energy": 3453.132808135182,
+                  "error_l2": 0.8871306590279019,
+                  "reference_l2": 58.88585712942656,
+                  "nmse": 0.00022696201335408275,
+                  "cosine": 0.9998884505630196,
+                  "output_reference_dot": 3459.9449885981157,
+                  "max_abs": 0.041015625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 13248,
+                  "changed_elements": 13027,
+                  "exact": false,
+                  "error_energy": 150.1640776828749,
+                  "reference_energy": 11012.899380606925,
+                  "output_energy": 11129.908820101013,
+                  "error_l2": 12.254145326495639,
+                  "reference_l2": 104.94236218328099,
+                  "nmse": 0.013635290080585418,
+                  "cosine": 0.9932322490686576,
+                  "output_reference_dot": 10996.322061512532,
+                  "max_abs": 0.56298828125,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 13248,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 4084.106496709457,
+                  "output_energy": 4084.106496709457,
+                  "error_l2": 0.0,
+                  "reference_l2": 63.90701445623522,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 4084.106496709457,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              }
+            },
+            "BQ": {
+              "video": {
+                "endpoint": {
+                  "elements": 2045952,
+                  "changed_elements": 1564531,
+                  "exact": false,
+                  "error_energy": 120.59241674817531,
+                  "reference_energy": 1302989.3353855838,
+                  "output_energy": 1301903.975551811,
+                  "error_l2": 10.981457860784028,
+                  "reference_l2": 1141.4855826446446,
+                  "nmse": 9.255057848381338e-05,
+                  "cosine": 0.9999537922291759,
+                  "output_reference_dot": 1302386.3592603235,
+                  "max_abs": 0.1484375,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 2045952,
+                  "changed_elements": 1995965,
+                  "exact": false,
+                  "error_energy": 45298.77808273146,
+                  "reference_energy": 4411807.215055173,
+                  "output_energy": 4453390.163987134,
+                  "error_l2": 212.8350959845003,
+                  "reference_l2": 2100.4302452248144,
+                  "nmse": 0.010267624099292143,
+                  "cosine": 0.9949012132811886,
+                  "output_reference_dot": 4409949.300479788,
+                  "max_abs": 2.953125,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 2045952,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 1399254.2971377806,
+                  "output_energy": 1399254.2971377806,
+                  "error_l2": 0.0,
+                  "reference_l2": 1182.9007976739979,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 1399254.2971377806,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              },
+              "audio": {
+                "endpoint": {
+                  "elements": 13248,
+                  "changed_elements": 12333,
+                  "exact": false,
+                  "error_energy": 2.5151096687768586,
+                  "reference_energy": 3467.5441698672366,
+                  "output_energy": 3448.291500858031,
+                  "error_l2": 1.585909729075668,
+                  "reference_l2": 58.88585712942656,
+                  "nmse": 0.0007253288049314612,
+                  "cosine": 0.999640199524915,
+                  "output_reference_dot": 3456.6602805282455,
+                  "max_abs": 0.08203125,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 13248,
+                  "changed_elements": 13057,
+                  "exact": false,
+                  "error_energy": 162.58807419547838,
+                  "reference_energy": 11012.899380606925,
+                  "output_energy": 11091.918925094371,
+                  "error_l2": 12.75100287018548,
+                  "reference_l2": 104.94236218328099,
+                  "nmse": 0.014763421382182654,
+                  "cosine": 0.9926510197332491,
+                  "output_reference_dot": 10971.11511575291,
+                  "max_abs": 0.65234375,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 13248,
+                  "changed_elements": 11304,
+                  "exact": false,
+                  "error_energy": 0.64973132488376,
+                  "reference_energy": 4084.106496709457,
+                  "output_energy": 4072.0145843725913,
+                  "error_l2": 0.8060591323741453,
+                  "reference_l2": 63.90701445623522,
+                  "nmse": 0.00015908775283094234,
+                  "cosine": 0.9999214370967919,
+                  "output_reference_dot": 4077.7356748785824,
+                  "max_abs": 0.03466796875,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              }
+            },
+            "QQ": {
+              "video": {
+                "endpoint": {
+                  "elements": 2045952,
+                  "changed_elements": 1736299,
+                  "exact": false,
+                  "error_energy": 350.16008088482226,
+                  "reference_energy": 1302989.3353855838,
+                  "output_energy": 1301174.1372675253,
+                  "error_l2": 18.712564786389446,
+                  "reference_l2": 1141.4855826446446,
+                  "nmse": 0.00026873595306994743,
+                  "cosine": 0.9998657812616891,
+                  "output_reference_dot": 1301906.6562861123,
+                  "max_abs": 0.240234375,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 2045952,
+                  "changed_elements": 1997988,
+                  "exact": false,
+                  "error_energy": 52492.04098324054,
+                  "reference_energy": 4411807.215055173,
+                  "output_energy": 4453238.791065522,
+                  "error_l2": 229.11141609103757,
+                  "reference_l2": 2100.4302452248144,
+                  "nmse": 0.011898081313279707,
+                  "cosine": 0.9940896194355803,
+                  "output_reference_dot": 4406276.982568728,
+                  "max_abs": 3.2890625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 2045952,
+                  "changed_elements": 1457895,
+                  "exact": false,
+                  "error_energy": 81.32724419085775,
+                  "reference_energy": 1399254.2971377806,
+                  "output_energy": 1398431.4312946135,
+                  "error_l2": 9.018161907553987,
+                  "reference_l2": 1182.9007976739979,
+                  "nmse": 5.812184701323786e-05,
+                  "cosine": 0.9999709737821235,
+                  "output_reference_dot": 1398802.2005941016,
+                  "max_abs": 0.109375,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              },
+              "audio": {
+                "endpoint": {
+                  "elements": 13248,
+                  "changed_elements": 12331,
+                  "exact": false,
+                  "error_energy": 2.524701955495402,
+                  "reference_energy": 3467.5441698672366,
+                  "output_energy": 3447.7168647568324,
+                  "error_l2": 1.588931073236156,
+                  "reference_l2": 58.88585712942656,
+                  "nmse": 0.0007280951104920076,
+                  "cosine": 0.9996390175426617,
+                  "output_reference_dot": 3456.368166334287,
+                  "max_abs": 0.07421875,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 13248,
+                  "changed_elements": 13039,
+                  "exact": false,
+                  "error_energy": 162.67977898475442,
+                  "reference_energy": 11012.899380606925,
+                  "output_energy": 11072.30601836185,
+                  "error_l2": 12.75459834666519,
+                  "reference_l2": 104.94236218328099,
+                  "nmse": 0.014771748416336578,
+                  "cosine": 0.9926375840445478,
+                  "output_reference_dot": 10961.262809992011,
+                  "max_abs": 0.546875,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 13248,
+                  "changed_elements": 11304,
+                  "exact": false,
+                  "error_energy": 0.64973132488376,
+                  "reference_energy": 4084.106496709457,
+                  "output_energy": 4072.0145843725913,
+                  "error_l2": 0.8060591323741453,
+                  "reference_l2": 63.90701445623522,
+                  "nmse": 0.00015908775283094234,
+                  "cosine": 0.9999214370967919,
+                  "output_reference_dot": 4077.7356748785824,
+                  "max_abs": 0.03466796875,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              }
+            }
+          },
+          "first_update_gpu_cpu_exact": true,
+          "four_corner_decomposition": {
+            "video": {
+              "term_energies": {
+                "base_error": 116.36454178418899,
+                "video_input_delta": 154.98836415763253,
+                "audio_input_delta": 50.900409182728254,
+                "interaction": 103.29299873064953
+              },
+              "twice_signed_cross_terms": {
+                "base_error__video_input_delta": 79.18108017072882,
+                "base_error__audio_input_delta": -46.67253421874193,
+                "base_error__interaction": 41.69195811897225,
+                "video_input_delta__audio_input_delta": 54.65350090635184,
+                "video_input_delta__interaction": -103.49669900168738,
+                "audio_input_delta__interaction": -100.74353894600063
+              },
+              "qq_error_energy": 350.16008088482226,
+              "sum_energy_with_cross_terms": 350.16008088482226,
+              "vector_identity_max_abs": 0.0,
+              "interaction_over_qq_error_energy": 0.29498793371773746,
+              "oracle_restore": {
+                "from_corner": "QQ",
+                "to_corner": "QB",
+                "qq_error_energy": 350.16008088482226,
+                "restored_error_energy": 350.53398611255034,
+                "net_error_energy_reduction": -0.37390522772807344,
+                "relative_error_energy_reduction": -0.0010678122611328207,
+                "restored_over_qq_error_energy": 1.0010678122611327,
+                "output_delta_energy": 53.44986896737716,
+                "twice_restored_error_dot_delta": -53.823774195105216,
+                "restored_error_delta_cosine": -0.1966100727847638,
+                "positive_means": "Oracle replacement reduces net endpoint error; negative means it removes cancellation"
+              }
+            },
+            "audio": {
+              "term_energies": {
+                "base_error": 0.7778361503733322,
+                "video_input_delta": 0.28430556028615683,
+                "audio_input_delta": 1.0847522202529944,
+                "interaction": 0.6225563482730649
+              },
+              "twice_signed_cross_terms": {
+                "base_error__video_input_delta": -0.2751409044722095,
+                "base_error__audio_input_delta": 0.652521298150532,
+                "base_error__interaction": 0.29753268882632256,
+                "video_input_delta__audio_input_delta": 0.3240897088544443,
+                "video_input_delta__interaction": -0.5862810479011387,
+                "audio_input_delta__interaction": -0.6574700671480969
+              },
+              "qq_error_energy": 2.524701955495402,
+              "sum_energy_with_cross_terms": 2.524701955495402,
+              "vector_identity_max_abs": 0.0,
+              "interaction_over_qq_error_energy": 0.24658607599917895,
+              "oracle_restore": {
+                "from_corner": "QQ",
+                "to_corner": "BQ",
+                "qq_error_energy": 2.524701955495402,
+                "restored_error_energy": 2.5151096687768586,
+                "net_error_energy_reduction": 0.009592286718543619,
+                "relative_error_energy_reduction": 0.0037993739014082557,
+                "restored_over_qq_error_energy": 0.9962006260985917,
+                "output_delta_energy": 0.3205808606580831,
+                "twice_restored_error_dot_delta": -0.3109885739395395,
+                "restored_error_delta_cosine": -0.1731678155688771,
+                "positive_means": "Oracle replacement reduces net endpoint error; negative means it removes cancellation"
+              }
+            }
+          }
+        },
+        "plain": {
+          "corners": {
+            "BB": {
+              "video": {
+                "endpoint": {
+                  "elements": 2045952,
+                  "changed_elements": 1562535,
+                  "exact": false,
+                  "error_energy": 118.51492026989945,
+                  "reference_energy": 1302989.3353855838,
+                  "output_energy": 1302011.6992256436,
+                  "error_l2": 10.886455817661663,
+                  "reference_l2": 1141.4855826446446,
+                  "nmse": 9.095617059277636e-05,
+                  "cosine": 0.9999545752660024,
+                  "output_reference_dot": 1302441.259845479,
+                  "max_abs": 0.17578125,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 2045952,
+                  "changed_elements": 1996020,
+                  "exact": false,
+                  "error_energy": 44499.22492674875,
+                  "reference_energy": 4411807.215055173,
+                  "output_energy": 4491093.2108016815,
+                  "error_l2": 210.94839398949864,
+                  "reference_l2": 2100.4302452248144,
+                  "nmse": 0.010086393796831454,
+                  "cosine": 0.9950411753011875,
+                  "output_reference_dot": 4429200.600465053,
+                  "max_abs": 3.4765625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 2045952,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 1399254.2971377806,
+                  "output_energy": 1399254.2971377806,
+                  "error_l2": 0.0,
+                  "reference_l2": 1182.9007976739979,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 1399254.2971377806,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              },
+              "audio": {
+                "endpoint": {
+                  "elements": 13248,
+                  "changed_elements": 11570,
+                  "exact": false,
+                  "error_energy": 0.7582871677586809,
+                  "reference_energy": 3467.5441698672366,
+                  "output_energy": 3455.0866439702804,
+                  "error_l2": 0.8707968579173221,
+                  "reference_l2": 58.88585712942656,
+                  "nmse": 0.00021868132909398923,
+                  "cosine": 0.9998920815650898,
+                  "output_reference_dot": 3460.936263334879,
+                  "max_abs": 0.03515625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 13248,
+                  "changed_elements": 13037,
+                  "exact": false,
+                  "error_energy": 144.9604522129389,
+                  "reference_energy": 11012.899380606925,
+                  "output_energy": 11471.452919973826,
+                  "error_l2": 12.03995233433002,
+                  "reference_l2": 104.94236218328099,
+                  "nmse": 0.013162787309961791,
+                  "cosine": 0.9937595177885362,
+                  "output_reference_dot": 11169.695924183907,
+                  "max_abs": 0.5,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 13248,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 4084.106496709457,
+                  "output_energy": 4084.106496709457,
+                  "error_l2": 0.0,
+                  "reference_l2": 63.90701445623522,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 4084.106496709457,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              }
+            },
+            "QB": {
+              "video": {
+                "endpoint": {
+                  "elements": 2045952,
+                  "changed_elements": 1735971,
+                  "exact": false,
+                  "error_energy": 359.83966097221673,
+                  "reference_energy": 1302989.3353855838,
+                  "output_energy": 1301710.9133881908,
+                  "error_l2": 18.96944018605232,
+                  "reference_l2": 1141.4855826446446,
+                  "nmse": 0.0002761647015827126,
+                  "cosine": 0.9998619703088478,
+                  "output_reference_dot": 1302170.2045564011,
+                  "max_abs": 0.2890625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 2045952,
+                  "changed_elements": 1998983,
+                  "exact": false,
+                  "error_energy": 55164.11932945553,
+                  "reference_energy": 4411807.215055173,
+                  "output_energy": 4502028.641832147,
+                  "error_l2": 234.87043093896585,
+                  "reference_l2": 2100.4302452248144,
+                  "nmse": 0.012503746569253855,
+                  "cosine": 0.9938623144169441,
+                  "output_reference_dot": 4429335.868778932,
+                  "max_abs": 4.140625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 2045952,
+                  "changed_elements": 1454618,
+                  "exact": false,
+                  "error_energy": 81.18570138926611,
+                  "reference_energy": 1399254.2971377806,
+                  "output_energy": 1398526.5551466106,
+                  "error_l2": 9.01031083754973,
+                  "reference_l2": 1182.9007976739979,
+                  "nmse": 5.8020691131936536e-05,
+                  "cosine": 0.9999710159371054,
+                  "output_reference_dot": 1398849.8332915008,
+                  "max_abs": 0.103515625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              },
+              "audio": {
+                "endpoint": {
+                  "elements": 13248,
+                  "changed_elements": 11530,
+                  "exact": false,
+                  "error_energy": 0.7527895852836082,
+                  "reference_energy": 3467.5441698672366,
+                  "output_energy": 3452.587811264515,
+                  "error_l2": 0.8676344767721071,
+                  "reference_l2": 58.88585712942656,
+                  "nmse": 0.0002170958893113193,
+                  "cosine": 0.9998935527772472,
+                  "output_reference_dot": 3459.689595773234,
+                  "max_abs": 0.0390625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 13248,
+                  "changed_elements": 13016,
+                  "exact": false,
+                  "error_energy": 144.1304305336174,
+                  "reference_energy": 11012.899380606925,
+                  "output_energy": 11373.151306781221,
+                  "error_l2": 12.005433375502003,
+                  "reference_l2": 104.94236218328099,
+                  "nmse": 0.013087419175682537,
+                  "cosine": 0.9936902750930865,
+                  "output_reference_dot": 11120.960128427265,
+                  "max_abs": 0.55419921875,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 13248,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 4084.106496709457,
+                  "output_energy": 4084.106496709457,
+                  "error_l2": 0.0,
+                  "reference_l2": 63.90701445623522,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 4084.106496709457,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              }
+            },
+            "BQ": {
+              "video": {
+                "endpoint": {
+                  "elements": 2045952,
+                  "changed_elements": 1565108,
+                  "exact": false,
+                  "error_energy": 122.13478740506343,
+                  "reference_energy": 1302989.3353855838,
+                  "output_energy": 1301980.0441039572,
+                  "error_l2": 11.051460871987171,
+                  "reference_l2": 1141.4855826446446,
+                  "nmse": 9.373429550666354e-05,
+                  "cosine": 0.9999531897482743,
+                  "output_reference_dot": 1302423.622351068,
+                  "max_abs": 0.1953125,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 2045952,
+                  "changed_elements": 1996271,
+                  "exact": false,
+                  "error_energy": 45927.73171537241,
+                  "reference_energy": 4411807.215055173,
+                  "output_energy": 4490323.956263235,
+                  "error_l2": 214.30756336483415,
+                  "reference_l2": 2100.4302452248144,
+                  "nmse": 0.010410185549052384,
+                  "cosine": 0.9948795138413947,
+                  "output_reference_dot": 4428101.719801517,
+                  "max_abs": 3.9296875,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 2045952,
+                  "changed_elements": 0,
+                  "exact": true,
+                  "error_energy": 0.0,
+                  "reference_energy": 1399254.2971377806,
+                  "output_energy": 1399254.2971377806,
+                  "error_l2": 0.0,
+                  "reference_l2": 1182.9007976739979,
+                  "nmse": 0.0,
+                  "cosine": 1.0,
+                  "output_reference_dot": 1399254.2971377806,
+                  "max_abs": 0.0,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              },
+              "audio": {
+                "endpoint": {
+                  "elements": 13248,
+                  "changed_elements": 12293,
+                  "exact": false,
+                  "error_energy": 2.3624679398490116,
+                  "reference_energy": 3467.5441698672366,
+                  "output_energy": 3435.150381884596,
+                  "error_l2": 1.5370321856906612,
+                  "reference_l2": 58.88585712942656,
+                  "nmse": 0.0006813086796063695,
+                  "cosine": 0.999668755155359,
+                  "output_reference_dot": 3450.1660419059917,
+                  "max_abs": 0.083984375,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 13248,
+                  "changed_elements": 13053,
+                  "exact": false,
+                  "error_energy": 144.38624629671108,
+                  "reference_energy": 11012.899380606925,
+                  "output_energy": 11283.455317271855,
+                  "error_l2": 12.016082818319417,
+                  "reference_l2": 104.94236218328099,
+                  "nmse": 0.013110647914478076,
+                  "cosine": 0.9935973766638654,
+                  "output_reference_dot": 11075.984225791035,
+                  "max_abs": 0.5703125,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 13248,
+                  "changed_elements": 11387,
+                  "exact": false,
+                  "error_energy": 0.6995652742916718,
+                  "reference_energy": 4084.106496709457,
+                  "output_energy": 4061.8443998937146,
+                  "error_l2": 0.8364001878835704,
+                  "reference_l2": 63.90701445623522,
+                  "nmse": 0.00017128967495223444,
+                  "cosine": 0.9999178551841376,
+                  "output_reference_dot": 4072.62566566444,
+                  "max_abs": 0.0458984375,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              }
+            },
+            "QQ": {
+              "video": {
+                "endpoint": {
+                  "elements": 2045952,
+                  "changed_elements": 1734742,
+                  "exact": false,
+                  "error_energy": 361.8482407001102,
+                  "reference_energy": 1302989.3353855838,
+                  "output_energy": 1301737.8280222942,
+                  "error_l2": 19.022309026511746,
+                  "reference_l2": 1141.4855826446446,
+                  "nmse": 0.0002777062182117025,
+                  "cosine": 0.9998611955876859,
+                  "output_reference_dot": 1302182.6575835892,
+                  "max_abs": 0.2578125,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 2045952,
+                  "changed_elements": 1998837,
+                  "exact": false,
+                  "error_energy": 55689.028032998045,
+                  "reference_energy": 4411807.215055173,
+                  "output_energy": 4495910.07307137,
+                  "error_l2": 235.98522842118328,
+                  "reference_l2": 2100.4302452248144,
+                  "nmse": 0.01262272472898651,
+                  "cosine": 0.9937925227751971,
+                  "output_reference_dot": 4426014.130046773,
+                  "max_abs": 3.6484375,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 2045952,
+                  "changed_elements": 1454618,
+                  "exact": false,
+                  "error_energy": 81.18570138926611,
+                  "reference_energy": 1399254.2971377806,
+                  "output_energy": 1398526.5551466106,
+                  "error_l2": 9.01031083754973,
+                  "reference_l2": 1182.9007976739979,
+                  "nmse": 5.8020691131936536e-05,
+                  "cosine": 0.9999710159371054,
+                  "output_reference_dot": 1398849.8332915008,
+                  "max_abs": 0.103515625,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              },
+              "audio": {
+                "endpoint": {
+                  "elements": 13248,
+                  "changed_elements": 12316,
+                  "exact": false,
+                  "error_energy": 2.2811544463074824,
+                  "reference_energy": 3467.5441698672366,
+                  "output_energy": 3432.0306341285504,
+                  "error_l2": 1.5103491140486303,
+                  "reference_l2": 58.88585712942656,
+                  "nmse": 0.0006578587999341395,
+                  "cosine": 0.9996826202829134,
+                  "output_reference_dot": 3448.64682477474,
+                  "max_abs": 0.080078125,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "velocity": {
+                  "elements": 13248,
+                  "changed_elements": 13041,
+                  "exact": false,
+                  "error_energy": 136.01433534422154,
+                  "reference_energy": 11012.899380606925,
+                  "output_energy": 11285.930015855283,
+                  "error_l2": 11.662518396307958,
+                  "reference_l2": 104.94236218328099,
+                  "nmse": 0.012350456554949995,
+                  "cosine": 0.9939748932498514,
+                  "output_reference_dot": 11081.407530558994,
+                  "max_abs": 0.505859375,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                },
+                "input_perturbation": {
+                  "elements": 13248,
+                  "changed_elements": 11387,
+                  "exact": false,
+                  "error_energy": 0.6995652742916718,
+                  "reference_energy": 4084.106496709457,
+                  "output_energy": 4061.8443998937146,
+                  "error_l2": 0.8364001878835704,
+                  "reference_l2": 63.90701445623522,
+                  "nmse": 0.00017128967495223444,
+                  "cosine": 0.9999178551841376,
+                  "output_reference_dot": 4072.62566566444,
+                  "max_abs": 0.0458984375,
+                  "undefined_nmse_reason": null,
+                  "accumulation_dtype": "FP64 CPU"
+                }
+              }
+            }
+          },
+          "first_update_gpu_cpu_exact": true,
+          "four_corner_decomposition": {
+            "video": {
+              "term_energies": {
+                "base_error": 118.51492026989945,
+                "video_input_delta": 166.75779626381882,
+                "audio_input_delta": 53.173388998203336,
+                "interaction": 107.35905361348614
+              },
+              "twice_signed_cross_terms": {
+                "base_error__video_input_delta": 74.56694443849847,
+                "base_error__audio_input_delta": -49.55352186303935,
+                "base_error__interaction": 53.596885520237265,
+                "video_input_delta__audio_input_delta": 61.674667074737954,
+                "video_input_delta__interaction": -116.41711702371322,
+                "audio_input_delta__interaction": -107.82477659201868
+              },
+              "qq_error_energy": 361.8482407001102,
+              "sum_energy_with_cross_terms": 361.8482407001102,
+              "vector_identity_max_abs": 0.0,
+              "interaction_over_qq_error_energy": 0.29669635371382763,
+              "oracle_restore": {
+                "from_corner": "QQ",
+                "to_corner": "QB",
+                "qq_error_energy": 361.8482407001102,
+                "restored_error_energy": 359.83966097221673,
+                "net_error_energy_reduction": 2.008579727893448,
+                "relative_error_energy_reduction": 0.005550889853733193,
+                "restored_over_qq_error_energy": 0.9944491101462668,
+                "output_delta_energy": 52.707666019670796,
+                "twice_restored_error_dot_delta": -50.69908629177735,
+                "restored_error_delta_cosine": -0.18406818485994475,
+                "positive_means": "Oracle replacement reduces net endpoint error; negative means it removes cancellation"
+              }
+            },
+            "audio": {
+              "term_energies": {
+                "base_error": 0.7582871677586809,
+                "video_input_delta": 0.389525921040331,
+                "audio_input_delta": 1.109943859046325,
+                "interaction": 0.7116300707166374
+              },
+              "twice_signed_cross_terms": {
+                "base_error__video_input_delta": -0.3950235035154037,
+                "base_error__audio_input_delta": 0.49423691304400563,
+                "base_error__interaction": 0.3350327183143236,
+                "video_input_delta__audio_input_delta": 0.3578840210684575,
+                "video_input_delta__interaction": -0.7655490596371237,
+                "audio_input_delta__interaction": -0.7148136615287513
+              },
+              "qq_error_energy": 2.2811544463074824,
+              "sum_energy_with_cross_terms": 2.2811544463074824,
+              "vector_identity_max_abs": 0.0,
+              "interaction_over_qq_error_energy": 0.3119604952082736,
+              "oracle_restore": {
+                "from_corner": "QQ",
+                "to_corner": "BQ",
+                "qq_error_energy": 2.2811544463074824,
+                "restored_error_energy": 2.3624679398490116,
+                "net_error_energy_reduction": -0.08131349354152917,
+                "relative_error_energy_reduction": -0.03564576421958267,
+                "restored_over_qq_error_energy": 1.0356457642195827,
+                "output_delta_energy": 0.3356069321198447,
+                "twice_restored_error_dot_delta": -0.4169204256613739,
+                "restored_error_delta_cosine": -0.23411258138759328,
+                "positive_means": "Oracle replacement reduces net endpoint error; negative means it removes cancellation"
+              }
+            }
+          }
+        }
+      },
+      "rankings": {
+        "video": {
+          "plain_minus_svd_error_energy": {
+            "BB": 2.150378485710462,
+            "QB": 9.305674859666397,
+            "BQ": 1.5423706568881244,
+            "QQ": 11.688159815287918
+          },
+          "lower_error_arm": {
+            "BB": "svd",
+            "QB": "svd",
+            "BQ": "svd",
+            "QQ": "svd"
+          },
+          "opposite_modality_restored_corner": "QB",
+          "qq_to_restore_winner_changed": false,
+          "strict_sign_flip": false,
+          "scope": "Comparing whole recipes under their own actual one-step perturbations; unequal perturbations are not Jacobian normalization"
+        },
+        "audio": {
+          "plain_minus_svd_error_energy": {
+            "BB": -0.019548982614651322,
+            "QB": -0.03421122090367135,
+            "BQ": -0.152641728927847,
+            "QQ": -0.2435475091879198
+          },
+          "lower_error_arm": {
+            "BB": "plain",
+            "QB": "plain",
+            "BQ": "plain",
+            "QQ": "plain"
+          },
+          "opposite_modality_restored_corner": "BQ",
+          "qq_to_restore_winner_changed": false,
+          "strict_sign_flip": false,
+          "scope": "Comparing whole recipes under their own actual one-step perturbations; unequal perturbations are not Jacobian normalization"
+        }
+      }
+    }
+  ],
+  "machine_table": [
+    {
+      "case_id": "e010_p030_s05",
+      "arm": "svd",
+      "modality": "video",
+      "restored_corner": "QB",
+      "endpoint_nmse": {
+        "BB": 1.37115485777291e-05,
+        "QB": 4.3185540592643974e-05,
+        "BQ": 1.4143807381789722e-05,
+        "QQ": 4.426315710697546e-05
+      },
+      "velocity_nmse": {
+        "BB": 0.05081194700311672,
+        "QB": 0.05437869300336086,
+        "BQ": 0.052873074414747104,
+        "QQ": 0.05723685583798875
+      },
+      "qq_input_nmse": {
+        "video": 1.4131037026419686e-05,
+        "audio": 0.00010244665179740967
+      },
+      "from_corner": "QQ",
+      "to_corner": "QB",
+      "qq_error_energy": 82.12001627096356,
+      "restored_error_energy": 80.12074890110813,
+      "net_error_energy_reduction": 1.9992673698554313,
+      "relative_error_energy_reduction": 0.024345676738039602,
+      "restored_over_qq_error_energy": 0.9756543232619604,
+      "output_delta_energy": 11.487748743018358,
+      "twice_restored_error_dot_delta": -9.488481373162927,
+      "restored_error_delta_cosine": -0.15637839433524656,
+      "positive_means": "Oracle replacement reduces net endpoint error; negative means it removes cancellation"
+    },
+    {
+      "case_id": "e010_p030_s05",
+      "arm": "svd",
+      "modality": "audio",
+      "restored_corner": "BQ",
+      "endpoint_nmse": {
+        "BB": 0.00015435064122116258,
+        "QB": 0.00014030752904739346,
+        "BQ": 0.00045353794277720185,
+        "QQ": 0.0005120006518215906
+      },
+      "velocity_nmse": {
+        "BB": 0.12605422102692154,
+        "QB": 0.11352661047969015,
+        "BQ": 0.11700594511148907,
+        "QQ": 0.14938758431195343
+      },
+      "qq_input_nmse": {
+        "video": 1.4131037026419686e-05,
+        "audio": 0.00010244665179740967
+      },
+      "from_corner": "QQ",
+      "to_corner": "BQ",
+      "qq_error_energy": 4.870075584098231,
+      "restored_error_energy": 4.313986815686803,
+      "net_error_energy_reduction": 0.5560887684114277,
+      "relative_error_energy_reduction": 0.1141848332348616,
+      "restored_over_qq_error_energy": 0.8858151667651384,
+      "output_delta_energy": 0.36556614516302943,
+      "twice_restored_error_dot_delta": 0.1905226232483983,
+      "restored_error_delta_cosine": 0.07585673841111963,
+      "positive_means": "Oracle replacement reduces net endpoint error; negative means it removes cancellation"
+    },
+    {
+      "case_id": "e010_p030_s05",
+      "arm": "plain",
+      "modality": "video",
+      "restored_corner": "QB",
+      "endpoint_nmse": {
+        "BB": 1.2411021370506859e-05,
+        "QB": 4.010100890168801e-05,
+        "BQ": 1.2614595186549241e-05,
+        "QQ": 3.9227531590279014e-05
+      },
+      "velocity_nmse": {
+        "BB": 0.04502848293056037,
+        "QB": 0.052744088955670766,
+        "BQ": 0.045845678995329646,
+        "QQ": 0.04935118569258011
+      },
+      "qq_input_nmse": {
+        "video": 1.2409435927732012e-05,
+        "audio": 0.0001635820954232109
+      },
+      "from_corner": "QQ",
+      "to_corner": "QB",
+      "qq_error_energy": 72.77758169572121,
+      "restored_error_energy": 74.39811614724863,
+      "net_error_energy_reduction": -1.6205344515274192,
+      "relative_error_energy_reduction": -0.022266945586386457,
+      "restored_over_qq_error_energy": 1.0222669455863864,
+      "output_delta_energy": 9.361107350798193,
+      "twice_restored_error_dot_delta": -10.981641802325612,
+      "restored_error_delta_cosine": -0.20806196508340263,
+      "positive_means": "Oracle replacement reduces net endpoint error; negative means it removes cancellation"
+    },
+    {
+      "case_id": "e010_p030_s05",
+      "arm": "plain",
+      "modality": "audio",
+      "restored_corner": "BQ",
+      "endpoint_nmse": {
+        "BB": 0.00011507402440895351,
+        "QB": 0.00012132446056221631,
+        "BQ": 0.0005405874194747594,
+        "QQ": 0.0005306106814704866
+      },
+      "velocity_nmse": {
+        "BB": 0.09272698089456402,
+        "QB": 0.09923272402355132,
+        "BQ": 0.10518936844373356,
+        "QQ": 0.10912132888704582
+      },
+      "qq_input_nmse": {
+        "video": 1.2409435927732012e-05,
+        "audio": 0.0001635820954232109
+      },
+      "from_corner": "QQ",
+      "to_corner": "BQ",
+      "qq_error_energy": 5.047091473999899,
+      "restored_error_energy": 5.1419887519441545,
+      "net_error_energy_reduction": -0.09489727794425562,
+      "relative_error_energy_reduction": -0.018802369331548503,
+      "restored_over_qq_error_energy": 1.0188023693315484,
+      "output_delta_energy": 0.24860092083690688,
+      "twice_restored_error_dot_delta": -0.3434981987811625,
+      "restored_error_delta_cosine": -0.1519069138854724,
+      "positive_means": "Oracle replacement reduces net endpoint error; negative means it removes cancellation"
+    },
+    {
+      "case_id": "e010_p036_s14",
+      "arm": "svd",
+      "modality": "video",
+      "restored_corner": "QB",
+      "endpoint_nmse": {
+        "BB": 8.930582823976384e-05,
+        "QB": 0.0002690229126156427,
+        "BQ": 9.255057848381338e-05,
+        "QQ": 0.00026873595306994743
+      },
+      "velocity_nmse": {
+        "BB": 0.00988849545067683,
+        "QB": 0.011932075057281753,
+        "BQ": 0.010267624099292143,
+        "QQ": 0.011898081313279707
+      },
+      "qq_input_nmse": {
+        "video": 5.812184701323786e-05,
+        "audio": 0.00015908775283094234
+      },
+      "from_corner": "QQ",
+      "to_corner": "QB",
+      "qq_error_energy": 350.16008088482226,
+      "restored_error_energy": 350.53398611255034,
+      "net_error_energy_reduction": -0.37390522772807344,
+      "relative_error_energy_reduction": -0.0010678122611328207,
+      "restored_over_qq_error_energy": 1.0010678122611327,
+      "output_delta_energy": 53.44986896737716,
+      "twice_restored_error_dot_delta": -53.823774195105216,
+      "restored_error_delta_cosine": -0.1966100727847638,
+      "positive_means": "Oracle replacement reduces net endpoint error; negative means it removes cancellation"
+    },
+    {
+      "case_id": "e010_p036_s14",
+      "arm": "svd",
+      "modality": "audio",
+      "restored_corner": "BQ",
+      "endpoint_nmse": {
+        "BB": 0.00022431903164570605,
+        "QB": 0.00022696201335408275,
+        "BQ": 0.0007253288049314612,
+        "QQ": 0.0007280951104920076
+      },
+      "velocity_nmse": {
+        "BB": 0.013507416553154818,
+        "QB": 0.013635290080585418,
+        "BQ": 0.014763421382182654,
+        "QQ": 0.014771748416336578
+      },
+      "qq_input_nmse": {
+        "video": 5.812184701323786e-05,
+        "audio": 0.00015908775283094234
+      },
+      "from_corner": "QQ",
+      "to_corner": "BQ",
+      "qq_error_energy": 2.524701955495402,
+      "restored_error_energy": 2.5151096687768586,
+      "net_error_energy_reduction": 0.009592286718543619,
+      "relative_error_energy_reduction": 0.0037993739014082557,
+      "restored_over_qq_error_energy": 0.9962006260985917,
+      "output_delta_energy": 0.3205808606580831,
+      "twice_restored_error_dot_delta": -0.3109885739395395,
+      "restored_error_delta_cosine": -0.1731678155688771,
+      "positive_means": "Oracle replacement reduces net endpoint error; negative means it removes cancellation"
+    },
+    {
+      "case_id": "e010_p036_s14",
+      "arm": "plain",
+      "modality": "video",
+      "restored_corner": "QB",
+      "endpoint_nmse": {
+        "BB": 9.095617059277636e-05,
+        "QB": 0.0002761647015827126,
+        "BQ": 9.373429550666354e-05,
+        "QQ": 0.0002777062182117025
+      },
+      "velocity_nmse": {
+        "BB": 0.010086393796831454,
+        "QB": 0.012503746569253855,
+        "BQ": 0.010410185549052384,
+        "QQ": 0.01262272472898651
+      },
+      "qq_input_nmse": {
+        "video": 5.8020691131936536e-05,
+        "audio": 0.00017128967495223444
+      },
+      "from_corner": "QQ",
+      "to_corner": "QB",
+      "qq_error_energy": 361.8482407001102,
+      "restored_error_energy": 359.83966097221673,
+      "net_error_energy_reduction": 2.008579727893448,
+      "relative_error_energy_reduction": 0.005550889853733193,
+      "restored_over_qq_error_energy": 0.9944491101462668,
+      "output_delta_energy": 52.707666019670796,
+      "twice_restored_error_dot_delta": -50.69908629177735,
+      "restored_error_delta_cosine": -0.18406818485994475,
+      "positive_means": "Oracle replacement reduces net endpoint error; negative means it removes cancellation"
+    },
+    {
+      "case_id": "e010_p036_s14",
+      "arm": "plain",
+      "modality": "audio",
+      "restored_corner": "BQ",
+      "endpoint_nmse": {
+        "BB": 0.00021868132909398923,
+        "QB": 0.0002170958893113193,
+        "BQ": 0.0006813086796063695,
+        "QQ": 0.0006578587999341395
+      },
+      "velocity_nmse": {
+        "BB": 0.013162787309961791,
+        "QB": 0.013087419175682537,
+        "BQ": 0.013110647914478076,
+        "QQ": 0.012350456554949995
+      },
+      "qq_input_nmse": {
+        "video": 5.8020691131936536e-05,
+        "audio": 0.00017128967495223444
+      },
+      "from_corner": "QQ",
+      "to_corner": "BQ",
+      "qq_error_energy": 2.2811544463074824,
+      "restored_error_energy": 2.3624679398490116,
+      "net_error_energy_reduction": -0.08131349354152917,
+      "relative_error_energy_reduction": -0.03564576421958267,
+      "restored_over_qq_error_energy": 1.0356457642195827,
+      "output_delta_energy": 0.3356069321198447,
+      "twice_restored_error_dot_delta": -0.4169204256613739,
+      "restored_error_delta_cosine": -0.23411258138759328,
+      "positive_means": "Oracle replacement reduces net endpoint error; negative means it removes cancellation"
+    }
+  ],
+  "files_verified": {
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E015_h3_crossmodal_propagation_manifest.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E015_h3_crossmodal_propagation_manifest.json",
+      "sha256": "54b543d679393150751f2600ceadf4e7286165c2b54cbc746e65ea7338c3344e",
+      "bytes": 7885,
+      "mtime_ns": 1790946725462786978
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E015_h3_crossmodal_propagation_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E015_h3_crossmodal_propagation_plan.md",
+      "sha256": "3f711759cd7130f12572230302c41be346016643e1bceabca41ebd1bfeaedbe6",
+      "bytes": 4716,
+      "mtime_ns": 1790946725407785173
+    },
+    "/home/wjq/workspace/svdquant-exp/results/research/E014/independent_summary.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E014/independent_summary.json",
+      "sha256": "b5cf4dc298d1d5409942bc96a1276be98d6171bf98909fa1699864a1f7adb460",
+      "bytes": 228487,
+      "mtime_ns": 1790946213104974914
+    },
+    "/home/wjq/workspace/svdquant-exp/results/research/E015/frozen_contract.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E015/frozen_contract.json",
+      "sha256": "dffb7e29c4b05a20a0f49c3d7d3a5046a5d4f794227772704e5cdc6b94c53b01",
+      "bytes": 6138,
+      "mtime_ns": 1790947322863399112
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/attention/attention.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/attention/attention.py",
+      "sha256": "1126b2e19184299cbfc611dcf66e46d0fd1a7bfa1d616f2ed38bc60ba19679ae",
+      "bytes": 13461,
+      "mtime_ns": 1788624228160481696
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/vram/layers.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/vram/layers.py",
+      "sha256": "4597374ac9166a2576544fb9b746360ee4c0441e96fd7af4300fcc739abd26cf",
+      "bytes": 25504,
+      "mtime_ns": 1788624228162481761
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/base_pipeline.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/base_pipeline.py",
+      "sha256": "aa5e3729bcbe4a6969b32dc78602abadf6d7832317014c2d192d73c021aa6728",
+      "bytes": 26272,
+      "mtime_ns": 1788624228162481761
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/flow_match.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/flow_match.py",
+      "sha256": "4639571d6986fef53094bc166f3b3a8fdf5790435d28528ead7f0a929d5d2a52",
+      "bytes": 20775,
+      "mtime_ns": 1788624228162481761
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_audio_vae.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_audio_vae.py",
+      "sha256": "ce6dc03b73a0596df22a6aa89e6db9183017bd5d0e2e99b547a6bfee53a7ef2c",
+      "bytes": 19869,
+      "mtime_ns": 1788624228167481922
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit.py",
+      "sha256": "bd617a4312c70405e916707e1908100b484b2259dfbeba4af7de5bb145206d80",
+      "bytes": 18207,
+      "mtime_ns": 1788624228167481922
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit_comfy.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit_comfy.py",
+      "sha256": "e8a2eb4cb986ba384052100fdc03984446f3fa35d0ab1e9ebfacffc039a2e8ff",
+      "bytes": 3011,
+      "mtime_ns": 1788624228167481922
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_text_encoder.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_text_encoder.py",
+      "sha256": "f874a56ce992070976b534dc42e0639221fe8c88cb29d9b3e2cadf6de553a9cf",
+      "bytes": 9391,
+      "mtime_ns": 1788624228167481922
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_video_vae.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_video_vae.py",
+      "sha256": "3dd4da5c90135c904fa5f1d4f70dd43e2571e394ce437bb168a5110f71076bf4",
+      "bytes": 31730,
+      "mtime_ns": 1788624228167481922
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/pipelines/minimax_h3_audio_video.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/pipelines/minimax_h3_audio_video.py",
+      "sha256": "7f5ff890d796dcfac3551e235741bdfbd4dbcae91aae3b6e4c3817dce38eecd6",
+      "bytes": 56577,
+      "mtime_ns": 1788624228172482083
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/utils/data/audio_video.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/utils/data/audio_video.py",
+      "sha256": "9d30fdd4538475d2d6aae7fe64cca2d78012e904366ec85d81e48720874d9dd0",
+      "bytes": 8947,
+      "mtime_ns": 1788624228173482116
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_manifest.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_manifest.json",
+      "sha256": "9469815d0c1d3d51bc793c2e3eaba08c80b35969ef2fab3776667db6b61fa79d",
+      "bytes": 13391,
+      "mtime_ns": 1790935754077600387
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_paired_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_paired_plan.md",
+      "sha256": "1e616ceacc92085cd938a90d5e99faac5d41a7c7e4e51844445b8775c06fc3e4",
+      "bytes": 7695,
+      "mtime_ns": 1790936612547861398
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_manifest.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_manifest.json",
+      "sha256": "56299b66ebf8be315e2bebc3ae684eefb7781abd1a5e984e7aab3ecee4265f65",
+      "bytes": 6437,
+      "mtime_ns": 1790944524702630060
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_plan.md",
+      "sha256": "af609cb182415d336a9f96f85fb7ee62fc2c2a15d23fca688d34763f7f7742c7",
+      "bytes": 5158,
+      "mtime_ns": 1790944524702630060
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/infer_minimax_h3_svdquant_standard.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/infer_minimax_h3_svdquant_standard.py",
+      "sha256": "1966ce25cbf7fb630e620a84f64ca9219afd0120e0fe07078dc8250e221961a1",
+      "bytes": 4465,
+      "mtime_ns": 1788691343410844218
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/minimax_h3_svdquant_common.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/minimax_h3_svdquant_common.py",
+      "sha256": "d0fca20f98a40c3aa20773faa47e6d6b986811f6cd03802723021fd50383ae61",
+      "bytes": 14656,
+      "mtime_ns": 1790923565886437253
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_native_nvfp4.py",
+      "sha256": "43cb697faa4c5276fcb4432f696e36ed9f69f84b7b8a27a6f1c4ef986fc7f19b",
+      "bytes": 28771,
+      "mtime_ns": 1790932659329847246
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_nvfp4.py",
+      "sha256": "13ca884a8f6c7d93258870970c9f4b204f7cc42af0038f549b825321bb899d0a",
+      "bytes": 14615,
+      "mtime_ns": 1790932024806992054
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_fastpack.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_fastpack.py",
+      "sha256": "f5a22a9e3f23d7903403017575e1a63c1cb42e04b0230256a5808902bbc198b7",
+      "bytes": 7255,
+      "mtime_ns": 1790931918375493956
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_zero_sf_compat.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_zero_sf_compat.py",
+      "sha256": "ccaaa71670a48bb8667c286fff0ae08556b568fa6d77184200a39e4b6cc00048",
+      "bytes": 5281,
+      "mtime_ns": 1790933155271150967
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_plain_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_plain_native_nvfp4.py",
+      "sha256": "36ea5e95e3bf8858b3e545157d0505be2fa03e353b432dde4cdc785f085086f0",
+      "bytes": 10532,
+      "mtime_ns": 1790944636527298485
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_conditional_response.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_conditional_response.py",
+      "sha256": "4886b367c3ca1934cb2b3d23858d2dd06649681279c3cfaabbaab62d31b3627e",
+      "bytes": 32900,
+      "mtime_ns": 1790940242208109684
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_modality_pulse.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_modality_pulse.py",
+      "sha256": "e836578688580885fd46f54b0d45eef7b975932bfe5872f764feb8e4b86c820c",
+      "bytes": 13825,
+      "mtime_ns": 1790924638511417323
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_native_contract.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_native_contract.py",
+      "sha256": "0be4b1fb4a67f52e2c618ef492f49e1285cc14b57c2e6ceffbc6fa578a011c83",
+      "bytes": 15329,
+      "mtime_ns": 1790925978603416797
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_plain_baseline.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_plain_baseline.py",
+      "sha256": "bf1383b51e9ea45c53a583ad541f68f9d0dce0db97de5acaf767fb0f69dcf47c",
+      "bytes": 25031,
+      "mtime_ns": 1790944863337739038
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/profile_h3_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/profile_h3_native_nvfp4.py",
+      "sha256": "6fbabdfb87a333d35b66fdf4a1976ae1ea2e575a5b5bb83e60d930a75e99d45e",
+      "bytes": 26846,
+      "mtime_ns": 1790933870642666588
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py",
+      "sha256": "41e6e4eb1d9df554e5ea109b9bad3d1df83e9b64788137511262a82a0f34431f",
+      "bytes": 28742,
+      "mtime_ns": 1790936643793890023
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py",
+      "sha256": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa",
+      "bytes": 22773,
+      "mtime_ns": 1790928567228482194
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/prepare_h3_crossmodal_states.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/prepare_h3_crossmodal_states.py",
+      "sha256": "cba8126d4714f3c949218ab5f690d7c61281fe7e19a293a9aa84914404245ff8",
+      "bytes": 20733,
+      "mtime_ns": 1790947055977632206
+    },
+    "/home/wjq/workspace/svdquant-exp/results/research/E015/E015_prepare_check.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E015/E015_prepare_check.json",
+      "sha256": "c083844b8d2e53e0d91aaa057873eaad47d0f4957048bb44482ea1b71562ca31",
+      "bytes": 149885,
+      "mtime_ns": 1790947195426212368
+    },
+    "/home/wjq/workspace/svdquant-exp/results/research/E015/E015_prepare.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E015/E015_prepare.json",
+      "sha256": "0048594797ef2fba000b10906065a8782f5dce5a2c36f1666cb7e1678fd3034e",
+      "bytes": 154486,
+      "mtime_ns": 1790947210703714286
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_crossmodal_propagation.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_crossmodal_propagation.py",
+      "sha256": "18986cece6fe5d70c45cf2adf8095d82d373a29eb237993a9b8e7fdd4c260cdc",
+      "bytes": 20979,
+      "mtime_ns": 1790947156930947669
+    },
+    "/home/wjq/workspace/svdquant-exp/results/research/E015/check.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E015/check.json",
+      "sha256": "e7bdfb444a11ea8398aa145ac5f2c9017e708bd053bd52bc53b85b62c287c03f",
+      "bytes": 75142,
+      "mtime_ns": 1790947242522759649
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/launch_h3_crossmodal_propagation.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/launch_h3_crossmodal_propagation.py",
+      "sha256": "a57611f8392c24b7b4f844b60ad765f6b4d974fdd1650ed5da51b397b8ccec47",
+      "bytes": 4025,
+      "mtime_ns": 1790946850433887671
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/launch_h3_plain_baseline.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/launch_h3_plain_baseline.py",
+      "sha256": "9fee4c6a0f690b6354081698f39e85a140e102a43ebe692501f84081f44c80fb",
+      "bytes": 4861,
+      "mtime_ns": 1790944699578366886
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/resume_h3_plain_baseline.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/resume_h3_plain_baseline.py",
+      "sha256": "f9f4e997e67590edda670f7b0c1b01bb3697ecae4fe8b40a12a153b4597253b1",
+      "bytes": 5571,
+      "mtime_ns": 1790945926523577517
+    },
+    "/home/wjq/workspace/svdquant-exp/results/research/E015/launcher.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E015/launcher.json",
+      "sha256": "1165510057aaf2924f49f1dfbfef844c51bc94b17d897b0687f4d760b9cd6628",
+      "bytes": 4577,
+      "mtime_ns": 1790947507310458827
+    },
+    "/home/wjq/workspace/svdquant-exp/results/research/E015/evaluate_bf16.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E015/evaluate_bf16.json",
+      "sha256": "8709100021cb74daea7029ecd780a11465410d95dcda4d23f4df4b395bc6a386",
+      "bytes": 49653,
+      "mtime_ns": 1790947354867450554
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/setup/bf16.json": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/setup/bf16.json",
+      "sha256": "796aea71b53b12c2fb22c0616bf04f0fac00f89b8d1248483a9a4497ba2d5026",
+      "bytes": 216682,
+      "mtime_ns": 1790947337327874320
+    },
+    "/home/wjq/workspace/svdquant-exp/results/research/E015/evaluate_svd.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E015/evaluate_svd.json",
+      "sha256": "012cff57d1cfcada225fc9150de68770822d57ab67a042ebec0e1870079b6c94",
+      "bytes": 110247,
+      "mtime_ns": 1790947434569069024
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/setup/svd.json": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/setup/svd.json",
+      "sha256": "1272875509e1521fcdda497ba6155ae11872d2a94a8ff9f546140e03587abe9d",
+      "bytes": 312903,
+      "mtime_ns": 1790947376686167373
+    },
+    "/home/wjq/workspace/svdquant-exp/results/research/E015/evaluate_plain.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E015/evaluate_plain.json",
+      "sha256": "be7530015cb28e927f3ac5c4f3b2afcde2d9b592245472c78c8a6fe43450d35d",
+      "bytes": 110585,
+      "mtime_ns": 1790947506160421044
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/setup/plain.json": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/setup/plain.json",
+      "sha256": "ae0c4c2d9868a02ec7fc16389d574a50742107f207e804ab82801a3cf60680f2",
+      "bytes": 324028,
+      "mtime_ns": 1790947456162778451
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E010/denoise_bf16/p030/s05_video.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E010/denoise_bf16/p030/s05_video.pt",
+      "sha256": "5b8554c7f9aab76e48c5613d30828443acbfbd008476e9a76e062b188529c4fb",
+      "bytes": 12278575,
+      "mtime_ns": 1790936996738496597
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E010/denoise_bf16/p030/s05_audio.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E010/denoise_bf16/p030/s05_audio.pt",
+      "sha256": "8f2b1b97fd63e3f1530cafedd9445b846a128fc5272d7e147913bfe5f8c1dfdb",
+      "bytes": 82287,
+      "mtime_ns": 1790936996757497221
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E010/denoise_bf16/p030/s06_video.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E010/denoise_bf16/p030/s06_video.pt",
+      "sha256": "b4d6b229b2927dc3fdf24976f4715ccfa5dcf991aaf5419e71fe3ee0fe1fd611",
+      "bytes": 12278575,
+      "mtime_ns": 1790937004637756236
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E010/denoise_bf16/p030/s06_audio.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E010/denoise_bf16/p030/s06_audio.pt",
+      "sha256": "9549dc961fb97a6e2093143903966a775bd2991f130386d1c7027a3f9cd660de",
+      "bytes": 82287,
+      "mtime_ns": 1790937004655756828
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E010/prepare/p030.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E010/prepare/p030.pt",
+      "sha256": "deacde742b509e24536d225f8e8fb21b892e71c2653e58e0026e822865f1108a",
+      "bytes": 9257279,
+      "mtime_ns": 1790936934894463860
+    },
+    "/home/wjq/workspace/svdquant-exp/results/research/E010_h3_denoise_bf16.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E010_h3_denoise_bf16.json",
+      "sha256": "7f4eff2df63c112e6dcab5504c80e485b76e601ccf32d10d4f64127a25a48eeb",
+      "bytes": 274839,
+      "mtime_ns": 1790937271364523217
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/bf16/e010_p030_s05.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/bf16/e010_p030_s05.pt",
+      "sha256": "3ed6e13f3f30451f2b42c575206088c2c0f1a5a937e1cdb366388136ef40e15c",
+      "bytes": 8243737,
+      "mtime_ns": 1790945733438251714
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/svd/e010_p030_s05.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/svd/e010_p030_s05.pt",
+      "sha256": "c178621c84be58b850c73d4fa9aa4be3006650ed94c174797b9409737dc66896",
+      "bytes": 8243737,
+      "mtime_ns": 1790945777642699927
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/plain/e010_p030_s05.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/plain/e010_p030_s05.pt",
+      "sha256": "6cafd450e567f8b35aba63f1d030f59f0cf051e8b849e8de823b504157f6382d",
+      "bytes": 8243737,
+      "mtime_ns": 1790945963212779518
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p030_s05/bf16_BB.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p030_s05/bf16_BB.pt",
+      "sha256": "413f36e3c39ecd90d8d9528f47ec4da29719ca3fffb3e8d14b47d019087e0fc2",
+      "bytes": 21616441,
+      "mtime_ns": 1790947209242666285
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/bf16/e010_p030_s05/BB.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/bf16/e010_p030_s05/BB.pt",
+      "sha256": "cd1614a4e1918379f36a7edcf5d3fdb8be8c9fcb1591fe927e84852c20fffa61",
+      "bytes": 24434093,
+      "mtime_ns": 1790947345893155718
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p030_s05/svd_BB.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p030_s05/svd_BB.pt",
+      "sha256": "8bd4a979aa5ac40fc735fbc99257ab933e76bac30403cc4e5252e4015344ff4d",
+      "bytes": 21616101,
+      "mtime_ns": 1790947209304668322
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p030_s05/BB.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p030_s05/BB.pt",
+      "sha256": "754936e67530935f9fbca653fc8cbb0510570d19ea2e5196fc498e167d7995dd",
+      "bytes": 24434093,
+      "mtime_ns": 1790947384131411975
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p030_s05/svd_QB.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p030_s05/svd_QB.pt",
+      "sha256": "566632623665bb404e42181cefc1959a6a912c42cf23693b8241081ffa98385e",
+      "bytes": 21616101,
+      "mtime_ns": 1790947209368670425
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p030_s05/QB.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p030_s05/QB.pt",
+      "sha256": "861202af9390b626f44601a9a0ea850cfa817ce0103d6a0f816ebecb95f4bd97",
+      "bytes": 24434093,
+      "mtime_ns": 1790947391176643435
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p030_s05/svd_BQ.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p030_s05/svd_BQ.pt",
+      "sha256": "2a2e0a859967c184373b5abcd20141d1e1c871e723295de63c144a6ee1187214",
+      "bytes": 21616101,
+      "mtime_ns": 1790947209431672495
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p030_s05/BQ.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p030_s05/BQ.pt",
+      "sha256": "54a5250d33f428b80f0ad7f5b9bc84247c6b88fe68999d1de8d92740a3bc6647",
+      "bytes": 24434093,
+      "mtime_ns": 1790947398210874533
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p030_s05/svd_QQ.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p030_s05/svd_QQ.pt",
+      "sha256": "03a59b1509d0a26843b372853494f779fa02e3fbf640be6d6b4f81e91a7b886f",
+      "bytes": 21616101,
+      "mtime_ns": 1790947209494674565
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p030_s05/QQ.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p030_s05/QQ.pt",
+      "sha256": "5c44ba4ef48ea1ac2898a4cb65a7d6d97d8b13d94305f037b9c89e392c4c4107",
+      "bytes": 24434093,
+      "mtime_ns": 1790947405244105599
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p030_s05/plain_BB.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p030_s05/plain_BB.pt",
+      "sha256": "ca0a5cb1cbe769e5af46e8b2d0d37c43fe0babe6595d1a43eb7203bb0573eafb",
+      "bytes": 21616717,
+      "mtime_ns": 1790947209557676635
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/plain/e010_p030_s05/BB.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/plain/e010_p030_s05/BB.pt",
+      "sha256": "c1a365eed3bd393df03dfc8ea6763fd87bdf3644e86b33c3e2d7e23afe01a6ee",
+      "bytes": 24434093,
+      "mtime_ns": 1790947462631990987
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p030_s05/plain_QB.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p030_s05/plain_QB.pt",
+      "sha256": "3378ef0af7f8fb210bd96fd64bf38e9333507b0463a6afb31341a89e9aaa7baa",
+      "bytes": 21616717,
+      "mtime_ns": 1790947209620678704
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/plain/e010_p030_s05/QB.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/plain/e010_p030_s05/QB.pt",
+      "sha256": "add3c47fc58a1e3dded186dfa8b310a8b9f7807e2eeb79f0ef9f8cce061e3a13",
+      "bytes": 24434093,
+      "mtime_ns": 1790947468684189822
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p030_s05/plain_BQ.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p030_s05/plain_BQ.pt",
+      "sha256": "7bac3d7bb348e18bb39cf45e5c4c5b6179b6c787f98086f2acac635ece9aa655",
+      "bytes": 21616717,
+      "mtime_ns": 1790947209683680774
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/plain/e010_p030_s05/BQ.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/plain/e010_p030_s05/BQ.pt",
+      "sha256": "15c1758b48cf9f4d1abcaffa46b8549b62b9025c9f8052d6f722007a0853e97c",
+      "bytes": 24434093,
+      "mtime_ns": 1790947474759389413
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p030_s05/plain_QQ.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p030_s05/plain_QQ.pt",
+      "sha256": "71dc81aab168f2aa2cd341f7fea45f10c5eb9f85e280ece2c823920843cda6d4",
+      "bytes": 21616717,
+      "mtime_ns": 1790947209749682943
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/plain/e010_p030_s05/QQ.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/plain/e010_p030_s05/QQ.pt",
+      "sha256": "9e26cafb7825515c557658e5fc3ff46518cd23549583ad3dbb6682e2c84516b7",
+      "bytes": 24434093,
+      "mtime_ns": 1790947480826588741
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E010/denoise_bf16/p036/s14_video.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E010/denoise_bf16/p036/s14_video.pt",
+      "sha256": "6ec6d933a1bdd4d41d4b081f76755798a814791ba538948cf0b97a5e04f2ce26",
+      "bytes": 12278575,
+      "mtime_ns": 1790937230372175849
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E010/denoise_bf16/p036/s14_audio.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E010/denoise_bf16/p036/s14_audio.pt",
+      "sha256": "ca1efe5d3ac60b308200e15095d674c6d17525b45078197b857271ff86831428",
+      "bytes": 82287,
+      "mtime_ns": 1790937230389176408
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E010/denoise_bf16/p036/s15_video.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E010/denoise_bf16/p036/s15_video.pt",
+      "sha256": "6baef2b77a0d1c5bf7638f26e366f37659ea4ae8bd0872914e10872126392a19",
+      "bytes": 12278575,
+      "mtime_ns": 1790937238520443673
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E010/denoise_bf16/p036/s15_audio.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E010/denoise_bf16/p036/s15_audio.pt",
+      "sha256": "91c47220e658285745bd9516f1f4daa66ff94c1a673cda5439cc170fe5b94594",
+      "bytes": 82287,
+      "mtime_ns": 1790937238538444264
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E010/prepare/p036.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E010/prepare/p036.pt",
+      "sha256": "fc54887b3e504de37471c5f88bd2d235a6af192abdd5f09d382365011bc99c20",
+      "bytes": 12455935,
+      "mtime_ns": 1790936937212540052
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/bf16/e010_p036_s14.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/bf16/e010_p036_s14.pt",
+      "sha256": "ce7df07cb7243301b978743992c1a977815dd14510af6be80dee567c45ec04e7",
+      "bytes": 8243737,
+      "mtime_ns": 1790945742114535964
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/svd/e010_p036_s14.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/svd/e010_p036_s14.pt",
+      "sha256": "b2eab44758f17fe368f5376e877fcd11c16ed940b3b6c13e3924f34f0b1e2516",
+      "bytes": 8243737,
+      "mtime_ns": 1790945784825935262
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/plain/e010_p036_s14.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/plain/e010_p036_s14.pt",
+      "sha256": "45047b2b1cedc593774be811de866a43ef99062beac8210978ea08b96f026bf9",
+      "bytes": 8243737,
+      "mtime_ns": 1790945969378981533
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p036_s14/bf16_BB.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p036_s14/bf16_BB.pt",
+      "sha256": "8e6b6ca817a1a900a76b7031316a54ef0244486b15478afedf35a46a9472f1a7",
+      "bytes": 24813817,
+      "mtime_ns": 1790947210129695427
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/bf16/e010_p036_s14/BB.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/bf16/e010_p036_s14/BB.pt",
+      "sha256": "dc44755a2f5aaeee68ac4a7446c58eb13944b7deaffa59f3210d9fca18d091e5",
+      "bytes": 27726189,
+      "mtime_ns": 1790947354607442012
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p036_s14/svd_BB.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p036_s14/svd_BB.pt",
+      "sha256": "a44ef30d249368b14bdb09a93824f57449b637e78a8bee17d74115e8a8998a83",
+      "bytes": 24813477,
+      "mtime_ns": 1790947210193697530
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p036_s14/BB.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p036_s14/BB.pt",
+      "sha256": "5cfc6596777d7c234cf8d33070c9d94d7d5147542ef9a4c8ecfd1efe3773c6f3",
+      "bytes": 27726189,
+      "mtime_ns": 1790947412492343728
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p036_s14/svd_QB.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p036_s14/svd_QB.pt",
+      "sha256": "deb64a8735a71e95ddadacaab2924285ac9398fdf2aa970d5e1b86d8bf1578d1",
+      "bytes": 24813477,
+      "mtime_ns": 1790947210258699666
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p036_s14/QB.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p036_s14/QB.pt",
+      "sha256": "7bfb5b2aa166081b3129fe3b8fdb316a7e387619550ae87325eff2a3f029ee74",
+      "bytes": 27726189,
+      "mtime_ns": 1790947419765582679
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p036_s14/svd_BQ.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p036_s14/svd_BQ.pt",
+      "sha256": "16007ebda2118dcac8194a17ee59e68f60cf57bf5ba0b43a98d7120dde572928",
+      "bytes": 24813477,
+      "mtime_ns": 1790947210322701768
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p036_s14/BQ.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p036_s14/BQ.pt",
+      "sha256": "70850a836fd05655b2ccbaa4d1ed5432521231ab2215bb75ab28d7a62d509f15",
+      "bytes": 27726189,
+      "mtime_ns": 1790947427032821432
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p036_s14/svd_QQ.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p036_s14/svd_QQ.pt",
+      "sha256": "6016c4adf6c356696b46561506c288f4086c6b18b6e621a09893a68563d09070",
+      "bytes": 24813477,
+      "mtime_ns": 1790947210385703838
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p036_s14/QQ.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p036_s14/QQ.pt",
+      "sha256": "ab093846837ee14cff0a38bce97ab18daacdebc6e8d326f55eb76f8688bc86cd",
+      "bytes": 27726189,
+      "mtime_ns": 1790947434318060777
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p036_s14/plain_BB.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p036_s14/plain_BB.pt",
+      "sha256": "cd05be48314d47b4b67bd1fd82ce7bbe2f98ad5d026eb73c558c007ef4d3f503",
+      "bytes": 24814093,
+      "mtime_ns": 1790947210449705941
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/plain/e010_p036_s14/BB.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/plain/e010_p036_s14/BB.pt",
+      "sha256": "6575aedb9132c1434b7adcbc7e956c7cc835c21bef373b8f3d1bec5878b802fa",
+      "bytes": 27726189,
+      "mtime_ns": 1790947487097794772
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p036_s14/plain_QB.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p036_s14/plain_QB.pt",
+      "sha256": "c939df755a1b747bdd3dea49e67f9ea8580a490dd3ac600e4f3adcb04be27ddd",
+      "bytes": 24814093,
+      "mtime_ns": 1790947210513708043
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/plain/e010_p036_s14/QB.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/plain/e010_p036_s14/QB.pt",
+      "sha256": "a09e9b9ebbf26c47ada1bec2c6938c882af9f6c5960dc759e0b45f2262a167ef",
+      "bytes": 27726189,
+      "mtime_ns": 1790947493369000802
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p036_s14/plain_BQ.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p036_s14/plain_BQ.pt",
+      "sha256": "ed52e6cf92fe23fc630cd68cfa78bc34148d9273eaa47a909414a78469addd30",
+      "bytes": 24814093,
+      "mtime_ns": 1790947210580710245
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/plain/e010_p036_s14/BQ.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/plain/e010_p036_s14/BQ.pt",
+      "sha256": "b644c4573e1c7594859fafe65013fb62e5085ec3c28242e35e4ab8db584460f6",
+      "bytes": 27726189,
+      "mtime_ns": 1790947499649207129
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p036_s14/plain_QQ.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p036_s14/plain_QQ.pt",
+      "sha256": "028da5426bca88e62cfd1e7ef6eda2bca36bb54b33a477d20431d13be3caebab",
+      "bytes": 24814093,
+      "mtime_ns": 1790947210644712347
+    },
+    "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/plain/e010_p036_s14/QQ.pt": {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/plain/e010_p036_s14/QQ.pt",
+      "sha256": "7af4c0aa14755a98330f220646b9aaecd69d037e7fee35e03da85939be1aa74e",
+      "bytes": 27726189,
+      "mtime_ns": 1790947505928413422
+    }
+  },
+  "cuda_initialized": false,
+  "limitations": [
+    "No BF16 QB/BQ/QQ model calls: no claim of quantization-induced intrinsic sensitivity.",
+    "Oracle effects include attention, shared quantization scales and all downstream paths.",
+    "Unequal modality/recipe perturbation directions and scheduler step sizes; not equal-amplitude Jacobians.",
+    "Two-step latent fidelity, not free-rollout quality or deployable oracle restoration."
+  ],
+  "seconds_total": 3.4470354120712727
+}

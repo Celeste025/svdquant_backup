@@ -1,0 +1,174 @@
+{
+  "experiment": "E055",
+  "phase": "check",
+  "status": "complete",
+  "script_sha256": "96547de868c2c7d27ca53ce113f7d16dc48de18bfedc791c73a438af8658e19e",
+  "manifest_path": null,
+  "checkpoint": {
+    "path": "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors",
+    "key": "final_layer.video_out.weight",
+    "stored_dtype": "torch.float32",
+    "actual_computation_dtype": "torch.bfloat16",
+    "shape": [
+      96,
+      5376
+    ],
+    "checkpoint_bytes": 40225724176,
+    "small_bf16_head_sha256": "bbe351757fd88724bace07dbf09702724015a4be39c88dcf66a1f6cb2e911b85"
+  },
+  "geometry": {
+    "error_tensor_axes": [
+      "latent_time",
+      "channel",
+      "latent_h",
+      "latent_w"
+    ],
+    "shape": [
+      37,
+      24,
+      36,
+      64
+    ],
+    "output_row_index": "4*channel+2*phase_h+phase_w",
+    "phases": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "common_origin_support_exclusive": [
+      0,
+      34,
+      0,
+      62
+    ],
+    "source_pairs_per_phase": 527
+  },
+  "centering": "per-time-per-channel spatial mean",
+  "null": {
+    "model": "iid zero-mean isotropic noise immediately before actual BF16 video_out",
+    "computation": "FP64 analytic real-linear head covariance; includes finite-grid spatial-mean subtraction",
+    "limitations": [
+      "Does not model BF16 output rounding or nonlinear RMSNorm/modulation before the perturbation site",
+      "Does not exclude colored or channel-anisotropic hidden error",
+      "No hidden residual captured or reconstructed; no quality or novelty claim"
+    ]
+  },
+  "cases": [
+    {
+      "case_id": "e009_p001_s00",
+      "same_actual_input_signatures": true,
+      "artifacts": {
+        "bf16": {
+          "path": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/bf16/e009_p001_s00.pt",
+          "bytes": 4123989,
+          "raw_video_shape": [
+            21312,
+            96
+          ],
+          "raw_video_dtype": "torch.bfloat16"
+        },
+        "plain": {
+          "path": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/plain/e009_p001_s00.pt",
+          "bytes": 4123989,
+          "raw_video_shape": [
+            21312,
+            96
+          ],
+          "raw_video_dtype": "torch.bfloat16"
+        },
+        "svd": {
+          "path": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/svd/e009_p001_s00.pt",
+          "bytes": 4123989,
+          "raw_video_shape": [
+            21312,
+            96
+          ],
+          "raw_video_dtype": "torch.bfloat16"
+        }
+      }
+    },
+    {
+      "case_id": "e010_p030_s05",
+      "same_actual_input_signatures": true,
+      "artifacts": {
+        "bf16": {
+          "path": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/bf16/e010_p030_s05.pt",
+          "bytes": 8243737,
+          "raw_video_shape": [
+            21312,
+            96
+          ],
+          "raw_video_dtype": "torch.bfloat16"
+        },
+        "plain": {
+          "path": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/plain/e010_p030_s05.pt",
+          "bytes": 8243737,
+          "raw_video_shape": [
+            21312,
+            96
+          ],
+          "raw_video_dtype": "torch.bfloat16"
+        },
+        "svd": {
+          "path": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/svd/e010_p030_s05.pt",
+          "bytes": 8243737,
+          "raw_video_shape": [
+            21312,
+            96
+          ],
+          "raw_video_dtype": "torch.bfloat16"
+        }
+      }
+    },
+    {
+      "case_id": "e010_p036_s14",
+      "same_actual_input_signatures": true,
+      "artifacts": {
+        "bf16": {
+          "path": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/bf16/e010_p036_s14.pt",
+          "bytes": 8243737,
+          "raw_video_shape": [
+            21312,
+            96
+          ],
+          "raw_video_dtype": "torch.bfloat16"
+        },
+        "plain": {
+          "path": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/plain/e010_p036_s14.pt",
+          "bytes": 8243737,
+          "raw_video_shape": [
+            21312,
+            96
+          ],
+          "raw_video_dtype": "torch.bfloat16"
+        },
+        "svd": {
+          "path": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/svd/e010_p036_s14.pt",
+          "bytes": 8243737,
+          "raw_video_shape": [
+            21312,
+            96
+          ],
+          "raw_video_dtype": "torch.bfloat16"
+        }
+      }
+    }
+  ],
+  "cuda_initialized": false,
+  "gpu_calls": 0,
+  "model_forwards": 0,
+  "seconds": 0.059435782954096794
+}

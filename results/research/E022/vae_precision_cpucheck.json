@@ -1,0 +1,63 @@
+{
+  "status": "complete",
+  "phase": "CPU_prepare",
+  "cuda_initialized": false,
+  "source": {
+    "path": "/home/wjq/workspace/svdquant-exp/scripts/research/diagnose_wan_vae_precision.py",
+    "bytes": 16049,
+    "sha256": "8193ed5aa32f49921a1cbad98a479ee37056e2bc0af8a1d1e05e4fb56cd3e8d6"
+  },
+  "cases": {
+    "vbench_197_r0": {
+      "prompt": "football field",
+      "seed": 20261124,
+      "input": {
+        "path": "/data1/models/svdquant-wjq/research/20261003/E022/videos/bf16/vbench_197_r0/final_latent.pt",
+        "bytes": 15976076,
+        "sha256": "efe2cbd22db5c2334838781573102c24bc0303ab0bc1dacca18cda246a42be47"
+      },
+      "tensor_sha256": "8e37d8c2fd330917451d76f8d81a114415006f01fd5ee564524782bba1f5d085"
+    },
+    "vbench_133_r0": {
+      "prompt": "Gwen Stacy reading a book",
+      "seed": 20261118,
+      "input": {
+        "path": "/data1/models/svdquant-wjq/research/20261003/E022/videos/bf16/vbench_133_r0/final_latent.pt",
+        "bytes": 15976076,
+        "sha256": "c18465643b4027847df6a063839996d6b8f2f4840cb7ea0a09f7ed0c477599a5"
+      },
+      "tensor_sha256": "249c2733ef0b238b4871ea42de4fde56df3ad85b440c12ccd55aba414120d2f5"
+    }
+  },
+  "planned_vae_decodes": 4,
+  "planned_dit_calls": 0,
+  "vae_dtypes": [
+    "bfloat16",
+    "float32"
+  ],
+  "same_normalization_formula": "saved FP64 latent -> FP32 -> VAE dtype; latent / (1 / config.latents_std in VAE dtype) + config.latents_mean in VAE dtype",
+  "normalization_limit": "Only dtype changes. This includes normalization rounding, VAE weight rounding and arithmetic; it is not an isolated convolution-precision experiment.",
+  "spatial_decode": {
+    "latent_hw": [
+      60,
+      104
+    ],
+    "core": 128,
+    "halo": 0,
+    "actual_spatial_tiles": 1
+  },
+  "frames": 77,
+  "fps": 16,
+  "saved_frame_indices": [
+    0,
+    19,
+    38,
+    57,
+    76
+  ],
+  "gpu": 2,
+  "wall_seconds": 600,
+  "checkpoint": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/vae",
+  "official_example": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/README.md:175",
+  "purpose": "Test whether the existing decode precision configuration materially changes the fixed bad/good examples. Neither input is discarded; no quantization-quality claim."
+}

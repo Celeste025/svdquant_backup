@@ -1,0 +1,453 @@
+{
+  "status": "complete",
+  "started": 1790932162.9756017,
+  "torch": "2.11.0+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "cuda_visible_devices": "0",
+  "scope": "packing correctness; no performance measurement",
+  "seed": 20261002,
+  "reference": "unchanged function ASTs from frozen E005 and H3 common",
+  "source_sha256": {
+    "scripts/research/test_h3_nvfp4_fastpack.py": "46721598d83114e83a6fa084c2b615b470953ad3765623ea576f008f085a01bd",
+    "scripts/research/h3_nvfp4_fastpack.py": "f5a22a9e3f23d7903403017575e1a63c1cb42e04b0230256a5808902bbc198b7",
+    "scripts/research/probe_h3_native_contract.py": "0be4b1fb4a67f52e2c618ef492f49e1285cc14b57c2e6ceffbc6fa578a011c83",
+    "scripts/minimax_h3_svdquant_common.py": "d0fca20f98a40c3aa20773faa47e6d6b986811f6cd03802723021fd50383ae61",
+    "scripts/research/wan_native_nvfp4.py": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa"
+  },
+  "cases": [
+    {
+      "name": "e2m1_signed_midpoints_and_zero",
+      "shape": [
+        17,
+        32
+      ],
+      "domain_flags": [
+        0,
+        0
+      ],
+      "byte_mismatches": {
+        "codes": 0,
+        "global_scale": 0,
+        "swizzled_scales_including_padding": 0
+      },
+      "reference_stats": {
+        "exact_midpoints": 224,
+        "negative_exact_midpoints": 112,
+        "legacy_rne_code_changes": 112,
+        "near_midpoints_atol_1e-6_including_exact": 224,
+        "nonzero_subnormal_scales": 0,
+        "zero_scales": 0,
+        "all_zero_input_groups": 0,
+        "nonzero_input_groups_with_zero_scale": 0,
+        "nonfinite_normalized_values": 0,
+        "scales_at_448": 2,
+        "elements": 544,
+        "groups": 34,
+        "global_scale": 1.0,
+        "midpoint_fraction": 0.4117647058823529,
+        "changed_code_fraction": 0.20588235294117646,
+        "scale_padding_excluded": true
+      },
+      "decoded_equal_historical_qdq": true,
+      "decoded_vs_qdq_byte_differences": 32,
+      "decode_zero_sign_note": "E005 keeps a negative-zero nibble for small negative z; historical signed15 QDQ uses +0. Equal values are required; the packed bytes themselves match E005 exactly.",
+      "seconds_not_benchmark": 0.4794435501098633
+    },
+    {
+      "name": "e4m3_midpoints_including_subnormals",
+      "shape": [
+        126,
+        32
+      ],
+      "domain_flags": [
+        0,
+        0
+      ],
+      "byte_mismatches": {
+        "codes": 0,
+        "global_scale": 0,
+        "swizzled_scales_including_padding": 0
+      },
+      "reference_stats": {
+        "exact_midpoints": 0,
+        "negative_exact_midpoints": 0,
+        "legacy_rne_code_changes": 0,
+        "near_midpoints_atol_1e-6_including_exact": 0,
+        "nonzero_subnormal_scales": 12,
+        "zero_scales": 0,
+        "all_zero_input_groups": 0,
+        "nonzero_input_groups_with_zero_scale": 0,
+        "nonfinite_normalized_values": 0,
+        "scales_at_448": 4,
+        "elements": 4032,
+        "groups": 252,
+        "global_scale": 1.0,
+        "midpoint_fraction": 0.0,
+        "changed_code_fraction": 0.0,
+        "scale_padding_excluded": true
+      },
+      "decoded_equal_historical_qdq": true,
+      "decoded_vs_qdq_byte_differences": 0,
+      "decode_zero_sign_note": "E005 keeps a negative-zero nibble for small negative z; historical signed15 QDQ uses +0. Equal values are required; the packed bytes themselves match E005 exactly.",
+      "seconds_not_benchmark": 0.25377392768859863
+    },
+    {
+      "name": "all_zero_with_negative_zero",
+      "shape": [
+        129,
+        64
+      ],
+      "domain_flags": [
+        0,
+        0
+      ],
+      "byte_mismatches": {
+        "codes": 0,
+        "global_scale": 0,
+        "swizzled_scales_including_padding": 0
+      },
+      "reference_stats": {
+        "exact_midpoints": 0,
+        "negative_exact_midpoints": 0,
+        "legacy_rne_code_changes": 0,
+        "near_midpoints_atol_1e-6_including_exact": 0,
+        "nonzero_subnormal_scales": 0,
+        "zero_scales": 0,
+        "all_zero_input_groups": 516,
+        "nonzero_input_groups_with_zero_scale": 0,
+        "nonfinite_normalized_values": 0,
+        "scales_at_448": 0,
+        "elements": 8256,
+        "groups": 516,
+        "global_scale": 9.999999960041972e-13,
+        "midpoint_fraction": 0.0,
+        "changed_code_fraction": 0.0,
+        "scale_padding_excluded": true
+      },
+      "decoded_equal_historical_qdq": true,
+      "decoded_vs_qdq_byte_differences": 0,
+      "decode_zero_sign_note": "E005 keeps a negative-zero nibble for small negative z; historical signed15 QDQ uses +0. Equal values are required; the packed bytes themselves match E005 exactly.",
+      "seconds_not_benchmark": 0.25430965423583984
+    },
+    {
+      "name": "zero_sf_zero_groups_and_subnormal_sf_tail",
+      "shape": [
+        129,
+        48
+      ],
+      "domain_flags": [
+        0,
+        0
+      ],
+      "byte_mismatches": {
+        "codes": 0,
+        "global_scale": 0,
+        "swizzled_scales_including_padding": 0
+      },
+      "reference_stats": {
+        "exact_midpoints": 0,
+        "negative_exact_midpoints": 0,
+        "legacy_rne_code_changes": 0,
+        "near_midpoints_atol_1e-6_including_exact": 0,
+        "nonzero_subnormal_scales": 1,
+        "zero_scales": 383,
+        "all_zero_input_groups": 383,
+        "nonzero_input_groups_with_zero_scale": 0,
+        "nonfinite_normalized_values": 0,
+        "scales_at_448": 3,
+        "elements": 6192,
+        "groups": 387,
+        "global_scale": 1.0,
+        "midpoint_fraction": 0.0,
+        "changed_code_fraction": 0.0,
+        "scale_padding_excluded": true
+      },
+      "decoded_equal_historical_qdq": true,
+      "decoded_vs_qdq_byte_differences": 6128,
+      "decode_zero_sign_note": "E005 keeps a negative-zero nibble for small negative z; historical signed15 QDQ uses +0. Equal values are required; the packed bytes themselves match E005 exactly.",
+      "seconds_not_benchmark": 0.25116586685180664
+    },
+    {
+      "name": "bf16_small_normal_and_subnormal",
+      "shape": [
+        7,
+        32
+      ],
+      "domain_flags": [
+        0,
+        0
+      ],
+      "byte_mismatches": {
+        "codes": 0,
+        "global_scale": 0,
+        "swizzled_scales_including_padding": 0
+      },
+      "reference_stats": {
+        "exact_midpoints": 0,
+        "negative_exact_midpoints": 0,
+        "legacy_rne_code_changes": 0,
+        "near_midpoints_atol_1e-6_including_exact": 0,
+        "nonzero_subnormal_scales": 0,
+        "zero_scales": 0,
+        "all_zero_input_groups": 0,
+        "nonzero_input_groups_with_zero_scale": 0,
+        "nonfinite_normalized_values": 0,
+        "scales_at_448": 0,
+        "elements": 224,
+        "groups": 14,
+        "global_scale": 9.999999960041972e-13,
+        "midpoint_fraction": 0.0,
+        "changed_code_fraction": 0.0,
+        "scale_padding_excluded": true
+      },
+      "decoded_equal_historical_qdq": true,
+      "decoded_vs_qdq_byte_differences": 112,
+      "decode_zero_sign_note": "E005 keeps a negative-zero nibble for small negative z; historical signed15 QDQ uses +0. Equal values are required; the packed bytes themselves match E005 exactly.",
+      "seconds_not_benchmark": 0.2601785659790039
+    },
+    {
+      "name": "tail_257_48",
+      "shape": [
+        257,
+        48
+      ],
+      "domain_flags": [
+        0,
+        0
+      ],
+      "byte_mismatches": {
+        "codes": 0,
+        "global_scale": 0,
+        "swizzled_scales_including_padding": 0
+      },
+      "reference_stats": {
+        "exact_midpoints": 26,
+        "negative_exact_midpoints": 9,
+        "legacy_rne_code_changes": 12,
+        "near_midpoints_atol_1e-6_including_exact": 30,
+        "nonzero_subnormal_scales": 0,
+        "zero_scales": 0,
+        "all_zero_input_groups": 0,
+        "nonzero_input_groups_with_zero_scale": 0,
+        "nonfinite_normalized_values": 0,
+        "scales_at_448": 2,
+        "elements": 12336,
+        "groups": 771,
+        "global_scale": 0.0014241536846384406,
+        "midpoint_fraction": 0.002107652399481193,
+        "changed_code_fraction": 0.0009727626459143969,
+        "scale_padding_excluded": true
+      },
+      "decoded_equal_historical_qdq": true,
+      "decoded_vs_qdq_byte_differences": 458,
+      "decode_zero_sign_note": "E005 keeps a negative-zero nibble for small negative z; historical signed15 QDQ uses +0. Equal values are required; the packed bytes themselves match E005 exactly.",
+      "seconds_not_benchmark": 0.2561006546020508
+    },
+    {
+      "name": "batched_shape_3_17_32",
+      "shape": [
+        3,
+        17,
+        32
+      ],
+      "domain_flags": [
+        0,
+        0
+      ],
+      "byte_mismatches": {
+        "codes": 0,
+        "global_scale": 0,
+        "swizzled_scales_including_padding": 0
+      },
+      "reference_stats": {
+        "exact_midpoints": 2,
+        "negative_exact_midpoints": 2,
+        "legacy_rne_code_changes": 0,
+        "near_midpoints_atol_1e-6_including_exact": 2,
+        "nonzero_subnormal_scales": 0,
+        "zero_scales": 0,
+        "all_zero_input_groups": 0,
+        "nonzero_input_groups_with_zero_scale": 0,
+        "nonfinite_normalized_values": 0,
+        "scales_at_448": 4,
+        "elements": 1632,
+        "groups": 102,
+        "global_scale": 0.0011625743936747313,
+        "midpoint_fraction": 0.0012254901960784314,
+        "changed_code_fraction": 0.0,
+        "scale_padding_excluded": true
+      },
+      "decoded_equal_historical_qdq": true,
+      "decoded_vs_qdq_byte_differences": 66,
+      "decode_zero_sign_note": "E005 keeps a negative-zero nibble for small negative z; historical signed15 QDQ uses +0. Equal values are required; the packed bytes themselves match E005 exactly.",
+      "seconds_not_benchmark": 0.24550986289978027
+    },
+    {
+      "name": "random_realshape_qkv_22400_5376",
+      "shape": [
+        22400,
+        5376
+      ],
+      "domain_flags": [
+        0,
+        0
+      ],
+      "byte_mismatches": {
+        "codes": 0,
+        "global_scale": 0,
+        "swizzled_scales_including_padding": 0
+      },
+      "reference_stats": {
+        "exact_midpoints": 532524,
+        "negative_exact_midpoints": 266015,
+        "legacy_rne_code_changes": 266543,
+        "near_midpoints_atol_1e-6_including_exact": 532524,
+        "nonzero_subnormal_scales": 0,
+        "zero_scales": 0,
+        "all_zero_input_groups": 0,
+        "nonzero_input_groups_with_zero_scale": 0,
+        "nonfinite_normalized_values": 0,
+        "scales_at_448": 2,
+        "elements": 120422400,
+        "groups": 7526400,
+        "global_scale": 0.002197265625,
+        "midpoint_fraction": 0.0044221340880102045,
+        "changed_code_fraction": 0.002213400496917517,
+        "scale_padding_excluded": true
+      },
+      "decoded_equal_historical_qdq": true,
+      "decoded_vs_qdq_byte_differences": 4088455,
+      "decode_zero_sign_note": "E005 keeps a negative-zero nibble for small negative z; historical signed15 QDQ uses +0. Equal values are required; the packed bytes themselves match E005 exactly.",
+      "seconds_not_benchmark": 0.5130493640899658
+    },
+    {
+      "name": "random_realshape_out_22400_7168",
+      "shape": [
+        22400,
+        7168
+      ],
+      "domain_flags": [
+        0,
+        0
+      ],
+      "byte_mismatches": {
+        "codes": 0,
+        "global_scale": 0,
+        "swizzled_scales_including_padding": 0
+      },
+      "reference_stats": {
+        "exact_midpoints": 294424,
+        "negative_exact_midpoints": 147173,
+        "legacy_rne_code_changes": 147174,
+        "near_midpoints_atol_1e-6_including_exact": 859774,
+        "nonzero_subnormal_scales": 0,
+        "zero_scales": 0,
+        "all_zero_input_groups": 0,
+        "nonzero_input_groups_with_zero_scale": 0,
+        "nonfinite_normalized_values": 0,
+        "scales_at_448": 2,
+        "elements": 160563200,
+        "groups": 10035200,
+        "global_scale": 0.0022321429569274187,
+        "midpoint_fraction": 0.0018336953922193878,
+        "changed_code_fraction": 0.0009166110291772959,
+        "scale_padding_excluded": true
+      },
+      "decoded_equal_historical_qdq": true,
+      "decoded_vs_qdq_byte_differences": 5457974,
+      "decode_zero_sign_note": "E005 keeps a negative-zero nibble for small negative z; historical signed15 QDQ uses +0. Equal values are required; the packed bytes themselves match E005 exactly.",
+      "seconds_not_benchmark": 0.5541555881500244
+    },
+    {
+      "name": "random_realshape_fc1_22400_5376",
+      "shape": [
+        22400,
+        5376
+      ],
+      "domain_flags": [
+        0,
+        0
+      ],
+      "byte_mismatches": {
+        "codes": 0,
+        "global_scale": 0,
+        "swizzled_scales_including_padding": 0
+      },
+      "reference_stats": {
+        "exact_midpoints": 43959,
+        "negative_exact_midpoints": 22067,
+        "legacy_rne_code_changes": 21892,
+        "near_midpoints_atol_1e-6_including_exact": 237066,
+        "nonzero_subnormal_scales": 0,
+        "zero_scales": 0,
+        "all_zero_input_groups": 0,
+        "nonzero_input_groups_with_zero_scale": 0,
+        "nonfinite_normalized_values": 0,
+        "scales_at_448": 4,
+        "elements": 120422400,
+        "groups": 7526400,
+        "global_scale": 0.0021391368936747313,
+        "midpoint_fraction": 0.00036504005899234694,
+        "changed_code_fraction": 0.00018179342049319728,
+        "scale_padding_excluded": true
+      },
+      "decoded_equal_historical_qdq": true,
+      "decoded_vs_qdq_byte_differences": 4091417,
+      "decode_zero_sign_note": "E005 keeps a negative-zero nibble for small negative z; historical signed15 QDQ uses +0. Equal values are required; the packed bytes themselves match E005 exactly.",
+      "seconds_not_benchmark": 0.21662354469299316
+    },
+    {
+      "name": "random_realshape_fc2_22400_14336",
+      "shape": [
+        22400,
+        14336
+      ],
+      "domain_flags": [
+        0,
+        0
+      ],
+      "byte_mismatches": {
+        "codes": 0,
+        "global_scale": 0,
+        "swizzled_scales_including_padding": 0
+      },
+      "reference_stats": {
+        "exact_midpoints": 756868,
+        "negative_exact_midpoints": 378372,
+        "legacy_rne_code_changes": 378684,
+        "near_midpoints_atol_1e-6_including_exact": 1027914,
+        "nonzero_subnormal_scales": 0,
+        "zero_scales": 0,
+        "all_zero_input_groups": 0,
+        "nonzero_input_groups_with_zero_scale": 0,
+        "nonfinite_normalized_values": 0,
+        "scales_at_448": 1,
+        "elements": 321126400,
+        "groups": 20070400,
+        "global_scale": 0.0023018973879516125,
+        "midpoint_fraction": 0.0023569161551339284,
+        "changed_code_fraction": 0.0011792365872130102,
+        "scale_padding_excluded": true
+      },
+      "decoded_equal_historical_qdq": true,
+      "decoded_vs_qdq_byte_differences": 10915740,
+      "decode_zero_sign_note": "E005 keeps a negative-zero nibble for small negative z; historical signed15 QDQ uses +0. Equal values are required; the packed bytes themselves match E005 exactly.",
+      "seconds_not_benchmark": 0.8149449825286865
+    }
+  ],
+  "rejections": {
+    "nonzero_sf0": true,
+    "e4m3_zero_min_subnormal_midpoint": true,
+    "nan": true,
+    "inf": true,
+    "negative_inf": true,
+    "deferred_check_after_valid_then_invalid": true,
+    "context_restoration": true
+  },
+  "nonzero_sf0_flags": [
+    0,
+    1
+  ],
+  "elapsed_seconds_not_benchmark": 5.402878999710083
+}

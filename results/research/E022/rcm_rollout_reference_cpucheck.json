@@ -1,0 +1,47 @@
+{
+  "status": "complete",
+  "phase": "CPU_prepare",
+  "cuda_initialized": false,
+  "source": {
+    "path": "/home/wjq/workspace/svdquant-exp/scripts/research/compare_rcm_rollout_reference.py",
+    "bytes": 22413,
+    "sha256": "13e56ba257cb7201976bc212423abe59a130dceec8a4e3af1009272dd2042800"
+  },
+  "cases": {
+    "vbench_197_r0": {
+      "prompt": "football field",
+      "seed": 20261124,
+      "shared_inputs": "/data1/models/svdquant-wjq/research/20261003/E022/videos/shared_inputs/vbench_197_r0.pt",
+      "converted_final": {
+        "path": "/data1/models/svdquant-wjq/research/20261003/E022/videos/bf16/vbench_197_r0/final_latent.pt",
+        "bytes": 15976076,
+        "sha256": "efe2cbd22db5c2334838781573102c24bc0303ab0bc1dacca18cda246a42be47"
+      }
+    },
+    "vbench_133_r0": {
+      "prompt": "Gwen Stacy reading a book",
+      "seed": 20261118,
+      "shared_inputs": "/data1/models/svdquant-wjq/research/20261003/E022/videos/shared_inputs/vbench_133_r0.pt",
+      "converted_final": {
+        "path": "/data1/models/svdquant-wjq/research/20261003/E022/videos/bf16/vbench_133_r0/final_latent.pt",
+        "bytes": 15976076,
+        "sha256": "c18465643b4027847df6a063839996d6b8f2f4840cb7ea0a09f7ed0c477599a5"
+      }
+    }
+  },
+  "planned_dit_calls": 8,
+  "planned_sdpa_calls": 480,
+  "planned_vae_decodes": 4,
+  "gpu": 0,
+  "wall_seconds": 900,
+  "checkpoint_metadata": {
+    "path": "/data1/models/svdquant-wjq/models/rcm-Wan/rCM_Wan2.1_T2V_1.3B_480p.pt",
+    "bytes": 2838262729
+  },
+  "original_checkpoint_keys_and_shapes_match": true,
+  "original_umt5": "Unavailable: only incomplete original .pth found. No load/download/reconstruction; original and converted paths share E022 cached real embeddings.",
+  "precision_policy": "Original source FP32-required time_embedding, time_projection, Head and affine WanLayerNorm parameters are explicitly FP32; other backbone weights/inputs and QKV attention are BF16. Original-source velocity remains its actual output dtype. This is a documented runtime compatibility policy, not a verbatim execution of the public all-BF16 loader.",
+  "cpu_toy_output_dtype": "torch.float32",
+  "cpu_toy_attention": "MATH only; GPU runner forces FLASH",
+  "scope": "Controlled original architecture and original weights with fixed existing conditioning/noises, not complete original-UMT5 end-to-end reproduction."
+}

@@ -1,0 +1,98 @@
+{
+  "experiment": "E039",
+  "status": "complete",
+  "source": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_output_projection_parallel.py",
+    "bytes": 22983,
+    "sha256": "0feca17c5491b499a0aa414fdc93d8fe48b50fd04fbdf382faf83dd2a528eb84"
+  },
+  "launcher": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/launch_h3_output_projection_parallel.py",
+    "bytes": 4446,
+    "sha256": "7397a3b564b5c7f1111694bedb5addf8ad94f8dd4e487795892a6a40f281a9cc"
+  },
+  "cpu_check": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E039/check.json",
+    "bytes": 4042,
+    "sha256": "9a947e32adc498111fa58cc0cefc9d1e1aeb135ffbe3590c793920465d490246"
+  },
+  "physical_gpus": [
+    0,
+    1
+  ],
+  "gpu_before": {
+    "0": {
+      "index": 0,
+      "uuid": "GPU-f2d2bf35-6009-bfec-9e68-dfffd5b077c4",
+      "memory_mib": 0,
+      "utilization_percent": 0,
+      "samples": [
+        {
+          "index": 0,
+          "uuid": "GPU-f2d2bf35-6009-bfec-9e68-dfffd5b077c4",
+          "memory_mib": 0,
+          "utilization_percent": 0
+        },
+        {
+          "index": 0,
+          "uuid": "GPU-f2d2bf35-6009-bfec-9e68-dfffd5b077c4",
+          "memory_mib": 0,
+          "utilization_percent": 0
+        }
+      ]
+    },
+    "1": {
+      "index": 1,
+      "uuid": "GPU-d69766fc-a299-bc28-48a0-41ce331b0359",
+      "memory_mib": 0,
+      "utilization_percent": 0,
+      "samples": [
+        {
+          "index": 1,
+          "uuid": "GPU-d69766fc-a299-bc28-48a0-41ce331b0359",
+          "memory_mib": 0,
+          "utilization_percent": 0
+        },
+        {
+          "index": 1,
+          "uuid": "GPU-d69766fc-a299-bc28-48a0-41ce331b0359",
+          "memory_mib": 0,
+          "utilization_percent": 0
+        }
+      ]
+    }
+  },
+  "topology": "\t\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tGPU4\tGPU5\tGPU6\tGPU7\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nGPU0\t X \tNODE\tNODE\tNODE\tSYS\tSYS\tSYS\tSYS\t0-127\t0\t\tN/A\nGPU1\tNODE\t X \tNODE\tNODE\tSYS\tSYS\tSYS\tSYS\t0-127\t0\t\tN/A\nGPU2\tNODE\tNODE\t X \tNODE\tSYS\tSYS\tSYS\tSYS\t0-127\t0\t\tN/A\nGPU3\tNODE\tNODE\tNODE\t X \tSYS\tSYS\tSYS\tSYS\t0-127\t0\t\tN/A\nGPU4\tSYS\tSYS\tSYS\tSYS\t X \tNODE\tNODE\tNODE\t128-255\t1\t\tN/A\nGPU5\tSYS\tSYS\tSYS\tSYS\tNODE\t X \tNODE\tNODE\t128-255\t1\t\tN/A\nGPU6\tSYS\tSYS\tSYS\tSYS\tNODE\tNODE\t X \tNODE\t128-255\t1\t\tN/A\nGPU7\tSYS\tSYS\tSYS\tSYS\tNODE\tNODE\tNODE\t X \t128-255\t1\t\tN/A\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks\n",
+  "log": "/home/wjq/workspace/svdquant-exp/results/logs/E039_output_projection.log",
+  "start_epoch": 1790996652.3980474,
+  "deadline_epoch": 1790997552.3980474,
+  "command": [
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+    "-u",
+    "-m",
+    "torch.distributed.run",
+    "--standalone",
+    "--nnodes=1",
+    "--nproc_per_node=2",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_output_projection_parallel.py",
+    "--phase",
+    "run",
+    "--deadline-unix",
+    "1790997552.3980474"
+  ],
+  "pid": 1196289,
+  "returncode": 0,
+  "results": [
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E039/run_rank0.json",
+      "bytes": 171177,
+      "sha256": "e72a1c730e2767ee4065f3611d12ef4a18c88de828723a385640b45d7f46698b"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E039/run_rank1.json",
+      "bytes": 171176,
+      "sha256": "41a61d0a199eafff451867ef9365d94b5db420eca6665738b4581a44cec46ac6"
+    }
+  ],
+  "seconds": 9.232666492462158
+}

@@ -227,8 +227,31 @@ cython_debug/
 !/results/samples/**/mjvideo_metrics.json
 !/results/samples/**/mjvideo_summary.csv
 !/results/samples/**/mjvideo_prompt_metrics.csv
+
+# Research evidence referenced by research_state/reports/. Keep numerical
+# records, configs, source snapshots and report figures; not full run payloads.
+!/results/research/**/*.json
+!/results/research/**/*.csv
+!/results/research/**/*.md
+!/results/research/**/*.txt
+!/results/research/**/*.yaml
+!/results/research/**/*.yml
+!/results/research/**/*.py
+!/results/research/**/*.sh
+!/results/research/**/*.png
+# Preserve blind-review separation even when JSON records are allowed above.
+/results/research/**/private/
+/results/research/**/blind_key*.json
 /logs/
 /_setup/
+
+# Local data roots (do not relocate historical experiment paths when tidying).
+/models/
+/ckpts/
+/checkpoints/
+/calibration_cache/
+/cache/
+/tmp/
 
 # Model / tensor / media artifacts
 *.pt
@@ -245,6 +268,26 @@ cython_debug/
 *.flac
 *.gif
 *.webm
+*.mov
+*.mkv
+*.mp3
+*.m4a
+*.safetensors.index.json
+*.zip
+*.tar
+*.tar.*
+*.tgz
+*.7z
+*.rar
+
+# Local credentials; templates remain reviewable.
+.env.*
+!.env.example
+!.env.sample
+.netrc
+.pypirc
+*.pem
+*.key
 
 # Hugging Face / torch / experiment caches
 .cache/

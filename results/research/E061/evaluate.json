@@ -1,0 +1,5388 @@
+{
+  "experiment": "E061",
+  "phase": "evaluate",
+  "status": "complete",
+  "start_epoch": 1791057980.0668466,
+  "deadline_unix": 1791059775.2187965,
+  "wall_budget_seconds": 1800,
+  "max_dit_calls": 13,
+  "export_byte_limit": 27917287424,
+  "export_bytes": 22280860048,
+  "attempted_dit_calls": 9,
+  "complete_dit_calls": 9,
+  "cases": [
+    {
+      "case_id": "e010_p030_s05",
+      "position": "source_teacher",
+      "step": 5,
+      "arm": "legacy_selected",
+      "status": "complete",
+      "artifact": {
+        "file": "/data1/models/svdquant-wjq/research/20261004/E061/evaluate/legacy_selected/e010_p030_s05_source_teacher.pt",
+        "sha256": "dd89bf48a97591079cd483089de6860d7ddb140c438f7e929761a56a66a3ff99",
+        "bytes": 20326256
+      },
+      "actual_dit_input_signature": {
+        "args": [],
+        "kwargs": {
+          "audio_pos_info": {
+            "position_ids": {
+              "shape": [
+                414
+              ],
+              "dtype": "torch.int64",
+              "sha256": "9b73f57a9457a9748d2618ab9a6739255440483d9e01a1518e5bf94314116ee4"
+            }
+          },
+          "audio_x": {
+            "shape": [
+              1,
+              22272,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "66f2b2b9d93989de51936dafd675e3d009401d7f69f32a555c8b3b073ba3d475"
+          },
+          "control_hints": null,
+          "img_pos_for_infer_output_info": {
+            "position_ids": {
+              "shape": [
+                21312
+              ],
+              "dtype": "torch.int64",
+              "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+            }
+          },
+          "img_pos_info": {
+            "position_ids": {
+              "shape": [
+                21312
+              ],
+              "dtype": "torch.int64",
+              "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+            }
+          },
+          "img_position_ids": {
+            "shape": [
+              1,
+              22272,
+              3
+            ],
+            "dtype": "torch.float64",
+            "sha256": "e6877f45135838155bcbd84cb76f8041530417a26ec06c6c32fcbdf36bc6f528"
+          },
+          "inverse_indices": {
+            "shape": [
+              22272
+            ],
+            "dtype": "torch.int64",
+            "sha256": "3bf3b79818aa1a60ce0b7b6e92e5cedc975ec37af7ef738ba17821403e496ab7"
+          },
+          "packed_seq_params": {
+            "cu_seqlens_q": {
+              "shape": [
+                3
+              ],
+              "dtype": "torch.int32",
+              "sha256": "d04d6c79bfd36def0c4998385a1bb77293f03ecd957d1cf0519334babdcbdbe1"
+            },
+            "max_seqlen_q": 22227
+          },
+          "prompt_embeds": {
+            "shape": [
+              501,
+              5120
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "77df337b4e39402cacd97c1596a94f2f67a83733b02e67ff086b8f4fab6b6803"
+          },
+          "refiner_packed_seq_params": {
+            "cu_seqlens_q": {
+              "shape": [
+                3
+              ],
+              "dtype": "torch.int32",
+              "sha256": "187f0d141fe6c634179d935c7684e2a1fd20d3ad068b31a52b0c391316934142"
+            },
+            "max_seqlen_q": 501
+          },
+          "skip_mask_out_condition": true,
+          "text_pos_info": {
+            "position_ids": {
+              "shape": [
+                501
+              ],
+              "dtype": "torch.int64",
+              "sha256": "6c0fa99e682ba28af74b65991fc7decf5b0b2db50feb016088acc9eb0d8365b0"
+            }
+          },
+          "token_tags": {
+            "shape": [
+              22272
+            ],
+            "dtype": "torch.int64",
+            "sha256": "6fc1450d272abe0fae1540ebed39f6a0c980f72dfa5ac3da37975d7258674e73"
+          },
+          "unique_timesteps": {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.float32",
+            "sha256": "845abdf313725b77d441de1634081d1e5d30002e6148d6ee3a7bf0fc64200ed0"
+          },
+          "update_mask": null,
+          "use_gradient_checkpointing": false,
+          "use_gradient_checkpointing_offload": false,
+          "x": {
+            "shape": [
+              1,
+              22272,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "6a6dae914987826274bd92afc771ee0facaf8dc014d585f8c4498018366e47fe"
+          }
+        }
+      },
+      "raw_outputs": {
+        "video": {
+          "shape": [
+            21312,
+            96
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "3cbad68da3ccb02bff3e72c4caef23f08d7550e7bef95be0d1651f2705955f0d"
+        },
+        "audio": {
+          "shape": [
+            414,
+            32
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "bc110fcca78ad0cbbf6b81d0c6ed71c6ae0b95a8ff7176861b0df6b2072c56a2"
+        }
+      },
+      "velocities": {
+        "video": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "49b70fb27ee41f55e41fff661633539b08ae260b70d4b12a710cfa4c9cede1ff"
+        },
+        "audio": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "5bce53efbac5571cc40f1b8daf025116f6d48e9ed8f045c4d86ab044e5f50dd9"
+        }
+      },
+      "metrics": {
+        "video": {
+          "sse": 346491.52504283085,
+          "reference_energy": 5297102.251502541,
+          "nmse": 0.06541152286508106,
+          "channel_centered_sse": 333923.3186070127,
+          "elements": 2045952
+        },
+        "audio": {
+          "sse": 1579.6451022453557,
+          "reference_energy": 15450.520898704457,
+          "nmse": 0.10223895444054644,
+          "channel_centered_sse": 664.2025574939911,
+          "elements": 13248
+        }
+      },
+      "legacy_replay_exact": true,
+      "runtime_audit": {
+        "sdpa_calls": 102,
+        "scaled_mm_calls": 200,
+        "disk_loads": 0,
+        "qkv_dtypes": [
+          [
+            "torch.bfloat16",
+            "torch.bfloat16",
+            "torch.bfloat16"
+          ]
+        ]
+      },
+      "fastpack_checks": {
+        "compatibility": "h3_e005_sf0_canonical_zero_numeric_equivalence_v1",
+        "checked_calls": 200,
+        "invalid_calls": 0,
+        "calls_with_nonzero_input_zero_sf": 2,
+        "affected_call_indices_zero_based": [
+          3,
+          7
+        ],
+        "count_scope": "Call-level flags only; not a count of affected tensor groups or elements"
+      }
+    },
+    {
+      "case_id": "e010_p030_s05",
+      "position": "source_teacher",
+      "step": 5,
+      "arm": "error_init",
+      "status": "complete",
+      "artifact": {
+        "file": "/data1/models/svdquant-wjq/research/20261004/E061/evaluate/error_init/e010_p030_s05_source_teacher.pt",
+        "sha256": "d0dbf618907fcdc0cf716219b4cd4658bfe94e903b1315cbc3fd0c764474bb27",
+        "bytes": 20326256
+      },
+      "actual_dit_input_signature": {
+        "args": [],
+        "kwargs": {
+          "audio_pos_info": {
+            "position_ids": {
+              "shape": [
+                414
+              ],
+              "dtype": "torch.int64",
+              "sha256": "9b73f57a9457a9748d2618ab9a6739255440483d9e01a1518e5bf94314116ee4"
+            }
+          },
+          "audio_x": {
+            "shape": [
+              1,
+              22272,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "66f2b2b9d93989de51936dafd675e3d009401d7f69f32a555c8b3b073ba3d475"
+          },
+          "control_hints": null,
+          "img_pos_for_infer_output_info": {
+            "position_ids": {
+              "shape": [
+                21312
+              ],
+              "dtype": "torch.int64",
+              "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+            }
+          },
+          "img_pos_info": {
+            "position_ids": {
+              "shape": [
+                21312
+              ],
+              "dtype": "torch.int64",
+              "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+            }
+          },
+          "img_position_ids": {
+            "shape": [
+              1,
+              22272,
+              3
+            ],
+            "dtype": "torch.float64",
+            "sha256": "e6877f45135838155bcbd84cb76f8041530417a26ec06c6c32fcbdf36bc6f528"
+          },
+          "inverse_indices": {
+            "shape": [
+              22272
+            ],
+            "dtype": "torch.int64",
+            "sha256": "3bf3b79818aa1a60ce0b7b6e92e5cedc975ec37af7ef738ba17821403e496ab7"
+          },
+          "packed_seq_params": {
+            "cu_seqlens_q": {
+              "shape": [
+                3
+              ],
+              "dtype": "torch.int32",
+              "sha256": "d04d6c79bfd36def0c4998385a1bb77293f03ecd957d1cf0519334babdcbdbe1"
+            },
+            "max_seqlen_q": 22227
+          },
+          "prompt_embeds": {
+            "shape": [
+              501,
+              5120
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "77df337b4e39402cacd97c1596a94f2f67a83733b02e67ff086b8f4fab6b6803"
+          },
+          "refiner_packed_seq_params": {
+            "cu_seqlens_q": {
+              "shape": [
+                3
+              ],
+              "dtype": "torch.int32",
+              "sha256": "187f0d141fe6c634179d935c7684e2a1fd20d3ad068b31a52b0c391316934142"
+            },
+            "max_seqlen_q": 501
+          },
+          "skip_mask_out_condition": true,
+          "text_pos_info": {
+            "position_ids": {
+              "shape": [
+                501
+              ],
+              "dtype": "torch.int64",
+              "sha256": "6c0fa99e682ba28af74b65991fc7decf5b0b2db50feb016088acc9eb0d8365b0"
+            }
+          },
+          "token_tags": {
+            "shape": [
+              22272
+            ],
+            "dtype": "torch.int64",
+            "sha256": "6fc1450d272abe0fae1540ebed39f6a0c980f72dfa5ac3da37975d7258674e73"
+          },
+          "unique_timesteps": {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.float32",
+            "sha256": "845abdf313725b77d441de1634081d1e5d30002e6148d6ee3a7bf0fc64200ed0"
+          },
+          "update_mask": null,
+          "use_gradient_checkpointing": false,
+          "use_gradient_checkpointing_offload": false,
+          "x": {
+            "shape": [
+              1,
+              22272,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "6a6dae914987826274bd92afc771ee0facaf8dc014d585f8c4498018366e47fe"
+          }
+        }
+      },
+      "raw_outputs": {
+        "video": {
+          "shape": [
+            21312,
+            96
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "8fbec75cb91eee00c9b93f9ae264a11e9c776c48ee521600326ba8bd7a4d7fd9"
+        },
+        "audio": {
+          "shape": [
+            414,
+            32
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "cd78e9a02d12c82a6097d581b1ce29c670d22363d48070e64fe8f6f7300386bf"
+        }
+      },
+      "velocities": {
+        "video": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "5033b1fd9e550ebfdfed51b4112104c13501ee54a88ca2e0612e5b56d04cf20e"
+        },
+        "audio": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "1ecf88081a14ad35e153946c0b5245478adfa82cea9915552dcb34506167118c"
+        }
+      },
+      "metrics": {
+        "video": {
+          "sse": 333252.3947812943,
+          "reference_energy": 5297102.251502541,
+          "nmse": 0.06291220727082739,
+          "channel_centered_sse": 304936.5033407233,
+          "elements": 2045952
+        },
+        "audio": {
+          "sse": 2026.9305681041924,
+          "reference_energy": 15450.520898704457,
+          "nmse": 0.13118849399272697,
+          "channel_centered_sse": 723.5466071651495,
+          "elements": 13248
+        }
+      },
+      "legacy_replay_exact": null,
+      "runtime_audit": {
+        "sdpa_calls": 102,
+        "scaled_mm_calls": 200,
+        "disk_loads": 0,
+        "qkv_dtypes": [
+          [
+            "torch.bfloat16",
+            "torch.bfloat16",
+            "torch.bfloat16"
+          ]
+        ]
+      },
+      "fastpack_checks": {
+        "compatibility": "h3_e005_sf0_canonical_zero_numeric_equivalence_v1",
+        "checked_calls": 200,
+        "invalid_calls": 0,
+        "calls_with_nonzero_input_zero_sf": 3,
+        "affected_call_indices_zero_based": [
+          3,
+          7,
+          159
+        ],
+        "count_scope": "Call-level flags only; not a count of affected tensor groups or elements"
+      }
+    },
+    {
+      "case_id": "e010_p030_s05",
+      "position": "next_teacher",
+      "step": 6,
+      "arm": "error_init",
+      "status": "complete",
+      "artifact": {
+        "file": "/data1/models/svdquant-wjq/research/20261004/E061/evaluate/error_init/e010_p030_s05_next_teacher.pt",
+        "sha256": "e8a25e40aa0461e1576800e03660943599ada2673ba85f4c640ee2fb01daefe8",
+        "bytes": 20325616
+      },
+      "actual_dit_input_signature": {
+        "args": [],
+        "kwargs": {
+          "audio_pos_info": {
+            "position_ids": {
+              "shape": [
+                414
+              ],
+              "dtype": "torch.int64",
+              "sha256": "9b73f57a9457a9748d2618ab9a6739255440483d9e01a1518e5bf94314116ee4"
+            }
+          },
+          "audio_x": {
+            "shape": [
+              1,
+              22272,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "7a80c64e80703495ae758a3c3b7b07352c4b1eb722f357f79b3a0153d4b98252"
+          },
+          "control_hints": null,
+          "img_pos_for_infer_output_info": {
+            "position_ids": {
+              "shape": [
+                21312
+              ],
+              "dtype": "torch.int64",
+              "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+            }
+          },
+          "img_pos_info": {
+            "position_ids": {
+              "shape": [
+                21312
+              ],
+              "dtype": "torch.int64",
+              "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+            }
+          },
+          "img_position_ids": {
+            "shape": [
+              1,
+              22272,
+              3
+            ],
+            "dtype": "torch.float64",
+            "sha256": "e6877f45135838155bcbd84cb76f8041530417a26ec06c6c32fcbdf36bc6f528"
+          },
+          "inverse_indices": {
+            "shape": [
+              22272
+            ],
+            "dtype": "torch.int64",
+            "sha256": "3bf3b79818aa1a60ce0b7b6e92e5cedc975ec37af7ef738ba17821403e496ab7"
+          },
+          "packed_seq_params": {
+            "cu_seqlens_q": {
+              "shape": [
+                3
+              ],
+              "dtype": "torch.int32",
+              "sha256": "d04d6c79bfd36def0c4998385a1bb77293f03ecd957d1cf0519334babdcbdbe1"
+            },
+            "max_seqlen_q": 22227
+          },
+          "prompt_embeds": {
+            "shape": [
+              501,
+              5120
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "77df337b4e39402cacd97c1596a94f2f67a83733b02e67ff086b8f4fab6b6803"
+          },
+          "refiner_packed_seq_params": {
+            "cu_seqlens_q": {
+              "shape": [
+                3
+              ],
+              "dtype": "torch.int32",
+              "sha256": "187f0d141fe6c634179d935c7684e2a1fd20d3ad068b31a52b0c391316934142"
+            },
+            "max_seqlen_q": 501
+          },
+          "skip_mask_out_condition": true,
+          "text_pos_info": {
+            "position_ids": {
+              "shape": [
+                501
+              ],
+              "dtype": "torch.int64",
+              "sha256": "6c0fa99e682ba28af74b65991fc7decf5b0b2db50feb016088acc9eb0d8365b0"
+            }
+          },
+          "token_tags": {
+            "shape": [
+              22272
+            ],
+            "dtype": "torch.int64",
+            "sha256": "6fc1450d272abe0fae1540ebed39f6a0c980f72dfa5ac3da37975d7258674e73"
+          },
+          "unique_timesteps": {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.float32",
+            "sha256": "736d95293d4625bcb99288fb33b1270df31ed2cccc2e080ea3f37093a88f7e94"
+          },
+          "update_mask": null,
+          "use_gradient_checkpointing": false,
+          "use_gradient_checkpointing_offload": false,
+          "x": {
+            "shape": [
+              1,
+              22272,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "8c2c887110ab12270070b5077753890cbe13e2ab0ba4e519f3815eacfabae4ee"
+          }
+        }
+      },
+      "raw_outputs": {
+        "video": {
+          "shape": [
+            21312,
+            96
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "a913710478dacdd364f728221fd5b78d64a49ca72ed73f0f493fe9cbc8eb1181"
+        },
+        "audio": {
+          "shape": [
+            414,
+            32
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "54a05c15aa3ebd50f197009cc0ea0e2f7f2213a8d97f3d2ad13a515783e5754b"
+        }
+      },
+      "velocities": {
+        "video": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "41d349fcb8aa9afa729f5a034d9d5724803eed6553a185a66be05bf6293bea16"
+        },
+        "audio": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "6dd428d43d25b30d6609ff4bf2dfab79ea2f92518180174a8d868bfe31203b39"
+        }
+      },
+      "metrics": {
+        "video": {
+          "sse": 260251.45389545304,
+          "reference_energy": 4995467.5827462105,
+          "nmse": 0.05209751631545616,
+          "channel_centered_sse": 244127.30580691976,
+          "elements": 2045952
+        },
+        "audio": {
+          "sse": 2382.5109882345487,
+          "reference_energy": 15194.324432070673,
+          "nmse": 0.15680269293222282,
+          "channel_centered_sse": 1023.9628177766618,
+          "elements": 13248
+        }
+      },
+      "legacy_replay_exact": null,
+      "runtime_audit": {
+        "sdpa_calls": 102,
+        "scaled_mm_calls": 200,
+        "disk_loads": 0,
+        "qkv_dtypes": [
+          [
+            "torch.bfloat16",
+            "torch.bfloat16",
+            "torch.bfloat16"
+          ]
+        ]
+      },
+      "fastpack_checks": {
+        "compatibility": "h3_e005_sf0_canonical_zero_numeric_equivalence_v1",
+        "checked_calls": 200,
+        "invalid_calls": 0,
+        "calls_with_nonzero_input_zero_sf": 3,
+        "affected_call_indices_zero_based": [
+          3,
+          7,
+          183
+        ],
+        "count_scope": "Call-level flags only; not a count of affected tensor groups or elements"
+      }
+    },
+    {
+      "case_id": "e010_p036_s14",
+      "position": "source_teacher",
+      "step": 14,
+      "arm": "error_init",
+      "status": "complete",
+      "artifact": {
+        "file": "/data1/models/svdquant-wjq/research/20261004/E061/evaluate/error_init/e010_p036_s14_source_teacher.pt",
+        "sha256": "1472798132800e512de8321bbb57926ae9981f951a0c1825438e69a13989ae7d",
+        "bytes": 23618352
+      },
+      "actual_dit_input_signature": {
+        "args": [],
+        "kwargs": {
+          "audio_pos_info": {
+            "position_ids": {
+              "shape": [
+                414
+              ],
+              "dtype": "torch.int64",
+              "sha256": "812173c7db17cac9b970b95480c24c4d23bab191a9cb51d2a748d839d53a0c37"
+            }
+          },
+          "audio_x": {
+            "shape": [
+              1,
+              22592,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "2d865fec08418129fa4b0a3b30c6c8fd76dea5a1e23d5345eae807c4c958df65"
+          },
+          "control_hints": null,
+          "img_pos_for_infer_output_info": {
+            "position_ids": {
+              "shape": [
+                21312
+              ],
+              "dtype": "torch.int64",
+              "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+            }
+          },
+          "img_pos_info": {
+            "position_ids": {
+              "shape": [
+                21312
+              ],
+              "dtype": "torch.int64",
+              "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+            }
+          },
+          "img_position_ids": {
+            "shape": [
+              1,
+              22592,
+              3
+            ],
+            "dtype": "torch.float64",
+            "sha256": "26d1ad59945b293f852bc7a18829f637d22aed14d11db8ed2d0fa7d771df28b8"
+          },
+          "inverse_indices": {
+            "shape": [
+              22592
+            ],
+            "dtype": "torch.int64",
+            "sha256": "db2777e78da4536d6f16a2a45824ba7d104c21f1166543ce3f8b162ae47e85e7"
+          },
+          "packed_seq_params": {
+            "cu_seqlens_q": {
+              "shape": [
+                3
+              ],
+              "dtype": "torch.int32",
+              "sha256": "13ad55c895ae209d8d98b6f005dd88ff549b946fad61fea1d851ee35cd15d903"
+            },
+            "max_seqlen_q": 22539
+          },
+          "prompt_embeds": {
+            "shape": [
+              813,
+              5120
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "440bbff8dce8199957df602f7c8100506c21c14a0b6e24a73715019e21435db3"
+          },
+          "refiner_packed_seq_params": {
+            "cu_seqlens_q": {
+              "shape": [
+                3
+              ],
+              "dtype": "torch.int32",
+              "sha256": "d1c8512279c779f169c4900fd91d059f99a48de38b9fd88a8054872da127a51a"
+            },
+            "max_seqlen_q": 813
+          },
+          "skip_mask_out_condition": true,
+          "text_pos_info": {
+            "position_ids": {
+              "shape": [
+                813
+              ],
+              "dtype": "torch.int64",
+              "sha256": "b395d884b64e3133f0d98582903c6687c18008eafd0d58628f9bf04a4465a330"
+            }
+          },
+          "token_tags": {
+            "shape": [
+              22592
+            ],
+            "dtype": "torch.int64",
+            "sha256": "7af1a16cf198fe62271dbe4f1397662fb584af0a39a47b84cb74800f8c89b0a7"
+          },
+          "unique_timesteps": {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.float32",
+            "sha256": "78032fc0a7f2cb7a35df43d26cb0d77d6f4350ee38b869da8b91b270c2bf772c"
+          },
+          "update_mask": null,
+          "use_gradient_checkpointing": false,
+          "use_gradient_checkpointing_offload": false,
+          "x": {
+            "shape": [
+              1,
+              22592,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "e214705cb8078d40b713665665f269e2d3e42dd527bdcc0807aaa8a41279b0ce"
+          }
+        }
+      },
+      "raw_outputs": {
+        "video": {
+          "shape": [
+            21312,
+            96
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "61113e58319eecd0effbfa0d86b998a321bab6fb6de85b2230941cfe4a157b50"
+        },
+        "audio": {
+          "shape": [
+            414,
+            32
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "4af9999d40e1a6bd9c5caf9b37508c27cf57eca663edce8e910a7ec0c4a1fa04"
+        }
+      },
+      "velocities": {
+        "video": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "55808b1a6ee97cd5fb7e3512a9dc014787c56ef307055ffbb24bf5e104c5976e"
+        },
+        "audio": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "29d42ccf70f387fa2e9352b60f0c37cb43d903a0470a0425de719c062d7384aa"
+        }
+      },
+      "metrics": {
+        "video": {
+          "sse": 53543.48504326119,
+          "reference_energy": 4421071.89687052,
+          "nmse": 0.012110973603745788,
+          "channel_centered_sse": 53010.5938574104,
+          "elements": 2045952
+        },
+        "audio": {
+          "sse": 184.70981704360207,
+          "reference_energy": 11406.406783899469,
+          "nmse": 0.01619351479769477,
+          "channel_centered_sse": 154.20970824829635,
+          "elements": 13248
+        }
+      },
+      "legacy_replay_exact": null,
+      "runtime_audit": {
+        "sdpa_calls": 102,
+        "scaled_mm_calls": 200,
+        "disk_loads": 0,
+        "qkv_dtypes": [
+          [
+            "torch.bfloat16",
+            "torch.bfloat16",
+            "torch.bfloat16"
+          ]
+        ]
+      },
+      "fastpack_checks": {
+        "compatibility": "h3_e005_sf0_canonical_zero_numeric_equivalence_v1",
+        "checked_calls": 200,
+        "invalid_calls": 0,
+        "calls_with_nonzero_input_zero_sf": 4,
+        "affected_call_indices_zero_based": [
+          3,
+          7,
+          183,
+          195
+        ],
+        "count_scope": "Call-level flags only; not a count of affected tensor groups or elements"
+      }
+    },
+    {
+      "case_id": "e010_p036_s14",
+      "position": "next_teacher",
+      "step": 15,
+      "arm": "error_init",
+      "status": "complete",
+      "artifact": {
+        "file": "/data1/models/svdquant-wjq/research/20261004/E061/evaluate/error_init/e010_p036_s14_next_teacher.pt",
+        "sha256": "6f1c4b029b07885ea09f13655e4605d5537ac836909572c586dfc05816a32bad",
+        "bytes": 23617712
+      },
+      "actual_dit_input_signature": {
+        "args": [],
+        "kwargs": {
+          "audio_pos_info": {
+            "position_ids": {
+              "shape": [
+                414
+              ],
+              "dtype": "torch.int64",
+              "sha256": "812173c7db17cac9b970b95480c24c4d23bab191a9cb51d2a748d839d53a0c37"
+            }
+          },
+          "audio_x": {
+            "shape": [
+              1,
+              22592,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "b4e1aa87e23c2eb30ce9176769a3b4965a4d040519516ea317064554b2edd211"
+          },
+          "control_hints": null,
+          "img_pos_for_infer_output_info": {
+            "position_ids": {
+              "shape": [
+                21312
+              ],
+              "dtype": "torch.int64",
+              "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+            }
+          },
+          "img_pos_info": {
+            "position_ids": {
+              "shape": [
+                21312
+              ],
+              "dtype": "torch.int64",
+              "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+            }
+          },
+          "img_position_ids": {
+            "shape": [
+              1,
+              22592,
+              3
+            ],
+            "dtype": "torch.float64",
+            "sha256": "26d1ad59945b293f852bc7a18829f637d22aed14d11db8ed2d0fa7d771df28b8"
+          },
+          "inverse_indices": {
+            "shape": [
+              22592
+            ],
+            "dtype": "torch.int64",
+            "sha256": "db2777e78da4536d6f16a2a45824ba7d104c21f1166543ce3f8b162ae47e85e7"
+          },
+          "packed_seq_params": {
+            "cu_seqlens_q": {
+              "shape": [
+                3
+              ],
+              "dtype": "torch.int32",
+              "sha256": "13ad55c895ae209d8d98b6f005dd88ff549b946fad61fea1d851ee35cd15d903"
+            },
+            "max_seqlen_q": 22539
+          },
+          "prompt_embeds": {
+            "shape": [
+              813,
+              5120
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "440bbff8dce8199957df602f7c8100506c21c14a0b6e24a73715019e21435db3"
+          },
+          "refiner_packed_seq_params": {
+            "cu_seqlens_q": {
+              "shape": [
+                3
+              ],
+              "dtype": "torch.int32",
+              "sha256": "d1c8512279c779f169c4900fd91d059f99a48de38b9fd88a8054872da127a51a"
+            },
+            "max_seqlen_q": 813
+          },
+          "skip_mask_out_condition": true,
+          "text_pos_info": {
+            "position_ids": {
+              "shape": [
+                813
+              ],
+              "dtype": "torch.int64",
+              "sha256": "b395d884b64e3133f0d98582903c6687c18008eafd0d58628f9bf04a4465a330"
+            }
+          },
+          "token_tags": {
+            "shape": [
+              22592
+            ],
+            "dtype": "torch.int64",
+            "sha256": "7af1a16cf198fe62271dbe4f1397662fb584af0a39a47b84cb74800f8c89b0a7"
+          },
+          "unique_timesteps": {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.float32",
+            "sha256": "9bf493abce913b7f2c7bacb50b3b9c241240badf3a371afb2f97786e155b356c"
+          },
+          "update_mask": null,
+          "use_gradient_checkpointing": false,
+          "use_gradient_checkpointing_offload": false,
+          "x": {
+            "shape": [
+              1,
+              22592,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "65c72ecf386b3d5a8d395d2e87e452ed22b04e813098a17a210e1493f81f4a7d"
+          }
+        }
+      },
+      "raw_outputs": {
+        "video": {
+          "shape": [
+            21312,
+            96
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "80b3a701cf232d35889e86f04c2e2e41cf6d5b1a4e697ace8f6bc15722959b3b"
+        },
+        "audio": {
+          "shape": [
+            414,
+            32
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "aa49eabec6a943aea719d78448e8422903ebdd555114514123912ea2530ab65b"
+        }
+      },
+      "velocities": {
+        "video": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "db97779bf6f2493761fce61649d422db1b03eff54aa9dfc635b9d366746ad0cc"
+        },
+        "audio": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "85fbd6435a49b87575e981ddfc4f5b15cfabddebbbc3c1c640533aa49f430c96"
+        }
+      },
+      "metrics": {
+        "video": {
+          "sse": 45969.76817712931,
+          "reference_energy": 4411807.215055173,
+          "nmse": 0.010419713721909404,
+          "channel_centered_sse": 45559.03873196937,
+          "elements": 2045952
+        },
+        "audio": {
+          "sse": 145.9292595492546,
+          "reference_energy": 11012.899380606925,
+          "nmse": 0.013250757544033095,
+          "channel_centered_sse": 122.97722323178598,
+          "elements": 13248
+        }
+      },
+      "legacy_replay_exact": null,
+      "runtime_audit": {
+        "sdpa_calls": 102,
+        "scaled_mm_calls": 200,
+        "disk_loads": 0,
+        "qkv_dtypes": [
+          [
+            "torch.bfloat16",
+            "torch.bfloat16",
+            "torch.bfloat16"
+          ]
+        ]
+      },
+      "fastpack_checks": {
+        "compatibility": "h3_e005_sf0_canonical_zero_numeric_equivalence_v1",
+        "checked_calls": 200,
+        "invalid_calls": 0,
+        "calls_with_nonzero_input_zero_sf": 6,
+        "affected_call_indices_zero_based": [
+          3,
+          7,
+          179,
+          183,
+          191,
+          195
+        ],
+        "count_scope": "Call-level flags only; not a count of affected tensor groups or elements"
+      }
+    },
+    {
+      "case_id": "e010_p030_s05",
+      "position": "source_teacher",
+      "step": 5,
+      "arm": "weight_init",
+      "status": "complete",
+      "artifact": {
+        "file": "/data1/models/svdquant-wjq/research/20261004/E061/evaluate/weight_init/e010_p030_s05_source_teacher.pt",
+        "sha256": "5c1ab85053b540b5ae3addd24092030e16a2eeb382a4c15f62e59736de2b8f40",
+        "bytes": 20326256
+      },
+      "actual_dit_input_signature": {
+        "args": [],
+        "kwargs": {
+          "audio_pos_info": {
+            "position_ids": {
+              "shape": [
+                414
+              ],
+              "dtype": "torch.int64",
+              "sha256": "9b73f57a9457a9748d2618ab9a6739255440483d9e01a1518e5bf94314116ee4"
+            }
+          },
+          "audio_x": {
+            "shape": [
+              1,
+              22272,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "66f2b2b9d93989de51936dafd675e3d009401d7f69f32a555c8b3b073ba3d475"
+          },
+          "control_hints": null,
+          "img_pos_for_infer_output_info": {
+            "position_ids": {
+              "shape": [
+                21312
+              ],
+              "dtype": "torch.int64",
+              "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+            }
+          },
+          "img_pos_info": {
+            "position_ids": {
+              "shape": [
+                21312
+              ],
+              "dtype": "torch.int64",
+              "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+            }
+          },
+          "img_position_ids": {
+            "shape": [
+              1,
+              22272,
+              3
+            ],
+            "dtype": "torch.float64",
+            "sha256": "e6877f45135838155bcbd84cb76f8041530417a26ec06c6c32fcbdf36bc6f528"
+          },
+          "inverse_indices": {
+            "shape": [
+              22272
+            ],
+            "dtype": "torch.int64",
+            "sha256": "3bf3b79818aa1a60ce0b7b6e92e5cedc975ec37af7ef738ba17821403e496ab7"
+          },
+          "packed_seq_params": {
+            "cu_seqlens_q": {
+              "shape": [
+                3
+              ],
+              "dtype": "torch.int32",
+              "sha256": "d04d6c79bfd36def0c4998385a1bb77293f03ecd957d1cf0519334babdcbdbe1"
+            },
+            "max_seqlen_q": 22227
+          },
+          "prompt_embeds": {
+            "shape": [
+              501,
+              5120
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "77df337b4e39402cacd97c1596a94f2f67a83733b02e67ff086b8f4fab6b6803"
+          },
+          "refiner_packed_seq_params": {
+            "cu_seqlens_q": {
+              "shape": [
+                3
+              ],
+              "dtype": "torch.int32",
+              "sha256": "187f0d141fe6c634179d935c7684e2a1fd20d3ad068b31a52b0c391316934142"
+            },
+            "max_seqlen_q": 501
+          },
+          "skip_mask_out_condition": true,
+          "text_pos_info": {
+            "position_ids": {
+              "shape": [
+                501
+              ],
+              "dtype": "torch.int64",
+              "sha256": "6c0fa99e682ba28af74b65991fc7decf5b0b2db50feb016088acc9eb0d8365b0"
+            }
+          },
+          "token_tags": {
+            "shape": [
+              22272
+            ],
+            "dtype": "torch.int64",
+            "sha256": "6fc1450d272abe0fae1540ebed39f6a0c980f72dfa5ac3da37975d7258674e73"
+          },
+          "unique_timesteps": {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.float32",
+            "sha256": "845abdf313725b77d441de1634081d1e5d30002e6148d6ee3a7bf0fc64200ed0"
+          },
+          "update_mask": null,
+          "use_gradient_checkpointing": false,
+          "use_gradient_checkpointing_offload": false,
+          "x": {
+            "shape": [
+              1,
+              22272,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "6a6dae914987826274bd92afc771ee0facaf8dc014d585f8c4498018366e47fe"
+          }
+        }
+      },
+      "raw_outputs": {
+        "video": {
+          "shape": [
+            21312,
+            96
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "5b3fd5de24ea8032ba830decf4fc8353680885763c9f08810fbc9bbb8518ebfb"
+        },
+        "audio": {
+          "shape": [
+            414,
+            32
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "a9635c41a1f6f0840ef12de42b5ce1d6ff24db6e2133366395b27991adb4be41"
+        }
+      },
+      "velocities": {
+        "video": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "a4e9e7656167e2fd9fa80c899b547f6aa6b8c025dd3c08b2d4b9c108c4a104c1"
+        },
+        "audio": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "6cfd2ff2c3ba5c1f6fb1bd9b0e81da56ca5bd1a9b172a70bad3ffd5eb01ae528"
+        }
+      },
+      "metrics": {
+        "video": {
+          "sse": 305875.0324209124,
+          "reference_energy": 5297102.251502541,
+          "nmse": 0.057743841424648716,
+          "channel_centered_sse": 275047.4636296917,
+          "elements": 2045952
+        },
+        "audio": {
+          "sse": 1330.245152981027,
+          "reference_energy": 15450.520898704457,
+          "nmse": 0.08609710712682636,
+          "channel_centered_sse": 669.236965176942,
+          "elements": 13248
+        }
+      },
+      "legacy_replay_exact": null,
+      "runtime_audit": {
+        "sdpa_calls": 102,
+        "scaled_mm_calls": 200,
+        "disk_loads": 0,
+        "qkv_dtypes": [
+          [
+            "torch.bfloat16",
+            "torch.bfloat16",
+            "torch.bfloat16"
+          ]
+        ]
+      },
+      "fastpack_checks": {
+        "compatibility": "h3_e005_sf0_canonical_zero_numeric_equivalence_v1",
+        "checked_calls": 200,
+        "invalid_calls": 0,
+        "calls_with_nonzero_input_zero_sf": 2,
+        "affected_call_indices_zero_based": [
+          3,
+          7
+        ],
+        "count_scope": "Call-level flags only; not a count of affected tensor groups or elements"
+      }
+    },
+    {
+      "case_id": "e010_p030_s05",
+      "position": "next_teacher",
+      "step": 6,
+      "arm": "weight_init",
+      "status": "complete",
+      "artifact": {
+        "file": "/data1/models/svdquant-wjq/research/20261004/E061/evaluate/weight_init/e010_p030_s05_next_teacher.pt",
+        "sha256": "f201bed0a2aaa3dacef11cb3c36e91b044d1b62a1e22676561cf6803d6e12d8d",
+        "bytes": 20325616
+      },
+      "actual_dit_input_signature": {
+        "args": [],
+        "kwargs": {
+          "audio_pos_info": {
+            "position_ids": {
+              "shape": [
+                414
+              ],
+              "dtype": "torch.int64",
+              "sha256": "9b73f57a9457a9748d2618ab9a6739255440483d9e01a1518e5bf94314116ee4"
+            }
+          },
+          "audio_x": {
+            "shape": [
+              1,
+              22272,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "7a80c64e80703495ae758a3c3b7b07352c4b1eb722f357f79b3a0153d4b98252"
+          },
+          "control_hints": null,
+          "img_pos_for_infer_output_info": {
+            "position_ids": {
+              "shape": [
+                21312
+              ],
+              "dtype": "torch.int64",
+              "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+            }
+          },
+          "img_pos_info": {
+            "position_ids": {
+              "shape": [
+                21312
+              ],
+              "dtype": "torch.int64",
+              "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+            }
+          },
+          "img_position_ids": {
+            "shape": [
+              1,
+              22272,
+              3
+            ],
+            "dtype": "torch.float64",
+            "sha256": "e6877f45135838155bcbd84cb76f8041530417a26ec06c6c32fcbdf36bc6f528"
+          },
+          "inverse_indices": {
+            "shape": [
+              22272
+            ],
+            "dtype": "torch.int64",
+            "sha256": "3bf3b79818aa1a60ce0b7b6e92e5cedc975ec37af7ef738ba17821403e496ab7"
+          },
+          "packed_seq_params": {
+            "cu_seqlens_q": {
+              "shape": [
+                3
+              ],
+              "dtype": "torch.int32",
+              "sha256": "d04d6c79bfd36def0c4998385a1bb77293f03ecd957d1cf0519334babdcbdbe1"
+            },
+            "max_seqlen_q": 22227
+          },
+          "prompt_embeds": {
+            "shape": [
+              501,
+              5120
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "77df337b4e39402cacd97c1596a94f2f67a83733b02e67ff086b8f4fab6b6803"
+          },
+          "refiner_packed_seq_params": {
+            "cu_seqlens_q": {
+              "shape": [
+                3
+              ],
+              "dtype": "torch.int32",
+              "sha256": "187f0d141fe6c634179d935c7684e2a1fd20d3ad068b31a52b0c391316934142"
+            },
+            "max_seqlen_q": 501
+          },
+          "skip_mask_out_condition": true,
+          "text_pos_info": {
+            "position_ids": {
+              "shape": [
+                501
+              ],
+              "dtype": "torch.int64",
+              "sha256": "6c0fa99e682ba28af74b65991fc7decf5b0b2db50feb016088acc9eb0d8365b0"
+            }
+          },
+          "token_tags": {
+            "shape": [
+              22272
+            ],
+            "dtype": "torch.int64",
+            "sha256": "6fc1450d272abe0fae1540ebed39f6a0c980f72dfa5ac3da37975d7258674e73"
+          },
+          "unique_timesteps": {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.float32",
+            "sha256": "736d95293d4625bcb99288fb33b1270df31ed2cccc2e080ea3f37093a88f7e94"
+          },
+          "update_mask": null,
+          "use_gradient_checkpointing": false,
+          "use_gradient_checkpointing_offload": false,
+          "x": {
+            "shape": [
+              1,
+              22272,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "8c2c887110ab12270070b5077753890cbe13e2ab0ba4e519f3815eacfabae4ee"
+          }
+        }
+      },
+      "raw_outputs": {
+        "video": {
+          "shape": [
+            21312,
+            96
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "3d8ed77c1f1730975db6265cd01b9d3bb3eb9b6e03bfed8df9a7728bb3ea166b"
+        },
+        "audio": {
+          "shape": [
+            414,
+            32
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "6999b5e8d69feb67822b76fa289424b4f5d1d2281fce208d0afd3c0d4f50f7da"
+        }
+      },
+      "velocities": {
+        "video": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "eedc1736c530857830aff2b28fa10a6865f5446307e1b48c63c6fe7178a24721"
+        },
+        "audio": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "e9d1db1e90391f7595863a23613585cdafa602d908067248eac73b3b67a54694"
+        }
+      },
+      "metrics": {
+        "video": {
+          "sse": 234810.26649333118,
+          "reference_energy": 4995467.5827462105,
+          "nmse": 0.047004662247101696,
+          "channel_centered_sse": 220292.92961459135,
+          "elements": 2045952
+        },
+        "audio": {
+          "sse": 1925.8838286315918,
+          "reference_energy": 15194.324432070673,
+          "nmse": 0.12675021105687512,
+          "channel_centered_sse": 945.8904451168684,
+          "elements": 13248
+        }
+      },
+      "legacy_replay_exact": null,
+      "runtime_audit": {
+        "sdpa_calls": 102,
+        "scaled_mm_calls": 200,
+        "disk_loads": 0,
+        "qkv_dtypes": [
+          [
+            "torch.bfloat16",
+            "torch.bfloat16",
+            "torch.bfloat16"
+          ]
+        ]
+      },
+      "fastpack_checks": {
+        "compatibility": "h3_e005_sf0_canonical_zero_numeric_equivalence_v1",
+        "checked_calls": 200,
+        "invalid_calls": 0,
+        "calls_with_nonzero_input_zero_sf": 3,
+        "affected_call_indices_zero_based": [
+          3,
+          7,
+          159
+        ],
+        "count_scope": "Call-level flags only; not a count of affected tensor groups or elements"
+      }
+    },
+    {
+      "case_id": "e010_p036_s14",
+      "position": "source_teacher",
+      "step": 14,
+      "arm": "weight_init",
+      "status": "complete",
+      "artifact": {
+        "file": "/data1/models/svdquant-wjq/research/20261004/E061/evaluate/weight_init/e010_p036_s14_source_teacher.pt",
+        "sha256": "ca9074d97a221da03cdc99b2c302eebf5ef6c1a1f46d1423bff3d11e95fc6015",
+        "bytes": 23618352
+      },
+      "actual_dit_input_signature": {
+        "args": [],
+        "kwargs": {
+          "audio_pos_info": {
+            "position_ids": {
+              "shape": [
+                414
+              ],
+              "dtype": "torch.int64",
+              "sha256": "812173c7db17cac9b970b95480c24c4d23bab191a9cb51d2a748d839d53a0c37"
+            }
+          },
+          "audio_x": {
+            "shape": [
+              1,
+              22592,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "2d865fec08418129fa4b0a3b30c6c8fd76dea5a1e23d5345eae807c4c958df65"
+          },
+          "control_hints": null,
+          "img_pos_for_infer_output_info": {
+            "position_ids": {
+              "shape": [
+                21312
+              ],
+              "dtype": "torch.int64",
+              "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+            }
+          },
+          "img_pos_info": {
+            "position_ids": {
+              "shape": [
+                21312
+              ],
+              "dtype": "torch.int64",
+              "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+            }
+          },
+          "img_position_ids": {
+            "shape": [
+              1,
+              22592,
+              3
+            ],
+            "dtype": "torch.float64",
+            "sha256": "26d1ad59945b293f852bc7a18829f637d22aed14d11db8ed2d0fa7d771df28b8"
+          },
+          "inverse_indices": {
+            "shape": [
+              22592
+            ],
+            "dtype": "torch.int64",
+            "sha256": "db2777e78da4536d6f16a2a45824ba7d104c21f1166543ce3f8b162ae47e85e7"
+          },
+          "packed_seq_params": {
+            "cu_seqlens_q": {
+              "shape": [
+                3
+              ],
+              "dtype": "torch.int32",
+              "sha256": "13ad55c895ae209d8d98b6f005dd88ff549b946fad61fea1d851ee35cd15d903"
+            },
+            "max_seqlen_q": 22539
+          },
+          "prompt_embeds": {
+            "shape": [
+              813,
+              5120
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "440bbff8dce8199957df602f7c8100506c21c14a0b6e24a73715019e21435db3"
+          },
+          "refiner_packed_seq_params": {
+            "cu_seqlens_q": {
+              "shape": [
+                3
+              ],
+              "dtype": "torch.int32",
+              "sha256": "d1c8512279c779f169c4900fd91d059f99a48de38b9fd88a8054872da127a51a"
+            },
+            "max_seqlen_q": 813
+          },
+          "skip_mask_out_condition": true,
+          "text_pos_info": {
+            "position_ids": {
+              "shape": [
+                813
+              ],
+              "dtype": "torch.int64",
+              "sha256": "b395d884b64e3133f0d98582903c6687c18008eafd0d58628f9bf04a4465a330"
+            }
+          },
+          "token_tags": {
+            "shape": [
+              22592
+            ],
+            "dtype": "torch.int64",
+            "sha256": "7af1a16cf198fe62271dbe4f1397662fb584af0a39a47b84cb74800f8c89b0a7"
+          },
+          "unique_timesteps": {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.float32",
+            "sha256": "78032fc0a7f2cb7a35df43d26cb0d77d6f4350ee38b869da8b91b270c2bf772c"
+          },
+          "update_mask": null,
+          "use_gradient_checkpointing": false,
+          "use_gradient_checkpointing_offload": false,
+          "x": {
+            "shape": [
+              1,
+              22592,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "e214705cb8078d40b713665665f269e2d3e42dd527bdcc0807aaa8a41279b0ce"
+          }
+        }
+      },
+      "raw_outputs": {
+        "video": {
+          "shape": [
+            21312,
+            96
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "f5e99c8d4add03bad737c5591eb497a17a0967ca1d320c31ba16862103486f24"
+        },
+        "audio": {
+          "shape": [
+            414,
+            32
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "8b257e65638d99405b3c3c4317d909d88b8abd81675b317e0c90b67c2e8c2521"
+        }
+      },
+      "velocities": {
+        "video": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "a1025b579078abf09dfdc57d82305daf02a46432bf7f6d0047fc3532599c5b2c"
+        },
+        "audio": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "dd4b32656c6b97e88d3648c036a3e38c2eaba11dc5f4f337785a9d66f4553207"
+        }
+      },
+      "metrics": {
+        "video": {
+          "sse": 53213.59707807662,
+          "reference_energy": 4421071.89687052,
+          "nmse": 0.012036356412964955,
+          "channel_centered_sse": 52613.46036113812,
+          "elements": 2045952
+        },
+        "audio": {
+          "sse": 157.11604077897738,
+          "reference_energy": 11406.406783899469,
+          "nmse": 0.01377436766508731,
+          "channel_centered_sse": 114.75798265049886,
+          "elements": 13248
+        }
+      },
+      "legacy_replay_exact": null,
+      "runtime_audit": {
+        "sdpa_calls": 102,
+        "scaled_mm_calls": 200,
+        "disk_loads": 0,
+        "qkv_dtypes": [
+          [
+            "torch.bfloat16",
+            "torch.bfloat16",
+            "torch.bfloat16"
+          ]
+        ]
+      },
+      "fastpack_checks": {
+        "compatibility": "h3_e005_sf0_canonical_zero_numeric_equivalence_v1",
+        "checked_calls": 200,
+        "invalid_calls": 0,
+        "calls_with_nonzero_input_zero_sf": 4,
+        "affected_call_indices_zero_based": [
+          3,
+          7,
+          183,
+          191
+        ],
+        "count_scope": "Call-level flags only; not a count of affected tensor groups or elements"
+      }
+    },
+    {
+      "case_id": "e010_p036_s14",
+      "position": "next_teacher",
+      "step": 15,
+      "arm": "weight_init",
+      "status": "complete",
+      "artifact": {
+        "file": "/data1/models/svdquant-wjq/research/20261004/E061/evaluate/weight_init/e010_p036_s14_next_teacher.pt",
+        "sha256": "d10a3b2361c1e817447c75bcc91313a59dd8001fae18b5142135a4fb56e45dcf",
+        "bytes": 23617712
+      },
+      "actual_dit_input_signature": {
+        "args": [],
+        "kwargs": {
+          "audio_pos_info": {
+            "position_ids": {
+              "shape": [
+                414
+              ],
+              "dtype": "torch.int64",
+              "sha256": "812173c7db17cac9b970b95480c24c4d23bab191a9cb51d2a748d839d53a0c37"
+            }
+          },
+          "audio_x": {
+            "shape": [
+              1,
+              22592,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "b4e1aa87e23c2eb30ce9176769a3b4965a4d040519516ea317064554b2edd211"
+          },
+          "control_hints": null,
+          "img_pos_for_infer_output_info": {
+            "position_ids": {
+              "shape": [
+                21312
+              ],
+              "dtype": "torch.int64",
+              "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+            }
+          },
+          "img_pos_info": {
+            "position_ids": {
+              "shape": [
+                21312
+              ],
+              "dtype": "torch.int64",
+              "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+            }
+          },
+          "img_position_ids": {
+            "shape": [
+              1,
+              22592,
+              3
+            ],
+            "dtype": "torch.float64",
+            "sha256": "26d1ad59945b293f852bc7a18829f637d22aed14d11db8ed2d0fa7d771df28b8"
+          },
+          "inverse_indices": {
+            "shape": [
+              22592
+            ],
+            "dtype": "torch.int64",
+            "sha256": "db2777e78da4536d6f16a2a45824ba7d104c21f1166543ce3f8b162ae47e85e7"
+          },
+          "packed_seq_params": {
+            "cu_seqlens_q": {
+              "shape": [
+                3
+              ],
+              "dtype": "torch.int32",
+              "sha256": "13ad55c895ae209d8d98b6f005dd88ff549b946fad61fea1d851ee35cd15d903"
+            },
+            "max_seqlen_q": 22539
+          },
+          "prompt_embeds": {
+            "shape": [
+              813,
+              5120
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "440bbff8dce8199957df602f7c8100506c21c14a0b6e24a73715019e21435db3"
+          },
+          "refiner_packed_seq_params": {
+            "cu_seqlens_q": {
+              "shape": [
+                3
+              ],
+              "dtype": "torch.int32",
+              "sha256": "d1c8512279c779f169c4900fd91d059f99a48de38b9fd88a8054872da127a51a"
+            },
+            "max_seqlen_q": 813
+          },
+          "skip_mask_out_condition": true,
+          "text_pos_info": {
+            "position_ids": {
+              "shape": [
+                813
+              ],
+              "dtype": "torch.int64",
+              "sha256": "b395d884b64e3133f0d98582903c6687c18008eafd0d58628f9bf04a4465a330"
+            }
+          },
+          "token_tags": {
+            "shape": [
+              22592
+            ],
+            "dtype": "torch.int64",
+            "sha256": "7af1a16cf198fe62271dbe4f1397662fb584af0a39a47b84cb74800f8c89b0a7"
+          },
+          "unique_timesteps": {
+            "shape": [
+              2
+            ],
+            "dtype": "torch.float32",
+            "sha256": "9bf493abce913b7f2c7bacb50b3b9c241240badf3a371afb2f97786e155b356c"
+          },
+          "update_mask": null,
+          "use_gradient_checkpointing": false,
+          "use_gradient_checkpointing_offload": false,
+          "x": {
+            "shape": [
+              1,
+              22592,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "65c72ecf386b3d5a8d395d2e87e452ed22b04e813098a17a210e1493f81f4a7d"
+          }
+        }
+      },
+      "raw_outputs": {
+        "video": {
+          "shape": [
+            21312,
+            96
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "08f907f39564c1129b4037b46b43ea2e4736f387ef7751142b5f3e21b9b30802"
+        },
+        "audio": {
+          "shape": [
+            414,
+            32
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "dd221fb85ae8b2afad9eb08994598aa962b7d979a71ee983455fdb3931b6bf8d"
+        }
+      },
+      "velocities": {
+        "video": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "a61091472fe212845fab6770c178f33d89c6f83002b059fa58d615fdd2d7505a"
+        },
+        "audio": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "036d8458eac51a6c8a8574adbf497bfa194a459fdc6229b2f9ca0867cf176a86"
+        }
+      },
+      "metrics": {
+        "video": {
+          "sse": 46184.81006578295,
+          "reference_energy": 4411807.215055173,
+          "nmse": 0.0104684560803515,
+          "channel_centered_sse": 45669.49269723814,
+          "elements": 2045952
+        },
+        "audio": {
+          "sse": 125.51382508300526,
+          "reference_energy": 11012.899380606925,
+          "nmse": 0.011396982823980741,
+          "channel_centered_sse": 97.47709265669098,
+          "elements": 13248
+        }
+      },
+      "legacy_replay_exact": null,
+      "runtime_audit": {
+        "sdpa_calls": 102,
+        "scaled_mm_calls": 200,
+        "disk_loads": 0,
+        "qkv_dtypes": [
+          [
+            "torch.bfloat16",
+            "torch.bfloat16",
+            "torch.bfloat16"
+          ]
+        ]
+      },
+      "fastpack_checks": {
+        "compatibility": "h3_e005_sf0_canonical_zero_numeric_equivalence_v1",
+        "checked_calls": 200,
+        "invalid_calls": 0,
+        "calls_with_nonzero_input_zero_sf": 5,
+        "affected_call_indices_zero_based": [
+          3,
+          7,
+          183,
+          187,
+          195
+        ],
+        "count_scope": "Call-level flags only; not a count of affected tensor groups or elements"
+      }
+    }
+  ],
+  "scope": "Fixed legacy smooth, rank32, matched approximate SVD; baseline investment screen only",
+  "sources": {
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/attention/attention.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/attention/attention.py",
+      "sha256": "1126b2e19184299cbfc611dcf66e46d0fd1a7bfa1d616f2ed38bc60ba19679ae",
+      "bytes": 13461
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/vram/layers.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/core/vram/layers.py",
+      "sha256": "4597374ac9166a2576544fb9b746360ee4c0441e96fd7af4300fcc739abd26cf",
+      "bytes": 25504
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/base_pipeline.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/base_pipeline.py",
+      "sha256": "aa5e3729bcbe4a6969b32dc78602abadf6d7832317014c2d192d73c021aa6728",
+      "bytes": 26272
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/flow_match.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/flow_match.py",
+      "sha256": "4639571d6986fef53094bc166f3b3a8fdf5790435d28528ead7f0a929d5d2a52",
+      "bytes": 20775
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_audio_vae.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_audio_vae.py",
+      "sha256": "ce6dc03b73a0596df22a6aa89e6db9183017bd5d0e2e99b547a6bfee53a7ef2c",
+      "bytes": 19869
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit.py",
+      "sha256": "bd617a4312c70405e916707e1908100b484b2259dfbeba4af7de5bb145206d80",
+      "bytes": 18207
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit_comfy.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit_comfy.py",
+      "sha256": "e8a2eb4cb986ba384052100fdc03984446f3fa35d0ab1e9ebfacffc039a2e8ff",
+      "bytes": 3011
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_text_encoder.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_text_encoder.py",
+      "sha256": "f874a56ce992070976b534dc42e0639221fe8c88cb29d9b3e2cadf6de553a9cf",
+      "bytes": 9391
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_video_vae.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_video_vae.py",
+      "sha256": "3dd4da5c90135c904fa5f1d4f70dd43e2571e394ce437bb168a5110f71076bf4",
+      "bytes": 31730
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/pipelines/minimax_h3_audio_video.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/pipelines/minimax_h3_audio_video.py",
+      "sha256": "7f5ff890d796dcfac3551e235741bdfbd4dbcae91aae3b6e4c3817dce38eecd6",
+      "bytes": 56577
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/utils/data/audio_video.py": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/utils/data/audio_video.py",
+      "sha256": "9d30fdd4538475d2d6aae7fe64cca2d78012e904366ec85d81e48720874d9dd0",
+      "bytes": 8947
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_manifest.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_manifest.json",
+      "sha256": "9469815d0c1d3d51bc793c2e3eaba08c80b35969ef2fab3776667db6b61fa79d",
+      "bytes": 13391
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_paired_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_paired_plan.md",
+      "sha256": "1e616ceacc92085cd938a90d5e99faac5d41a7c7e4e51844445b8775c06fc3e4",
+      "bytes": 7695
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_manifest.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_manifest.json",
+      "sha256": "56299b66ebf8be315e2bebc3ae684eefb7781abd1a5e984e7aab3ecee4265f65",
+      "bytes": 6437
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E014_h3_plain_baseline_plan.md",
+      "sha256": "af609cb182415d336a9f96f85fb7ee62fc2c2a15d23fca688d34763f7f7742c7",
+      "bytes": 5158
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E015_h3_crossmodal_propagation_manifest.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E015_h3_crossmodal_propagation_manifest.json",
+      "sha256": "54b543d679393150751f2600ceadf4e7286165c2b54cbc746e65ea7338c3344e",
+      "bytes": 7885
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E015_h3_crossmodal_propagation_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E015_h3_crossmodal_propagation_plan.md",
+      "sha256": "3f711759cd7130f12572230302c41be346016643e1bceabca41ebd1bfeaedbe6",
+      "bytes": 4716
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/infer_minimax_h3_svdquant_standard.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/infer_minimax_h3_svdquant_standard.py",
+      "sha256": "1966ce25cbf7fb630e620a84f64ca9219afd0120e0fe07078dc8250e221961a1",
+      "bytes": 4465
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/minimax_h3_svdquant_common.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/minimax_h3_svdquant_common.py",
+      "sha256": "d0fca20f98a40c3aa20773faa47e6d6b986811f6cd03802723021fd50383ae61",
+      "bytes": 14656
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_native_nvfp4.py",
+      "sha256": "43cb697faa4c5276fcb4432f696e36ed9f69f84b7b8a27a6f1c4ef986fc7f19b",
+      "bytes": 28771
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_nvfp4.py",
+      "sha256": "13ca884a8f6c7d93258870970c9f4b204f7cc42af0038f549b825321bb899d0a",
+      "bytes": 14615
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_fastpack.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_fastpack.py",
+      "sha256": "f5a22a9e3f23d7903403017575e1a63c1cb42e04b0230256a5808902bbc198b7",
+      "bytes": 7255
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_zero_sf_compat.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_zero_sf_compat.py",
+      "sha256": "ccaaa71670a48bb8667c286fff0ae08556b568fa6d77184200a39e4b6cc00048",
+      "bytes": 5281
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_plain_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_plain_native_nvfp4.py",
+      "sha256": "36ea5e95e3bf8858b3e545157d0505be2fa03e353b432dde4cdc785f085086f0",
+      "bytes": 10532
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/prepare_h3_crossmodal_states.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/prepare_h3_crossmodal_states.py",
+      "sha256": "cba8126d4714f3c949218ab5f690d7c61281fe7e19a293a9aa84914404245ff8",
+      "bytes": 20733
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_conditional_response.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_conditional_response.py",
+      "sha256": "4886b367c3ca1934cb2b3d23858d2dd06649681279c3cfaabbaab62d31b3627e",
+      "bytes": 32900
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_crossmodal_propagation.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_crossmodal_propagation.py",
+      "sha256": "18986cece6fe5d70c45cf2adf8095d82d373a29eb237993a9b8e7fdd4c260cdc",
+      "bytes": 20979
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_modality_pulse.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_modality_pulse.py",
+      "sha256": "e836578688580885fd46f54b0d45eef7b975932bfe5872f764feb8e4b86c820c",
+      "bytes": 13825
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_native_contract.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_native_contract.py",
+      "sha256": "0be4b1fb4a67f52e2c618ef492f49e1285cc14b57c2e6ceffbc6fa578a011c83",
+      "bytes": 15329
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_plain_baseline.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_plain_baseline.py",
+      "sha256": "bf1383b51e9ea45c53a583ad541f68f9d0dce0db97de5acaf767fb0f69dcf47c",
+      "bytes": 25031
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/profile_h3_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/profile_h3_native_nvfp4.py",
+      "sha256": "6fbabdfb87a333d35b66fdf4a1976ae1ea2e575a5b5bb83e60d930a75e99d45e",
+      "bytes": 26846
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py",
+      "sha256": "41e6e4eb1d9df554e5ea109b9bad3d1df83e9b64788137511262a82a0f34431f",
+      "bytes": 28742
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py",
+      "sha256": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa",
+      "bytes": 22773
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_activation_residual_oracle.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_activation_residual_oracle.py",
+      "sha256": "7d91212dc09af739738d9d2cf1ff332007350c91f9ee4a9c969b81d7c721354b",
+      "bytes": 25274
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E059_h3_activation_residual_oracle_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E059_h3_activation_residual_oracle_plan.md",
+      "sha256": "066353132064978dcdc9f721db604077729298aee5c7038ae2d5ea09f197e9fd",
+      "bytes": 4799
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_lowrank_initialization.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_lowrank_initialization.py",
+      "sha256": "334ab1747c8aad44f3f309d0bbcaa873f65c2bf382da6a495811447f12d35d65",
+      "bytes": 25998
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E061_h3_lowrank_initialization_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E061_h3_lowrank_initialization_plan.md",
+      "sha256": "7513395d3fa6283caa6977797eaa4bbb089ebfb282e6853a8fcec4fb475ad3af",
+      "bytes": 4061
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/export_h3_native_nvfp4.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/export_h3_native_nvfp4.py",
+      "sha256": "220ed780c47a1e4e8e49a478af2e2f69b32d79ab8a66cffbfc8f85b774c5cbbf",
+      "bytes": 17874
+    },
+    "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/nn/patch/lowrank.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/nn/patch/lowrank.py",
+      "sha256": "2edf2ccd7fad02bc1f52e930cc946dd0d13232e4300b4c8945095cfc749071ce",
+      "bytes": 4328
+    },
+    "/home/wjq/workspace/svdquant-exp/results/research/E060/audit.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E060/audit.json",
+      "sha256": "683ec67dfc1ab8876290977aa20a08923a6d101dd3bd258b07fbf04fcae38052",
+      "bytes": 422129
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/audit_h3_lowrank_provenance.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/audit_h3_lowrank_provenance.py",
+      "sha256": "9cb5bf83ce8fc70a6081be668f82d3b6aa5a2b66caf4552a4ba71e875490812b",
+      "bytes": 16901
+    }
+  },
+  "plan": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E061_h3_lowrank_initialization_plan.md",
+    "sha256": "7513395d3fa6283caa6977797eaa4bbb089ebfb282e6853a8fcec4fb475ad3af",
+    "bytes": 4061
+  },
+  "settings": {
+    "num_inference_steps": 20,
+    "cfg_scale": 1.0,
+    "video_shift": 12.0,
+    "audio_shift": 3.0
+  },
+  "asset_binding": {
+    "reference": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E010_h3_prepare.json",
+      "sha256": "325f8aab98f76fbb57666b1014a9fa2a8d2111d4048b52882f475a5bb745a8e8",
+      "bytes": 18395
+    },
+    "assets": {
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/audio_vae/model.safetensors": {
+        "sha256": "37dddc2f3e6d5d5139d823d5ea283bbf304dadcb885b1ccda818aa13dade5ea2",
+        "bytes": 605429308,
+        "mtime_ns": 1788632776913420084
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/chat_template.json": {
+        "sha256": "5c72a170d2a4a1a3bc5adad2e689ae28138a9700e5b8c96c0266331e86c0acce",
+        "bytes": 5499,
+        "mtime_ns": 1788658242680045398
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/merges.txt": {
+        "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+        "bytes": 1671839,
+        "mtime_ns": 1788658242773048407
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/preprocessor_config.json": {
+        "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+        "bytes": 390,
+        "mtime_ns": 1788658242666044946
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/tokenizer.json": {
+        "sha256": "a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7",
+        "bytes": 7032403,
+        "mtime_ns": 1788658242669045043
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/tokenizer_config.json": {
+        "sha256": "a07e942ac874baa13758de8d1fbdb186683cc03416b5589e1b6671c6b3057c68",
+        "bytes": 11003,
+        "mtime_ns": 1788658242770048310
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/video_preprocessor_config.json": {
+        "sha256": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+        "bytes": 385,
+        "mtime_ns": 1788658242794049086
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/processor/vocab.json": {
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+        "bytes": 2776833,
+        "mtime_ns": 1788658242815049765
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00001-of-00014.safetensors": {
+        "sha256": "6b9dfbc930e505402ae9d7e5091a9d7d656cda5f34614f01cfe70bfb0cca27cb",
+        "bytes": 4932328944,
+        "mtime_ns": 1788629922958863273
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00002-of-00014.safetensors": {
+        "sha256": "d8bb44b4ff303fe76fe9e894022fb3dc71b15a2e716592790fe0e3c3e60478fa",
+        "bytes": 4875990528,
+        "mtime_ns": 1788630116142068295
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00003-of-00014.safetensors": {
+        "sha256": "54f22e8b3168f8dc962fac0d313607ebf52a12b433d4cf3098a0d82d9f042940",
+        "bytes": 4875990552,
+        "mtime_ns": 1788630296217852307
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00004-of-00014.safetensors": {
+        "sha256": "ad09c74d3c13ee29b5d0d84548fd8a3424a651564eaccd519946c296e59c557f",
+        "bytes": 4875990584,
+        "mtime_ns": 1788630488130789007
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00005-of-00014.safetensors": {
+        "sha256": "fc993c8a0e2a5b0570f383e1a95dc3a1281d1b224b6f3ee908f4827941e1dfc2",
+        "bytes": 4875990584,
+        "mtime_ns": 1788630684991863268
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00006-of-00014.safetensors": {
+        "sha256": "82f05620d1f718a90c362b221d6a184ff1a0f53301d706882d3df49695fa1974",
+        "bytes": 4875990584,
+        "mtime_ns": 1788630871619726808
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00007-of-00014.safetensors": {
+        "sha256": "fb91da8cb01ff4de3eef0eab1c3e769a734b3a1aafc61734068638a0d6c86934",
+        "bytes": 4875990584,
+        "mtime_ns": 1788631072238149408
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00008-of-00014.safetensors": {
+        "sha256": "431ca56535c8781944ce3801f5eb61c45531e853ecc5846d936ebaf4761b764f",
+        "bytes": 4875990584,
+        "mtime_ns": 1788631256230039725
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00009-of-00014.safetensors": {
+        "sha256": "3825e3f4302f4d2f7d76aa7430d2ce0864fde6b9e540a5806bf0d8e38e4d9f47",
+        "bytes": 4875990584,
+        "mtime_ns": 1788631454829375317
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00010-of-00014.safetensors": {
+        "sha256": "aded5a4d1d5e22dbd8b6f79266b6eb88c840411b09527c53917a1419ace22e2f",
+        "bytes": 4875990584,
+        "mtime_ns": 1788631650962613846
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00011-of-00014.safetensors": {
+        "sha256": "3820ffe8d8d6477f6fe8d614ef3c87abb264ee39accebf43a1507b970d80946f",
+        "bytes": 4875990584,
+        "mtime_ns": 1788631843681743781
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00012-of-00014.safetensors": {
+        "sha256": "05ad2d08ce71963121c9b03f1d9ec5d7641052f4b23c6c12b80d71065eb8e98e",
+        "bytes": 4875990584,
+        "mtime_ns": 1788632031806727587
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00013-of-00014.safetensors": {
+        "sha256": "b64f2289871261fdd1abbd3b78bcd66011b341de3dc8eeb2ed1a473ee7c8d95c",
+        "bytes": 4875990584,
+        "mtime_ns": 1788632225117876355
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/text_encoder/model-00014-of-00014.safetensors": {
+        "sha256": "e45b6c9998c77ee5a6577f9f47bc76416c1d4d387169e50c4c9d3134ea51b13b",
+        "bytes": 3270697008,
+        "mtime_ns": 1788632346224728475
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/MiniMax/MiniMax-H3/FL2VA/video_vae/source/model.safetensors": {
+        "sha256": "5f0c2e161d895a9fee7645ca32d4a7e3a22b90cacfcbeba62ec999cdbbefe0d3",
+        "bytes": 10415548320,
+        "mtime_ns": 1788632761991945753
+      },
+      "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors": {
+        "sha256": "a32572fb90b5508b201ec7c2eddcc184b13ddfd3c6f6d2cf06a0b46535d541b4",
+        "bytes": 40225724176,
+        "mtime_ns": 1788628641816315374
+      }
+    },
+    "current_check": "Size and mtime equal the full-SHA-verified E010 prepare assets; no repeated full TE hash"
+  },
+  "e015_manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E015_h3_crossmodal_propagation_manifest.json",
+    "sha256": "54b543d679393150751f2600ceadf4e7286165c2b54cbc746e65ea7338c3344e",
+    "bytes": 7885
+  },
+  "e015_prepare": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E015/E015_prepare.json",
+    "sha256": "0048594797ef2fba000b10906065a8782f5dce5a2c36f1666cb7e1678fd3034e",
+    "bytes": 154486
+  },
+  "e015_check": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E015/check.json",
+    "sha256": "e7bdfb444a11ea8398aa145ac5f2c9017e708bd053bd52bc53b85b62c287c03f",
+    "bytes": 75142
+  },
+  "e014_evaluation": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E014/E014_evaluate_svd.json",
+    "sha256": "0d41c1aea1bd0961862fd381692c6a09227a6883b8d0203aba040891adafe13e",
+    "bytes": 358301
+  },
+  "e015_evaluation": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E015/evaluate_svd.json",
+    "sha256": "012cff57d1cfcada225fc9150de68770822d57ab67a042ebec0e1870079b6c94",
+    "bytes": 110247
+  },
+  "e014_check": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E014/E014_check_bf16.json",
+    "sha256": "716090c88fae59b072ea2b4e5554375515328f284e276ff512dd81147167471c",
+    "bytes": 36148
+  },
+  "e060_audit": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E060/audit.json",
+    "sha256": "683ec67dfc1ab8876290977aa20a08923a6d101dd3bd258b07fbf04fcae38052",
+    "bytes": 422129
+  },
+  "legacy_manifest": {
+    "file": "/data1/models/svdquant-wjq/research/20261002/E009/legacy_export/manifest.json",
+    "sha256": "0b92e3e9f6a937ca7a6ebff6c4dfe4e6ad4e918224525ab5bf12a4e1baddfec0",
+    "bytes": 306476
+  },
+  "state": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/checkpoints/minimax_h3_svdquant_standard_8p64s/quant_state.pt",
+    "bytes": 301607239,
+    "sha256": "e5ccf2d809f0b03e6a0eaef400e4f610ccfc37478eb3715d75040cf07446652d"
+  },
+  "e059_check": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E059/check.json",
+    "sha256": "0421077ef18cfe9134464e45818f8e6ad0684f9e8f72e8808d89b80d4a09b395",
+    "bytes": 67463
+  },
+  "e059_evaluation": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E059/evaluate.json",
+    "sha256": "cfdc5751e8c5078b22112432b77eb65fd8aa1b5333b581773c4b3b03a74da561",
+    "bytes": 601609
+  },
+  "references": {
+    "e010_p030_s05/source_teacher": {
+      "legacy_selected": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261004/E059/evaluate/zero/e010_p030_s05_source_teacher.pt",
+          "sha256": "02d02bf8d845c95d2db16d69182e0931f8a123e9133da295122907b59816ba81",
+          "bytes": 20346032
+        },
+        "experiment": "E059",
+        "actual_input_signature": {
+          "args": [],
+          "kwargs": {
+            "audio_pos_info": {
+              "position_ids": {
+                "shape": [
+                  414
+                ],
+                "dtype": "torch.int64",
+                "sha256": "9b73f57a9457a9748d2618ab9a6739255440483d9e01a1518e5bf94314116ee4"
+              }
+            },
+            "audio_x": {
+              "shape": [
+                1,
+                22272,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "66f2b2b9d93989de51936dafd675e3d009401d7f69f32a555c8b3b073ba3d475"
+            },
+            "control_hints": null,
+            "img_pos_for_infer_output_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+              }
+            },
+            "img_pos_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+              }
+            },
+            "img_position_ids": {
+              "shape": [
+                1,
+                22272,
+                3
+              ],
+              "dtype": "torch.float64",
+              "sha256": "e6877f45135838155bcbd84cb76f8041530417a26ec06c6c32fcbdf36bc6f528"
+            },
+            "inverse_indices": {
+              "shape": [
+                22272
+              ],
+              "dtype": "torch.int64",
+              "sha256": "3bf3b79818aa1a60ce0b7b6e92e5cedc975ec37af7ef738ba17821403e496ab7"
+            },
+            "packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "d04d6c79bfd36def0c4998385a1bb77293f03ecd957d1cf0519334babdcbdbe1"
+              },
+              "max_seqlen_q": 22227
+            },
+            "prompt_embeds": {
+              "shape": [
+                501,
+                5120
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "77df337b4e39402cacd97c1596a94f2f67a83733b02e67ff086b8f4fab6b6803"
+            },
+            "refiner_packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "187f0d141fe6c634179d935c7684e2a1fd20d3ad068b31a52b0c391316934142"
+              },
+              "max_seqlen_q": 501
+            },
+            "skip_mask_out_condition": true,
+            "text_pos_info": {
+              "position_ids": {
+                "shape": [
+                  501
+                ],
+                "dtype": "torch.int64",
+                "sha256": "6c0fa99e682ba28af74b65991fc7decf5b0b2db50feb016088acc9eb0d8365b0"
+              }
+            },
+            "token_tags": {
+              "shape": [
+                22272
+              ],
+              "dtype": "torch.int64",
+              "sha256": "6fc1450d272abe0fae1540ebed39f6a0c980f72dfa5ac3da37975d7258674e73"
+            },
+            "unique_timesteps": {
+              "shape": [
+                2
+              ],
+              "dtype": "torch.float32",
+              "sha256": "845abdf313725b77d441de1634081d1e5d30002e6148d6ee3a7bf0fc64200ed0"
+            },
+            "update_mask": null,
+            "use_gradient_checkpointing": false,
+            "use_gradient_checkpointing_offload": false,
+            "x": {
+              "shape": [
+                1,
+                22272,
+                96
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "6a6dae914987826274bd92afc771ee0facaf8dc014d585f8c4498018366e47fe"
+            }
+          }
+        },
+        "raw_outputs": {
+          "video": {
+            "shape": [
+              21312,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "3cbad68da3ccb02bff3e72c4caef23f08d7550e7bef95be0d1651f2705955f0d"
+          },
+          "audio": {
+            "shape": [
+              414,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "bc110fcca78ad0cbbf6b81d0c6ed71c6ae0b95a8ff7176861b0df6b2072c56a2"
+          }
+        },
+        "velocities": {
+          "video": {
+            "shape": [
+              1,
+              24,
+              37,
+              36,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "49b70fb27ee41f55e41fff661633539b08ae260b70d4b12a710cfa4c9cede1ff"
+          },
+          "audio": {
+            "shape": [
+              2,
+              32,
+              207
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "5bce53efbac5571cc40f1b8daf025116f6d48e9ed8f045c4d86ab044e5f50dd9"
+          }
+        }
+      },
+      "bf16": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/bf16/e010_p030_s05.pt",
+          "sha256": "3ed6e13f3f30451f2b42c575206088c2c0f1a5a937e1cdb366388136ef40e15c",
+          "bytes": 8243737
+        },
+        "experiment": "E014",
+        "actual_input_signature": {
+          "args": [],
+          "kwargs": {
+            "audio_pos_info": {
+              "position_ids": {
+                "shape": [
+                  414
+                ],
+                "dtype": "torch.int64",
+                "sha256": "9b73f57a9457a9748d2618ab9a6739255440483d9e01a1518e5bf94314116ee4"
+              }
+            },
+            "audio_x": {
+              "shape": [
+                1,
+                22272,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "66f2b2b9d93989de51936dafd675e3d009401d7f69f32a555c8b3b073ba3d475"
+            },
+            "control_hints": null,
+            "img_pos_for_infer_output_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+              }
+            },
+            "img_pos_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+              }
+            },
+            "img_position_ids": {
+              "shape": [
+                1,
+                22272,
+                3
+              ],
+              "dtype": "torch.float64",
+              "sha256": "e6877f45135838155bcbd84cb76f8041530417a26ec06c6c32fcbdf36bc6f528"
+            },
+            "inverse_indices": {
+              "shape": [
+                22272
+              ],
+              "dtype": "torch.int64",
+              "sha256": "3bf3b79818aa1a60ce0b7b6e92e5cedc975ec37af7ef738ba17821403e496ab7"
+            },
+            "packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "d04d6c79bfd36def0c4998385a1bb77293f03ecd957d1cf0519334babdcbdbe1"
+              },
+              "max_seqlen_q": 22227
+            },
+            "prompt_embeds": {
+              "shape": [
+                501,
+                5120
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "77df337b4e39402cacd97c1596a94f2f67a83733b02e67ff086b8f4fab6b6803"
+            },
+            "refiner_packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "187f0d141fe6c634179d935c7684e2a1fd20d3ad068b31a52b0c391316934142"
+              },
+              "max_seqlen_q": 501
+            },
+            "skip_mask_out_condition": true,
+            "text_pos_info": {
+              "position_ids": {
+                "shape": [
+                  501
+                ],
+                "dtype": "torch.int64",
+                "sha256": "6c0fa99e682ba28af74b65991fc7decf5b0b2db50feb016088acc9eb0d8365b0"
+              }
+            },
+            "token_tags": {
+              "shape": [
+                22272
+              ],
+              "dtype": "torch.int64",
+              "sha256": "6fc1450d272abe0fae1540ebed39f6a0c980f72dfa5ac3da37975d7258674e73"
+            },
+            "unique_timesteps": {
+              "shape": [
+                2
+              ],
+              "dtype": "torch.float32",
+              "sha256": "845abdf313725b77d441de1634081d1e5d30002e6148d6ee3a7bf0fc64200ed0"
+            },
+            "update_mask": null,
+            "use_gradient_checkpointing": false,
+            "use_gradient_checkpointing_offload": false,
+            "x": {
+              "shape": [
+                1,
+                22272,
+                96
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "6a6dae914987826274bd92afc771ee0facaf8dc014d585f8c4498018366e47fe"
+            }
+          }
+        },
+        "raw_outputs": {
+          "video": {
+            "shape": [
+              21312,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "259cfd44a2c8a178c036823746e415142b5e8b0914f55bcc789228be8a25a98e"
+          },
+          "audio": {
+            "shape": [
+              414,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "ae69dd5c1afe3f174eac1e9462ae3b2264f661dd77cae7007a1031c7810bee85"
+          }
+        },
+        "velocities": {
+          "video": {
+            "shape": [
+              1,
+              24,
+              37,
+              36,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "79415718ec9fe4d8d80c155c39fc4ffbb8be4e81f4b40c3338ba5e5c7f6d0dd4"
+          },
+          "audio": {
+            "shape": [
+              2,
+              32,
+              207
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "83f152100e856f42a0d8e7f10eb2aab93fdf9f0490fef46602caf2d1260ccb71"
+          }
+        }
+      },
+      "plain": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/plain/e010_p030_s05.pt",
+          "sha256": "6cafd450e567f8b35aba63f1d030f59f0cf051e8b849e8de823b504157f6382d",
+          "bytes": 8243737
+        },
+        "experiment": "E014",
+        "actual_input_signature": {
+          "args": [],
+          "kwargs": {
+            "audio_pos_info": {
+              "position_ids": {
+                "shape": [
+                  414
+                ],
+                "dtype": "torch.int64",
+                "sha256": "9b73f57a9457a9748d2618ab9a6739255440483d9e01a1518e5bf94314116ee4"
+              }
+            },
+            "audio_x": {
+              "shape": [
+                1,
+                22272,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "66f2b2b9d93989de51936dafd675e3d009401d7f69f32a555c8b3b073ba3d475"
+            },
+            "control_hints": null,
+            "img_pos_for_infer_output_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+              }
+            },
+            "img_pos_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+              }
+            },
+            "img_position_ids": {
+              "shape": [
+                1,
+                22272,
+                3
+              ],
+              "dtype": "torch.float64",
+              "sha256": "e6877f45135838155bcbd84cb76f8041530417a26ec06c6c32fcbdf36bc6f528"
+            },
+            "inverse_indices": {
+              "shape": [
+                22272
+              ],
+              "dtype": "torch.int64",
+              "sha256": "3bf3b79818aa1a60ce0b7b6e92e5cedc975ec37af7ef738ba17821403e496ab7"
+            },
+            "packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "d04d6c79bfd36def0c4998385a1bb77293f03ecd957d1cf0519334babdcbdbe1"
+              },
+              "max_seqlen_q": 22227
+            },
+            "prompt_embeds": {
+              "shape": [
+                501,
+                5120
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "77df337b4e39402cacd97c1596a94f2f67a83733b02e67ff086b8f4fab6b6803"
+            },
+            "refiner_packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "187f0d141fe6c634179d935c7684e2a1fd20d3ad068b31a52b0c391316934142"
+              },
+              "max_seqlen_q": 501
+            },
+            "skip_mask_out_condition": true,
+            "text_pos_info": {
+              "position_ids": {
+                "shape": [
+                  501
+                ],
+                "dtype": "torch.int64",
+                "sha256": "6c0fa99e682ba28af74b65991fc7decf5b0b2db50feb016088acc9eb0d8365b0"
+              }
+            },
+            "token_tags": {
+              "shape": [
+                22272
+              ],
+              "dtype": "torch.int64",
+              "sha256": "6fc1450d272abe0fae1540ebed39f6a0c980f72dfa5ac3da37975d7258674e73"
+            },
+            "unique_timesteps": {
+              "shape": [
+                2
+              ],
+              "dtype": "torch.float32",
+              "sha256": "845abdf313725b77d441de1634081d1e5d30002e6148d6ee3a7bf0fc64200ed0"
+            },
+            "update_mask": null,
+            "use_gradient_checkpointing": false,
+            "use_gradient_checkpointing_offload": false,
+            "x": {
+              "shape": [
+                1,
+                22272,
+                96
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "6a6dae914987826274bd92afc771ee0facaf8dc014d585f8c4498018366e47fe"
+            }
+          }
+        },
+        "raw_outputs": {
+          "video": {
+            "shape": [
+              21312,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "e1e0767c73539aceb10ccd0aaed678cd442e9246848073c39b48c7f1a92695de"
+          },
+          "audio": {
+            "shape": [
+              414,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "579186d49cadc800318868225408615b98adbfaf2fc4d83c4044cd922d3b62bd"
+          }
+        },
+        "velocities": {
+          "video": {
+            "shape": [
+              1,
+              24,
+              37,
+              36,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "4484ead014b8e038b64b347acce26473774b020284c415908a3a48437875905d"
+          },
+          "audio": {
+            "shape": [
+              2,
+              32,
+              207
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "bb17a889ecd1169b62600cd10f6262b0dea87572dce497fabe70b2b27cabcc26"
+          }
+        }
+      }
+    },
+    "e010_p030_s05/next_teacher": {
+      "legacy_selected": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261004/E059/evaluate/zero/e010_p030_s05_next_teacher.pt",
+          "sha256": "91d6dda3884ac51d35c05aaf8f033d0acfc278464debffb352958b0a7674c6f3",
+          "bytes": 20345392
+        },
+        "experiment": "E059",
+        "actual_input_signature": {
+          "args": [],
+          "kwargs": {
+            "audio_pos_info": {
+              "position_ids": {
+                "shape": [
+                  414
+                ],
+                "dtype": "torch.int64",
+                "sha256": "9b73f57a9457a9748d2618ab9a6739255440483d9e01a1518e5bf94314116ee4"
+              }
+            },
+            "audio_x": {
+              "shape": [
+                1,
+                22272,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "7a80c64e80703495ae758a3c3b7b07352c4b1eb722f357f79b3a0153d4b98252"
+            },
+            "control_hints": null,
+            "img_pos_for_infer_output_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+              }
+            },
+            "img_pos_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+              }
+            },
+            "img_position_ids": {
+              "shape": [
+                1,
+                22272,
+                3
+              ],
+              "dtype": "torch.float64",
+              "sha256": "e6877f45135838155bcbd84cb76f8041530417a26ec06c6c32fcbdf36bc6f528"
+            },
+            "inverse_indices": {
+              "shape": [
+                22272
+              ],
+              "dtype": "torch.int64",
+              "sha256": "3bf3b79818aa1a60ce0b7b6e92e5cedc975ec37af7ef738ba17821403e496ab7"
+            },
+            "packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "d04d6c79bfd36def0c4998385a1bb77293f03ecd957d1cf0519334babdcbdbe1"
+              },
+              "max_seqlen_q": 22227
+            },
+            "prompt_embeds": {
+              "shape": [
+                501,
+                5120
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "77df337b4e39402cacd97c1596a94f2f67a83733b02e67ff086b8f4fab6b6803"
+            },
+            "refiner_packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "187f0d141fe6c634179d935c7684e2a1fd20d3ad068b31a52b0c391316934142"
+              },
+              "max_seqlen_q": 501
+            },
+            "skip_mask_out_condition": true,
+            "text_pos_info": {
+              "position_ids": {
+                "shape": [
+                  501
+                ],
+                "dtype": "torch.int64",
+                "sha256": "6c0fa99e682ba28af74b65991fc7decf5b0b2db50feb016088acc9eb0d8365b0"
+              }
+            },
+            "token_tags": {
+              "shape": [
+                22272
+              ],
+              "dtype": "torch.int64",
+              "sha256": "6fc1450d272abe0fae1540ebed39f6a0c980f72dfa5ac3da37975d7258674e73"
+            },
+            "unique_timesteps": {
+              "shape": [
+                2
+              ],
+              "dtype": "torch.float32",
+              "sha256": "736d95293d4625bcb99288fb33b1270df31ed2cccc2e080ea3f37093a88f7e94"
+            },
+            "update_mask": null,
+            "use_gradient_checkpointing": false,
+            "use_gradient_checkpointing_offload": false,
+            "x": {
+              "shape": [
+                1,
+                22272,
+                96
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "8c2c887110ab12270070b5077753890cbe13e2ab0ba4e519f3815eacfabae4ee"
+            }
+          }
+        },
+        "raw_outputs": {
+          "video": {
+            "shape": [
+              21312,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "dafd8f608d7d9cddcebcbb7a7e66b793e20dce2d82f6be77ff014bdd22575c51"
+          },
+          "audio": {
+            "shape": [
+              414,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "83bfb99c02da48d98812881a3011a2a3b1fa0325de507787aeeb50af040d2fa5"
+          }
+        },
+        "velocities": {
+          "video": {
+            "shape": [
+              1,
+              24,
+              37,
+              36,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "413680893adb74698b819bb1688cabb534c7fd5cb5552942738998d0c262152e"
+          },
+          "audio": {
+            "shape": [
+              2,
+              32,
+              207
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "bb3ebd3572aaafa8e397c43335f2e8819ce2e8f4174b92f112a026e899f24579"
+          }
+        }
+      },
+      "bf16": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/bf16/e010_p030_s05/BB.pt",
+          "sha256": "cd1614a4e1918379f36a7edcf5d3fdb8be8c9fcb1591fe927e84852c20fffa61",
+          "bytes": 24434093
+        },
+        "experiment": "E015",
+        "actual_input_signature": {
+          "args": [],
+          "kwargs": {
+            "audio_pos_info": {
+              "position_ids": {
+                "shape": [
+                  414
+                ],
+                "dtype": "torch.int64",
+                "sha256": "9b73f57a9457a9748d2618ab9a6739255440483d9e01a1518e5bf94314116ee4"
+              }
+            },
+            "audio_x": {
+              "shape": [
+                1,
+                22272,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "7a80c64e80703495ae758a3c3b7b07352c4b1eb722f357f79b3a0153d4b98252"
+            },
+            "control_hints": null,
+            "img_pos_for_infer_output_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+              }
+            },
+            "img_pos_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+              }
+            },
+            "img_position_ids": {
+              "shape": [
+                1,
+                22272,
+                3
+              ],
+              "dtype": "torch.float64",
+              "sha256": "e6877f45135838155bcbd84cb76f8041530417a26ec06c6c32fcbdf36bc6f528"
+            },
+            "inverse_indices": {
+              "shape": [
+                22272
+              ],
+              "dtype": "torch.int64",
+              "sha256": "3bf3b79818aa1a60ce0b7b6e92e5cedc975ec37af7ef738ba17821403e496ab7"
+            },
+            "packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "d04d6c79bfd36def0c4998385a1bb77293f03ecd957d1cf0519334babdcbdbe1"
+              },
+              "max_seqlen_q": 22227
+            },
+            "prompt_embeds": {
+              "shape": [
+                501,
+                5120
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "77df337b4e39402cacd97c1596a94f2f67a83733b02e67ff086b8f4fab6b6803"
+            },
+            "refiner_packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "187f0d141fe6c634179d935c7684e2a1fd20d3ad068b31a52b0c391316934142"
+              },
+              "max_seqlen_q": 501
+            },
+            "skip_mask_out_condition": true,
+            "text_pos_info": {
+              "position_ids": {
+                "shape": [
+                  501
+                ],
+                "dtype": "torch.int64",
+                "sha256": "6c0fa99e682ba28af74b65991fc7decf5b0b2db50feb016088acc9eb0d8365b0"
+              }
+            },
+            "token_tags": {
+              "shape": [
+                22272
+              ],
+              "dtype": "torch.int64",
+              "sha256": "6fc1450d272abe0fae1540ebed39f6a0c980f72dfa5ac3da37975d7258674e73"
+            },
+            "unique_timesteps": {
+              "shape": [
+                2
+              ],
+              "dtype": "torch.float32",
+              "sha256": "736d95293d4625bcb99288fb33b1270df31ed2cccc2e080ea3f37093a88f7e94"
+            },
+            "update_mask": null,
+            "use_gradient_checkpointing": false,
+            "use_gradient_checkpointing_offload": false,
+            "x": {
+              "shape": [
+                1,
+                22272,
+                96
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "8c2c887110ab12270070b5077753890cbe13e2ab0ba4e519f3815eacfabae4ee"
+            }
+          }
+        },
+        "raw_outputs": {
+          "video": {
+            "shape": [
+              21312,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "3ac2eef05b743bfdc095f2e87a9516d4cfdab72bf8c591e7caaa54ab7cfbe629"
+          },
+          "audio": {
+            "shape": [
+              414,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "8d379df2b2bca397e540e4770c11299cb9b02537f5bce5606e7423cf7834caff"
+          }
+        },
+        "velocities": {
+          "video": {
+            "shape": [
+              1,
+              24,
+              37,
+              36,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "da61354b1cd31088f27f51eca8043015b6145b2228d7cff04529db58d337f924"
+          },
+          "audio": {
+            "shape": [
+              2,
+              32,
+              207
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "050ce14e057b43e90d2a11cec40c844cc09ea90a2d897d1c438161c87ad451a5"
+          }
+        }
+      },
+      "plain": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/plain/e010_p030_s05/BB.pt",
+          "sha256": "c1a365eed3bd393df03dfc8ea6763fd87bdf3644e86b33c3e2d7e23afe01a6ee",
+          "bytes": 24434093
+        },
+        "experiment": "E015",
+        "actual_input_signature": {
+          "args": [],
+          "kwargs": {
+            "audio_pos_info": {
+              "position_ids": {
+                "shape": [
+                  414
+                ],
+                "dtype": "torch.int64",
+                "sha256": "9b73f57a9457a9748d2618ab9a6739255440483d9e01a1518e5bf94314116ee4"
+              }
+            },
+            "audio_x": {
+              "shape": [
+                1,
+                22272,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "7a80c64e80703495ae758a3c3b7b07352c4b1eb722f357f79b3a0153d4b98252"
+            },
+            "control_hints": null,
+            "img_pos_for_infer_output_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+              }
+            },
+            "img_pos_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+              }
+            },
+            "img_position_ids": {
+              "shape": [
+                1,
+                22272,
+                3
+              ],
+              "dtype": "torch.float64",
+              "sha256": "e6877f45135838155bcbd84cb76f8041530417a26ec06c6c32fcbdf36bc6f528"
+            },
+            "inverse_indices": {
+              "shape": [
+                22272
+              ],
+              "dtype": "torch.int64",
+              "sha256": "3bf3b79818aa1a60ce0b7b6e92e5cedc975ec37af7ef738ba17821403e496ab7"
+            },
+            "packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "d04d6c79bfd36def0c4998385a1bb77293f03ecd957d1cf0519334babdcbdbe1"
+              },
+              "max_seqlen_q": 22227
+            },
+            "prompt_embeds": {
+              "shape": [
+                501,
+                5120
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "77df337b4e39402cacd97c1596a94f2f67a83733b02e67ff086b8f4fab6b6803"
+            },
+            "refiner_packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "187f0d141fe6c634179d935c7684e2a1fd20d3ad068b31a52b0c391316934142"
+              },
+              "max_seqlen_q": 501
+            },
+            "skip_mask_out_condition": true,
+            "text_pos_info": {
+              "position_ids": {
+                "shape": [
+                  501
+                ],
+                "dtype": "torch.int64",
+                "sha256": "6c0fa99e682ba28af74b65991fc7decf5b0b2db50feb016088acc9eb0d8365b0"
+              }
+            },
+            "token_tags": {
+              "shape": [
+                22272
+              ],
+              "dtype": "torch.int64",
+              "sha256": "6fc1450d272abe0fae1540ebed39f6a0c980f72dfa5ac3da37975d7258674e73"
+            },
+            "unique_timesteps": {
+              "shape": [
+                2
+              ],
+              "dtype": "torch.float32",
+              "sha256": "736d95293d4625bcb99288fb33b1270df31ed2cccc2e080ea3f37093a88f7e94"
+            },
+            "update_mask": null,
+            "use_gradient_checkpointing": false,
+            "use_gradient_checkpointing_offload": false,
+            "x": {
+              "shape": [
+                1,
+                22272,
+                96
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "8c2c887110ab12270070b5077753890cbe13e2ab0ba4e519f3815eacfabae4ee"
+            }
+          }
+        },
+        "raw_outputs": {
+          "video": {
+            "shape": [
+              21312,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "aef19178064cf5587492064d2f01cb7b7159de4076e1cf7162e8844aed62f7a5"
+          },
+          "audio": {
+            "shape": [
+              414,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "adf749893084e8b3788eb0fc493330afeab7c3b6b5d25bc71342a10a9c44825d"
+          }
+        },
+        "velocities": {
+          "video": {
+            "shape": [
+              1,
+              24,
+              37,
+              36,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "8acf37ec3d3ce287f3cb0bc3decb7ccf2f5e2f9a4e22fe621333ca549e145943"
+          },
+          "audio": {
+            "shape": [
+              2,
+              32,
+              207
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "7d6ce91c9ece89c665301ee1fdf13d2605695e2fdda96812a2c5430b6196696c"
+          }
+        }
+      }
+    },
+    "e010_p030_s05/next_shifted": {
+      "legacy_selected": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261004/E059/evaluate/zero/e010_p030_s05_next_shifted.pt",
+          "sha256": "d254d6838d054386f944cecce31c7e7bec83101156b494066b551f58e1cc43fc",
+          "bytes": 20345392
+        },
+        "experiment": "E059",
+        "actual_input_signature": {
+          "args": [],
+          "kwargs": {
+            "audio_pos_info": {
+              "position_ids": {
+                "shape": [
+                  414
+                ],
+                "dtype": "torch.int64",
+                "sha256": "9b73f57a9457a9748d2618ab9a6739255440483d9e01a1518e5bf94314116ee4"
+              }
+            },
+            "audio_x": {
+              "shape": [
+                1,
+                22272,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "fdab7da59f54867f4dadefa328dc5d6e05d00bcf9c2b49fd3068eb08f67658a5"
+            },
+            "control_hints": null,
+            "img_pos_for_infer_output_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+              }
+            },
+            "img_pos_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+              }
+            },
+            "img_position_ids": {
+              "shape": [
+                1,
+                22272,
+                3
+              ],
+              "dtype": "torch.float64",
+              "sha256": "e6877f45135838155bcbd84cb76f8041530417a26ec06c6c32fcbdf36bc6f528"
+            },
+            "inverse_indices": {
+              "shape": [
+                22272
+              ],
+              "dtype": "torch.int64",
+              "sha256": "3bf3b79818aa1a60ce0b7b6e92e5cedc975ec37af7ef738ba17821403e496ab7"
+            },
+            "packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "d04d6c79bfd36def0c4998385a1bb77293f03ecd957d1cf0519334babdcbdbe1"
+              },
+              "max_seqlen_q": 22227
+            },
+            "prompt_embeds": {
+              "shape": [
+                501,
+                5120
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "77df337b4e39402cacd97c1596a94f2f67a83733b02e67ff086b8f4fab6b6803"
+            },
+            "refiner_packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "187f0d141fe6c634179d935c7684e2a1fd20d3ad068b31a52b0c391316934142"
+              },
+              "max_seqlen_q": 501
+            },
+            "skip_mask_out_condition": true,
+            "text_pos_info": {
+              "position_ids": {
+                "shape": [
+                  501
+                ],
+                "dtype": "torch.int64",
+                "sha256": "6c0fa99e682ba28af74b65991fc7decf5b0b2db50feb016088acc9eb0d8365b0"
+              }
+            },
+            "token_tags": {
+              "shape": [
+                22272
+              ],
+              "dtype": "torch.int64",
+              "sha256": "6fc1450d272abe0fae1540ebed39f6a0c980f72dfa5ac3da37975d7258674e73"
+            },
+            "unique_timesteps": {
+              "shape": [
+                2
+              ],
+              "dtype": "torch.float32",
+              "sha256": "736d95293d4625bcb99288fb33b1270df31ed2cccc2e080ea3f37093a88f7e94"
+            },
+            "update_mask": null,
+            "use_gradient_checkpointing": false,
+            "use_gradient_checkpointing_offload": false,
+            "x": {
+              "shape": [
+                1,
+                22272,
+                96
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "7f07bf99d7c800da07e59e82bac74e15217f227aecdc1651afe2e9a40e7c25d0"
+            }
+          }
+        },
+        "raw_outputs": {
+          "video": {
+            "shape": [
+              21312,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "b4b84ee78780c298d0029ffe749e5d43fda8e32f152f591f50160c600af88b46"
+          },
+          "audio": {
+            "shape": [
+              414,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "f6eb4af8e529ed081b79c73aa097a7e056560fa1a947622017576195710565d6"
+          }
+        },
+        "velocities": {
+          "video": {
+            "shape": [
+              1,
+              24,
+              37,
+              36,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "227ad2ee4658788027d7806335ea6c9c2ddb839fc123fab8048d375beed07141"
+          },
+          "audio": {
+            "shape": [
+              2,
+              32,
+              207
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "52be5229d13ef7780bca77161508062aca4be6b1bb53320cba5c961162e89b00"
+          }
+        }
+      },
+      "bf16": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261004/E057/evaluate_v2/e010_p030_s05_svd_QB.pt",
+          "sha256": "ac9d0580bdddb05f2edb10ad0897287c332bdc88b63fe0e2b19a0f85ae19ae58",
+          "bytes": 24435114
+        },
+        "experiment": "E057",
+        "actual_input_signature": {
+          "args": [],
+          "kwargs": {
+            "audio_pos_info": {
+              "position_ids": {
+                "shape": [
+                  414
+                ],
+                "dtype": "torch.int64",
+                "sha256": "9b73f57a9457a9748d2618ab9a6739255440483d9e01a1518e5bf94314116ee4"
+              }
+            },
+            "audio_x": {
+              "shape": [
+                1,
+                22272,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "fdab7da59f54867f4dadefa328dc5d6e05d00bcf9c2b49fd3068eb08f67658a5"
+            },
+            "control_hints": null,
+            "img_pos_for_infer_output_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+              }
+            },
+            "img_pos_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "8b29a181ca65b6919d7c5de07886f18d74a663d60c1f326bf4261ea2f1cb98d4"
+              }
+            },
+            "img_position_ids": {
+              "shape": [
+                1,
+                22272,
+                3
+              ],
+              "dtype": "torch.float64",
+              "sha256": "e6877f45135838155bcbd84cb76f8041530417a26ec06c6c32fcbdf36bc6f528"
+            },
+            "inverse_indices": {
+              "shape": [
+                22272
+              ],
+              "dtype": "torch.int64",
+              "sha256": "3bf3b79818aa1a60ce0b7b6e92e5cedc975ec37af7ef738ba17821403e496ab7"
+            },
+            "packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "d04d6c79bfd36def0c4998385a1bb77293f03ecd957d1cf0519334babdcbdbe1"
+              },
+              "max_seqlen_q": 22227
+            },
+            "prompt_embeds": {
+              "shape": [
+                501,
+                5120
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "77df337b4e39402cacd97c1596a94f2f67a83733b02e67ff086b8f4fab6b6803"
+            },
+            "refiner_packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "187f0d141fe6c634179d935c7684e2a1fd20d3ad068b31a52b0c391316934142"
+              },
+              "max_seqlen_q": 501
+            },
+            "skip_mask_out_condition": true,
+            "text_pos_info": {
+              "position_ids": {
+                "shape": [
+                  501
+                ],
+                "dtype": "torch.int64",
+                "sha256": "6c0fa99e682ba28af74b65991fc7decf5b0b2db50feb016088acc9eb0d8365b0"
+              }
+            },
+            "token_tags": {
+              "shape": [
+                22272
+              ],
+              "dtype": "torch.int64",
+              "sha256": "6fc1450d272abe0fae1540ebed39f6a0c980f72dfa5ac3da37975d7258674e73"
+            },
+            "unique_timesteps": {
+              "shape": [
+                2
+              ],
+              "dtype": "torch.float32",
+              "sha256": "736d95293d4625bcb99288fb33b1270df31ed2cccc2e080ea3f37093a88f7e94"
+            },
+            "update_mask": null,
+            "use_gradient_checkpointing": false,
+            "use_gradient_checkpointing_offload": false,
+            "x": {
+              "shape": [
+                1,
+                22272,
+                96
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "7f07bf99d7c800da07e59e82bac74e15217f227aecdc1651afe2e9a40e7c25d0"
+            }
+          }
+        },
+        "raw_outputs": {
+          "video": {
+            "shape": [
+              21312,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "2caa85f35dc0f9c40ddd01687c5c718a4ee56af3a43a767503bbb316835a96c0"
+          },
+          "audio": {
+            "shape": [
+              414,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "3858234d8a8e57ed91a65c7750d04f48f50b5cd61f51e43351f7b09a221a12c3"
+          }
+        },
+        "velocities": {
+          "video": {
+            "shape": [
+              1,
+              24,
+              37,
+              36,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "958d8e14adfae0b98781459a6164a3317aabffecf11615ba29420634e13dd556"
+          },
+          "audio": {
+            "shape": [
+              2,
+              32,
+              207
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "9ee01202c0088a7ddf85574e1745adb2d1771ebea8a47e62a08142d468286f44"
+          }
+        }
+      },
+      "plain": null
+    },
+    "e010_p036_s14/source_teacher": {
+      "legacy_selected": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261004/E059/evaluate/zero/e010_p036_s14_source_teacher.pt",
+          "sha256": "6930a070526a8ba477b3d552569e9a38743fcdc3b1981097d129ad201314252d",
+          "bytes": 23638128
+        },
+        "experiment": "E059",
+        "actual_input_signature": {
+          "args": [],
+          "kwargs": {
+            "audio_pos_info": {
+              "position_ids": {
+                "shape": [
+                  414
+                ],
+                "dtype": "torch.int64",
+                "sha256": "812173c7db17cac9b970b95480c24c4d23bab191a9cb51d2a748d839d53a0c37"
+              }
+            },
+            "audio_x": {
+              "shape": [
+                1,
+                22592,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "2d865fec08418129fa4b0a3b30c6c8fd76dea5a1e23d5345eae807c4c958df65"
+            },
+            "control_hints": null,
+            "img_pos_for_infer_output_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+              }
+            },
+            "img_pos_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+              }
+            },
+            "img_position_ids": {
+              "shape": [
+                1,
+                22592,
+                3
+              ],
+              "dtype": "torch.float64",
+              "sha256": "26d1ad59945b293f852bc7a18829f637d22aed14d11db8ed2d0fa7d771df28b8"
+            },
+            "inverse_indices": {
+              "shape": [
+                22592
+              ],
+              "dtype": "torch.int64",
+              "sha256": "db2777e78da4536d6f16a2a45824ba7d104c21f1166543ce3f8b162ae47e85e7"
+            },
+            "packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "13ad55c895ae209d8d98b6f005dd88ff549b946fad61fea1d851ee35cd15d903"
+              },
+              "max_seqlen_q": 22539
+            },
+            "prompt_embeds": {
+              "shape": [
+                813,
+                5120
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "440bbff8dce8199957df602f7c8100506c21c14a0b6e24a73715019e21435db3"
+            },
+            "refiner_packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "d1c8512279c779f169c4900fd91d059f99a48de38b9fd88a8054872da127a51a"
+              },
+              "max_seqlen_q": 813
+            },
+            "skip_mask_out_condition": true,
+            "text_pos_info": {
+              "position_ids": {
+                "shape": [
+                  813
+                ],
+                "dtype": "torch.int64",
+                "sha256": "b395d884b64e3133f0d98582903c6687c18008eafd0d58628f9bf04a4465a330"
+              }
+            },
+            "token_tags": {
+              "shape": [
+                22592
+              ],
+              "dtype": "torch.int64",
+              "sha256": "7af1a16cf198fe62271dbe4f1397662fb584af0a39a47b84cb74800f8c89b0a7"
+            },
+            "unique_timesteps": {
+              "shape": [
+                2
+              ],
+              "dtype": "torch.float32",
+              "sha256": "78032fc0a7f2cb7a35df43d26cb0d77d6f4350ee38b869da8b91b270c2bf772c"
+            },
+            "update_mask": null,
+            "use_gradient_checkpointing": false,
+            "use_gradient_checkpointing_offload": false,
+            "x": {
+              "shape": [
+                1,
+                22592,
+                96
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "e214705cb8078d40b713665665f269e2d3e42dd527bdcc0807aaa8a41279b0ce"
+            }
+          }
+        },
+        "raw_outputs": {
+          "video": {
+            "shape": [
+              21312,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "d9dfa5e479609d8038c0ccf10645e2a2e1763ce1caecafdb3ccd5b31b9826de7"
+          },
+          "audio": {
+            "shape": [
+              414,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "e43ead2b646bad029ffcc20a9039fe32aae371dc6bbe9a136d14a7c0f895bd3f"
+          }
+        },
+        "velocities": {
+          "video": {
+            "shape": [
+              1,
+              24,
+              37,
+              36,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "15a69db037cfea18cef2de5e872f2c40524e169838f1e53877dab342451fff91"
+          },
+          "audio": {
+            "shape": [
+              2,
+              32,
+              207
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "19f332bb2473c34bf3e84765415aee0ead7f0f103ff3aaf7d225e2532ef39e47"
+          }
+        }
+      },
+      "bf16": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/bf16/e010_p036_s14.pt",
+          "sha256": "ce7df07cb7243301b978743992c1a977815dd14510af6be80dee567c45ec04e7",
+          "bytes": 8243737
+        },
+        "experiment": "E014",
+        "actual_input_signature": {
+          "args": [],
+          "kwargs": {
+            "audio_pos_info": {
+              "position_ids": {
+                "shape": [
+                  414
+                ],
+                "dtype": "torch.int64",
+                "sha256": "812173c7db17cac9b970b95480c24c4d23bab191a9cb51d2a748d839d53a0c37"
+              }
+            },
+            "audio_x": {
+              "shape": [
+                1,
+                22592,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "2d865fec08418129fa4b0a3b30c6c8fd76dea5a1e23d5345eae807c4c958df65"
+            },
+            "control_hints": null,
+            "img_pos_for_infer_output_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+              }
+            },
+            "img_pos_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+              }
+            },
+            "img_position_ids": {
+              "shape": [
+                1,
+                22592,
+                3
+              ],
+              "dtype": "torch.float64",
+              "sha256": "26d1ad59945b293f852bc7a18829f637d22aed14d11db8ed2d0fa7d771df28b8"
+            },
+            "inverse_indices": {
+              "shape": [
+                22592
+              ],
+              "dtype": "torch.int64",
+              "sha256": "db2777e78da4536d6f16a2a45824ba7d104c21f1166543ce3f8b162ae47e85e7"
+            },
+            "packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "13ad55c895ae209d8d98b6f005dd88ff549b946fad61fea1d851ee35cd15d903"
+              },
+              "max_seqlen_q": 22539
+            },
+            "prompt_embeds": {
+              "shape": [
+                813,
+                5120
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "440bbff8dce8199957df602f7c8100506c21c14a0b6e24a73715019e21435db3"
+            },
+            "refiner_packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "d1c8512279c779f169c4900fd91d059f99a48de38b9fd88a8054872da127a51a"
+              },
+              "max_seqlen_q": 813
+            },
+            "skip_mask_out_condition": true,
+            "text_pos_info": {
+              "position_ids": {
+                "shape": [
+                  813
+                ],
+                "dtype": "torch.int64",
+                "sha256": "b395d884b64e3133f0d98582903c6687c18008eafd0d58628f9bf04a4465a330"
+              }
+            },
+            "token_tags": {
+              "shape": [
+                22592
+              ],
+              "dtype": "torch.int64",
+              "sha256": "7af1a16cf198fe62271dbe4f1397662fb584af0a39a47b84cb74800f8c89b0a7"
+            },
+            "unique_timesteps": {
+              "shape": [
+                2
+              ],
+              "dtype": "torch.float32",
+              "sha256": "78032fc0a7f2cb7a35df43d26cb0d77d6f4350ee38b869da8b91b270c2bf772c"
+            },
+            "update_mask": null,
+            "use_gradient_checkpointing": false,
+            "use_gradient_checkpointing_offload": false,
+            "x": {
+              "shape": [
+                1,
+                22592,
+                96
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "e214705cb8078d40b713665665f269e2d3e42dd527bdcc0807aaa8a41279b0ce"
+            }
+          }
+        },
+        "raw_outputs": {
+          "video": {
+            "shape": [
+              21312,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "8d3756db43946f8efb35687dc422b709de1abd63604f39d781f2653f983a26c7"
+          },
+          "audio": {
+            "shape": [
+              414,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "6cc8b83c2082f976d370379d89ea4687ac79d49ef8aec2c44fc64b8fb14d760b"
+          }
+        },
+        "velocities": {
+          "video": {
+            "shape": [
+              1,
+              24,
+              37,
+              36,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "f14a9316c2339591161e28a5e65a2ed1f297b804e19a6214f16736aa0de53ca3"
+          },
+          "audio": {
+            "shape": [
+              2,
+              32,
+              207
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "bea80deefc179ba402e297052adca0e8b31a5889753429a33872e636f296ac25"
+          }
+        }
+      },
+      "plain": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E014/evaluate/plain/e010_p036_s14.pt",
+          "sha256": "45047b2b1cedc593774be811de866a43ef99062beac8210978ea08b96f026bf9",
+          "bytes": 8243737
+        },
+        "experiment": "E014",
+        "actual_input_signature": {
+          "args": [],
+          "kwargs": {
+            "audio_pos_info": {
+              "position_ids": {
+                "shape": [
+                  414
+                ],
+                "dtype": "torch.int64",
+                "sha256": "812173c7db17cac9b970b95480c24c4d23bab191a9cb51d2a748d839d53a0c37"
+              }
+            },
+            "audio_x": {
+              "shape": [
+                1,
+                22592,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "2d865fec08418129fa4b0a3b30c6c8fd76dea5a1e23d5345eae807c4c958df65"
+            },
+            "control_hints": null,
+            "img_pos_for_infer_output_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+              }
+            },
+            "img_pos_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+              }
+            },
+            "img_position_ids": {
+              "shape": [
+                1,
+                22592,
+                3
+              ],
+              "dtype": "torch.float64",
+              "sha256": "26d1ad59945b293f852bc7a18829f637d22aed14d11db8ed2d0fa7d771df28b8"
+            },
+            "inverse_indices": {
+              "shape": [
+                22592
+              ],
+              "dtype": "torch.int64",
+              "sha256": "db2777e78da4536d6f16a2a45824ba7d104c21f1166543ce3f8b162ae47e85e7"
+            },
+            "packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "13ad55c895ae209d8d98b6f005dd88ff549b946fad61fea1d851ee35cd15d903"
+              },
+              "max_seqlen_q": 22539
+            },
+            "prompt_embeds": {
+              "shape": [
+                813,
+                5120
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "440bbff8dce8199957df602f7c8100506c21c14a0b6e24a73715019e21435db3"
+            },
+            "refiner_packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "d1c8512279c779f169c4900fd91d059f99a48de38b9fd88a8054872da127a51a"
+              },
+              "max_seqlen_q": 813
+            },
+            "skip_mask_out_condition": true,
+            "text_pos_info": {
+              "position_ids": {
+                "shape": [
+                  813
+                ],
+                "dtype": "torch.int64",
+                "sha256": "b395d884b64e3133f0d98582903c6687c18008eafd0d58628f9bf04a4465a330"
+              }
+            },
+            "token_tags": {
+              "shape": [
+                22592
+              ],
+              "dtype": "torch.int64",
+              "sha256": "7af1a16cf198fe62271dbe4f1397662fb584af0a39a47b84cb74800f8c89b0a7"
+            },
+            "unique_timesteps": {
+              "shape": [
+                2
+              ],
+              "dtype": "torch.float32",
+              "sha256": "78032fc0a7f2cb7a35df43d26cb0d77d6f4350ee38b869da8b91b270c2bf772c"
+            },
+            "update_mask": null,
+            "use_gradient_checkpointing": false,
+            "use_gradient_checkpointing_offload": false,
+            "x": {
+              "shape": [
+                1,
+                22592,
+                96
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "e214705cb8078d40b713665665f269e2d3e42dd527bdcc0807aaa8a41279b0ce"
+            }
+          }
+        },
+        "raw_outputs": {
+          "video": {
+            "shape": [
+              21312,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "7c8b4237ad8fca2dfb668e8b603fbbbd7f8d74f76518e1f631087bdb250201cf"
+          },
+          "audio": {
+            "shape": [
+              414,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "76df5a5feb51d3a59ad50a9ce03669a59ceca523a83b534b2ad74be37bf379a1"
+          }
+        },
+        "velocities": {
+          "video": {
+            "shape": [
+              1,
+              24,
+              37,
+              36,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "6ee253708a55cfc1d2a9d41280b02269f96ce5911cfbf04fe148bd2d5a5e23b0"
+          },
+          "audio": {
+            "shape": [
+              2,
+              32,
+              207
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "7ae0df99d7e6ffd4b5e83b158687d14d2db8874fe5c30799ce66554fd44a62a1"
+          }
+        }
+      }
+    },
+    "e010_p036_s14/next_teacher": {
+      "legacy_selected": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261004/E059/evaluate/zero/e010_p036_s14_next_teacher.pt",
+          "sha256": "d9752f998983df97b0c5bd146257905b7f5f8566cee311397b0ed2a4d30ce6e3",
+          "bytes": 23637488
+        },
+        "experiment": "E059",
+        "actual_input_signature": {
+          "args": [],
+          "kwargs": {
+            "audio_pos_info": {
+              "position_ids": {
+                "shape": [
+                  414
+                ],
+                "dtype": "torch.int64",
+                "sha256": "812173c7db17cac9b970b95480c24c4d23bab191a9cb51d2a748d839d53a0c37"
+              }
+            },
+            "audio_x": {
+              "shape": [
+                1,
+                22592,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "b4e1aa87e23c2eb30ce9176769a3b4965a4d040519516ea317064554b2edd211"
+            },
+            "control_hints": null,
+            "img_pos_for_infer_output_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+              }
+            },
+            "img_pos_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+              }
+            },
+            "img_position_ids": {
+              "shape": [
+                1,
+                22592,
+                3
+              ],
+              "dtype": "torch.float64",
+              "sha256": "26d1ad59945b293f852bc7a18829f637d22aed14d11db8ed2d0fa7d771df28b8"
+            },
+            "inverse_indices": {
+              "shape": [
+                22592
+              ],
+              "dtype": "torch.int64",
+              "sha256": "db2777e78da4536d6f16a2a45824ba7d104c21f1166543ce3f8b162ae47e85e7"
+            },
+            "packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "13ad55c895ae209d8d98b6f005dd88ff549b946fad61fea1d851ee35cd15d903"
+              },
+              "max_seqlen_q": 22539
+            },
+            "prompt_embeds": {
+              "shape": [
+                813,
+                5120
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "440bbff8dce8199957df602f7c8100506c21c14a0b6e24a73715019e21435db3"
+            },
+            "refiner_packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "d1c8512279c779f169c4900fd91d059f99a48de38b9fd88a8054872da127a51a"
+              },
+              "max_seqlen_q": 813
+            },
+            "skip_mask_out_condition": true,
+            "text_pos_info": {
+              "position_ids": {
+                "shape": [
+                  813
+                ],
+                "dtype": "torch.int64",
+                "sha256": "b395d884b64e3133f0d98582903c6687c18008eafd0d58628f9bf04a4465a330"
+              }
+            },
+            "token_tags": {
+              "shape": [
+                22592
+              ],
+              "dtype": "torch.int64",
+              "sha256": "7af1a16cf198fe62271dbe4f1397662fb584af0a39a47b84cb74800f8c89b0a7"
+            },
+            "unique_timesteps": {
+              "shape": [
+                2
+              ],
+              "dtype": "torch.float32",
+              "sha256": "9bf493abce913b7f2c7bacb50b3b9c241240badf3a371afb2f97786e155b356c"
+            },
+            "update_mask": null,
+            "use_gradient_checkpointing": false,
+            "use_gradient_checkpointing_offload": false,
+            "x": {
+              "shape": [
+                1,
+                22592,
+                96
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "65c72ecf386b3d5a8d395d2e87e452ed22b04e813098a17a210e1493f81f4a7d"
+            }
+          }
+        },
+        "raw_outputs": {
+          "video": {
+            "shape": [
+              21312,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "3b54537179c28df63204b66369824d233e2001628ec6a1cb1c04fdce006e1ac9"
+          },
+          "audio": {
+            "shape": [
+              414,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "16db1f9bac8abcef0a457b4c28a447ed7d8585e78d36089d9c4fd61ecb7a14ab"
+          }
+        },
+        "velocities": {
+          "video": {
+            "shape": [
+              1,
+              24,
+              37,
+              36,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "d7a93ed74fd2b00715a7d250e557b346124b00eca3af90cf5326f357ed4e2a20"
+          },
+          "audio": {
+            "shape": [
+              2,
+              32,
+              207
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "78927e6dbb087a6ac791d7964c12fceb7b05b7e6409ae07f2893448f1a7ef3b8"
+          }
+        }
+      },
+      "bf16": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/bf16/e010_p036_s14/BB.pt",
+          "sha256": "dc44755a2f5aaeee68ac4a7446c58eb13944b7deaffa59f3210d9fca18d091e5",
+          "bytes": 27726189
+        },
+        "experiment": "E015",
+        "actual_input_signature": {
+          "args": [],
+          "kwargs": {
+            "audio_pos_info": {
+              "position_ids": {
+                "shape": [
+                  414
+                ],
+                "dtype": "torch.int64",
+                "sha256": "812173c7db17cac9b970b95480c24c4d23bab191a9cb51d2a748d839d53a0c37"
+              }
+            },
+            "audio_x": {
+              "shape": [
+                1,
+                22592,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "b4e1aa87e23c2eb30ce9176769a3b4965a4d040519516ea317064554b2edd211"
+            },
+            "control_hints": null,
+            "img_pos_for_infer_output_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+              }
+            },
+            "img_pos_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+              }
+            },
+            "img_position_ids": {
+              "shape": [
+                1,
+                22592,
+                3
+              ],
+              "dtype": "torch.float64",
+              "sha256": "26d1ad59945b293f852bc7a18829f637d22aed14d11db8ed2d0fa7d771df28b8"
+            },
+            "inverse_indices": {
+              "shape": [
+                22592
+              ],
+              "dtype": "torch.int64",
+              "sha256": "db2777e78da4536d6f16a2a45824ba7d104c21f1166543ce3f8b162ae47e85e7"
+            },
+            "packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "13ad55c895ae209d8d98b6f005dd88ff549b946fad61fea1d851ee35cd15d903"
+              },
+              "max_seqlen_q": 22539
+            },
+            "prompt_embeds": {
+              "shape": [
+                813,
+                5120
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "440bbff8dce8199957df602f7c8100506c21c14a0b6e24a73715019e21435db3"
+            },
+            "refiner_packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "d1c8512279c779f169c4900fd91d059f99a48de38b9fd88a8054872da127a51a"
+              },
+              "max_seqlen_q": 813
+            },
+            "skip_mask_out_condition": true,
+            "text_pos_info": {
+              "position_ids": {
+                "shape": [
+                  813
+                ],
+                "dtype": "torch.int64",
+                "sha256": "b395d884b64e3133f0d98582903c6687c18008eafd0d58628f9bf04a4465a330"
+              }
+            },
+            "token_tags": {
+              "shape": [
+                22592
+              ],
+              "dtype": "torch.int64",
+              "sha256": "7af1a16cf198fe62271dbe4f1397662fb584af0a39a47b84cb74800f8c89b0a7"
+            },
+            "unique_timesteps": {
+              "shape": [
+                2
+              ],
+              "dtype": "torch.float32",
+              "sha256": "9bf493abce913b7f2c7bacb50b3b9c241240badf3a371afb2f97786e155b356c"
+            },
+            "update_mask": null,
+            "use_gradient_checkpointing": false,
+            "use_gradient_checkpointing_offload": false,
+            "x": {
+              "shape": [
+                1,
+                22592,
+                96
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "65c72ecf386b3d5a8d395d2e87e452ed22b04e813098a17a210e1493f81f4a7d"
+            }
+          }
+        },
+        "raw_outputs": {
+          "video": {
+            "shape": [
+              21312,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "52dc217f39a484bed03827c3913460e8f513df44ed77d127453f75b528007bf6"
+          },
+          "audio": {
+            "shape": [
+              414,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "298bf2a7a43a80197d85f11f83c92cdb7723a1cda0848d0d756be493552780b7"
+          }
+        },
+        "velocities": {
+          "video": {
+            "shape": [
+              1,
+              24,
+              37,
+              36,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "f011fd589901fab91365b138cc3ed686232c2c6a1a45c465468763f280458f70"
+          },
+          "audio": {
+            "shape": [
+              2,
+              32,
+              207
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "9c195f49781bea4b62ac143c0e9c1cf80f519b6e471eb34e90af62883d77f4a3"
+          }
+        }
+      },
+      "plain": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/plain/e010_p036_s14/BB.pt",
+          "sha256": "6575aedb9132c1434b7adcbc7e956c7cc835c21bef373b8f3d1bec5878b802fa",
+          "bytes": 27726189
+        },
+        "experiment": "E015",
+        "actual_input_signature": {
+          "args": [],
+          "kwargs": {
+            "audio_pos_info": {
+              "position_ids": {
+                "shape": [
+                  414
+                ],
+                "dtype": "torch.int64",
+                "sha256": "812173c7db17cac9b970b95480c24c4d23bab191a9cb51d2a748d839d53a0c37"
+              }
+            },
+            "audio_x": {
+              "shape": [
+                1,
+                22592,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "b4e1aa87e23c2eb30ce9176769a3b4965a4d040519516ea317064554b2edd211"
+            },
+            "control_hints": null,
+            "img_pos_for_infer_output_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+              }
+            },
+            "img_pos_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+              }
+            },
+            "img_position_ids": {
+              "shape": [
+                1,
+                22592,
+                3
+              ],
+              "dtype": "torch.float64",
+              "sha256": "26d1ad59945b293f852bc7a18829f637d22aed14d11db8ed2d0fa7d771df28b8"
+            },
+            "inverse_indices": {
+              "shape": [
+                22592
+              ],
+              "dtype": "torch.int64",
+              "sha256": "db2777e78da4536d6f16a2a45824ba7d104c21f1166543ce3f8b162ae47e85e7"
+            },
+            "packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "13ad55c895ae209d8d98b6f005dd88ff549b946fad61fea1d851ee35cd15d903"
+              },
+              "max_seqlen_q": 22539
+            },
+            "prompt_embeds": {
+              "shape": [
+                813,
+                5120
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "440bbff8dce8199957df602f7c8100506c21c14a0b6e24a73715019e21435db3"
+            },
+            "refiner_packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "d1c8512279c779f169c4900fd91d059f99a48de38b9fd88a8054872da127a51a"
+              },
+              "max_seqlen_q": 813
+            },
+            "skip_mask_out_condition": true,
+            "text_pos_info": {
+              "position_ids": {
+                "shape": [
+                  813
+                ],
+                "dtype": "torch.int64",
+                "sha256": "b395d884b64e3133f0d98582903c6687c18008eafd0d58628f9bf04a4465a330"
+              }
+            },
+            "token_tags": {
+              "shape": [
+                22592
+              ],
+              "dtype": "torch.int64",
+              "sha256": "7af1a16cf198fe62271dbe4f1397662fb584af0a39a47b84cb74800f8c89b0a7"
+            },
+            "unique_timesteps": {
+              "shape": [
+                2
+              ],
+              "dtype": "torch.float32",
+              "sha256": "9bf493abce913b7f2c7bacb50b3b9c241240badf3a371afb2f97786e155b356c"
+            },
+            "update_mask": null,
+            "use_gradient_checkpointing": false,
+            "use_gradient_checkpointing_offload": false,
+            "x": {
+              "shape": [
+                1,
+                22592,
+                96
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "65c72ecf386b3d5a8d395d2e87e452ed22b04e813098a17a210e1493f81f4a7d"
+            }
+          }
+        },
+        "raw_outputs": {
+          "video": {
+            "shape": [
+              21312,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "e16cdd159206455b56eeeb4b50417433e3b75335837d141c5c9cecd380a2d517"
+          },
+          "audio": {
+            "shape": [
+              414,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "b36c19ee1db2586480c09b6a9d5a98864bfc020b7daa75f6c3e40ec8beae5185"
+          }
+        },
+        "velocities": {
+          "video": {
+            "shape": [
+              1,
+              24,
+              37,
+              36,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "3aca13838845f3406d375e1c295d4bf50520cd7e21dc27393f4fb36600b82560"
+          },
+          "audio": {
+            "shape": [
+              2,
+              32,
+              207
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "a019dfdad2ee193e6d0f9871536b2da556feb2765a45ae5a094ef706c3fac958"
+          }
+        }
+      }
+    },
+    "e010_p036_s14/next_shifted": {
+      "legacy_selected": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261004/E059/evaluate/zero/e010_p036_s14_next_shifted.pt",
+          "sha256": "18184fa43f76c447cec14b7dca2c2bd96421526706d93c09a91f7fba168d936c",
+          "bytes": 23637488
+        },
+        "experiment": "E059",
+        "actual_input_signature": {
+          "args": [],
+          "kwargs": {
+            "audio_pos_info": {
+              "position_ids": {
+                "shape": [
+                  414
+                ],
+                "dtype": "torch.int64",
+                "sha256": "812173c7db17cac9b970b95480c24c4d23bab191a9cb51d2a748d839d53a0c37"
+              }
+            },
+            "audio_x": {
+              "shape": [
+                1,
+                22592,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "cdffc1d64833bd4f4f910efd39d36c36bb82fba10ae6e43a2cf1c1417d97a16b"
+            },
+            "control_hints": null,
+            "img_pos_for_infer_output_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+              }
+            },
+            "img_pos_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+              }
+            },
+            "img_position_ids": {
+              "shape": [
+                1,
+                22592,
+                3
+              ],
+              "dtype": "torch.float64",
+              "sha256": "26d1ad59945b293f852bc7a18829f637d22aed14d11db8ed2d0fa7d771df28b8"
+            },
+            "inverse_indices": {
+              "shape": [
+                22592
+              ],
+              "dtype": "torch.int64",
+              "sha256": "db2777e78da4536d6f16a2a45824ba7d104c21f1166543ce3f8b162ae47e85e7"
+            },
+            "packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "13ad55c895ae209d8d98b6f005dd88ff549b946fad61fea1d851ee35cd15d903"
+              },
+              "max_seqlen_q": 22539
+            },
+            "prompt_embeds": {
+              "shape": [
+                813,
+                5120
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "440bbff8dce8199957df602f7c8100506c21c14a0b6e24a73715019e21435db3"
+            },
+            "refiner_packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "d1c8512279c779f169c4900fd91d059f99a48de38b9fd88a8054872da127a51a"
+              },
+              "max_seqlen_q": 813
+            },
+            "skip_mask_out_condition": true,
+            "text_pos_info": {
+              "position_ids": {
+                "shape": [
+                  813
+                ],
+                "dtype": "torch.int64",
+                "sha256": "b395d884b64e3133f0d98582903c6687c18008eafd0d58628f9bf04a4465a330"
+              }
+            },
+            "token_tags": {
+              "shape": [
+                22592
+              ],
+              "dtype": "torch.int64",
+              "sha256": "7af1a16cf198fe62271dbe4f1397662fb584af0a39a47b84cb74800f8c89b0a7"
+            },
+            "unique_timesteps": {
+              "shape": [
+                2
+              ],
+              "dtype": "torch.float32",
+              "sha256": "9bf493abce913b7f2c7bacb50b3b9c241240badf3a371afb2f97786e155b356c"
+            },
+            "update_mask": null,
+            "use_gradient_checkpointing": false,
+            "use_gradient_checkpointing_offload": false,
+            "x": {
+              "shape": [
+                1,
+                22592,
+                96
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "21baa89811f15263a7f060fa3cb6689f607126b9841e9eaf0275535ce8ab431b"
+            }
+          }
+        },
+        "raw_outputs": {
+          "video": {
+            "shape": [
+              21312,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "c48ee048420f9789f63129110ca7b4b40882da6172b598a9372782757c2fd520"
+          },
+          "audio": {
+            "shape": [
+              414,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "15ce82b4f65481fc86e640b73d019e978aed0709f85237d740a33ab5a45efa58"
+          }
+        },
+        "velocities": {
+          "video": {
+            "shape": [
+              1,
+              24,
+              37,
+              36,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "0afd024672e3b627c2420f9cc9bc65a63f0f404b136a6fcb3b1334a3b03bf7e5"
+          },
+          "audio": {
+            "shape": [
+              2,
+              32,
+              207
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "c5303cd68ec806dd4cb3d53f9a4905c3b25c73d963e72017d4eb288091bb89fd"
+          }
+        }
+      },
+      "bf16": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261004/E057/evaluate_v2/e010_p036_s14_svd_QB.pt",
+          "sha256": "4f18868570f01eee45a2d3e7b889cbc51469a4e8009ed687c27f5fa5ad0d387d",
+          "bytes": 27727210
+        },
+        "experiment": "E057",
+        "actual_input_signature": {
+          "args": [],
+          "kwargs": {
+            "audio_pos_info": {
+              "position_ids": {
+                "shape": [
+                  414
+                ],
+                "dtype": "torch.int64",
+                "sha256": "812173c7db17cac9b970b95480c24c4d23bab191a9cb51d2a748d839d53a0c37"
+              }
+            },
+            "audio_x": {
+              "shape": [
+                1,
+                22592,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "cdffc1d64833bd4f4f910efd39d36c36bb82fba10ae6e43a2cf1c1417d97a16b"
+            },
+            "control_hints": null,
+            "img_pos_for_infer_output_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+              }
+            },
+            "img_pos_info": {
+              "position_ids": {
+                "shape": [
+                  21312
+                ],
+                "dtype": "torch.int64",
+                "sha256": "a0103f1ef342bd4b80c9f99a4663fa875ec1ace4df7a749cd8812a099ef90bd1"
+              }
+            },
+            "img_position_ids": {
+              "shape": [
+                1,
+                22592,
+                3
+              ],
+              "dtype": "torch.float64",
+              "sha256": "26d1ad59945b293f852bc7a18829f637d22aed14d11db8ed2d0fa7d771df28b8"
+            },
+            "inverse_indices": {
+              "shape": [
+                22592
+              ],
+              "dtype": "torch.int64",
+              "sha256": "db2777e78da4536d6f16a2a45824ba7d104c21f1166543ce3f8b162ae47e85e7"
+            },
+            "packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "13ad55c895ae209d8d98b6f005dd88ff549b946fad61fea1d851ee35cd15d903"
+              },
+              "max_seqlen_q": 22539
+            },
+            "prompt_embeds": {
+              "shape": [
+                813,
+                5120
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "440bbff8dce8199957df602f7c8100506c21c14a0b6e24a73715019e21435db3"
+            },
+            "refiner_packed_seq_params": {
+              "cu_seqlens_q": {
+                "shape": [
+                  3
+                ],
+                "dtype": "torch.int32",
+                "sha256": "d1c8512279c779f169c4900fd91d059f99a48de38b9fd88a8054872da127a51a"
+              },
+              "max_seqlen_q": 813
+            },
+            "skip_mask_out_condition": true,
+            "text_pos_info": {
+              "position_ids": {
+                "shape": [
+                  813
+                ],
+                "dtype": "torch.int64",
+                "sha256": "b395d884b64e3133f0d98582903c6687c18008eafd0d58628f9bf04a4465a330"
+              }
+            },
+            "token_tags": {
+              "shape": [
+                22592
+              ],
+              "dtype": "torch.int64",
+              "sha256": "7af1a16cf198fe62271dbe4f1397662fb584af0a39a47b84cb74800f8c89b0a7"
+            },
+            "unique_timesteps": {
+              "shape": [
+                2
+              ],
+              "dtype": "torch.float32",
+              "sha256": "9bf493abce913b7f2c7bacb50b3b9c241240badf3a371afb2f97786e155b356c"
+            },
+            "update_mask": null,
+            "use_gradient_checkpointing": false,
+            "use_gradient_checkpointing_offload": false,
+            "x": {
+              "shape": [
+                1,
+                22592,
+                96
+              ],
+              "dtype": "torch.bfloat16",
+              "sha256": "21baa89811f15263a7f060fa3cb6689f607126b9841e9eaf0275535ce8ab431b"
+            }
+          }
+        },
+        "raw_outputs": {
+          "video": {
+            "shape": [
+              21312,
+              96
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "dea978b1b6d58f4ad83a8e67de00263f9905ffb30c1b072b8f952657db8a6a59"
+          },
+          "audio": {
+            "shape": [
+              414,
+              32
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "d07df27a6ad6a99abc8553f772ba25a433a1d6daf96c77912b9578594e5691f1"
+          }
+        },
+        "velocities": {
+          "video": {
+            "shape": [
+              1,
+              24,
+              37,
+              36,
+              64
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "e97d1037139a41a171a897c185f12a7f7d330b21548a4c19db90f2ea5adf6a64"
+          },
+          "audio": {
+            "shape": [
+              2,
+              32,
+              207
+            ],
+            "dtype": "torch.bfloat16",
+            "sha256": "bdb03028c89a6adb5d9fe052e7c7caa8f504a4913a53ef8af35188500cf8ae67"
+          }
+        }
+      },
+      "plain": null
+    }
+  },
+  "reference_reports": {
+    "e014_bf16": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E014/E014_evaluate_bf16.json",
+      "sha256": "5178a9abd3e2b9619bb9652b3796d21ee4594f709752e72cdec51fb333e3797a",
+      "bytes": 261083
+    },
+    "e014_plain": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E014/E014_evaluate_plain.json",
+      "sha256": "7c16721f5c411c45196ecfee652bf0735588c00f85e4d2797bb156cf16a26c3a",
+      "bytes": 369465
+    },
+    "e015_bf16": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E015/evaluate_bf16.json",
+      "sha256": "8709100021cb74daea7029ecd780a11465410d95dcda4d23f4df4b395bc6a386",
+      "bytes": 49653
+    },
+    "e015_plain": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E015/evaluate_plain.json",
+      "sha256": "be7530015cb28e927f3ac5c4f3b2afcde2d9b592245472c78c8a6fe43450d35d",
+      "bytes": 110585
+    },
+    "e057": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E057/evaluate_v2.json",
+      "sha256": "2ab8c573a5147d1415fc17129b9cc296842c46cc3cce85b5f97397abeccf1575",
+      "bytes": 71006
+    }
+  },
+  "cpu_check_reference": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E061/check.json",
+    "sha256": "40cb0a3d1c086f4fca32d510cc074bbed2bf5f457cb0cd37e82ff446ac02cf61",
+    "bytes": 163618
+  },
+  "reference_metrics": {
+    "e010_p030_s05/source_teacher": {
+      "legacy_selected": {
+        "video": {
+          "sse": 346491.52504283085,
+          "reference_energy": 5297102.251502541,
+          "nmse": 0.06541152286508106,
+          "channel_centered_sse": 333923.3186070127,
+          "elements": 2045952
+        },
+        "audio": {
+          "sse": 1579.6451022453557,
+          "reference_energy": 15450.520898704457,
+          "nmse": 0.10223895444054644,
+          "channel_centered_sse": 664.2025574939911,
+          "elements": 13248
+        }
+      },
+      "plain": {
+        "video": {
+          "sse": 294452.9397061286,
+          "reference_energy": 5297102.251502541,
+          "nmse": 0.05558755065047235,
+          "channel_centered_sse": 285724.17152003665,
+          "elements": 2045952
+        },
+        "audio": {
+          "sse": 2561.002036058734,
+          "reference_energy": 15450.520898704457,
+          "nmse": 0.16575506113023522,
+          "channel_centered_sse": 363.4007231001632,
+          "elements": 13248
+        }
+      }
+    },
+    "e010_p030_s05/next_teacher": {
+      "legacy_selected": {
+        "video": {
+          "sse": 253829.43407028803,
+          "reference_energy": 4995467.5827462105,
+          "nmse": 0.05081194700311672,
+          "channel_centered_sse": 241974.20389048674,
+          "elements": 2045952
+        },
+        "audio": {
+          "sse": 1915.3087303149905,
+          "reference_energy": 15194.324432070673,
+          "nmse": 0.12605422102692154,
+          "channel_centered_sse": 1026.7653788355346,
+          "elements": 13248
+        }
+      },
+      "plain": {
+        "video": {
+          "sse": 224938.3267798554,
+          "reference_energy": 4995467.5827462105,
+          "nmse": 0.045028482930560366,
+          "channel_centered_sse": 220052.38148164738,
+          "elements": 2045952
+        },
+        "audio": {
+          "sse": 1408.9238313184246,
+          "reference_energy": 15194.324432070673,
+          "nmse": 0.09272698089456402,
+          "channel_centered_sse": 379.109446244212,
+          "elements": 13248
+        }
+      }
+    },
+    "e010_p030_s05/next_shifted": {
+      "legacy_selected": {
+        "video": {
+          "sse": 276077.5528068401,
+          "reference_energy": 5094429.255100025,
+          "nmse": 0.054192047623481926,
+          "channel_centered_sse": 264066.9472653772,
+          "elements": 2045952
+        },
+        "audio": {
+          "sse": 1956.1107155933948,
+          "reference_energy": 14868.600976815891,
+          "nmse": 0.1315598366412208,
+          "channel_centered_sse": 707.0356212398508,
+          "elements": 13248
+        }
+      }
+    },
+    "e010_p036_s14/source_teacher": {
+      "legacy_selected": {
+        "video": {
+          "sse": 53315.13453603556,
+          "reference_energy": 4421071.89687052,
+          "nmse": 0.012059323118851556,
+          "channel_centered_sse": 52825.08460198501,
+          "elements": 2045952
+        },
+        "audio": {
+          "sse": 160.00146270015745,
+          "reference_energy": 11406.406783899469,
+          "nmse": 0.01402733268517172,
+          "channel_centered_sse": 129.41448605721644,
+          "elements": 13248
+        }
+      },
+      "plain": {
+        "video": {
+          "sse": 53243.38024628712,
+          "reference_energy": 4421071.89687052,
+          "nmse": 0.012043093052609196,
+          "channel_centered_sse": 52664.313528564126,
+          "elements": 2045952
+        },
+        "audio": {
+          "sse": 172.81666366558312,
+          "reference_energy": 11406.406783899469,
+          "nmse": 0.015150841710250043,
+          "channel_centered_sse": 141.2146133159199,
+          "elements": 13248
+        }
+      }
+    },
+    "e010_p036_s14/next_teacher": {
+      "legacy_selected": {
+        "video": {
+          "sse": 43626.13557533629,
+          "reference_energy": 4411807.215055173,
+          "nmse": 0.009888495450676828,
+          "channel_centered_sse": 43189.90031306869,
+          "elements": 2045952
+        },
+        "audio": {
+          "sse": 148.75581939183843,
+          "reference_energy": 11012.899380606925,
+          "nmse": 0.013507416553154818,
+          "channel_centered_sse": 120.7973397055328,
+          "elements": 13248
+        }
+      },
+      "plain": {
+        "video": {
+          "sse": 44499.22492674875,
+          "reference_energy": 4411807.215055173,
+          "nmse": 0.010086393796831454,
+          "channel_centered_sse": 43999.57565324193,
+          "elements": 2045952
+        },
+        "audio": {
+          "sse": 144.9604522129389,
+          "reference_energy": 11012.899380606925,
+          "nmse": 0.013162787309961791,
+          "channel_centered_sse": 117.42265099950723,
+          "elements": 13248
+        }
+      }
+    },
+    "e010_p036_s14/next_shifted": {
+      "legacy_selected": {
+        "video": {
+          "sse": 43968.68548573814,
+          "reference_energy": 4411524.450646532,
+          "nmse": 0.009966778146110989,
+          "channel_centered_sse": 43529.15535311135,
+          "elements": 2045952
+        },
+        "audio": {
+          "sse": 140.71825331378483,
+          "reference_energy": 10932.801465274668,
+          "nmse": 0.012871198087767481,
+          "channel_centered_sse": 115.93402890310392,
+          "elements": 13248
+        }
+      }
+    }
+  },
+  "export_progress": {
+    "error_init": 200,
+    "weight_init": 200
+  },
+  "active_export": {
+    "layer": "blocks.49.mlp.fc2",
+    "seed": 359150,
+    "seconds": 0.48642150801606476
+  },
+  "exports": {
+    "error_init": {
+      "file": "/data1/models/svdquant-wjq/research/20261004/E061/error_init/manifest.json",
+      "sha256": "6a472da55d3ef13989197fc2680fded4ed0f6e61ca2a297d5f74ba0812151575",
+      "bytes": 253028
+    },
+    "weight_init": {
+      "file": "/data1/models/svdquant-wjq/research/20261004/E061/weight_init/manifest.json",
+      "sha256": "9a4a895687824354bfd69072470eb0f5695ae82b2ab091ac3a89cc65cbcd3232",
+      "bytes": 253020
+    }
+  },
+  "model_setup": {
+    "file": "/data1/models/svdquant-wjq/research/20261004/E061/setup_legacy.json",
+    "sha256": "ba21da53c9ed882ca184d9d85624c017ab4065cf8cb14785a446787ee6088e16",
+    "bytes": 312897
+  },
+  "active_call": null,
+  "peak_allocated_bytes": 40384725504,
+  "installed_arm": "weight_init",
+  "teacher_gate": {
+    "metric": "video velocity FP64 SSE, uncentered",
+    "threshold_ratio": 0.8,
+    "rows": [
+      {
+        "case_id": "e010_p030_s05",
+        "position": "source_teacher",
+        "video_sse": {
+          "legacy_selected": 346491.52504283085,
+          "error_init": 333252.3947812943,
+          "weight_init": 305875.0324209124
+        },
+        "weight_over_legacy": 0.8827778179656841,
+        "weight_over_error_init": 0.9178479651186033,
+        "passed": false
+      },
+      {
+        "case_id": "e010_p030_s05",
+        "position": "next_teacher",
+        "video_sse": {
+          "legacy_selected": 253829.43407028803,
+          "error_init": 260251.45389545304,
+          "weight_init": 234810.26649333118
+        },
+        "weight_over_legacy": 0.9250710712624043,
+        "weight_over_error_init": 0.9022438221907418,
+        "passed": false
+      },
+      {
+        "case_id": "e010_p036_s14",
+        "position": "source_teacher",
+        "video_sse": {
+          "legacy_selected": 53315.13453603556,
+          "error_init": 53543.48504326119,
+          "weight_init": 53213.59707807662
+        },
+        "weight_over_legacy": 0.9980955228033738,
+        "weight_over_error_init": 0.9938388775979369,
+        "passed": false
+      },
+      {
+        "case_id": "e010_p036_s14",
+        "position": "next_teacher",
+        "video_sse": {
+          "legacy_selected": 43626.13557533629,
+          "error_init": 45969.76817712931,
+          "weight_init": 46184.81006578295
+        },
+        "weight_over_legacy": 1.0586500375681496,
+        "weight_over_error_init": 1.00467789804432,
+        "passed": false
+      }
+    ],
+    "passed": false
+  },
+  "shifted_evaluation": "not_run_teacher_gate_failed",
+  "decision": "Stop fixed-smooth initialization comparison; full official recipe remains untested",
+  "elapsed_seconds": 218.45168256759644
+}

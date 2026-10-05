@@ -1,0 +1,109 @@
+{
+  "experiment": "E039",
+  "phase": "check",
+  "status": "complete",
+  "rank": 0,
+  "world_size": 2,
+  "arms": [
+    "bf16_return",
+    "fp8_return",
+    "row_parallel",
+    "fp4_side"
+  ],
+  "expected_boundaries_per_rank": 52,
+  "expected_native_gemms_per_rank": 65,
+  "actual_dit_calls": 0,
+  "timing_scope": "Resident head-owned BF16 O through all smoothing/statistics/packs/wire copies/collectives/native projection to real token-owned projected BF16 output. JIT included in first warmup and900s deadline; control barriers, disk loading, flag readback and saving outside per-invocation timing.",
+  "byte_scope": "Actual A2A application bytes; SUM/MAX collectives logical peer bytes separately, not NCCL protocol traffic.",
+  "numerical_contracts": {
+    "bf16_return": "Original native SVD projection after BF16 A2A.",
+    "fp8_return": "Per-source/destination message E4M3 with FP32 amax/448 scale, decode to BF16 before original smooth/projection.",
+    "row_parallel": "Shared destination activation globals; BF16 partial main and BF16 down; one BF16 SUM RS; one BF16 up/add at owner.",
+    "fp4_side": "Shared destination globals and actual packed input; BF16 partial down; float32 sum then BF16 down; original full main/up/add at owner."
+  },
+  "scientific_scope": "One actual H3 output/projection; no quality or byte-equality gate, no DiT. Compare main-valid and real model-padding output separately.",
+  "sources": {
+    "runner": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_output_projection_parallel.py",
+      "bytes": 22983,
+      "sha256": "0feca17c5491b499a0aa414fdc93d8fe48b50fd04fbdf382faf83dd2a528eb84"
+    },
+    "native": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_nvfp4.py",
+      "bytes": 14615,
+      "sha256": "13ca884a8f6c7d93258870970c9f4b204f7cc42af0038f549b825321bb899d0a"
+    },
+    "packer": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_fastpack.py",
+      "bytes": 7255,
+      "sha256": "f5a22a9e3f23d7903403017575e1a63c1cb42e04b0230256a5808902bbc198b7"
+    },
+    "packet": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py",
+      "bytes": 22773,
+      "sha256": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa"
+    },
+    "plan": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E039_output_projection_parallel_plan.md",
+      "bytes": 4603,
+      "sha256": "211f0e0eb8f422c59ef44c32ba375ee921881b60a22e7d826105521e51209b39"
+    }
+  },
+  "input": {
+    "file": "/data1/models/svdquant-wjq/research/20261003/E039/attention_output.pt",
+    "bytes": 323880552,
+    "sha256": "685a85591667966d325f1e6ec6d065122fa8d4e28d67aae74032960f4c978a90"
+  },
+  "weight": {
+    "file": "/data1/models/svdquant-wjq/research/20261002/E009/legacy_export/layers/blocks.0.attn.out_proj.pt",
+    "bytes": 22497465,
+    "sha256": "ed21f5c0e9522aefe572dac3345f0225259fb3c25b795c3166418480ca0da2a0"
+  },
+  "geometry": {
+    "real_total": 22592,
+    "main_valid": 22539,
+    "heads": 56,
+    "head_dim": 128,
+    "input_features": 7168,
+    "output_features": 5376,
+    "rank": 32,
+    "token_starts": [
+      0,
+      11264
+    ],
+    "real_token_lengths": [
+      11264,
+      11328
+    ],
+    "valid_token_lengths": [
+      11264,
+      11275
+    ],
+    "scale_physical_rows": [
+      11264,
+      11392
+    ],
+    "RS_slot_rows": 11392,
+    "model_padding_rows": 53,
+    "row_padding_policy": "Original 53 model-padding outputs are real and enter amax/projection. Only encoder SF/RS padding is artificial."
+  },
+  "input_tensor": {
+    "shape": [
+      22592,
+      56,
+      128
+    ],
+    "dtype": "torch.bfloat16",
+    "finite": true
+  },
+  "cpu_check": {
+    "status": "complete",
+    "scale_column_tile_rejoin": true,
+    "original_weight_half_scales": true,
+    "unequal_byte_payload": true,
+    "real_model_padding_included": true,
+    "native_GEMM_not_executed": true
+  },
+  "cuda_initialized": false,
+  "seconds": 1.4213917255401611
+}

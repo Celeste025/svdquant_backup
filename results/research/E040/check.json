@@ -1,0 +1,272 @@
+{
+  "experiment": "E040",
+  "phase": "check",
+  "status": "complete",
+  "arms": [
+    "original_down",
+    "side_down",
+    "decoded_down"
+  ],
+  "actual_counts": {
+    "pack": 0,
+    "native_gemm": 0,
+    "packet_decode": 0,
+    "lr_down": 0,
+    "lr_up": 0,
+    "communication": 0,
+    "attention": 0,
+    "dit": 0
+  },
+  "scope": "Same actual packed main; only LR down information source changes. No performance/quality claim or byte-equality gate.",
+  "sources": {
+    "runner": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_projection_side_information.py",
+      "bytes": 9359,
+      "sha256": "c0cff81044bca95a200325632e9671d92bdb8d932c884f248ecf0c845a6c0f2e"
+    },
+    "plan": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E040_projection_side_information_plan.md",
+      "bytes": 2493,
+      "sha256": "502911e98da9e5f9270e991a2a88f6a511a3b2a886ab7f135e22b93786595d0a"
+    },
+    "native": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_nvfp4.py",
+      "bytes": 14615,
+      "sha256": "13ca884a8f6c7d93258870970c9f4b204f7cc42af0038f549b825321bb899d0a"
+    },
+    "packer": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_fastpack.py",
+      "bytes": 7255,
+      "sha256": "f5a22a9e3f23d7903403017575e1a63c1cb42e04b0230256a5808902bbc198b7"
+    },
+    "packet": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py",
+      "bytes": 22773,
+      "sha256": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa"
+    },
+    "e039": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_output_projection_parallel.py",
+      "bytes": 22983,
+      "sha256": "0feca17c5491b499a0aa414fdc93d8fe48b50fd04fbdf382faf83dd2a528eb84"
+    }
+  },
+  "input": {
+    "file": "/data1/models/svdquant-wjq/research/20261003/E039/attention_output.pt",
+    "bytes": 323880552,
+    "sha256": "685a85591667966d325f1e6ec6d065122fa8d4e28d67aae74032960f4c978a90"
+  },
+  "weight": {
+    "file": "/data1/models/svdquant-wjq/research/20261002/E009/legacy_export/layers/blocks.0.attn.out_proj.pt",
+    "bytes": 22497465,
+    "sha256": "ed21f5c0e9522aefe572dac3345f0225259fb3c25b795c3166418480ca0da2a0"
+  },
+  "cases": [
+    {
+      "rank": 0,
+      "start": 0,
+      "real_rows": 11264,
+      "valid_rows": 11264,
+      "status": "prepared",
+      "e039": {
+        "report": {
+          "file": "/home/wjq/workspace/svdquant-exp/results/research/E039/run_rank0.json",
+          "bytes": 171177,
+          "sha256": "e72a1c730e2767ee4065f3611d12ef4a18c88de828723a385640b45d7f46698b"
+        },
+        "states": {
+          "original_down": {
+            "artifact": {
+              "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank0/bf16_return_state.pt",
+              "bytes": 722869,
+              "sha256": "da9c9bb714f0f30157b8e4b2ac118f5b6dc025d1f06334d078e0069322ce6c17"
+            },
+            "tensors": {
+              "down": {
+                "shape": [
+                  11264,
+                  32
+                ],
+                "dtype": "torch.bfloat16",
+                "finite": true,
+                "sha256": "d1e8f81361119f06a02a790dc6e55c89fd678c51bd64766203c6bdbabda27a57"
+              },
+              "activation_globals": {
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.float32",
+                "finite": true,
+                "sha256": "3132b21eb852578e902da417ef5b96dda5548a3c61b8d1d4b77adc4a58ced5c3"
+              }
+            }
+          },
+          "side_down": {
+            "artifact": {
+              "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank0/fp4_side_state.pt",
+              "bytes": 722845,
+              "sha256": "3220720218dc6796a1feb253e41b4e3107ae58afda4106d22f5a286b7d692496"
+            },
+            "tensors": {
+              "down": {
+                "shape": [
+                  11264,
+                  32
+                ],
+                "dtype": "torch.bfloat16",
+                "finite": true,
+                "sha256": "752279767fa7f87369833825840330b6353b9f27aa74afa2f5962b0c8b4bba88"
+              },
+              "activation_globals": {
+                "shape": [
+                  2
+                ],
+                "dtype": "torch.float32",
+                "finite": true,
+                "sha256": "4cb9e6a4aa8d43fd914283b4d04ff7abfe6ba5a13550829bcc0cd8ca6c26b237"
+              }
+            }
+          }
+        },
+        "outputs": {
+          "original_down": {
+            "artifact": {
+              "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank0/bf16_return_output.pt",
+              "bytes": 121112182,
+              "sha256": "49e5031fba0c93db34dba17afddc54fd36fdad21ac1e98c2c5db82a56ffe69fc"
+            },
+            "tensor": {
+              "shape": [
+                11264,
+                5376
+              ],
+              "dtype": "torch.bfloat16",
+              "finite": true,
+              "sha256": "d2e663cab955447ec5fc2880547e5b0d6300db9524366d7e28cffc27a67c0e69"
+            }
+          },
+          "side_down": {
+            "artifact": {
+              "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank0/fp4_side_output.pt",
+              "bytes": 121112161,
+              "sha256": "241fa7dc6656e88f8dbbe173da413999891c960cbffbc055bf48991e917f4783"
+            },
+            "tensor": {
+              "shape": [
+                11264,
+                5376
+              ],
+              "dtype": "torch.bfloat16",
+              "finite": true,
+              "sha256": "4a744101af8539e87ae0122a4c191e934633aab745f70c0029e131ef88e2dcf7"
+            }
+          }
+        }
+      }
+    },
+    {
+      "rank": 1,
+      "start": 11264,
+      "real_rows": 11328,
+      "valid_rows": 11275,
+      "status": "prepared",
+      "e039": {
+        "report": {
+          "file": "/home/wjq/workspace/svdquant-exp/results/research/E039/run_rank1.json",
+          "bytes": 171176,
+          "sha256": "41a61d0a199eafff451867ef9365d94b5db420eca6665738b4581a44cec46ac6"
+        },
+        "states": {
+          "original_down": {
+            "artifact": {
+              "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank1/bf16_return_state.pt",
+              "bytes": 726965,
+              "sha256": "e979e0155232cfb22727a79daa6e617fb7d5331b32e7fa92098b349ab7b66b3a"
+            },
+            "tensors": {
+              "down": {
+                "shape": [
+                  11328,
+                  32
+                ],
+                "dtype": "torch.bfloat16",
+                "finite": true,
+                "sha256": "4e306f2695406b1554acdeceafd5199859a4187afecec4d47da8f6076edde395"
+              },
+              "activation_globals": {
+                "shape": [
+                  1
+                ],
+                "dtype": "torch.float32",
+                "finite": true,
+                "sha256": "81357e18fb90d1aa04220d3751f70eeddfd7343df501dbd44a416db47e54eb06"
+              }
+            }
+          },
+          "side_down": {
+            "artifact": {
+              "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank1/fp4_side_state.pt",
+              "bytes": 726941,
+              "sha256": "9760705f30f311e4ce0041406070ca7a946f0f35cbe250f5e0ff7c61f673fd1a"
+            },
+            "tensors": {
+              "down": {
+                "shape": [
+                  11328,
+                  32
+                ],
+                "dtype": "torch.bfloat16",
+                "finite": true,
+                "sha256": "8bc8a8833e608b4a29ec5bd7c1d0e86c7ea353599d05abee27dda3a99bde6195"
+              },
+              "activation_globals": {
+                "shape": [
+                  2
+                ],
+                "dtype": "torch.float32",
+                "finite": true,
+                "sha256": "4cb9e6a4aa8d43fd914283b4d04ff7abfe6ba5a13550829bcc0cd8ca6c26b237"
+              }
+            }
+          }
+        },
+        "outputs": {
+          "original_down": {
+            "artifact": {
+              "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank1/bf16_return_output.pt",
+              "bytes": 121800310,
+              "sha256": "1f0333b156849375b8613584ecad5d652d38cea3d24d039778ed74ba17f9391a"
+            },
+            "tensor": {
+              "shape": [
+                11328,
+                5376
+              ],
+              "dtype": "torch.bfloat16",
+              "finite": true,
+              "sha256": "b1fd2d01f099b33d651f087614adb0809fefcf46708a29b1067de8c3c588ebf7"
+            }
+          },
+          "side_down": {
+            "artifact": {
+              "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank1/fp4_side_output.pt",
+              "bytes": 121800289,
+              "sha256": "50ccded62a3d95f279a4ad58969570183bb22f5067dce6ccba4dd2d42d999081"
+            },
+            "tensor": {
+              "shape": [
+                11328,
+                5376
+              ],
+              "dtype": "torch.bfloat16",
+              "finite": true,
+              "sha256": "93df0b87a2317da8d0d134341439ebc124722965030e3242d25eb8857b92cfd3"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "cuda_initialized": false,
+  "check_scope": "Actual CPU input/state shape and provenance; no native GEMM or new numerical gate.",
+  "seconds": 1.1742401123046875
+}

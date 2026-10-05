@@ -1,0 +1,603 @@
+{
+  "experiment": "E052",
+  "status": "preregistered",
+  "mode": "baseline_resource_feasibility",
+  "scope": "Measure real full-budget block0 smoothing and low-rank calibration resources with all14B BF16 weights resident. No full checkpoint, quality proxy, new quantization method or linear total-cost extrapolation.",
+  "model_dir": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-14B-Diffusers-38ec498c",
+  "model_revision": "38ec498cb3208fb688890f8cc7e94ede2cbd7f68",
+  "python": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+  "data_dir": "/data1/models/svdquant-wjq/research/20261003/E052",
+  "report_dir": "/home/wjq/workspace/svdquant-exp/results/research/E052",
+  "collection_manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E050_wan14b_matched_calibration_manifest.json",
+    "bytes": 18272,
+    "sha256": "3ce29619bd5aeb2d2320511ff324b359aeb16f3bd9d4fcc748f95a13238bb646"
+  },
+  "collection_dir": "/home/wjq/workspace/svdquant-exp/results/research/E050",
+  "calibration_path": "/data1/models/svdquant-wjq/research/20261003/E050/calibration",
+  "reference_manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E049_wan14b_reference_manifest.json",
+    "bytes": 9727,
+    "sha256": "8cc2c92fc497445b7f22290f2221073ae7699b1983ccb510786f1a1622716849"
+  },
+  "settings": {
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "num_inference_steps": 50,
+    "guidance_scale": 5.0,
+    "flow_shift": 3.0,
+    "fps": 16,
+    "scheduler": "UniPCMultistepScheduler",
+    "transformer_dtype": "bfloat16",
+    "text_encoder_dtype": "bfloat16",
+    "vae_dtype": "float32",
+    "latent_update_dtype": "float32",
+    "max_sequence_length": 512,
+    "prompt_extension": false,
+    "attention_backend_dit": "torch SDPA FLASH_ATTENTION",
+    "compile": false,
+    "offload": false,
+    "vae_tiling": false
+  },
+  "selected_caches": [
+    {
+      "name": "0019",
+      "filename": "0019-0-00007-1.pt",
+      "cache_filename": "0019-0",
+      "step": 7,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0019",
+      "filename": "0019-0-00018-1.pt",
+      "cache_filename": "0019-0",
+      "step": 18,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0019",
+      "filename": "0019-0-00028-1.pt",
+      "cache_filename": "0019-0",
+      "step": 28,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0022",
+      "filename": "0022-0-00018-0.pt",
+      "cache_filename": "0022-0",
+      "step": 18,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0022",
+      "filename": "0022-0-00039-1.pt",
+      "cache_filename": "0022-0",
+      "step": 39,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0022",
+      "filename": "0022-0-00040-1.pt",
+      "cache_filename": "0022-0",
+      "step": 40,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0022",
+      "filename": "0022-0-00045-0.pt",
+      "cache_filename": "0022-0",
+      "step": 45,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00002-0.pt",
+      "cache_filename": "0023-0",
+      "step": 2,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00005-0.pt",
+      "cache_filename": "0023-0",
+      "step": 5,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00015-0.pt",
+      "cache_filename": "0023-0",
+      "step": 15,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00015-1.pt",
+      "cache_filename": "0023-0",
+      "step": 15,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00020-1.pt",
+      "cache_filename": "0023-0",
+      "step": 20,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00022-0.pt",
+      "cache_filename": "0023-0",
+      "step": 22,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00024-1.pt",
+      "cache_filename": "0023-0",
+      "step": 24,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00037-0.pt",
+      "cache_filename": "0023-0",
+      "step": 37,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00040-0.pt",
+      "cache_filename": "0023-0",
+      "step": 40,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0029",
+      "filename": "0029-0-00008-1.pt",
+      "cache_filename": "0029-0",
+      "step": 8,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0029",
+      "filename": "0029-0-00020-0.pt",
+      "cache_filename": "0029-0",
+      "step": 20,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0029",
+      "filename": "0029-0-00032-0.pt",
+      "cache_filename": "0029-0",
+      "step": 32,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0029",
+      "filename": "0029-0-00039-1.pt",
+      "cache_filename": "0029-0",
+      "step": 39,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0029",
+      "filename": "0029-0-00044-0.pt",
+      "cache_filename": "0029-0",
+      "step": 44,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0029",
+      "filename": "0029-0-00047-0.pt",
+      "cache_filename": "0029-0",
+      "step": 47,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0029",
+      "filename": "0029-0-00047-1.pt",
+      "cache_filename": "0029-0",
+      "step": 47,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0046",
+      "filename": "0046-0-00004-0.pt",
+      "cache_filename": "0046-0",
+      "step": 4,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0046",
+      "filename": "0046-0-00014-0.pt",
+      "cache_filename": "0046-0",
+      "step": 14,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0046",
+      "filename": "0046-0-00016-0.pt",
+      "cache_filename": "0046-0",
+      "step": 16,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0046",
+      "filename": "0046-0-00037-1.pt",
+      "cache_filename": "0046-0",
+      "step": 37,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0046",
+      "filename": "0046-0-00041-1.pt",
+      "cache_filename": "0046-0",
+      "step": 41,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0046",
+      "filename": "0046-0-00046-1.pt",
+      "cache_filename": "0046-0",
+      "step": 46,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0050",
+      "filename": "0050-0-00009-0.pt",
+      "cache_filename": "0050-0",
+      "step": 9,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0050",
+      "filename": "0050-0-00035-0.pt",
+      "cache_filename": "0050-0",
+      "step": 35,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0050",
+      "filename": "0050-0-00042-0.pt",
+      "cache_filename": "0050-0",
+      "step": 42,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0050",
+      "filename": "0050-0-00045-0.pt",
+      "cache_filename": "0050-0",
+      "step": 45,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0052",
+      "filename": "0052-0-00022-0.pt",
+      "cache_filename": "0052-0",
+      "step": 22,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0052",
+      "filename": "0052-0-00042-1.pt",
+      "cache_filename": "0052-0",
+      "step": 42,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0052",
+      "filename": "0052-0-00045-0.pt",
+      "cache_filename": "0052-0",
+      "step": 45,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0082",
+      "filename": "0082-0-00014-0.pt",
+      "cache_filename": "0082-0",
+      "step": 14,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0082",
+      "filename": "0082-0-00022-0.pt",
+      "cache_filename": "0082-0",
+      "step": 22,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0082",
+      "filename": "0082-0-00028-1.pt",
+      "cache_filename": "0082-0",
+      "step": 28,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0082",
+      "filename": "0082-0-00038-1.pt",
+      "cache_filename": "0082-0",
+      "step": 38,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0082",
+      "filename": "0082-0-00045-1.pt",
+      "cache_filename": "0082-0",
+      "step": 45,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0095",
+      "filename": "0095-0-00002-1.pt",
+      "cache_filename": "0095-0",
+      "step": 2,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0095",
+      "filename": "0095-0-00027-0.pt",
+      "cache_filename": "0095-0",
+      "step": 27,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0095",
+      "filename": "0095-0-00029-1.pt",
+      "cache_filename": "0095-0",
+      "step": 29,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0095",
+      "filename": "0095-0-00038-1.pt",
+      "cache_filename": "0095-0",
+      "step": 38,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0095",
+      "filename": "0095-0-00046-1.pt",
+      "cache_filename": "0095-0",
+      "step": 46,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0096",
+      "filename": "0096-0-00001-1.pt",
+      "cache_filename": "0096-0",
+      "step": 1,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0096",
+      "filename": "0096-0-00019-0.pt",
+      "cache_filename": "0096-0",
+      "step": 19,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0096",
+      "filename": "0096-0-00020-1.pt",
+      "cache_filename": "0096-0",
+      "step": 20,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0096",
+      "filename": "0096-0-00036-1.pt",
+      "cache_filename": "0096-0",
+      "step": 36,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0096",
+      "filename": "0096-0-00040-0.pt",
+      "cache_filename": "0096-0",
+      "step": 40,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0111",
+      "filename": "0111-0-00008-0.pt",
+      "cache_filename": "0111-0",
+      "step": 8,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0111",
+      "filename": "0111-0-00032-0.pt",
+      "cache_filename": "0111-0",
+      "step": 32,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0112",
+      "filename": "0112-0-00003-0.pt",
+      "cache_filename": "0112-0",
+      "step": 3,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0112",
+      "filename": "0112-0-00013-1.pt",
+      "cache_filename": "0112-0",
+      "step": 13,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0112",
+      "filename": "0112-0-00032-0.pt",
+      "cache_filename": "0112-0",
+      "step": 32,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0114",
+      "filename": "0114-0-00011-1.pt",
+      "cache_filename": "0114-0",
+      "step": 11,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0114",
+      "filename": "0114-0-00017-1.pt",
+      "cache_filename": "0114-0",
+      "step": 17,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0114",
+      "filename": "0114-0-00019-0.pt",
+      "cache_filename": "0114-0",
+      "step": 19,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0114",
+      "filename": "0114-0-00035-1.pt",
+      "cache_filename": "0114-0",
+      "step": 35,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0114",
+      "filename": "0114-0-00044-0.pt",
+      "cache_filename": "0114-0",
+      "step": 44,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0137",
+      "filename": "0137-0-00011-0.pt",
+      "cache_filename": "0137-0",
+      "step": 11,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0137",
+      "filename": "0137-0-00020-0.pt",
+      "cache_filename": "0137-0",
+      "step": 20,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0137",
+      "filename": "0137-0-00040-0.pt",
+      "cache_filename": "0137-0",
+      "step": 40,
+      "guidance": 0,
+      "branch": "cond"
+    }
+  ],
+  "target_block_index": 0,
+  "random_seed": 0,
+  "ptq": {
+    "rank": 32,
+    "num_samples": 64,
+    "smooth_grids": 10,
+    "group_size": 16,
+    "low_rank_max_iters": 100,
+    "low_rank_early_stop": true,
+    "shift_activations": false,
+    "calibration_batch_size": 4,
+    "sample_batch_size": 4,
+    "sample_size": -1,
+    "gated_output_error": false,
+    "weight_activation_dtype": "sfp4_e2m1_all",
+    "scale_dtypes": [
+      "torch.float32",
+      "sfp8_e4m3_nan"
+    ],
+    "sample_domain": "all actual E050 matched14B64records"
+  },
+  "budget": {
+    "gpu": 4,
+    "worker_seconds": 7200,
+    "launcher_seconds": 7500,
+    "prerequisite_wait_seconds": 7500,
+    "summary_seconds": 180
+  },
+  "expected_scope": {
+    "resident_transformer_blocks": 40,
+    "resident_main_linears": 400,
+    "calibrated_blocks": 1,
+    "calibrated_main_linears": 10,
+    "downstream_block_forwards": 0,
+    "vae_loads": 0,
+    "text_encoder_loads": 0,
+    "video_decodes": 0
+  },
+  "limits": [
+    "Block0 with full64 records and unchanged search budgets is a resource probe, not a quality substitute or full model PTQ.",
+    "Downstream execution is truncated with existing early_stop_module; full14B BF16 weights remain resident.",
+    "Original whole-model PTQ smooths all layers before LR; pilot resamples smoothed block0 activations and uses the same local algorithms, but reordered randomized SVD does not promise bitwise equivalence to future full PTQ.",
+    "Partial smooth/branch artifacts are not valid complete model/scale/wgts/branch/smooth checkpoints and cannot be fed directly to existing full-model load path.",
+    "Later layers may differ in early stop and accumulated artifacts; loading/saving/final quantization peaks are not all covered; do not multiply one layer cost to claim total runtime.",
+    "On OOM/deadline preserve evidence and stop; do not silently reduce frames/samples/grids/rank/iterations."
+  ]
+}

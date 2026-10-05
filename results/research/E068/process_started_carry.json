@@ -1,0 +1,55 @@
+{
+  "arm": "carry",
+  "supervisor_pid": 2589593,
+  "start_epoch": 1791078059.8372772,
+  "budget_start_unix": 1791078059.7994795,
+  "deadline_unix": 1791078959.7994795,
+  "phases": [
+    {
+      "phase": "denoise",
+      "command": [
+        "timeout",
+        "--kill-after=15s",
+        "899.962119102478",
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-c",
+        "import sys,runpy; sys.path.append('/home/wjq/.venvs/minimax-h3-svdquant-recovered/lib/python3.12/site-packages'); p=sys.argv.pop(1); runpy.run_path(p,run_name='__main__')",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_carry_pair_video.py",
+        "--phase",
+        "denoise",
+        "--arm",
+        "carry",
+        "--budget-start-unix",
+        "1791078059.7994795",
+        "--deadline-unix",
+        "1791078959.7994795"
+      ],
+      "start_epoch": 1791078059.8373659,
+      "timeout_pid": 2589596,
+      "exit_code": 0,
+      "end_epoch": 1791078357.649226
+    },
+    {
+      "phase": "decode",
+      "command": [
+        "timeout",
+        "--kill-after=15s",
+        "602.1465106010437",
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-c",
+        "import sys,runpy; sys.path.append('/home/wjq/.venvs/minimax-h3-svdquant-recovered/lib/python3.12/site-packages'); p=sys.argv.pop(1); runpy.run_path(p,run_name='__main__')",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_carry_pair_video.py",
+        "--phase",
+        "decode",
+        "--arm",
+        "carry",
+        "--budget-start-unix",
+        "1791078059.7994795",
+        "--deadline-unix",
+        "1791078959.7994795"
+      ],
+      "start_epoch": 1791078357.7412841,
+      "timeout_pid": 2655914
+    }
+  ]
+}

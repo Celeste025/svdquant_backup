@@ -1,0 +1,5140 @@
+{
+  "experiment": "E037",
+  "phase": "run",
+  "status": "complete",
+  "rank": 0,
+  "world_size": 2,
+  "arms": [
+    "fp4_table16",
+    "fp4_global"
+  ],
+  "expected_native_per_rank": 26,
+  "expected_native_total": 52,
+  "actual_dit_calls": 0,
+  "timing_scope": "Same E036 complete token\u2192head\u2192token boundary. Include source means, every data collective, packs, T, wire copies/reassembly, native attention and inverse output. Entry control barriers, JIT/upload and saving excluded; cold JIT remains in900s deadline.",
+  "memory_scope": "Shared allocator warmed across both arms, no per-repeat cache flush; preserve each baseline/peak. Release unused construction tensors before attention and products before next call.",
+  "byte_scope": "Actual A2A application payload, self-copy/receive separated. AllReduce logical tensor payload recorded separately; no claimed measurement of NCCL link/protocol bytes.",
+  "scientific_scope": "Global-Q/T1 is a different accuracy contract and strong baseline, not an equal-quality speedup. Compare each arm to its E034 counterpart and common BF16; no cross-arm byte gate.",
+  "sources": {
+    "runner": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_sequence_parallel_global.py",
+      "bytes": 16993,
+      "sha256": "36c99d02b347d1c9741af171fe74f399484071c181fd7eabd9881736364d2374"
+    },
+    "common": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_query_mean_k4.py",
+      "bytes": 11027,
+      "sha256": "ee4406f6a26dc6c671171a97bcda070d7be9f16d4fb599787aa208f7764b1e3a"
+    },
+    "coarse": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_coarse_centers.py",
+      "bytes": 17703,
+      "sha256": "93b41995812f7b8e3a0b487c850127f3a5102cdc755ea21ef14516bbe1e3c989"
+    },
+    "private": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/codebook_attention_sm120.py",
+      "bytes": 17979,
+      "sha256": "dc2b139eca6e971d21b1ff8a47895124fd0e77088e311494fc9c75a5df524372"
+    },
+    "official": {
+      "file": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/lib/python3.12/site-packages/flashinfer/nvfp4_attention_sm120.py",
+      "bytes": 19507,
+      "sha256": "040738c6d6af5584ca9b375bb59468d7011506862ff0a162f1f51a72149abefc"
+    },
+    "plan": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E037_sequence_parallel_global_plan.md",
+      "bytes": 3495,
+      "sha256": "6e6e5fbb856ceb649e944e8d0ad0dad1a13cb3211aa723aaaf49751dbae0d60f"
+    },
+    "sequence_base": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_sequence_parallel_correction.py",
+      "bytes": 26251,
+      "sha256": "50926caa4de0a289b500afb0edb4a9d7f170988bf4742a936b49197c741c2d8c"
+    }
+  },
+  "reference_report": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E034/run.json",
+    "bytes": 626726,
+    "sha256": "40f6dd949d3f4b27badad4fc62c4502556df1939556025cea82d7a95c7b42d82"
+  },
+  "input": {
+    "file": "/data1/models/svdquant-wjq/research/20261002/E018/capture/block0.pt",
+    "sha256": "5c8882219a165d9c4835ee80f132455f875fc21a2bd122c1b20c64cfed7b603c",
+    "bytes": 1292661823
+  },
+  "references": {
+    "bf16": {
+      "artifact": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block0_bf16_shift0.pt",
+        "sha256": "49b2698d53d398e429da75d1288e3e9925af8527d65bf56d1d9f1220ef11df1d",
+        "bytes": 323120758
+      },
+      "tensor": {
+        "shape": [
+          22539,
+          56,
+          128
+        ],
+        "dtype": "torch.bfloat16",
+        "sha256": "840d01f656bbeb6069a9ced5ae357c0bd3a3e027be9a593d3f5ae1d989957e41"
+      }
+    },
+    "coarse16": {
+      "artifact": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E034/outputs/block0_coarse16.pt",
+        "bytes": 323120737,
+        "sha256": "201259a476ef1e38df6a506ba6cb0a448ea42824f0323f61d79f52d8716cbc51"
+      },
+      "tensor": {
+        "shape": [
+          22539,
+          56,
+          128
+        ],
+        "dtype": "torch.bfloat16",
+        "finite": true,
+        "sha256": "7b3298dfea52a7153b2b2652067083ac1323b22f409686e34a1a29c5c27fbf02"
+      }
+    },
+    "coarse_centers": {
+      "artifact": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E034/outputs/block0_coarse16_centers.pt",
+        "bytes": 271409,
+        "sha256": "f6abc003d5448a0e30b45e3f2557324849ceb03a58e324bf3d5d6d5fb98adb2a"
+      },
+      "tensors": {
+        "centers": {
+          "shape": [
+            56,
+            16,
+            128
+          ],
+          "dtype": "torch.bfloat16",
+          "finite": true,
+          "sha256": "459db1d9589c7a22bbd0819dac2badde1c44f5d87e315536ca5a510167d7583d"
+        },
+        "ids": {
+          "shape": [
+            1,
+            56,
+            177
+          ],
+          "dtype": "torch.int32",
+          "finite": true,
+          "sha256": "121f617fc170cace5fdb8038b68a6b50ee0aff2c2c638adcb6d5df8a4d9d6957"
+        },
+        "boundaries": {
+          "shape": [
+            17
+          ],
+          "dtype": "torch.int32",
+          "finite": true,
+          "sha256": "8dd98ded1007598937ce7dbae3f110eacd2f9944522c1d33c45adc87e42061e0"
+        }
+      },
+      "provenance": "Returned small tensors from repeat index9 of the measured execute; no extra GPU reconstruction."
+    },
+    "global": {
+      "artifact": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E034/outputs/block0_global.pt",
+        "bytes": 323120723,
+        "sha256": "d414cac8b88cdd9334f18067785aed29d524066131708454e4bf07cc837f9bfc"
+      },
+      "tensor": {
+        "shape": [
+          22539,
+          56,
+          128
+        ],
+        "dtype": "torch.bfloat16",
+        "finite": true,
+        "sha256": "628168109e58c98dd28d2a8fefd0fa1ba027117bb1a2053c94a824147820be65"
+      }
+    }
+  },
+  "private_source_hash": "f9b8d4face60e3ba2ed82a5111a83c23548e62015fc9e9017f69faa22b8d38a6",
+  "geometry": {
+    "valid_length": 22539,
+    "padded_length": 22656,
+    "heads": 56,
+    "head_dim": 128,
+    "world_size": 2,
+    "token_starts": [
+      0,
+      11264
+    ],
+    "padded_token_lengths": [
+      11264,
+      11392
+    ],
+    "valid_token_lengths": [
+      11264,
+      11275
+    ],
+    "head_ranges": [
+      [
+        0,
+        28
+      ],
+      [
+        28,
+        56
+      ]
+    ],
+    "center_boundaries": [
+      0,
+      11,
+      22,
+      33,
+      44,
+      55,
+      66,
+      77,
+      88,
+      99,
+      110,
+      121,
+      132,
+      143,
+      154,
+      165,
+      177
+    ],
+    "ids": {
+      "shape": [
+        1,
+        56,
+        177
+      ],
+      "dtype": "torch.int32",
+      "finite": true,
+      "sha256": "121f617fc170cace5fdb8038b68a6b50ee0aff2c2c638adcb6d5df8a4d9d6957"
+    },
+    "q_padding": "Zero raw Q participates in C, then Qcenter padding is -C.",
+    "k_padding": "Kmean uses valid N; Kcenter padding is explicitly zero, never -Kmean.",
+    "scale_transport": "Q/K row64 slabs; Vsf reshaped [H,2,L/64,256], concatenate token-tile axis.",
+    "global_contract": {
+      "padded_q_denominator": 22656,
+      "valid_k_denominator": 22539,
+      "table_rows": 1,
+      "mean_input": "Resident BF16 local operands, FP32 sums in one AllReduce, divide then BF16 cast.",
+      "q_padding": "Zeros included in padded-Q denominator; centered Q padding equals -C.",
+      "k_padding": "Padding excluded from K sum; centered K padding set back to zero."
+    }
+  },
+  "e036_reports": [
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E036/run_rank0.json",
+      "bytes": 189300,
+      "sha256": "bbfa9296476e58d9b22fd42438f465829c6f4058731dfe2234b51d0b9d353d02"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E036/run_rank1.json",
+      "bytes": 189303,
+      "sha256": "54bd60c01e3e4e44d7db9480eb0e0f28a83204053d46c4fbb2f01c8225622953"
+    }
+  ],
+  "local_rank": 0,
+  "environment": {
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "nccl": [
+      2,
+      28,
+      9
+    ],
+    "device": "NVIDIA RTX PRO 5000 72GB Blackwell",
+    "visible_devices": "0,1",
+    "tf32": false,
+    "p2p_access_to_other_rank": true,
+    "cpu_threads": 4
+  },
+  "actual_counts": {
+    "q_center_reduce_ops": 104,
+    "k_mean_ops": 0,
+    "k_sum_ops": 26,
+    "q_pack": 26,
+    "k_pack": 26,
+    "v_pack": 26,
+    "correction_gemm": 26,
+    "attention": 26,
+    "all_to_all": 65,
+    "all_reduce": 26,
+    "q_sum_ops": 13
+  },
+  "control_barrier_calls": 28,
+  "resident_baseline": {
+    "allocated": 484462592,
+    "reserved": 486539264,
+    "peak_allocated": 484462592,
+    "peak_reserved": 486539264
+  },
+  "benchmarks": [
+    {
+      "arm": "fp4_table16",
+      "warmups": [
+        {
+          "round": 0,
+          "order": [
+            "fp4_table16",
+            "fp4_global"
+          ],
+          "position": 0,
+          "wall_ms": 182.7489489223808,
+          "cuda_ms": 182.68447875976562,
+          "before": {
+            "allocated": 484462592,
+            "reserved": 486539264,
+            "peak_allocated": 484462592,
+            "peak_reserved": 486539264
+          },
+          "after": {
+            "allocated": 654706688,
+            "reserved": 1725956096,
+            "peak_allocated": 1525422080,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 1040959488,
+          "incremental_peak_reserved": 1239416832,
+          "actual_counts": {
+            "q_center_reduce_ops": 8,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 3,
+            "all_reduce": 1,
+            "q_sum_ops": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all_single",
+              "label": "centers_all_heads",
+              "dtype": "torch.uint8",
+              "input_numel": 229376,
+              "output_numel": 229376,
+              "element_size": 1,
+              "send_splits": [
+                114688,
+                114688
+              ],
+              "recv_splits": [
+                114688,
+                114688
+              ],
+              "remote_send_bytes": 114688,
+              "remote_receive_bytes": 114688,
+              "self_send_bytes": 114688,
+              "self_receive_bytes": 114688,
+              "fields": {
+                "centers": {
+                  "shape": [
+                    56,
+                    8,
+                    128
+                  ],
+                  "dtype": "torch.bfloat16"
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_reduce_sum",
+              "label": "valid_K_sum",
+              "dtype": "torch.float32",
+              "input_numel": 7168,
+              "output_numel": 7168,
+              "element_size": 4,
+              "logical_peer_send_bytes": 28672,
+              "logical_peer_receive_bytes": 28672,
+              "self_send_bytes": 0,
+              "byte_scope": "Actual FP32 reduction tensor; world2 one-peer data-payload accounting, not a measurement of NCCL algorithm/protocol bytes."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_table16",
+              "dtype": "torch.uint8",
+              "input_numel": 176619520,
+              "output_numel": 177623040,
+              "element_size": 1,
+              "send_splits": [
+                88309760,
+                88309760
+              ],
+              "recv_splits": [
+                88309760,
+                89313280
+              ],
+              "remote_send_bytes": 88309760,
+              "remote_receive_bytes": 89313280,
+              "self_send_bytes": 88309760,
+              "self_receive_bytes": 88309760,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    16,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 40370176
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "order": [
+            "fp4_table16",
+            "fp4_global"
+          ],
+          "position": 0,
+          "wall_ms": 21.641553845256567,
+          "cuda_ms": 21.61622428894043,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654706688,
+            "reserved": 1725956096,
+            "peak_allocated": 1524787200,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 1031804928,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 8,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 3,
+            "all_reduce": 1,
+            "q_sum_ops": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all_single",
+              "label": "centers_all_heads",
+              "dtype": "torch.uint8",
+              "input_numel": 229376,
+              "output_numel": 229376,
+              "element_size": 1,
+              "send_splits": [
+                114688,
+                114688
+              ],
+              "recv_splits": [
+                114688,
+                114688
+              ],
+              "remote_send_bytes": 114688,
+              "remote_receive_bytes": 114688,
+              "self_send_bytes": 114688,
+              "self_receive_bytes": 114688,
+              "fields": {
+                "centers": {
+                  "shape": [
+                    56,
+                    8,
+                    128
+                  ],
+                  "dtype": "torch.bfloat16"
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_reduce_sum",
+              "label": "valid_K_sum",
+              "dtype": "torch.float32",
+              "input_numel": 7168,
+              "output_numel": 7168,
+              "element_size": 4,
+              "logical_peer_send_bytes": 28672,
+              "logical_peer_receive_bytes": 28672,
+              "self_send_bytes": 0,
+              "byte_scope": "Actual FP32 reduction tensor; world2 one-peer data-payload accounting, not a measurement of NCCL algorithm/protocol bytes."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_table16",
+              "dtype": "torch.uint8",
+              "input_numel": 176619520,
+              "output_numel": 177623040,
+              "element_size": 1,
+              "send_splits": [
+                88309760,
+                88309760
+              ],
+              "recv_splits": [
+                88309760,
+                89313280
+              ],
+              "remote_send_bytes": 88309760,
+              "remote_receive_bytes": 89313280,
+              "self_send_bytes": 88309760,
+              "self_receive_bytes": 88309760,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    16,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 40370176
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "order": [
+            "fp4_table16",
+            "fp4_global"
+          ],
+          "position": 0,
+          "wall_ms": 21.561562083661556,
+          "cuda_ms": 21.533695220947266,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654706688,
+            "reserved": 1725956096,
+            "peak_allocated": 1524787200,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 1031804928,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 8,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 3,
+            "all_reduce": 1,
+            "q_sum_ops": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all_single",
+              "label": "centers_all_heads",
+              "dtype": "torch.uint8",
+              "input_numel": 229376,
+              "output_numel": 229376,
+              "element_size": 1,
+              "send_splits": [
+                114688,
+                114688
+              ],
+              "recv_splits": [
+                114688,
+                114688
+              ],
+              "remote_send_bytes": 114688,
+              "remote_receive_bytes": 114688,
+              "self_send_bytes": 114688,
+              "self_receive_bytes": 114688,
+              "fields": {
+                "centers": {
+                  "shape": [
+                    56,
+                    8,
+                    128
+                  ],
+                  "dtype": "torch.bfloat16"
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_reduce_sum",
+              "label": "valid_K_sum",
+              "dtype": "torch.float32",
+              "input_numel": 7168,
+              "output_numel": 7168,
+              "element_size": 4,
+              "logical_peer_send_bytes": 28672,
+              "logical_peer_receive_bytes": 28672,
+              "self_send_bytes": 0,
+              "byte_scope": "Actual FP32 reduction tensor; world2 one-peer data-payload accounting, not a measurement of NCCL algorithm/protocol bytes."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_table16",
+              "dtype": "torch.uint8",
+              "input_numel": 176619520,
+              "output_numel": 177623040,
+              "element_size": 1,
+              "send_splits": [
+                88309760,
+                88309760
+              ],
+              "recv_splits": [
+                88309760,
+                89313280
+              ],
+              "remote_send_bytes": 88309760,
+              "remote_receive_bytes": 89313280,
+              "self_send_bytes": 88309760,
+              "self_receive_bytes": 88309760,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    16,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 40370176
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        }
+      ],
+      "repeats": [
+        {
+          "round": 0,
+          "order": [
+            "fp4_table16",
+            "fp4_global"
+          ],
+          "position": 0,
+          "wall_ms": 21.573839941993356,
+          "cuda_ms": 21.553407669067383,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654706688,
+            "reserved": 1725956096,
+            "peak_allocated": 1524787200,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 1031804928,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 8,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 3,
+            "all_reduce": 1,
+            "q_sum_ops": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all_single",
+              "label": "centers_all_heads",
+              "dtype": "torch.uint8",
+              "input_numel": 229376,
+              "output_numel": 229376,
+              "element_size": 1,
+              "send_splits": [
+                114688,
+                114688
+              ],
+              "recv_splits": [
+                114688,
+                114688
+              ],
+              "remote_send_bytes": 114688,
+              "remote_receive_bytes": 114688,
+              "self_send_bytes": 114688,
+              "self_receive_bytes": 114688,
+              "fields": {
+                "centers": {
+                  "shape": [
+                    56,
+                    8,
+                    128
+                  ],
+                  "dtype": "torch.bfloat16"
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_reduce_sum",
+              "label": "valid_K_sum",
+              "dtype": "torch.float32",
+              "input_numel": 7168,
+              "output_numel": 7168,
+              "element_size": 4,
+              "logical_peer_send_bytes": 28672,
+              "logical_peer_receive_bytes": 28672,
+              "self_send_bytes": 0,
+              "byte_scope": "Actual FP32 reduction tensor; world2 one-peer data-payload accounting, not a measurement of NCCL algorithm/protocol bytes."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_table16",
+              "dtype": "torch.uint8",
+              "input_numel": 176619520,
+              "output_numel": 177623040,
+              "element_size": 1,
+              "send_splits": [
+                88309760,
+                88309760
+              ],
+              "recv_splits": [
+                88309760,
+                89313280
+              ],
+              "remote_send_bytes": 88309760,
+              "remote_receive_bytes": 89313280,
+              "self_send_bytes": 88309760,
+              "self_receive_bytes": 88309760,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    16,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 40370176
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "order": [
+            "fp4_global",
+            "fp4_table16"
+          ],
+          "position": 1,
+          "wall_ms": 21.592898992821574,
+          "cuda_ms": 21.572608947753906,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654706688,
+            "reserved": 1725956096,
+            "peak_allocated": 1524787200,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 1031804928,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 8,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 3,
+            "all_reduce": 1,
+            "q_sum_ops": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all_single",
+              "label": "centers_all_heads",
+              "dtype": "torch.uint8",
+              "input_numel": 229376,
+              "output_numel": 229376,
+              "element_size": 1,
+              "send_splits": [
+                114688,
+                114688
+              ],
+              "recv_splits": [
+                114688,
+                114688
+              ],
+              "remote_send_bytes": 114688,
+              "remote_receive_bytes": 114688,
+              "self_send_bytes": 114688,
+              "self_receive_bytes": 114688,
+              "fields": {
+                "centers": {
+                  "shape": [
+                    56,
+                    8,
+                    128
+                  ],
+                  "dtype": "torch.bfloat16"
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_reduce_sum",
+              "label": "valid_K_sum",
+              "dtype": "torch.float32",
+              "input_numel": 7168,
+              "output_numel": 7168,
+              "element_size": 4,
+              "logical_peer_send_bytes": 28672,
+              "logical_peer_receive_bytes": 28672,
+              "self_send_bytes": 0,
+              "byte_scope": "Actual FP32 reduction tensor; world2 one-peer data-payload accounting, not a measurement of NCCL algorithm/protocol bytes."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_table16",
+              "dtype": "torch.uint8",
+              "input_numel": 176619520,
+              "output_numel": 177623040,
+              "element_size": 1,
+              "send_splits": [
+                88309760,
+                88309760
+              ],
+              "recv_splits": [
+                88309760,
+                89313280
+              ],
+              "remote_send_bytes": 88309760,
+              "remote_receive_bytes": 89313280,
+              "self_send_bytes": 88309760,
+              "self_receive_bytes": 88309760,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    16,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 40370176
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "order": [
+            "fp4_table16",
+            "fp4_global"
+          ],
+          "position": 0,
+          "wall_ms": 21.61258994601667,
+          "cuda_ms": 21.59235191345215,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654706688,
+            "reserved": 1725956096,
+            "peak_allocated": 1524787200,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 1031804928,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 8,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 3,
+            "all_reduce": 1,
+            "q_sum_ops": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all_single",
+              "label": "centers_all_heads",
+              "dtype": "torch.uint8",
+              "input_numel": 229376,
+              "output_numel": 229376,
+              "element_size": 1,
+              "send_splits": [
+                114688,
+                114688
+              ],
+              "recv_splits": [
+                114688,
+                114688
+              ],
+              "remote_send_bytes": 114688,
+              "remote_receive_bytes": 114688,
+              "self_send_bytes": 114688,
+              "self_receive_bytes": 114688,
+              "fields": {
+                "centers": {
+                  "shape": [
+                    56,
+                    8,
+                    128
+                  ],
+                  "dtype": "torch.bfloat16"
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_reduce_sum",
+              "label": "valid_K_sum",
+              "dtype": "torch.float32",
+              "input_numel": 7168,
+              "output_numel": 7168,
+              "element_size": 4,
+              "logical_peer_send_bytes": 28672,
+              "logical_peer_receive_bytes": 28672,
+              "self_send_bytes": 0,
+              "byte_scope": "Actual FP32 reduction tensor; world2 one-peer data-payload accounting, not a measurement of NCCL algorithm/protocol bytes."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_table16",
+              "dtype": "torch.uint8",
+              "input_numel": 176619520,
+              "output_numel": 177623040,
+              "element_size": 1,
+              "send_splits": [
+                88309760,
+                88309760
+              ],
+              "recv_splits": [
+                88309760,
+                89313280
+              ],
+              "remote_send_bytes": 88309760,
+              "remote_receive_bytes": 89313280,
+              "self_send_bytes": 88309760,
+              "self_receive_bytes": 88309760,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    16,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 40370176
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "order": [
+            "fp4_global",
+            "fp4_table16"
+          ],
+          "position": 1,
+          "wall_ms": 21.549913100898266,
+          "cuda_ms": 21.52911949157715,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654706688,
+            "reserved": 1725956096,
+            "peak_allocated": 1524787200,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 1031804928,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 8,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 3,
+            "all_reduce": 1,
+            "q_sum_ops": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all_single",
+              "label": "centers_all_heads",
+              "dtype": "torch.uint8",
+              "input_numel": 229376,
+              "output_numel": 229376,
+              "element_size": 1,
+              "send_splits": [
+                114688,
+                114688
+              ],
+              "recv_splits": [
+                114688,
+                114688
+              ],
+              "remote_send_bytes": 114688,
+              "remote_receive_bytes": 114688,
+              "self_send_bytes": 114688,
+              "self_receive_bytes": 114688,
+              "fields": {
+                "centers": {
+                  "shape": [
+                    56,
+                    8,
+                    128
+                  ],
+                  "dtype": "torch.bfloat16"
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_reduce_sum",
+              "label": "valid_K_sum",
+              "dtype": "torch.float32",
+              "input_numel": 7168,
+              "output_numel": 7168,
+              "element_size": 4,
+              "logical_peer_send_bytes": 28672,
+              "logical_peer_receive_bytes": 28672,
+              "self_send_bytes": 0,
+              "byte_scope": "Actual FP32 reduction tensor; world2 one-peer data-payload accounting, not a measurement of NCCL algorithm/protocol bytes."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_table16",
+              "dtype": "torch.uint8",
+              "input_numel": 176619520,
+              "output_numel": 177623040,
+              "element_size": 1,
+              "send_splits": [
+                88309760,
+                88309760
+              ],
+              "recv_splits": [
+                88309760,
+                89313280
+              ],
+              "remote_send_bytes": 88309760,
+              "remote_receive_bytes": 89313280,
+              "self_send_bytes": 88309760,
+              "self_receive_bytes": 88309760,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    16,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 40370176
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "order": [
+            "fp4_table16",
+            "fp4_global"
+          ],
+          "position": 0,
+          "wall_ms": 21.564405877143145,
+          "cuda_ms": 21.543136596679688,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654706688,
+            "reserved": 1725956096,
+            "peak_allocated": 1524787200,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 1031804928,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 8,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 3,
+            "all_reduce": 1,
+            "q_sum_ops": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all_single",
+              "label": "centers_all_heads",
+              "dtype": "torch.uint8",
+              "input_numel": 229376,
+              "output_numel": 229376,
+              "element_size": 1,
+              "send_splits": [
+                114688,
+                114688
+              ],
+              "recv_splits": [
+                114688,
+                114688
+              ],
+              "remote_send_bytes": 114688,
+              "remote_receive_bytes": 114688,
+              "self_send_bytes": 114688,
+              "self_receive_bytes": 114688,
+              "fields": {
+                "centers": {
+                  "shape": [
+                    56,
+                    8,
+                    128
+                  ],
+                  "dtype": "torch.bfloat16"
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_reduce_sum",
+              "label": "valid_K_sum",
+              "dtype": "torch.float32",
+              "input_numel": 7168,
+              "output_numel": 7168,
+              "element_size": 4,
+              "logical_peer_send_bytes": 28672,
+              "logical_peer_receive_bytes": 28672,
+              "self_send_bytes": 0,
+              "byte_scope": "Actual FP32 reduction tensor; world2 one-peer data-payload accounting, not a measurement of NCCL algorithm/protocol bytes."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_table16",
+              "dtype": "torch.uint8",
+              "input_numel": 176619520,
+              "output_numel": 177623040,
+              "element_size": 1,
+              "send_splits": [
+                88309760,
+                88309760
+              ],
+              "recv_splits": [
+                88309760,
+                89313280
+              ],
+              "remote_send_bytes": 88309760,
+              "remote_receive_bytes": 89313280,
+              "self_send_bytes": 88309760,
+              "self_receive_bytes": 88309760,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    16,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 40370176
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "order": [
+            "fp4_global",
+            "fp4_table16"
+          ],
+          "position": 1,
+          "wall_ms": 21.602874854579568,
+          "cuda_ms": 21.582815170288086,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654706688,
+            "reserved": 1725956096,
+            "peak_allocated": 1524787200,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 1031804928,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 8,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 3,
+            "all_reduce": 1,
+            "q_sum_ops": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all_single",
+              "label": "centers_all_heads",
+              "dtype": "torch.uint8",
+              "input_numel": 229376,
+              "output_numel": 229376,
+              "element_size": 1,
+              "send_splits": [
+                114688,
+                114688
+              ],
+              "recv_splits": [
+                114688,
+                114688
+              ],
+              "remote_send_bytes": 114688,
+              "remote_receive_bytes": 114688,
+              "self_send_bytes": 114688,
+              "self_receive_bytes": 114688,
+              "fields": {
+                "centers": {
+                  "shape": [
+                    56,
+                    8,
+                    128
+                  ],
+                  "dtype": "torch.bfloat16"
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_reduce_sum",
+              "label": "valid_K_sum",
+              "dtype": "torch.float32",
+              "input_numel": 7168,
+              "output_numel": 7168,
+              "element_size": 4,
+              "logical_peer_send_bytes": 28672,
+              "logical_peer_receive_bytes": 28672,
+              "self_send_bytes": 0,
+              "byte_scope": "Actual FP32 reduction tensor; world2 one-peer data-payload accounting, not a measurement of NCCL algorithm/protocol bytes."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_table16",
+              "dtype": "torch.uint8",
+              "input_numel": 176619520,
+              "output_numel": 177623040,
+              "element_size": 1,
+              "send_splits": [
+                88309760,
+                88309760
+              ],
+              "recv_splits": [
+                88309760,
+                89313280
+              ],
+              "remote_send_bytes": 88309760,
+              "remote_receive_bytes": 89313280,
+              "self_send_bytes": 88309760,
+              "self_receive_bytes": 88309760,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    16,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 40370176
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        },
+        {
+          "round": 6,
+          "order": [
+            "fp4_table16",
+            "fp4_global"
+          ],
+          "position": 0,
+          "wall_ms": 21.590295946225524,
+          "cuda_ms": 21.57027244567871,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654706688,
+            "reserved": 1725956096,
+            "peak_allocated": 1524787200,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 1031804928,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 8,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 3,
+            "all_reduce": 1,
+            "q_sum_ops": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all_single",
+              "label": "centers_all_heads",
+              "dtype": "torch.uint8",
+              "input_numel": 229376,
+              "output_numel": 229376,
+              "element_size": 1,
+              "send_splits": [
+                114688,
+                114688
+              ],
+              "recv_splits": [
+                114688,
+                114688
+              ],
+              "remote_send_bytes": 114688,
+              "remote_receive_bytes": 114688,
+              "self_send_bytes": 114688,
+              "self_receive_bytes": 114688,
+              "fields": {
+                "centers": {
+                  "shape": [
+                    56,
+                    8,
+                    128
+                  ],
+                  "dtype": "torch.bfloat16"
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_reduce_sum",
+              "label": "valid_K_sum",
+              "dtype": "torch.float32",
+              "input_numel": 7168,
+              "output_numel": 7168,
+              "element_size": 4,
+              "logical_peer_send_bytes": 28672,
+              "logical_peer_receive_bytes": 28672,
+              "self_send_bytes": 0,
+              "byte_scope": "Actual FP32 reduction tensor; world2 one-peer data-payload accounting, not a measurement of NCCL algorithm/protocol bytes."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_table16",
+              "dtype": "torch.uint8",
+              "input_numel": 176619520,
+              "output_numel": 177623040,
+              "element_size": 1,
+              "send_splits": [
+                88309760,
+                88309760
+              ],
+              "recv_splits": [
+                88309760,
+                89313280
+              ],
+              "remote_send_bytes": 88309760,
+              "remote_receive_bytes": 89313280,
+              "self_send_bytes": 88309760,
+              "self_receive_bytes": 88309760,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    16,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 40370176
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        },
+        {
+          "round": 7,
+          "order": [
+            "fp4_global",
+            "fp4_table16"
+          ],
+          "position": 1,
+          "wall_ms": 21.574670914560556,
+          "cuda_ms": 21.54857635498047,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654706688,
+            "reserved": 1725956096,
+            "peak_allocated": 1524787200,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 1031804928,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 8,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 3,
+            "all_reduce": 1,
+            "q_sum_ops": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all_single",
+              "label": "centers_all_heads",
+              "dtype": "torch.uint8",
+              "input_numel": 229376,
+              "output_numel": 229376,
+              "element_size": 1,
+              "send_splits": [
+                114688,
+                114688
+              ],
+              "recv_splits": [
+                114688,
+                114688
+              ],
+              "remote_send_bytes": 114688,
+              "remote_receive_bytes": 114688,
+              "self_send_bytes": 114688,
+              "self_receive_bytes": 114688,
+              "fields": {
+                "centers": {
+                  "shape": [
+                    56,
+                    8,
+                    128
+                  ],
+                  "dtype": "torch.bfloat16"
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_reduce_sum",
+              "label": "valid_K_sum",
+              "dtype": "torch.float32",
+              "input_numel": 7168,
+              "output_numel": 7168,
+              "element_size": 4,
+              "logical_peer_send_bytes": 28672,
+              "logical_peer_receive_bytes": 28672,
+              "self_send_bytes": 0,
+              "byte_scope": "Actual FP32 reduction tensor; world2 one-peer data-payload accounting, not a measurement of NCCL algorithm/protocol bytes."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_table16",
+              "dtype": "torch.uint8",
+              "input_numel": 176619520,
+              "output_numel": 177623040,
+              "element_size": 1,
+              "send_splits": [
+                88309760,
+                88309760
+              ],
+              "recv_splits": [
+                88309760,
+                89313280
+              ],
+              "remote_send_bytes": 88309760,
+              "remote_receive_bytes": 89313280,
+              "self_send_bytes": 88309760,
+              "self_receive_bytes": 88309760,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    16,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 40370176
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        },
+        {
+          "round": 8,
+          "order": [
+            "fp4_table16",
+            "fp4_global"
+          ],
+          "position": 0,
+          "wall_ms": 21.953952964395285,
+          "cuda_ms": 21.91632080078125,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654706688,
+            "reserved": 1725956096,
+            "peak_allocated": 1524787200,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 1031804928,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 8,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 3,
+            "all_reduce": 1,
+            "q_sum_ops": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all_single",
+              "label": "centers_all_heads",
+              "dtype": "torch.uint8",
+              "input_numel": 229376,
+              "output_numel": 229376,
+              "element_size": 1,
+              "send_splits": [
+                114688,
+                114688
+              ],
+              "recv_splits": [
+                114688,
+                114688
+              ],
+              "remote_send_bytes": 114688,
+              "remote_receive_bytes": 114688,
+              "self_send_bytes": 114688,
+              "self_receive_bytes": 114688,
+              "fields": {
+                "centers": {
+                  "shape": [
+                    56,
+                    8,
+                    128
+                  ],
+                  "dtype": "torch.bfloat16"
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_reduce_sum",
+              "label": "valid_K_sum",
+              "dtype": "torch.float32",
+              "input_numel": 7168,
+              "output_numel": 7168,
+              "element_size": 4,
+              "logical_peer_send_bytes": 28672,
+              "logical_peer_receive_bytes": 28672,
+              "self_send_bytes": 0,
+              "byte_scope": "Actual FP32 reduction tensor; world2 one-peer data-payload accounting, not a measurement of NCCL algorithm/protocol bytes."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_table16",
+              "dtype": "torch.uint8",
+              "input_numel": 176619520,
+              "output_numel": 177623040,
+              "element_size": 1,
+              "send_splits": [
+                88309760,
+                88309760
+              ],
+              "recv_splits": [
+                88309760,
+                89313280
+              ],
+              "remote_send_bytes": 88309760,
+              "remote_receive_bytes": 89313280,
+              "self_send_bytes": 88309760,
+              "self_receive_bytes": 88309760,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    16,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 40370176
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        },
+        {
+          "round": 9,
+          "order": [
+            "fp4_global",
+            "fp4_table16"
+          ],
+          "position": 1,
+          "wall_ms": 23.34109996445477,
+          "cuda_ms": 23.288192749023438,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654706688,
+            "reserved": 1725956096,
+            "peak_allocated": 1524787200,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 1031804928,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 8,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 3,
+            "all_reduce": 1,
+            "q_sum_ops": 0
+          },
+          "collectives": [
+            {
+              "kind": "all_to_all_single",
+              "label": "centers_all_heads",
+              "dtype": "torch.uint8",
+              "input_numel": 229376,
+              "output_numel": 229376,
+              "element_size": 1,
+              "send_splits": [
+                114688,
+                114688
+              ],
+              "recv_splits": [
+                114688,
+                114688
+              ],
+              "remote_send_bytes": 114688,
+              "remote_receive_bytes": 114688,
+              "self_send_bytes": 114688,
+              "self_receive_bytes": 114688,
+              "fields": {
+                "centers": {
+                  "shape": [
+                    56,
+                    8,
+                    128
+                  ],
+                  "dtype": "torch.bfloat16"
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_reduce_sum",
+              "label": "valid_K_sum",
+              "dtype": "torch.float32",
+              "input_numel": 7168,
+              "output_numel": 7168,
+              "element_size": 4,
+              "logical_peer_send_bytes": 28672,
+              "logical_peer_receive_bytes": 28672,
+              "self_send_bytes": 0,
+              "byte_scope": "Actual FP32 reduction tensor; world2 one-peer data-payload accounting, not a measurement of NCCL algorithm/protocol bytes."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_table16",
+              "dtype": "torch.uint8",
+              "input_numel": 176619520,
+              "output_numel": 177623040,
+              "element_size": 1,
+              "send_splits": [
+                88309760,
+                88309760
+              ],
+              "recv_splits": [
+                88309760,
+                89313280
+              ],
+              "remote_send_bytes": 88309760,
+              "remote_receive_bytes": 89313280,
+              "self_send_bytes": 88309760,
+              "self_receive_bytes": 88309760,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    16,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 40370176
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        }
+      ],
+      "output": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E037/rank0/fp4_table16_output.pt",
+          "bytes": 161482358,
+          "sha256": "55691d1c328b05b12a18b24016a34b1c66a64d0fa9115da5f332fb424ad5e303"
+        },
+        "tensor": {
+          "shape": [
+            11264,
+            56,
+            128
+          ],
+          "dtype": "torch.bfloat16",
+          "finite": true
+        }
+      },
+      "state": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E037/rank0/fp4_table16_state.pt",
+          "bytes": 123829,
+          "sha256": "045ca25d46794dc517bb3460fb59659f2a257c50cf64c6c450eb4d0534df3e64"
+        },
+        "tensors": {
+          "centers": {
+            "shape": [
+              28,
+              16,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "7b6b3923c13690031a44a8b50c5c0b787caca63c3c89aa449dbc7fbaada926f2"
+          },
+          "k_mean": {
+            "shape": [
+              28,
+              1,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "e2c94c596e6e2aeb07528fd4220a61ea885d2f52731e7cccda8a55f0f76c137c"
+          }
+        },
+        "ownership": "C/Kmean own this rank28heads; output owns original valid token range/all56heads. C has16rows for coarse and1 for global."
+      },
+      "status": "complete",
+      "median_wall_ms": 21.59159746952355,
+      "median_cuda_ms": 21.57144069671631
+    },
+    {
+      "arm": "fp4_global",
+      "warmups": [
+        {
+          "round": 0,
+          "order": [
+            "fp4_table16",
+            "fp4_global"
+          ],
+          "position": 1,
+          "wall_ms": 28.47755583934486,
+          "cuda_ms": 28.45078468322754,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654491648,
+            "reserved": 1725956096,
+            "peak_allocated": 1441837056,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 948854784,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 0,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 2,
+            "all_reduce": 1,
+            "q_sum_ops": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_sum",
+              "label": "padded_Q_and_valid_K_sums",
+              "dtype": "torch.float32",
+              "shape": [
+                2,
+                56,
+                1,
+                128
+              ],
+              "input_numel": 14336,
+              "output_numel": 14336,
+              "element_size": 4,
+              "logical_peer_send_bytes": 57344,
+              "logical_peer_receive_bytes": 57344,
+              "self_send_bytes": 0,
+              "fields": {
+                "padded_Q_sum": {
+                  "bytes": 28672,
+                  "denominator": 22656
+                },
+                "valid_K_sum": {
+                  "bytes": 28672,
+                  "denominator": 22539
+                }
+              },
+              "byte_scope": "Actual combined FP32 reduction tensor; world2 one-peer logical payload, not measured NCCL protocol traffic."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_global",
+              "dtype": "torch.uint8",
+              "input_numel": 138772480,
+              "output_numel": 139560960,
+              "element_size": 1,
+              "send_splits": [
+                69386240,
+                69386240
+              ],
+              "recv_splits": [
+                69386240,
+                70174720
+              ],
+              "remote_send_bytes": 69386240,
+              "remote_receive_bytes": 70174720,
+              "self_send_bytes": 69386240,
+              "self_receive_bytes": 69386240,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    1,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 2523136
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "order": [
+            "fp4_table16",
+            "fp4_global"
+          ],
+          "position": 1,
+          "wall_ms": 20.165310008451343,
+          "cuda_ms": 20.143232345581055,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654491648,
+            "reserved": 1725956096,
+            "peak_allocated": 1441837056,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 948854784,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 0,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 2,
+            "all_reduce": 1,
+            "q_sum_ops": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_sum",
+              "label": "padded_Q_and_valid_K_sums",
+              "dtype": "torch.float32",
+              "shape": [
+                2,
+                56,
+                1,
+                128
+              ],
+              "input_numel": 14336,
+              "output_numel": 14336,
+              "element_size": 4,
+              "logical_peer_send_bytes": 57344,
+              "logical_peer_receive_bytes": 57344,
+              "self_send_bytes": 0,
+              "fields": {
+                "padded_Q_sum": {
+                  "bytes": 28672,
+                  "denominator": 22656
+                },
+                "valid_K_sum": {
+                  "bytes": 28672,
+                  "denominator": 22539
+                }
+              },
+              "byte_scope": "Actual combined FP32 reduction tensor; world2 one-peer logical payload, not measured NCCL protocol traffic."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_global",
+              "dtype": "torch.uint8",
+              "input_numel": 138772480,
+              "output_numel": 139560960,
+              "element_size": 1,
+              "send_splits": [
+                69386240,
+                69386240
+              ],
+              "recv_splits": [
+                69386240,
+                70174720
+              ],
+              "remote_send_bytes": 69386240,
+              "remote_receive_bytes": 70174720,
+              "self_send_bytes": 69386240,
+              "self_receive_bytes": 69386240,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    1,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 2523136
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "order": [
+            "fp4_table16",
+            "fp4_global"
+          ],
+          "position": 1,
+          "wall_ms": 20.241457037627697,
+          "cuda_ms": 20.21958351135254,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654491648,
+            "reserved": 1725956096,
+            "peak_allocated": 1441837056,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 948854784,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 0,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 2,
+            "all_reduce": 1,
+            "q_sum_ops": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_sum",
+              "label": "padded_Q_and_valid_K_sums",
+              "dtype": "torch.float32",
+              "shape": [
+                2,
+                56,
+                1,
+                128
+              ],
+              "input_numel": 14336,
+              "output_numel": 14336,
+              "element_size": 4,
+              "logical_peer_send_bytes": 57344,
+              "logical_peer_receive_bytes": 57344,
+              "self_send_bytes": 0,
+              "fields": {
+                "padded_Q_sum": {
+                  "bytes": 28672,
+                  "denominator": 22656
+                },
+                "valid_K_sum": {
+                  "bytes": 28672,
+                  "denominator": 22539
+                }
+              },
+              "byte_scope": "Actual combined FP32 reduction tensor; world2 one-peer logical payload, not measured NCCL protocol traffic."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_global",
+              "dtype": "torch.uint8",
+              "input_numel": 138772480,
+              "output_numel": 139560960,
+              "element_size": 1,
+              "send_splits": [
+                69386240,
+                69386240
+              ],
+              "recv_splits": [
+                69386240,
+                70174720
+              ],
+              "remote_send_bytes": 69386240,
+              "remote_receive_bytes": 70174720,
+              "self_send_bytes": 69386240,
+              "self_receive_bytes": 69386240,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    1,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 2523136
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        }
+      ],
+      "repeats": [
+        {
+          "round": 0,
+          "order": [
+            "fp4_table16",
+            "fp4_global"
+          ],
+          "position": 1,
+          "wall_ms": 20.16652305610478,
+          "cuda_ms": 20.146015167236328,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654491648,
+            "reserved": 1725956096,
+            "peak_allocated": 1441837056,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 948854784,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 0,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 2,
+            "all_reduce": 1,
+            "q_sum_ops": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_sum",
+              "label": "padded_Q_and_valid_K_sums",
+              "dtype": "torch.float32",
+              "shape": [
+                2,
+                56,
+                1,
+                128
+              ],
+              "input_numel": 14336,
+              "output_numel": 14336,
+              "element_size": 4,
+              "logical_peer_send_bytes": 57344,
+              "logical_peer_receive_bytes": 57344,
+              "self_send_bytes": 0,
+              "fields": {
+                "padded_Q_sum": {
+                  "bytes": 28672,
+                  "denominator": 22656
+                },
+                "valid_K_sum": {
+                  "bytes": 28672,
+                  "denominator": 22539
+                }
+              },
+              "byte_scope": "Actual combined FP32 reduction tensor; world2 one-peer logical payload, not measured NCCL protocol traffic."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_global",
+              "dtype": "torch.uint8",
+              "input_numel": 138772480,
+              "output_numel": 139560960,
+              "element_size": 1,
+              "send_splits": [
+                69386240,
+                69386240
+              ],
+              "recv_splits": [
+                69386240,
+                70174720
+              ],
+              "remote_send_bytes": 69386240,
+              "remote_receive_bytes": 70174720,
+              "self_send_bytes": 69386240,
+              "self_receive_bytes": 69386240,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    1,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 2523136
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        },
+        {
+          "round": 1,
+          "order": [
+            "fp4_global",
+            "fp4_table16"
+          ],
+          "position": 0,
+          "wall_ms": 20.21850203163922,
+          "cuda_ms": 20.198015213012695,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654491648,
+            "reserved": 1725956096,
+            "peak_allocated": 1441837056,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 948854784,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 0,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 2,
+            "all_reduce": 1,
+            "q_sum_ops": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_sum",
+              "label": "padded_Q_and_valid_K_sums",
+              "dtype": "torch.float32",
+              "shape": [
+                2,
+                56,
+                1,
+                128
+              ],
+              "input_numel": 14336,
+              "output_numel": 14336,
+              "element_size": 4,
+              "logical_peer_send_bytes": 57344,
+              "logical_peer_receive_bytes": 57344,
+              "self_send_bytes": 0,
+              "fields": {
+                "padded_Q_sum": {
+                  "bytes": 28672,
+                  "denominator": 22656
+                },
+                "valid_K_sum": {
+                  "bytes": 28672,
+                  "denominator": 22539
+                }
+              },
+              "byte_scope": "Actual combined FP32 reduction tensor; world2 one-peer logical payload, not measured NCCL protocol traffic."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_global",
+              "dtype": "torch.uint8",
+              "input_numel": 138772480,
+              "output_numel": 139560960,
+              "element_size": 1,
+              "send_splits": [
+                69386240,
+                69386240
+              ],
+              "recv_splits": [
+                69386240,
+                70174720
+              ],
+              "remote_send_bytes": 69386240,
+              "remote_receive_bytes": 70174720,
+              "self_send_bytes": 69386240,
+              "self_receive_bytes": 69386240,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    1,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 2523136
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "order": [
+            "fp4_table16",
+            "fp4_global"
+          ],
+          "position": 1,
+          "wall_ms": 20.238762954249978,
+          "cuda_ms": 20.21887969970703,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654491648,
+            "reserved": 1725956096,
+            "peak_allocated": 1441837056,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 948854784,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 0,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 2,
+            "all_reduce": 1,
+            "q_sum_ops": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_sum",
+              "label": "padded_Q_and_valid_K_sums",
+              "dtype": "torch.float32",
+              "shape": [
+                2,
+                56,
+                1,
+                128
+              ],
+              "input_numel": 14336,
+              "output_numel": 14336,
+              "element_size": 4,
+              "logical_peer_send_bytes": 57344,
+              "logical_peer_receive_bytes": 57344,
+              "self_send_bytes": 0,
+              "fields": {
+                "padded_Q_sum": {
+                  "bytes": 28672,
+                  "denominator": 22656
+                },
+                "valid_K_sum": {
+                  "bytes": 28672,
+                  "denominator": 22539
+                }
+              },
+              "byte_scope": "Actual combined FP32 reduction tensor; world2 one-peer logical payload, not measured NCCL protocol traffic."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_global",
+              "dtype": "torch.uint8",
+              "input_numel": 138772480,
+              "output_numel": 139560960,
+              "element_size": 1,
+              "send_splits": [
+                69386240,
+                69386240
+              ],
+              "recv_splits": [
+                69386240,
+                70174720
+              ],
+              "remote_send_bytes": 69386240,
+              "remote_receive_bytes": 70174720,
+              "self_send_bytes": 69386240,
+              "self_receive_bytes": 69386240,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    1,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 2523136
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "order": [
+            "fp4_global",
+            "fp4_table16"
+          ],
+          "position": 0,
+          "wall_ms": 20.177969941869378,
+          "cuda_ms": 20.15763282775879,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654491648,
+            "reserved": 1725956096,
+            "peak_allocated": 1441837056,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 948854784,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 0,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 2,
+            "all_reduce": 1,
+            "q_sum_ops": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_sum",
+              "label": "padded_Q_and_valid_K_sums",
+              "dtype": "torch.float32",
+              "shape": [
+                2,
+                56,
+                1,
+                128
+              ],
+              "input_numel": 14336,
+              "output_numel": 14336,
+              "element_size": 4,
+              "logical_peer_send_bytes": 57344,
+              "logical_peer_receive_bytes": 57344,
+              "self_send_bytes": 0,
+              "fields": {
+                "padded_Q_sum": {
+                  "bytes": 28672,
+                  "denominator": 22656
+                },
+                "valid_K_sum": {
+                  "bytes": 28672,
+                  "denominator": 22539
+                }
+              },
+              "byte_scope": "Actual combined FP32 reduction tensor; world2 one-peer logical payload, not measured NCCL protocol traffic."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_global",
+              "dtype": "torch.uint8",
+              "input_numel": 138772480,
+              "output_numel": 139560960,
+              "element_size": 1,
+              "send_splits": [
+                69386240,
+                69386240
+              ],
+              "recv_splits": [
+                69386240,
+                70174720
+              ],
+              "remote_send_bytes": 69386240,
+              "remote_receive_bytes": 70174720,
+              "self_send_bytes": 69386240,
+              "self_receive_bytes": 69386240,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    1,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 2523136
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "order": [
+            "fp4_table16",
+            "fp4_global"
+          ],
+          "position": 1,
+          "wall_ms": 20.178310805931687,
+          "cuda_ms": 20.150976181030273,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654491648,
+            "reserved": 1725956096,
+            "peak_allocated": 1441837056,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 948854784,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 0,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 2,
+            "all_reduce": 1,
+            "q_sum_ops": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_sum",
+              "label": "padded_Q_and_valid_K_sums",
+              "dtype": "torch.float32",
+              "shape": [
+                2,
+                56,
+                1,
+                128
+              ],
+              "input_numel": 14336,
+              "output_numel": 14336,
+              "element_size": 4,
+              "logical_peer_send_bytes": 57344,
+              "logical_peer_receive_bytes": 57344,
+              "self_send_bytes": 0,
+              "fields": {
+                "padded_Q_sum": {
+                  "bytes": 28672,
+                  "denominator": 22656
+                },
+                "valid_K_sum": {
+                  "bytes": 28672,
+                  "denominator": 22539
+                }
+              },
+              "byte_scope": "Actual combined FP32 reduction tensor; world2 one-peer logical payload, not measured NCCL protocol traffic."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_global",
+              "dtype": "torch.uint8",
+              "input_numel": 138772480,
+              "output_numel": 139560960,
+              "element_size": 1,
+              "send_splits": [
+                69386240,
+                69386240
+              ],
+              "recv_splits": [
+                69386240,
+                70174720
+              ],
+              "remote_send_bytes": 69386240,
+              "remote_receive_bytes": 70174720,
+              "self_send_bytes": 69386240,
+              "self_receive_bytes": 69386240,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    1,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 2523136
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "order": [
+            "fp4_global",
+            "fp4_table16"
+          ],
+          "position": 0,
+          "wall_ms": 20.191269926726818,
+          "cuda_ms": 20.17081642150879,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654491648,
+            "reserved": 1725956096,
+            "peak_allocated": 1441837056,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 948854784,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 0,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 2,
+            "all_reduce": 1,
+            "q_sum_ops": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_sum",
+              "label": "padded_Q_and_valid_K_sums",
+              "dtype": "torch.float32",
+              "shape": [
+                2,
+                56,
+                1,
+                128
+              ],
+              "input_numel": 14336,
+              "output_numel": 14336,
+              "element_size": 4,
+              "logical_peer_send_bytes": 57344,
+              "logical_peer_receive_bytes": 57344,
+              "self_send_bytes": 0,
+              "fields": {
+                "padded_Q_sum": {
+                  "bytes": 28672,
+                  "denominator": 22656
+                },
+                "valid_K_sum": {
+                  "bytes": 28672,
+                  "denominator": 22539
+                }
+              },
+              "byte_scope": "Actual combined FP32 reduction tensor; world2 one-peer logical payload, not measured NCCL protocol traffic."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_global",
+              "dtype": "torch.uint8",
+              "input_numel": 138772480,
+              "output_numel": 139560960,
+              "element_size": 1,
+              "send_splits": [
+                69386240,
+                69386240
+              ],
+              "recv_splits": [
+                69386240,
+                70174720
+              ],
+              "remote_send_bytes": 69386240,
+              "remote_receive_bytes": 70174720,
+              "self_send_bytes": 69386240,
+              "self_receive_bytes": 69386240,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    1,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 2523136
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        },
+        {
+          "round": 6,
+          "order": [
+            "fp4_table16",
+            "fp4_global"
+          ],
+          "position": 1,
+          "wall_ms": 20.166211994364858,
+          "cuda_ms": 20.144384384155273,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654491648,
+            "reserved": 1725956096,
+            "peak_allocated": 1441837056,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 948854784,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 0,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 2,
+            "all_reduce": 1,
+            "q_sum_ops": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_sum",
+              "label": "padded_Q_and_valid_K_sums",
+              "dtype": "torch.float32",
+              "shape": [
+                2,
+                56,
+                1,
+                128
+              ],
+              "input_numel": 14336,
+              "output_numel": 14336,
+              "element_size": 4,
+              "logical_peer_send_bytes": 57344,
+              "logical_peer_receive_bytes": 57344,
+              "self_send_bytes": 0,
+              "fields": {
+                "padded_Q_sum": {
+                  "bytes": 28672,
+                  "denominator": 22656
+                },
+                "valid_K_sum": {
+                  "bytes": 28672,
+                  "denominator": 22539
+                }
+              },
+              "byte_scope": "Actual combined FP32 reduction tensor; world2 one-peer logical payload, not measured NCCL protocol traffic."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_global",
+              "dtype": "torch.uint8",
+              "input_numel": 138772480,
+              "output_numel": 139560960,
+              "element_size": 1,
+              "send_splits": [
+                69386240,
+                69386240
+              ],
+              "recv_splits": [
+                69386240,
+                70174720
+              ],
+              "remote_send_bytes": 69386240,
+              "remote_receive_bytes": 70174720,
+              "self_send_bytes": 69386240,
+              "self_receive_bytes": 69386240,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    1,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 2523136
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        },
+        {
+          "round": 7,
+          "order": [
+            "fp4_global",
+            "fp4_table16"
+          ],
+          "position": 0,
+          "wall_ms": 20.281309029087424,
+          "cuda_ms": 20.26095962524414,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654491648,
+            "reserved": 1725956096,
+            "peak_allocated": 1441837056,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 948854784,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 0,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 2,
+            "all_reduce": 1,
+            "q_sum_ops": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_sum",
+              "label": "padded_Q_and_valid_K_sums",
+              "dtype": "torch.float32",
+              "shape": [
+                2,
+                56,
+                1,
+                128
+              ],
+              "input_numel": 14336,
+              "output_numel": 14336,
+              "element_size": 4,
+              "logical_peer_send_bytes": 57344,
+              "logical_peer_receive_bytes": 57344,
+              "self_send_bytes": 0,
+              "fields": {
+                "padded_Q_sum": {
+                  "bytes": 28672,
+                  "denominator": 22656
+                },
+                "valid_K_sum": {
+                  "bytes": 28672,
+                  "denominator": 22539
+                }
+              },
+              "byte_scope": "Actual combined FP32 reduction tensor; world2 one-peer logical payload, not measured NCCL protocol traffic."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_global",
+              "dtype": "torch.uint8",
+              "input_numel": 138772480,
+              "output_numel": 139560960,
+              "element_size": 1,
+              "send_splits": [
+                69386240,
+                69386240
+              ],
+              "recv_splits": [
+                69386240,
+                70174720
+              ],
+              "remote_send_bytes": 69386240,
+              "remote_receive_bytes": 70174720,
+              "self_send_bytes": 69386240,
+              "self_receive_bytes": 69386240,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    1,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 2523136
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        },
+        {
+          "round": 8,
+          "order": [
+            "fp4_table16",
+            "fp4_global"
+          ],
+          "position": 1,
+          "wall_ms": 20.148704992607236,
+          "cuda_ms": 20.127744674682617,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654491648,
+            "reserved": 1725956096,
+            "peak_allocated": 1441837056,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 948854784,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 0,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 2,
+            "all_reduce": 1,
+            "q_sum_ops": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_sum",
+              "label": "padded_Q_and_valid_K_sums",
+              "dtype": "torch.float32",
+              "shape": [
+                2,
+                56,
+                1,
+                128
+              ],
+              "input_numel": 14336,
+              "output_numel": 14336,
+              "element_size": 4,
+              "logical_peer_send_bytes": 57344,
+              "logical_peer_receive_bytes": 57344,
+              "self_send_bytes": 0,
+              "fields": {
+                "padded_Q_sum": {
+                  "bytes": 28672,
+                  "denominator": 22656
+                },
+                "valid_K_sum": {
+                  "bytes": 28672,
+                  "denominator": 22539
+                }
+              },
+              "byte_scope": "Actual combined FP32 reduction tensor; world2 one-peer logical payload, not measured NCCL protocol traffic."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_global",
+              "dtype": "torch.uint8",
+              "input_numel": 138772480,
+              "output_numel": 139560960,
+              "element_size": 1,
+              "send_splits": [
+                69386240,
+                69386240
+              ],
+              "recv_splits": [
+                69386240,
+                70174720
+              ],
+              "remote_send_bytes": 69386240,
+              "remote_receive_bytes": 70174720,
+              "self_send_bytes": 69386240,
+              "self_receive_bytes": 69386240,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    1,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 2523136
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        },
+        {
+          "round": 9,
+          "order": [
+            "fp4_global",
+            "fp4_table16"
+          ],
+          "position": 0,
+          "wall_ms": 20.212722942233086,
+          "cuda_ms": 20.188480377197266,
+          "before": {
+            "allocated": 492982272,
+            "reserved": 1725956096,
+            "peak_allocated": 492982272,
+            "peak_reserved": 1725956096
+          },
+          "after": {
+            "allocated": 654491648,
+            "reserved": 1725956096,
+            "peak_allocated": 1441837056,
+            "peak_reserved": 1725956096
+          },
+          "incremental_peak_allocated": 948854784,
+          "incremental_peak_reserved": 0,
+          "actual_counts": {
+            "q_center_reduce_ops": 0,
+            "k_mean_ops": 0,
+            "k_sum_ops": 1,
+            "q_pack": 1,
+            "k_pack": 1,
+            "v_pack": 1,
+            "correction_gemm": 1,
+            "attention": 1,
+            "all_to_all": 2,
+            "all_reduce": 1,
+            "q_sum_ops": 1
+          },
+          "collectives": [
+            {
+              "kind": "all_reduce_sum",
+              "label": "padded_Q_and_valid_K_sums",
+              "dtype": "torch.float32",
+              "shape": [
+                2,
+                56,
+                1,
+                128
+              ],
+              "input_numel": 14336,
+              "output_numel": 14336,
+              "element_size": 4,
+              "logical_peer_send_bytes": 57344,
+              "logical_peer_receive_bytes": 57344,
+              "self_send_bytes": 0,
+              "fields": {
+                "padded_Q_sum": {
+                  "bytes": 28672,
+                  "denominator": 22656
+                },
+                "valid_K_sum": {
+                  "bytes": 28672,
+                  "denominator": 22539
+                }
+              },
+              "byte_scope": "Actual combined FP32 reduction tensor; world2 one-peer logical payload, not measured NCCL protocol traffic."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "forward_fp4_global",
+              "dtype": "torch.uint8",
+              "input_numel": 138772480,
+              "output_numel": 139560960,
+              "element_size": 1,
+              "send_splits": [
+                69386240,
+                69386240
+              ],
+              "recv_splits": [
+                69386240,
+                70174720
+              ],
+              "remote_send_bytes": 69386240,
+              "remote_receive_bytes": 70174720,
+              "self_send_bytes": 69386240,
+              "self_receive_bytes": 69386240,
+              "fields": {
+                "q4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "qs": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "k4": {
+                  "shape": [
+                    56,
+                    11264,
+                    64
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "ks": {
+                  "shape": [
+                    56,
+                    11264,
+                    8
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "v4t": {
+                  "shape": [
+                    56,
+                    128,
+                    5632
+                  ],
+                  "dtype": "torch.uint8",
+                  "bytes": 40370176
+                },
+                "vsft": {
+                  "shape": [
+                    56,
+                    128,
+                    704
+                  ],
+                  "dtype": "torch.float8_e4m3fn",
+                  "bytes": 5046272
+                },
+                "table": {
+                  "shape": [
+                    56,
+                    1,
+                    11264
+                  ],
+                  "dtype": "torch.float32",
+                  "bytes": 2523136
+                }
+              },
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            },
+            {
+              "kind": "all_to_all_single",
+              "label": "inverse_BF16_output",
+              "dtype": "torch.uint8",
+              "input_numel": 162398208,
+              "output_numel": 161480704,
+              "element_size": 1,
+              "send_splits": [
+                80740352,
+                81657856
+              ],
+              "recv_splits": [
+                80740352,
+                80740352
+              ],
+              "remote_send_bytes": 81657856,
+              "remote_receive_bytes": 80740352,
+              "self_send_bytes": 80740352,
+              "self_receive_bytes": 80740352,
+              "fields": null,
+              "byte_scope": "Actual application split payload; NCCL protocol/transport overhead is not measured."
+            }
+          ]
+        }
+      ],
+      "output": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E037/rank0/fp4_global_output.pt",
+          "bytes": 161482351,
+          "sha256": "b812317d71bee1dcec7407a45626d4968eb938014abee8d7ed032258c4265f76"
+        },
+        "tensor": {
+          "shape": [
+            11264,
+            56,
+            128
+          ],
+          "dtype": "torch.bfloat16",
+          "finite": true
+        }
+      },
+      "state": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E037/rank0/fp4_global_state.pt",
+          "bytes": 16301,
+          "sha256": "f6a12590cb98f24113ef20bb928ac92c09e51f6778643f334493d595ab3a7c71"
+        },
+        "tensors": {
+          "centers": {
+            "shape": [
+              28,
+              1,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "7b6adbc842f86e1e448d1f4bd40c4a36ae4cc8d14ef326b17d999eab060631d5"
+          },
+          "k_mean": {
+            "shape": [
+              28,
+              1,
+              128
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "e2c94c596e6e2aeb07528fd4220a61ea885d2f52731e7cccda8a55f0f76c137c"
+          }
+        },
+        "ownership": "C/Kmean own this rank28heads; output owns original valid token range/all56heads. C has16rows for coarse and1 for global."
+      },
+      "status": "complete",
+      "median_wall_ms": 20.184790366329253,
+      "median_cuda_ms": 20.16422462463379
+    }
+  ],
+  "after_warmup_baseline": {
+    "allocated": 492982272,
+    "reserved": 1725956096,
+    "peak_allocated": 1441837056,
+    "peak_reserved": 1725956096
+  },
+  "cuda_initialized": true,
+  "released_allocated_bytes": 8520192,
+  "seconds": 4.458300352096558
+}

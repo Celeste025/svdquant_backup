@@ -1,0 +1,1001 @@
+{
+  "experiment": "E017",
+  "status": "complete",
+  "check_only": true,
+  "deadline_unix": null,
+  "expected_question_count": 232,
+  "scope": "Two already inspected prompts, four variants; auxiliary video-only scores, no quality equivalence/generalization or audio claim.",
+  "official_compatibility": "Frozen E010 provenance/cpu_check/evaluate and official load_video/inference reused; only case coverage, deadline boundaries and provenance/replay reporting are extended.",
+  "unknown_policy": "Both usable scores null for unrecognized answers; frozen strict and normalized scoring unchanged.",
+  "sources": {
+    "/home/wjq/workspace/svdquant-exp/scripts/research/evaluate_h3_paired_visionreward.py": {
+      "sha256": "063fb4cb1cc5ad84f190f996533aed30dd17028cabc3e7fc69d30c4239211ad8",
+      "bytes": 16173
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/results/visionreward_contract_audit.json": {
+      "sha256": "961dfc57272467998f092fa3c201986a8486cafc93ceaf995571e5d1fd284ea7",
+      "bytes": 1591
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_manifest.json": {
+      "sha256": "9469815d0c1d3d51bc793c2e3eaba08c80b35969ef2fab3776667db6b61fa79d",
+      "bytes": 13391
+    },
+    "/data1/models/svdquant-wjq/third_party/VisionReward/inference-video.py": {
+      "sha256": "782881168aa62d8a459f12da6e2bdfe05dc4beca5b9fd79d67cdef0289129855",
+      "bytes": 5732
+    },
+    "/data1/models/svdquant-wjq/third_party/VisionReward/VisionReward_Video/VisionReward_video_qa_select.txt": {
+      "sha256": "79de7f5e135a7957144826056a83be63fd6ddcbc61ba6460e09a0b09da580ee3",
+      "bytes": 1386
+    },
+    "/data1/models/svdquant-wjq/third_party/VisionReward/VisionReward_Video/weight.json": {
+      "sha256": "0c6367f244ae64fa881e93f0033f2a4362176893ed2f946223ec64a57e3c9204",
+      "bytes": 602
+    },
+    "/home/wjq/workspace/svdquant-exp/tools/evaluate_visionreward_video.py": {
+      "sha256": "fe235a7de07b7802cc5c40bbd267ba5a62a58b26db0d9f36971c963a95f76ea9",
+      "bytes": 4601
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/evaluate_h3_fp4_video.py": {
+      "sha256": "b75bf8380169462d62e04ee4f76f13be74a5b463ed4aea7974b4ea6380432a99",
+      "bytes": 17774
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E017_h3_fp4_video_manifest.json": {
+      "sha256": "b1c1d47ae8e516e564b89973f31094f3c9476112518c7b02f00ab51433bfb60f",
+      "bytes": 12246
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E017_h3_fp4_video_plan.md": {
+      "sha256": "7f4fc987bbed09b1ec663608ef2a5ee281f4368236535eaaf112390f250357f2",
+      "bytes": 4302
+    }
+  },
+  "questions": [
+    "Does the video meet all the requirements stated in the text \"[[prompt]]\"?\n",
+    "Does the video meet most of the requirements stated in the text \"[[prompt]]\"?\n",
+    "Does the video not completely fail to meet the requirements stated in the text \"[[prompt]]\"?\n",
+    "Is the composition aesthetically pleasing?\n",
+    "Does the composition have no obvious flaws?\n",
+    "Does the camera movement have no obvious flaws?\n",
+    "Are the colors not significantly unattractive?\n",
+    "Is the lighting perfectly accurate?\n",
+    "Does the lighting have no obvious errors?\n",
+    "Is there any lighting present?\n",
+    "Is the lighting exceptionally beautiful?\n",
+    "Is the lighting beautiful?\n",
+    "Is the lighting not unattractive?\n",
+    "Is the shape of the object at the beginning of the video completely accurate?\n",
+    "Does the shape of the object at the beginning have no obvious errors?\n",
+    "Is the shape of the object at the beginning not chaotic?\n",
+    "Is the shape of the object perfectly maintained throughout the video?\n",
+    "Is the shape of the object not chaotic throughout the video?\n",
+    "Is the camera motion highly dynamic?\n",
+    "Is the camera motion not minimal?\n",
+    "Is the smoothness of the object's movement very good?\n",
+    "Is the object's movement completely realistic?\n",
+    "Is the image quality very stable?\n",
+    "Are the details very refined?\n",
+    "Are the details not rough?\n",
+    "Are the details not significantly rough?\n",
+    "Are all the letters correct?\n",
+    "Are there any letters present?\n",
+    "Is the video content part of the physical world?"
+  ],
+  "weights": [
+    0.9543901856422174,
+    0.25239747290239256,
+    1.141818673357406,
+    0.03495652038170829,
+    0.025237463294006605,
+    0.12600844108184325,
+    0.03221505988621183,
+    0.16286819641189937,
+    0.21673935360893115,
+    0.01970324496671629,
+    0.13604019362894557,
+    0.09647134683834487,
+    0.15490927135496332,
+    0.1294164598219855,
+    0.09891696198970226,
+    0.18839328668539077,
+    0.1844335421380767,
+    0.2635526157239052,
+    0.11168980468489233,
+    0.05173789659242723,
+    0.02562797122879315,
+    0.4389890596048526,
+    0.26857694964769424,
+    0.42925171836383774,
+    0.00846154228462919,
+    0.12757277121689847,
+    0.05798205026065391,
+    0.1446334304609205,
+    0.39418111694677266
+  ],
+  "model_files": {
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/.gitattributes": {
+      "bytes": 1519,
+      "mtime_ns": 1789627850067621330,
+      "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361",
+      "sha256_checked_this_run": true,
+      "sha256_origin": "current_full_hash"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/README.md": {
+      "bytes": 1111,
+      "mtime_ns": 1789627850264627811,
+      "sha256": "74b5e3496df708c3b33482ebf8889d9c037b78c40e14d6a084b81088401374c4",
+      "sha256_checked_this_run": true,
+      "sha256_origin": "current_full_hash"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/config.json": {
+      "bytes": 1010,
+      "mtime_ns": 1789627850481634951,
+      "sha256": "0fdaf6e7d825b71320d237ec57a107a79ab9964b65216ec3f672686b3807d0e4",
+      "sha256_checked_this_run": true,
+      "sha256_origin": "current_full_hash"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/configuration copy.json": {
+      "bytes": 57,
+      "mtime_ns": 1789627850127623304,
+      "sha256": "eac5f7713830bbac5e00d101f5717639acdacd61f54d8e366c3f67699d91bcb9",
+      "sha256_checked_this_run": true,
+      "sha256_origin": "current_full_hash"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/configuration.json": {
+      "bytes": 29,
+      "mtime_ns": 1789627850254627482,
+      "sha256": "8fa209ef18ac53dea0c47cf8d6f4e92c907565a4971bee413c1772e314a251fa",
+      "sha256_checked_this_run": true,
+      "sha256_origin": "current_full_hash"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/configuration_cogvlm.py": {
+      "bytes": 1623,
+      "mtime_ns": 1789627850108622679,
+      "sha256": "e2ae74be32dfd3bd554c4f9e9703b0e715e1bfea644b9b4d624cc11bed08f04c",
+      "sha256_checked_this_run": true,
+      "sha256_origin": "current_full_hash"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/generation_config.json": {
+      "bytes": 212,
+      "mtime_ns": 1789627851322662619,
+      "sha256": "0d36b7ec097a8d2b070d87d804a7fbff5b9b198d05fdc04f1fc0dbe2fabffdc2",
+      "sha256_checked_this_run": true,
+      "sha256_origin": "current_full_hash"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/model-00001-of-00006.safetensors": {
+      "bytes": 4976699712,
+      "mtime_ns": 1789631035199883119,
+      "header_sha256": "dcffb84a187ac612fd0c82f3a938843e81706b2e2231d43558561af82c907b10",
+      "sha256_checked_this_run": false,
+      "sha256": "896bfc9489d64439c2d15b18c0fff6a1690bb46be6c05b0212a50139d099f1d5",
+      "sha256_origin": "inherited_E010_full_hash"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/model-00002-of-00006.safetensors": {
+      "bytes": 4999803504,
+      "mtime_ns": 1789631048375310458,
+      "header_sha256": "9c2993a11f569c63294b964a317b503966e91d1605ea3dff9413890c46fb4f45",
+      "sha256_checked_this_run": false,
+      "sha256": "df62f6ecdb7a83b7ceef3ffa90a7141ffbdb2fad58414a6ad6ae2a88c7d25fbf",
+      "sha256_origin": "inherited_E010_full_hash"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/model-00003-of-00006.safetensors": {
+      "bytes": 4915917160,
+      "mtime_ns": 1789631036524925545,
+      "header_sha256": "6394f6c8861ab4a833fa3bd324552de6edb61fe8bd36be2b367f539dd1fd9bae",
+      "sha256_checked_this_run": false,
+      "sha256": "9b57aac55aad9c15b4963bf3099d4611672c2b26f96d746daf5bdba1467b81f9",
+      "sha256_origin": "inherited_E010_full_hash"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/model-00004-of-00006.safetensors": {
+      "bytes": 4956242104,
+      "mtime_ns": 1789631064442838110,
+      "header_sha256": "0e05561254c91ef370fbf9cf1363f75769fbcfb68e9c45091126f50ffcb16d8b",
+      "sha256_checked_this_run": false,
+      "sha256": "1740571d80cdeba6051aa57145c2249c869e973280eaeb99931c9fd04c21ec48",
+      "sha256_origin": "inherited_E010_full_hash"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/model-00005-of-00006.safetensors": {
+      "bytes": 4115863248,
+      "mtime_ns": 1789630911450920907,
+      "header_sha256": "5d8b7b5ac853a3b7fa8e6b86d0c3cea13f32168e4167fe75120c054b16ae9450",
+      "sha256_checked_this_run": false,
+      "sha256": "cbdbd6ba26ba40e29192f299ec7c4a8261a29a69ea208e7f03f0de623a56589d",
+      "sha256_origin": "inherited_E010_full_hash"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/model-00006-of-00006.safetensors": {
+      "bytes": 1050673280,
+      "mtime_ns": 1789628592703050930,
+      "header_sha256": "3bcdd3578c239ae7bf07d33525be3209b402034e454acbb3831f15d932b7c59d",
+      "sha256_checked_this_run": false,
+      "sha256": "6fc7209216b9fe05cc041b706928bd52ea0b546cc1b179ff2be1742936f07f86",
+      "sha256_origin": "inherited_E010_full_hash"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/model.safetensors.index.json": {
+      "bytes": 100996,
+      "mtime_ns": 1789627852198691438,
+      "sha256": "b0dddc31695d35df38081f85e65d52c780ccaf6390282f4d1b476c8d5855b866",
+      "sha256_checked_this_run": true,
+      "sha256_origin": "current_full_hash"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/model_config.py": {
+      "bytes": 1562,
+      "mtime_ns": 1789627853437732200,
+      "sha256": "a503c33ce97e30842300e5d4138cfa87f97714f43af52d1d1a17680a92112d5d",
+      "sha256_checked_this_run": true,
+      "sha256_origin": "current_full_hash"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/modeling_cogvlm.py": {
+      "bytes": 39739,
+      "mtime_ns": 1789632258995179139,
+      "sha256": "0c4af2e78db02769beabe8ada09241d9f66ba037e1108cedb4f52a2e918dc894",
+      "sha256_checked_this_run": true,
+      "sha256_origin": "current_full_hash"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/special_tokens_map.json": {
+      "bytes": 73,
+      "mtime_ns": 1789627854866779212,
+      "sha256": "462d91939dbc37178aa5a3eae7068d1990ccc92e09f288cc71f42cdf139d69cc",
+      "sha256_checked_this_run": true,
+      "sha256_origin": "current_full_hash"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/tokenizer.json": {
+      "bytes": 9084463,
+      "mtime_ns": 1789627856727840437,
+      "sha256": "0ac333c83e2d107910928928b5912d8ade91594d08c7c73c4606d05c032d7632",
+      "sha256_checked_this_run": true,
+      "sha256_origin": "current_full_hash"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/tokenizer_config.json": {
+      "bytes": 51111,
+      "mtime_ns": 1789627856683838990,
+      "sha256": "aaf547ad0ac582a4b684cb7416e542800d7ccc5d325c98feed105f40fb7e52c6",
+      "sha256_checked_this_run": true,
+      "sha256_origin": "current_full_hash"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/util.py": {
+      "bytes": 18574,
+      "mtime_ns": 1789627858825909459,
+      "sha256": "695ce92026c948890ff148172ba829cc643e1886cf1b91aa840ceae4cd87d894",
+      "sha256_checked_this_run": true,
+      "sha256_origin": "current_full_hash"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/visual.py": {
+      "bytes": 7517,
+      "mtime_ns": 1789627859614935416,
+      "sha256": "bf4164abb4ff6f5e02eb8136708261439f4a3c9f03470127773f82b7b68478b0",
+      "sha256_checked_this_run": true,
+      "sha256_origin": "current_full_hash"
+    }
+  },
+  "model_full_hash_complete": false,
+  "official_function_source": "/data1/models/svdquant-wjq/third_party/VisionReward/inference-video.py",
+  "model_full_hash_inherited": true,
+  "model_hash_policy": "No repeated 25 GB shard hash. Frozen official provenance rechecks shard headers/length/index; exact file size/mtime/header and all small-file SHA must match the completed E010 full-SHA inventory.",
+  "e010_visionreward": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E010_visionreward.json",
+    "sha256": "8f4ad4b1bfe37f7b7b965532963497a91a93a6ab64b311cde99cc7a09ad44eab",
+    "bytes": 1357339
+  },
+  "e010_decode": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E010_h3_decode.json",
+    "sha256": "150d57592588c5b27fc2b22889c34078be8e8d15cfb9a9949c34729471acfc39",
+    "bytes": 42832
+  },
+  "manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E017_h3_fp4_video_manifest.json",
+    "sha256": "b1c1d47ae8e516e564b89973f31094f3c9476112518c7b02f00ab51433bfb60f",
+    "bytes": 12246
+  },
+  "plan": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E017_h3_fp4_video_plan.md",
+    "sha256": "7f4fc987bbed09b1ec663608ef2a5ee281f4368236535eaaf112390f250357f2",
+    "bytes": 4302
+  },
+  "versions": {
+    "python": "3.12.13 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:38:16) [GCC 14.3.0]",
+    "torch": "2.11.0+cu128",
+    "transformers": "4.49.0",
+    "decord": "0.6.0"
+  },
+  "tokenizer_probe": {
+    "yes": {
+      "ids": [
+        9891
+      ],
+      "decoded_first": "yes"
+    },
+    "Yes": {
+      "ids": [
+        9642
+      ],
+      "decoded_first": "Yes"
+    },
+    "no": {
+      "ids": [
+        2201
+      ],
+      "decoded_first": "no"
+    },
+    "No": {
+      "ids": [
+        2822
+      ],
+      "decoded_first": "No"
+    },
+    " yes": {
+      "ids": [
+        10035
+      ],
+      "decoded_first": " yes"
+    }
+  },
+  "cpu_contract": {
+    "score_fixture": {
+      "strict_official": {
+        "valid": true,
+        "score": -0.3333333333333333,
+        "raw_formula_value_even_if_invalid": -0.3333333333333333,
+        "formula": "mean(weight * (1 if first_token_decoded == \"yes\" else -1))",
+        "exact_yes_count": 1,
+        "invalid_question_indices_zero_based": []
+      },
+      "normalized_yes_no": {
+        "valid": true,
+        "score": 0.3333333333333333,
+        "normalization": "first_token_decoded.strip().casefold()",
+        "yes_count": 2,
+        "no_count": 1,
+        "invalid_question_indices_zero_based": []
+      }
+    },
+    "unknown_fixture": {
+      "strict_official": {
+        "valid": false,
+        "score": null,
+        "raw_formula_value_even_if_invalid": 0.0,
+        "formula": "mean(weight * (1 if first_token_decoded == \"yes\" else -1))",
+        "exact_yes_count": 1,
+        "invalid_question_indices_zero_based": [
+          1
+        ]
+      },
+      "normalized_yes_no": {
+        "valid": false,
+        "score": null,
+        "normalization": "first_token_decoded.strip().casefold()",
+        "yes_count": 1,
+        "no_count": 0,
+        "invalid_question_indices_zero_based": [
+          1
+        ]
+      }
+    },
+    "official_frame_fixture": [
+      0,
+      24,
+      48,
+      72,
+      96,
+      120
+    ],
+    "question_count": 29
+  },
+  "cuda_initialized": false,
+  "historical_versions": {
+    "reference": {
+      "python": "3.12.13 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:38:16) [GCC 14.3.0]",
+      "torch": "2.11.0+cu128",
+      "transformers": "4.49.0",
+      "decord": "0.6.0"
+    },
+    "current": {
+      "python": "3.12.13 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:38:16) [GCC 14.3.0]",
+      "torch": "2.11.0+cu128",
+      "transformers": "4.49.0",
+      "decord": "0.6.0"
+    },
+    "exact": true
+  },
+  "expected_cases": [
+    "/data1/models/svdquant-wjq/research/20261002/E010/decode/p030_bf16.json",
+    "/data1/models/svdquant-wjq/research/20261002/E010/decode/p030_native.json",
+    "/data1/models/svdquant-wjq/research/20261002/E010/decode/p036_bf16.json",
+    "/data1/models/svdquant-wjq/research/20261002/E010/decode/p036_native.json",
+    "/data1/models/svdquant-wjq/research/20261002/E017/decode_block_mean/p030_block_mean.json",
+    "/data1/models/svdquant-wjq/research/20261002/E017/decode_global_mean/p030_global_mean.json",
+    "/data1/models/svdquant-wjq/research/20261002/E017/decode_block_mean/p036_block_mean.json",
+    "/data1/models/svdquant-wjq/research/20261002/E017/decode_global_mean/p036_global_mean.json"
+  ],
+  "media_inventory": [
+    {
+      "prompt_id": 30,
+      "variant": "bf16",
+      "case_json": "/data1/models/svdquant-wjq/research/20261002/E010/decode/p030_bf16.json",
+      "present": true,
+      "video_present": true,
+      "validated": true,
+      "case_json_sha256": "80e76ac3a05d9ff6b6e383bff9d315695420fee66d9c2f823862e963faf925e6",
+      "video_sha256": "92ae3963e2c9db10ee84c0a7cc14c491881c05ad3338e7854ca3b66888641d5d"
+    },
+    {
+      "prompt_id": 30,
+      "variant": "native",
+      "case_json": "/data1/models/svdquant-wjq/research/20261002/E010/decode/p030_native.json",
+      "present": true,
+      "video_present": true,
+      "validated": true,
+      "case_json_sha256": "01b410eef64e5eaed223b445d5d0fd09b222cf07f31d10f698c8bfb800e30685",
+      "video_sha256": "5b05ff8ce5f4cd68e9a3f3c8fd94caa9e61aafae0c9e4b2edffc152fd9cf2a48"
+    },
+    {
+      "prompt_id": 36,
+      "variant": "bf16",
+      "case_json": "/data1/models/svdquant-wjq/research/20261002/E010/decode/p036_bf16.json",
+      "present": true,
+      "video_present": true,
+      "validated": true,
+      "case_json_sha256": "bd053ac51c8bd01808cb68b37c382b9b7244638ae4ddff96099b2c27e01e0741",
+      "video_sha256": "6512b7885b82e764daaa9a4956c15881d91d3dfcc5bae9df3b085ea4d6cd1119"
+    },
+    {
+      "prompt_id": 36,
+      "variant": "native",
+      "case_json": "/data1/models/svdquant-wjq/research/20261002/E010/decode/p036_native.json",
+      "present": true,
+      "video_present": true,
+      "validated": true,
+      "case_json_sha256": "03516a995536cbd33419edf727964b91c24f774af429afff26888b62d3bca0cd",
+      "video_sha256": "3b7533bb74122b1c15c51b6ff5871db97e0e0825f82dfb874b1a224c27379681"
+    },
+    {
+      "prompt_id": 30,
+      "variant": "block_mean",
+      "case_json": "/data1/models/svdquant-wjq/research/20261002/E017/decode_block_mean/p030_block_mean.json",
+      "present": false,
+      "validated": false,
+      "reason": "New media not yet produced; required before GPU evaluation"
+    },
+    {
+      "prompt_id": 30,
+      "variant": "global_mean",
+      "case_json": "/data1/models/svdquant-wjq/research/20261002/E017/decode_global_mean/p030_global_mean.json",
+      "present": false,
+      "validated": false,
+      "reason": "New media not yet produced; required before GPU evaluation"
+    },
+    {
+      "prompt_id": 36,
+      "variant": "block_mean",
+      "case_json": "/data1/models/svdquant-wjq/research/20261002/E017/decode_block_mean/p036_block_mean.json",
+      "present": false,
+      "validated": false,
+      "reason": "New media not yet produced; required before GPU evaluation"
+    },
+    {
+      "prompt_id": 36,
+      "variant": "global_mean",
+      "case_json": "/data1/models/svdquant-wjq/research/20261002/E017/decode_global_mean/p036_global_mean.json",
+      "present": false,
+      "validated": false,
+      "reason": "New media not yet produced; required before GPU evaluation"
+    }
+  ],
+  "new_decode_reports": {},
+  "case_files_present": {
+    "/data1/models/svdquant-wjq/research/20261002/E010/decode/p030_bf16.json": true,
+    "/data1/models/svdquant-wjq/research/20261002/E010/decode/p030_native.json": true,
+    "/data1/models/svdquant-wjq/research/20261002/E010/decode/p036_bf16.json": true,
+    "/data1/models/svdquant-wjq/research/20261002/E010/decode/p036_native.json": true,
+    "/data1/models/svdquant-wjq/research/20261002/E017/decode_block_mean/p030_block_mean.json": false,
+    "/data1/models/svdquant-wjq/research/20261002/E017/decode_global_mean/p030_global_mean.json": false,
+    "/data1/models/svdquant-wjq/research/20261002/E017/decode_block_mean/p036_block_mean.json": false,
+    "/data1/models/svdquant-wjq/research/20261002/E017/decode_global_mean/p036_global_mean.json": false
+  },
+  "available_cases": 4,
+  "historical_answer_replay": {
+    "reference": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E010_visionreward.json",
+      "sha256": "8f4ad4b1bfe37f7b7b965532963497a91a93a6ab64b311cde99cc7a09ad44eab",
+      "bytes": 1357339
+    },
+    "cases": [
+      {
+        "prompt_id": 30,
+        "variant": "bf16",
+        "questions": [
+          {
+            "question_index": 0,
+            "present": false
+          },
+          {
+            "question_index": 1,
+            "present": false
+          },
+          {
+            "question_index": 2,
+            "present": false
+          },
+          {
+            "question_index": 3,
+            "present": false
+          },
+          {
+            "question_index": 4,
+            "present": false
+          },
+          {
+            "question_index": 5,
+            "present": false
+          },
+          {
+            "question_index": 6,
+            "present": false
+          },
+          {
+            "question_index": 7,
+            "present": false
+          },
+          {
+            "question_index": 8,
+            "present": false
+          },
+          {
+            "question_index": 9,
+            "present": false
+          },
+          {
+            "question_index": 10,
+            "present": false
+          },
+          {
+            "question_index": 11,
+            "present": false
+          },
+          {
+            "question_index": 12,
+            "present": false
+          },
+          {
+            "question_index": 13,
+            "present": false
+          },
+          {
+            "question_index": 14,
+            "present": false
+          },
+          {
+            "question_index": 15,
+            "present": false
+          },
+          {
+            "question_index": 16,
+            "present": false
+          },
+          {
+            "question_index": 17,
+            "present": false
+          },
+          {
+            "question_index": 18,
+            "present": false
+          },
+          {
+            "question_index": 19,
+            "present": false
+          },
+          {
+            "question_index": 20,
+            "present": false
+          },
+          {
+            "question_index": 21,
+            "present": false
+          },
+          {
+            "question_index": 22,
+            "present": false
+          },
+          {
+            "question_index": 23,
+            "present": false
+          },
+          {
+            "question_index": 24,
+            "present": false
+          },
+          {
+            "question_index": 25,
+            "present": false
+          },
+          {
+            "question_index": 26,
+            "present": false
+          },
+          {
+            "question_index": 27,
+            "present": false
+          },
+          {
+            "question_index": 28,
+            "present": false
+          }
+        ],
+        "compared_questions": 0,
+        "changed_raw_question_indices": []
+      },
+      {
+        "prompt_id": 30,
+        "variant": "native",
+        "questions": [
+          {
+            "question_index": 0,
+            "present": false
+          },
+          {
+            "question_index": 1,
+            "present": false
+          },
+          {
+            "question_index": 2,
+            "present": false
+          },
+          {
+            "question_index": 3,
+            "present": false
+          },
+          {
+            "question_index": 4,
+            "present": false
+          },
+          {
+            "question_index": 5,
+            "present": false
+          },
+          {
+            "question_index": 6,
+            "present": false
+          },
+          {
+            "question_index": 7,
+            "present": false
+          },
+          {
+            "question_index": 8,
+            "present": false
+          },
+          {
+            "question_index": 9,
+            "present": false
+          },
+          {
+            "question_index": 10,
+            "present": false
+          },
+          {
+            "question_index": 11,
+            "present": false
+          },
+          {
+            "question_index": 12,
+            "present": false
+          },
+          {
+            "question_index": 13,
+            "present": false
+          },
+          {
+            "question_index": 14,
+            "present": false
+          },
+          {
+            "question_index": 15,
+            "present": false
+          },
+          {
+            "question_index": 16,
+            "present": false
+          },
+          {
+            "question_index": 17,
+            "present": false
+          },
+          {
+            "question_index": 18,
+            "present": false
+          },
+          {
+            "question_index": 19,
+            "present": false
+          },
+          {
+            "question_index": 20,
+            "present": false
+          },
+          {
+            "question_index": 21,
+            "present": false
+          },
+          {
+            "question_index": 22,
+            "present": false
+          },
+          {
+            "question_index": 23,
+            "present": false
+          },
+          {
+            "question_index": 24,
+            "present": false
+          },
+          {
+            "question_index": 25,
+            "present": false
+          },
+          {
+            "question_index": 26,
+            "present": false
+          },
+          {
+            "question_index": 27,
+            "present": false
+          },
+          {
+            "question_index": 28,
+            "present": false
+          }
+        ],
+        "compared_questions": 0,
+        "changed_raw_question_indices": []
+      },
+      {
+        "prompt_id": 36,
+        "variant": "bf16",
+        "questions": [
+          {
+            "question_index": 0,
+            "present": false
+          },
+          {
+            "question_index": 1,
+            "present": false
+          },
+          {
+            "question_index": 2,
+            "present": false
+          },
+          {
+            "question_index": 3,
+            "present": false
+          },
+          {
+            "question_index": 4,
+            "present": false
+          },
+          {
+            "question_index": 5,
+            "present": false
+          },
+          {
+            "question_index": 6,
+            "present": false
+          },
+          {
+            "question_index": 7,
+            "present": false
+          },
+          {
+            "question_index": 8,
+            "present": false
+          },
+          {
+            "question_index": 9,
+            "present": false
+          },
+          {
+            "question_index": 10,
+            "present": false
+          },
+          {
+            "question_index": 11,
+            "present": false
+          },
+          {
+            "question_index": 12,
+            "present": false
+          },
+          {
+            "question_index": 13,
+            "present": false
+          },
+          {
+            "question_index": 14,
+            "present": false
+          },
+          {
+            "question_index": 15,
+            "present": false
+          },
+          {
+            "question_index": 16,
+            "present": false
+          },
+          {
+            "question_index": 17,
+            "present": false
+          },
+          {
+            "question_index": 18,
+            "present": false
+          },
+          {
+            "question_index": 19,
+            "present": false
+          },
+          {
+            "question_index": 20,
+            "present": false
+          },
+          {
+            "question_index": 21,
+            "present": false
+          },
+          {
+            "question_index": 22,
+            "present": false
+          },
+          {
+            "question_index": 23,
+            "present": false
+          },
+          {
+            "question_index": 24,
+            "present": false
+          },
+          {
+            "question_index": 25,
+            "present": false
+          },
+          {
+            "question_index": 26,
+            "present": false
+          },
+          {
+            "question_index": 27,
+            "present": false
+          },
+          {
+            "question_index": 28,
+            "present": false
+          }
+        ],
+        "compared_questions": 0,
+        "changed_raw_question_indices": []
+      },
+      {
+        "prompt_id": 36,
+        "variant": "native",
+        "questions": [
+          {
+            "question_index": 0,
+            "present": false
+          },
+          {
+            "question_index": 1,
+            "present": false
+          },
+          {
+            "question_index": 2,
+            "present": false
+          },
+          {
+            "question_index": 3,
+            "present": false
+          },
+          {
+            "question_index": 4,
+            "present": false
+          },
+          {
+            "question_index": 5,
+            "present": false
+          },
+          {
+            "question_index": 6,
+            "present": false
+          },
+          {
+            "question_index": 7,
+            "present": false
+          },
+          {
+            "question_index": 8,
+            "present": false
+          },
+          {
+            "question_index": 9,
+            "present": false
+          },
+          {
+            "question_index": 10,
+            "present": false
+          },
+          {
+            "question_index": 11,
+            "present": false
+          },
+          {
+            "question_index": 12,
+            "present": false
+          },
+          {
+            "question_index": 13,
+            "present": false
+          },
+          {
+            "question_index": 14,
+            "present": false
+          },
+          {
+            "question_index": 15,
+            "present": false
+          },
+          {
+            "question_index": 16,
+            "present": false
+          },
+          {
+            "question_index": 17,
+            "present": false
+          },
+          {
+            "question_index": 18,
+            "present": false
+          },
+          {
+            "question_index": 19,
+            "present": false
+          },
+          {
+            "question_index": 20,
+            "present": false
+          },
+          {
+            "question_index": 21,
+            "present": false
+          },
+          {
+            "question_index": 22,
+            "present": false
+          },
+          {
+            "question_index": 23,
+            "present": false
+          },
+          {
+            "question_index": 24,
+            "present": false
+          },
+          {
+            "question_index": 25,
+            "present": false
+          },
+          {
+            "question_index": 26,
+            "present": false
+          },
+          {
+            "question_index": 27,
+            "present": false
+          },
+          {
+            "question_index": 28,
+            "present": false
+          }
+        ],
+        "compared_questions": 0,
+        "changed_raw_question_indices": []
+      }
+    ],
+    "interpretation": "Differences are recorded evaluator replay variation on identical historical media; never attributed to the new quantization arms and never used as a stop condition."
+  },
+  "seconds_total": 2.688865686999634
+}

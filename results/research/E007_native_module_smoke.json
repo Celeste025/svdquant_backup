@@ -1,0 +1,143 @@
+{
+  "status": "complete",
+  "tests": [
+    {
+      "name": "blocks.0.attn1.to_q",
+      "tokens": 257,
+      "weight_roundtrip": {
+        "shape": [
+          1536,
+          1536
+        ],
+        "elements": 2359296,
+        "exact": true,
+        "changed_elements": 0,
+        "max_abs": 0.0,
+        "bf16_bytes": 4718592,
+        "packed_bytes": 1179648,
+        "logical_scale_bytes": 147456,
+        "swizzled_scale_bytes": 147456
+      },
+      "activation_roundtrip_exact": true,
+      "hook_replay_exact": true,
+      "native_main_vs_qdq_nmse": 1.376341788272839e-05,
+      "hooks": {
+        "pre": [
+          {
+            "old_handle": 0,
+            "new_handle": 4,
+            "with_kwargs": true,
+            "conditional_qdq": false,
+            "type": "deepcompressor.utils.hooks.processor.ProcessHook",
+            "object_id": 132619796505248,
+            "processor_type": "deepcompressor.calib.smooth.ActivationSmoother"
+          },
+          {
+            "old_handle": 1,
+            "new_handle": 5,
+            "with_kwargs": true,
+            "conditional_qdq": false,
+            "type": "deepcompressor.utils.hooks.branch.AccumBranchHook",
+            "object_id": 132620230609232,
+            "branch_id": 132621962828480,
+            "branch_a_id": 132619796502464
+          },
+          {
+            "old_handle": 3,
+            "new_handle": 6,
+            "with_kwargs": true,
+            "conditional_qdq": true,
+            "type": "deepcompressor.utils.hooks.processor.ProcessHook",
+            "object_id": 132620809464688,
+            "processor_type": "deepcompressor.app.diffusion.quant.quantizer.quantizer.DiffusionActivationQuantizer"
+          }
+        ],
+        "post": [
+          {
+            "old_handle": 2,
+            "new_handle": 7,
+            "with_kwargs": true,
+            "always_call": false,
+            "type": "deepcompressor.utils.hooks.branch.AccumBranchHook",
+            "object_id": 132620230609232,
+            "branch_id": 132621962828480,
+            "branch_a_id": 132619796502464
+          }
+        ]
+      }
+    },
+    {
+      "name": "blocks.0.ffn.net.2",
+      "tokens": 512,
+      "weight_roundtrip": {
+        "shape": [
+          1536,
+          8960
+        ],
+        "elements": 13762560,
+        "exact": true,
+        "changed_elements": 0,
+        "max_abs": 0.0,
+        "bf16_bytes": 27525120,
+        "packed_bytes": 6881280,
+        "logical_scale_bytes": 860160,
+        "swizzled_scale_bytes": 860160
+      },
+      "activation_roundtrip_exact": true,
+      "hook_replay_exact": true,
+      "native_main_vs_qdq_nmse": 1.387647080264287e-05,
+      "hooks": {
+        "pre": [
+          {
+            "old_handle": 8,
+            "new_handle": 12,
+            "with_kwargs": true,
+            "conditional_qdq": false,
+            "type": "deepcompressor.utils.hooks.processor.ProcessHook",
+            "object_id": 132644495638448,
+            "processor_type": "deepcompressor.calib.smooth.ActivationSmoother"
+          },
+          {
+            "old_handle": 9,
+            "new_handle": 13,
+            "with_kwargs": true,
+            "conditional_qdq": false,
+            "type": "deepcompressor.utils.hooks.branch.AccumBranchHook",
+            "object_id": 132637049128720,
+            "branch_id": 132637051058656,
+            "branch_a_id": 132644495772368
+          },
+          {
+            "old_handle": 11,
+            "new_handle": 14,
+            "with_kwargs": true,
+            "conditional_qdq": true,
+            "type": "deepcompressor.utils.hooks.processor.ProcessHook",
+            "object_id": 132637049130064,
+            "processor_type": "deepcompressor.app.diffusion.quant.quantizer.quantizer.DiffusionActivationQuantizer"
+          }
+        ],
+        "post": [
+          {
+            "old_handle": 10,
+            "new_handle": 15,
+            "with_kwargs": true,
+            "always_call": false,
+            "type": "deepcompressor.utils.hooks.branch.AccumBranchHook",
+            "object_id": 132637049128720,
+            "branch_id": 132637051058656,
+            "branch_a_id": 132644495772368
+          }
+        ]
+      }
+    }
+  ],
+  "torch": "2.11.0+cu128",
+  "peak_gpu_gib": 0.31102943420410156,
+  "scope": "two real saved weight matrices, synthetic BF16 inputs; not real-model activation or full-block validation",
+  "source_sha256": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa",
+  "driver_sha256": "64ef48121d876e2daa7e24f533fdda878333184930143897450a72c302a5f70a",
+  "driver_source": "import sys,json,time,traceback,weakref,gc\nfrom pathlib import Path\nimport torch\nimport torch.nn.functional as F\nfrom torch import nn\nsys.path.insert(0,'/home/wjq/workspace/svdquant-exp/scripts/research')\nimport wan_native_nvfp4 as wn\nfrom deepcompressor.app.diffusion.quant.quantizer.config import DiffusionActivationQuantizerConfig\nfrom deepcompressor.app.diffusion.quant.quantizer import DiffusionActivationQuantizer\nfrom deepcompressor.data.dtype import QuantDataType\nfrom deepcompressor.calib.smooth import ActivationSmoother\nfrom deepcompressor.nn.patch.lowrank import LowRankBranch\nout=Path('/home/wjq/workspace/svdquant-exp/results/research/E007_native_module_smoke.json')\nr={'status':'partial','tests':[],'torch':torch.__version__}\ntry:\n torch.set_num_threads(6);torch.manual_seed(20261002);torch.backends.cuda.matmul.allow_tf32=False\n cfg=DiffusionActivationQuantizerConfig(dtype=QuantDataType.from_str('sfp4_e2m1_all'),group_shapes=((-1,-1),(1,16,1,1,1)),scale_dtypes=(torch.float32,QuantDataType.from_str('sfp8_e4m3_nan')))\n root=Path('/data1/models/svdquant-wjq/ckpts/rcm-wan2.1-1.3b-real-nvfp4-s16')\n weights=torch.load(root/'model.pt',map_location='cpu',weights_only=False,mmap=True);scales=torch.load(root/'scale.pt',map_location='cpu',weights_only=False,mmap=True);smooth=torch.load(root/'smooth.pt',map_location='cpu',weights_only=False,mmap=True);branches=torch.load(root/'branch.pt',map_location='cpu',weights_only=False,mmap=True)\n for name,m in [('blocks.0.attn1.to_q',257),('blocks.0.ffn.net.2',512)]:\n  quant=DiffusionActivationQuantizer(cfg,channels_dim=-1,key='test')\n  w=weights[name+'.weight'].cuda();b=weights[name+'.bias'].cuda()\n  old=nn.Linear(w.shape[1],w.shape[0],bias=True,device='cuda',dtype=torch.bfloat16);old.weight.data.copy_(w);old.bias.data.copy_(b)\n  ActivationSmoother(smooth[name],channels_dim=-1).as_hook().register(old)\n  lr=LowRankBranch(w.shape[1],w.shape[0],32).to(device='cuda',dtype=torch.bfloat16)\n  lr.a.weight.data.copy_(branches[name]['a.weight']);lr.b.weight.data.copy_(branches[name]['b.weight'][:w.shape[0]])\n  lr.as_hook().register(old);qh=quant.as_hook();qh.register(old)\n  x=torch.randn((1,m,w.shape[1]),device='cuda',dtype=torch.bfloat16)\n  with torch.inference_mode():\n   orig=old(x);x_s=old._forward_pre_hooks[next(iter(old._forward_pre_hooks))].processor.process(x)\n   packet=wn.pack_activation_legacy(x_s,quantizer=quant)\n   legacy=quant.process(x_s);dec=packet.decode();assert torch.equal(dec,legacy),'act decode differs'\n   wp,wr=wn._recover_saved_weight(w,scales[name+'.weight.scale.0'],scales[name+'.weight.scale.1'],chunk_rows=128)\n   new=wn.NativeWanLinear(wp,b,quant);hookreport=wn._transfer_hooks(old,new,qh)\n   with wn.native_bypass(new):replay=new(x)\n   assert torch.equal(replay,orig),'hook replay differs'\n   native_main=new.main_from_packet(packet,mode='native');qdq_main=new.main_from_packet(packet,mode='packed_qdq')\n   nmse=float((native_main.float()-qdq_main.float()).square().sum()/qdq_main.float().square().sum());assert nmse<1e-4\n   native_full=new(x);assert torch.isfinite(native_full).all()\n   print(name,'exact replay',torch.equal(replay,orig),'native main nmse',nmse,flush=True)\n   r['tests'].append({'name':name,'tokens':m,'weight_roundtrip':wr,'activation_roundtrip_exact':True,'hook_replay_exact':True,'native_main_vs_qdq_nmse':nmse,'hooks':hookreport})\n   out.write_text(json.dumps(r,indent=2)+'\\n')\n  del old,new,x,x_s,packet,wp,w,b,orig,replay,native_main,qdq_main,native_full,legacy,dec,lr,quant;gc.collect();torch.cuda.empty_cache()\n r['status']='complete';r['peak_gpu_gib']=torch.cuda.max_memory_allocated()/1024**3\nexcept Exception:r['status']='failed';r['error']=traceback.format_exc();print(r['error'],flush=True)\nfinally:out.write_text(json.dumps(r,indent=2)+'\\n')\n",
+  "gpu": "CUDA_VISIBLE_DEVICES=5",
+  "startup_failure_preserved": "results/logs/E007_native_module_smoke_startup_missing_path.log"
+}

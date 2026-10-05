@@ -1,0 +1,98 @@
+{
+  "experiment": "E014",
+  "status": "failed_stop",
+  "start_epoch": 1790945509.6159468,
+  "deadline_epoch": 1790948209.6159468,
+  "wall_budget_seconds": 2700,
+  "max_complete_dit_calls": 30,
+  "planned_dit_calls": 24,
+  "freeze_sha256": "1eaf708c31c61c6b8be4932c21ee36b1598ab0a9210a264890df957042da8310",
+  "stages": [
+    {
+      "name": "export",
+      "status": "complete",
+      "command": [
+        "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/export_h3_plain_nvfp4.py",
+        "--phase",
+        "export",
+        "--deadline-unix",
+        "1790948209.6159468"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E014_export.log",
+      "gpu_before": {
+        "index": 0,
+        "uuid": "GPU-f2d2bf35-6009-bfec-9e68-dfffd5b077c4",
+        "memory_mib": 0,
+        "utilization_percent": 0
+      },
+      "planned_dit_calls": 0,
+      "returncode": 0,
+      "seconds": 197.0551187992096,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E014/export.json",
+      "report_sha256": "a9af02fe2c23d1639aa79971c295da4fce04baabb2f5ff0ca3e79c2a4a9c7719"
+    },
+    {
+      "name": "evaluate_bf16",
+      "status": "complete",
+      "command": [
+        "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_plain_baseline.py",
+        "--phase",
+        "evaluate",
+        "--arm",
+        "bf16",
+        "--check-report",
+        "/home/wjq/workspace/svdquant-exp/results/research/E014/E014_check_bf16.json",
+        "--deadline-unix",
+        "1790948209.6159468"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E014_evaluate_bf16.log",
+      "gpu_before": {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0
+      },
+      "planned_dit_calls": 3,
+      "returncode": 0,
+      "seconds": 36.82625389099121,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E014/E014_evaluate_bf16.json",
+      "report_sha256": "5178a9abd3e2b9619bb9652b3796d21ee4594f709752e72cdec51fb333e3797a"
+    },
+    {
+      "name": "evaluate_svd",
+      "status": "complete",
+      "command": [
+        "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_plain_baseline.py",
+        "--phase",
+        "evaluate",
+        "--arm",
+        "svd",
+        "--check-report",
+        "/home/wjq/workspace/svdquant-exp/results/research/E014/E014_check_bf16.json",
+        "--deadline-unix",
+        "1790948209.6159468"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E014_evaluate_svd.log",
+      "gpu_before": {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0
+      },
+      "planned_dit_calls": 3,
+      "returncode": 0,
+      "seconds": 42.586196422576904,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E014/E014_evaluate_svd.json",
+      "report_sha256": "0d41c1aea1bd0961862fd381692c6a09227a6883b8d0203aba040891adafe13e"
+    }
+  ],
+  "error": "RuntimeError('GPU5 not idle: GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b, 0, 13')",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/launch_h3_plain_baseline.py\", line 63, in main\n    gpu_before = idle(gpu)\n                 ^^^^^^^^^\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/launch_h3_plain_baseline.py\", line 35, in idle\n    raise RuntimeError(f'GPU{gpu} not idle: {row.strip()}')\nRuntimeError: GPU5 not idle: GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b, 0, 13\n",
+  "seconds_total": 276.7978661060333
+}

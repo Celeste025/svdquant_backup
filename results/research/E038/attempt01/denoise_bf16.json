@@ -1,0 +1,171 @@
+{
+  "experiment": "E038",
+  "phase": "denoise",
+  "arm": "bf16",
+  "status": "failed_stop",
+  "cases": [],
+  "attempted_dit_calls": 0,
+  "complete_dit_calls": 0,
+  "deadline_unix": 1790995112.233192,
+  "scope": "Same native SVD linear weights; only attention center choice changes. No full-model SP speed claim.",
+  "manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E038_center_video_manifest.json",
+    "sha256": "00c2880c71bd33e394c327324b44ba5dcf54605e7618f337e1bdac21bd514259",
+    "bytes": 6535
+  },
+  "settings": {
+    "height": 576,
+    "width": 1024,
+    "num_frames": 124,
+    "num_inference_steps": 20,
+    "cfg_scale": 1.0,
+    "flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "noise_dtype": "bfloat16",
+    "tiled": true,
+    "tile_size": 256,
+    "tile_overlap": 64,
+    "fps": 24,
+    "audio_sample_rate": 32000
+  },
+  "export_manifest": {
+    "file": "/data1/models/svdquant-wjq/research/20261002/E009/legacy_export/manifest.json",
+    "sha256": "0b92e3e9f6a937ca7a6ebff6c4dfe4e6ad4e918224525ab5bf12a4e1baddfec0",
+    "bytes": 306476
+  },
+  "sources": {
+    "run_h3_center_video.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_center_video.py",
+      "sha256": "51e7429a4b08b8513dae378baf5a971fc67b425e47806d1f1a10a900aafe08d9",
+      "bytes": 20020
+    },
+    "h3_coarse16_attention.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_coarse16_attention.py",
+      "sha256": "6495ce0fe2eb8cd4b52fe076348cd8e5d76523316ac5ff1a1d7408c049593039",
+      "bytes": 7221
+    },
+    "h3_native_fp4_attention.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_fp4_attention.py",
+      "sha256": "76de03ce6f458342e7ed4b67e1a4f700c6784de4978963408e2bdc7d725fb47b",
+      "bytes": 20815
+    },
+    "codebook_attention_sm120.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/codebook_attention_sm120.py",
+      "sha256": "dc2b139eca6e971d21b1ff8a47895124fd0e77088e311494fc9c75a5df524372",
+      "bytes": 17979
+    }
+  },
+  "allocated_dit_calls": 160,
+  "environment": {
+    "python": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "visible_devices": "0",
+    "attention_implementation": "torch",
+    "sdpa_enabled": {
+      "flash": true,
+      "math": true,
+      "mem_efficient": true,
+      "cudnn": true
+    }
+  },
+  "schedule_cpu": {
+    "video": {
+      "timesteps": [
+        1000.0,
+        995.6331787109375,
+        990.82568359375,
+        985.50732421875,
+        979.5918579101562,
+        972.9729614257812,
+        965.5172119140625,
+        957.0552368164062,
+        947.368408203125,
+        936.1702270507812,
+        923.076904296875,
+        907.56298828125,
+        888.888916015625,
+        865.9793701171875,
+        837.2092895507812,
+        800.0,
+        750.0,
+        679.2453002929688,
+        571.4285888671875,
+        387.0968017578125
+      ],
+      "sigmas": [
+        1.0,
+        0.9956331849098206,
+        0.9908256530761719,
+        0.9855073094367981,
+        0.9795918464660645,
+        0.9729729890823364,
+        0.9655172228813171,
+        0.9570552110671997,
+        0.9473683834075928,
+        0.936170220375061,
+        0.9230769276618958,
+        0.9075629711151123,
+        0.8888888955116272,
+        0.8659793734550476,
+        0.8372092843055725,
+        0.800000011920929,
+        0.75,
+        0.6792452931404114,
+        0.5714285969734192,
+        0.3870967924594879
+      ]
+    },
+    "audio": {
+      "timesteps": [
+        1000.0,
+        982.7586059570312,
+        964.28564453125,
+        944.4444580078125,
+        923.0769653320312,
+        900.0,
+        874.9999389648438,
+        847.8260498046875,
+        818.1818237304688,
+        785.7144165039062,
+        750.0,
+        710.5263061523438,
+        666.6666870117188,
+        617.64697265625,
+        562.5,
+        500.0,
+        428.57147216796875,
+        346.1539001464844,
+        250.0,
+        136.3636474609375
+      ],
+      "sigmas": [
+        1.0,
+        0.9827585816383362,
+        0.964285671710968,
+        0.944444477558136,
+        0.9230769872665405,
+        0.8999999761581421,
+        0.8749999403953552,
+        0.8478260636329651,
+        0.8181818127632141,
+        0.7857143878936768,
+        0.75,
+        0.7105262875556946,
+        0.6666666865348816,
+        0.6176469922065735,
+        0.5625,
+        0.5,
+        0.4285714626312256,
+        0.3461538851261139,
+        0.25,
+        0.13636364042758942
+      ]
+    }
+  },
+  "error": "Traceback (most recent call last):\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_center_video.py\", line 319, in main\n    bound, lengths = prepare_bindings(args, manifest, report, required=args.phase=='denoise')\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_center_video.py\", line 145, in prepare_bindings\n    require(not torch.cuda.is_initialized(), 'Input binding initialized CUDA')\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_center_video.py\", line 34, in require\n    raise RuntimeError(message)\nRuntimeError: Input binding initialized CUDA\n",
+  "seconds_total": 0.07710185390897095,
+  "peak_allocated_bytes": 0,
+  "peak_reserved_bytes": 0
+}

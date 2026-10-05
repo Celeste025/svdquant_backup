@@ -1,0 +1,537 @@
+{
+  "experiment": "E038",
+  "phase": "check",
+  "arm": "coarse16",
+  "status": "complete",
+  "cases": [],
+  "attempted_dit_calls": 0,
+  "complete_dit_calls": 0,
+  "deadline_unix": null,
+  "scope": "Same native SVD linear weights; only attention center choice changes. No full-model SP speed claim.",
+  "manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E038_center_video_manifest.json",
+    "sha256": "00c2880c71bd33e394c327324b44ba5dcf54605e7618f337e1bdac21bd514259",
+    "bytes": 6535
+  },
+  "settings": {
+    "height": 576,
+    "width": 1024,
+    "num_frames": 124,
+    "num_inference_steps": 20,
+    "cfg_scale": 1.0,
+    "flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "noise_dtype": "bfloat16",
+    "tiled": true,
+    "tile_size": 256,
+    "tile_overlap": 64,
+    "fps": 24,
+    "audio_sample_rate": 32000
+  },
+  "export_manifest": {
+    "file": "/data1/models/svdquant-wjq/research/20261002/E009/legacy_export/manifest.json",
+    "sha256": "0b92e3e9f6a937ca7a6ebff6c4dfe4e6ad4e918224525ab5bf12a4e1baddfec0",
+    "bytes": 306476
+  },
+  "sources": {
+    "run_h3_center_video_v2.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_center_video_v2.py",
+      "sha256": "f69c3c64a73ec19556b4668ea4047e58e1b192180f0becdaf2930b40ada01f3b",
+      "bytes": 20337
+    },
+    "h3_coarse16_attention.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_coarse16_attention.py",
+      "sha256": "6495ce0fe2eb8cd4b52fe076348cd8e5d76523316ac5ff1a1d7408c049593039",
+      "bytes": 7221
+    },
+    "h3_native_fp4_attention.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_fp4_attention.py",
+      "sha256": "76de03ce6f458342e7ed4b67e1a4f700c6784de4978963408e2bdc7d725fb47b",
+      "bytes": 20815
+    },
+    "codebook_attention_sm120.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/codebook_attention_sm120.py",
+      "sha256": "dc2b139eca6e971d21b1ff8a47895124fd0e77088e311494fc9c75a5df524372",
+      "bytes": 17979
+    }
+  },
+  "allocated_dit_calls": 160,
+  "environment": {
+    "python": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "visible_devices": "",
+    "attention_implementation": "torch",
+    "sdpa_enabled": {
+      "flash": true,
+      "math": true,
+      "mem_efficient": true,
+      "cudnn": true
+    }
+  },
+  "schedule_cpu": {
+    "video": {
+      "timesteps": [
+        1000.0,
+        995.6331787109375,
+        990.82568359375,
+        985.50732421875,
+        979.5918579101562,
+        972.9729614257812,
+        965.5172119140625,
+        957.0552368164062,
+        947.368408203125,
+        936.1702270507812,
+        923.076904296875,
+        907.56298828125,
+        888.888916015625,
+        865.9793701171875,
+        837.2092895507812,
+        800.0,
+        750.0,
+        679.2453002929688,
+        571.4285888671875,
+        387.0968017578125
+      ],
+      "sigmas": [
+        1.0,
+        0.9956331849098206,
+        0.9908256530761719,
+        0.9855073094367981,
+        0.9795918464660645,
+        0.9729729890823364,
+        0.9655172228813171,
+        0.9570552110671997,
+        0.9473683834075928,
+        0.936170220375061,
+        0.9230769276618958,
+        0.9075629711151123,
+        0.8888888955116272,
+        0.8659793734550476,
+        0.8372092843055725,
+        0.800000011920929,
+        0.75,
+        0.6792452931404114,
+        0.5714285969734192,
+        0.3870967924594879
+      ]
+    },
+    "audio": {
+      "timesteps": [
+        1000.0,
+        982.7586059570312,
+        964.28564453125,
+        944.4444580078125,
+        923.0769653320312,
+        900.0,
+        874.9999389648438,
+        847.8260498046875,
+        818.1818237304688,
+        785.7144165039062,
+        750.0,
+        710.5263061523438,
+        666.6666870117188,
+        617.64697265625,
+        562.5,
+        500.0,
+        428.57147216796875,
+        346.1539001464844,
+        250.0,
+        136.3636474609375
+      ],
+      "sigmas": [
+        1.0,
+        0.9827585816383362,
+        0.964285671710968,
+        0.944444477558136,
+        0.9230769872665405,
+        0.8999999761581421,
+        0.8749999403953552,
+        0.8478260636329651,
+        0.8181818127632141,
+        0.7857143878936768,
+        0.75,
+        0.7105262875556946,
+        0.6666666865348816,
+        0.6176469922065735,
+        0.5625,
+        0.5,
+        0.4285714626312256,
+        0.3461538851261139,
+        0.25,
+        0.13636364042758942
+      ]
+    }
+  },
+  "prepare_available": true,
+  "prepared_reference": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E038/prepare.json",
+    "sha256": "ee89d2fae123d043424033e50f800258ebc2486992bff3f941d546f2beaa1cb3",
+    "bytes": 20932
+  },
+  "prepared_cases": [
+    {
+      "case_id": "vbench0161_r0",
+      "prepared": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/prepare/vbench0161_r0.pt",
+        "sha256": "fb15780cd067bd69206e97550f31f1780b74f53d2809a39aa907e82089c40c7a",
+        "bytes": 4172505
+      },
+      "attention_contract": {
+        "expected_cu": [
+          0,
+          21731,
+          21760
+        ],
+        "expected_refiner_cu": [
+          0,
+          5,
+          5
+        ]
+      },
+      "initial_noise_sha256": {
+        "video_latents": "b3be07832d06581bebfb84c374414c163f3734a4cfe5000ca68d22d3201fbee1",
+        "audio_latents": "210d3e45214954804375dc4fe43398c67d189f81dd42b8c5a0f58d49d813d0ce"
+      },
+      "embedding_sha256": "bf05ef8db67e2d1de28dc409afa4216b721479e7dda961854be0d636ce319398",
+      "binding_tensor_devices": {
+        "embedding": "cpu",
+        "text_token_tags": "cpu",
+        "video_latents": "cpu",
+        "audio_latents": "cpu",
+        "packed_cu_seqlens": "cpu"
+      }
+    },
+    {
+      "case_id": "vbench0161_r1",
+      "prepared": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/prepare/vbench0161_r1.pt",
+        "sha256": "6a471cf28ce0be32014b45d13096f39fdde1768bb1483ffcaea90a104d7b9abb",
+        "bytes": 4172505
+      },
+      "attention_contract": {
+        "expected_cu": [
+          0,
+          21731,
+          21760
+        ],
+        "expected_refiner_cu": [
+          0,
+          5,
+          5
+        ]
+      },
+      "initial_noise_sha256": {
+        "video_latents": "fbd6088062078f77f2e434eafd55a608efe0ad84feea3309be7b8894c2fd1170",
+        "audio_latents": "9c215154eaa7e3644142960823c5ed10a7989e5f5e20ccb25c145e41f4fe31bc"
+      },
+      "embedding_sha256": "bf05ef8db67e2d1de28dc409afa4216b721479e7dda961854be0d636ce319398",
+      "binding_tensor_devices": {
+        "embedding": "cpu",
+        "text_token_tags": "cpu",
+        "video_latents": "cpu",
+        "audio_latents": "cpu",
+        "packed_cu_seqlens": "cpu"
+      }
+    },
+    {
+      "case_id": "vbench0192_r0",
+      "prepared": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/prepare/vbench0192_r0.pt",
+        "sha256": "86d31e1b8cda7f149f85ab57bd70161a65a0069837d872ea139ff00c4174221f",
+        "bytes": 4172505
+      },
+      "attention_contract": {
+        "expected_cu": [
+          0,
+          21731,
+          21760
+        ],
+        "expected_refiner_cu": [
+          0,
+          5,
+          5
+        ]
+      },
+      "initial_noise_sha256": {
+        "video_latents": "4c30c9ce3e434e11247e6e2f788b7e4ef64ac915ff1e5c27857bde1d4a567018",
+        "audio_latents": "08faae8e22521350c2099ee1f0d9680f4b8d408200346b6968c3a0458d8da3bc"
+      },
+      "embedding_sha256": "877499b7f24f9da5c33a51994f25ac1ea6d0cc9afd60ea33022e7e6a03fe0335",
+      "binding_tensor_devices": {
+        "embedding": "cpu",
+        "text_token_tags": "cpu",
+        "video_latents": "cpu",
+        "audio_latents": "cpu",
+        "packed_cu_seqlens": "cpu"
+      }
+    },
+    {
+      "case_id": "vbench0192_r1",
+      "prepared": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/prepare/vbench0192_r1.pt",
+        "sha256": "b9c91fc4be3d357415e9a87cf4a894c509b5582cfb232c360205cbdc17bf3141",
+        "bytes": 4172505
+      },
+      "attention_contract": {
+        "expected_cu": [
+          0,
+          21731,
+          21760
+        ],
+        "expected_refiner_cu": [
+          0,
+          5,
+          5
+        ]
+      },
+      "initial_noise_sha256": {
+        "video_latents": "24a3f7f2f5c09c9852fd852ae068146c263fbe6d8e856757edfc6a445bf68e53",
+        "audio_latents": "6006c8ea4a1d5154a25b702e189b9f3c91f34a8e3a09b2e93958b1f3d265d434"
+      },
+      "embedding_sha256": "877499b7f24f9da5c33a51994f25ac1ea6d0cc9afd60ea33022e7e6a03fe0335",
+      "binding_tensor_devices": {
+        "embedding": "cpu",
+        "text_token_tags": "cpu",
+        "video_latents": "cpu",
+        "audio_latents": "cpu",
+        "packed_cu_seqlens": "cpu"
+      }
+    },
+    {
+      "case_id": "vbench0269_r0",
+      "prepared": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/prepare/vbench0269_r0.pt",
+        "sha256": "77282b827bc13b7b493b01920b98e273bcb9fcbec7b423952eaff8c4dfad23fd",
+        "bytes": 4172569
+      },
+      "attention_contract": {
+        "expected_cu": [
+          0,
+          21731,
+          21760
+        ],
+        "expected_refiner_cu": [
+          0,
+          5,
+          5
+        ]
+      },
+      "initial_noise_sha256": {
+        "video_latents": "089e8629b8f7cd848843ca739ab73c3e01c9c7b839107826e2153aa054a45a3b",
+        "audio_latents": "3be018eed52b9e6adb75dea5dbe458962974a8e563ca85f63edb0c5bb6e85c11"
+      },
+      "embedding_sha256": "f642a2a3c0bf03c32e8a1953a14ac3d8f6df70e9df2bafd1b9fd04f7e3aeeb16",
+      "binding_tensor_devices": {
+        "embedding": "cpu",
+        "text_token_tags": "cpu",
+        "video_latents": "cpu",
+        "audio_latents": "cpu",
+        "packed_cu_seqlens": "cpu"
+      }
+    },
+    {
+      "case_id": "vbench0269_r1",
+      "prepared": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/prepare/vbench0269_r1.pt",
+        "sha256": "a413d462ec66ea1a79536a4998ee0e97b1e209ea98f0b70d83f4d28027041126",
+        "bytes": 4172569
+      },
+      "attention_contract": {
+        "expected_cu": [
+          0,
+          21731,
+          21760
+        ],
+        "expected_refiner_cu": [
+          0,
+          5,
+          5
+        ]
+      },
+      "initial_noise_sha256": {
+        "video_latents": "9a774b8d224e110cc36a7c3acdb21617733524d6bea931171fa21af0167ee7fd",
+        "audio_latents": "f5c5b05163d7a142f0dbd0d1f67a3b981dd112917fcdc7867d6eb767a166d2dc"
+      },
+      "embedding_sha256": "f642a2a3c0bf03c32e8a1953a14ac3d8f6df70e9df2bafd1b9fd04f7e3aeeb16",
+      "binding_tensor_devices": {
+        "embedding": "cpu",
+        "text_token_tags": "cpu",
+        "video_latents": "cpu",
+        "audio_latents": "cpu",
+        "packed_cu_seqlens": "cpu"
+      }
+    },
+    {
+      "case_id": "vbench0316_r0",
+      "prepared": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/prepare/vbench0316_r0.pt",
+        "sha256": "0d1250a2d1114cc6ef09aa561c9d26036311db36563f19eae59e2dc6bedd1364",
+        "bytes": 4244313
+      },
+      "attention_contract": {
+        "expected_cu": [
+          0,
+          21738,
+          21760
+        ],
+        "expected_refiner_cu": [
+          0,
+          12,
+          12
+        ]
+      },
+      "initial_noise_sha256": {
+        "video_latents": "81a3dd5cb3604758f5b4e665edbd789e7180256d43d0a221cd45ff499989a3bd",
+        "audio_latents": "209a53077c7ab52db65f19df42cae6be82a94b03e0b7cf19c3e5e6a7969023e2"
+      },
+      "embedding_sha256": "6f98a2ab0876c8baf766fef62028f5a0b3f522ecbca0aa9ead3a330520362d13",
+      "binding_tensor_devices": {
+        "embedding": "cpu",
+        "text_token_tags": "cpu",
+        "video_latents": "cpu",
+        "audio_latents": "cpu",
+        "packed_cu_seqlens": "cpu"
+      }
+    },
+    {
+      "case_id": "vbench0316_r1",
+      "prepared": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/prepare/vbench0316_r1.pt",
+        "sha256": "1a8bc130b966c693687d6d207e91f400c5b1df8069abc1fbc79c6061a8791154",
+        "bytes": 4244313
+      },
+      "attention_contract": {
+        "expected_cu": [
+          0,
+          21738,
+          21760
+        ],
+        "expected_refiner_cu": [
+          0,
+          12,
+          12
+        ]
+      },
+      "initial_noise_sha256": {
+        "video_latents": "e7b6bda7bf63e80ec3cb9ed5200e183e4c07cac0a4ddc8914f6354ed801b9e86",
+        "audio_latents": "3d061c9e3bfd9ec27988e8619ca60a268ab04555976857911691e12ee3259c7e"
+      },
+      "embedding_sha256": "6f98a2ab0876c8baf766fef62028f5a0b3f522ecbca0aa9ead3a330520362d13",
+      "binding_tensor_devices": {
+        "embedding": "cpu",
+        "text_token_tags": "cpu",
+        "video_latents": "cpu",
+        "audio_latents": "cpu",
+        "packed_cu_seqlens": "cpu"
+      }
+    }
+  ],
+  "geometry_check": {
+    "status": "complete",
+    "geometries": [
+      {
+        "valid_length": 2048,
+        "padded_length": 2048,
+        "groups": 16,
+        "boundaries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ]
+      },
+      {
+        "valid_length": 2307,
+        "padded_length": 2432,
+        "groups": 19,
+        "boundaries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9,
+          10,
+          11,
+          13,
+          14,
+          15,
+          16,
+          17,
+          19
+        ]
+      },
+      {
+        "valid_length": 21731,
+        "padded_length": 21760,
+        "groups": 170,
+        "boundaries": [
+          0,
+          10,
+          21,
+          31,
+          42,
+          53,
+          63,
+          74,
+          85,
+          95,
+          106,
+          116,
+          127,
+          138,
+          148,
+          159,
+          170
+        ]
+      },
+      {
+        "valid_length": 21738,
+        "padded_length": 21760,
+        "groups": 170,
+        "boundaries": [
+          0,
+          10,
+          21,
+          31,
+          42,
+          53,
+          63,
+          74,
+          85,
+          95,
+          106,
+          116,
+          127,
+          138,
+          148,
+          159,
+          170
+        ]
+      }
+    ],
+    "q_padding_in_mean": true,
+    "k_padding_excluded_then_zero": true,
+    "cuda_initialized": false
+  },
+  "cuda_initialized": false,
+  "seconds_total": 0.08011824986897409
+}

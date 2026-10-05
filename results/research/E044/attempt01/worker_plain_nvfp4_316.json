@@ -1,0 +1,3718 @@
+{
+  "experiment": "E044",
+  "arm": "plain_nvfp4",
+  "status": "failed_preserved",
+  "phase": "generate",
+  "cases": [
+    {
+      "case_id": "vbench0316_r0",
+      "prompt_id": 316,
+      "source_index_zero_based": 316,
+      "replica": 0,
+      "prompt": "an elephant spraying itself with water using its trunk to cool down",
+      "prompt_sha256": "35016d0bb7763724492babd8ae1a2e882a285fe779c0a3fe0b1d8720721882ba",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "seed": 43003160,
+      "status": "running",
+      "variant": "plain_nvfp4",
+      "steps": [],
+      "dit_calls": [],
+      "reference_worker": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E043/worker_316.json",
+        "bytes": 66483,
+        "sha256": "7f00415504148438e38750db4e8919152a9e3f5fb84437334e9e6adc749d9e1d"
+      },
+      "reference_case_id": "vbench0316_r0",
+      "initial_noise": {
+        "artifact": {
+          "file": "/data1/models/svdquant-wjq/research/20261003/E043/vbench0316_r0/initial_noise.pt",
+          "bytes": 8388243,
+          "sha256": "9a1cef4162c8ef2d87256c21c9b335eee015a68fed10763e8167072596e44ef1"
+        },
+        "tensor": {
+          "shape": [
+            1,
+            16,
+            21,
+            60,
+            104
+          ],
+          "dtype": "torch.float32",
+          "finite": true,
+          "sha256": "0765446d720fa2fc53f90b8a13f546990c3b1beba23b11c9520b19ab54225399"
+        }
+      },
+      "embeddings": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E043/prompt_316/embeddings.pt",
+        "bytes": 8390525,
+        "sha256": "a1d9e18a835107dcce1a727868bb61a82bb82382fd52034513cec59365f7cd25"
+      }
+    }
+  ],
+  "actual_counts": {
+    "dit": 1,
+    "native_gemm": 3,
+    "dit_sdpa": 0,
+    "scheduler": 0,
+    "public_vae_decode": 0,
+    "text_encoder": 0,
+    "fastpack_checks": 0
+  },
+  "manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E044_vanilla_wan_native_manifest.json",
+    "bytes": 7582,
+    "sha256": "4ec454f7db4398491307deab8f75ca6bd3b89db132f87bec2dc0c4addde5de70"
+  },
+  "sources": [
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_vanilla_wan_native.py",
+      "bytes": 18180,
+      "sha256": "a87f0b623dcbc30ee6bb4529a29ac9439c8450da419efbb767741b04a2402db8"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_vanilla_wan_reference.py",
+      "bytes": 15853,
+      "sha256": "e51e102122e1c15ce46c59c8b4cddf88e50640eb17b2e69f02e447177e165479"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E044_vanilla_wan_native_manifest.json",
+      "bytes": 7582,
+      "sha256": "4ec454f7db4398491307deab8f75ca6bd3b89db132f87bec2dc0c4addde5de70"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E044_vanilla_wan_native_plan.md",
+      "bytes": 3454,
+      "sha256": "1d08948da708f69b677c599ad2cd6e9ad095779f26777aea54a8e4bff136649b"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py",
+      "bytes": 22773,
+      "sha256": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/wan_nvfp4_fastpack.py",
+      "bytes": 8997,
+      "sha256": "98e7e81b0aeab229006fbd721be1da24f4eb435b424de9cc95a3b136f277ebd0"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/wan_mainweight_qad.py",
+      "bytes": 11654,
+      "sha256": "09a81e1a7b33c59a8e09d57f31046eec68c25c4626ed2bd1a788902e9f077cd8"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/infer_rcm_wan_4step.py",
+      "bytes": 13488,
+      "sha256": "9212636afac8d7c98a82f3fb98c6efb0a0ed366ea83db65866f64cfcf99e02fb"
+    },
+    {
+      "file": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/pipelines/wan/pipeline_wan.py",
+      "bytes": 32040,
+      "sha256": "2a5fcd905ad0fbcbd76240e02007e73ab3583f927da8b9fe0fbe5a4a54d792aa"
+    },
+    {
+      "file": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/models/transformers/transformer_wan.py",
+      "bytes": 31082,
+      "sha256": "74741d74c9fa4b9d02be83de9840b37a732080a795aa2d19037c03e312c76907"
+    },
+    {
+      "file": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/models/autoencoders/autoencoder_kl_wan.py",
+      "bytes": 54261,
+      "sha256": "a38de0c53adcb81887a0b48d44e3fb59737d7b1e4779a666febe83be666e8fa8"
+    },
+    {
+      "file": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/schedulers/scheduling_unipc_multistep.py",
+      "bytes": 56242,
+      "sha256": "5bfe1dcf55ebea6dbbf624d3af676b2529b81fbcaf493150d562ec9e1aba3872"
+    }
+  ],
+  "references": {
+    "316": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E043/worker_316.json",
+      "bytes": 66483,
+      "sha256": "7f00415504148438e38750db4e8919152a9e3f5fb84437334e9e6adc749d9e1d"
+    }
+  },
+  "settings": {
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "num_inference_steps": 50,
+    "guidance_scale": 6.0,
+    "flow_shift": 8.0,
+    "fps": 16,
+    "scheduler": "UniPCMultistepScheduler",
+    "transformer_dtype": "bfloat16",
+    "text_encoder_dtype": "bfloat16",
+    "vae_dtype": "float32",
+    "latent_update_dtype": "float32",
+    "max_sequence_length": 512,
+    "prompt_extension": false,
+    "attention_backend_dit": "torch SDPA FLASH_ATTENTION",
+    "compile": false,
+    "offload": false,
+    "vae_tiling": false
+  },
+  "selected_cases": [
+    {
+      "case_id": "vbench0316_r0",
+      "prompt_id": 316,
+      "source_index_zero_based": 316,
+      "replica": 0,
+      "prompt": "an elephant spraying itself with water using its trunk to cool down",
+      "prompt_sha256": "35016d0bb7763724492babd8ae1a2e882a285fe779c0a3fe0b1d8720721882ba",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "seed": 43003160
+    },
+    {
+      "case_id": "vbench0316_r1",
+      "prompt_id": 316,
+      "source_index_zero_based": 316,
+      "replica": 1,
+      "prompt": "an elephant spraying itself with water using its trunk to cool down",
+      "prompt_sha256": "35016d0bb7763724492babd8ae1a2e882a285fe779c0a3fe0b1d8720721882ba",
+      "source_dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "seed": 43003161
+    }
+  ],
+  "inherited_asset_provenance": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E043/base_transformer_provenance.json",
+    "bytes": 1325,
+    "sha256": "2967ac89b4a5a97f04b0e4e7cba0efffa98d11b0954c38d4250fed9d9162b201"
+  },
+  "inherited_te_vae_receipt": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E024/assets_manifest_attempt3.json",
+    "bytes": 27582,
+    "sha256": "8c851f0b442558d412d212e28dbb0c8b959184c1ed87cea5ec9b53ec91d71026"
+  },
+  "environment": {
+    "python": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "diffusers": "0.40.0",
+    "diffusers_path": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/__init__.py",
+    "PATH": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin:/home/wjq/.conda/envs/convrot-wan/bin:/usr/local/cuda/bin:/home/wjq/.local/bin:/opt/anaconda3/bin:/home/wjq/.codex/packages/app-server-daemon/releases/0.158.0-x86_64-unknown-linux-musl/codex-path:/home/wjq/.codex/tmp/arg0/codex-arg0vSUAs7:/home/wjq/.codex/tmp/arg0/codex-arg05WBOtG:/home/wjq/.local/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/cuda/bin",
+    "TORCH_EXTENSIONS_DIR": "/data1/models/svdquant-wjq/research/cache/e044/torch_extensions",
+    "TORCH_CUDA_ARCH_LIST": "12.0+PTX"
+  },
+  "cpu_target_count": 300,
+  "device": {
+    "name": "NVIDIA RTX PRO 5000 72GB Blackwell",
+    "visible_devices": "5",
+    "capability": [
+      12,
+      0
+    ]
+  },
+  "actual_configs": {
+    "transformer": {
+      "patch_size": [
+        1,
+        2,
+        2
+      ],
+      "num_attention_heads": 12,
+      "attention_head_dim": 128,
+      "in_channels": 16,
+      "out_channels": 16,
+      "text_dim": 4096,
+      "freq_dim": 256,
+      "ffn_dim": 8960,
+      "num_layers": 30,
+      "cross_attn_norm": true,
+      "qk_norm": "rms_norm_across_heads",
+      "eps": 1e-06,
+      "image_dim": null,
+      "added_kv_proj_dim": null,
+      "rope_max_seq_len": 1024,
+      "pos_embed_seq_len": null,
+      "_use_default_values": [
+        "pos_embed_seq_len"
+      ],
+      "_class_name": "WanTransformer3DModel",
+      "_diffusers_version": "0.33.0.dev0",
+      "_name_or_path": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers/transformer"
+    },
+    "vae": {
+      "base_dim": 96,
+      "decoder_base_dim": null,
+      "z_dim": 16,
+      "dim_mult": [
+        1,
+        2,
+        4,
+        4
+      ],
+      "num_res_blocks": 2,
+      "attn_scales": [],
+      "temperal_downsample": [
+        false,
+        true,
+        true
+      ],
+      "dropout": 0.0,
+      "latents_mean": [
+        -0.7571,
+        -0.7089,
+        -0.9113,
+        0.1075,
+        -0.1745,
+        0.9653,
+        -0.1517,
+        1.5508,
+        0.4134,
+        -0.0715,
+        0.5517,
+        -0.3632,
+        -0.1922,
+        -0.9497,
+        0.2503,
+        -0.2921
+      ],
+      "latents_std": [
+        2.8184,
+        1.4541,
+        2.3275,
+        2.6558,
+        1.2196,
+        1.7708,
+        2.6052,
+        2.0743,
+        3.2687,
+        2.1526,
+        2.8652,
+        1.5579,
+        1.6382,
+        1.1253,
+        2.8251,
+        1.916
+      ],
+      "is_residual": false,
+      "in_channels": 3,
+      "out_channels": 3,
+      "patch_size": null,
+      "scale_factor_temporal": 4,
+      "scale_factor_spatial": 8,
+      "_use_default_values": [
+        "is_residual",
+        "scale_factor_temporal",
+        "scale_factor_spatial",
+        "in_channels",
+        "out_channels",
+        "patch_size",
+        "decoder_base_dim"
+      ],
+      "_class_name": "AutoencoderKLWan",
+      "_diffusers_version": "0.33.0.dev0",
+      "_name_or_path": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers"
+    },
+    "scheduler": {
+      "num_train_timesteps": 1000,
+      "beta_start": 0.0001,
+      "beta_end": 0.02,
+      "beta_schedule": "linear",
+      "trained_betas": null,
+      "solver_order": 2,
+      "prediction_type": "flow_prediction",
+      "thresholding": false,
+      "dynamic_thresholding_ratio": 0.995,
+      "sample_max_value": 1.0,
+      "predict_x0": true,
+      "solver_type": "bh2",
+      "lower_order_final": true,
+      "disable_corrector": [],
+      "solver_p": null,
+      "use_karras_sigmas": false,
+      "use_exponential_sigmas": false,
+      "use_beta_sigmas": false,
+      "use_flow_sigmas": true,
+      "flow_shift": 8.0,
+      "timestep_spacing": "linspace",
+      "steps_offset": 0,
+      "final_sigmas_type": "zero",
+      "rescale_betas_zero_snr": false,
+      "use_dynamic_shifting": false,
+      "time_shift_type": "exponential",
+      "sigma_min": null,
+      "sigma_max": null,
+      "shift_terminal": null,
+      "_use_default_values": [
+        "time_shift_type",
+        "sigma_min",
+        "sigma_max",
+        "use_dynamic_shifting",
+        "shift_terminal"
+      ],
+      "_class_name": "UniPCMultistepScheduler",
+      "_diffusers_version": "0.33.0.dev0"
+    }
+  },
+  "pipeline_config": {
+    "vae": [
+      "diffusers",
+      "AutoencoderKLWan"
+    ],
+    "text_encoder": [
+      null,
+      null
+    ],
+    "tokenizer": [
+      null,
+      null
+    ],
+    "transformer": [
+      "diffusers",
+      "WanTransformer3DModel"
+    ],
+    "scheduler": [
+      "diffusers",
+      "UniPCMultistepScheduler"
+    ],
+    "transformer_2": [
+      null,
+      null
+    ],
+    "boundary_ratio": null,
+    "expand_timesteps": false,
+    "_name_or_path": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers"
+  },
+  "conversion": {
+    "arm": "plain_nvfp4",
+    "target_count": 300,
+    "training_updates": 0,
+    "recipe": {
+      "name": "legacy_wan_dynamic_nvfp4_mainweight_qad",
+      "group_size": 16,
+      "global": "FP32: (amax * (1/6)) * (1/448), all-zero canonical global=1",
+      "block_scale": "E4M3 ties toward larger value",
+      "code": "E2M1 ties toward larger signed value",
+      "effective_zero": "legacy remove_zero=1; reject zero-SF with nonzero codes",
+      "weight_input": "FP32 master",
+      "activation_input": "BF16",
+      "qdq_output": "BF16",
+      "ste_backward": "identity cast to input dtype",
+      "smoothing": false,
+      "low_rank": false
+    },
+    "targets": [
+      {
+        "name": "blocks.0.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00019763766613323241,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.0.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00020926340948790312,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.0.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00011843728134408593,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.0.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.830124766565859e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.0.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00011843728134408593,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.0.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 5.5948898079805076e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.0.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 4.977271964889951e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.0.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00017438616487197578,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.0.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00018019905837718397,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.0.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 0.00010681153071345761,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.1.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00010099865903612226,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.1.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00012715658522211015,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.1.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 9.08261354197748e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.1.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 9.155274165095761e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.1.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0001097179701901041,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.1.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.575811858056113e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.1.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 5.994524690322578e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.1.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00010463170474395156,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.1.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00015694755711592734,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.1.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 9.373256762046367e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.2.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00010390509123681113,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.2.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00018746513524092734,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.2.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.811047544237226e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.2.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 9.881883306661621e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.2.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 8.537656685803086e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.2.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.466820923378691e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.2.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 5.667550431098789e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.2.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00011843728134408593,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.2.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.0001213437135447748,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.2.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 0.00011625744809862226,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.3.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 8.864630217431113e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.3.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00015331451140809804,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.3.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0001060849244822748,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.3.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00011843728134408593,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.3.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 8.719308243598789e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.3.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.357829261105508e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.3.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 5.7038811064558104e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.3.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00020781018247362226,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.3.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00011916388757526875,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.3.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 0.00017947243759408593,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.4.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 9.809221955947578e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.4.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00014895485946908593,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.4.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.375082350336015e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.4.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0001060849244822748,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.4.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00011916388757526875,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.4.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.484073285013437e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.4.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.212507287273183e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.4.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00015113467816263437,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.4.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00012352353951428086,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.4.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 0.00014532181376125664,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.5.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 9.736561332829297e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.5.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00019909087859559804,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.5.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.62939453125e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.5.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00011262440239079297,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.5.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.847377855796367e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.5.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 8.428665023529902e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.5.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 5.740211418014951e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.5.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00017220634617842734,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.5.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00010681153071345761,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.5.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 0.0001373291015625,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.6.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00012642997899092734,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.6.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0001482282386859879,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.6.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.375082350336015e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.6.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00010027204552898183,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.6.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 9.809221955947578e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.6.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.793794455006719e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.6.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.06718567723874e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.6.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00020781018247362226,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.6.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00010317848500562832,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.6.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 9.518578735878691e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.7.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00022815524425823241,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.7.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00017511278565507382,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.7.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.92003920651041e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.7.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 9.809221955947578e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.7.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0001220703125,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.7.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.447742973454297e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.7.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.503151234937832e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.7.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00023396810865961015,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.7.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00014895485946908593,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.7.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 0.00011625744809862226,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.8.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 9.44591811276041e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.8.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0001482282386859879,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.8.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.011777779553086e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.8.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.62939453125e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.8.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 9.881883306661621e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.8.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.229760376503691e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.8.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.139846664154902e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.8.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00022815524425823241,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.8.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00011262440239079297,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.8.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 0.00015113467816263437,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.9.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00011771066056098789,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.9.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0001249767665285617,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.9.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 8.283343049697578e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.9.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 8.138021803461015e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.9.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.847377855796367e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.9.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.466820923378691e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.9.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.229760376503691e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.9.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00017583939188625664,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.9.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.0001482282386859879,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.9.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 9.736561332829297e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.10.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00011044457642128691,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.10.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0001220703125,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.10.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.484073285013437e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.10.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.793794455006719e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.10.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 9.227935515809804e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.10.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.229760376503691e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.10.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.466820923378691e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.10.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00033859984250739217,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.10.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00012570337275974452,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.10.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 0.00014532181376125664,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.11.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00023251489619724452,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.11.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00015331451140809804,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.11.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.883708167355508e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.11.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.266090688062832e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.11.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.375082350336015e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.11.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.575811858056113e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.11.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.684803520329297e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.11.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00022960845672059804,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.11.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00015113467816263437,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.11.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 0.00011480422836029902,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.12.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00020926340948790312,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.12.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0001736595731927082,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.12.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 8.719308243598789e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.12.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 8.68297865963541e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.12.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00015040807193145156,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.12.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.048108091112226e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.12.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.575811858056113e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.12.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0001627604360692203,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.12.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00014459520753007382,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.12.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 0.00010535831825109199,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.13.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0001663934817770496,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.13.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00012352353951428086,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.13.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 8.029030141187832e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.13.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.302420999621972e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.13.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.774717232678086e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.13.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.120768714230508e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.13.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.503151234937832e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.13.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00022088915284257382,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.13.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00020345053053461015,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.13.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 0.0001097179701901041,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.14.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0002383277751505375,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.14.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00017438616487197578,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.14.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.375082350336015e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.14.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.665725570404902e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.14.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.665725570404902e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.14.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.139846664154902e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.14.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.103515625e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.14.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00022088915284257382,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.14.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00016494026931468397,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.14.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 0.00014532181376125664,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.15.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00029064362752251327,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.15.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 9.663900709711015e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.15.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 8.392334711970761e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.15.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 8.900961256586015e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.15.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 8.174351387424394e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.15.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.048108091112226e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.15.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.285168637987226e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.15.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0002121698489645496,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.15.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00032842729706317186,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.15.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 9.736561332829297e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.16.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 9.227935515809804e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.16.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00014532181376125664,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.16.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.883708167355508e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.16.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 8.428665023529902e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.16.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.338751311181113e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.16.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 5.812872404931113e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.16.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.176176975714043e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.16.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00010245187149848789,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.16.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.0001736595731927082,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.16.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 0.00012061710731359199,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.17.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00019182478717993945,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.17.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00013078963092993945,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.17.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.266090688062832e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.17.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 9.881883306661621e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.17.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00014168876805342734,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.17.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 9.518578735878691e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.17.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 5.413237522589043e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.17.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0003574916336219758,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.17.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00011916388757526875,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.17.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 0.00011989049380645156,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.18.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00013514928286895156,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.18.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00010099865903612226,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.18.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 8.828299905871972e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.18.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00010027204552898183,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.18.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.830124766565859e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.18.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.248838326428086e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.18.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 5.849202716490254e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.18.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0007295155082829297,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.18.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00017438616487197578,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.18.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 0.00011989049380645156,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.19.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00014096216182224452,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.19.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00011262440239079297,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.19.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00010099865903612226,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.19.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00011553083459148183,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.19.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.902786117279902e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.19.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 5.30424622411374e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.19.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 4.3596541217993945e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.19.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0005958194378763437,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.19.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00013660249533131719,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.19.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 9.44591811276041e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.20.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00010099865903612226,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.20.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00013514928286895156,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.20.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00010899135668296367,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.20.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.411411934299394e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.20.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.939116428839043e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.20.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 5.2679159125545993e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.20.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 5.1952545618405566e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.20.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00011189779615961015,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.20.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00014968146570026875,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.20.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 0.00013078963092993945,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.21.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00011480422836029902,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.21.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00013587588910013437,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.21.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.593064947286621e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.21.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0001060849244822748,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.21.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.048108091112226e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.21.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 5.5222288210643455e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.21.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 5.158924250281416e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.21.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00010390509123681113,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.21.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00015622095088474452,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.21.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 0.00017147973994724452,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.22.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00011698405432980508,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.22.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 9.954543929779902e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.22.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 8.101690764306113e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.22.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00012061710731359199,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.22.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.103515625e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.22.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 5.7038811064558104e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.22.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 4.577637082547881e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.22.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0008079892722889781,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.22.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00017729260434862226,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.22.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 8.392334711970761e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.23.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0001060849244822748,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.23.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00013006302469875664,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.23.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 8.828299905871972e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.23.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 9.591239358996972e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.23.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.176176975714043e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.23.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 5.849202716490254e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.23.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 4.4323151087155566e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.23.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0005202520987950265,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.23.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.0001584007841302082,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.23.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 0.00014532181376125664,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.24.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00011698405432980508,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.24.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00010463170474395156,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.24.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 8.428665023529902e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.24.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00017947243759408593,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.24.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.721133831888437e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.24.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 4.9409416533308104e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.24.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 4.4504806282930076e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.24.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0006684803520329297,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.24.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00013878232857678086,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.24.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 0.000152587890625,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.25.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0001475016470067203,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.25.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 9.518578735878691e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.25.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 7.883708167355508e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.25.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00015476772387046367,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.25.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.830124766565859e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.25.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 4.577637082547881e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.25.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 4.650298069464043e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.25.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0006045387126505375,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.25.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00017002651293296367,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.25.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 9.300596138928086e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.26.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 9.591239358996972e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.26.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00011117118265246972,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.26.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 9.591239358996972e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.26.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 8.755639282753691e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.26.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.0308553656795993e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.26.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 4.6866283810231835e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.26.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 4.795619679498486e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.26.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0003981817571911961,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.26.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00016784669423941523,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.26.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 0.00010027204552898183,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.27.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0001097179701901041,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.27.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00018746513524092734,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.27.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0001431419950677082,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.27.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00010317848500562832,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.27.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00011262440239079297,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.27.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 5.049932951806113e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.27.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 5.049932951806113e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.27.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00044177830568514764,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.27.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.0001220703125,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.27.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 8.900961256586015e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.28.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00015404113219119608,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.28.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00025140674551948905,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.28.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00010681153071345761,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.28.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00010099865903612226,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.28.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.612142169615254e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.28.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 5.558559132623486e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.28.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 5.049932951806113e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.28.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00035022557131014764,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.28.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 0.00011916388757526875,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.28.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 0.00010535831825109199,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.29.attn1.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0001475016470067203,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.29.attn1.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.0003574916336219758,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.29.attn1.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00023687456268817186,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.29.attn1.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00013224284339230508,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.29.attn2.to_q",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 6.139846664154902e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.29.attn2.to_k",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 4.414149952935986e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.29.attn2.to_v",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 5.667550431098789e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.29.attn2.to_out.0",
+        "shape": [
+          1536,
+          1536
+        ],
+        "global_scale": 0.00032988053862936795,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.29.ffn.net.0.proj",
+        "shape": [
+          8960,
+          1536
+        ],
+        "global_scale": 9.663900709711015e-05,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      },
+      {
+        "name": "blocks.29.ffn.net.2",
+        "shape": [
+          1536,
+          8960
+        ],
+        "global_scale": 0.00011553083459148183,
+        "global_dtype": "torch.float32",
+        "scales_dtype": "torch.float8_e4m3fn"
+      }
+    ],
+    "non_target_state_count": 225
+  },
+  "native_targets": [
+    "blocks.0.attn1.to_q",
+    "blocks.0.attn1.to_k",
+    "blocks.0.attn1.to_v",
+    "blocks.0.attn1.to_out.0",
+    "blocks.0.attn2.to_q",
+    "blocks.0.attn2.to_k",
+    "blocks.0.attn2.to_v",
+    "blocks.0.attn2.to_out.0",
+    "blocks.0.ffn.net.0.proj",
+    "blocks.0.ffn.net.2",
+    "blocks.1.attn1.to_q",
+    "blocks.1.attn1.to_k",
+    "blocks.1.attn1.to_v",
+    "blocks.1.attn1.to_out.0",
+    "blocks.1.attn2.to_q",
+    "blocks.1.attn2.to_k",
+    "blocks.1.attn2.to_v",
+    "blocks.1.attn2.to_out.0",
+    "blocks.1.ffn.net.0.proj",
+    "blocks.1.ffn.net.2",
+    "blocks.2.attn1.to_q",
+    "blocks.2.attn1.to_k",
+    "blocks.2.attn1.to_v",
+    "blocks.2.attn1.to_out.0",
+    "blocks.2.attn2.to_q",
+    "blocks.2.attn2.to_k",
+    "blocks.2.attn2.to_v",
+    "blocks.2.attn2.to_out.0",
+    "blocks.2.ffn.net.0.proj",
+    "blocks.2.ffn.net.2",
+    "blocks.3.attn1.to_q",
+    "blocks.3.attn1.to_k",
+    "blocks.3.attn1.to_v",
+    "blocks.3.attn1.to_out.0",
+    "blocks.3.attn2.to_q",
+    "blocks.3.attn2.to_k",
+    "blocks.3.attn2.to_v",
+    "blocks.3.attn2.to_out.0",
+    "blocks.3.ffn.net.0.proj",
+    "blocks.3.ffn.net.2",
+    "blocks.4.attn1.to_q",
+    "blocks.4.attn1.to_k",
+    "blocks.4.attn1.to_v",
+    "blocks.4.attn1.to_out.0",
+    "blocks.4.attn2.to_q",
+    "blocks.4.attn2.to_k",
+    "blocks.4.attn2.to_v",
+    "blocks.4.attn2.to_out.0",
+    "blocks.4.ffn.net.0.proj",
+    "blocks.4.ffn.net.2",
+    "blocks.5.attn1.to_q",
+    "blocks.5.attn1.to_k",
+    "blocks.5.attn1.to_v",
+    "blocks.5.attn1.to_out.0",
+    "blocks.5.attn2.to_q",
+    "blocks.5.attn2.to_k",
+    "blocks.5.attn2.to_v",
+    "blocks.5.attn2.to_out.0",
+    "blocks.5.ffn.net.0.proj",
+    "blocks.5.ffn.net.2",
+    "blocks.6.attn1.to_q",
+    "blocks.6.attn1.to_k",
+    "blocks.6.attn1.to_v",
+    "blocks.6.attn1.to_out.0",
+    "blocks.6.attn2.to_q",
+    "blocks.6.attn2.to_k",
+    "blocks.6.attn2.to_v",
+    "blocks.6.attn2.to_out.0",
+    "blocks.6.ffn.net.0.proj",
+    "blocks.6.ffn.net.2",
+    "blocks.7.attn1.to_q",
+    "blocks.7.attn1.to_k",
+    "blocks.7.attn1.to_v",
+    "blocks.7.attn1.to_out.0",
+    "blocks.7.attn2.to_q",
+    "blocks.7.attn2.to_k",
+    "blocks.7.attn2.to_v",
+    "blocks.7.attn2.to_out.0",
+    "blocks.7.ffn.net.0.proj",
+    "blocks.7.ffn.net.2",
+    "blocks.8.attn1.to_q",
+    "blocks.8.attn1.to_k",
+    "blocks.8.attn1.to_v",
+    "blocks.8.attn1.to_out.0",
+    "blocks.8.attn2.to_q",
+    "blocks.8.attn2.to_k",
+    "blocks.8.attn2.to_v",
+    "blocks.8.attn2.to_out.0",
+    "blocks.8.ffn.net.0.proj",
+    "blocks.8.ffn.net.2",
+    "blocks.9.attn1.to_q",
+    "blocks.9.attn1.to_k",
+    "blocks.9.attn1.to_v",
+    "blocks.9.attn1.to_out.0",
+    "blocks.9.attn2.to_q",
+    "blocks.9.attn2.to_k",
+    "blocks.9.attn2.to_v",
+    "blocks.9.attn2.to_out.0",
+    "blocks.9.ffn.net.0.proj",
+    "blocks.9.ffn.net.2",
+    "blocks.10.attn1.to_q",
+    "blocks.10.attn1.to_k",
+    "blocks.10.attn1.to_v",
+    "blocks.10.attn1.to_out.0",
+    "blocks.10.attn2.to_q",
+    "blocks.10.attn2.to_k",
+    "blocks.10.attn2.to_v",
+    "blocks.10.attn2.to_out.0",
+    "blocks.10.ffn.net.0.proj",
+    "blocks.10.ffn.net.2",
+    "blocks.11.attn1.to_q",
+    "blocks.11.attn1.to_k",
+    "blocks.11.attn1.to_v",
+    "blocks.11.attn1.to_out.0",
+    "blocks.11.attn2.to_q",
+    "blocks.11.attn2.to_k",
+    "blocks.11.attn2.to_v",
+    "blocks.11.attn2.to_out.0",
+    "blocks.11.ffn.net.0.proj",
+    "blocks.11.ffn.net.2",
+    "blocks.12.attn1.to_q",
+    "blocks.12.attn1.to_k",
+    "blocks.12.attn1.to_v",
+    "blocks.12.attn1.to_out.0",
+    "blocks.12.attn2.to_q",
+    "blocks.12.attn2.to_k",
+    "blocks.12.attn2.to_v",
+    "blocks.12.attn2.to_out.0",
+    "blocks.12.ffn.net.0.proj",
+    "blocks.12.ffn.net.2",
+    "blocks.13.attn1.to_q",
+    "blocks.13.attn1.to_k",
+    "blocks.13.attn1.to_v",
+    "blocks.13.attn1.to_out.0",
+    "blocks.13.attn2.to_q",
+    "blocks.13.attn2.to_k",
+    "blocks.13.attn2.to_v",
+    "blocks.13.attn2.to_out.0",
+    "blocks.13.ffn.net.0.proj",
+    "blocks.13.ffn.net.2",
+    "blocks.14.attn1.to_q",
+    "blocks.14.attn1.to_k",
+    "blocks.14.attn1.to_v",
+    "blocks.14.attn1.to_out.0",
+    "blocks.14.attn2.to_q",
+    "blocks.14.attn2.to_k",
+    "blocks.14.attn2.to_v",
+    "blocks.14.attn2.to_out.0",
+    "blocks.14.ffn.net.0.proj",
+    "blocks.14.ffn.net.2",
+    "blocks.15.attn1.to_q",
+    "blocks.15.attn1.to_k",
+    "blocks.15.attn1.to_v",
+    "blocks.15.attn1.to_out.0",
+    "blocks.15.attn2.to_q",
+    "blocks.15.attn2.to_k",
+    "blocks.15.attn2.to_v",
+    "blocks.15.attn2.to_out.0",
+    "blocks.15.ffn.net.0.proj",
+    "blocks.15.ffn.net.2",
+    "blocks.16.attn1.to_q",
+    "blocks.16.attn1.to_k",
+    "blocks.16.attn1.to_v",
+    "blocks.16.attn1.to_out.0",
+    "blocks.16.attn2.to_q",
+    "blocks.16.attn2.to_k",
+    "blocks.16.attn2.to_v",
+    "blocks.16.attn2.to_out.0",
+    "blocks.16.ffn.net.0.proj",
+    "blocks.16.ffn.net.2",
+    "blocks.17.attn1.to_q",
+    "blocks.17.attn1.to_k",
+    "blocks.17.attn1.to_v",
+    "blocks.17.attn1.to_out.0",
+    "blocks.17.attn2.to_q",
+    "blocks.17.attn2.to_k",
+    "blocks.17.attn2.to_v",
+    "blocks.17.attn2.to_out.0",
+    "blocks.17.ffn.net.0.proj",
+    "blocks.17.ffn.net.2",
+    "blocks.18.attn1.to_q",
+    "blocks.18.attn1.to_k",
+    "blocks.18.attn1.to_v",
+    "blocks.18.attn1.to_out.0",
+    "blocks.18.attn2.to_q",
+    "blocks.18.attn2.to_k",
+    "blocks.18.attn2.to_v",
+    "blocks.18.attn2.to_out.0",
+    "blocks.18.ffn.net.0.proj",
+    "blocks.18.ffn.net.2",
+    "blocks.19.attn1.to_q",
+    "blocks.19.attn1.to_k",
+    "blocks.19.attn1.to_v",
+    "blocks.19.attn1.to_out.0",
+    "blocks.19.attn2.to_q",
+    "blocks.19.attn2.to_k",
+    "blocks.19.attn2.to_v",
+    "blocks.19.attn2.to_out.0",
+    "blocks.19.ffn.net.0.proj",
+    "blocks.19.ffn.net.2",
+    "blocks.20.attn1.to_q",
+    "blocks.20.attn1.to_k",
+    "blocks.20.attn1.to_v",
+    "blocks.20.attn1.to_out.0",
+    "blocks.20.attn2.to_q",
+    "blocks.20.attn2.to_k",
+    "blocks.20.attn2.to_v",
+    "blocks.20.attn2.to_out.0",
+    "blocks.20.ffn.net.0.proj",
+    "blocks.20.ffn.net.2",
+    "blocks.21.attn1.to_q",
+    "blocks.21.attn1.to_k",
+    "blocks.21.attn1.to_v",
+    "blocks.21.attn1.to_out.0",
+    "blocks.21.attn2.to_q",
+    "blocks.21.attn2.to_k",
+    "blocks.21.attn2.to_v",
+    "blocks.21.attn2.to_out.0",
+    "blocks.21.ffn.net.0.proj",
+    "blocks.21.ffn.net.2",
+    "blocks.22.attn1.to_q",
+    "blocks.22.attn1.to_k",
+    "blocks.22.attn1.to_v",
+    "blocks.22.attn1.to_out.0",
+    "blocks.22.attn2.to_q",
+    "blocks.22.attn2.to_k",
+    "blocks.22.attn2.to_v",
+    "blocks.22.attn2.to_out.0",
+    "blocks.22.ffn.net.0.proj",
+    "blocks.22.ffn.net.2",
+    "blocks.23.attn1.to_q",
+    "blocks.23.attn1.to_k",
+    "blocks.23.attn1.to_v",
+    "blocks.23.attn1.to_out.0",
+    "blocks.23.attn2.to_q",
+    "blocks.23.attn2.to_k",
+    "blocks.23.attn2.to_v",
+    "blocks.23.attn2.to_out.0",
+    "blocks.23.ffn.net.0.proj",
+    "blocks.23.ffn.net.2",
+    "blocks.24.attn1.to_q",
+    "blocks.24.attn1.to_k",
+    "blocks.24.attn1.to_v",
+    "blocks.24.attn1.to_out.0",
+    "blocks.24.attn2.to_q",
+    "blocks.24.attn2.to_k",
+    "blocks.24.attn2.to_v",
+    "blocks.24.attn2.to_out.0",
+    "blocks.24.ffn.net.0.proj",
+    "blocks.24.ffn.net.2",
+    "blocks.25.attn1.to_q",
+    "blocks.25.attn1.to_k",
+    "blocks.25.attn1.to_v",
+    "blocks.25.attn1.to_out.0",
+    "blocks.25.attn2.to_q",
+    "blocks.25.attn2.to_k",
+    "blocks.25.attn2.to_v",
+    "blocks.25.attn2.to_out.0",
+    "blocks.25.ffn.net.0.proj",
+    "blocks.25.ffn.net.2",
+    "blocks.26.attn1.to_q",
+    "blocks.26.attn1.to_k",
+    "blocks.26.attn1.to_v",
+    "blocks.26.attn1.to_out.0",
+    "blocks.26.attn2.to_q",
+    "blocks.26.attn2.to_k",
+    "blocks.26.attn2.to_v",
+    "blocks.26.attn2.to_out.0",
+    "blocks.26.ffn.net.0.proj",
+    "blocks.26.ffn.net.2",
+    "blocks.27.attn1.to_q",
+    "blocks.27.attn1.to_k",
+    "blocks.27.attn1.to_v",
+    "blocks.27.attn1.to_out.0",
+    "blocks.27.attn2.to_q",
+    "blocks.27.attn2.to_k",
+    "blocks.27.attn2.to_v",
+    "blocks.27.attn2.to_out.0",
+    "blocks.27.ffn.net.0.proj",
+    "blocks.27.ffn.net.2",
+    "blocks.28.attn1.to_q",
+    "blocks.28.attn1.to_k",
+    "blocks.28.attn1.to_v",
+    "blocks.28.attn1.to_out.0",
+    "blocks.28.attn2.to_q",
+    "blocks.28.attn2.to_k",
+    "blocks.28.attn2.to_v",
+    "blocks.28.attn2.to_out.0",
+    "blocks.28.ffn.net.0.proj",
+    "blocks.28.ffn.net.2",
+    "blocks.29.attn1.to_q",
+    "blocks.29.attn1.to_k",
+    "blocks.29.attn1.to_v",
+    "blocks.29.attn1.to_out.0",
+    "blocks.29.attn2.to_q",
+    "blocks.29.attn2.to_k",
+    "blocks.29.attn2.to_v",
+    "blocks.29.attn2.to_out.0",
+    "blocks.29.ffn.net.0.proj",
+    "blocks.29.ffn.net.2"
+  ],
+  "conversion_seconds": 0.8089528770651668,
+  "resident_allocated_bytes": 1437390848,
+  "error": "Traceback (most recent call last):\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/run_vanilla_wan_native.py\", line 290, in main\n    else: run(args,m,cases,prepared,report)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/utils/_contextlib.py\", line 124, in decorate_context\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/run_vanilla_wan_native.py\", line 249, in run\n    frames=pipe(prompt_embeds=positive,negative_prompt_embeds=negative,latents=entry['initial'],\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/utils/_contextlib.py\", line 124, in decorate_context\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/pipelines/wan/pipeline_wan.py\", line 615, in __call__\n    noise_pred = current_model(\n                 ^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/run_vanilla_wan_native.py\", line 200, in dit\n    result = old_dit(*a, **kw)\n             ^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/utils/peft_utils.py\", line 323, in wrapper\n    result = forward_fn(self, *args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/models/transformers/transformer_wan.py\", line 704, in forward\n    hidden_states = block(hidden_states, encoder_hidden_states, timestep_proj, rotary_emb)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/models/transformers/transformer_wan.py\", line 489, in forward\n    attn_output = self.attn1(norm_hidden_states, None, None, rotary_emb)\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/models/transformers/transformer_wan.py\", line 281, in forward\n    return self.processor(self, hidden_states, encoder_hidden_states, attention_mask, rotary_emb, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/models/transformers/transformer_wan.py\", line 143, in __call__\n    hidden_states = dispatch_attention_fn(\n                    ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/models/attention_dispatch.py\", line 439, in dispatch_attention_fn\n    return backend_fn(**kwargs)\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/models/attention_dispatch.py\", line 3707, in _native_attention\n    out = torch.nn.functional.scaled_dot_product_attention(\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: run.<locals>.sdpa() missing 3 required positional arguments: 'q', 'k', and 'v'\n",
+  "seconds_total": 2.47477157600224
+}

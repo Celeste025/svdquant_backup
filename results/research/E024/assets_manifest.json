@@ -1,0 +1,74 @@
+{
+  "status": "failed_partial_preserved",
+  "worker_pid": 3244833,
+  "start_epoch": 1790968556.497822,
+  "deadline_epoch": 1790970356.4689655,
+  "target": "/data1/models/svdquant-wjq/models/FastWan-QAD-1.3B-621c6aeb",
+  "taehv_target": "/data1/models/svdquant-wjq/models/TAEHV-011dfc21",
+  "hf_revision": "621c6aeb900f9f9a2ebb9ea9ed74c0daf31d5e6a",
+  "taehv_revision": "011dfc2112197741c540e0bdd5b7b67bcc930771",
+  "inventory": "/home/wjq/workspace/svdquant-exp/research_state/00_state/fastwan_qad_external_baseline_sources.json",
+  "policy": "Public fixed-revision downloads only. Original source assets are read-only; matching full SHA256 LFS assets become symlinks. No GPU or environment installation.",
+  "files": {},
+  "failures": [],
+  "download_attempts": [
+    {
+      "key": "hf/transformer/diffusion_pytorch_model.safetensors",
+      "url": "https://huggingface.co/FastVideo/FastWan-QAD-1.3B/resolve/621c6aeb900f9f9a2ebb9ea9ed74c0daf31d5e6a/transformer/diffusion_pytorch_model.safetensors?download=true",
+      "pid": 3244834,
+      "expected_bytes": 5676070784,
+      "partial_path": "/data1/models/svdquant-wjq/tmp/E024-assets/hf__transformer__diffusion_pytorch_model.safetensors.attempt1.partial",
+      "stderr": "/data1/models/svdquant-wjq/tmp/E024-assets/hf__transformer__diffusion_pytorch_model.safetensors.attempt1.stderr.log",
+      "transfer_stats": "/data1/models/svdquant-wjq/tmp/E024-assets/hf__transformer__diffusion_pytorch_model.safetensors.attempt1.transfer.json",
+      "start_epoch": 1790968556.4995873,
+      "attempt": 1,
+      "partial_bytes": 0
+    },
+    {
+      "key": "hf/.gitattributes",
+      "url": "https://huggingface.co/FastVideo/FastWan-QAD-1.3B/resolve/621c6aeb900f9f9a2ebb9ea9ed74c0daf31d5e6a/.gitattributes?download=true",
+      "pid": 3244835,
+      "expected_bytes": 2174,
+      "partial_path": "/data1/models/svdquant-wjq/tmp/E024-assets/hf__.gitattributes.attempt1.partial",
+      "stderr": "/data1/models/svdquant-wjq/tmp/E024-assets/hf__.gitattributes.attempt1.stderr.log",
+      "transfer_stats": "/data1/models/svdquant-wjq/tmp/E024-assets/hf__.gitattributes.attempt1.transfer.json",
+      "start_epoch": 1790968556.5001783,
+      "attempt": 1,
+      "partial_bytes": 0,
+      "returncode": 28,
+      "seconds": 21.003497838974,
+      "actual_bytes": 0
+    }
+  ],
+  "active_downloads": {
+    "hf/transformer/diffusion_pytorch_model.safetensors": {
+      "key": "hf/transformer/diffusion_pytorch_model.safetensors",
+      "url": "https://huggingface.co/FastVideo/FastWan-QAD-1.3B/resolve/621c6aeb900f9f9a2ebb9ea9ed74c0daf31d5e6a/transformer/diffusion_pytorch_model.safetensors?download=true",
+      "pid": 3244834,
+      "expected_bytes": 5676070784,
+      "partial_path": "/data1/models/svdquant-wjq/tmp/E024-assets/hf__transformer__diffusion_pytorch_model.safetensors.attempt1.partial",
+      "stderr": "/data1/models/svdquant-wjq/tmp/E024-assets/hf__transformer__diffusion_pytorch_model.safetensors.attempt1.stderr.log",
+      "transfer_stats": "/data1/models/svdquant-wjq/tmp/E024-assets/hf__transformer__diffusion_pytorch_model.safetensors.attempt1.transfer.json",
+      "start_epoch": 1790968556.4995873,
+      "attempt": 1,
+      "partial_bytes": 0
+    },
+    "hf/.gitattributes": {
+      "key": "hf/.gitattributes",
+      "url": "https://huggingface.co/FastVideo/FastWan-QAD-1.3B/resolve/621c6aeb900f9f9a2ebb9ea9ed74c0daf31d5e6a/.gitattributes?download=true",
+      "pid": 3244835,
+      "expected_bytes": 2174,
+      "partial_path": "/data1/models/svdquant-wjq/tmp/E024-assets/hf__.gitattributes.attempt1.partial",
+      "stderr": "/data1/models/svdquant-wjq/tmp/E024-assets/hf__.gitattributes.attempt1.stderr.log",
+      "transfer_stats": "/data1/models/svdquant-wjq/tmp/E024-assets/hf__.gitattributes.attempt1.transfer.json",
+      "start_epoch": 1790968556.5001783,
+      "attempt": 1,
+      "partial_bytes": 0,
+      "returncode": 28,
+      "seconds": 21.003497838974,
+      "actual_bytes": 0
+    }
+  },
+  "seconds": 21.008248329162598,
+  "error": "Traceback (most recent call last):\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/prepare_fastwan_qad_assets.py\", line 111, in worker\n    finish(job,destination,expected_sha=item['lfs_sha256'])\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/prepare_fastwan_qad_assets.py\", line 81, in finish\n    if p.returncode:raise RuntimeError(f'Download failed {item[\"key\"]}: curl {p.returncode}; log {item[\"stderr\"]}')\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Download failed hf/.gitattributes: curl 28; log /data1/models/svdquant-wjq/tmp/E024-assets/hf__.gitattributes.attempt1.stderr.log\n"
+}

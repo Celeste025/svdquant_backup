@@ -1,0 +1,184 @@
+{
+  "status": "complete",
+  "source": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_fp4_attention.py",
+    "sha256": "76de03ce6f458342e7ed4b67e1a4f700c6784de4978963408e2bdc7d725fb47b",
+    "bytes": 20815
+  },
+  "cuda_initialized": false,
+  "modes": [
+    {
+      "mode": "bf16",
+      "main_helper_calls": 50,
+      "refiner_helper_calls": 2,
+      "fp4_calls": 0,
+      "original_bf16_segments": 102,
+      "expected_cu": [
+        0,
+        129,
+        133
+      ],
+      "expected_refiner_cu": [
+        0,
+        7,
+        7
+      ],
+      "actual_cu_checks": [
+        {
+          "kind": "refiner",
+          "actual": [
+            0,
+            7,
+            7
+          ],
+          "expected": [
+            0,
+            7,
+            7
+          ],
+          "exact": true
+        },
+        {
+          "kind": "main",
+          "actual": [
+            0,
+            129,
+            133
+          ],
+          "expected": [
+            0,
+            129,
+            133
+          ],
+          "exact": true
+        }
+      ],
+      "diagnostics": true,
+      "finite_flag_count": 52,
+      "finite": true,
+      "timing_boundary": "Context exit checks tiny cu metadata and optional finite flags after the caller end synchronization",
+      "metadata_policy": "All main modes use the same prebound CPU boundaries and deferred actual-cu verification; refiner uses original boundaries/helper in every mode.",
+      "diagnostics_disabled_output_exact": true,
+      "common_cpu_metadata_identity_checked": true
+    },
+    {
+      "mode": "block_mean",
+      "main_helper_calls": 50,
+      "refiner_helper_calls": 2,
+      "fp4_calls": 50,
+      "original_bf16_segments": 52,
+      "expected_cu": [
+        0,
+        129,
+        133
+      ],
+      "expected_refiner_cu": [
+        0,
+        7,
+        7
+      ],
+      "actual_cu_checks": [
+        {
+          "kind": "refiner",
+          "actual": [
+            0,
+            7,
+            7
+          ],
+          "expected": [
+            0,
+            7,
+            7
+          ],
+          "exact": true
+        },
+        {
+          "kind": "main",
+          "actual": [
+            0,
+            129,
+            133
+          ],
+          "expected": [
+            0,
+            129,
+            133
+          ],
+          "exact": true
+        }
+      ],
+      "diagnostics": true,
+      "finite_flag_count": 252,
+      "finite": true,
+      "timing_boundary": "Context exit checks tiny cu metadata and optional finite flags after the caller end synchronization",
+      "metadata_policy": "All main modes use the same prebound CPU boundaries and deferred actual-cu verification; refiner uses original boundaries/helper in every mode.",
+      "diagnostics_disabled_output_exact": true,
+      "common_cpu_metadata_identity_checked": true
+    },
+    {
+      "mode": "global_mean",
+      "main_helper_calls": 50,
+      "refiner_helper_calls": 2,
+      "fp4_calls": 50,
+      "original_bf16_segments": 52,
+      "expected_cu": [
+        0,
+        129,
+        133
+      ],
+      "expected_refiner_cu": [
+        0,
+        7,
+        7
+      ],
+      "actual_cu_checks": [
+        {
+          "kind": "refiner",
+          "actual": [
+            0,
+            7,
+            7
+          ],
+          "expected": [
+            0,
+            7,
+            7
+          ],
+          "exact": true
+        },
+        {
+          "kind": "main",
+          "actual": [
+            0,
+            129,
+            133
+          ],
+          "expected": [
+            0,
+            129,
+            133
+          ],
+          "exact": true
+        }
+      ],
+      "diagnostics": true,
+      "finite_flag_count": 252,
+      "finite": true,
+      "timing_boundary": "Context exit checks tiny cu metadata and optional finite flags after the caller end synchronization",
+      "metadata_policy": "All main modes use the same prebound CPU boundaries and deferred actual-cu verification; refiner uses original boundaries/helper in every mode.",
+      "diagnostics_disabled_output_exact": true,
+      "common_cpu_metadata_identity_checked": true
+    }
+  ],
+  "checks": [
+    "original bound forwards restored",
+    "valid/padding/refiner routes",
+    "exact scale and N flags",
+    "axis-dependent BF16 token/head/channel values",
+    "contiguous official QKV",
+    "padded Q output cropped",
+    "wrong boundary rejected",
+    "separate native attention kernel matcher"
+  ],
+  "scope": "Mock routing only; no actual official quantizer, GPU kernel, or numerical accuracy proof"
+}

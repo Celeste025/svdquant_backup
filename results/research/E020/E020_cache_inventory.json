@@ -1,0 +1,1333 @@
+{
+  "experiment": "E020",
+  "status": "complete",
+  "scope": "CPU cache inventory; development only, not final test",
+  "cuda_initialized": false,
+  "sources": [
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/examples/diffusion/prompts/vbench_t2v_simple.yaml",
+      "sha256": "e6c7f3a37755414c5690b8717a5d2fa3fdddf5ea6183d819f093241a49b3e360",
+      "bytes": 5680
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/reports/rcm_blockwise_lowrank_8prompt_e10/extra_train_prompts.yaml",
+      "sha256": "96f5910dbbdf6c09f6e0693825d4d9f0e8301f109d4a500cabe34191d34f094a",
+      "bytes": 748
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E008_wan_native_paired_video.json",
+      "sha256": "04201806e5ab5739cf014f63249846aaa6f442d8770ea478a10a08b05b02d032",
+      "bytes": 25966
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/collect_rcm_wan_calib.py",
+      "sha256": "31a45cab74bdedb304945c9fdf5857222f45234a78db4eb5c2cacc77289d82a8",
+      "bytes": 4816
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/exp_rcm_blockwise_lowrank_pilot.py",
+      "sha256": "c39a3a49987b1e3b8809d978360dd09a79eed2da63dd8ebd89221ad16db78fbe",
+      "bytes": 20275
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/exp_rcm_joint_smooth_lowrank.py",
+      "sha256": "b9c9dedcd497f9a9b4a7b5e980f708567f44aab66b857be13fe5dac8a0cb2b35",
+      "bytes": 25935
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/exp_rcm_fullmodel_lowrank_denoiser.py",
+      "sha256": "13f9ebc46e044f57755a74bf26c4d583df1a6550c8987a965df019267806b786",
+      "bytes": 13873
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/eval_rcm_joint_epoch_curve.py",
+      "sha256": "de66d911a42f6cd4fad1ce8a79c01bf4b6b804b3dc7a06ac10ce587c69eb761d",
+      "bytes": 5313
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/reports/rcm_fullmodel_lowrank_denoiser/e10_equal_8prompt/config.json",
+      "sha256": "9195960502ae6fd0bf53da5d713e472322b2b14eb5f8662ac77e4de0ad265613",
+      "bytes": 2147
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/logs/rcm-wan-calib-full.log",
+      "sha256": "1dc5c8ec7f1eec844219a5c4c18f7fd64fdf69eab07858da3e02b3e75e8c81b0",
+      "bytes": 1539
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/rcm_vbench251_worker.py",
+      "sha256": "33b47b7574a9c3165803737392eb21d6d8371d93abd90b44b83155739e51a28a",
+      "bytes": 11320
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/samples/rcm_int4_svdquant_vbench51_seed0_480p77f_4step/manifest.json",
+      "sha256": "04ab09e41e05d0eb50ad6534a5ace3e4b9662a107a94608f165b0ae2b246535e",
+      "bytes": 11743
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/samples/rcm_real_nvfp4_svdquant_g10_r64_vbench51_seed0_480p77f_4step/manifest.json",
+      "sha256": "792c65e0c8c0c246c176c3ec4bc2a53b1d62b9a63de05817e5f43af0aa38ad98",
+      "bytes": 11720
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/samples/rcm_real_nvfp4_svdquant_g20_r32_vbench51_seed0_480p77f_4step/manifest.json",
+      "sha256": "92ecfaac179c644618d533b56d07ebd8289a4831dfc247f29f634e619fbd7537",
+      "bytes": 11720
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/samples/rcm_vbench251_seed0_480p77f_4step/manifest.json",
+      "sha256": "09cd829095a39aec21816c70aa6a2695846a9600bf79c2fe40b8e386a48ab1fa",
+      "bytes": 101986
+    }
+  ],
+  "selection_rule": "Use four legacy TRAIN_PROMPTS in its frozen tuple order, steps0..3. Validation is first two legacy TEST_PROMPTS, steps0..3; no result-based selection.",
+  "train": [
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0015-00000-0.pt",
+      "prompt_id": "0015",
+      "step": 0,
+      "payload_filename": "0015",
+      "payload_step": 0,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 988.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "daada6ab9086cc5cae7607a72ca1faff529f20fe65e64aa36573627af75a1001",
+      "input_sha256": "0c9e679e2329d7443f62757859b366b307baf510d43235b48fad0dd4b70115e9",
+      "cached_output_sha256": "083f98c5c208f89a966a45cedb6773a1a41b8ded63fc4c853c78a61ca6fbc111"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0015-00001-0.pt",
+      "prompt_id": "0015",
+      "step": 1,
+      "payload_filename": "0015",
+      "payload_step": 1,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 932.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "87708c7db9bd741dfc610ce92a47df61e694b40ab79efe3bad1426ab00638cb2",
+      "input_sha256": "9c5118f5874b09eb160288ec7d6d91e5d29d31ce0c612611cd9620baf1eec520",
+      "cached_output_sha256": "6bd994d957f93b503ecde4ae5d955f747d364e8cb20fceebb6dca3de320e9a7c"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0015-00002-0.pt",
+      "prompt_id": "0015",
+      "step": 2,
+      "payload_filename": "0015",
+      "payload_step": 2,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 852.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "c38c9f67a5fbbb88fa79ccdfe512f3218c6b808450a4e178c2a77715d7d037aa",
+      "input_sha256": "b5f5e7d1ff91c1b519dbdd82de8500840b4135bfea6ba57772bbac5b5b23e72a",
+      "cached_output_sha256": "d9572fe76f70d3e2d27503a09067ae93074890a4ce58a265091aec0dd8643736"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0015-00003-0.pt",
+      "prompt_id": "0015",
+      "step": 3,
+      "payload_filename": "0015",
+      "payload_step": 3,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 608.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "a6e0452e73e2c2df39d576d0432e31ccfb6ce3aab1451920ecf781a717bef3b6",
+      "input_sha256": "4270f32c2f92fdd665804878addda84a18dc36b3f30d159c353e7a42a70aaab5",
+      "cached_output_sha256": "6e1816f2f7e72da552c8f2f0f19c5b44450bbbd0ce5290a18bb40366e69b480c"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0005-00000-0.pt",
+      "prompt_id": "0005",
+      "step": 0,
+      "payload_filename": "0005",
+      "payload_step": 0,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 988.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "9794d787d031f2790f83e940252982e55ba0da7062fe4b9a4d23a90ebd2a02f8",
+      "input_sha256": "175d9c13b7508ab5531559b132d74edcec7ff7001dc8a102ffe70ce6a06bfe92",
+      "cached_output_sha256": "26caad8d7726f2c73f6e96be5822e0efda1802ce923b9de042aff5b77a5c26e4"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0005-00001-0.pt",
+      "prompt_id": "0005",
+      "step": 1,
+      "payload_filename": "0005",
+      "payload_step": 1,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 932.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "fbbdae4538ed44b17f563cb353634a1db59cc6a55b232fb2fee0e804c33bc513",
+      "input_sha256": "8cde5553f2057d15f0c257ce3b30ff1ce7561b0146aef975d914e2544b80a712",
+      "cached_output_sha256": "e4c81879b93152e2781397b69ec5587b7ba08dd309ea9fd48616f85a10ec4914"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0005-00002-0.pt",
+      "prompt_id": "0005",
+      "step": 2,
+      "payload_filename": "0005",
+      "payload_step": 2,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 852.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "c5ca6fac6bbde4d8f8b25eba8340e2c787b354f75c281833d2ee2824f90483e1",
+      "input_sha256": "d11e414becafa5bf8c7e4d56950c7e622ce1767822bf1e0bf8d2d9ccb0764fe0",
+      "cached_output_sha256": "a5d84d3340ab2b220550d4bc05bf716e385db9bac8423e9ed34ea323ffc86abe"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0005-00003-0.pt",
+      "prompt_id": "0005",
+      "step": 3,
+      "payload_filename": "0005",
+      "payload_step": 3,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 608.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "77d411f8af29e37ef43f100591e2c61ef86a8e4fece3a73c4e292a4dac829a57",
+      "input_sha256": "997b4c135504c648a704d904b0cc3f0acd48f3db72431a34c939f554d5de5853",
+      "cached_output_sha256": "dd22281c041cecce35ae70e0119a3986cacb876d1e5ea3cf1f7760b691fabef3"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0006-00000-0.pt",
+      "prompt_id": "0006",
+      "step": 0,
+      "payload_filename": "0006",
+      "payload_step": 0,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 988.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "40f25db6b8478424efe96b597031d997656cdc6b4b1eaf6fbe80f38a7a26ba71",
+      "input_sha256": "a9c32c7f3bf14c16c4d8450b43ab25095adb07b5a78161a8ac974fba41f7528d",
+      "cached_output_sha256": "69a499fcb45647e63d7a30427f50db5ba1e394c8131ec9b9b77e8bfbb7b62d07"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0006-00001-0.pt",
+      "prompt_id": "0006",
+      "step": 1,
+      "payload_filename": "0006",
+      "payload_step": 1,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 932.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "a56fa5331f57dbf1614f43b96a79031adc42596260005c2f1e8ee127a2555dd1",
+      "input_sha256": "4e1e98c919ee6c64834ed3358ec2cb43e01d4a78fed4fe7a8cd2aceac3918248",
+      "cached_output_sha256": "7abb93f941c4de749bc4045fbc34d80056c9c6fd7241085b57e28fc6e6c64902"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0006-00002-0.pt",
+      "prompt_id": "0006",
+      "step": 2,
+      "payload_filename": "0006",
+      "payload_step": 2,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 852.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "5c20d2b568dd23ed4c346ebeff820c250ebf6b09129b456bbd5606da66e926d1",
+      "input_sha256": "1c268bb1a31407fb72c3f78e732731021f4a589072bed958d62cceb8f88ee414",
+      "cached_output_sha256": "fcf9e0e085fc323a692e29fc5ce61298bf5b46c2688aa6bfd3de3c512a23e115"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0006-00003-0.pt",
+      "prompt_id": "0006",
+      "step": 3,
+      "payload_filename": "0006",
+      "payload_step": 3,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 608.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "c7a9ce7f94dbaf9806c0ca3171873c1584ec6c45d757233ba11d45a9d18a0433",
+      "input_sha256": "0f7ad0dd5bcf22d9eb725fd39829d905caefc61072b0cad1f9eee8cc5fb0d260",
+      "cached_output_sha256": "b62ec8b112c73db196b855444229ff99bcf75cd8f3f26a306858f4e22acf57a1"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0003-00000-0.pt",
+      "prompt_id": "0003",
+      "step": 0,
+      "payload_filename": "0003",
+      "payload_step": 0,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 988.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "fa3f1898b1f0fb123940fd52192d09e608d741f22324b1f9eb17f668f6fbc21e",
+      "input_sha256": "483b7c287ed08e1ba2f7287426fc6c8f02a9be7b55de68e24abaeca21916ad6a",
+      "cached_output_sha256": "90203ceadecf29a92c149932e3b9fe9d6671c05359f56fc2808f4029c929a2b9"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0003-00001-0.pt",
+      "prompt_id": "0003",
+      "step": 1,
+      "payload_filename": "0003",
+      "payload_step": 1,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 932.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "f99848b222352adebc45d1b3e8be2a28f112254e056cec65f318cf9465122a24",
+      "input_sha256": "40bb19baa7ef66d3fefb0d69e72c9b786e572288801026de3ad1d939ca9a41ca",
+      "cached_output_sha256": "56f6424bf8bb6827e8aef0bcc775ad358d99e138df906f39e936bb38e75cdcfb"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0003-00002-0.pt",
+      "prompt_id": "0003",
+      "step": 2,
+      "payload_filename": "0003",
+      "payload_step": 2,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 852.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "999d3daabdf5e4c047676e1aae9ec986d8767eb5580b670c94bbb68882ba81c0",
+      "input_sha256": "60f6c5d41eb91424d0f8a789279a891cac0ff0cca939dd9582445976b2e136f8",
+      "cached_output_sha256": "bef501052642d0f1bd34105619bcf6961e2b025f8f6333fa288832df2d17e8c5"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0003-00003-0.pt",
+      "prompt_id": "0003",
+      "step": 3,
+      "payload_filename": "0003",
+      "payload_step": 3,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 608.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "597f302e77cc250af7e2a9edf66b8c560b8d06cd98e17ef5da4ca40fa4228321",
+      "input_sha256": "7fa095c44b8c0bde3ac1c353b18231bcabfafab3b059f595414810f68db59164",
+      "cached_output_sha256": "6e7ed4800219f403cb613ce27a5602ae329f5351c1027a3f490d8d375347dcba"
+    }
+  ],
+  "validation": [
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0001-00000-0.pt",
+      "prompt_id": "0001",
+      "step": 0,
+      "payload_filename": "0001",
+      "payload_step": 0,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 988.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "924f3ece82642ed2bc67af9d6c498e66d526d665fd42387e17fdfead74b5ad09",
+      "input_sha256": "4b02183bf5b45a086485dd77642ceedce79f6b0f5b5326ae40d36f7d594582df",
+      "cached_output_sha256": "abf61abdec37968bde4bd6c41ee9e9d094ea18ee8cccdd0317a35f93073ec7b6"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0001-00001-0.pt",
+      "prompt_id": "0001",
+      "step": 1,
+      "payload_filename": "0001",
+      "payload_step": 1,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 932.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "96c18b453dbd10a153a2996dbe85f994c6c1faf975ae3586c4be2686395f6ea2",
+      "input_sha256": "35ad238dec3bdeb1847508ef78f1f6c95be218a4d18554ec4b3a798e3c932b6e",
+      "cached_output_sha256": "de6ae098d4cc3a2810917cbba61eac74bf613d65e613934e4bbb480b48f0fd11"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0001-00002-0.pt",
+      "prompt_id": "0001",
+      "step": 2,
+      "payload_filename": "0001",
+      "payload_step": 2,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 852.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "893e74a182ddf5fbabb3aa7143a30d53129294904bb081790cb6219088034692",
+      "input_sha256": "d92df9086392bbde323a2a4b0330e7f6a8771891c9f6737d89b532eda647696e",
+      "cached_output_sha256": "d5e17d38a3a2b141a53ba87181fa02def4b62a0d30c9e7e86c78672d2714c728"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0001-00003-0.pt",
+      "prompt_id": "0001",
+      "step": 3,
+      "payload_filename": "0001",
+      "payload_step": 3,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 608.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "008838c3526468c0bb8247f38b3e89286203717faf16f1481c94d5d6530e2fb5",
+      "input_sha256": "ba759c1dfe158c86f616ba44512ae7b028cf4cc1bea8cd932b6f4c4b42e88686",
+      "cached_output_sha256": "074d326fb06437b3991c89fa80fec1ac60dc7c49f7fbc142669db108b12f5840"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0002-00000-0.pt",
+      "prompt_id": "0002",
+      "step": 0,
+      "payload_filename": "0002",
+      "payload_step": 0,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 988.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "f58ba1bad9326ad2d2ac50f4969d09846b2e32c2d41a02620e0353183213f308",
+      "input_sha256": "df34dc19d37a986617f78627c994dec929922203a17192b560e73666a72e7b6e",
+      "cached_output_sha256": "1f3c46a0e3e6bb8905ed388f6b1e9a202583cf58754d8317c182cbdcecea3b70"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0002-00001-0.pt",
+      "prompt_id": "0002",
+      "step": 1,
+      "payload_filename": "0002",
+      "payload_step": 1,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 932.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "cf06f5c8618a5b117ed43e8f7ecb946dddb98226911ce85668dd94ace0ef6958",
+      "input_sha256": "f9cdcf18ce7e3a17dc2f19551921bafeb655a04697327f01b986db6faa7d62e6",
+      "cached_output_sha256": "7539215527e729e158ad8940abe6ddb2bc4fcd1c8fa090f042ceb32bedcf2ec3"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0002-00002-0.pt",
+      "prompt_id": "0002",
+      "step": 2,
+      "payload_filename": "0002",
+      "payload_step": 2,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 852.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "03e7f7c4b55a82c42072dcc5cee586e4f3cc07eb2cddb2f414ad667da7958031",
+      "input_sha256": "125f416f2b9041ab2247113dfaca750076b0b3d9f068f24b4ec303990bcb2e2a",
+      "cached_output_sha256": "cfc8e42c9093f44eb6d17283cb634c08e7f42eccdb0ce099a581db6bbde4cfa0"
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0002-00003-0.pt",
+      "prompt_id": "0002",
+      "step": 3,
+      "payload_filename": "0002",
+      "payload_step": 3,
+      "payload_guidance": 0,
+      "payload_prompt": null,
+      "payload_seed": null,
+      "timestep": 608.0,
+      "tensor_contract": "common_tensor_contract",
+      "bytes": 12184079,
+      "sha256": "aec4cff009c162627a3a0594dd3ea699a46ce5befd3099d162f6355aa7b9e4cc",
+      "input_sha256": "2e869e8028922f43168fdd833ed87e66a1a047f3e41899847ecad28f698ade10",
+      "cached_output_sha256": "8beb5a1793bad2d5cd688f6b45833800625b00d5174ac834fa72c7afd428e765"
+    }
+  ],
+  "common_tensor_contract": {
+    "input_args[0]": {
+      "shape": [
+        1,
+        16,
+        20,
+        60,
+        104
+      ],
+      "dtype": "torch.bfloat16"
+    },
+    "input_kwargs.timestep": {
+      "shape": [
+        1
+      ],
+      "dtype": "torch.bfloat16"
+    },
+    "input_kwargs.encoder_hidden_states": {
+      "shape": [
+        1,
+        512,
+        4096
+      ],
+      "dtype": "torch.bfloat16"
+    },
+    "outputs[0]": {
+      "shape": [
+        1,
+        16,
+        20,
+        60,
+        104
+      ],
+      "dtype": "torch.bfloat16"
+    },
+    "input_kwargs.return_dict": false
+  },
+  "distribution": {
+    "total_records": 80,
+    "total_prompts": 20,
+    "all_fullshape": true,
+    "inferred_render_geometry": {
+      "frames": 77,
+      "height": 480,
+      "width": 832,
+      "patch_tokens": 31200
+    },
+    "steps": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "actual_bf16_timesteps": {
+      "0": 988.0,
+      "1": 932.0,
+      "2": 852.0,
+      "3": 608.0
+    },
+    "groups": [
+      {
+        "name": "vbench_s16",
+        "cache_dir": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches",
+        "record_count": 64,
+        "prompt_count": 16,
+        "prompts": [
+          {
+            "prompt_id": "0000",
+            "prompt": "A person is riding a bike",
+            "prompt_identity_source": "external_yaml_not_cache_payload",
+            "steps": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "seed": null,
+            "seed_evidence": "not stored in payload; collector default seed0+prompt_index only a candidate",
+            "embedding_same_across_four_steps": true,
+            "embedding_sha256": "7dbff6242e2e3674e19f9f62e6410b3b989fab7cd85f9c6870456ac0f500a052",
+            "prior_usage": [
+              "old_PTQ_calibration"
+            ]
+          },
+          {
+            "prompt_id": "0001",
+            "prompt": "A person is roller skating",
+            "prompt_identity_source": "external_yaml_not_cache_payload",
+            "steps": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "seed": 1,
+            "seed_evidence": "E008 historical exact replay",
+            "embedding_same_across_four_steps": true,
+            "embedding_sha256": "78b8b4db88164f9c5da6d2705cd7944259cc28bbed4f1960d089a1e889002f8c",
+            "prior_usage": [
+              "old_PTQ_calibration",
+              "old_repeated_development_test"
+            ]
+          },
+          {
+            "prompt_id": "0002",
+            "prompt": "A person is tasting beer",
+            "prompt_identity_source": "external_yaml_not_cache_payload",
+            "steps": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "seed": null,
+            "seed_evidence": "not stored in payload; collector default seed0+prompt_index only a candidate",
+            "embedding_same_across_four_steps": true,
+            "embedding_sha256": "ee00799c493ef374deeb38b059f25ab3bffcd496c2c27085eddf5495106c183a",
+            "prior_usage": [
+              "old_PTQ_calibration",
+              "old_repeated_development_test"
+            ]
+          },
+          {
+            "prompt_id": "0003",
+            "prompt": "A person is petting animal (not cat)",
+            "prompt_identity_source": "external_yaml_not_cache_payload",
+            "steps": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "seed": null,
+            "seed_evidence": "not stored in payload; collector default seed0+prompt_index only a candidate",
+            "embedding_same_across_four_steps": true,
+            "embedding_sha256": "c44599d31fa1e36aa5873cd5ccfaea7cb2a09550adb06214bf75183243a3bd1f",
+            "prior_usage": [
+              "old_PTQ_calibration",
+              "old_lowrank_training"
+            ]
+          },
+          {
+            "prompt_id": "0004",
+            "prompt": "A person is eating watermelon",
+            "prompt_identity_source": "external_yaml_not_cache_payload",
+            "steps": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "seed": null,
+            "seed_evidence": "not stored in payload; collector default seed0+prompt_index only a candidate",
+            "embedding_same_across_four_steps": true,
+            "embedding_sha256": "88fc2d6666675cceb9d44295161f079460292b2fd783b5b5f9fbb85841ad32cd",
+            "prior_usage": [
+              "old_PTQ_calibration"
+            ]
+          },
+          {
+            "prompt_id": "0005",
+            "prompt": "A person is playing harp",
+            "prompt_identity_source": "external_yaml_not_cache_payload",
+            "steps": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "seed": null,
+            "seed_evidence": "not stored in payload; collector default seed0+prompt_index only a candidate",
+            "embedding_same_across_four_steps": true,
+            "embedding_sha256": "c635b70895cc9031c6f9459ecfb2f05ecda740c0c2d8cf8064c0dc847479b20b",
+            "prior_usage": [
+              "old_PTQ_calibration",
+              "old_lowrank_training"
+            ]
+          },
+          {
+            "prompt_id": "0006",
+            "prompt": "A person is riding scooter",
+            "prompt_identity_source": "external_yaml_not_cache_payload",
+            "steps": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "seed": null,
+            "seed_evidence": "not stored in payload; collector default seed0+prompt_index only a candidate",
+            "embedding_same_across_four_steps": true,
+            "embedding_sha256": "0712b61f8478c1cb57625bfad023e133381d1f809d0d1cf0cc26953f0fae0b13",
+            "prior_usage": [
+              "old_PTQ_calibration",
+              "old_lowrank_training"
+            ]
+          },
+          {
+            "prompt_id": "0007",
+            "prompt": "A person is sweeping floor",
+            "prompt_identity_source": "external_yaml_not_cache_payload",
+            "steps": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "seed": null,
+            "seed_evidence": "not stored in payload; collector default seed0+prompt_index only a candidate",
+            "embedding_same_across_four_steps": true,
+            "embedding_sha256": "0e08372491657aa737f8c6198db2e21e74b37f47dbbce6ada0b767dcfe78d086",
+            "prior_usage": [
+              "old_PTQ_calibration",
+              "old_repeated_development_test"
+            ]
+          },
+          {
+            "prompt_id": "0008",
+            "prompt": "A person is dunking basketball",
+            "prompt_identity_source": "external_yaml_not_cache_payload",
+            "steps": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "seed": null,
+            "seed_evidence": "not stored in payload; collector default seed0+prompt_index only a candidate",
+            "embedding_same_across_four_steps": true,
+            "embedding_sha256": "07fbb8bf5a4db60342601bc6c8c2da4cf8acf4ba213cf70e8a2b6bf99a45a8d3",
+            "prior_usage": [
+              "old_PTQ_calibration"
+            ]
+          },
+          {
+            "prompt_id": "0009",
+            "prompt": "A person is playing flute",
+            "prompt_identity_source": "external_yaml_not_cache_payload",
+            "steps": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "seed": null,
+            "seed_evidence": "not stored in payload; collector default seed0+prompt_index only a candidate",
+            "embedding_same_across_four_steps": true,
+            "embedding_sha256": "369bd8f34874e7127097c4ade440f9cbe7a2a89b931ce3312424f132fbcd0949",
+            "prior_usage": [
+              "old_PTQ_calibration",
+              "old_repeated_development_test"
+            ]
+          },
+          {
+            "prompt_id": "0010",
+            "prompt": "A person is stretching leg",
+            "prompt_identity_source": "external_yaml_not_cache_payload",
+            "steps": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "seed": null,
+            "seed_evidence": "not stored in payload; collector default seed0+prompt_index only a candidate",
+            "embedding_same_across_four_steps": true,
+            "embedding_sha256": "3b4b568ba976e880bbf2dba4d216dd4a6997533df834aa5c71b86a3ee1f5f06d",
+            "prior_usage": [
+              "old_PTQ_calibration"
+            ]
+          },
+          {
+            "prompt_id": "0011",
+            "prompt": "A person is tying tie",
+            "prompt_identity_source": "external_yaml_not_cache_payload",
+            "steps": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "seed": null,
+            "seed_evidence": "not stored in payload; collector default seed0+prompt_index only a candidate",
+            "embedding_same_across_four_steps": true,
+            "embedding_sha256": "ab73ae40712cca40fc5ac616b3a3f42f6bc7c67daae378889c39ccc8485cb23a",
+            "prior_usage": [
+              "old_PTQ_calibration"
+            ]
+          },
+          {
+            "prompt_id": "0012",
+            "prompt": "A person is shooting goal (soccer)",
+            "prompt_identity_source": "external_yaml_not_cache_payload",
+            "steps": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "seed": null,
+            "seed_evidence": "not stored in payload; collector default seed0+prompt_index only a candidate",
+            "embedding_same_across_four_steps": true,
+            "embedding_sha256": "e334f3bb8576fc393233d73b8c08bcd62f7176c74a5836e07884b3787d73ad12",
+            "prior_usage": [
+              "old_PTQ_calibration"
+            ]
+          },
+          {
+            "prompt_id": "0013",
+            "prompt": "A person is playing piano",
+            "prompt_identity_source": "external_yaml_not_cache_payload",
+            "steps": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "seed": null,
+            "seed_evidence": "not stored in payload; collector default seed0+prompt_index only a candidate",
+            "embedding_same_across_four_steps": true,
+            "embedding_sha256": "680fe4ad08410133b4592db11e32bb351b342910dedb72901f54889163a3254f",
+            "prior_usage": [
+              "old_PTQ_calibration"
+            ]
+          },
+          {
+            "prompt_id": "0014",
+            "prompt": "A person is finger snapping",
+            "prompt_identity_source": "external_yaml_not_cache_payload",
+            "steps": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "seed": null,
+            "seed_evidence": "not stored in payload; collector default seed0+prompt_index only a candidate",
+            "embedding_same_across_four_steps": true,
+            "embedding_sha256": "3c91011181db20fd527ee4d2367dbc70098a7e461b2de109d6e2d1a312800e98",
+            "prior_usage": [
+              "old_PTQ_calibration"
+            ]
+          },
+          {
+            "prompt_id": "0015",
+            "prompt": "A person is canoeing or kayaking",
+            "prompt_identity_source": "external_yaml_not_cache_payload",
+            "steps": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "seed": null,
+            "seed_evidence": "not stored in payload; collector default seed0+prompt_index only a candidate",
+            "embedding_same_across_four_steps": true,
+            "embedding_sha256": "1baf19e759fec02d7e103549473b909f9bf7ce41a4d3939e241117a466a245f4",
+            "prior_usage": [
+              "old_PTQ_calibration",
+              "old_lowrank_training"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "extra4",
+        "cache_dir": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/blockwise_extra4_s16/caches",
+        "record_count": 16,
+        "prompt_count": 4,
+        "prompts": [
+          {
+            "prompt_id": "motion_hummingbird",
+            "prompt": "A hummingbird rapidly hovering and darting between red flowers in a sunlit garden, high-speed tracking shot with fluttering wings.",
+            "prompt_identity_source": "external_yaml_not_cache_payload",
+            "steps": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "seed": null,
+            "seed_evidence": "not stored in payload; collector default seed0+prompt_index only a candidate",
+            "embedding_same_across_four_steps": true,
+            "embedding_sha256": "1defc5719ab3ee5e4a363affd7bd980b374b82f8a898d029e08a11f5b9a0b7bd",
+            "prior_usage": [
+              "old_extra_BF16_cache_for_lowrank_training",
+              "old_lowrank_training"
+            ]
+          },
+          {
+            "prompt_id": "motion_motorcycle",
+            "prompt": "A racing motorcycle leaning through a wet city corner at night, water spray, motion blur, and a fast panning camera.",
+            "prompt_identity_source": "external_yaml_not_cache_payload",
+            "steps": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "seed": null,
+            "seed_evidence": "not stored in payload; collector default seed0+prompt_index only a candidate",
+            "embedding_same_across_four_steps": true,
+            "embedding_sha256": "cb2150ee50c9fd01fb298960777aa22211d92dcaae967496755b8fe8e0ae7ec9",
+            "prior_usage": [
+              "old_extra_BF16_cache_for_lowrank_training",
+              "old_lowrank_training"
+            ]
+          },
+          {
+            "prompt_id": "person_dance",
+            "prompt": "A young man in a white shirt dancing energetically in a crowded subway station, handheld camera and fast body movement.",
+            "prompt_identity_source": "external_yaml_not_cache_payload",
+            "steps": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "seed": null,
+            "seed_evidence": "not stored in payload; collector default seed0+prompt_index only a candidate",
+            "embedding_same_across_four_steps": true,
+            "embedding_sha256": "37e42b54246f048c081cc14f94387b97251d9d1ee98c7050d58bb0ec96eca5f5",
+            "prior_usage": [
+              "old_extra_BF16_cache_for_lowrank_training",
+              "old_lowrank_training"
+            ]
+          },
+          {
+            "prompt_id": "precision_circuit",
+            "prompt": "Macro cinematic close-up of a robotic circuit-board assembly, tiny surface-mounted components, intricate solder joints, and precise moving tools.",
+            "prompt_identity_source": "external_yaml_not_cache_payload",
+            "steps": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "seed": null,
+            "seed_evidence": "not stored in payload; collector default seed0+prompt_index only a candidate",
+            "embedding_same_across_four_steps": true,
+            "embedding_sha256": "058a530e7445c7b70b84f75e2b56a51379b95e9c2cb26cdd09c4a5d617ba2321",
+            "prior_usage": [
+              "old_extra_BF16_cache_for_lowrank_training",
+              "old_lowrank_training"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "contamination": {
+    "train_validation_prompt_intersection": [],
+    "old_PTQ_prompt_ids": [
+      "0000",
+      "0001",
+      "0002",
+      "0003",
+      "0004",
+      "0005",
+      "0006",
+      "0007",
+      "0008",
+      "0009",
+      "0010",
+      "0011",
+      "0012",
+      "0013",
+      "0014",
+      "0015"
+    ],
+    "old_train_prompt_ids": [
+      "0015",
+      "0005",
+      "0006",
+      "0003",
+      "motion_hummingbird",
+      "motion_motorcycle",
+      "person_dance",
+      "precision_circuit"
+    ],
+    "old_repeated_test_prompt_ids": [
+      "0001",
+      "0002",
+      "0007",
+      "0009"
+    ],
+    "note": "All six selected prompts were old PTQ calibration inputs. Validation was repeatedly evaluated/used in prior tuning; held out only from the new E020 optimizer, never final test. Namespace vbench_001 is not cache 0001."
+  },
+  "cached_target_policy": {
+    "outputs_present": true,
+    "output_path": "payload[\"outputs\"][0]",
+    "collector_is_bf16_unquantized_by_source": true,
+    "collector_model_argument_recorded_in_payload": false,
+    "collector_seed_recorded_in_payload": false,
+    "exact_model_and_run_provenance_for_all_selected_proven": false,
+    "recommendation": "Recompute BF16 rCM teacher for all 24 selected inputs; keep cached output comparison as provenance diagnostic, not assumed training truth. No extra generation needed.",
+    "p0001_special_evidence": {
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E008_wan_native_paired_video.json",
+      "all_four_cached_input_and_output_sha_match_E008_bf16": true,
+      "seed": 1
+    },
+    "seed_inference_only": "Collector default seed0 plus prompt enumeration would give numeric cache id as seed for base16; launch CLI not saved, so not certified for other prompts. Extra4 seed unknown."
+  },
+  "later_generation_source": {
+    "manifest": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/samples/rcm_vbench251_seed0_480p77f_4step/manifest.json",
+      "sha256": "09cd829095a39aec21816c70aa6a2695846a9600bf79c2fe40b8e386a48ab1fa",
+      "bytes": 101986
+    },
+    "settings": {
+      "seed": 0,
+      "height": 480,
+      "width": 832,
+      "frames": 77,
+      "steps": 4,
+      "sigma_max": 80.0,
+      "guidance": 0.0
+    },
+    "all_manifest_cases": 251,
+    "manifest_pilot_cases": 251,
+    "existing_case_ids_union_count": 102,
+    "inspected_existing_media_roots": [
+      {
+        "directory": "/home/wjq/workspace/svdquant-exp/results/samples/rcm_int4_svdquant_vbench51_seed0_480p77f_4step/cases",
+        "existing_case_directories": 51,
+        "existing_case_ids": [
+          "vbench_000",
+          "vbench_001",
+          "vbench_002",
+          "vbench_003",
+          "vbench_004",
+          "vbench_005",
+          "vbench_006",
+          "vbench_007",
+          "vbench_008",
+          "vbench_009",
+          "vbench_010",
+          "vbench_011",
+          "vbench_012",
+          "vbench_013",
+          "vbench_014",
+          "vbench_072",
+          "vbench_073",
+          "vbench_074",
+          "vbench_075",
+          "vbench_076",
+          "vbench_077",
+          "vbench_078",
+          "vbench_079",
+          "vbench_080",
+          "vbench_081",
+          "vbench_082",
+          "vbench_083",
+          "vbench_084",
+          "vbench_085",
+          "vbench_086",
+          "vbench_087",
+          "vbench_088",
+          "vbench_089",
+          "vbench_090",
+          "vbench_165",
+          "vbench_166",
+          "vbench_167",
+          "vbench_168",
+          "vbench_169",
+          "vbench_170",
+          "vbench_171",
+          "vbench_172",
+          "vbench_173",
+          "vbench_174",
+          "vbench_175",
+          "vbench_176",
+          "vbench_177",
+          "vbench_178",
+          "vbench_179",
+          "vbench_180",
+          "vbench_181"
+        ],
+        "existing_mp4_count": 153
+      },
+      {
+        "directory": "/home/wjq/workspace/svdquant-exp/results/samples/rcm_real_nvfp4_svdquant_g10_r64_vbench51_seed0_480p77f_4step/cases",
+        "existing_case_directories": 51,
+        "existing_case_ids": [
+          "vbench_000",
+          "vbench_001",
+          "vbench_002",
+          "vbench_003",
+          "vbench_004",
+          "vbench_005",
+          "vbench_006",
+          "vbench_007",
+          "vbench_008",
+          "vbench_009",
+          "vbench_010",
+          "vbench_011",
+          "vbench_012",
+          "vbench_013",
+          "vbench_014",
+          "vbench_072",
+          "vbench_073",
+          "vbench_074",
+          "vbench_075",
+          "vbench_076",
+          "vbench_077",
+          "vbench_078",
+          "vbench_079",
+          "vbench_080",
+          "vbench_081",
+          "vbench_082",
+          "vbench_083",
+          "vbench_084",
+          "vbench_085",
+          "vbench_086",
+          "vbench_087",
+          "vbench_088",
+          "vbench_089",
+          "vbench_090",
+          "vbench_165",
+          "vbench_166",
+          "vbench_167",
+          "vbench_168",
+          "vbench_169",
+          "vbench_170",
+          "vbench_171",
+          "vbench_172",
+          "vbench_173",
+          "vbench_174",
+          "vbench_175",
+          "vbench_176",
+          "vbench_177",
+          "vbench_178",
+          "vbench_179",
+          "vbench_180",
+          "vbench_181"
+        ],
+        "existing_mp4_count": 102
+      },
+      {
+        "directory": "/home/wjq/workspace/svdquant-exp/results/samples/rcm_real_nvfp4_svdquant_g20_r32_vbench51_seed0_480p77f_4step/cases",
+        "existing_case_directories": 51,
+        "existing_case_ids": [
+          "vbench_000",
+          "vbench_001",
+          "vbench_002",
+          "vbench_003",
+          "vbench_004",
+          "vbench_005",
+          "vbench_006",
+          "vbench_007",
+          "vbench_008",
+          "vbench_009",
+          "vbench_010",
+          "vbench_011",
+          "vbench_012",
+          "vbench_013",
+          "vbench_014",
+          "vbench_072",
+          "vbench_073",
+          "vbench_074",
+          "vbench_075",
+          "vbench_076",
+          "vbench_077",
+          "vbench_078",
+          "vbench_079",
+          "vbench_080",
+          "vbench_081",
+          "vbench_082",
+          "vbench_083",
+          "vbench_084",
+          "vbench_085",
+          "vbench_086",
+          "vbench_087",
+          "vbench_088",
+          "vbench_089",
+          "vbench_090",
+          "vbench_165",
+          "vbench_166",
+          "vbench_167",
+          "vbench_168",
+          "vbench_169",
+          "vbench_170",
+          "vbench_171",
+          "vbench_172",
+          "vbench_173",
+          "vbench_174",
+          "vbench_175",
+          "vbench_176",
+          "vbench_177",
+          "vbench_178",
+          "vbench_179",
+          "vbench_180",
+          "vbench_181"
+        ],
+        "existing_mp4_count": 102
+      },
+      {
+        "directory": "/home/wjq/workspace/svdquant-exp/results/samples/rcm_vbench251_seed0_480p77f_4step/cases",
+        "existing_case_directories": 102,
+        "existing_case_ids": [
+          "vbench_000",
+          "vbench_001",
+          "vbench_002",
+          "vbench_003",
+          "vbench_004",
+          "vbench_005",
+          "vbench_006",
+          "vbench_007",
+          "vbench_008",
+          "vbench_009",
+          "vbench_010",
+          "vbench_011",
+          "vbench_012",
+          "vbench_013",
+          "vbench_014",
+          "vbench_015",
+          "vbench_016",
+          "vbench_017",
+          "vbench_018",
+          "vbench_019",
+          "vbench_020",
+          "vbench_021",
+          "vbench_022",
+          "vbench_023",
+          "vbench_024",
+          "vbench_025",
+          "vbench_026",
+          "vbench_027",
+          "vbench_028",
+          "vbench_029",
+          "vbench_030",
+          "vbench_031",
+          "vbench_032",
+          "vbench_033",
+          "vbench_034",
+          "vbench_035",
+          "vbench_036",
+          "vbench_037",
+          "vbench_038",
+          "vbench_039",
+          "vbench_040",
+          "vbench_041",
+          "vbench_042",
+          "vbench_043",
+          "vbench_044",
+          "vbench_045",
+          "vbench_046",
+          "vbench_047",
+          "vbench_048",
+          "vbench_049",
+          "vbench_050",
+          "vbench_051",
+          "vbench_052",
+          "vbench_053",
+          "vbench_054",
+          "vbench_055",
+          "vbench_056",
+          "vbench_057",
+          "vbench_058",
+          "vbench_059",
+          "vbench_060",
+          "vbench_061",
+          "vbench_062",
+          "vbench_063",
+          "vbench_064",
+          "vbench_065",
+          "vbench_072",
+          "vbench_073",
+          "vbench_074",
+          "vbench_075",
+          "vbench_076",
+          "vbench_077",
+          "vbench_078",
+          "vbench_079",
+          "vbench_080",
+          "vbench_081",
+          "vbench_082",
+          "vbench_083",
+          "vbench_084",
+          "vbench_085",
+          "vbench_086",
+          "vbench_087",
+          "vbench_088",
+          "vbench_089",
+          "vbench_090",
+          "vbench_165",
+          "vbench_166",
+          "vbench_167",
+          "vbench_168",
+          "vbench_169",
+          "vbench_170",
+          "vbench_171",
+          "vbench_172",
+          "vbench_173",
+          "vbench_174",
+          "vbench_175",
+          "vbench_176",
+          "vbench_177",
+          "vbench_178",
+          "vbench_179",
+          "vbench_180",
+          "vbench_181"
+        ],
+        "existing_mp4_count": 204
+      }
+    ],
+    "eligible_without_existing_directory_or_known_calib_text": 149,
+    "candidate_selection_rule": "First eligible case per dimension tuple in existing manifest order, then fill from manifest order; no scores/video quality consulted. Candidates only, not a declared final test.",
+    "candidates": [
+      {
+        "case_id": "vbench_066",
+        "prompt": "a zebra bending down to drink water from a river",
+        "dimensions": [
+          "subject_consistency",
+          "dynamic_degree",
+          "motion_smoothness"
+        ],
+        "seed": 0,
+        "prior_local_media_in_inspected_roots": false,
+        "known_calibration_text_exact_match": false
+      },
+      {
+        "case_id": "vbench_091",
+        "prompt": "a drone flying over a snowy forest.",
+        "dimensions": [
+          "aesthetic_quality",
+          "imaging_quality",
+          "overall_consistency"
+        ],
+        "seed": 0,
+        "prior_local_media_in_inspected_roots": false,
+        "known_calibration_text_exact_match": false
+      },
+      {
+        "case_id": "vbench_182",
+        "prompt": "campus",
+        "dimensions": [
+          "scene",
+          "background_consistency"
+        ],
+        "seed": 0,
+        "prior_local_media_in_inspected_roots": false,
+        "known_calibration_text_exact_match": false
+      },
+      {
+        "case_id": "vbench_067",
+        "prompt": "a zebra running to join a herd of its kind",
+        "dimensions": [
+          "subject_consistency",
+          "dynamic_degree",
+          "motion_smoothness"
+        ],
+        "seed": 0,
+        "prior_local_media_in_inspected_roots": false,
+        "known_calibration_text_exact_match": false
+      }
+    ],
+    "limits": "These texts already appear in a prior planned manifest and public VBench; no global claim of unseen prompts. Absence is checked only in listed local sample roots. Independent generation is still needed; no prompt/seed generated in this audit."
+  },
+  "load_warning": "Old rCM root model_index.json points to missing /data/models path. Load local base assets plus explicit rCM transformer, as existing rcm_vbench251_worker does; do not assume root symlinks work.",
+  "hash_scope": "Small source/report/prompt manifests plus selected 24 cache files; no large model/checkpoint rehash."
+}

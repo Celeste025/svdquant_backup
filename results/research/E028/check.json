@@ -1,0 +1,122 @@
+{
+  "experiment": "E028",
+  "phase": "check",
+  "status": "complete",
+  "actual_gpu_calls": 0,
+  "geometry": {
+    "heads": 56,
+    "valid_tokens": 22539,
+    "padded_tokens": 22656,
+    "groups": 177,
+    "head_dim": 128,
+    "tail_query_weight": 11,
+    "ranks": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64,
+      128
+    ]
+  },
+  "arithmetic": "CPU BF16 pad/mean/subtraction followed by FP64 covariance/eigh/SVD; not GPU byte replay. Khat comes from actual saved E018 packets.",
+  "formula": "Z=sqrt(w)*DeltaMu*V*sqrt(Lambda), C=V*Lambda*V^T. Euclidean C=I; Kc/E are centered across valid keys only. E=Khat-Kc before that centering.",
+  "interpretation": "Per-head/per-sample oracle representation spectrum. Current three layers share p36/s14. No fitted/deployable basis, quantizer, speed or quality claim. The changed-Q quantization error term is unmeasured; a broad Kc spectrum alone cannot refute full Q4 benefits.",
+  "sources": {
+    "runner": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_center_spectrum.py",
+      "bytes": 9245,
+      "sha256": "eca9862eec2afb9751fe4cc718f0c88066cba9508223e57bf8bc8277fa958ae0"
+    },
+    "decoder": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_query_mean_k4.py",
+      "bytes": 11027,
+      "sha256": "ee4406f6a26dc6c671171a97bcda070d7be9f16d4fb599787aa208f7764b1e3a"
+    },
+    "layout": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/nvfp4_attention_fixed_scale.py",
+      "bytes": 4581,
+      "sha256": "ec77c32618513fc981293590d95428a98670f0bd3b29bb1c79b545ed15b8c731"
+    }
+  },
+  "source_reports": {
+    "capture_run.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E018/capture_run.json",
+      "bytes": 401662,
+      "sha256": "5c386556e330a12ed1692b68937a183af2843162de9be92b061a8a263a0996dc"
+    },
+    "probe_run.json": {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E018/probe_run.json",
+      "bytes": 83510,
+      "sha256": "ab66aafd6fa6fcd3b13f108087ae96a95f303fc51e2efe9abfa4a91898b3c8db"
+    }
+  },
+  "inputs": [
+    {
+      "block": 0,
+      "capture": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/capture/block0.pt",
+        "sha256": "5c8882219a165d9c4835ee80f132455f875fc21a2bd122c1b20c64cfed7b603c",
+        "bytes": 1292661823
+      },
+      "kv_packets": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block0_kv_packets.pt",
+        "sha256": "d463108b80fbf06df5600d497eaf518bcb56161232dd96275451805af99a71f7",
+        "bytes": 182700609
+      },
+      "source_case": {
+        "prompt_id": 36,
+        "seed": 59526,
+        "step": 14,
+        "arm": "block_mean"
+      }
+    },
+    {
+      "block": 24,
+      "capture": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/capture/block24.pt",
+        "sha256": "a71b06ec3f2eeea330c46837d425c458787ba6044c823ee86a8b8b518301a5c4",
+        "bytes": 1292661837
+      },
+      "kv_packets": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block24_kv_packets.pt",
+        "sha256": "3bc43338a9c158719550f9f943c120298815cad8056aa90964a58788aa919e90",
+        "bytes": 182700619
+      },
+      "source_case": {
+        "prompt_id": 36,
+        "seed": 59526,
+        "step": 14,
+        "arm": "block_mean"
+      }
+    },
+    {
+      "block": 48,
+      "capture": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/capture/block48.pt",
+        "sha256": "308020a78bd3a8d160a463753a4bf10894c889f5daf3312499ddc32bba54c285",
+        "bytes": 1292661837
+      },
+      "kv_packets": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E018/probe/block48_kv_packets.pt",
+        "sha256": "79b27d7fc0af3a3e6f3b64268682373b9922afe37b3c1522d16742e9f5e5288b",
+        "bytes": 182700619
+      },
+      "source_case": {
+        "prompt_id": 36,
+        "seed": 59526,
+        "step": 14,
+        "arm": "block_mean"
+      }
+    }
+  ],
+  "decoder_validation": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E026/run.json",
+    "bytes": 180647,
+    "sha256": "d0449291373520a771071503d82e1a53dde8553e54faeb49c25556798d57c02b"
+  },
+  "cuda_initialized": false,
+  "seconds": 4.210224628448486
+}

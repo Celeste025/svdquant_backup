@@ -1,0 +1,279 @@
+{
+  "experiment": "E057",
+  "status": "complete",
+  "independent_method": "NumPy FP64 direct endpoint differences and flattened dot products; no import or call of root statistics. Channel centering independently uses reshape(24,-1) and mean(axis=1).",
+  "scope": "Only SVD video at the two preselected windows, raw and centered. No new model calls; no audio/plain independent numeric audit.",
+  "source_evaluation": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E057/evaluate_v2.json",
+    "sha256": "2ab8c573a5147d1415fc17129b9cc296842c46cc3cce85b5f97397abeccf1575"
+  },
+  "root_summary": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E057/summary.json",
+    "sha256": "2a704f620fce8439d118ffa475bfd2ce9905908bead091d8896ec5ea08b020c7"
+  },
+  "plan": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E057_h3_temporal_four_corner_plan.md",
+    "sha256": "995b5cb855cb9b36bf5cbef7424ee49a995e6e124ea003d4f128665c3e81763e"
+  },
+  "checked_artifact_count": 8,
+  "cases": [
+    {
+      "case_id": "e010_p030_s05",
+      "source_arm": "svd",
+      "modality": "video",
+      "time_axis_artifacts": {
+        "QB": {
+          "file": "/data1/models/svdquant-wjq/research/20261004/E057/evaluate_v2/e010_p030_s05_svd_QB.pt",
+          "sha256": "ac9d0580bdddb05f2edb10ad0897287c332bdc88b63fe0e2b19a0f85ae19ae58",
+          "bytes": 24435114
+        },
+        "BB": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/bf16/e010_p030_s05/BB.pt",
+          "sha256": "cd1614a4e1918379f36a7edcf5d3fdb8be8c9fcb1591fe927e84852c20fffa61",
+          "bytes": 24434093
+        },
+        "BQ": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p030_s05/BB.pt",
+          "sha256": "754936e67530935f9fbca653fc8cbb0510570d19ea2e5196fc498e167d7995dd",
+          "bytes": 24434093
+        },
+        "QQ": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p030_s05/QQ.pt",
+          "sha256": "5c44ba4ef48ea1ac2898a4cb65a7d6d97d8b13d94305f037b9c89e392c4c4107",
+          "bytes": 24434093
+        }
+      },
+      "actual_inputs_exact_QB_QQ": true,
+      "actual_inputs_exact_BB_BQ": true,
+      "measures": {
+        "raw": {
+          "first_propagated_energy": 31.499245606594968,
+          "second_only_energy": 25.43859647385557,
+          "interaction_energy": 15.798666346479195,
+          "total_energy": 82.12001627096356,
+          "shifted_second_energy": 27.160898613317386,
+          "cross_first_second": 31.70746518027454,
+          "cross_first_interaction": -8.247593129223333,
+          "cross_second_interaction": -14.076364207017377,
+          "cross_first_shifted_second": 23.459872051051207,
+          "first_second_cosine": 0.5600604164928971,
+          "first_shifted_second_cosine": 0.4010268952124679,
+          "cross_first_second_over_diagonal": 0.5568785893830216,
+          "cross_first_shifted_second_over_diagonal": 0.3999286459832413,
+          "total_over_diagonal": 1.4422748258518785,
+          "interaction_norm_over_additive_norm": 0.4221651107529254,
+          "vector_identity_max_abs": 0.0,
+          "actual_path_vector_identity_max_abs": 0.0,
+          "actual_path_total_over_diagonal": 1.3999286459832414,
+          "interaction_energy_over_additive_energy": 0.17822338073702976,
+          "energy_identity_abs_error": 0.0,
+          "actual_path_energy_identity_abs_error": 0.0
+        },
+        "channel_centered": {
+          "first_propagated_energy": 30.763760222700572,
+          "second_only_energy": 24.5907454592166,
+          "interaction_energy": 15.758720980974754,
+          "total_energy": 79.09143021509931,
+          "shifted_second_energy": 26.29898329261991,
+          "cross_first_second": 30.292627583491736,
+          "cross_first_interaction": -8.263940883730783,
+          "cross_second_interaction": -14.050483147569574,
+          "cross_first_shifted_second": 22.02868669976297,
+          "first_second_cosine": 0.5506826503555535,
+          "first_shifted_second_cosine": 0.38723037980586017,
+          "cross_first_second_over_diagonal": 0.547247730068476,
+          "cross_first_shifted_second_over_diagonal": 0.38604324542945617,
+          "total_over_diagonal": 1.4288164845980433,
+          "interaction_norm_over_additive_norm": 0.4289474274150157,
+          "vector_identity_max_abs": 9.540979117872439e-18,
+          "actual_path_vector_identity_max_abs": 6.938893903907228e-18,
+          "actual_path_total_over_diagonal": 1.386043245429734,
+          "interaction_energy_over_additive_energy": 0.18399589548596015,
+          "energy_identity_abs_error": 1.6001422409317456e-11,
+          "actual_path_energy_identity_abs_error": 1.5859313862165436e-11
+        }
+      },
+      "absolute_differences_from_root_summary": {
+        "raw": {
+          "first_propagated_energy": 0.0,
+          "second_only_energy": 0.0,
+          "interaction_energy": 0.0,
+          "total_energy": 0.0,
+          "cross_first_second": 0.0,
+          "cross_first_interaction": 0.0,
+          "cross_second_interaction": 0.0,
+          "first_second_cosine": 0.0,
+          "cross_first_second_over_diagonal": 0.0,
+          "total_over_diagonal": 0.0,
+          "interaction_norm_over_additive_norm": 0.0,
+          "shifted_second_energy": 0.0,
+          "cross_first_shifted_second": 0.0,
+          "first_shifted_second_cosine": 0.0,
+          "cross_first_shifted_second_over_diagonal": 0.0,
+          "vector_identity_max_abs": 0.0
+        },
+        "channel_centered": {
+          "first_propagated_energy": 1.787014980436652e-12,
+          "second_only_energy": 3.637978807091713e-12,
+          "interaction_energy": 8.988365607365267e-13,
+          "total_energy": 1.6825651982799172e-11,
+          "cross_first_second": 1.623590151211829e-12,
+          "cross_first_interaction": 5.577760475716786e-13,
+          "cross_second_interaction": 1.1883827255587676e-12,
+          "first_second_cosine": 4.773959005888173e-15,
+          "cross_first_second_over_diagonal": 1.099120794378905e-14,
+          "total_over_diagonal": 2.5623947408348613e-13,
+          "interaction_norm_over_additive_norm": 2.736699755701011e-14,
+          "shifted_second_energy": 3.197442310920451e-13,
+          "cross_first_shifted_second": 3.0802027595200343e-12,
+          "first_shifted_second_cosine": 6.772360450213455e-14,
+          "cross_first_shifted_second_over_diagonal": 6.827871601444713e-14,
+          "vector_identity_max_abs": 0.0
+        }
+      },
+      "gate": {
+        "positive_FL_cross_above_0p3": true,
+        "weak_interaction_below_0p2": false,
+        "passes": false
+      }
+    },
+    {
+      "case_id": "e010_p036_s14",
+      "source_arm": "svd",
+      "modality": "video",
+      "time_axis_artifacts": {
+        "QB": {
+          "file": "/data1/models/svdquant-wjq/research/20261004/E057/evaluate_v2/e010_p036_s14_svd_QB.pt",
+          "sha256": "4f18868570f01eee45a2d3e7b889cbc51469a4e8009ed687c27f5fa5ad0d387d",
+          "bytes": 27727210
+        },
+        "BB": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/bf16/e010_p036_s14/BB.pt",
+          "sha256": "dc44755a2f5aaeee68ac4a7446c58eb13944b7deaffa59f3210d9fca18d091e5",
+          "bytes": 27726189
+        },
+        "BQ": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p036_s14/BB.pt",
+          "sha256": "5cfc6596777d7c234cf8d33070c9d94d7d5147542ef9a4c8ecfd1efe3773c6f3",
+          "bytes": 27726189
+        },
+        "QQ": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p036_s14/QQ.pt",
+          "sha256": "ab093846837ee14cff0a38bce97ab18daacdebc6e8d326f55eb76f8688bc86cd",
+          "bytes": 27726189
+        }
+      },
+      "actual_inputs_exact_QB_QQ": true,
+      "actual_inputs_exact_BB_BQ": true,
+      "measures": {
+        "raw": {
+          "first_propagated_energy": 118.7314554189652,
+          "second_only_energy": 116.36454178418899,
+          "interaction_energy": 74.49804342382483,
+          "total_energy": 350.16008088482226,
+          "shifted_second_energy": 117.12686605584419,
+          "cross_first_second": 147.93622322312876,
+          "cross_first_interaction": -33.63446381311587,
+          "cross_second_interaction": -73.73571915216962,
+          "cross_first_shifted_second": 114.30175941001289,
+          "first_second_cosine": 0.6292906859103923,
+          "first_shifted_second_cosine": 0.4846316378623923,
+          "cross_first_second_over_diagonal": 0.6292587920809737,
+          "cross_first_shifted_second_over_diagonal": 0.48462042252861864,
+          "total_over_diagonal": 1.4894344652845681,
+          "interaction_norm_over_additive_norm": 0.4410164401827414,
+          "vector_identity_max_abs": 0.0,
+          "actual_path_vector_identity_max_abs": 0.0,
+          "actual_path_total_over_diagonal": 1.4846204225286186,
+          "interaction_energy_over_additive_energy": 0.19449550051145753,
+          "energy_identity_abs_error": 0.0,
+          "actual_path_energy_identity_abs_error": 0.0
+        },
+        "channel_centered": {
+          "first_propagated_energy": 117.94116779410768,
+          "second_only_energy": 115.27180189082046,
+          "interaction_energy": 74.46338525933703,
+          "total_energy": 346.5170218861774,
+          "shifted_second_energy": 116.03094517712525,
+          "cross_first_second": 146.16608434460676,
+          "cross_first_interaction": -33.62117542966743,
+          "cross_second_interaction": -73.70424197305033,
+          "cross_first_shifted_second": 112.5449089149273,
+          "first_second_cosine": 0.6267904406553588,
+          "first_shifted_second_cosine": 0.4810345069522569,
+          "cross_first_second_over_diagonal": 0.6267493808002096,
+          "cross_first_shifted_second_over_diagonal": 0.4810184747477354,
+          "total_over_diagonal": 1.4858394125949497,
+          "interaction_norm_over_additive_norm": 0.44303160952914367,
+          "vector_identity_max_abs": 2.7755575615628914e-17,
+          "actual_path_vector_identity_max_abs": 2.7755575615628914e-17,
+          "actual_path_total_over_diagonal": 1.4810184747478088,
+          "interaction_energy_over_additive_energy": 0.19627700704198361,
+          "energy_identity_abs_error": 2.319211489520967e-11,
+          "actual_path_energy_identity_abs_error": 1.716671249596402e-11
+        }
+      },
+      "absolute_differences_from_root_summary": {
+        "raw": {
+          "first_propagated_energy": 0.0,
+          "second_only_energy": 0.0,
+          "interaction_energy": 0.0,
+          "total_energy": 0.0,
+          "cross_first_second": 0.0,
+          "cross_first_interaction": 0.0,
+          "cross_second_interaction": 0.0,
+          "first_second_cosine": 0.0,
+          "cross_first_second_over_diagonal": 0.0,
+          "total_over_diagonal": 0.0,
+          "interaction_norm_over_additive_norm": 0.0,
+          "shifted_second_energy": 0.0,
+          "cross_first_shifted_second": 0.0,
+          "first_shifted_second_cosine": 0.0,
+          "cross_first_shifted_second_over_diagonal": 0.0,
+          "vector_identity_max_abs": 0.0
+        },
+        "channel_centered": {
+          "first_propagated_energy": 1.3585577107733116e-11,
+          "second_only_energy": 2.7853275241795927e-12,
+          "interaction_energy": 7.176481631177012e-12,
+          "total_energy": 1.0118128557223827e-11,
+          "cross_first_second": 9.038103598868474e-12,
+          "cross_first_interaction": 9.663381206337363e-13,
+          "cross_second_interaction": 3.694822225952521e-13,
+          "first_second_cosine": 8.237854842718662e-14,
+          "cross_first_second_over_diagonal": 8.271161533457416e-14,
+          "total_over_diagonal": 1.4765966227514582e-13,
+          "interaction_norm_over_additive_norm": 1.9817480989559044e-14,
+          "shifted_second_energy": 8.512301974406e-12,
+          "cross_first_shifted_second": 1.9895196601282805e-12,
+          "first_shifted_second_cosine": 1.609823385706477e-15,
+          "cross_first_shifted_second_over_diagonal": 1.942890293094024e-15,
+          "vector_identity_max_abs": 0.0
+        }
+      },
+      "gate": {
+        "positive_FL_cross_above_0p3": true,
+        "weak_interaction_below_0p2": false,
+        "passes": false
+      }
+    }
+  ],
+  "maximum_compared_absolute_difference": 1.6825651982799172e-11,
+  "maximum_compared_relative_difference_floor1": 2.1273672681152977e-13,
+  "preregistered_gate_passes": false,
+  "decision": "Both windows have constructive video endpoint cross terms, including actual-path F/C. Both fail the required weak-interaction condition ||I||/||F+L||<0.2. Do not advance the simple weak-interaction cancellation route under this gate, and do not describe all of E057 as negative.",
+  "interpretation_limits": [
+    "The interaction is substantial relative to the preregistered 0.2 norm threshold; this does not establish that interaction dominates all error.",
+    "Finite-difference interaction includes model/state dependence and BF16 update rounding; it does not isolate intrinsic nonlinearity or any one quantization source.",
+    "Two coupled AV windows do not establish long-horizon/video-quality damage or a deployable compensation method."
+  ],
+  "run_accounting": {
+    "prior_complete_dit_calls": 1,
+    "new_complete_dit_calls": 4,
+    "complete_dit_calls": 5
+  },
+  "run_accounting_scope": "Counts inherited from completed evaluation_v2 report, not a fresh GPU-log audit.",
+  "cuda_initialized": false,
+  "new_model_forwards": 0,
+  "seconds": 0.48865066608414054
+}

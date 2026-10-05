@@ -1,0 +1,60 @@
+{
+  "experiment": "E022",
+  "status": "complete",
+  "settings": {
+    "steps": 128,
+    "lr": 3e-06,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "accumulation": 4,
+    "shuffle_seed": 20261005,
+    "initialization": "fresh original BF16",
+    "inventory": "/home/wjq/workspace/svdquant-exp/results/research/E022/data_inventory.json",
+    "data_dir": "/data1/models/svdquant-wjq/research/20261003/E022/train",
+    "deadline_unix": null,
+    "evaluation_steps": [
+      0,
+      32,
+      64,
+      128
+    ],
+    "selection": "min native development pooled NMSE; exact tie -> earlier step"
+  },
+  "updates": [],
+  "evaluations": [],
+  "checkpoints": [],
+  "exports": [],
+  "dit_attempts": 0,
+  "complete_dit_calls": 0,
+  "backward_calls": 0,
+  "optimizer_calls": 0,
+  "micro_steps": 0,
+  "sources": {
+    "/home/wjq/workspace/svdquant-exp/scripts/research/train_wan_mainweight_qad_expanded.py": "9fecc17b1453afd8221c7f73ef6543fb5ba21dc22ea8174c350ced2c1beb28ef",
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E022_expanded_qad_plan.md": "336894ab438de0121eb64258d6918c46a23eab6dad151e672e5cfaf98f01c8fc",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/wan_mainweight_qad.py": "09a81e1a7b33c59a8e09d57f31046eec68c25c4626ed2bd1a788902e9f077cd8",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/wan_nvfp4_fastpack.py": "98e7e81b0aeab229006fbd721be1da24f4eb435b424de9cc95a3b136f277ebd0",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa",
+    "/data1/models/svdquant-wjq/models/rcm-Wan2.1-T2V-1.3B-Diffusers/transformer/config.json": "0b093fa072e9ff28763febe9b964ee582f566733a6d6709deb9dfba1bde16b81"
+  },
+  "reused_numeric_contract": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E020/train_run.json",
+    "bytes": 77838,
+    "sha256": "62eafc9acc9cfb837c5a06875d772ccb0ae4e0743d4fcb7fd3fa952ed328b207"
+  },
+  "sampling_fixture": {
+    "updates": 128,
+    "micro_steps": 512,
+    "all_records_used_twice": true,
+    "every_update_steps": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "independent_seed_formula": "20261005 + 1009*timestep + 1000003*epoch"
+  },
+  "data_ready": false,
+  "cuda_initialized": false,
+  "seconds_total": 0.0019750595092773438
+}

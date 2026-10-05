@@ -1,0 +1,1437 @@
+{
+  "experiment": "E080",
+  "status": "complete",
+  "method": "CPU NumPy FP64 metrics; torch used only for PT loading",
+  "driver": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/verify_e080_pv.py",
+    "sha256": "2f9668f1577cdcd693cdd09f61c12437c1d387e90f1bbbea82d714e29b1a0864",
+    "bytes": 9404
+  },
+  "source_report": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E080/v2/pv_probe_v2.json",
+    "sha256": "b81ec6c3ecc10f2af42bac6fa2c2be30070ca0838abb4c69c8a11a24f1b0e847",
+    "bytes": 66180
+  },
+  "verified_executed_sources": {
+    "probe_h3_pv_contrast_v2.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_pv_contrast_v2.py",
+      "sha256": "4cc1463514d12f594be2eaa448307f68e1d951ce9b746a6ba30932a86b78c7a5",
+      "bytes": 9892
+    },
+    "e080_pv_contract.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/e080_pv_contract.py",
+      "sha256": "f205be50215c9e579eb46f2463a713a0c7426aff38d002de0519e3b87590c69e",
+      "bytes": 6993
+    },
+    "E080_pv_contrast_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E080_pv_contrast_plan.md",
+      "sha256": "68b3c4460ee4bb1f63d3313d5232e30712870032ba62f71cbce0d4eabbad4bd2",
+      "bytes": 2731
+    }
+  },
+  "environment": {
+    "python": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+    "torch": "2.11.0+cu128",
+    "numpy": "2.5.2",
+    "CUDA_VISIBLE_DEVICES": ""
+  },
+  "rows": [
+    {
+      "case_id": "vbench0161_r0",
+      "block": 0,
+      "step": 14,
+      "verified_outputs": {
+        "file": "/data1/models/svdquant-wjq/research/20261004/E080/v2/pv2_vbench0161_r0_b0.pt",
+        "sha256": "165b7e0c4052229ec706dd7bb19ce7ab2d050d7e67171f4d7a27ae57718a3130",
+        "bytes": 37166127
+      },
+      "conditions": [
+        {
+          "condition": "native_qk",
+          "oracle_vs_full": {
+            "sse": 303.38585362659603,
+            "reference_energy": 480545.88403745653,
+            "contrast_sse": 191.02981101765516,
+            "contrast_reference_energy": 4901.997906265646,
+            "contrast_gain": 0.9810394854015295,
+            "contrast_cosine": 0.9805254536059951
+          },
+          "arms": {
+            "base": {
+              "vs_pv_oracle": {
+                "sse": 490.29090933814535,
+                "reference_energy": 481072.1910377541,
+                "contrast_sse": 143.16664328953453,
+                "contrast_reference_energy": 4907.138911556457,
+                "contrast_gain": 0.9953943837923459,
+                "contrast_cosine": 0.9856047236537957
+              },
+              "vs_full_attention": {
+                "sse": 782.8662023268304,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 332.0571172205109,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9766472497513642,
+                "contrast_cosine": 0.9665352692892991
+              }
+            },
+            "center32": {
+              "vs_pv_oracle": {
+                "sse": 186.37460800530295,
+                "reference_energy": 481072.1910377541,
+                "contrast_sse": 109.32916118233105,
+                "contrast_reference_energy": 4907.138911556457,
+                "contrast_gain": 0.9944005126001828,
+                "contrast_cosine": 0.9889365820943427
+              },
+              "vs_full_attention": {
+                "sse": 490.6131619253838,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 298.28944304306754,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9756452158747809,
+                "contrast_cosine": 0.9697759436003088
+              }
+            },
+            "center128": {
+              "vs_pv_oracle": {
+                "sse": 194.92680804499503,
+                "reference_energy": 481072.1910377541,
+                "contrast_sse": 112.75043162649237,
+                "contrast_reference_energy": 4907.138911556457,
+                "contrast_gain": 0.993989234451076,
+                "contrast_cosine": 0.9885888482344065
+              },
+              "vs_full_attention": {
+                "sse": 493.598115866531,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 301.15939383419186,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.975289740573535,
+                "contrast_cosine": 0.9694827067773188
+              }
+            },
+            "p_only": {
+              "vs_pv_oracle": {
+                "sse": 719.5913836988836,
+                "reference_energy": 481072.1910377541,
+                "contrast_sse": 130.26447706546963,
+                "contrast_reference_energy": 4907.138911556457,
+                "contrast_gain": 0.9940968424644405,
+                "contrast_cosine": 0.9868505569672745
+              },
+              "vs_full_attention": {
+                "sse": 1011.1476912241242,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 315.74719561608515,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9756959360342825,
+                "contrast_cosine": 0.9680762751252686
+              }
+            },
+            "pair": {
+              "vs_pv_oracle": {
+                "sse": 768.3972487298256,
+                "reference_energy": 481072.1910377541,
+                "contrast_sse": 129.93352398909371,
+                "contrast_reference_energy": 4907.138911556457,
+                "contrast_gain": 0.9936048978797904,
+                "contrast_cosine": 0.9868735615247826
+              },
+              "vs_full_attention": {
+                "sse": 1066.9615807486264,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 317.64379555371295,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9749762668324337,
+                "contrast_cosine": 0.9678637391340141
+              }
+            },
+            "random_pair": {
+              "vs_pv_oracle": {
+                "sse": 626.1142719549417,
+                "reference_energy": 481072.1910377541,
+                "contrast_sse": 139.11187480185475,
+                "contrast_reference_energy": 4907.138911556457,
+                "contrast_gain": 0.9900129231464017,
+                "contrast_cosine": 0.9858932391920703
+              },
+              "vs_full_attention": {
+                "sse": 921.5424542576432,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 324.85078251049435,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9715816025804799,
+                "contrast_cosine": 0.9670316580299689
+              }
+            },
+            "shuffle": {
+              "vs_pv_oracle": {
+                "sse": 595.6308796044473,
+                "reference_energy": 481072.1910377541,
+                "contrast_sse": 108.35771654224928,
+                "contrast_reference_energy": 4907.138911556457,
+                "contrast_gain": 0.9986445135664234,
+                "contrast_cosine": 0.9891105915371243
+              },
+              "vs_full_attention": {
+                "sse": 885.3276815967896,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 295.71436601063704,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9800572370326548,
+                "contrast_cosine": 0.9701921505270712
+              }
+            }
+          },
+          "base_simulator_vs_native": {
+            "sse": 0.08869285463508342,
+            "reference_energy": 462108.3078224128,
+            "contrast_sse": 0.07519447363112769,
+            "contrast_reference_energy": 5005.958037534522,
+            "contrast_gain": 0.9999751280071526,
+            "contrast_cosine": 0.9999924895225214
+          },
+          "native_vs_full": {
+            "sse": 784.5194583554378,
+            "reference_energy": 480545.88403745653,
+            "contrast_sse": 333.29001909336813,
+            "contrast_reference_energy": 4901.997906265646,
+            "contrast_gain": 0.9766085285826657,
+            "contrast_cosine": 0.9664145744518534
+          },
+          "native_gap_energy_ratio": 0.00011305373460208026,
+          "prespecified_gate": {
+            "pair_contrast_change_pct": -9.243158180134659,
+            "pair_output_sse_change_pct": 56.72271993929119,
+            "best_control": "shuffle",
+            "best_control_contrast_change_pct": -24.313573292969547,
+            "pair_vs_best_control_change_pct": 19.911648321263687,
+            "output_sse_increase_at_most_5pct": false,
+            "secondary_contrast_increase_at_most_5pct": true,
+            "cell_pass": false
+          }
+        },
+        {
+          "condition": "exact_qk",
+          "oracle_vs_full": {
+            "sse": 0.0,
+            "reference_energy": 480545.88403745653,
+            "contrast_sse": 0.0,
+            "contrast_reference_energy": 4901.997906265646,
+            "contrast_gain": 1.0,
+            "contrast_cosine": 1.0000000000000002
+          },
+          "arms": {
+            "base": {
+              "vs_pv_oracle": {
+                "sse": 491.0418457476162,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 135.67853375994255,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9919422485156072,
+                "contrast_cosine": 0.9862567367732883
+              },
+              "vs_full_attention": {
+                "sse": 491.0418457476162,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 135.67853375994255,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9919422485156072,
+                "contrast_cosine": 0.9862567367732883
+              }
+            },
+            "center32": {
+              "vs_pv_oracle": {
+                "sse": 185.4593253507094,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 103.45898648937434,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.993842843894843,
+                "contrast_cosine": 0.9895029214158007
+              },
+              "vs_full_attention": {
+                "sse": 185.4593253507094,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 103.45898648937434,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.993842843894843,
+                "contrast_cosine": 0.9895029214158007
+              }
+            },
+            "center128": {
+              "vs_pv_oracle": {
+                "sse": 194.18853901400198,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 106.2656368957562,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9929420390034193,
+                "contrast_cosine": 0.9892088335087935
+              },
+              "vs_full_attention": {
+                "sse": 194.18853901400198,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 106.2656368957562,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9929420390034193,
+                "contrast_cosine": 0.9892088335087935
+              }
+            },
+            "p_only": {
+              "vs_pv_oracle": {
+                "sse": 721.5027127245,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 125.13658990503966,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.987857339604437,
+                "contrast_cosine": 0.9872442783756024
+              },
+              "vs_full_attention": {
+                "sse": 721.5027127245,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 125.13658990503966,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.987857339604437,
+                "contrast_cosine": 0.9872442783756024
+              }
+            },
+            "pair": {
+              "vs_pv_oracle": {
+                "sse": 768.9995276085428,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 123.59797045338843,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9873381759392746,
+                "contrast_cosine": 0.9873924114825023
+              },
+              "vs_full_attention": {
+                "sse": 768.9995276085428,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 123.59797045338843,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9873381759392746,
+                "contrast_cosine": 0.9873924114825023
+              }
+            },
+            "random_pair": {
+              "vs_pv_oracle": {
+                "sse": 639.054505720392,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 150.88438294940022,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9892240475912921,
+                "contrast_cosine": 0.9846909814917391
+              },
+              "vs_full_attention": {
+                "sse": 639.054505720392,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 150.88438294940022,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9892240475912921,
+                "contrast_cosine": 0.9846909814917391
+              }
+            },
+            "shuffle": {
+              "vs_pv_oracle": {
+                "sse": 602.4554393235525,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 110.26646198201189,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9917108398506277,
+                "contrast_cosine": 0.9887903762753374
+              },
+              "vs_full_attention": {
+                "sse": 602.4554393235525,
+                "reference_energy": 480545.88403745653,
+                "contrast_sse": 110.26646198201189,
+                "contrast_reference_energy": 4901.997906265646,
+                "contrast_gain": 0.9917108398506277,
+                "contrast_cosine": 0.9887903762753374
+              }
+            }
+          },
+          "base_simulator_vs_native": {
+            "sse": 488.18389942680966,
+            "reference_energy": 462108.3078224128,
+            "contrast_sse": 376.3650398119558,
+            "contrast_reference_energy": 5005.958037534522,
+            "contrast_gain": 0.9578237212921078,
+            "contrast_cosine": 0.9622453608199466
+          },
+          "native_vs_full": {
+            "sse": 784.5194583554378,
+            "reference_energy": 480545.88403745653,
+            "contrast_sse": 333.29001909336813,
+            "contrast_reference_energy": 4901.997906265646,
+            "contrast_gain": 0.9766085285826657,
+            "contrast_cosine": 0.9664145744518534
+          },
+          "native_gap_energy_ratio": 0.6222712441705059,
+          "prespecified_gate": {
+            "pair_contrast_change_pct": -8.903813279651441,
+            "pair_output_sse_change_pct": 56.60570158490938,
+            "best_control": "center32",
+            "best_control_contrast_change_pct": -23.746974836546066,
+            "pair_vs_best_control_change_pct": 19.465669099786176,
+            "output_sse_increase_at_most_5pct": false,
+            "secondary_contrast_increase_at_most_5pct": true,
+            "cell_pass": false
+          }
+        }
+      ],
+      "qk_conditions_direction_compatible": true
+    },
+    {
+      "case_id": "vbench0161_r0",
+      "block": 24,
+      "step": 14,
+      "verified_outputs": {
+        "file": "/data1/models/svdquant-wjq/research/20261004/E080/v2/pv2_vbench0161_r0_b24.pt",
+        "sha256": "125d11a88f1f9a517b8984c62f4fa6ac127a1eef1ce569021e23b3ad4315cf8d",
+        "bytes": 37166152
+      },
+      "conditions": [
+        {
+          "condition": "native_qk",
+          "oracle_vs_full": {
+            "sse": 91522.9436030278,
+            "reference_energy": 27910672.417726375,
+            "contrast_sse": 77017.40784823544,
+            "contrast_reference_energy": 5708395.186270062,
+            "contrast_gain": 0.9909315391799508,
+            "contrast_cosine": 0.9932410101064711
+          },
+          "arms": {
+            "base": {
+              "vs_pv_oracle": {
+                "sse": 57928.76900076669,
+                "reference_energy": 27843367.626927875,
+                "contrast_sse": 34829.003134804865,
+                "contrast_reference_energy": 5681879.8779342035,
+                "contrast_gain": 0.9909157077824103,
+                "contrast_cosine": 0.9969348008637773
+              },
+              "vs_full_attention": {
+                "sse": 149216.08746618824,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 111087.20367660951,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9819559423911344,
+                "contrast_cosine": 0.9902230650468861
+              }
+            },
+            "center32": {
+              "vs_pv_oracle": {
+                "sse": 34619.54158081943,
+                "reference_energy": 27843367.626927875,
+                "contrast_sse": 24270.837252622427,
+                "contrast_reference_energy": 5681879.8779342035,
+                "contrast_gain": 0.9925036044044349,
+                "contrast_cosine": 0.9978671709691271
+              },
+              "vs_full_attention": {
+                "sse": 126196.68040509436,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 100950.56554432996,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9834995415468415,
+                "contrast_cosine": 0.9911189862811628
+              }
+            },
+            "center128": {
+              "vs_pv_oracle": {
+                "sse": 36324.50239270473,
+                "reference_energy": 27843367.626927875,
+                "contrast_sse": 25681.88827876102,
+                "contrast_reference_energy": 5681879.8779342035,
+                "contrast_gain": 0.9924026709265451,
+                "contrast_cosine": 0.9977422558483978
+              },
+              "vs_full_attention": {
+                "sse": 127672.78388005361,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 101537.36166114174,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9834712736296594,
+                "contrast_cosine": 0.9910672199654789
+              }
+            },
+            "p_only": {
+              "vs_pv_oracle": {
+                "sse": 58380.6976093626,
+                "reference_energy": 27843367.626927875,
+                "contrast_sse": 34716.19302326295,
+                "contrast_reference_energy": 5681879.8779342035,
+                "contrast_gain": 0.9902151565227147,
+                "contrast_cosine": 0.9969471927920485
+              },
+              "vs_full_attention": {
+                "sse": 148941.31243968374,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 110693.54988258232,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.981283244349149,
+                "contrast_cosine": 0.9902570892386247
+              }
+            },
+            "pair": {
+              "vs_pv_oracle": {
+                "sse": 61538.24700142244,
+                "reference_energy": 27843367.626927875,
+                "contrast_sse": 29850.57364868514,
+                "contrast_reference_energy": 5681879.8779342035,
+                "contrast_gain": 0.9900973708055643,
+                "contrast_cosine": 0.9973807138188739
+              },
+              "vs_full_attention": {
+                "sse": 153056.66276986932,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 107275.20131472286,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9810392388705345,
+                "contrast_cosine": 0.9905591837359055
+              }
+            },
+            "random_pair": {
+              "vs_pv_oracle": {
+                "sse": 60579.005506766174,
+                "reference_energy": 27843367.626927875,
+                "contrast_sse": 34052.118408551,
+                "contrast_reference_energy": 5681879.8779342035,
+                "contrast_gain": 0.9889892323353302,
+                "contrast_cosine": 0.9970117748888953
+              },
+              "vs_full_attention": {
+                "sse": 151462.65708069835,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 110497.98031376417,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.980021978045716,
+                "contrast_cosine": 0.990274352377649
+              }
+            },
+            "shuffle": {
+              "vs_pv_oracle": {
+                "sse": 50693.50846563226,
+                "reference_energy": 27843367.626927875,
+                "contrast_sse": 30316.795168594545,
+                "contrast_reference_energy": 5681879.8779342035,
+                "contrast_gain": 0.9921323035465648,
+                "contrast_cosine": 0.9973318306248289
+              },
+              "vs_full_attention": {
+                "sse": 143148.03778456256,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 107834.22265164442,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9830565910526738,
+                "contrast_cosine": 0.9905116792241442
+              }
+            }
+          },
+          "base_simulator_vs_native": {
+            "sse": 4.337087627720266,
+            "reference_energy": 26839390.40141584,
+            "contrast_sse": 2.803648159127861,
+            "contrast_reference_energy": 5613577.352602808,
+            "contrast_gain": 0.9999919772223043,
+            "contrast_cosine": 0.9999997503079946
+          },
+          "native_vs_full": {
+            "sse": 149278.8949912761,
+            "reference_energy": 27910672.417726375,
+            "contrast_sse": 111149.13902068602,
+            "contrast_reference_energy": 5708395.186270062,
+            "contrast_gain": 0.9819592927638107,
+            "contrast_cosine": 0.9902176072721305
+          },
+          "native_gap_energy_ratio": 2.905358877404423e-05,
+          "prespecified_gate": {
+            "pair_contrast_change_pct": -14.293918969919496,
+            "pair_output_sse_change_pct": 6.230890217273521,
+            "best_control": "center32",
+            "best_control_contrast_change_pct": -30.31429249156887,
+            "pair_vs_best_control_change_pct": 22.989468134066236,
+            "output_sse_increase_at_most_5pct": false,
+            "primary_contrast_improvement_at_least_10pct": true,
+            "primary_beats_best_control_at_least_5pct": false,
+            "cell_pass": false
+          }
+        },
+        {
+          "condition": "exact_qk",
+          "oracle_vs_full": {
+            "sse": 0.0,
+            "reference_energy": 27910672.417726375,
+            "contrast_sse": 0.0,
+            "contrast_reference_energy": 5708395.186270062,
+            "contrast_gain": 1.0,
+            "contrast_cosine": 0.9999999999999999
+          },
+          "arms": {
+            "base": {
+              "vs_pv_oracle": {
+                "sse": 58392.69137193602,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 34216.00686829046,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9898022414732571,
+                "contrast_cosine": 0.9970074974251152
+              },
+              "vs_full_attention": {
+                "sse": 58392.69137193602,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 34216.00686829046,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9898022414732571,
+                "contrast_cosine": 0.9970074974251152
+              }
+            },
+            "center32": {
+              "vs_pv_oracle": {
+                "sse": 34555.99149517741,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 23900.92718159179,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9915888986707763,
+                "contrast_cosine": 0.9979133695773702
+              },
+              "vs_full_attention": {
+                "sse": 34555.99149517741,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 23900.92718159179,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9915888986707763,
+                "contrast_cosine": 0.9979133695773702
+              }
+            },
+            "center128": {
+              "vs_pv_oracle": {
+                "sse": 36198.52039041414,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 25394.31665110931,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9914954368949397,
+                "contrast_cosine": 0.9977815737716574
+              },
+              "vs_full_attention": {
+                "sse": 36198.52039041414,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 25394.31665110931,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9914954368949397,
+                "contrast_cosine": 0.9977815737716574
+              }
+            },
+            "p_only": {
+              "vs_pv_oracle": {
+                "sse": 58860.18449893092,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 34758.757699291986,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9901516731916069,
+                "contrast_cosine": 0.9969580069338944
+              },
+              "vs_full_attention": {
+                "sse": 58860.18449893092,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 34758.757699291986,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9901516731916069,
+                "contrast_cosine": 0.9969580069338944
+              }
+            },
+            "pair": {
+              "vs_pv_oracle": {
+                "sse": 62755.22076721265,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 30311.031309836264,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9897921227007607,
+                "contrast_cosine": 0.9973537255843744
+              },
+              "vs_full_attention": {
+                "sse": 62755.22076721265,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 30311.031309836264,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9897921227007607,
+                "contrast_cosine": 0.9973537255843744
+              }
+            },
+            "random_pair": {
+              "vs_pv_oracle": {
+                "sse": 61662.5466568648,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 34209.07705008098,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9880535445945129,
+                "contrast_cosine": 0.9970172146939011
+              },
+              "vs_full_attention": {
+                "sse": 61662.5466568648,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 34209.07705008098,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9880535445945129,
+                "contrast_cosine": 0.9970172146939011
+              }
+            },
+            "shuffle": {
+              "vs_pv_oracle": {
+                "sse": 50903.87416926451,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 30427.618027931625,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9914473086350432,
+                "contrast_cosine": 0.9973365427317678
+              },
+              "vs_full_attention": {
+                "sse": 50903.87416926451,
+                "reference_energy": 27910672.417726375,
+                "contrast_sse": 30427.618027931625,
+                "contrast_reference_energy": 5708395.186270062,
+                "contrast_gain": 0.9914473086350432,
+                "contrast_cosine": 0.9973365427317678
+              }
+            }
+          },
+          "base_simulator_vs_native": {
+            "sse": 106044.05542785113,
+            "reference_energy": 26839390.40141584,
+            "contrast_sse": 90864.18092893252,
+            "contrast_reference_energy": 5613577.352602808,
+            "contrast_gain": 0.9930442123312271,
+            "contrast_cosine": 0.9919165845522182
+          },
+          "native_vs_full": {
+            "sse": 149278.8949912761,
+            "reference_energy": 27910672.417726375,
+            "contrast_sse": 111149.13902068602,
+            "contrast_reference_energy": 5708395.186270062,
+            "contrast_gain": 0.9819592927638107,
+            "contrast_cosine": 0.9902176072721305
+          },
+          "native_gap_energy_ratio": 0.7103754046012223,
+          "prespecified_gate": {
+            "pair_contrast_change_pct": -11.412715614320025,
+            "pair_output_sse_change_pct": 7.471019562172976,
+            "best_control": "center32",
+            "best_control_contrast_change_pct": -30.146941828732587,
+            "pair_vs_best_control_change_pct": 26.81947892457268,
+            "output_sse_increase_at_most_5pct": false,
+            "primary_contrast_improvement_at_least_10pct": true,
+            "primary_beats_best_control_at_least_5pct": false,
+            "cell_pass": false
+          }
+        }
+      ],
+      "qk_conditions_direction_compatible": true
+    },
+    {
+      "case_id": "vbench0161_r1",
+      "block": 0,
+      "step": 14,
+      "verified_outputs": {
+        "file": "/data1/models/svdquant-wjq/research/20261004/E080/v2/pv2_vbench0161_r1_b0.pt",
+        "sha256": "aea04d2221af9e8ca9c99d8bb94f6f18a9def521e3dfaa061959497a9ac6d558",
+        "bytes": 37166127
+      },
+      "conditions": [
+        {
+          "condition": "native_qk",
+          "oracle_vs_full": {
+            "sse": 326.9074343788867,
+            "reference_energy": 477626.14001848403,
+            "contrast_sse": 217.2703433145167,
+            "contrast_reference_energy": 7163.932130694591,
+            "contrast_gain": 0.9782609057471964,
+            "contrast_cosine": 0.9847570229987771
+          },
+          "arms": {
+            "base": {
+              "vs_pv_oracle": {
+                "sse": 498.63881260446306,
+                "reference_energy": 477979.0163975482,
+                "contrast_sse": 149.90192615092428,
+                "contrast_reference_energy": 7069.727682389393,
+                "contrast_gain": 0.9983715624419426,
+                "contrast_cosine": 0.9895317426024729
+              },
+              "vs_full_attention": {
+                "sse": 811.4221260825877,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 363.5572923020062,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.976906185835775,
+                "contrast_cosine": 0.9746861083077465
+              }
+            },
+            "center32": {
+              "vs_pv_oracle": {
+                "sse": 193.7363950190225,
+                "reference_energy": 477979.0163975482,
+                "contrast_sse": 107.5250510913607,
+                "contrast_reference_energy": 7069.727682389393,
+                "contrast_gain": 0.998112818248224,
+                "contrast_cosine": 0.9924546585123172
+              },
+              "vs_full_attention": {
+                "sse": 512.1507770742489,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 320.22317888557325,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9767176536462017,
+                "contrast_cosine": 0.9776298819109567
+              }
+            },
+            "center128": {
+              "vs_pv_oracle": {
+                "sse": 203.38333050136464,
+                "reference_energy": 477979.0163975482,
+                "contrast_sse": 112.12932333111755,
+                "contrast_reference_energy": 7069.727682389393,
+                "contrast_gain": 0.9970149527342382,
+                "contrast_cosine": 0.9921207922924298
+              },
+              "vs_full_attention": {
+                "sse": 517.388290979606,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 324.6745611432204,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9756448956852791,
+                "contrast_cosine": 0.977302579615105
+              }
+            },
+            "p_only": {
+              "vs_pv_oracle": {
+                "sse": 709.0605988065706,
+                "reference_energy": 477979.0163975482,
+                "contrast_sse": 137.5147209974236,
+                "contrast_reference_energy": 7069.727682389393,
+                "contrast_gain": 0.9871151197165996,
+                "contrast_cosine": 0.990248547582551
+              },
+              "vs_full_attention": {
+                "sse": 1028.9163339872584,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 352.89889779074156,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9656771026180497,
+                "contrast_cosine": 0.9751753895470802
+              }
+            },
+            "pair": {
+              "vs_pv_oracle": {
+                "sse": 740.6292823077379,
+                "reference_energy": 477979.0163975482,
+                "contrast_sse": 136.18437112357958,
+                "contrast_reference_energy": 7069.727682389393,
+                "contrast_gain": 0.9865184281379441,
+                "contrast_cosine": 0.9903386569132047
+              },
+              "vs_full_attention": {
+                "sse": 1052.4822841367647,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 352.15798594670423,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9650471181480634,
+                "contrast_cosine": 0.9752173880916135
+              }
+            },
+            "random_pair": {
+              "vs_pv_oracle": {
+                "sse": 605.0404576013271,
+                "reference_energy": 477979.0163975482,
+                "contrast_sse": 148.98986889745873,
+                "contrast_reference_energy": 7069.727682389393,
+                "contrast_gain": 0.9933169308390805,
+                "contrast_cosine": 0.9895105765742911
+              },
+              "vs_full_attention": {
+                "sse": 917.15597833746,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 356.82574475634436,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9723241876786045,
+                "contrast_cosine": 0.975030229644531
+              }
+            },
+            "shuffle": {
+              "vs_pv_oracle": {
+                "sse": 595.0790728629137,
+                "reference_energy": 477979.0163975482,
+                "contrast_sse": 123.46078675997101,
+                "contrast_reference_energy": 7069.727682389393,
+                "contrast_gain": 0.9994122034686204,
+                "contrast_cosine": 0.9913712306454556
+              },
+              "vs_full_attention": {
+                "sse": 912.9180822228761,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 337.3623465027657,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9779159597624266,
+                "contrast_cosine": 0.9764895185634238
+              }
+            }
+          },
+          "base_simulator_vs_native": {
+            "sse": 0.07765863420521812,
+            "reference_energy": 459514.57608116046,
+            "contrast_sse": 0.06501315139197716,
+            "contrast_reference_energy": 7198.594547541066,
+            "contrast_gain": 0.9999443422584595,
+            "contrast_cosine": 0.9999954853932804
+          },
+          "native_vs_full": {
+            "sse": 812.7806794101916,
+            "reference_energy": 477626.14001848403,
+            "contrast_sse": 364.6861791534048,
+            "contrast_reference_energy": 7163.932130694591,
+            "contrast_gain": 0.976966297538407,
+            "contrast_cosine": 0.9746113325194342
+          },
+          "native_gap_energy_ratio": 9.554685067264697e-05,
+          "prespecified_gate": {
+            "pair_contrast_change_pct": -9.151019856498433,
+            "pair_output_sse_change_pct": 48.53021136467965,
+            "best_control": "center32",
+            "best_control_contrast_change_pct": -28.269733516898043,
+            "pair_vs_best_control_change_pct": 26.653621403879125,
+            "output_sse_increase_at_most_5pct": false,
+            "secondary_contrast_increase_at_most_5pct": true,
+            "cell_pass": false
+          }
+        },
+        {
+          "condition": "exact_qk",
+          "oracle_vs_full": {
+            "sse": 0.0,
+            "reference_energy": 477626.14001848403,
+            "contrast_sse": 0.0,
+            "contrast_reference_energy": 7163.932130694591,
+            "contrast_gain": 1.0,
+            "contrast_cosine": 1.0
+          },
+          "arms": {
+            "base": {
+              "vs_pv_oracle": {
+                "sse": 509.5120321744335,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 146.8917209293582,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9988111137604238,
+                "contrast_cosine": 0.9898798419924545
+              },
+              "vs_full_attention": {
+                "sse": 509.5120321744335,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 146.8917209293582,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9988111137604238,
+                "contrast_cosine": 0.9898798419924545
+              }
+            },
+            "center32": {
+              "vs_pv_oracle": {
+                "sse": 198.83727008897185,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 112.19402913253613,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9981253779251178,
+                "contrast_cosine": 0.9922332735989061
+              },
+              "vs_full_attention": {
+                "sse": 198.83727008897185,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 112.19402913253613,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9981253779251178,
+                "contrast_cosine": 0.9922332735989061
+              }
+            },
+            "center128": {
+              "vs_pv_oracle": {
+                "sse": 209.74154695264872,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 116.812258396224,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.998385487760101,
+                "contrast_cosine": 0.9919210834907409
+              },
+              "vs_full_attention": {
+                "sse": 209.74154695264872,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 116.812258396224,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.998385487760101,
+                "contrast_cosine": 0.9919210834907409
+              }
+            },
+            "p_only": {
+              "vs_pv_oracle": {
+                "sse": 736.9792885229142,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 136.43523871338556,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9855489389169739,
+                "contrast_cosine": 0.9904426132002565
+              },
+              "vs_full_attention": {
+                "sse": 736.9792885229142,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 136.43523871338556,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9855489389169739,
+                "contrast_cosine": 0.9904426132002565
+              }
+            },
+            "pair": {
+              "vs_pv_oracle": {
+                "sse": 767.9027753651612,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 135.19600193115878,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9848533977106326,
+                "contrast_cosine": 0.9905262631252996
+              },
+              "vs_full_attention": {
+                "sse": 767.9027753651612,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 135.19600193115878,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9848533977106326,
+                "contrast_cosine": 0.9905262631252996
+              }
+            },
+            "random_pair": {
+              "vs_pv_oracle": {
+                "sse": 625.0526534787822,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 138.05084904649638,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9950487304264628,
+                "contrast_cosine": 0.9904205514228324
+              },
+              "vs_full_attention": {
+                "sse": 625.0526534787822,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 138.05084904649638,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 0.9950487304264628,
+                "contrast_cosine": 0.9904205514228324
+              }
+            },
+            "shuffle": {
+              "vs_pv_oracle": {
+                "sse": 602.2035906623539,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 122.60061956986505,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 1.0035898477969798,
+                "contrast_cosine": 0.9916173018985941
+              },
+              "vs_full_attention": {
+                "sse": 602.2035906623539,
+                "reference_energy": 477626.14001848403,
+                "contrast_sse": 122.60061956986505,
+                "contrast_reference_energy": 7163.932130694591,
+                "contrast_gain": 1.0035898477969798,
+                "contrast_cosine": 0.9916173018985941
+              }
+            }
+          },
+          "base_simulator_vs_native": {
+            "sse": 518.9034306125334,
+            "reference_energy": 459514.57608116046,
+            "contrast_sse": 416.9776038324664,
+            "contrast_reference_energy": 7198.594547541066,
+            "contrast_gain": 0.9776302201036736,
+            "contrast_cosine": 0.9712480884688126
+          },
+          "native_vs_full": {
+            "sse": 812.7806794101916,
+            "reference_energy": 477626.14001848403,
+            "contrast_sse": 364.6861791534048,
+            "contrast_reference_energy": 7163.932130694591,
+            "contrast_gain": 0.976966297538407,
+            "contrast_cosine": 0.9746113325194342
+          },
+          "native_gap_energy_ratio": 0.6384298295440347,
+          "prespecified_gate": {
+            "pair_contrast_change_pct": -7.962136275756492,
+            "pair_output_sse_change_pct": 50.71337414506172,
+            "best_control": "center32",
+            "best_control_contrast_change_pct": -23.621271217530737,
+            "pair_vs_best_control_change_pct": 20.501958060040913,
+            "output_sse_increase_at_most_5pct": false,
+            "secondary_contrast_increase_at_most_5pct": true,
+            "cell_pass": false
+          }
+        }
+      ],
+      "qk_conditions_direction_compatible": true
+    },
+    {
+      "case_id": "vbench0161_r1",
+      "block": 24,
+      "step": 14,
+      "verified_outputs": {
+        "file": "/data1/models/svdquant-wjq/research/20261004/E080/v2/pv2_vbench0161_r1_b24.pt",
+        "sha256": "4ba0a4d87b584195fabd5009f69fd2af82b517849c5f3f6ce34a94d4ca1ce90e",
+        "bytes": 37166152
+      },
+      "conditions": [
+        {
+          "condition": "native_qk",
+          "oracle_vs_full": {
+            "sse": 106248.9720780258,
+            "reference_energy": 30595142.11941489,
+            "contrast_sse": 93568.5939096319,
+            "contrast_reference_energy": 6856596.830403379,
+            "contrast_gain": 0.9850366284571931,
+            "contrast_cosine": 0.9931541955966092
+          },
+          "arms": {
+            "base": {
+              "vs_pv_oracle": {
+                "sse": 64747.84297746689,
+                "reference_energy": 30433092.450401157,
+                "contrast_sse": 39430.968686780645,
+                "contrast_reference_energy": 6744969.812527895,
+                "contrast_gain": 0.991644866425325,
+                "contrast_cosine": 0.9970759166199448
+              },
+              "vs_full_attention": {
+                "sse": 171754.8437205902,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 132083.3128525591,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9768843336305473,
+                "contrast_cosine": 0.9903290186917391
+              }
+            },
+            "center32": {
+              "vs_pv_oracle": {
+                "sse": 37510.83269587837,
+                "reference_energy": 30433092.450401157,
+                "contrast_sse": 27192.328572534603,
+                "contrast_reference_energy": 6744969.812527895,
+                "contrast_gain": 0.9937675747086863,
+                "contrast_cosine": 0.9979846631269927
+              },
+              "vs_full_attention": {
+                "sse": 143817.11155592225,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 119836.19741129383,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9789731017628776,
+                "contrast_cosine": 0.9912292427999461
+              }
+            },
+            "center128": {
+              "vs_pv_oracle": {
+                "sse": 39067.948270445966,
+                "reference_energy": 30433092.450401157,
+                "contrast_sse": 28392.288058398542,
+                "contrast_reference_energy": 6744969.812527895,
+                "contrast_gain": 0.9930895189628374,
+                "contrast_cosine": 0.9978967706309059
+              },
+              "vs_full_attention": {
+                "sse": 145950.9175064694,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 121838.96333850212,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9782475422935539,
+                "contrast_cosine": 0.9910835913681336
+              }
+            },
+            "p_only": {
+              "vs_pv_oracle": {
+                "sse": 66883.31313681931,
+                "reference_energy": 30433092.450401157,
+                "contrast_sse": 40068.96849495897,
+                "contrast_reference_energy": 6744969.812527895,
+                "contrast_gain": 0.9908497733196205,
+                "contrast_cosine": 0.9970305212709505
+              },
+              "vs_full_attention": {
+                "sse": 174039.6709536764,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 134372.14035588098,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9759818023899386,
+                "contrast_cosine": 0.9901629244540543
+              }
+            },
+            "pair": {
+              "vs_pv_oracle": {
+                "sse": 68352.93768528488,
+                "reference_energy": 30433092.450401157,
+                "contrast_sse": 34186.07171751833,
+                "contrast_reference_energy": 6744969.812527895,
+                "contrast_gain": 0.9904032616292818,
+                "contrast_cosine": 0.9974730169718263
+              },
+              "vs_full_attention": {
+                "sse": 175768.4648351887,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 127958.81257420316,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9755812403563099,
+                "contrast_cosine": 0.9906422277834843
+              }
+            },
+            "random_pair": {
+              "vs_pv_oracle": {
+                "sse": 66208.35573620124,
+                "reference_energy": 30433092.450401157,
+                "contrast_sse": 38144.802220589176,
+                "contrast_reference_energy": 6744969.812527895,
+                "contrast_gain": 0.9898083066596243,
+                "contrast_cosine": 0.997178815612806
+              },
+              "vs_full_attention": {
+                "sse": 172822.50988660357,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 129511.92743577177,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9751713948368911,
+                "contrast_cosine": 0.9905290217085626
+              }
+            },
+            "shuffle": {
+              "vs_pv_oracle": {
+                "sse": 58530.874664470364,
+                "reference_energy": 30433092.450401157,
+                "contrast_sse": 35594.823834915944,
+                "contrast_reference_energy": 6744969.812527895,
+                "contrast_gain": 0.9920433659270417,
+                "contrast_cosine": 0.9973615274459435
+              },
+              "vs_full_attention": {
+                "sse": 164814.40361204327,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 128020.8151606392,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9772928516750957,
+                "contrast_cosine": 0.9906288647007019
+              }
+            }
+          },
+          "base_simulator_vs_native": {
+            "sse": 3.044825285581414,
+            "reference_energy": 29370486.623299144,
+            "contrast_sse": 2.732774316183299,
+            "contrast_reference_energy": 6672003.485227299,
+            "contrast_gain": 0.9999944445616262,
+            "contrast_cosine": 0.9999997952190877
+          },
+          "native_vs_full": {
+            "sse": 171868.1725319298,
+            "reference_energy": 30595142.11941489,
+            "contrast_sse": 132234.62659635334,
+            "contrast_reference_energy": 6856596.830403379,
+            "contrast_gain": 0.9768961206551068,
+            "contrast_cosine": 0.9903177416082137
+          },
+          "native_gap_energy_ratio": 1.7716050858780987e-05,
+          "prespecified_gate": {
+            "pair_contrast_change_pct": -13.301466192537848,
+            "pair_output_sse_change_pct": 5.567899318395231,
+            "best_control": "center32",
+            "best_control_contrast_change_pct": -31.038142155379212,
+            "pair_vs_best_control_change_pct": 25.71954485739667,
+            "output_sse_increase_at_most_5pct": false,
+            "primary_contrast_improvement_at_least_10pct": true,
+            "primary_beats_best_control_at_least_5pct": false,
+            "cell_pass": false
+          }
+        },
+        {
+          "condition": "exact_qk",
+          "oracle_vs_full": {
+            "sse": 0.0,
+            "reference_energy": 30595142.11941489,
+            "contrast_sse": 0.0,
+            "contrast_reference_energy": 6856596.830403379,
+            "contrast_gain": 1.0,
+            "contrast_cosine": 1.0
+          },
+          "arms": {
+            "base": {
+              "vs_pv_oracle": {
+                "sse": 64888.12139149309,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 40212.62636184308,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9920611394165747,
+                "contrast_cosine": 0.9970654626693787
+              },
+              "vs_full_attention": {
+                "sse": 64888.12139149309,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 40212.62636184308,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9920611394165747,
+                "contrast_cosine": 0.9970654626693787
+              }
+            },
+            "center32": {
+              "vs_pv_oracle": {
+                "sse": 37834.603694609876,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 27820.299590244336,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9940187856395888,
+                "contrast_cosine": 0.9979710818673083
+              },
+              "vs_full_attention": {
+                "sse": 37834.603694609876,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 27820.299590244336,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9940187856395888,
+                "contrast_cosine": 0.9979710818673083
+              }
+            },
+            "center128": {
+              "vs_pv_oracle": {
+                "sse": 39736.48628182779,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 29174.263197541906,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9933737297634293,
+                "contrast_cosine": 0.9978731159315574
+              },
+              "vs_full_attention": {
+                "sse": 39736.48628182779,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 29174.263197541906,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9933737297634293,
+                "contrast_cosine": 0.9978731159315574
+              }
+            },
+            "p_only": {
+              "vs_pv_oracle": {
+                "sse": 65992.34249405212,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 39965.48140678825,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.991774542668075,
+                "contrast_cosine": 0.9970842704113011
+              },
+              "vs_full_attention": {
+                "sse": 65992.34249405212,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 39965.48140678825,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.991774542668075,
+                "contrast_cosine": 0.9970842704113011
+              }
+            },
+            "pair": {
+              "vs_pv_oracle": {
+                "sse": 67778.91250343958,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 34282.644450266285,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9914237543411493,
+                "contrast_cosine": 0.9975033818353153
+              },
+              "vs_full_attention": {
+                "sse": 67778.91250343958,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 34282.644450266285,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9914237543411493,
+                "contrast_cosine": 0.9975033818353153
+              }
+            },
+            "random_pair": {
+              "vs_pv_oracle": {
+                "sse": 66216.84488290412,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 38854.336386050185,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9897182729430176,
+                "contrast_cosine": 0.99717346126257
+              },
+              "vs_full_attention": {
+                "sse": 66216.84488290412,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 38854.336386050185,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9897182729430176,
+                "contrast_cosine": 0.99717346126257
+              }
+            },
+            "shuffle": {
+              "vs_pv_oracle": {
+                "sse": 58001.22885941208,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 36187.604280193606,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9924579601472643,
+                "contrast_cosine": 0.9973602149817874
+              },
+              "vs_full_attention": {
+                "sse": 58001.22885941208,
+                "reference_energy": 30595142.11941489,
+                "contrast_sse": 36187.604280193606,
+                "contrast_reference_energy": 6856596.830403379,
+                "contrast_gain": 0.9924579601472643,
+                "contrast_cosine": 0.9973602149817874
+              }
+            }
+          },
+          "base_simulator_vs_native": {
+            "sse": 120104.8083926054,
+            "reference_energy": 29370486.623299144,
+            "contrast_sse": 107680.81116785156,
+            "contrast_reference_energy": 6672003.485227299,
+            "contrast_gain": 1.0006395533586887,
+            "contrast_cosine": 0.9920370481919369
+          },
+          "native_vs_full": {
+            "sse": 171868.1725319298,
+            "reference_energy": 30595142.11941489,
+            "contrast_sse": 132234.62659635334,
+            "contrast_reference_energy": 6856596.830403379,
+            "contrast_gain": 0.9768961206551068,
+            "contrast_cosine": 0.9903177416082137
+          },
+          "native_gap_energy_ratio": 0.6988193719828623,
+          "prespecified_gate": {
+            "pair_contrast_change_pct": -14.74656705637022,
+            "pair_output_sse_change_pct": 4.455038996283034,
+            "best_control": "center32",
+            "best_control_contrast_change_pct": -30.817004241626865,
+            "pair_vs_best_control_change_pct": 23.228883064537808,
+            "output_sse_increase_at_most_5pct": true,
+            "primary_contrast_improvement_at_least_10pct": true,
+            "primary_beats_best_control_at_least_5pct": false,
+            "cell_pass": false
+          }
+        }
+      ],
+      "qk_conditions_direction_compatible": true
+    }
+  ],
+  "decision": {
+    "all_cells_pass": false,
+    "qk_direction_compatible": true,
+    "proceed_to_video": false,
+    "conclusion": "Stop current C007 representation; no video or kernel escalation"
+  },
+  "numeric_verification": {
+    "comparisons": 824,
+    "max_absolute_difference": 3.725290298461914e-09,
+    "max_normalized_difference": 4.440892098500626e-16
+  },
+  "cuda_initialized": false,
+  "seconds": 0.7420814079232514
+}

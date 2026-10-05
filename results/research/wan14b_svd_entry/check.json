@@ -1,0 +1,355 @@
+{
+  "status": "complete",
+  "block_count": 40,
+  "target_count": 400,
+  "lr_group_count": 280,
+  "weight_elements": 14050918400,
+  "config": {
+    "argv": [
+      "configs/model/wan2.1-1.3b.yaml",
+      "configs/svdquant/real_nvfp4.yaml",
+      "configs/svdquant/wan_s16.yaml",
+      "--pipeline-name=wan2.1-14b",
+      "--pipeline-path=/data1/models/svdquant-wjq/models/Wan2.1-T2V-14B-Diffusers-38ec498c",
+      "--skip-eval",
+      "--skip-gen",
+      "--eval-num-gpus=1",
+      "--eval-num-frames=81",
+      "--eval-num-steps=50",
+      "--eval-guidance-scale=5.0",
+      "--eval-protocol=unipc50-g5.0-f81-shift3"
+    ],
+    "config_files": [
+      "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/examples/diffusion/configs/model/wan2.1-1.3b.yaml",
+      "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/examples/diffusion/configs/svdquant/real_nvfp4.yaml",
+      "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/examples/diffusion/configs/svdquant/wan_s16.yaml"
+    ],
+    "unused_configs": {},
+    "resolved_config": {
+      "enable_cache": true,
+      "cache": {
+        "root": "runs"
+      },
+      "output": {
+        "root": "runs",
+        "dirname": "skip.x.[[w]+tan+tn].w.[e+rs+rtp+s+tpi+tpo]-extra.[tan+tn]-low.r32.i100.e.skip.[rc+tan+tn]-smth.proj.GridSearch.bn2.[AbsMax].lr.skip.[rc+tan+tn]-qdiff.64-h480.w832-t50.g5.0-s5000",
+        "job": "run"
+      },
+      "pipeline": {
+        "name": "wan2.1-14b",
+        "path": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-14B-Diffusers-38ec498c",
+        "dtype": "torch.bfloat16",
+        "device": "cuda",
+        "shift_activations": false,
+        "enable_lora": false,
+        "task": "text-to-video"
+      },
+      "eval": {
+        "protocol": "unipc50-g5.0-f81-shift3",
+        "num_gpus": 0,
+        "batch_size": 0,
+        "batch_size_per_gpu": 1,
+        "height": 480,
+        "width": 832,
+        "num_frames": 81,
+        "negative_prompt": "Bright tones, overexposed, static, blurred details, subtitles, style, works, paintings, images, static, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, misshapen limbs, fused fingers, still picture, messy background, three legs, many people in the background, walking backwards",
+        "clean_caption": null,
+        "num_steps": 50,
+        "guidance_scale": 5.0,
+        "num_samples": 5000,
+        "benchmarks": [
+          "MJHQ",
+          "DCI"
+        ],
+        "gt_metrics": [
+          "clip_iqa",
+          "clip_score",
+          "image_reward",
+          "fid"
+        ],
+        "ref_metrics": [
+          "psnr",
+          "lpips",
+          "ssim",
+          "fid"
+        ],
+        "gen_root": "{output}/{job}",
+        "ref_root": "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/examples/diffusion/baselines/torch.bfloat16/wan2.1-14b/unipc50-g5.0-f81-shift3",
+        "gt_stats_root": "benchmarks/stats",
+        "control_root": "benchmarks",
+        "chunk_start": 0,
+        "chunk_step": 1,
+        "chunk_only": false
+      },
+      "quant": {
+        "wgts": {
+          "dtype": "sfp4_e2m1_all",
+          "zero_point": null,
+          "group_shapes": [
+            [
+              -1,
+              -1,
+              -1
+            ],
+            [
+              1,
+              16,
+              1,
+              1,
+              1
+            ]
+          ],
+          "scale_dtypes": [
+            "torch.float32",
+            "sfp8_e4m3_nan"
+          ],
+          "enable_kernel_gptq": false,
+          "enable_low_rank": true,
+          "low_rank": {
+            "rank": 32,
+            "exclusive": false,
+            "compensate": false,
+            "degree": 2,
+            "objective": "OutputsError",
+            "strategy": "Manual",
+            "sample_batch_size": 4,
+            "sample_size": -1,
+            "outputs_device": "cpu",
+            "num_iters": 100,
+            "early_stop": true,
+            "skips": [
+              "down_resblock_conv",
+              "down_transformer_add_norm",
+              "down_transformer_norm",
+              "mid_resblock_conv",
+              "mid_transformer_add_norm",
+              "mid_transformer_norm",
+              "transformer_add_norm",
+              "transformer_norm",
+              "up_resblock_conv",
+              "up_transformer_add_norm",
+              "up_transformer_norm"
+            ]
+          },
+          "enable_calib_range": true,
+          "calib_range": {
+            "degree": 2,
+            "objective": "OutputsError",
+            "strategy": "Manual",
+            "granularity": "Layer",
+            "element_batch_size": -1,
+            "sample_batch_size": 4,
+            "element_size": -1,
+            "sample_size": -1,
+            "pre_reshape": true,
+            "outputs_device": "cpu",
+            "ratio": 1.0,
+            "max_shrink": 0.2,
+            "max_expand": 1.0,
+            "num_grids": 80,
+            "allow_scale": false,
+            "skips": []
+          },
+          "skips": [
+            "down_resblock_shortcut",
+            "down_resblock_time_proj",
+            "down_sample",
+            "down_transformer_proj_in",
+            "down_transformer_proj_out",
+            "input_embed",
+            "mid_resblock_shortcut",
+            "mid_resblock_time_proj",
+            "mid_transformer_proj_in",
+            "mid_transformer_proj_out",
+            "output_embed",
+            "text_embed",
+            "time_embed",
+            "up_resblock_shortcut",
+            "up_resblock_time_proj",
+            "up_sample",
+            "up_transformer_proj_in",
+            "up_transformer_proj_out"
+          ]
+        },
+        "ipts": {
+          "dtype": "sfp4_e2m1_all",
+          "zero_point": null,
+          "group_shapes": [
+            [
+              -1,
+              -1,
+              -1
+            ],
+            [
+              1,
+              16,
+              1,
+              1,
+              1
+            ]
+          ],
+          "scale_dtypes": [
+            "torch.float32",
+            "sfp8_e4m3_nan"
+          ],
+          "static": false,
+          "enable_calib_range": false,
+          "skips": [
+            "down_resblock_shortcut",
+            "down_resblock_time_proj",
+            "down_sample",
+            "down_transformer_add_norm",
+            "down_transformer_norm",
+            "down_transformer_proj_in",
+            "down_transformer_proj_out",
+            "input_embed",
+            "mid_resblock_shortcut",
+            "mid_resblock_time_proj",
+            "mid_transformer_add_norm",
+            "mid_transformer_norm",
+            "mid_transformer_proj_in",
+            "mid_transformer_proj_out",
+            "output_embed",
+            "text_embed",
+            "time_embed",
+            "transformer_add_norm",
+            "transformer_norm",
+            "up_resblock_shortcut",
+            "up_resblock_time_proj",
+            "up_sample",
+            "up_transformer_add_norm",
+            "up_transformer_norm",
+            "up_transformer_proj_in",
+            "up_transformer_proj_out"
+          ],
+          "allow_unsigned": false
+        },
+        "opts": {
+          "dtype": null,
+          "zero_point": null,
+          "group_shapes": [
+            [
+              -1,
+              -1,
+              -1
+            ]
+          ],
+          "scale_dtypes": [
+            null
+          ],
+          "static": false,
+          "enable_calib_range": false,
+          "skips": [],
+          "allow_unsigned": false
+        },
+        "enable_extra_wgts": true,
+        "extra_wgts": {
+          "dtype": "sint4",
+          "zero_point": null,
+          "group_shapes": [
+            [
+              1,
+              64,
+              1,
+              1,
+              1
+            ]
+          ],
+          "scale_dtypes": [
+            null
+          ],
+          "includes": [
+            "down_transformer_add_norm",
+            "down_transformer_norm",
+            "mid_transformer_add_norm",
+            "mid_transformer_norm",
+            "transformer_add_norm",
+            "transformer_norm",
+            "up_transformer_add_norm",
+            "up_transformer_norm"
+          ]
+        },
+        "calib": {
+          "data": "qdiff",
+          "num_samples": 64,
+          "batch_size": 4,
+          "path": "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/examples/diffusion/datasets/torch.bfloat16/wan2.1-14b/unipc50-g5.0-f81-shift3/qdiff/s128",
+          "num_workers": 8
+        },
+        "enable_rotation": false,
+        "enable_smooth": true,
+        "smooth": {
+          "enable_proj": true,
+          "proj": {
+            "degree": 2,
+            "objective": "OutputsError",
+            "strategy": "GridSearch",
+            "granularity": "Layer",
+            "element_batch_size": -1,
+            "sample_batch_size": 4,
+            "element_size": -1,
+            "sample_size": -1,
+            "pre_reshape": true,
+            "outputs_device": "cpu",
+            "fuse_when_possible": false,
+            "allow_a_quant": true,
+            "allow_b_quant": true,
+            "spans": [
+              [
+                "AbsMax",
+                "AbsMax"
+              ]
+            ],
+            "alpha": 0.5,
+            "beta": -2,
+            "num_grids": 10,
+            "allow_low_rank": true,
+            "skips": [
+              "down_resblock_conv",
+              "down_transformer_add_norm",
+              "down_transformer_norm",
+              "mid_resblock_conv",
+              "mid_transformer_add_norm",
+              "mid_transformer_norm",
+              "transformer_add_norm",
+              "transformer_norm",
+              "up_resblock_conv",
+              "up_transformer_add_norm",
+              "up_transformer_norm"
+            ]
+          },
+          "enable_attn": false
+        },
+        "develop_dtype": "torch.float32"
+      },
+      "enable_text": false,
+      "text_cache": {
+        "root": "",
+        "path": {
+          "rotation": "",
+          "reorder": "",
+          "smooth": "",
+          "wgts": "",
+          "acts": ""
+        }
+      },
+      "seed": 12345,
+      "skip_gen": true,
+      "skip_eval": true,
+      "load_from": "",
+      "save_model": "",
+      "copy_on_save": false
+    }
+  },
+  "model_weights_loaded": false,
+  "checkpoint_loaded": false,
+  "cuda_initialized": false,
+  "scope": "Meta/config structure only; complete14B checkpoint loading, roundtrip, hooks and GPU arithmetic remain untested",
+  "phase": "preparation_cpu_check",
+  "source": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/wan14b_svd_native.py",
+    "sha256": "f15dc67d5922d4fa7092bf6ad11fb42a6b466c88c7302dffd6173a391a78ceba"
+  },
+  "seconds_check": 4.601335356943309,
+  "prior_attempts_note": "Prior missing-ninja PATH failure and successful CPU checks exist only in tool output; no retrospective failure log was fabricated."
+}

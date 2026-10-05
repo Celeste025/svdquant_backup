@@ -1,0 +1,141 @@
+{
+  "experiment": "E014",
+  "status": "preregistered_not_run",
+  "scope": "Complete plain native H3-recipe control against existing SVD recipe; baseline decision, no novel method or quality claim",
+  "cases": [
+    {
+      "id": "e009_p001_s00",
+      "kind": "raw_dit",
+      "prompt_id": 1,
+      "step": 0,
+      "sample": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/calib/minimax_h3_svdquant_standard_8p64s/p1/sample_p1_s00.pt",
+        "sha256": "c89050f015479c3aa097f090f2a600cbd232dc63d86ce430d9a29c33c27e5404",
+        "bytes": 13723182
+      },
+      "reference": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E009_profile_bf16.json",
+        "sha256": "4b43440de1b9e5ebd7be0163b9007092280d625ec9dc707cc2853158905c669e",
+        "bytes": 262680
+      },
+      "bf16_raw_output_sha256": {
+        "video": "8986659ea4dbda2beca7f4e8c87bcd37a1fcc4b667d97cecfe9e76cbcb116962",
+        "audio": "6d0c424d6370d2edcffe03f6874e736757e0613d4e4a299fecf47286ee005323"
+      },
+      "split": "old_calibration_and_profile_input"
+    },
+    {
+      "id": "e010_p030_s05",
+      "kind": "model_fn",
+      "prompt_id": 30,
+      "step": 5,
+      "prepared": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E010/prepare/p030.pt",
+        "sha256": "deacde742b509e24536d225f8e8fb21b892e71c2653e58e0026e822865f1108a",
+        "bytes": 9257279
+      },
+      "state": {
+        "video": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E010/denoise_bf16/p030/s05_video.pt",
+          "sha256": "5b8554c7f9aab76e48c5613d30828443acbfbd008476e9a76e062b188529c4fb",
+          "bytes": 12278575
+        },
+        "audio": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E010/denoise_bf16/p030/s05_audio.pt",
+          "sha256": "8f2b1b97fd63e3f1530cafedd9445b846a128fc5272d7e147913bfe5f8c1dfdb",
+          "bytes": 82287
+        }
+      },
+      "reference": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E010_h3_denoise_bf16.json",
+        "sha256": "7f4eff2df63c112e6dcab5504c80e485b76e601ccf32d10d4f64127a25a48eeb",
+        "bytes": 274839
+      },
+      "bf16_raw_output_sha256": {
+        "video": "259cfd44a2c8a178c036823746e415142b5e8b0914f55bcc789228be8a25a98e",
+        "audio": "ae69dd5c1afe3f174eac1e9462ae3b2264f661dd77cae7007a1031c7810bee85"
+      },
+      "split": "prior_generated_BF16_teacher_state_not_unseen_quality_test"
+    },
+    {
+      "id": "e010_p036_s14",
+      "kind": "model_fn",
+      "prompt_id": 36,
+      "step": 14,
+      "prepared": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E010/prepare/p036.pt",
+        "sha256": "fc54887b3e504de37471c5f88bd2d235a6af192abdd5f09d382365011bc99c20",
+        "bytes": 12455935
+      },
+      "state": {
+        "video": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E010/denoise_bf16/p036/s14_video.pt",
+          "sha256": "6ec6d933a1bdd4d41d4b081f76755798a814791ba538948cf0b97a5e04f2ce26",
+          "bytes": 12278575
+        },
+        "audio": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E010/denoise_bf16/p036/s14_audio.pt",
+          "sha256": "ca1efe5d3ac60b308200e15095d674c6d17525b45078197b857271ff86831428",
+          "bytes": 82287
+        }
+      },
+      "reference": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E010_h3_denoise_bf16.json",
+        "sha256": "7f4eff2df63c112e6dcab5504c80e485b76e601ccf32d10d4f64127a25a48eeb",
+        "bytes": 274839
+      },
+      "bf16_raw_output_sha256": {
+        "video": "8d3756db43946f8efb35687dc422b709de1abd63604f39d781f2653f983a26c7",
+        "audio": "6cc8b83c2082f976d370379d89ea4687ac79d49ef8aec2c44fc64b8fb14d760b"
+      },
+      "split": "prior_generated_BF16_teacher_state_not_unseen_quality_test"
+    }
+  ],
+  "arms": [
+    "bf16",
+    "svd",
+    "plain"
+  ],
+  "quantization": {
+    "coverage": "same 200 main-block linears; 8 refiner linears and all other tensors retain original dtype (including existing FP32 time/RoPE)",
+    "group_size": 16,
+    "element": "signed E2M1 ties-lower legacy H3",
+    "block_scale": "E4M3 RNE",
+    "global_scale": "FP32 absmax/2688, minimum1e-12 as existing H3 recipe",
+    "activation_packer": "frozen h3_nvfp4_zero_sf_compat.pack_activation_fast",
+    "plain": "Directly quantize original BF16 W; no smoothing, no low-rank branch, bias unchanged",
+    "svd": "Existing exported rank32/group16 whole recipe",
+    "causal_limit": "Changes smoothing AND low-rank decomposition together; not an isolated low-rank ablation; not best standard-RNE PTQ/QAT"
+  },
+  "svd_export_dir": "/data1/models/svdquant-wjq/research/20261002/E009/legacy_export",
+  "plain_export_dir": "/data1/models/svdquant-wjq/research/20261002/E014/plain_export",
+  "asset_reference": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E010_h3_prepare.json",
+    "sha256": "325f8aab98f76fbb57666b1014a9fa2a8d2111d4048b52882f475a5bb745a8e8",
+    "bytes": 18395
+  },
+  "benchmark": {
+    "case_id": "e009_p001_s00",
+    "gpu": 5,
+    "warmup": 1,
+    "repeats": 3,
+    "profile_calls": 1,
+    "timing": "CUDA-synchronized resident raw DiT; report forward excluding flag validation and including flag validation separately; hashes/copies/saves outside both; compare only current matched three arms",
+    "processes": "One arm per independent process, serial same idle GPU",
+    "includes": "online packing, all original model operations, plain or SVD native GEMM",
+    "excludes": "startup, TE, sampler, VAE, disk recording"
+  },
+  "budget": {
+    "wall_seconds": 2700,
+    "max_complete_dit_calls": 30,
+    "peak_allocated_gib_limit": 60,
+    "export_gpu": 0,
+    "evaluation_and_benchmark_gpu": 5
+  },
+  "decision_rules": {
+    "plain_numerically_dominates": "If plain has no larger video AND audio NMSE on all three states and lower matched latency, replace the numerical/performance baseline; then separately test real generation before any quality claim",
+    "tradeoff": "Report all per-state, per-modality values. No forced aggregate winner; keep both for future claimed benefit",
+    "svd_clear_numeric_benefit": "Keep SVD as fidelity baseline and measured plain as cost floor; no proof all LR necessary or best",
+    "limits": "No arbitrary percent gain gate, no change of prompts/steps, no new method or causal mechanism from these endpoints alone; finite/contract/resource errors stop."
+  }
+}

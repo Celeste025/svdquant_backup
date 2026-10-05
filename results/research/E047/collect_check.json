@@ -1,0 +1,1062 @@
+{
+  "experiment": "E047",
+  "status": "complete",
+  "group": null,
+  "pid": 498105,
+  "start_epoch": 1791012114.9033258,
+  "deadline_epoch": null,
+  "actual_counts": {
+    "dit": 0,
+    "dit_sdpa": 0,
+    "scheduler": 0,
+    "text_encoder": 0,
+    "public_vae_decode": 0,
+    "saved_caches": 0
+  },
+  "prompts": [],
+  "caches": [],
+  "manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E047_wan_matched_calibration_manifest.json",
+    "bytes": 17819,
+    "sha256": "1b5c066f2609fd6dc95319fe44c4779c9acd3e9023616f216a1b5a0c59f9ded1"
+  },
+  "sources": [
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/collect_wan_matched_calibration.py",
+      "bytes": 18392,
+      "sha256": "6cb53a8c9af6328d30383c9b4eb2202805db24afd8120cf02ba53d7ded3f304b"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E047_wan_matched_calibration_manifest.json",
+      "bytes": 17819,
+      "sha256": "1b5c066f2609fd6dc95319fe44c4779c9acd3e9023616f216a1b5a0c59f9ded1"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E047_wan_matched_calibration_plan.md",
+      "bytes": 3367,
+      "sha256": "4a9c8d81b94707bc1171c6fd5ea05386e7801d063e663de96108aaff49f132ab"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_vanilla_wan_reference.py",
+      "bytes": 15853,
+      "sha256": "e51e102122e1c15ce46c59c8b4cddf88e50640eb17b2e69f02e447177e165479"
+    },
+    {
+      "file": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/pipelines/wan/pipeline_wan.py",
+      "bytes": 32040,
+      "sha256": "2a5fcd905ad0fbcbd76240e02007e73ab3583f927da8b9fe0fbe5a4a54d792aa"
+    },
+    {
+      "file": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/models/transformers/transformer_wan.py",
+      "bytes": 31082,
+      "sha256": "74741d74c9fa4b9d02be83de9840b37a732080a795aa2d19037c03e312c76907"
+    },
+    {
+      "file": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/diffusers/schedulers/scheduling_unipc_multistep.py",
+      "bytes": 56242,
+      "sha256": "5bfe1dcf55ebea6dbbf624d3af676b2529b81fbcaf493150d562ec9e1aba3872"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/app/diffusion/dataset/collect/utils.py",
+      "bytes": 3612,
+      "sha256": "f2a87b8c6ef45212f4acd6d137f9e6a731d9ce2f7281820f8c2e80bfee0ae507"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/app/diffusion/dataset/collect/calib.py",
+      "bytes": 8539,
+      "sha256": "bb2484a78f6e05783e689ba99c85d75fc4b0734e419fd69ddb8abd6a866c6211"
+    }
+  ],
+  "settings": {
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "num_inference_steps": 50,
+    "guidance_scale": 6.0,
+    "flow_shift": 8.0,
+    "fps": 16,
+    "scheduler": "UniPCMultistepScheduler",
+    "transformer_dtype": "bfloat16",
+    "text_encoder_dtype": "bfloat16",
+    "vae_dtype": "float32",
+    "latent_update_dtype": "float32",
+    "max_sequence_length": 512,
+    "prompt_extension": false,
+    "attention_backend_dit": "torch SDPA FLASH_ATTENTION",
+    "compile": false,
+    "offload": false,
+    "vae_tiling": false
+  },
+  "disk_configs": {
+    "model_index.json": {
+      "_class_name": "WanPipeline",
+      "_diffusers_version": "0.33.0.dev0",
+      "scheduler": [
+        "diffusers",
+        "UniPCMultistepScheduler"
+      ],
+      "text_encoder": [
+        "transformers",
+        "UMT5EncoderModel"
+      ],
+      "tokenizer": [
+        "transformers",
+        "T5TokenizerFast"
+      ],
+      "transformer": [
+        "diffusers",
+        "WanTransformer3DModel"
+      ],
+      "vae": [
+        "diffusers",
+        "AutoencoderKLWan"
+      ]
+    },
+    "transformer/config.json": {
+      "_class_name": "WanTransformer3DModel",
+      "_diffusers_version": "0.33.0.dev0",
+      "added_kv_proj_dim": null,
+      "attention_head_dim": 128,
+      "cross_attn_norm": true,
+      "eps": 1e-06,
+      "ffn_dim": 8960,
+      "freq_dim": 256,
+      "image_dim": null,
+      "in_channels": 16,
+      "num_attention_heads": 12,
+      "num_layers": 30,
+      "out_channels": 16,
+      "patch_size": [
+        1,
+        2,
+        2
+      ],
+      "qk_norm": "rms_norm_across_heads",
+      "rope_max_seq_len": 1024,
+      "text_dim": 4096
+    },
+    "vae/config.json": {
+      "_class_name": "AutoencoderKLWan",
+      "_diffusers_version": "0.33.0.dev0",
+      "attn_scales": [],
+      "base_dim": 96,
+      "dim_mult": [
+        1,
+        2,
+        4,
+        4
+      ],
+      "dropout": 0.0,
+      "latents_mean": [
+        -0.7571,
+        -0.7089,
+        -0.9113,
+        0.1075,
+        -0.1745,
+        0.9653,
+        -0.1517,
+        1.5508,
+        0.4134,
+        -0.0715,
+        0.5517,
+        -0.3632,
+        -0.1922,
+        -0.9497,
+        0.2503,
+        -0.2921
+      ],
+      "latents_std": [
+        2.8184,
+        1.4541,
+        2.3275,
+        2.6558,
+        1.2196,
+        1.7708,
+        2.6052,
+        2.0743,
+        3.2687,
+        2.1526,
+        2.8652,
+        1.5579,
+        1.6382,
+        1.1253,
+        2.8251,
+        1.916
+      ],
+      "num_res_blocks": 2,
+      "temperal_downsample": [
+        false,
+        true,
+        true
+      ],
+      "z_dim": 16
+    },
+    "text_encoder/config.json": {
+      "_name_or_path": "google/umt5-xxl",
+      "architectures": [
+        "UMT5EncoderModel"
+      ],
+      "classifier_dropout": 0.0,
+      "d_ff": 10240,
+      "d_kv": 64,
+      "d_model": 4096,
+      "decoder_start_token_id": 0,
+      "dense_act_fn": "gelu_new",
+      "dropout_rate": 0.1,
+      "eos_token_id": 1,
+      "feed_forward_proj": "gated-gelu",
+      "initializer_factor": 1.0,
+      "is_encoder_decoder": true,
+      "is_gated_act": true,
+      "layer_norm_epsilon": 1e-06,
+      "model_type": "umt5",
+      "num_decoder_layers": 24,
+      "num_heads": 64,
+      "num_layers": 24,
+      "output_past": true,
+      "pad_token_id": 0,
+      "relative_attention_max_distance": 128,
+      "relative_attention_num_buckets": 32,
+      "scalable_attention": true,
+      "tie_word_embeddings": false,
+      "tokenizer_class": "T5Tokenizer",
+      "torch_dtype": "float32",
+      "transformers_version": "4.48.0.dev0",
+      "use_cache": true,
+      "vocab_size": 256384
+    },
+    "scheduler/scheduler_config.json": {
+      "_class_name": "UniPCMultistepScheduler",
+      "_diffusers_version": "0.33.0.dev0",
+      "beta_end": 0.02,
+      "beta_schedule": "linear",
+      "beta_start": 0.0001,
+      "disable_corrector": [],
+      "dynamic_thresholding_ratio": 0.995,
+      "final_sigmas_type": "zero",
+      "flow_shift": 3.0,
+      "lower_order_final": true,
+      "num_train_timesteps": 1000,
+      "predict_x0": true,
+      "prediction_type": "flow_prediction",
+      "rescale_betas_zero_snr": false,
+      "sample_max_value": 1.0,
+      "solver_order": 2,
+      "solver_p": null,
+      "solver_type": "bh2",
+      "steps_offset": 0,
+      "thresholding": false,
+      "timestep_spacing": "linspace",
+      "trained_betas": null,
+      "use_beta_sigmas": false,
+      "use_exponential_sigmas": false,
+      "use_flow_sigmas": true,
+      "use_karras_sigmas": false
+    }
+  },
+  "latent_shape": [
+    1,
+    16,
+    21,
+    60,
+    104
+  ],
+  "versions": {
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "diffusers": "0.40.0"
+  },
+  "cpu_schedule": {
+    "config": {
+      "num_train_timesteps": 1000,
+      "beta_start": 0.0001,
+      "beta_end": 0.02,
+      "beta_schedule": "linear",
+      "trained_betas": null,
+      "solver_order": 2,
+      "prediction_type": "flow_prediction",
+      "thresholding": false,
+      "dynamic_thresholding_ratio": 0.995,
+      "sample_max_value": 1.0,
+      "predict_x0": true,
+      "solver_type": "bh2",
+      "lower_order_final": true,
+      "disable_corrector": [],
+      "solver_p": null,
+      "use_karras_sigmas": false,
+      "use_exponential_sigmas": false,
+      "use_beta_sigmas": false,
+      "use_flow_sigmas": true,
+      "flow_shift": 8.0,
+      "timestep_spacing": "linspace",
+      "steps_offset": 0,
+      "final_sigmas_type": "zero",
+      "rescale_betas_zero_snr": false,
+      "use_dynamic_shifting": false,
+      "time_shift_type": "exponential",
+      "sigma_min": null,
+      "sigma_max": null,
+      "shift_terminal": null,
+      "_use_default_values": [
+        "sigma_min",
+        "shift_terminal",
+        "sigma_max",
+        "use_dynamic_shifting",
+        "time_shift_type"
+      ],
+      "_class_name": "UniPCMultistepScheduler",
+      "_diffusers_version": "0.33.0.dev0"
+    },
+    "timesteps": [
+      999,
+      997,
+      994,
+      992,
+      989,
+      986,
+      983,
+      980,
+      976,
+      973,
+      969,
+      965,
+      962,
+      957,
+      953,
+      949,
+      944,
+      939,
+      934,
+      928,
+      923,
+      917,
+      910,
+      903,
+      896,
+      889,
+      880,
+      872,
+      863,
+      853,
+      842,
+      830,
+      818,
+      805,
+      790,
+      774,
+      757,
+      738,
+      717,
+      693,
+      667,
+      638,
+      605,
+      567,
+      523,
+      473,
+      413,
+      341,
+      254,
+      146
+    ],
+    "sigmas": [
+      0.9999989867210388,
+      0.9974580407142639,
+      0.9948239922523499,
+      0.9920927882194519,
+      0.989258885383606,
+      0.9863163828849792,
+      0.9832589626312256,
+      0.980079710483551,
+      0.9767712354660034,
+      0.9733254909515381,
+      0.969733715057373,
+      0.965986430644989,
+      0.9620733857154846,
+      0.9579832553863525,
+      0.953703761100769,
+      0.9492214918136597,
+      0.9445215463638306,
+      0.9395878911018372,
+      0.9344024062156677,
+      0.9289454817771912,
+      0.9231951832771301,
+      0.9171271920204163,
+      0.9107144474983215,
+      0.9039266705513,
+      0.8967299461364746,
+      0.8890862464904785,
+      0.8809525966644287,
+      0.8722802996635437,
+      0.8630139827728271,
+      0.8530904650688171,
+      0.8424373269081116,
+      0.8309709429740906,
+      0.8185945153236389,
+      0.8051952719688416,
+      0.7906408905982971,
+      0.7747753262519836,
+      0.7574130296707153,
+      0.7383317351341248,
+      0.7172627449035645,
+      0.6938785314559937,
+      0.6677752137184143,
+      0.6384492516517639,
+      0.6052646636962891,
+      0.567406177520752,
+      0.5238115787506104,
+      0.4730703830718994,
+      0.4132682979106903,
+      0.3417403995990753,
+      0.25466302037239075,
+      0.14634741842746735,
+      0.0
+    ]
+  },
+  "selected_caches": [
+    {
+      "name": "0019",
+      "filename": "0019-0-00007-1.pt",
+      "cache_filename": "0019-0",
+      "step": 7,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0019",
+      "filename": "0019-0-00018-1.pt",
+      "cache_filename": "0019-0",
+      "step": 18,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0019",
+      "filename": "0019-0-00028-1.pt",
+      "cache_filename": "0019-0",
+      "step": 28,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0022",
+      "filename": "0022-0-00018-0.pt",
+      "cache_filename": "0022-0",
+      "step": 18,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0022",
+      "filename": "0022-0-00039-1.pt",
+      "cache_filename": "0022-0",
+      "step": 39,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0022",
+      "filename": "0022-0-00040-1.pt",
+      "cache_filename": "0022-0",
+      "step": 40,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0022",
+      "filename": "0022-0-00045-0.pt",
+      "cache_filename": "0022-0",
+      "step": 45,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00002-0.pt",
+      "cache_filename": "0023-0",
+      "step": 2,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00005-0.pt",
+      "cache_filename": "0023-0",
+      "step": 5,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00015-0.pt",
+      "cache_filename": "0023-0",
+      "step": 15,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00015-1.pt",
+      "cache_filename": "0023-0",
+      "step": 15,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00020-1.pt",
+      "cache_filename": "0023-0",
+      "step": 20,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00022-0.pt",
+      "cache_filename": "0023-0",
+      "step": 22,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00024-1.pt",
+      "cache_filename": "0023-0",
+      "step": 24,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00037-0.pt",
+      "cache_filename": "0023-0",
+      "step": 37,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00040-0.pt",
+      "cache_filename": "0023-0",
+      "step": 40,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0029",
+      "filename": "0029-0-00008-1.pt",
+      "cache_filename": "0029-0",
+      "step": 8,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0029",
+      "filename": "0029-0-00020-0.pt",
+      "cache_filename": "0029-0",
+      "step": 20,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0029",
+      "filename": "0029-0-00032-0.pt",
+      "cache_filename": "0029-0",
+      "step": 32,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0029",
+      "filename": "0029-0-00039-1.pt",
+      "cache_filename": "0029-0",
+      "step": 39,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0029",
+      "filename": "0029-0-00044-0.pt",
+      "cache_filename": "0029-0",
+      "step": 44,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0029",
+      "filename": "0029-0-00047-0.pt",
+      "cache_filename": "0029-0",
+      "step": 47,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0029",
+      "filename": "0029-0-00047-1.pt",
+      "cache_filename": "0029-0",
+      "step": 47,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0046",
+      "filename": "0046-0-00004-0.pt",
+      "cache_filename": "0046-0",
+      "step": 4,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0046",
+      "filename": "0046-0-00014-0.pt",
+      "cache_filename": "0046-0",
+      "step": 14,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0046",
+      "filename": "0046-0-00016-0.pt",
+      "cache_filename": "0046-0",
+      "step": 16,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0046",
+      "filename": "0046-0-00037-1.pt",
+      "cache_filename": "0046-0",
+      "step": 37,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0046",
+      "filename": "0046-0-00041-1.pt",
+      "cache_filename": "0046-0",
+      "step": 41,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0046",
+      "filename": "0046-0-00046-1.pt",
+      "cache_filename": "0046-0",
+      "step": 46,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0050",
+      "filename": "0050-0-00009-0.pt",
+      "cache_filename": "0050-0",
+      "step": 9,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0050",
+      "filename": "0050-0-00035-0.pt",
+      "cache_filename": "0050-0",
+      "step": 35,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0050",
+      "filename": "0050-0-00042-0.pt",
+      "cache_filename": "0050-0",
+      "step": 42,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0050",
+      "filename": "0050-0-00045-0.pt",
+      "cache_filename": "0050-0",
+      "step": 45,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0052",
+      "filename": "0052-0-00022-0.pt",
+      "cache_filename": "0052-0",
+      "step": 22,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0052",
+      "filename": "0052-0-00042-1.pt",
+      "cache_filename": "0052-0",
+      "step": 42,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0052",
+      "filename": "0052-0-00045-0.pt",
+      "cache_filename": "0052-0",
+      "step": 45,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0082",
+      "filename": "0082-0-00014-0.pt",
+      "cache_filename": "0082-0",
+      "step": 14,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0082",
+      "filename": "0082-0-00022-0.pt",
+      "cache_filename": "0082-0",
+      "step": 22,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0082",
+      "filename": "0082-0-00028-1.pt",
+      "cache_filename": "0082-0",
+      "step": 28,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0082",
+      "filename": "0082-0-00038-1.pt",
+      "cache_filename": "0082-0",
+      "step": 38,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0082",
+      "filename": "0082-0-00045-1.pt",
+      "cache_filename": "0082-0",
+      "step": 45,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0095",
+      "filename": "0095-0-00002-1.pt",
+      "cache_filename": "0095-0",
+      "step": 2,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0095",
+      "filename": "0095-0-00027-0.pt",
+      "cache_filename": "0095-0",
+      "step": 27,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0095",
+      "filename": "0095-0-00029-1.pt",
+      "cache_filename": "0095-0",
+      "step": 29,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0095",
+      "filename": "0095-0-00038-1.pt",
+      "cache_filename": "0095-0",
+      "step": 38,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0095",
+      "filename": "0095-0-00046-1.pt",
+      "cache_filename": "0095-0",
+      "step": 46,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0096",
+      "filename": "0096-0-00001-1.pt",
+      "cache_filename": "0096-0",
+      "step": 1,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0096",
+      "filename": "0096-0-00019-0.pt",
+      "cache_filename": "0096-0",
+      "step": 19,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0096",
+      "filename": "0096-0-00020-1.pt",
+      "cache_filename": "0096-0",
+      "step": 20,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0096",
+      "filename": "0096-0-00036-1.pt",
+      "cache_filename": "0096-0",
+      "step": 36,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0096",
+      "filename": "0096-0-00040-0.pt",
+      "cache_filename": "0096-0",
+      "step": 40,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0111",
+      "filename": "0111-0-00008-0.pt",
+      "cache_filename": "0111-0",
+      "step": 8,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0111",
+      "filename": "0111-0-00032-0.pt",
+      "cache_filename": "0111-0",
+      "step": 32,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0112",
+      "filename": "0112-0-00003-0.pt",
+      "cache_filename": "0112-0",
+      "step": 3,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0112",
+      "filename": "0112-0-00013-1.pt",
+      "cache_filename": "0112-0",
+      "step": 13,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0112",
+      "filename": "0112-0-00032-0.pt",
+      "cache_filename": "0112-0",
+      "step": 32,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0114",
+      "filename": "0114-0-00011-1.pt",
+      "cache_filename": "0114-0",
+      "step": 11,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0114",
+      "filename": "0114-0-00017-1.pt",
+      "cache_filename": "0114-0",
+      "step": 17,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0114",
+      "filename": "0114-0-00019-0.pt",
+      "cache_filename": "0114-0",
+      "step": 19,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0114",
+      "filename": "0114-0-00035-1.pt",
+      "cache_filename": "0114-0",
+      "step": 35,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0114",
+      "filename": "0114-0-00044-0.pt",
+      "cache_filename": "0114-0",
+      "step": 44,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0137",
+      "filename": "0137-0-00011-0.pt",
+      "cache_filename": "0137-0",
+      "step": 11,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0137",
+      "filename": "0137-0-00020-0.pt",
+      "cache_filename": "0137-0",
+      "step": 20,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0137",
+      "filename": "0137-0-00040-0.pt",
+      "cache_filename": "0137-0",
+      "step": 40,
+      "guidance": 0,
+      "branch": "cond"
+    }
+  ],
+  "worker_groups": [
+    {
+      "group": "0",
+      "gpu": 0,
+      "prompt_names": [
+        "0019",
+        "0046",
+        "0095",
+        "0114"
+      ]
+    },
+    {
+      "group": "1",
+      "gpu": 1,
+      "prompt_names": [
+        "0022",
+        "0050",
+        "0096",
+        "0137"
+      ]
+    },
+    {
+      "group": "2",
+      "gpu": 2,
+      "prompt_names": [
+        "0023",
+        "0052",
+        "0111"
+      ]
+    },
+    {
+      "group": "3",
+      "gpu": 3,
+      "prompt_names": [
+        "0029",
+        "0082",
+        "0112"
+      ]
+    }
+  ],
+  "cache_contract": "Actual forward inputs CPU-cloned before forward; actual output CPU-cloned afterward; batch-one CollectHook input_args/input_kwargs/outputs and filename/step/guidance.",
+  "selected_prompts": [
+    {
+      "name": "0019",
+      "prompt": "A person is shaking hands",
+      "prompt_sha256": "e5f36ec019f9abb329d4caff06a3f2ebf24777461a5263f9d06b120c9247a99c",
+      "seed": 420044228
+    },
+    {
+      "name": "0022",
+      "prompt": "A person is playing trumpet",
+      "prompt_sha256": "d52c5ce888d4d5f48d180563871b4d74cccae3e7116f3f4e14b05d417b727f68",
+      "seed": 420067292
+    },
+    {
+      "name": "0023",
+      "prompt": "A person is flying kite",
+      "prompt_sha256": "146c880003df2f88a421fe0b213642e1beb01a9e43f2339264b2c0a8e9927e2d",
+      "seed": 420068253
+    },
+    {
+      "name": "0029",
+      "prompt": "A person is throwing axe",
+      "prompt_sha256": "82b2c4322be2d8192e3a045386d2e93fc94bb227f43f0a5317b2b9da072a7c4b",
+      "seed": 420074019
+    },
+    {
+      "name": "0046",
+      "prompt": "A person is washing dishes",
+      "prompt_sha256": "dab78ca0d2ddf47f36eb409beed84c018962acad56eb14a96130204f7659d29d",
+      "seed": 420130718
+    },
+    {
+      "name": "0050",
+      "prompt": "A person is baby waking up",
+      "prompt_sha256": "2bf1e972d16549c3ce35260ce283788b179e74515166b2e01e9b06e7b2bae0e8",
+      "seed": 420154743
+    },
+    {
+      "name": "0052",
+      "prompt": "A person is brushing teeth",
+      "prompt_sha256": "9be3bd260bbabb356e9f1718be50c1ad978f10b0ef0adc20556ca42a6b7de658",
+      "seed": 420156665
+    },
+    {
+      "name": "0082",
+      "prompt": "a person drinking coffee in a cafe",
+      "prompt_sha256": "92e81c92fffaca524ef41da854f628f028cc6ba596237b1cc00fb571c473ef24",
+      "seed": 420246038
+    },
+    {
+      "name": "0095",
+      "prompt": "a motorcycle accelerating to gain speed",
+      "prompt_sha256": "c2ce0bb7ba2dda4d830bb7c9b1d8f2033ae14f5218bdd3ff6afc79b52c8c0ebc",
+      "seed": 420278712
+    },
+    {
+      "name": "0096",
+      "prompt": "an airplane soaring through a clear blue sky",
+      "prompt_sha256": "c44103a84b5b01a5af0f8bc1229a1d341e02b1a9a941e8ca20ad66a43cacdf25",
+      "seed": 420279673
+    },
+    {
+      "name": "0111",
+      "prompt": "a boat slowing down to stop",
+      "prompt_sha256": "02f8bdbdb8ba4080749449048d242534d200ad3963f330184c27b923966db112",
+      "seed": 420960061
+    },
+    {
+      "name": "0112",
+      "prompt": "a boat accelerating to gain speed",
+      "prompt_sha256": "36c6e0fe53b874340f5a2fca8299966891049c95755596a7e85130e75f2c98ca",
+      "seed": 420961022
+    },
+    {
+      "name": "0114",
+      "prompt": "a bird building a nest from twigs and leaves",
+      "prompt_sha256": "dbc8871c655c2114e02058ac9c51bcef8d32de360e598cb5bac1ed1da9d6a8b9",
+      "seed": 420962944
+    },
+    {
+      "name": "0137",
+      "prompt": "a zebra bending down to drink water from a river",
+      "prompt_sha256": "62c13243340936a5ad24aaafaf6dbeed6fc4c3b4f130d0982812ab09a92a9723",
+      "seed": 421025409
+    }
+  ],
+  "cuda_initialized": false,
+  "check_only": true,
+  "selected_count": 64,
+  "prompt_count": 14,
+  "seconds": 0.007298469543457031
+}

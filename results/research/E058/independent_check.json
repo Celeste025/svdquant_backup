@@ -1,0 +1,636 @@
+{
+  "experiment": "E058",
+  "status": "complete",
+  "independent_method": "NumPy FP64 direct four-corner endpoint/velocity differences, fixed-input ideal updates, and flattened dot products. No import of analyze_h3_update_rounding or root statistics. Original frozen scheduler plus separately reconstructed FP32 grid/direct BF16 expression used for CPU replay.",
+  "scope": "SVD two windows, video and audio raw; centered and plain not independently recomputed in this file.",
+  "summary_reference": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E058/summary.json",
+    "sha256": "5c49b0130c3a97da892e60de4b577c6689bf74955af5b2902856e8d4101ba537"
+  },
+  "scheduler_reference": {
+    "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/flow_match.py",
+    "sha256": "4639571d6986fef53094bc166f3b3a8fdf5790435d28528ead7f0a929d5d2a52"
+  },
+  "verified_artifacts": [
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261004/E057/evaluate_v2/e010_p030_s05_svd_QB.pt",
+      "sha256": "ac9d0580bdddb05f2edb10ad0897287c332bdc88b63fe0e2b19a0f85ae19ae58",
+      "bytes": 24435114
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/bf16/e010_p030_s05/BB.pt",
+      "sha256": "cd1614a4e1918379f36a7edcf5d3fdb8be8c9fcb1591fe927e84852c20fffa61",
+      "bytes": 24434093
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p030_s05/BB.pt",
+      "sha256": "754936e67530935f9fbca653fc8cbb0510570d19ea2e5196fc498e167d7995dd",
+      "bytes": 24434093
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p030_s05/QQ.pt",
+      "sha256": "5c44ba4ef48ea1ac2898a4cb65a7d6d97d8b13d94305f037b9c89e392c4c4107",
+      "bytes": 24434093
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p030_s05/svd_QQ.pt",
+      "sha256": "03a59b1509d0a26843b372853494f779fa02e3fbf640be6d6b4f81e91a7b886f",
+      "bytes": 21616101
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p030_s05/bf16_BB.pt",
+      "sha256": "413f36e3c39ecd90d8d9528f47ec4da29719ca3fffb3e8d14b47d019087e0fc2",
+      "bytes": 21616441
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p030_s05/svd_BB.pt",
+      "sha256": "8bd4a979aa5ac40fc735fbc99257ab933e76bac30403cc4e5252e4015344ff4d",
+      "bytes": 21616101
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261004/E057/evaluate_v2/e010_p036_s14_svd_QB.pt",
+      "sha256": "4f18868570f01eee45a2d3e7b889cbc51469a4e8009ed687c27f5fa5ad0d387d",
+      "bytes": 27727210
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/bf16/e010_p036_s14/BB.pt",
+      "sha256": "dc44755a2f5aaeee68ac4a7446c58eb13944b7deaffa59f3210d9fca18d091e5",
+      "bytes": 27726189
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p036_s14/BB.pt",
+      "sha256": "5cfc6596777d7c234cf8d33070c9d94d7d5147542ef9a4c8ecfd1efe3773c6f3",
+      "bytes": 27726189
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p036_s14/QQ.pt",
+      "sha256": "ab093846837ee14cff0a38bce97ab18daacdebc6e8d326f55eb76f8688bc86cd",
+      "bytes": 27726189
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p036_s14/svd_QQ.pt",
+      "sha256": "6016c4adf6c356696b46561506c288f4086c6b18b6e621a09893a68563d09070",
+      "bytes": 24813477
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p036_s14/bf16_BB.pt",
+      "sha256": "8e6b6ca817a1a900a76b7031316a54ef0244486b15478afedf35a46a9472f1a7",
+      "bytes": 24813817
+    },
+    {
+      "file": "/data1/models/svdquant-wjq/research/20261002/E015/prepare/e010_p036_s14/svd_BB.pt",
+      "sha256": "a44ef30d249368b14bdb09a93824f57449b637e78a8bee17d74115e8a8998a83",
+      "bytes": 24813477
+    }
+  ],
+  "output_artifact_count": 8,
+  "unique_prepared_artifact_count": 6,
+  "modality_corner_cpu_replay_count": 16,
+  "cases": [
+    {
+      "case_id": "e010_p030_s05",
+      "source_arm": "svd",
+      "time_axis_artifacts": {
+        "QB": {
+          "file": "/data1/models/svdquant-wjq/research/20261004/E057/evaluate_v2/e010_p030_s05_svd_QB.pt",
+          "sha256": "ac9d0580bdddb05f2edb10ad0897287c332bdc88b63fe0e2b19a0f85ae19ae58",
+          "bytes": 24435114
+        },
+        "BB": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/bf16/e010_p030_s05/BB.pt",
+          "sha256": "cd1614a4e1918379f36a7edcf5d3fdb8be8c9fcb1591fe927e84852c20fffa61",
+          "bytes": 24434093
+        },
+        "BQ": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p030_s05/BB.pt",
+          "sha256": "754936e67530935f9fbca653fc8cbb0510570d19ea2e5196fc498e167d7995dd",
+          "bytes": 24434093
+        },
+        "QQ": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p030_s05/QQ.pt",
+          "sha256": "5c44ba4ef48ea1ac2898a4cb65a7d6d97d8b13d94305f037b9c89e392c4c4107",
+          "bytes": 24434093
+        }
+      },
+      "prepared_states_match_paired_corners": true,
+      "actual_dit_inputs_match_paired_corners": true,
+      "modalities": {
+        "video": {
+          "step": 6,
+          "h_fp32": -0.008462011814117432,
+          "h_fp32_int32_bits": -1140153280,
+          "cpu_replay": {
+            "BB": {
+              "original_scheduler_byte_exact": true,
+              "direct_expression_byte_exact": true
+            },
+            "BQ": {
+              "original_scheduler_byte_exact": true,
+              "direct_expression_byte_exact": true
+            },
+            "QB": {
+              "original_scheduler_byte_exact": true,
+              "direct_expression_byte_exact": true
+            },
+            "QQ": {
+              "original_scheduler_byte_exact": true,
+              "direct_expression_byte_exact": true
+            }
+          },
+          "actual_raw": {
+            "first_propagated_energy": 31.499245606594968,
+            "second_only_energy": 25.43859647385557,
+            "shifted_second_energy": 27.160898613317386,
+            "interaction_energy": 15.798666346479195,
+            "total_energy": 82.12001627096356,
+            "cross_first_second": 31.70746518027454,
+            "cross_first_shifted_second": 23.459872051051207,
+            "cross_first_interaction": -8.247593129223333,
+            "cross_second_interaction": -14.076364207017377,
+            "first_second_cosine": 0.5600604164928971,
+            "first_shifted_second_cosine": 0.4010268952124679,
+            "cross_first_second_over_diagonal": 0.5568785893830216,
+            "cross_first_shifted_second_over_diagonal": 0.3999286459832413,
+            "total_over_diagonal": 1.4422748258518785,
+            "interaction_norm_over_additive_norm": 0.4221651107529254,
+            "vector_identity_max_abs": 0.0
+          },
+          "exact_arithmetic_fixed_inputs_raw": {
+            "first_propagated_energy": 28.102791974449996,
+            "second_only_energy": 18.175620078103915,
+            "shifted_second_energy": 19.768710946738764,
+            "interaction_energy": 6.872486752139308,
+            "total_energy": 73.96095009094851,
+            "cross_first_second": 27.55908076294937,
+            "cross_first_shifted_second": 26.089447169758706,
+            "cross_first_interaction": -1.469633593190748,
+            "cross_second_interaction": -5.279395883504311,
+            "first_second_cosine": 0.6096988550710104,
+            "first_shifted_second_cosine": 0.5534405432339863,
+            "cross_first_second_over_diagonal": 0.5955061883206622,
+            "cross_first_shifted_second_over_diagonal": 0.5449890974325575,
+            "total_over_diagonal": 1.5981738960048635,
+            "interaction_norm_over_additive_norm": 0.305083334761243,
+            "vector_identity_max_abs": 0.0
+          },
+          "interaction_attribution_raw": {
+            "actual_interaction_energy": 15.798666346479195,
+            "model_interaction_energy": 6.872486752139308,
+            "update_arithmetic_interaction_energy": 8.899027965617096,
+            "twice_model_dot_arithmetic": 0.02715162872331383,
+            "model_energy_over_actual": 0.4350042339916162,
+            "arithmetic_energy_over_actual": 0.5632771634297021,
+            "signed_cross_over_actual": 0.0017186025787147973,
+            "identity_max_abs": 0.0
+          },
+          "ideal_update_interaction_identity_max_abs": 0.0,
+          "absolute_differences_from_root": {
+            "actual": {
+              "first_propagated_energy": 0.0,
+              "second_only_energy": 0.0,
+              "shifted_second_energy": 0.0,
+              "interaction_energy": 0.0,
+              "total_energy": 0.0,
+              "cross_first_second": 0.0,
+              "cross_first_shifted_second": 0.0,
+              "cross_first_interaction": 0.0,
+              "cross_second_interaction": 0.0,
+              "first_second_cosine": 0.0,
+              "first_shifted_second_cosine": 0.0,
+              "cross_first_second_over_diagonal": 0.0,
+              "cross_first_shifted_second_over_diagonal": 0.0,
+              "total_over_diagonal": 0.0,
+              "interaction_norm_over_additive_norm": 0.0,
+              "vector_identity_max_abs": 0.0
+            },
+            "exact_arithmetic_fixed_inputs": {
+              "first_propagated_energy": 7.602807272633072e-13,
+              "second_only_energy": 7.531752999057062e-13,
+              "shifted_second_energy": 8.633094239485217e-13,
+              "interaction_energy": 2.611244553918368e-13,
+              "total_energy": 1.1368683772161603e-12,
+              "cross_first_second": 8.526512829121202e-14,
+              "cross_first_shifted_second": 1.0658141036401503e-14,
+              "cross_first_interaction": 4.6629367034256575e-15,
+              "cross_second_interaction": 3.552713678800501e-15,
+              "first_second_cosine": 6.217248937900877e-15,
+              "first_shifted_second_cosine": 4.773959005888173e-15,
+              "cross_first_second_over_diagonal": 1.7763568394002505e-15,
+              "cross_first_shifted_second_over_diagonal": 1.4432899320127035e-15,
+              "total_over_diagonal": 2.4868995751603507e-14,
+              "interaction_norm_over_additive_norm": 3.941291737419306e-15,
+              "vector_identity_max_abs": 0.0
+            },
+            "interaction_attribution": {
+              "actual_interaction_energy": 0.0,
+              "model_interaction_energy": 2.611244553918368e-13,
+              "update_arithmetic_interaction_energy": 2.504663143554353e-13,
+              "twice_model_dot_arithmetic": 1.2080614286702485e-14,
+              "model_energy_over_actual": 1.6542323066914832e-14,
+              "arithmetic_energy_over_actual": 1.587618925213974e-14,
+              "signed_cross_over_actual": 7.645793720367777e-16,
+              "identity_max_abs": 0.0
+            }
+          }
+        },
+        "audio": {
+          "step": 6,
+          "h_fp32": -0.027173876762390137,
+          "h_fp32_int32_bits": -1126261824,
+          "cpu_replay": {
+            "BB": {
+              "original_scheduler_byte_exact": true,
+              "direct_expression_byte_exact": true
+            },
+            "BQ": {
+              "original_scheduler_byte_exact": true,
+              "direct_expression_byte_exact": true
+            },
+            "QB": {
+              "original_scheduler_byte_exact": true,
+              "direct_expression_byte_exact": true
+            },
+            "QQ": {
+              "original_scheduler_byte_exact": true,
+              "direct_expression_byte_exact": true
+            }
+          },
+          "actual_raw": {
+            "first_propagated_energy": 1.3231091381167062,
+            "second_only_energy": 1.4681608051214425,
+            "shifted_second_energy": 1.494644380058162,
+            "interaction_energy": 0.6997330972844793,
+            "total_energy": 4.870075584098231,
+            "cross_first_second": 2.3071719942381606,
+            "cross_first_shifted_second": 2.052322065923363,
+            "cross_first_interaction": -0.2548499283147976,
+            "cross_second_interaction": -0.6732495223477599,
+            "first_second_cosine": 0.8276854645515914,
+            "first_shifted_second_cosine": 0.7297073953214805,
+            "cross_first_second_over_diagonal": 0.8265671329379247,
+            "cross_first_shifted_second_over_diagonal": 0.7283540070789105,
+            "total_over_diagonal": 1.7447526334369734,
+            "interaction_norm_over_additive_norm": 0.370465243478705,
+            "vector_identity_max_abs": 0.0
+          },
+          "exact_arithmetic_fixed_inputs_raw": {
+            "first_propagated_energy": 1.2719457186385534,
+            "second_only_energy": 1.4143014649488423,
+            "shifted_second_energy": 1.4444304497118254,
+            "interaction_energy": 0.5890993775465578,
+            "total_energy": 4.822276502835431,
+            "cross_first_second": 2.2545010451639618,
+            "cross_first_shifted_second": 2.1059003344850478,
+            "cross_first_interaction": -0.14860071067891317,
+            "cross_second_interaction": -0.5589703927835754,
+            "first_second_cosine": 0.8404563460882857,
+            "first_shifted_second_cosine": 0.7768286091245222,
+            "cross_first_second_over_diagonal": 0.8392753499896272,
+            "cross_first_shifted_second_over_diagonal": 0.7752609373553496,
+            "total_over_diagonal": 1.7951722880525973,
+            "interaction_norm_over_additive_norm": 0.3453010668162343,
+            "vector_identity_max_abs": 0.0
+          },
+          "interaction_attribution_raw": {
+            "actual_interaction_energy": 0.6997330972844793,
+            "model_interaction_energy": 0.5890993775465578,
+            "update_arithmetic_interaction_energy": 0.10413388681549784,
+            "twice_model_dot_arithmetic": 0.006499832922423067,
+            "model_energy_over_actual": 0.8418915438368312,
+            "arithmetic_energy_over_actual": 0.14881943875403367,
+            "signed_cross_over_actual": 0.009289017409134407,
+            "identity_max_abs": 0.0
+          },
+          "ideal_update_interaction_identity_max_abs": 0.0,
+          "absolute_differences_from_root": {
+            "actual": {
+              "first_propagated_energy": 0.0,
+              "second_only_energy": 0.0,
+              "shifted_second_energy": 0.0,
+              "interaction_energy": 0.0,
+              "total_energy": 0.0,
+              "cross_first_second": 0.0,
+              "cross_first_shifted_second": 0.0,
+              "cross_first_interaction": 0.0,
+              "cross_second_interaction": 0.0,
+              "first_second_cosine": 0.0,
+              "first_shifted_second_cosine": 0.0,
+              "cross_first_second_over_diagonal": 0.0,
+              "cross_first_shifted_second_over_diagonal": 0.0,
+              "total_over_diagonal": 0.0,
+              "interaction_norm_over_additive_norm": 0.0,
+              "vector_identity_max_abs": 0.0
+            },
+            "exact_arithmetic_fixed_inputs": {
+              "first_propagated_energy": 1.1102230246251565e-15,
+              "second_only_energy": 8.881784197001252e-16,
+              "shifted_second_energy": 2.220446049250313e-16,
+              "interaction_energy": 4.440892098500626e-16,
+              "total_energy": 1.7763568394002505e-15,
+              "cross_first_second": 4.440892098500626e-16,
+              "cross_first_shifted_second": 4.440892098500626e-16,
+              "cross_first_interaction": 2.7755575615628914e-17,
+              "cross_second_interaction": 1.1102230246251565e-16,
+              "first_second_cosine": 7.771561172376096e-16,
+              "first_shifted_second_cosine": 2.220446049250313e-16,
+              "cross_first_second_over_diagonal": 7.771561172376096e-16,
+              "cross_first_shifted_second_over_diagonal": 2.220446049250313e-16,
+              "total_over_diagonal": 1.7763568394002505e-15,
+              "interaction_norm_over_additive_norm": 1.6653345369377348e-16,
+              "vector_identity_max_abs": 0.0
+            },
+            "interaction_attribution": {
+              "actual_interaction_energy": 0.0,
+              "model_interaction_energy": 4.440892098500626e-16,
+              "update_arithmetic_interaction_energy": 9.71445146547012e-17,
+              "twice_model_dot_arithmetic": 1.3877787807814457e-17,
+              "model_energy_over_actual": 5.551115123125783e-16,
+              "arithmetic_energy_over_actual": 1.3877787807814457e-16,
+              "signed_cross_over_actual": 2.0816681711721685e-17,
+              "identity_max_abs": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "e010_p036_s14",
+      "source_arm": "svd",
+      "time_axis_artifacts": {
+        "QB": {
+          "file": "/data1/models/svdquant-wjq/research/20261004/E057/evaluate_v2/e010_p036_s14_svd_QB.pt",
+          "sha256": "4f18868570f01eee45a2d3e7b889cbc51469a4e8009ed687c27f5fa5ad0d387d",
+          "bytes": 27727210
+        },
+        "BB": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/bf16/e010_p036_s14/BB.pt",
+          "sha256": "dc44755a2f5aaeee68ac4a7446c58eb13944b7deaffa59f3210d9fca18d091e5",
+          "bytes": 27726189
+        },
+        "BQ": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p036_s14/BB.pt",
+          "sha256": "5cfc6596777d7c234cf8d33070c9d94d7d5147542ef9a4c8ecfd1efe3773c6f3",
+          "bytes": 27726189
+        },
+        "QQ": {
+          "file": "/data1/models/svdquant-wjq/research/20261002/E015/evaluate/svd/e010_p036_s14/QQ.pt",
+          "sha256": "ab093846837ee14cff0a38bce97ab18daacdebc6e8d326f55eb76f8688bc86cd",
+          "bytes": 27726189
+        }
+      },
+      "prepared_states_match_paired_corners": true,
+      "actual_dit_inputs_match_paired_corners": true,
+      "modalities": {
+        "video": {
+          "step": 15,
+          "h_fp32": -0.050000011920928955,
+          "h_fp32_int32_bits": -1119040304,
+          "cpu_replay": {
+            "BB": {
+              "original_scheduler_byte_exact": true,
+              "direct_expression_byte_exact": true
+            },
+            "BQ": {
+              "original_scheduler_byte_exact": true,
+              "direct_expression_byte_exact": true
+            },
+            "QB": {
+              "original_scheduler_byte_exact": true,
+              "direct_expression_byte_exact": true
+            },
+            "QQ": {
+              "original_scheduler_byte_exact": true,
+              "direct_expression_byte_exact": true
+            }
+          },
+          "actual_raw": {
+            "first_propagated_energy": 118.7314554189652,
+            "second_only_energy": 116.36454178418899,
+            "shifted_second_energy": 117.12686605584419,
+            "interaction_energy": 74.49804342382483,
+            "total_energy": 350.16008088482226,
+            "cross_first_second": 147.93622322312876,
+            "cross_first_shifted_second": 114.30175941001289,
+            "cross_first_interaction": -33.63446381311587,
+            "cross_second_interaction": -73.73571915216962,
+            "first_second_cosine": 0.6292906859103923,
+            "first_shifted_second_cosine": 0.4846316378623923,
+            "cross_first_second_over_diagonal": 0.6292587920809737,
+            "cross_first_shifted_second_over_diagonal": 0.48462042252861864,
+            "total_over_diagonal": 1.4894344652845681,
+            "interaction_norm_over_additive_norm": 0.4410164401827414,
+            "vector_identity_max_abs": 0.0
+          },
+          "exact_arithmetic_fixed_inputs_raw": {
+            "first_propagated_energy": 113.63740427700074,
+            "second_only_energy": 109.06539094475153,
+            "shifted_second_energy": 109.9217661291074,
+            "interaction_energy": 62.309583359021914,
+            "total_energy": 342.9194954843483,
+            "cross_first_second": 142.7558861172934,
+            "cross_first_shifted_second": 119.36032507825023,
+            "cross_first_interaction": -23.395561039042978,
+            "cross_second_interaction": -61.45320817466646,
+            "first_second_cosine": 0.6411503678695429,
+            "first_shifted_second_cosine": 0.5339830799456523,
+            "cross_first_second_over_diagonal": 0.6410152417491968,
+            "cross_first_shifted_second_over_diagonal": 0.533909321909834,
+            "total_over_diagonal": 1.539807774495567,
+            "interaction_norm_over_additive_norm": 0.4129127394587698,
+            "vector_identity_max_abs": 0.0
+          },
+          "interaction_attribution_raw": {
+            "actual_interaction_energy": 74.49804342382483,
+            "model_interaction_energy": 62.309583359021914,
+            "update_arithmetic_interaction_energy": 12.206772185045633,
+            "twice_model_dot_arithmetic": -0.018312120243206317,
+            "model_energy_over_actual": 0.8363922124039974,
+            "arithmetic_energy_over_actual": 0.16385359432328192,
+            "signed_cross_over_actual": -0.000245806727285807,
+            "identity_max_abs": 0.0
+          },
+          "ideal_update_interaction_identity_max_abs": 0.0,
+          "absolute_differences_from_root": {
+            "actual": {
+              "first_propagated_energy": 0.0,
+              "second_only_energy": 0.0,
+              "shifted_second_energy": 0.0,
+              "interaction_energy": 0.0,
+              "total_energy": 0.0,
+              "cross_first_second": 0.0,
+              "cross_first_shifted_second": 0.0,
+              "cross_first_interaction": 0.0,
+              "cross_second_interaction": 0.0,
+              "first_second_cosine": 0.0,
+              "first_shifted_second_cosine": 0.0,
+              "cross_first_second_over_diagonal": 0.0,
+              "cross_first_shifted_second_over_diagonal": 0.0,
+              "total_over_diagonal": 0.0,
+              "interaction_norm_over_additive_norm": 0.0,
+              "vector_identity_max_abs": 0.0
+            },
+            "exact_arithmetic_fixed_inputs": {
+              "first_propagated_energy": 9.50706180447014e-12,
+              "second_only_energy": 1.6768808563938364e-12,
+              "shifted_second_energy": 1.8047785488306545e-12,
+              "interaction_energy": 9.094947017729282e-13,
+              "total_energy": 2.5011104298755527e-12,
+              "cross_first_second": 5.684341886080802e-14,
+              "cross_first_shifted_second": 1.8474111129762605e-13,
+              "cross_first_interaction": 5.684341886080802e-14,
+              "cross_second_interaction": 3.694822225952521e-13,
+              "first_second_cosine": 2.2093438190040615e-14,
+              "first_shifted_second_cosine": 1.8762769116165146e-14,
+              "cross_first_second_over_diagonal": 2.275957200481571e-14,
+              "cross_first_shifted_second_over_diagonal": 1.9206858326015208e-14,
+              "total_over_diagonal": 6.52811138479592e-14,
+              "interaction_norm_over_additive_norm": 1.609823385706477e-15,
+              "vector_identity_max_abs": 0.0
+            },
+            "interaction_attribution": {
+              "actual_interaction_energy": 0.0,
+              "model_interaction_energy": 9.094947017729282e-13,
+              "update_arithmetic_interaction_energy": 3.872457909892546e-13,
+              "twice_model_dot_arithmetic": 4.038436252074007e-14,
+              "model_energy_over_actual": 1.2212453270876722e-14,
+              "arithmetic_energy_over_actual": 5.190292640122607e-15,
+              "signed_cross_over_actual": 5.421010862427522e-16,
+              "identity_max_abs": 0.0
+            }
+          }
+        },
+        "audio": {
+          "step": 15,
+          "h_fp32": -0.07142853736877441,
+          "h_fp32_int32_bits": -1114486496,
+          "cpu_replay": {
+            "BB": {
+              "original_scheduler_byte_exact": true,
+              "direct_expression_byte_exact": true
+            },
+            "BQ": {
+              "original_scheduler_byte_exact": true,
+              "direct_expression_byte_exact": true
+            },
+            "QB": {
+              "original_scheduler_byte_exact": true,
+              "direct_expression_byte_exact": true
+            },
+            "QQ": {
+              "original_scheduler_byte_exact": true,
+              "direct_expression_byte_exact": true
+            }
+          },
+          "actual_raw": {
+            "first_propagated_energy": 0.7734641942661256,
+            "second_only_energy": 0.7778361503733322,
+            "shifted_second_energy": 0.7410054365172982,
+            "interaction_energy": 0.3383795238332823,
+            "total_energy": 2.524701955495402,
+            "cross_first_second": 1.0501233201939613,
+            "cross_first_shifted_second": 1.0102323247119784,
+            "cross_first_interaction": -0.03989099548198283,
+            "cross_second_interaction": -0.3752102376893163,
+            "first_second_cosine": 0.6769337054391766,
+            "first_shifted_second_cosine": 0.6672067954858107,
+            "cross_first_second_over_diagonal": 0.6769310171448608,
+            "cross_first_shifted_second_over_diagonal": 0.6670535375406589,
+            "total_over_diagonal": 1.6274746306990446,
+            "interaction_norm_over_additive_norm": 0.3606587674450338,
+            "vector_identity_max_abs": 0.0
+          },
+          "exact_arithmetic_fixed_inputs_raw": {
+            "first_propagated_energy": 0.7592608176088171,
+            "second_only_energy": 0.7589575384044273,
+            "shifted_second_energy": 0.7179495873185338,
+            "interaction_energy": 0.2964255642819678,
+            "total_energy": 2.5026349104406473,
+            "cross_first_second": 1.0331174131398322,
+            "cross_first_shifted_second": 1.025424505513297,
+            "cross_first_interaction": -0.0076929076265353415,
+            "cross_second_interaction": -0.3374335153678615,
+            "first_second_cosine": 0.6804801362470129,
+            "first_shifted_second_cosine": 0.6944344013406237,
+            "cross_first_second_over_diagonal": 0.6804801226700619,
+            "cross_first_shifted_second_over_diagonal": 0.6941627963713992,
+            "total_over_diagonal": 1.6484024847469407,
+            "interaction_norm_over_additive_norm": 0.3408584138621041,
+            "vector_identity_max_abs": 0.0
+          },
+          "interaction_attribution_raw": {
+            "actual_interaction_energy": 0.3383795238332823,
+            "model_interaction_energy": 0.2964255642819678,
+            "update_arithmetic_interaction_energy": 0.03727875696662053,
+            "twice_model_dot_arithmetic": 0.004675202584693637,
+            "model_energy_over_actual": 0.8760150759831882,
+            "arithmetic_energy_over_actual": 0.11016847752580787,
+            "signed_cross_over_actual": 0.013816446491003054,
+            "identity_max_abs": 0.0
+          },
+          "ideal_update_interaction_identity_max_abs": 0.0,
+          "absolute_differences_from_root": {
+            "actual": {
+              "first_propagated_energy": 0.0,
+              "second_only_energy": 0.0,
+              "shifted_second_energy": 0.0,
+              "interaction_energy": 0.0,
+              "total_energy": 0.0,
+              "cross_first_second": 0.0,
+              "cross_first_shifted_second": 0.0,
+              "cross_first_interaction": 0.0,
+              "cross_second_interaction": 0.0,
+              "first_second_cosine": 0.0,
+              "first_shifted_second_cosine": 0.0,
+              "cross_first_second_over_diagonal": 0.0,
+              "cross_first_shifted_second_over_diagonal": 0.0,
+              "total_over_diagonal": 0.0,
+              "interaction_norm_over_additive_norm": 0.0,
+              "vector_identity_max_abs": 0.0
+            },
+            "exact_arithmetic_fixed_inputs": {
+              "first_propagated_energy": 7.771561172376096e-16,
+              "second_only_energy": 7.771561172376096e-16,
+              "shifted_second_energy": 8.881784197001252e-16,
+              "interaction_energy": 2.7755575615628914e-16,
+              "total_energy": 2.220446049250313e-15,
+              "cross_first_second": 0.0,
+              "cross_first_shifted_second": 0.0,
+              "cross_first_interaction": 2.6020852139652106e-18,
+              "cross_second_interaction": 5.551115123125783e-17,
+              "first_second_cosine": 7.771561172376096e-16,
+              "first_shifted_second_cosine": 8.881784197001252e-16,
+              "cross_first_second_over_diagonal": 7.771561172376096e-16,
+              "cross_first_shifted_second_over_diagonal": 6.661338147750939e-16,
+              "total_over_diagonal": 4.440892098500626e-16,
+              "interaction_norm_over_additive_norm": 0.0,
+              "vector_identity_max_abs": 0.0
+            },
+            "interaction_attribution": {
+              "actual_interaction_energy": 0.0,
+              "model_interaction_energy": 2.7755575615628914e-16,
+              "update_arithmetic_interaction_energy": 1.3877787807814457e-17,
+              "twice_model_dot_arithmetic": 2.6020852139652106e-18,
+              "model_energy_over_actual": 7.771561172376096e-16,
+              "arithmetic_energy_over_actual": 4.163336342344337e-17,
+              "signed_cross_over_actual": 8.673617379884035e-18,
+              "identity_max_abs": 0.0
+            }
+          }
+        }
+      }
+    }
+  ],
+  "maximum_compared_absolute_difference": 9.50706180447014e-12,
+  "maximum_compared_relative_difference_floor1": 8.366137773876524e-14,
+  "video_second_update_rounding_alone_restores_0p2_gate": false,
+  "conclusion": "Second-update arithmetic contributes substantially and unevenly, but removing it with the already saved rounded inputs and predictions fixed does not put either SVD video window below the 0.2 interaction norm threshold.",
+  "critical_thought": "0.2 is a predeclared investment gate, not an impossibility theorem for effective methods. These results stop attributing the full interaction to second-update rounding and stop advancing a weak-interaction approximation under that gate. They do not refute constructive two-step error accumulation, prove model nonlinearity dominates all error, or rule out interventions that explicitly tolerate or control state-dependent interaction. Any such method needs a new concrete predictive hypothesis and direct benefit evidence rather than a relabeled gate.",
+  "limits": [
+    "Not an FP32 rollout; first-step rounded inputs and saved finite-precision model predictions are fixed.",
+    "Model/arithmetic energy ratios and signed cross are not mutually exclusive variance shares.",
+    "No new model call, quality evaluation, or claim that changing update precision produces the fixed-input counterfactual trajectory."
+  ],
+  "cuda_initialized": false,
+  "new_model_forwards": 0,
+  "seconds": 0.7859044941142201
+}

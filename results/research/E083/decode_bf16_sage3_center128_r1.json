@@ -1,0 +1,526 @@
+{
+  "experiment": "E083",
+  "phase": "decode",
+  "arm": "bf16_sage3_center128",
+  "replica": 1,
+  "status": "complete",
+  "cases": [
+    {
+      "case_id": "vbench0161_r1",
+      "prompt_id": 161,
+      "source": "VBench_full_info.json",
+      "source_index_zero_based": 161,
+      "replica": 1,
+      "seed": 38001611,
+      "prompt": "A person is clapping",
+      "prompt_sha256": "268d62ce600baae94ac9ce2a33755b342aa42cc2b1386c4ee19501048f0015c8",
+      "source_dimensions": [
+        "human_action"
+      ],
+      "reason": "repeated human hand contact",
+      "trajectory_id": "vbench0161_r1_bf16_sage3_center128",
+      "status": "complete",
+      "variant": "bf16_sage3_center128",
+      "settings": {
+        "height": 576,
+        "width": 1024,
+        "num_frames": 124,
+        "num_inference_steps": 20,
+        "cfg_scale": 1.0,
+        "flow_shift": 12.0,
+        "audio_flow_shift": 3.0,
+        "rand_device": "cpu",
+        "noise_dtype": "bfloat16",
+        "tiled": true,
+        "tile_size": 256,
+        "tile_overlap": 64,
+        "fps": 24,
+        "audio_sample_rate": 32000
+      },
+      "video": {
+        "file": "/data1/models/svdquant-wjq/research/20261005/E083/decode_bf16_sage3_center128_r1/vbench0161_r1.mp4",
+        "sha256": "eef6eb3fd24e4ba46e025551ed912c4b22488b0178724bbb0d9bb2d88608a2ce",
+        "bytes": 4660199
+      },
+      "video_path": "/data1/models/svdquant-wjq/research/20261005/E083/decode_bf16_sage3_center128_r1/vbench0161_r1.mp4",
+      "video_sha256": "eef6eb3fd24e4ba46e025551ed912c4b22488b0178724bbb0d9bb2d88608a2ce",
+      "media": {
+        "frames": 124,
+        "width": 1024,
+        "height": 576,
+        "fps": 24.0,
+        "audio_streams": 1,
+        "audio_sample_rate": 32000,
+        "audio_channels": 2
+      },
+      "final_latents": {
+        "file": "/data1/models/svdquant-wjq/research/20261005/E083/denoise_bf16_sage3_center128_r1/vbench0161_r1/final_latents.pt",
+        "sha256": "45ab7560954d5bc82db0f5bba3925723eb28cffc542cc85bebceede87e2d7192",
+        "bytes": 4120341
+      },
+      "final_tensors": {
+        "audio_latents": {
+          "shape": [
+            2,
+            32,
+            207
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "cbfc6602cf0fafaed77c62a5fd734667147aa98c8aef753ad43f8ef3fca4ccb3"
+        },
+        "video_latents": {
+          "shape": [
+            1,
+            24,
+            37,
+            36,
+            64
+          ],
+          "dtype": "torch.bfloat16",
+          "sha256": "b228c78125695994eab1fc8f2427486b27e11d191ed211333ca02dcd0aebcb6f"
+        }
+      },
+      "audio_pcm_file": {
+        "file": "/data1/models/svdquant-wjq/research/20261005/E083/decode_bf16_sage3_center128_r1/vbench0161_r1.audio.pt",
+        "sha256": "1d021cf46f4b3c8dcda7708ddad15fcfe1ab1111822e99374e4f0f9764e283f8",
+        "bytes": 1326525
+      },
+      "audio_pcm": {
+        "shape": [
+          2,
+          165600
+        ],
+        "dtype": "torch.float32",
+        "sha256": "4ffc670dcd1f97bde53a752ed407ecae80649447cee0dfabbcc05d93ef396472"
+      },
+      "audio_samples_before_aac": 165600,
+      "seconds": 11.237526366021484,
+      "peak_allocated_bytes": 7939765248,
+      "peak_reserved_bytes": 8774483968
+    }
+  ],
+  "actual_video_vae_calls": 1,
+  "actual_audio_vae_calls": 1,
+  "attempted_dit_calls": 0,
+  "complete_dit_calls": 0,
+  "deadline_unix": 1791134097.0277624,
+  "scope": "Original BF16 backbone, official Sage3 versus private center128; two clapping seeds, all20steps/all50blocks.",
+  "manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E083_bf16_attention_video_manifest.json",
+    "sha256": "43498ff6b1f86909902a41d82931644313f399cc8dde5d20696e76d32fa491dd",
+    "bytes": 7280
+  },
+  "settings": {
+    "height": 576,
+    "width": 1024,
+    "num_frames": 124,
+    "num_inference_steps": 20,
+    "cfg_scale": 1.0,
+    "flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "noise_dtype": "bfloat16",
+    "tiled": true,
+    "tile_size": 256,
+    "tile_overlap": 64,
+    "fps": 24,
+    "audio_sample_rate": 32000
+  },
+  "sources": {
+    "run_h3_bf16_attention_video.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_bf16_attention_video.py",
+      "sha256": "2f1ecc80d5de8f81c2137a7171c55c4a1dff4e6bf3f54b65bf934b792a36dbbe",
+      "bytes": 27007
+    },
+    "h3_coarse16_attention.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_coarse16_attention.py",
+      "sha256": "6495ce0fe2eb8cd4b52fe076348cd8e5d76523316ac5ff1a1d7408c049593039",
+      "bytes": 7221
+    },
+    "h3_native_fp4_attention.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_fp4_attention.py",
+      "sha256": "76de03ce6f458342e7ed4b67e1a4f700c6784de4978963408e2bdc7d725fb47b",
+      "bytes": 20815
+    },
+    "codebook_attention_sm120.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/codebook_attention_sm120.py",
+      "sha256": "dc2b139eca6e971d21b1ff8a47895124fd0e77088e311494fc9c75a5df524372",
+      "bytes": 17979
+    }
+  },
+  "allocated_dit_calls": 20,
+  "environment": {
+    "python": "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "visible_devices": "1",
+    "attention_implementation": "torch",
+    "sdpa_enabled": {
+      "flash": true,
+      "math": true,
+      "mem_efficient": true,
+      "cudnn": true
+    }
+  },
+  "plan": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E083_bf16_attention_comparison_plan.md",
+    "sha256": "5298d3aba4a4c5767b695c6071ef0896b7fdf918f112acc56d835b1f0e981d6a",
+    "bytes": 3202
+  },
+  "center_validation": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E082/native_validation_v3.json",
+    "sha256": "aa32eb3dce06e203f988b4e4a1558d00bdcfea3dcdfec780a61f7caa3c9f4c50",
+    "bytes": 14946
+  },
+  "private_contract": {
+    "private": {
+      "name": "e082_sage_center128_ff30fe7595d6c7ef",
+      "source_identity": "ff30fe7595d6c7efb64f9811ae62d27b9f48f33daa55f13035487cfb478f7aa5",
+      "loader": {
+        "file": "/home/wjq/workspace/svdquant-exp/scripts/research/e082_sage_center.py",
+        "sha256": "48315fb42479c0cb49e7b28d262f5dffdf3f01560fbdcb16aa54fa29d3e138b0",
+        "bytes": 6348
+      },
+      "sources": {
+        "api.cu": {
+          "file": "/home/wjq/workspace/svdquant-exp/scripts/research/e082_sage_center_src/api.cu",
+          "sha256": "e2710005ff0887f837760527cedc7d9caea799038fbcba298a3537f99284e728",
+          "bytes": 15173
+        },
+        "block_info.h": {
+          "file": "/home/wjq/workspace/svdquant-exp/scripts/research/e082_sage_center_src/block_info.h",
+          "sha256": "70d161538a4e6e45f883f9368594852b8f92260d8f1ba951b00a8c5490203c88",
+          "bytes": 2891
+        },
+        "blockscaled_layout.h": {
+          "file": "/home/wjq/workspace/svdquant-exp/scripts/research/e082_sage_center_src/blockscaled_layout.h",
+          "sha256": "70ff23d322dc5bd01395b2efb554174a9c45f4d57a8fefd2fecb76efbcc711a2",
+          "bytes": 7384
+        },
+        "cute_extension.h": {
+          "file": "/home/wjq/workspace/svdquant-exp/scripts/research/e082_sage_center_src/cute_extension.h",
+          "sha256": "12313448e4e9c6ed9cdff52a05f2605acf35c781807e55d7ea47a09f6fed9a19",
+          "bytes": 12714
+        },
+        "epilogue_tma_ws.h": {
+          "file": "/home/wjq/workspace/svdquant-exp/scripts/research/e082_sage_center_src/epilogue_tma_ws.h",
+          "sha256": "a2f21ad99faa8a2c2f75080e2373be50adabe3c595e6475980074c14294f54ca",
+          "bytes": 10548
+        },
+        "kernel_traits.h": {
+          "file": "/home/wjq/workspace/svdquant-exp/scripts/research/e082_sage_center_src/kernel_traits.h",
+          "sha256": "777c8d4d1a30acac734d38a7cc520a6ccc436b13fdf6be2ffd844b0ba896c79a",
+          "bytes": 9636
+        },
+        "kernel_ws.h": {
+          "file": "/home/wjq/workspace/svdquant-exp/scripts/research/e082_sage_center_src/kernel_ws.h",
+          "sha256": "3f353bc87799c11e340ebe36b721e7fb638c5fccbab2f848e81baabc83a6a72c",
+          "bytes": 9838
+        },
+        "launch.h": {
+          "file": "/home/wjq/workspace/svdquant-exp/scripts/research/e082_sage_center_src/launch.h",
+          "sha256": "20fe5eb6ae50dba26c85c39a8a9a5d7559311b31fba28d3d7147a68e91767d85",
+          "bytes": 5397
+        },
+        "mainloop_tma_ws.h": {
+          "file": "/home/wjq/workspace/svdquant-exp/scripts/research/e082_sage_center_src/mainloop_tma_ws.h",
+          "sha256": "93c83234920c9dd014681b17fc154160067cf6db4a18925117504fb95fa03c98",
+          "bytes": 48225
+        },
+        "named_barrier.h": {
+          "file": "/home/wjq/workspace/svdquant-exp/scripts/research/e082_sage_center_src/named_barrier.h",
+          "sha256": "b01a5f7a333200393220bee92801dd5fcbe98f12e11d82b108e03b93cd76a343",
+          "bytes": 3766
+        },
+        "params.h": {
+          "file": "/home/wjq/workspace/svdquant-exp/scripts/research/e082_sage_center_src/params.h",
+          "sha256": "a36c093c57625be1b713604d74c92eb3ce9430925f0af74220abcadd00390797",
+          "bytes": 5420
+        },
+        "softmax_fused.h": {
+          "file": "/home/wjq/workspace/svdquant-exp/scripts/research/e082_sage_center_src/softmax_fused.h",
+          "sha256": "f21cbe40e2f1a7c587045835be3919a9571e6fa6a7bb08befa5023bd2dbb86f4",
+          "bytes": 9118
+        },
+        "static_switch.h": {
+          "file": "/home/wjq/workspace/svdquant-exp/scripts/research/e082_sage_center_src/static_switch.h",
+          "sha256": "2eef1ac08487151d17792683f99b8a244b8ca2e68f779bc6e8b9372ab11c759e",
+          "bytes": 5220
+        },
+        "tile_scheduler.h": {
+          "file": "/home/wjq/workspace/svdquant-exp/scripts/research/e082_sage_center_src/tile_scheduler.h",
+          "sha256": "aa9305cda01704649eac36debb1791798b60ad6aef49802ea2a5859241c5cfbc",
+          "bytes": 8174
+        },
+        "utils.h": {
+          "file": "/home/wjq/workspace/svdquant-exp/scripts/research/e082_sage_center_src/utils.h",
+          "sha256": "8399fc78027b61a29981bea28d7f9d409530656cd6d148a04660ccb8cdcdf26b",
+          "bytes": 14895
+        }
+      },
+      "official_sources": {
+        "api.cu": {
+          "file": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell/sageattn3/blackwell/api.cu",
+          "sha256": "e79002c6b3612dce8cb0abb6c944bceb0d82275b210e21039bb15bdeee72afb8",
+          "bytes": 14776
+        },
+        "block_info.h": {
+          "file": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell/sageattn3/blackwell/block_info.h",
+          "sha256": "e77dfaae7d399a776767551608999beb6e8e43a550373347672a744c8671dd79",
+          "bytes": 2876
+        },
+        "blockscaled_layout.h": {
+          "file": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell/sageattn3/blackwell/blockscaled_layout.h",
+          "sha256": "f824f11e13d075dd447fbd5aa9e591c9b339ab1b0c5fbff8ddf9dfde14fc608a",
+          "bytes": 7374
+        },
+        "cute_extension.h": {
+          "file": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell/sageattn3/blackwell/cute_extension.h",
+          "sha256": "12313448e4e9c6ed9cdff52a05f2605acf35c781807e55d7ea47a09f6fed9a19",
+          "bytes": 12714
+        },
+        "epilogue_tma_ws.h": {
+          "file": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell/sageattn3/blackwell/epilogue_tma_ws.h",
+          "sha256": "6d243efc1f14a2a16a36e917b1ff5d570cce799cd3544b480dd00afc847e1683",
+          "bytes": 10533
+        },
+        "kernel_traits.h": {
+          "file": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell/sageattn3/blackwell/kernel_traits.h",
+          "sha256": "b83b54841ed1d9afb1fe2887de88480588d92a28076cecf1bfda6b355f76ab53",
+          "bytes": 9621
+        },
+        "kernel_ws.h": {
+          "file": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell/sageattn3/blackwell/kernel_ws.h",
+          "sha256": "34cd04b150092d0d577b7c441a2174361090839309e3662d754c917b0709ceba",
+          "bytes": 9766
+        },
+        "launch.h": {
+          "file": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell/sageattn3/blackwell/launch.h",
+          "sha256": "999a6cfffeda96da05115b9d35c7a1f8e222bb14db2eb8f1be11db2f90f93e48",
+          "bytes": 5619
+        },
+        "mainloop_tma_ws.h": {
+          "file": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell/sageattn3/blackwell/mainloop_tma_ws.h",
+          "sha256": "b3cd38dc690c8af023241ff96a1c38d601732bef7b89ccd16f1ff376bea396b8",
+          "bytes": 46735
+        },
+        "named_barrier.h": {
+          "file": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell/sageattn3/blackwell/named_barrier.h",
+          "sha256": "799109e79f14d7b2180868248da250dcde9b14794368fb9dc094859ad3858768",
+          "bytes": 3751
+        },
+        "params.h": {
+          "file": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell/sageattn3/blackwell/params.h",
+          "sha256": "cd562c077bcc5256106ae36a65f464406c3537e8b64c47dcfa20d82923a3d2b2",
+          "bytes": 5358
+        },
+        "softmax_fused.h": {
+          "file": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell/sageattn3/blackwell/softmax_fused.h",
+          "sha256": "864077417416a1845bf769d026f64cd7443cf72cf153e008083a1d04b70365a9",
+          "bytes": 8358
+        },
+        "static_switch.h": {
+          "file": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell/sageattn3/blackwell/static_switch.h",
+          "sha256": "2eef1ac08487151d17792683f99b8a244b8ca2e68f779bc6e8b9372ab11c759e",
+          "bytes": 5220
+        },
+        "tile_scheduler.h": {
+          "file": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell/sageattn3/blackwell/tile_scheduler.h",
+          "sha256": "6abfd756d4d64d3d98c653b728d7ab69dc864520dc1e3c68eb44ab81b0c9072a",
+          "bytes": 8159
+        },
+        "utils.h": {
+          "file": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell/sageattn3/blackwell/utils.h",
+          "sha256": "72ca4844de5a4f08e435413ffeb5f62bd968dcf30924d4745b70a99545e6eec6",
+          "bytes": 14885
+        }
+      },
+      "build_directory": "/data1/models/svdquant-wjq/research/20261005/E082/build_ff30fe7595d6c7ef",
+      "cuda_flags": [
+        "-O3",
+        "-std=c++17",
+        "-U__CUDA_NO_HALF_OPERATORS__",
+        "-U__CUDA_NO_HALF_CONVERSIONS__",
+        "-U__CUDA_NO_BFLOAT16_OPERATORS__",
+        "-U__CUDA_NO_BFLOAT16_CONVERSIONS__",
+        "-U__CUDA_NO_BFLOAT162_OPERATORS__",
+        "-U__CUDA_NO_BFLOAT162_CONVERSIONS__",
+        "--expt-relaxed-constexpr",
+        "--expt-extended-lambda",
+        "--use_fast_math",
+        "--ptxas-options=--verbose,--warn-on-local-memory-usage",
+        "-lineinfo",
+        "-DCUTLASS_DEBUG_TRACE_LEVEL=0",
+        "-DNDEBUG",
+        "-DQBLKSIZE=128",
+        "-DKBLKSIZE=128",
+        "-DCTA256",
+        "-DDQINRMEM",
+        "-DEXECMODE=0",
+        "-gencode",
+        "arch=compute_120a,code=sm_120a",
+        "--threads",
+        "4"
+      ],
+      "binary": {
+        "file": "/data1/models/svdquant-wjq/research/20261005/E082/build_ff30fe7595d6c7ef/e082_sage_center128_ff30fe7595d6c7ef.so",
+        "sha256": "5a7c9d31ccece8de07a9608a3d1045029fe0e751440c2f831dd1c2884ca81ffe",
+        "bytes": 924704
+      },
+      "recipe": "D128 BF16 noncausal blockmean; center128 prequant P mass; FP32 correction before final cast",
+      "mean": "FP32 group mean rounded to BF16; complete video groups only",
+      "residual": "BF16(V.float() - repeated BF16 mean.float())"
+    },
+    "router": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_sage_center_router.py",
+      "sha256": "46bb96fd54a168189936627cfc4e2814d710ae47c4b0b3bd588a1da90df799fa",
+      "bytes": 1438
+    },
+    "group": 128,
+    "video_tokens": 21312,
+    "scope": "full video-only key groups; all valid queries, original refiner/padding"
+  },
+  "schedule_cpu": {
+    "video": {
+      "timesteps": [
+        1000.0,
+        995.6331787109375,
+        990.82568359375,
+        985.50732421875,
+        979.5918579101562,
+        972.9729614257812,
+        965.5172119140625,
+        957.0552368164062,
+        947.368408203125,
+        936.1702270507812,
+        923.076904296875,
+        907.56298828125,
+        888.888916015625,
+        865.9793701171875,
+        837.2092895507812,
+        800.0,
+        750.0,
+        679.2453002929688,
+        571.4285888671875,
+        387.0968017578125
+      ],
+      "sigmas": [
+        1.0,
+        0.9956331849098206,
+        0.9908256530761719,
+        0.9855073094367981,
+        0.9795918464660645,
+        0.9729729890823364,
+        0.9655172228813171,
+        0.9570552110671997,
+        0.9473683834075928,
+        0.936170220375061,
+        0.9230769276618958,
+        0.9075629711151123,
+        0.8888888955116272,
+        0.8659793734550476,
+        0.8372092843055725,
+        0.800000011920929,
+        0.75,
+        0.6792452931404114,
+        0.5714285969734192,
+        0.3870967924594879
+      ]
+    },
+    "audio": {
+      "timesteps": [
+        1000.0,
+        982.7586059570312,
+        964.28564453125,
+        944.4444580078125,
+        923.0769653320312,
+        900.0,
+        874.9999389648438,
+        847.8260498046875,
+        818.1818237304688,
+        785.7144165039062,
+        750.0,
+        710.5263061523438,
+        666.6666870117188,
+        617.64697265625,
+        562.5,
+        500.0,
+        428.57147216796875,
+        346.1539001464844,
+        250.0,
+        136.3636474609375
+      ],
+      "sigmas": [
+        1.0,
+        0.9827585816383362,
+        0.964285671710968,
+        0.944444477558136,
+        0.9230769872665405,
+        0.8999999761581421,
+        0.8749999403953552,
+        0.8478260636329651,
+        0.8181818127632141,
+        0.7857143878936768,
+        0.75,
+        0.7105262875556946,
+        0.6666666865348816,
+        0.6176469922065735,
+        0.5625,
+        0.5,
+        0.4285714626312256,
+        0.3461538851261139,
+        0.25,
+        0.13636364042758942
+      ]
+    }
+  },
+  "prepare_available": true,
+  "prepared_reference": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E038/prepare.json",
+    "sha256": "ee89d2fae123d043424033e50f800258ebc2486992bff3f941d546f2beaa1cb3",
+    "bytes": 20932
+  },
+  "prepared_cases": [
+    {
+      "case_id": "vbench0161_r1",
+      "prepared": {
+        "file": "/data1/models/svdquant-wjq/research/20261003/E038/prepare/vbench0161_r1.pt",
+        "sha256": "6a471cf28ce0be32014b45d13096f39fdde1768bb1483ffcaea90a104d7b9abb",
+        "bytes": 4172505
+      },
+      "attention_contract": {
+        "expected_cu": [
+          0,
+          21731,
+          21760
+        ],
+        "expected_refiner_cu": [
+          0,
+          5,
+          5
+        ]
+      },
+      "initial_noise_sha256": {
+        "video_latents": "fbd6088062078f77f2e434eafd55a608efe0ad84feea3309be7b8894c2fd1170",
+        "audio_latents": "9c215154eaa7e3644142960823c5ed10a7989e5f5e20ccb25c145e41f4fe31bc"
+      },
+      "embedding_sha256": "bf05ef8db67e2d1de28dc409afa4216b721479e7dda961854be0d636ce319398",
+      "binding_tensor_devices": {
+        "embedding": "cpu",
+        "text_token_tags": "cpu",
+        "video_latents": "cpu",
+        "audio_latents": "cpu",
+        "packed_cu_seqlens": "cpu"
+      }
+    }
+  ],
+  "denoiser_reference": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E083/denoise_bf16_sage3_center128_r1.json",
+    "sha256": "efdccc44140d9aeb5583902eb5ced3dd748de33111a933899927a887b4790fb4",
+    "bytes": 338638
+  },
+  "av_version": "18.1.0",
+  "seconds_total": 12.056551616173238,
+  "peak_allocated_bytes": 7939765248,
+  "peak_reserved_bytes": 8774483968
+}

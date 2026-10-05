@@ -1,0 +1,730 @@
+{
+  "experiment": "E047",
+  "status": "preregistered",
+  "scope": "Matched original-Wan SVDQuant baseline; no novel method. Same virtual old64 cache selection, new 81-frame shift8 actual teacher trajectory. Shape and schedule change together; not an isolated causal attribution.",
+  "model_dir": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers",
+  "python": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+  "ptq_python": "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+  "data_dir": "/data1/models/svdquant-wjq/research/20261003/E047",
+  "report_dir": "/home/wjq/workspace/svdquant-exp/results/research/E047",
+  "settings": {
+    "height": 480,
+    "width": 832,
+    "num_frames": 81,
+    "num_inference_steps": 50,
+    "guidance_scale": 6.0,
+    "flow_shift": 8.0,
+    "fps": 16,
+    "scheduler": "UniPCMultistepScheduler",
+    "transformer_dtype": "bfloat16",
+    "text_encoder_dtype": "bfloat16",
+    "vae_dtype": "float32",
+    "latent_update_dtype": "float32",
+    "max_sequence_length": 512,
+    "prompt_extension": false,
+    "attention_backend_dit": "torch SDPA FLASH_ATTENTION",
+    "compile": false,
+    "offload": false,
+    "vae_tiling": false
+  },
+  "negative_prompt": "Bright tones, overexposed, static, blurred details, subtitles, style, works, paintings, images, static, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, misshapen limbs, fused fingers, still picture, messy background, three legs, many people in the background, walking backwards",
+  "negative_prompt_sha256": "e488b06083693241fbe71bed61a3eb0035f4ec96d858d235be1662c226452fac",
+  "prompt_source": {
+    "file": "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/examples/diffusion/prompts/vbench_t2v_simple.yaml",
+    "sha256": "e6c7f3a37755414c5690b8717a5d2fa3fdddf5ea6183d819f093241a49b3e360",
+    "selection": "Original collect max16 Random(0), then virtual1600 sorted filenames Random(0) first64. Unused two prompts omitted from execution only."
+  },
+  "virtual_prompt_names": [
+    "0019",
+    "0022",
+    "0023",
+    "0029",
+    "0034",
+    "0043",
+    "0046",
+    "0050",
+    "0052",
+    "0082",
+    "0095",
+    "0096",
+    "0111",
+    "0112",
+    "0114",
+    "0137"
+  ],
+  "selected_caches": [
+    {
+      "name": "0019",
+      "filename": "0019-0-00007-1.pt",
+      "cache_filename": "0019-0",
+      "step": 7,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0019",
+      "filename": "0019-0-00018-1.pt",
+      "cache_filename": "0019-0",
+      "step": 18,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0019",
+      "filename": "0019-0-00028-1.pt",
+      "cache_filename": "0019-0",
+      "step": 28,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0022",
+      "filename": "0022-0-00018-0.pt",
+      "cache_filename": "0022-0",
+      "step": 18,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0022",
+      "filename": "0022-0-00039-1.pt",
+      "cache_filename": "0022-0",
+      "step": 39,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0022",
+      "filename": "0022-0-00040-1.pt",
+      "cache_filename": "0022-0",
+      "step": 40,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0022",
+      "filename": "0022-0-00045-0.pt",
+      "cache_filename": "0022-0",
+      "step": 45,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00002-0.pt",
+      "cache_filename": "0023-0",
+      "step": 2,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00005-0.pt",
+      "cache_filename": "0023-0",
+      "step": 5,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00015-0.pt",
+      "cache_filename": "0023-0",
+      "step": 15,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00015-1.pt",
+      "cache_filename": "0023-0",
+      "step": 15,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00020-1.pt",
+      "cache_filename": "0023-0",
+      "step": 20,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00022-0.pt",
+      "cache_filename": "0023-0",
+      "step": 22,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00024-1.pt",
+      "cache_filename": "0023-0",
+      "step": 24,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00037-0.pt",
+      "cache_filename": "0023-0",
+      "step": 37,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0023",
+      "filename": "0023-0-00040-0.pt",
+      "cache_filename": "0023-0",
+      "step": 40,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0029",
+      "filename": "0029-0-00008-1.pt",
+      "cache_filename": "0029-0",
+      "step": 8,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0029",
+      "filename": "0029-0-00020-0.pt",
+      "cache_filename": "0029-0",
+      "step": 20,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0029",
+      "filename": "0029-0-00032-0.pt",
+      "cache_filename": "0029-0",
+      "step": 32,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0029",
+      "filename": "0029-0-00039-1.pt",
+      "cache_filename": "0029-0",
+      "step": 39,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0029",
+      "filename": "0029-0-00044-0.pt",
+      "cache_filename": "0029-0",
+      "step": 44,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0029",
+      "filename": "0029-0-00047-0.pt",
+      "cache_filename": "0029-0",
+      "step": 47,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0029",
+      "filename": "0029-0-00047-1.pt",
+      "cache_filename": "0029-0",
+      "step": 47,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0046",
+      "filename": "0046-0-00004-0.pt",
+      "cache_filename": "0046-0",
+      "step": 4,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0046",
+      "filename": "0046-0-00014-0.pt",
+      "cache_filename": "0046-0",
+      "step": 14,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0046",
+      "filename": "0046-0-00016-0.pt",
+      "cache_filename": "0046-0",
+      "step": 16,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0046",
+      "filename": "0046-0-00037-1.pt",
+      "cache_filename": "0046-0",
+      "step": 37,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0046",
+      "filename": "0046-0-00041-1.pt",
+      "cache_filename": "0046-0",
+      "step": 41,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0046",
+      "filename": "0046-0-00046-1.pt",
+      "cache_filename": "0046-0",
+      "step": 46,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0050",
+      "filename": "0050-0-00009-0.pt",
+      "cache_filename": "0050-0",
+      "step": 9,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0050",
+      "filename": "0050-0-00035-0.pt",
+      "cache_filename": "0050-0",
+      "step": 35,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0050",
+      "filename": "0050-0-00042-0.pt",
+      "cache_filename": "0050-0",
+      "step": 42,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0050",
+      "filename": "0050-0-00045-0.pt",
+      "cache_filename": "0050-0",
+      "step": 45,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0052",
+      "filename": "0052-0-00022-0.pt",
+      "cache_filename": "0052-0",
+      "step": 22,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0052",
+      "filename": "0052-0-00042-1.pt",
+      "cache_filename": "0052-0",
+      "step": 42,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0052",
+      "filename": "0052-0-00045-0.pt",
+      "cache_filename": "0052-0",
+      "step": 45,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0082",
+      "filename": "0082-0-00014-0.pt",
+      "cache_filename": "0082-0",
+      "step": 14,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0082",
+      "filename": "0082-0-00022-0.pt",
+      "cache_filename": "0082-0",
+      "step": 22,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0082",
+      "filename": "0082-0-00028-1.pt",
+      "cache_filename": "0082-0",
+      "step": 28,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0082",
+      "filename": "0082-0-00038-1.pt",
+      "cache_filename": "0082-0",
+      "step": 38,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0082",
+      "filename": "0082-0-00045-1.pt",
+      "cache_filename": "0082-0",
+      "step": 45,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0095",
+      "filename": "0095-0-00002-1.pt",
+      "cache_filename": "0095-0",
+      "step": 2,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0095",
+      "filename": "0095-0-00027-0.pt",
+      "cache_filename": "0095-0",
+      "step": 27,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0095",
+      "filename": "0095-0-00029-1.pt",
+      "cache_filename": "0095-0",
+      "step": 29,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0095",
+      "filename": "0095-0-00038-1.pt",
+      "cache_filename": "0095-0",
+      "step": 38,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0095",
+      "filename": "0095-0-00046-1.pt",
+      "cache_filename": "0095-0",
+      "step": 46,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0096",
+      "filename": "0096-0-00001-1.pt",
+      "cache_filename": "0096-0",
+      "step": 1,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0096",
+      "filename": "0096-0-00019-0.pt",
+      "cache_filename": "0096-0",
+      "step": 19,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0096",
+      "filename": "0096-0-00020-1.pt",
+      "cache_filename": "0096-0",
+      "step": 20,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0096",
+      "filename": "0096-0-00036-1.pt",
+      "cache_filename": "0096-0",
+      "step": 36,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0096",
+      "filename": "0096-0-00040-0.pt",
+      "cache_filename": "0096-0",
+      "step": 40,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0111",
+      "filename": "0111-0-00008-0.pt",
+      "cache_filename": "0111-0",
+      "step": 8,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0111",
+      "filename": "0111-0-00032-0.pt",
+      "cache_filename": "0111-0",
+      "step": 32,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0112",
+      "filename": "0112-0-00003-0.pt",
+      "cache_filename": "0112-0",
+      "step": 3,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0112",
+      "filename": "0112-0-00013-1.pt",
+      "cache_filename": "0112-0",
+      "step": 13,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0112",
+      "filename": "0112-0-00032-0.pt",
+      "cache_filename": "0112-0",
+      "step": 32,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0114",
+      "filename": "0114-0-00011-1.pt",
+      "cache_filename": "0114-0",
+      "step": 11,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0114",
+      "filename": "0114-0-00017-1.pt",
+      "cache_filename": "0114-0",
+      "step": 17,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0114",
+      "filename": "0114-0-00019-0.pt",
+      "cache_filename": "0114-0",
+      "step": 19,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0114",
+      "filename": "0114-0-00035-1.pt",
+      "cache_filename": "0114-0",
+      "step": 35,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "name": "0114",
+      "filename": "0114-0-00044-0.pt",
+      "cache_filename": "0114-0",
+      "step": 44,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0137",
+      "filename": "0137-0-00011-0.pt",
+      "cache_filename": "0137-0",
+      "step": 11,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0137",
+      "filename": "0137-0-00020-0.pt",
+      "cache_filename": "0137-0",
+      "step": 20,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "name": "0137",
+      "filename": "0137-0-00040-0.pt",
+      "cache_filename": "0137-0",
+      "step": 40,
+      "guidance": 0,
+      "branch": "cond"
+    }
+  ],
+  "prompts": [
+    {
+      "name": "0019",
+      "prompt": "A person is shaking hands",
+      "prompt_sha256": "e5f36ec019f9abb329d4caff06a3f2ebf24777461a5263f9d06b120c9247a99c",
+      "seed": 420044228
+    },
+    {
+      "name": "0022",
+      "prompt": "A person is playing trumpet",
+      "prompt_sha256": "d52c5ce888d4d5f48d180563871b4d74cccae3e7116f3f4e14b05d417b727f68",
+      "seed": 420067292
+    },
+    {
+      "name": "0023",
+      "prompt": "A person is flying kite",
+      "prompt_sha256": "146c880003df2f88a421fe0b213642e1beb01a9e43f2339264b2c0a8e9927e2d",
+      "seed": 420068253
+    },
+    {
+      "name": "0029",
+      "prompt": "A person is throwing axe",
+      "prompt_sha256": "82b2c4322be2d8192e3a045386d2e93fc94bb227f43f0a5317b2b9da072a7c4b",
+      "seed": 420074019
+    },
+    {
+      "name": "0046",
+      "prompt": "A person is washing dishes",
+      "prompt_sha256": "dab78ca0d2ddf47f36eb409beed84c018962acad56eb14a96130204f7659d29d",
+      "seed": 420130718
+    },
+    {
+      "name": "0050",
+      "prompt": "A person is baby waking up",
+      "prompt_sha256": "2bf1e972d16549c3ce35260ce283788b179e74515166b2e01e9b06e7b2bae0e8",
+      "seed": 420154743
+    },
+    {
+      "name": "0052",
+      "prompt": "A person is brushing teeth",
+      "prompt_sha256": "9be3bd260bbabb356e9f1718be50c1ad978f10b0ef0adc20556ca42a6b7de658",
+      "seed": 420156665
+    },
+    {
+      "name": "0082",
+      "prompt": "a person drinking coffee in a cafe",
+      "prompt_sha256": "92e81c92fffaca524ef41da854f628f028cc6ba596237b1cc00fb571c473ef24",
+      "seed": 420246038
+    },
+    {
+      "name": "0095",
+      "prompt": "a motorcycle accelerating to gain speed",
+      "prompt_sha256": "c2ce0bb7ba2dda4d830bb7c9b1d8f2033ae14f5218bdd3ff6afc79b52c8c0ebc",
+      "seed": 420278712
+    },
+    {
+      "name": "0096",
+      "prompt": "an airplane soaring through a clear blue sky",
+      "prompt_sha256": "c44103a84b5b01a5af0f8bc1229a1d341e02b1a9a941e8ca20ad66a43cacdf25",
+      "seed": 420279673
+    },
+    {
+      "name": "0111",
+      "prompt": "a boat slowing down to stop",
+      "prompt_sha256": "02f8bdbdb8ba4080749449048d242534d200ad3963f330184c27b923966db112",
+      "seed": 420960061
+    },
+    {
+      "name": "0112",
+      "prompt": "a boat accelerating to gain speed",
+      "prompt_sha256": "36c6e0fe53b874340f5a2fca8299966891049c95755596a7e85130e75f2c98ca",
+      "seed": 420961022
+    },
+    {
+      "name": "0114",
+      "prompt": "a bird building a nest from twigs and leaves",
+      "prompt_sha256": "dbc8871c655c2114e02058ac9c51bcef8d32de360e598cb5bac1ed1da9d6a8b9",
+      "seed": 420962944
+    },
+    {
+      "name": "0137",
+      "prompt": "a zebra bending down to drink water from a river",
+      "prompt_sha256": "62c13243340936a5ad24aaafaf6dbeed6fc4c3b4f130d0982812ab09a92a9723",
+      "seed": 421025409
+    }
+  ],
+  "worker_groups": [
+    {
+      "group": "0",
+      "gpu": 0,
+      "prompt_names": [
+        "0019",
+        "0046",
+        "0095",
+        "0114"
+      ]
+    },
+    {
+      "group": "1",
+      "gpu": 1,
+      "prompt_names": [
+        "0022",
+        "0050",
+        "0096",
+        "0137"
+      ]
+    },
+    {
+      "group": "2",
+      "gpu": 2,
+      "prompt_names": [
+        "0023",
+        "0052",
+        "0111"
+      ]
+    },
+    {
+      "group": "3",
+      "gpu": 3,
+      "prompt_names": [
+        "0029",
+        "0082",
+        "0112"
+      ]
+    }
+  ],
+  "budget": {
+    "worker_seconds": 1800,
+    "launcher_seconds": 2100,
+    "gpus": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "expected_counts": {
+    "dit": 1400,
+    "scheduler": 700,
+    "text_encoder": 28,
+    "public_vae_decode": 0,
+    "saved_caches": 64
+  },
+  "sampling_limitations": "35 cond/29 uncond; 35/50 steps; no step0/48/49;14/16 prompts; no forced branch pairing. Original fast policy retained. Current sampler CPU FP32 initial noise follows E043; seed hash follows old collector, but different shape/runtime means not an identical old trajectory.",
+  "ptq": {
+    "rank": 32,
+    "num_samples": 64,
+    "smooth_grids": 10,
+    "group_size": 16,
+    "low_rank_max_iters": 100,
+    "shift_activations": false,
+    "checkpoint_dir": "/data1/models/svdquant-wjq/research/20261003/E047/checkpoint",
+    "run_dir": "/data1/models/svdquant-wjq/research/20261003/E047/ptq_runs",
+    "gpu": 4,
+    "worker_seconds": 21600,
+    "launcher_seconds": 21900,
+    "calibration_batch_size": 4,
+    "sample_batch_size": 4,
+    "sample_size": -1,
+    "gated_output_error": false
+  }
+}

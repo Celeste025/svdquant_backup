@@ -1,0 +1,98 @@
+{
+  "experiment": "E036",
+  "status": "complete",
+  "source": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_sequence_parallel_correction.py",
+    "bytes": 26251,
+    "sha256": "50926caa4de0a289b500afb0edb4a9d7f170988bf4742a936b49197c741c2d8c"
+  },
+  "launcher": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/launch_e036_sequence_parallel.py",
+    "bytes": 3944,
+    "sha256": "dc650ce12c291407faaf509f23e414c19dfe7c55b9a703abb030a059b364c16e"
+  },
+  "cpu_check": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E036/check.json",
+    "bytes": 7599,
+    "sha256": "a4df89f4cd4f497193565b467a01838d6e0c9028f2d2392329b1eaee2f0ef6ca"
+  },
+  "physical_gpus": [
+    0,
+    1
+  ],
+  "gpu_before": {
+    "0": {
+      "index": 0,
+      "uuid": "GPU-f2d2bf35-6009-bfec-9e68-dfffd5b077c4",
+      "memory_mib": 0,
+      "utilization_percent": 0,
+      "samples": [
+        {
+          "index": 0,
+          "uuid": "GPU-f2d2bf35-6009-bfec-9e68-dfffd5b077c4",
+          "memory_mib": 0,
+          "utilization_percent": 0
+        },
+        {
+          "index": 0,
+          "uuid": "GPU-f2d2bf35-6009-bfec-9e68-dfffd5b077c4",
+          "memory_mib": 0,
+          "utilization_percent": 0
+        }
+      ]
+    },
+    "1": {
+      "index": 1,
+      "uuid": "GPU-d69766fc-a299-bc28-48a0-41ce331b0359",
+      "memory_mib": 0,
+      "utilization_percent": 0,
+      "samples": [
+        {
+          "index": 1,
+          "uuid": "GPU-d69766fc-a299-bc28-48a0-41ce331b0359",
+          "memory_mib": 0,
+          "utilization_percent": 0
+        },
+        {
+          "index": 1,
+          "uuid": "GPU-d69766fc-a299-bc28-48a0-41ce331b0359",
+          "memory_mib": 0,
+          "utilization_percent": 0
+        }
+      ]
+    }
+  },
+  "topology": "\t\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tGPU4\tGPU5\tGPU6\tGPU7\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nGPU0\t X \tNODE\tNODE\tNODE\tSYS\tSYS\tSYS\tSYS\t0-127\t0\t\tN/A\nGPU1\tNODE\t X \tNODE\tNODE\tSYS\tSYS\tSYS\tSYS\t0-127\t0\t\tN/A\nGPU2\tNODE\tNODE\t X \tNODE\tSYS\tSYS\tSYS\tSYS\t0-127\t0\t\tN/A\nGPU3\tNODE\tNODE\tNODE\t X \tSYS\tSYS\tSYS\tSYS\t0-127\t0\t\tN/A\nGPU4\tSYS\tSYS\tSYS\tSYS\t X \tNODE\tNODE\tNODE\t128-255\t1\t\tN/A\nGPU5\tSYS\tSYS\tSYS\tSYS\tNODE\t X \tNODE\tNODE\t128-255\t1\t\tN/A\nGPU6\tSYS\tSYS\tSYS\tSYS\tNODE\tNODE\t X \tNODE\t128-255\t1\t\tN/A\nGPU7\tSYS\tSYS\tSYS\tSYS\tNODE\tNODE\tNODE\t X \t128-255\t1\t\tN/A\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks\n",
+  "log": "/home/wjq/workspace/svdquant-exp/results/logs/E036_sequence_parallel.log",
+  "start_epoch": 1790990799.6877005,
+  "deadline_epoch": 1790991699.6877005,
+  "command": [
+    "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+    "-u",
+    "-m",
+    "torch.distributed.run",
+    "--standalone",
+    "--nnodes=1",
+    "--nproc_per_node=2",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_sequence_parallel_correction.py",
+    "--phase",
+    "run",
+    "--deadline-unix",
+    "1790991699.6877005"
+  ],
+  "pid": 4053068,
+  "returncode": 0,
+  "results": [
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E036/run_rank0.json",
+      "bytes": 189300,
+      "sha256": "bbfa9296476e58d9b22fd42438f465829c6f4058731dfe2234b51d0b9d353d02"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E036/run_rank1.json",
+      "bytes": 189303,
+      "sha256": "54bd60c01e3e4e44d7db9480eb0e0f28a83204053d46c4fbb2f01c8225622953"
+    }
+  ],
+  "seconds": 7.380065202713013
+}

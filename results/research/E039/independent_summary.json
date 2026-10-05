@@ -1,0 +1,2236 @@
+{
+  "experiment": "E039",
+  "status": "complete",
+  "cpu_only": true,
+  "rank_reports": [
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E039/run_rank0.json",
+      "bytes": 171177,
+      "sha256": "e72a1c730e2767ee4065f3611d12ef4a18c88de828723a385640b45d7f46698b"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E039/run_rank1.json",
+      "bytes": 171176,
+      "sha256": "41a61d0a199eafff451867ef9365d94b5db420eca6665738b4581a44cec46ac6"
+    }
+  ],
+  "prepare": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E039/prepare.json",
+    "bytes": 2062,
+    "sha256": "698ab3e32cc7922e5911a8bef87ac3733128feab65ab435bd200371bc377889d"
+  },
+  "sources": {
+    "runner": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/bench_h3_output_projection_parallel.py",
+      "bytes": 22983,
+      "sha256": "0feca17c5491b499a0aa414fdc93d8fe48b50fd04fbdf382faf83dd2a528eb84"
+    },
+    "native": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_nvfp4.py",
+      "bytes": 14615,
+      "sha256": "13ca884a8f6c7d93258870970c9f4b204f7cc42af0038f549b825321bb899d0a"
+    },
+    "packer": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_nvfp4_fastpack.py",
+      "bytes": 7255,
+      "sha256": "f5a22a9e3f23d7903403017575e1a63c1cb42e04b0230256a5808902bbc198b7"
+    },
+    "packet": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py",
+      "bytes": 22773,
+      "sha256": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa"
+    },
+    "plan": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E039_output_projection_parallel_plan.md",
+      "bytes": 4603,
+      "sha256": "211f0e0eb8f422c59ef44c32ba375ee921881b60a22e7d826105521e51209b39"
+    }
+  },
+  "weight_reference": {
+    "file": "/data1/models/svdquant-wjq/research/20261002/E009/legacy_export/layers/blocks.0.attn.out_proj.pt",
+    "bytes": 22497465,
+    "sha256": "ed21f5c0e9522aefe572dac3345f0225259fb3c25b795c3166418480ca0da2a0"
+  },
+  "input_reference": {
+    "file": "/data1/models/svdquant-wjq/research/20261003/E039/attention_output.pt",
+    "bytes": 323880552,
+    "sha256": "685a85591667966d325f1e6ec6d065122fa8d4e28d67aae74032960f4c978a90"
+  },
+  "geometry": {
+    "real_total": 22592,
+    "main_valid": 22539,
+    "heads": 56,
+    "head_dim": 128,
+    "input_features": 7168,
+    "output_features": 5376,
+    "rank": 32,
+    "token_starts": [
+      0,
+      11264
+    ],
+    "real_token_lengths": [
+      11264,
+      11328
+    ],
+    "valid_token_lengths": [
+      11264,
+      11275
+    ],
+    "scale_physical_rows": [
+      11264,
+      11392
+    ],
+    "RS_slot_rows": 11392,
+    "model_padding_rows": 53,
+    "row_padding_policy": "Original 53 model-padding outputs are real and enter amax/projection. Only encoder SF/RS padding is artificial."
+  },
+  "numerical_contracts": {
+    "bf16_return": "Original native SVD projection after BF16 A2A.",
+    "fp8_return": "Per-source/destination message E4M3 with FP32 amax/448 scale, decode to BF16 before original smooth/projection.",
+    "row_parallel": "Shared destination activation globals; BF16 partial main and BF16 down; one BF16 SUM RS; one BF16 up/add at owner.",
+    "fp4_side": "Shared destination globals and actual packed input; BF16 partial down; float32 sum then BF16 down; original full main/up/add at owner."
+  },
+  "arms": {
+    "bf16_return": {
+      "synchronized_wall_pair_max_ms": {
+        "values": [
+          6.354504032060504,
+          6.361825158819556,
+          6.382236024364829,
+          6.344769150018692,
+          6.330937845632434,
+          6.327732931822538,
+          6.318058120086789,
+          6.350558018311858,
+          6.3437779899686575,
+          6.452603964135051
+        ],
+        "median": 6.347663584165275,
+        "min": 6.318058120086789,
+        "max": 6.452603964135051
+      },
+      "per_rank_wall_ms": [
+        {
+          "values": [
+            6.354504032060504,
+            6.361825158819556,
+            6.382236024364829,
+            6.344769150018692,
+            6.330937845632434,
+            6.327732931822538,
+            6.318058120086789,
+            6.350558018311858,
+            6.3437779899686575,
+            6.452603964135051
+          ],
+          "median": 6.347663584165275,
+          "min": 6.318058120086789,
+          "max": 6.452603964135051
+        },
+        {
+          "values": [
+            6.306890165433288,
+            6.327932933345437,
+            6.346280919387937,
+            6.314593134447932,
+            6.294661900028586,
+            6.292368983849883,
+            6.262472132220864,
+            6.313950987532735,
+            6.3183188904076815,
+            6.320551969110966
+          ],
+          "median": 6.314272060990334,
+          "min": 6.262472132220864,
+          "max": 6.346280919387937
+        }
+      ],
+      "per_rank_cuda_ms": [
+        {
+          "values": [
+            6.334559917449951,
+            6.338624000549316,
+            6.360159873962402,
+            6.3243842124938965,
+            6.309887886047363,
+            6.306560039520264,
+            6.2973761558532715,
+            6.329472064971924,
+            6.320864200592041,
+            6.411935806274414
+          ],
+          "median": 6.32692813873291,
+          "min": 6.2973761558532715,
+          "max": 6.411935806274414
+        },
+        {
+          "values": [
+            6.285823822021484,
+            6.30790376663208,
+            6.3249921798706055,
+            6.294335842132568,
+            6.274943828582764,
+            6.27180814743042,
+            6.242368221282959,
+            6.294528007507324,
+            6.2960638999938965,
+            6.273536205291748
+          ],
+          "median": 6.290079832077026,
+          "min": 6.242368221282959,
+          "max": 6.3249921798706055
+        }
+      ],
+      "memory_per_rank": [
+        {
+          "resident_before_allocated": {
+            "values": [
+              205856256,
+              205856256,
+              205856256,
+              205856256,
+              205856256,
+              205856256,
+              205856256,
+              205856256,
+              205856256,
+              205856256
+            ],
+            "median": 205856256.0,
+            "min": 205856256,
+            "max": 205856256
+          },
+          "peak_allocated": {
+            "values": [
+              939859456,
+              939859456,
+              939859456,
+              939859456,
+              939859456,
+              939859456,
+              939859456,
+              939859456,
+              939859456,
+              939859456
+            ],
+            "median": 939859456.0,
+            "min": 939859456,
+            "max": 939859456
+          },
+          "incremental_peak_allocated": {
+            "values": [
+              734003200,
+              734003200,
+              734003200,
+              734003200,
+              734003200,
+              734003200,
+              734003200,
+              734003200,
+              734003200,
+              734003200
+            ],
+            "median": 734003200.0,
+            "min": 734003200,
+            "max": 734003200
+          },
+          "resident_before_reserved": {
+            "values": [
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272
+            ],
+            "median": 1700790272.0,
+            "min": 1700790272,
+            "max": 1700790272
+          },
+          "peak_reserved": {
+            "values": [
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272
+            ],
+            "median": 1700790272.0,
+            "min": 1700790272,
+            "max": 1700790272
+          },
+          "incremental_peak_reserved": {
+            "values": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "median": 0.0,
+            "min": 0,
+            "max": 0
+          }
+        },
+        {
+          "resident_before_allocated": {
+            "values": [
+              205856256,
+              205856256,
+              205856256,
+              205856256,
+              205856256,
+              205856256,
+              205856256,
+              205856256,
+              205856256,
+              205856256
+            ],
+            "median": 205856256.0,
+            "min": 205856256,
+            "max": 205856256
+          },
+          "peak_allocated": {
+            "values": [
+              942476800,
+              942476800,
+              942476800,
+              942476800,
+              942476800,
+              942476800,
+              942476800,
+              942476800,
+              942476800,
+              942476800
+            ],
+            "median": 942476800.0,
+            "min": 942476800,
+            "max": 942476800
+          },
+          "incremental_peak_allocated": {
+            "values": [
+              736620544,
+              736620544,
+              736620544,
+              736620544,
+              736620544,
+              736620544,
+              736620544,
+              736620544,
+              736620544,
+              736620544
+            ],
+            "median": 736620544.0,
+            "min": 736620544,
+            "max": 736620544
+          },
+          "resident_before_reserved": {
+            "values": [
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024
+            ],
+            "median": 1545601024.0,
+            "min": 1545601024,
+            "max": 1545601024
+          },
+          "peak_reserved": {
+            "values": [
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024
+            ],
+            "median": 1545601024.0,
+            "min": 1545601024,
+            "max": 1545601024
+          },
+          "incremental_peak_reserved": {
+            "values": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "median": 0.0,
+            "min": 0,
+            "max": 0
+          }
+        }
+      ],
+      "max_single_device_peak_allocated": 942476800,
+      "max_single_device_peak_reserved": 1700790272,
+      "communication_per_boundary": {
+        "per_rank": [
+          {
+            "a2a_remote_send_bytes": 81199104,
+            "a2a_remote_receive_bytes": 80740352,
+            "a2a_self_bytes": 80740352,
+            "allreduce_logical_peer_send_bytes": 0,
+            "reduce_scatter_logical_peer_send_bytes": 0
+          },
+          {
+            "a2a_remote_send_bytes": 80740352,
+            "a2a_remote_receive_bytes": 81199104,
+            "a2a_self_bytes": 81199104,
+            "allreduce_logical_peer_send_bytes": 0,
+            "reduce_scatter_logical_peer_send_bytes": 0
+          }
+        ],
+        "combined": {
+          "a2a_remote_send_bytes": 161939456,
+          "a2a_remote_receive_bytes": 161939456,
+          "a2a_self_bytes": 161939456,
+          "allreduce_logical_peer_send_bytes": 0,
+          "reduce_scatter_logical_peer_send_bytes": 0
+        },
+        "byte_scope": "A2A actual application wire splits; MAX/RS logical peer payload separately, not NCCL link traffic. Self and receive are not added to remote-send totals."
+      },
+      "output_parts": [
+        {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank0/bf16_return_output.pt",
+            "bytes": 121112182,
+            "sha256": "49e5031fba0c93db34dba17afddc54fd36fdad21ac1e98c2c5db82a56ffe69fc"
+          },
+          "tensor": {
+            "shape": [
+              11264,
+              5376
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "d2e663cab955447ec5fc2880547e5b0d6300db9524366d7e28cffc27a67c0e69"
+          }
+        },
+        {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank1/bf16_return_output.pt",
+            "bytes": 121800310,
+            "sha256": "1f0333b156849375b8613584ecad5d652d38cea3d24d039778ed74ba17f9391a"
+          },
+          "tensor": {
+            "shape": [
+              11328,
+              5376
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "b1fd2d01f099b33d651f087614adb0809fefcf46708a29b1067de8c3c588ebf7"
+          }
+        }
+      ],
+      "state_parts": [
+        {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank0/bf16_return_state.pt",
+            "bytes": 722869,
+            "sha256": "da9c9bb714f0f30157b8e4b2ac118f5b6dc025d1f06334d078e0069322ce6c17"
+          },
+          "tensors": {
+            "down": {
+              "shape": [
+                11264,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "finite": true,
+              "sha256": "d1e8f81361119f06a02a790dc6e55c89fd678c51bd64766203c6bdbabda27a57"
+            },
+            "activation_globals": {
+              "shape": [
+                1
+              ],
+              "dtype": "torch.float32",
+              "finite": true,
+              "sha256": "3132b21eb852578e902da417ef5b96dda5548a3c61b8d1d4b77adc4a58ced5c3"
+            }
+          }
+        },
+        {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank1/bf16_return_state.pt",
+            "bytes": 726965,
+            "sha256": "e979e0155232cfb22727a79daa6e617fb7d5331b32e7fa92098b349ab7b66b3a"
+          },
+          "tensors": {
+            "down": {
+              "shape": [
+                11328,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "finite": true,
+              "sha256": "4e306f2695406b1554acdeceafd5199859a4187afecec4d47da8f6076edde395"
+            },
+            "activation_globals": {
+              "shape": [
+                1
+              ],
+              "dtype": "torch.float32",
+              "finite": true,
+              "sha256": "81357e18fb90d1aa04220d3751f70eeddfd7343df501dbd44a416db47e54eb06"
+            }
+          }
+        }
+      ],
+      "activation_globals": [
+        [
+          0.00930059514939785
+        ],
+        [
+          0.0034412203822284937
+        ]
+      ],
+      "error_vs_bf16_return": {
+        "valid": {
+          "error2": 0.0,
+          "reference2": 28503623910.969963,
+          "value2": 28503623910.969963,
+          "dot": 28503623910.969963,
+          "elements": 121169664,
+          "max_abs": 0.0,
+          "nmse": 0.0,
+          "error_rms": 0.0,
+          "error_l2": 0.0,
+          "reference_rms": 15.33744745070223,
+          "cosine": 1.0
+        },
+        "real_model_padding": {
+          "error2": 0.0,
+          "reference2": 42194129.03385719,
+          "value2": 42194129.03385719,
+          "dot": 42194129.03385719,
+          "elements": 284928,
+          "max_abs": 0.0,
+          "nmse": 0.0,
+          "error_rms": 0.0,
+          "error_l2": 0.0,
+          "reference_rms": 12.169099679382313,
+          "cosine": 1.0
+        },
+        "all_real": {
+          "error2": 0.0,
+          "reference2": 28545818040.003822,
+          "value2": 28545818040.003822,
+          "dot": 28545818040.003822,
+          "elements": 121454592,
+          "max_abs": 0.0,
+          "nmse": 0.0,
+          "error_rms": 0.0,
+          "error_l2": 0.0,
+          "reference_rms": 15.330780896341732,
+          "cosine": 1.0
+        }
+      },
+      "down_error_vs_bf16_return": {
+        "valid": {
+          "error2": 0.0,
+          "reference2": 160772.76261127344,
+          "value2": 160772.76261127344,
+          "dot": 160772.76261127344,
+          "elements": 721248,
+          "max_abs": 0.0,
+          "nmse": 0.0,
+          "error_rms": 0.0,
+          "error_l2": 0.0,
+          "reference_rms": 0.47213253203442734,
+          "cosine": 1.0
+        },
+        "real_model_padding": {
+          "error2": 0.0,
+          "reference2": 278.66826482117176,
+          "value2": 278.66826482117176,
+          "dot": 278.66826482117176,
+          "elements": 1696,
+          "max_abs": 0.0,
+          "nmse": 0.0,
+          "error_rms": 0.0,
+          "error_l2": 0.0,
+          "reference_rms": 0.4053506117038801,
+          "cosine": 1.0
+        }
+      }
+    },
+    "fp8_return": {
+      "synchronized_wall_pair_max_ms": {
+        "values": [
+          11.081542121246457,
+          11.103786062449217,
+          11.087771039456129,
+          11.120021110400558,
+          11.082913959398866,
+          11.073889909312129,
+          11.07168709859252,
+          11.092939879745245,
+          12.747717089951038,
+          11.120131006464362
+        ],
+        "median": 11.090355459600687,
+        "min": 11.07168709859252,
+        "max": 12.747717089951038
+      },
+      "per_rank_wall_ms": [
+        {
+          "values": [
+            11.081542121246457,
+            11.103786062449217,
+            11.087771039456129,
+            11.120021110400558,
+            11.082913959398866,
+            11.073889909312129,
+            11.07168709859252,
+            11.092939879745245,
+            12.747717089951038,
+            11.120131006464362
+          ],
+          "median": 11.090355459600687,
+          "min": 11.07168709859252,
+          "max": 12.747717089951038
+        },
+        {
+          "values": [
+            11.034239083528519,
+            11.057374998927116,
+            11.041250079870224,
+            11.047219159081578,
+            11.032406007871032,
+            11.015299940481782,
+            11.015300173312426,
+            11.03315781801939,
+            12.679292121902108,
+            11.05755497701466
+          ],
+          "median": 11.037744581699371,
+          "min": 11.015299940481782,
+          "max": 12.679292121902108
+        }
+      ],
+      "per_rank_cuda_ms": [
+        {
+          "values": [
+            11.060064315795898,
+            11.079872131347656,
+            11.066816329956055,
+            11.098976135253906,
+            11.06112003326416,
+            11.0513277053833,
+            11.050080299377441,
+            11.071488380432129,
+            12.726240158081055,
+            11.099007606506348
+          ],
+          "median": 11.069152355194092,
+          "min": 11.050080299377441,
+          "max": 12.726240158081055
+        },
+        {
+          "values": [
+            11.013279914855957,
+            11.025152206420898,
+            11.020352363586426,
+            11.026623725891113,
+            11.01148796081543,
+            10.994912147521973,
+            10.994336128234863,
+            11.01257610321045,
+            12.659071922302246,
+            11.03667163848877
+          ],
+          "median": 11.016816139221191,
+          "min": 10.994336128234863,
+          "max": 12.659071922302246
+        }
+      ],
+      "memory_per_rank": [
+        {
+          "resident_before_allocated": {
+            "values": [
+              205855744,
+              205856256,
+              205855744,
+              205855744,
+              205855744,
+              205856256,
+              205855744,
+              205855744,
+              205855744,
+              205856256
+            ],
+            "median": 205855744.0,
+            "min": 205855744,
+            "max": 205856256
+          },
+          "peak_allocated": {
+            "values": [
+              939859456,
+              939859456,
+              939859456,
+              939859456,
+              939859456,
+              939859456,
+              939859456,
+              939859456,
+              939859456,
+              939859456
+            ],
+            "median": 939859456.0,
+            "min": 939859456,
+            "max": 939859456
+          },
+          "incremental_peak_allocated": {
+            "values": [
+              734003712,
+              734003200,
+              734003712,
+              734003712,
+              734003712,
+              734003200,
+              734003712,
+              734003712,
+              734003712,
+              734003200
+            ],
+            "median": 734003712.0,
+            "min": 734003200,
+            "max": 734003712
+          },
+          "resident_before_reserved": {
+            "values": [
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272
+            ],
+            "median": 1700790272.0,
+            "min": 1700790272,
+            "max": 1700790272
+          },
+          "peak_reserved": {
+            "values": [
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272
+            ],
+            "median": 1700790272.0,
+            "min": 1700790272,
+            "max": 1700790272
+          },
+          "incremental_peak_reserved": {
+            "values": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "median": 0.0,
+            "min": 0,
+            "max": 0
+          }
+        },
+        {
+          "resident_before_allocated": {
+            "values": [
+              205855744,
+              205856256,
+              205855744,
+              205855744,
+              205855744,
+              205856256,
+              205855744,
+              205855744,
+              205855744,
+              205856256
+            ],
+            "median": 205855744.0,
+            "min": 205855744,
+            "max": 205856256
+          },
+          "peak_allocated": {
+            "values": [
+              942476800,
+              942476800,
+              942476800,
+              942476800,
+              942476800,
+              942476800,
+              942476800,
+              942476800,
+              942476800,
+              942476800
+            ],
+            "median": 942476800.0,
+            "min": 942476800,
+            "max": 942476800
+          },
+          "incremental_peak_allocated": {
+            "values": [
+              736621056,
+              736620544,
+              736621056,
+              736621056,
+              736621056,
+              736620544,
+              736621056,
+              736621056,
+              736621056,
+              736620544
+            ],
+            "median": 736621056.0,
+            "min": 736620544,
+            "max": 736621056
+          },
+          "resident_before_reserved": {
+            "values": [
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024
+            ],
+            "median": 1545601024.0,
+            "min": 1545601024,
+            "max": 1545601024
+          },
+          "peak_reserved": {
+            "values": [
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024
+            ],
+            "median": 1545601024.0,
+            "min": 1545601024,
+            "max": 1545601024
+          },
+          "incremental_peak_reserved": {
+            "values": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "median": 0.0,
+            "min": 0,
+            "max": 0
+          }
+        }
+      ],
+      "max_single_device_peak_allocated": 942476800,
+      "max_single_device_peak_reserved": 1700790272,
+      "communication_per_boundary": {
+        "per_rank": [
+          {
+            "a2a_remote_send_bytes": 40599556,
+            "a2a_remote_receive_bytes": 40370180,
+            "a2a_self_bytes": 40370180,
+            "allreduce_logical_peer_send_bytes": 0,
+            "reduce_scatter_logical_peer_send_bytes": 0
+          },
+          {
+            "a2a_remote_send_bytes": 40370180,
+            "a2a_remote_receive_bytes": 40599556,
+            "a2a_self_bytes": 40599556,
+            "allreduce_logical_peer_send_bytes": 0,
+            "reduce_scatter_logical_peer_send_bytes": 0
+          }
+        ],
+        "combined": {
+          "a2a_remote_send_bytes": 80969736,
+          "a2a_remote_receive_bytes": 80969736,
+          "a2a_self_bytes": 80969736,
+          "allreduce_logical_peer_send_bytes": 0,
+          "reduce_scatter_logical_peer_send_bytes": 0
+        },
+        "byte_scope": "A2A actual application wire splits; MAX/RS logical peer payload separately, not NCCL link traffic. Self and receive are not added to remote-send totals."
+      },
+      "output_parts": [
+        {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank0/fp8_return_output.pt",
+            "bytes": 121112175,
+            "sha256": "5e3590e26a07e5e2cb926c1ad46673d511bfaa013fbac4c0b58145ef2987a829"
+          },
+          "tensor": {
+            "shape": [
+              11264,
+              5376
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "0b21e7a07afde33b6e85ec686e10caf6dbbeef9abeb436950ff21ef164a940ce"
+          }
+        },
+        {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank1/fp8_return_output.pt",
+            "bytes": 121800303,
+            "sha256": "600b785ee18aed6f928696532e293af9a5eb7f015359f19c5fb24b3fb627ee3e"
+          },
+          "tensor": {
+            "shape": [
+              11328,
+              5376
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "3a42e478c616947e367910b66f7b66954c33548fe60b8ff2407629df95ef6d36"
+          }
+        }
+      ],
+      "state_parts": [
+        {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank0/fp8_return_state.pt",
+            "bytes": 722861,
+            "sha256": "59a52d1399f710a2684666a7dc9e2f3b3cec8b25caf60eb981e51dc3aed8d19e"
+          },
+          "tensors": {
+            "down": {
+              "shape": [
+                11264,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "finite": true,
+              "sha256": "6d5abe8c025627773503cd0f509abc6a83d845e2bbe2334df2f21737ac034831"
+            },
+            "activation_globals": {
+              "shape": [
+                1
+              ],
+              "dtype": "torch.float32",
+              "finite": true,
+              "sha256": "3132b21eb852578e902da417ef5b96dda5548a3c61b8d1d4b77adc4a58ced5c3"
+            }
+          }
+        },
+        {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank1/fp8_return_state.pt",
+            "bytes": 726957,
+            "sha256": "a5095c8750e3844fbf5c5df86022681a1debb49f76b508ccdb6a1f2e2818e473"
+          },
+          "tensors": {
+            "down": {
+              "shape": [
+                11328,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "finite": true,
+              "sha256": "c6de9ba5d98e203a53a6173c1418f53e570650f8deb50a6c93755b62f7222c17"
+            },
+            "activation_globals": {
+              "shape": [
+                1
+              ],
+              "dtype": "torch.float32",
+              "finite": true,
+              "sha256": "81357e18fb90d1aa04220d3751f70eeddfd7343df501dbd44a416db47e54eb06"
+            }
+          }
+        }
+      ],
+      "activation_globals": [
+        [
+          0.00930059514939785
+        ],
+        [
+          0.0034412203822284937
+        ]
+      ],
+      "error_vs_bf16_return": {
+        "valid": {
+          "error2": 66561366.61544189,
+          "reference2": 28503623910.969963,
+          "value2": 28407333755.947857,
+          "dot": 28422198150.151188,
+          "elements": 121169664,
+          "max_abs": 29.75,
+          "nmse": 0.0023351896174094882,
+          "error_rms": 0.7411637385112604,
+          "error_l2": 8158.514976111884,
+          "reference_rms": 15.33744745070223,
+          "cosine": 0.9988318593525489
+        },
+        "real_model_padding": {
+          "error2": 116475.61091067642,
+          "reference2": 42194129.03385719,
+          "value2": 41957850.69590908,
+          "dot": 42017752.0594278,
+          "elements": 284928,
+          "max_abs": 3.0,
+          "nmse": 0.0027604696098173912,
+          "error_rms": 0.6393665828314271,
+          "error_l2": 341.28523394761226,
+          "reference_rms": 12.169099679382313,
+          "cosine": 0.9986198261487701
+        },
+        "all_real": {
+          "error2": 66677842.226352565,
+          "reference2": 28545818040.003822,
+          "value2": 28449291606.64377,
+          "dot": 28464215902.210617,
+          "elements": 121454592,
+          "max_abs": 29.75,
+          "nmse": 0.002335818232040536,
+          "error_rms": 0.7409412929204334,
+          "error_l2": 8165.650141069758,
+          "reference_rms": 15.330780896341732,
+          "cosine": 0.9988315453744294
+        }
+      },
+      "down_error_vs_bf16_return": {
+        "valid": {
+          "error2": 125.030923005251,
+          "reference2": 160772.76261127344,
+          "value2": 160352.54950945667,
+          "dot": 160500.14059886243,
+          "elements": 721248,
+          "max_abs": 0.1484375,
+          "nmse": 0.0007776872212338521,
+          "error_rms": 0.013166380679234457,
+          "error_l2": 11.18172272081771,
+          "reference_rms": 0.47213253203442734,
+          "cosine": 0.9996115034004767
+        },
+        "real_model_padding": {
+          "error2": 0.22180788591504097,
+          "reference2": 278.66826482117176,
+          "value2": 281.21303229406476,
+          "dot": 279.82974461466074,
+          "elements": 1696,
+          "max_abs": 0.03515625,
+          "nmse": 0.000795956748276954,
+          "error_rms": 0.011436037408160644,
+          "error_l2": 0.4709648457316543,
+          "reference_rms": 0.4053506117038801,
+          "cosine": 0.9996141559623517
+        }
+      }
+    },
+    "row_parallel": {
+      "synchronized_wall_pair_max_ms": {
+        "values": [
+          8.60613607801497,
+          8.712029084563255,
+          10.955529054626822,
+          8.789768209680915,
+          8.583270944654942,
+          8.99079698137939,
+          8.696584962308407,
+          9.01902886107564,
+          8.853656006976962,
+          8.734833914786577
+        ],
+        "median": 8.762301062233746,
+        "min": 8.583270944654942,
+        "max": 10.955529054626822
+      },
+      "per_rank_wall_ms": [
+        {
+          "values": [
+            8.60613607801497,
+            8.712029084563255,
+            10.955529054626822,
+            8.789768209680915,
+            8.583270944654942,
+            8.99079698137939,
+            8.696584962308407,
+            9.01902886107564,
+            8.853656006976962,
+            8.724557934328914
+          ],
+          "median": 8.757163072004914,
+          "min": 8.583270944654942,
+          "max": 10.955529054626822
+        },
+        {
+          "values": [
+            8.581798989325762,
+            8.6805101018399,
+            10.929767973721027,
+            8.761394070461392,
+            8.55409586802125,
+            8.955181110650301,
+            8.660859894007444,
+            8.989493828266859,
+            8.833845146000385,
+            8.734833914786577
+          ],
+          "median": 8.748113992623985,
+          "min": 8.55409586802125,
+          "max": 10.929767973721027
+        }
+      ],
+      "per_rank_cuda_ms": [
+        {
+          "values": [
+            8.585408210754395,
+            8.690912246704102,
+            10.931615829467773,
+            8.768447875976562,
+            8.561984062194824,
+            8.969375610351562,
+            8.674752235412598,
+            8.99839973449707,
+            8.832096099853516,
+            8.68182373046875
+          ],
+          "median": 8.729680061340332,
+          "min": 8.561984062194824,
+          "max": 10.931615829467773
+        },
+        {
+          "values": [
+            8.562047958374023,
+            8.659199714660645,
+            10.909248352050781,
+            8.72976016998291,
+            8.533791542053223,
+            8.935168266296387,
+            8.640031814575195,
+            8.969311714172363,
+            8.813759803771973,
+            8.68502426147461
+          ],
+          "median": 8.70739221572876,
+          "min": 8.533791542053223,
+          "max": 10.909248352050781
+        }
+      ],
+      "memory_per_rank": [
+        {
+          "resident_before_allocated": {
+            "values": [
+              205855744,
+              205855744,
+              205855744,
+              205855744,
+              205855744,
+              205855744,
+              205855744,
+              205855744,
+              205855744,
+              205855744
+            ],
+            "median": 205855744.0,
+            "min": 205855744,
+            "max": 205855744
+          },
+          "peak_allocated": {
+            "values": [
+              882266624,
+              882266624,
+              882266624,
+              882266624,
+              882266624,
+              882266624,
+              882266624,
+              882266624,
+              882266624,
+              882266624
+            ],
+            "median": 882266624.0,
+            "min": 882266624,
+            "max": 882266624
+          },
+          "incremental_peak_allocated": {
+            "values": [
+              676410880,
+              676410880,
+              676410880,
+              676410880,
+              676410880,
+              676410880,
+              676410880,
+              676410880,
+              676410880,
+              676410880
+            ],
+            "median": 676410880.0,
+            "min": 676410880,
+            "max": 676410880
+          },
+          "resident_before_reserved": {
+            "values": [
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272
+            ],
+            "median": 1700790272.0,
+            "min": 1700790272,
+            "max": 1700790272
+          },
+          "peak_reserved": {
+            "values": [
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272
+            ],
+            "median": 1700790272.0,
+            "min": 1700790272,
+            "max": 1700790272
+          },
+          "incremental_peak_reserved": {
+            "values": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "median": 0.0,
+            "min": 0,
+            "max": 0
+          }
+        },
+        {
+          "resident_before_allocated": {
+            "values": [
+              205855744,
+              205855744,
+              205855744,
+              205855744,
+              205855744,
+              205855744,
+              205855744,
+              205855744,
+              205855744,
+              205855744
+            ],
+            "median": 205855744.0,
+            "min": 205855744,
+            "max": 205855744
+          },
+          "peak_allocated": {
+            "values": [
+              881811968,
+              881811968,
+              881811968,
+              881811968,
+              881811968,
+              881811968,
+              881811968,
+              881811968,
+              881811968,
+              881811968
+            ],
+            "median": 881811968.0,
+            "min": 881811968,
+            "max": 881811968
+          },
+          "incremental_peak_allocated": {
+            "values": [
+              675956224,
+              675956224,
+              675956224,
+              675956224,
+              675956224,
+              675956224,
+              675956224,
+              675956224,
+              675956224,
+              675956224
+            ],
+            "median": 675956224.0,
+            "min": 675956224,
+            "max": 675956224
+          },
+          "resident_before_reserved": {
+            "values": [
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024
+            ],
+            "median": 1545601024.0,
+            "min": 1545601024,
+            "max": 1545601024
+          },
+          "peak_reserved": {
+            "values": [
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024
+            ],
+            "median": 1545601024.0,
+            "min": 1545601024,
+            "max": 1545601024
+          },
+          "incremental_peak_reserved": {
+            "values": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "median": 0.0,
+            "min": 0,
+            "max": 0
+          }
+        }
+      ],
+      "max_single_device_peak_allocated": 882266624,
+      "max_single_device_peak_reserved": 1700790272,
+      "communication_per_boundary": {
+        "per_rank": [
+          {
+            "a2a_remote_send_bytes": 0,
+            "a2a_remote_receive_bytes": 0,
+            "a2a_self_bytes": 0,
+            "allreduce_logical_peer_send_bytes": 8,
+            "reduce_scatter_logical_peer_send_bytes": 123215872
+          },
+          {
+            "a2a_remote_send_bytes": 0,
+            "a2a_remote_receive_bytes": 0,
+            "a2a_self_bytes": 0,
+            "allreduce_logical_peer_send_bytes": 8,
+            "reduce_scatter_logical_peer_send_bytes": 123215872
+          }
+        ],
+        "combined": {
+          "a2a_remote_send_bytes": 0,
+          "a2a_remote_receive_bytes": 0,
+          "a2a_self_bytes": 0,
+          "allreduce_logical_peer_send_bytes": 16,
+          "reduce_scatter_logical_peer_send_bytes": 246431744
+        },
+        "byte_scope": "A2A actual application wire splits; MAX/RS logical peer payload separately, not NCCL link traffic. Self and receive are not added to remote-send totals."
+      },
+      "output_parts": [
+        {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank0/row_parallel_output.pt",
+            "bytes": 121112189,
+            "sha256": "ce398d02903d4ddaad7a5d1c9aeb23fc3675fe4b9c92aea595d67f59f2142f38"
+          },
+          "tensor": {
+            "shape": [
+              11264,
+              5376
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "dbbce831e2edcddc8fd844916cb25af708553a4f0715fd5de966ee57703bc93e"
+          }
+        },
+        {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank1/row_parallel_output.pt",
+            "bytes": 121800317,
+            "sha256": "a2067f6093c2695fb314b531f0cc6a9e2d30cf9725690037b910a1a7ca0007f7"
+          },
+          "tensor": {
+            "shape": [
+              11328,
+              5376
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "76e469f7cc6f64ff6522e08db82aee531c7c6bd884df4b7f8fbe076f82de1143"
+          }
+        }
+      ],
+      "state_parts": [
+        {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank0/row_parallel_state.pt",
+            "bytes": 722877,
+            "sha256": "70183f09ef44c1f5c3744da564c2ec7170946542ed42512185833d5828bf86e7"
+          },
+          "tensors": {
+            "down": {
+              "shape": [
+                11264,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "finite": true,
+              "sha256": "752279767fa7f87369833825840330b6353b9f27aa74afa2f5962b0c8b4bba88"
+            },
+            "activation_globals": {
+              "shape": [
+                2
+              ],
+              "dtype": "torch.float32",
+              "finite": true,
+              "sha256": "4cb9e6a4aa8d43fd914283b4d04ff7abfe6ba5a13550829bcc0cd8ca6c26b237"
+            }
+          }
+        },
+        {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank1/row_parallel_state.pt",
+            "bytes": 726973,
+            "sha256": "7f13d579ff173269d5c6205a7d03a1c53ec62a05a3c4fcc2100b6edbfa9aa15f"
+          },
+          "tensors": {
+            "down": {
+              "shape": [
+                11328,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "finite": true,
+              "sha256": "8bc8a8833e608b4a29ec5bd7c1d0e86c7ea353599d05abee27dda3a99bde6195"
+            },
+            "activation_globals": {
+              "shape": [
+                2
+              ],
+              "dtype": "torch.float32",
+              "finite": true,
+              "sha256": "4cb9e6a4aa8d43fd914283b4d04ff7abfe6ba5a13550829bcc0cd8ca6c26b237"
+            }
+          }
+        }
+      ],
+      "activation_globals": [
+        [
+          0.00930059514939785,
+          0.0034412203822284937
+        ],
+        [
+          0.00930059514939785,
+          0.0034412203822284937
+        ]
+      ],
+      "error_vs_bf16_return": {
+        "valid": {
+          "error2": 215234.34075624455,
+          "reference2": 28503623910.969963,
+          "value2": 28503524217.21431,
+          "dot": 28503466446.921772,
+          "elements": 121169664,
+          "max_abs": 4.0,
+          "nmse": 7.551121970614025e-06,
+          "error_rms": 0.042146239468303405,
+          "error_l2": 463.9335520915086,
+          "reference_rms": 15.33744745070223,
+          "cosine": 0.9999962244339416
+        },
+        "real_model_padding": {
+          "error2": 329.2036184594035,
+          "reference2": 42194129.03385719,
+          "value2": 42208208.536332026,
+          "dot": 42201004.18328538,
+          "elements": 284928,
+          "max_abs": 1.0,
+          "nmse": 7.802119062470651e-06,
+          "error_rms": 0.033991062122698534,
+          "error_l2": 18.143969203550903,
+          "reference_rms": 12.169099679382313,
+          "cosine": 0.9999961135046436
+        },
+        "all_real": {
+          "error2": 215563.54437470395,
+          "reference2": 28545818040.003822,
+          "value2": 28545732425.75064,
+          "dot": 28545667451.105057,
+          "elements": 121454592,
+          "max_abs": 4.0,
+          "nmse": 7.55149297429891e-06,
+          "error_rms": 0.04212895514756678,
+          "error_l2": 464.2882126165858,
+          "reference_rms": 15.330780896341732,
+          "cosine": 0.9999962242489756
+        }
+      },
+      "down_error_vs_bf16_return": {
+        "valid": {
+          "error2": 1.73883060587832,
+          "reference2": 160772.76261127344,
+          "value2": 160771.18734555377,
+          "dot": 160771.10556311067,
+          "elements": 721248,
+          "max_abs": 0.03125,
+          "nmse": 1.0815455165640058e-05,
+          "error_rms": 0.001552695616593767,
+          "error_l2": 1.3186472636297852,
+          "reference_rms": 0.47213253203442734,
+          "cosine": 0.9999945922579246
+        },
+        "real_model_padding": {
+          "error2": 0.002881839871406555,
+          "reference2": 278.66826482117176,
+          "value2": 279.16065192222595,
+          "dot": 278.91301745176315,
+          "elements": 1696,
+          "max_abs": 0.00390625,
+          "nmse": 1.0341471330637173e-05,
+          "error_rms": 0.001303532906138522,
+          "error_l2": 0.053682770712832575,
+          "reference_rms": 0.4053506117038801,
+          "cosine": 0.9999952233929001
+        }
+      }
+    },
+    "fp4_side": {
+      "synchronized_wall_pair_max_ms": {
+        "values": [
+          4.893483128398657,
+          4.903760040178895,
+          5.087750963866711,
+          4.904249915853143,
+          4.879041109234095,
+          4.892441909760237,
+          4.880394088104367,
+          4.901224980130792,
+          4.890488926321268,
+          5.0105329137295485
+        ],
+        "median": 4.897354054264724,
+        "min": 4.879041109234095,
+        "max": 5.087750963866711
+      },
+      "per_rank_wall_ms": [
+        {
+          "values": [
+            4.893483128398657,
+            4.903760040178895,
+            4.913633922114968,
+            4.904249915853143,
+            4.879041109234095,
+            4.892441909760237,
+            4.880394088104367,
+            4.901224980130792,
+            4.890488926321268,
+            5.0105329137295485
+          ],
+          "median": 4.897354054264724,
+          "min": 4.879041109234095,
+          "max": 5.0105329137295485
+        },
+        {
+          "values": [
+            4.867643117904663,
+            4.885201109573245,
+            5.087750963866711,
+            4.885380854830146,
+            4.87041799351573,
+            4.879282088950276,
+            4.863176960498095,
+            4.884700058028102,
+            4.877518862485886,
+            4.8799829091876745
+          ],
+          "median": 4.8796324990689754,
+          "min": 4.863176960498095,
+          "max": 5.087750963866711
+        }
+      ],
+      "per_rank_cuda_ms": [
+        {
+          "values": [
+            4.872384071350098,
+            4.8824639320373535,
+            4.887040138244629,
+            4.883615970611572,
+            4.857247829437256,
+            4.871103763580322,
+            4.859551906585693,
+            4.880703926086426,
+            4.868832111358643,
+            4.973440170288086
+          ],
+          "median": 4.876543998718262,
+          "min": 4.857247829437256,
+          "max": 4.973440170288086
+        },
+        {
+          "values": [
+            4.8455681800842285,
+            4.865856170654297,
+            5.065311908721924,
+            4.864160060882568,
+            4.849696159362793,
+            4.858528137207031,
+            4.842559814453125,
+            4.865151882171631,
+            4.858240127563477,
+            4.837791919708252
+          ],
+          "median": 4.858384132385254,
+          "min": 4.837791919708252,
+          "max": 5.065311908721924
+        }
+      ],
+      "memory_per_rank": [
+        {
+          "resident_before_allocated": {
+            "values": [
+              205856256,
+              205856256,
+              205856256,
+              205855744,
+              205856256,
+              205856256,
+              205856256,
+              205855744,
+              205856256,
+              205856256
+            ],
+            "median": 205856256.0,
+            "min": 205855744,
+            "max": 205856256
+          },
+          "peak_allocated": {
+            "values": [
+              692591616,
+              692591616,
+              692591616,
+              692591616,
+              692591616,
+              692591616,
+              692591616,
+              692591616,
+              692591616,
+              692591616
+            ],
+            "median": 692591616.0,
+            "min": 692591616,
+            "max": 692591616
+          },
+          "incremental_peak_allocated": {
+            "values": [
+              486735360,
+              486735360,
+              486735360,
+              486735872,
+              486735360,
+              486735360,
+              486735360,
+              486735872,
+              486735360,
+              486735360
+            ],
+            "median": 486735360.0,
+            "min": 486735360,
+            "max": 486735872
+          },
+          "resident_before_reserved": {
+            "values": [
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272
+            ],
+            "median": 1700790272.0,
+            "min": 1700790272,
+            "max": 1700790272
+          },
+          "peak_reserved": {
+            "values": [
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272,
+              1700790272
+            ],
+            "median": 1700790272.0,
+            "min": 1700790272,
+            "max": 1700790272
+          },
+          "incremental_peak_reserved": {
+            "values": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "median": 0.0,
+            "min": 0,
+            "max": 0
+          }
+        },
+        {
+          "resident_before_allocated": {
+            "values": [
+              205856256,
+              205856256,
+              205856256,
+              205855744,
+              205856256,
+              205856256,
+              205856256,
+              205855744,
+              205856256,
+              205856256
+            ],
+            "median": 205856256.0,
+            "min": 205855744,
+            "max": 205856256
+          },
+          "peak_allocated": {
+            "values": [
+              692591616,
+              692591616,
+              692591616,
+              692591616,
+              692591616,
+              692591616,
+              692591616,
+              692591616,
+              692591616,
+              692591616
+            ],
+            "median": 692591616.0,
+            "min": 692591616,
+            "max": 692591616
+          },
+          "incremental_peak_allocated": {
+            "values": [
+              486735360,
+              486735360,
+              486735360,
+              486735872,
+              486735360,
+              486735360,
+              486735360,
+              486735872,
+              486735360,
+              486735360
+            ],
+            "median": 486735360.0,
+            "min": 486735360,
+            "max": 486735872
+          },
+          "resident_before_reserved": {
+            "values": [
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024
+            ],
+            "median": 1545601024.0,
+            "min": 1545601024,
+            "max": 1545601024
+          },
+          "peak_reserved": {
+            "values": [
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024,
+              1545601024
+            ],
+            "median": 1545601024.0,
+            "min": 1545601024,
+            "max": 1545601024
+          },
+          "incremental_peak_reserved": {
+            "values": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "median": 0.0,
+            "min": 0,
+            "max": 0
+          }
+        }
+      ],
+      "max_single_device_peak_allocated": 692591616,
+      "max_single_device_peak_reserved": 1700790272,
+      "communication_per_boundary": {
+        "per_rank": [
+          {
+            "a2a_remote_send_bytes": 23576576,
+            "a2a_remote_receive_bytes": 23429120,
+            "a2a_self_bytes": 23429120,
+            "allreduce_logical_peer_send_bytes": 8,
+            "reduce_scatter_logical_peer_send_bytes": 0
+          },
+          {
+            "a2a_remote_send_bytes": 23429120,
+            "a2a_remote_receive_bytes": 23576576,
+            "a2a_self_bytes": 23576576,
+            "allreduce_logical_peer_send_bytes": 8,
+            "reduce_scatter_logical_peer_send_bytes": 0
+          }
+        ],
+        "combined": {
+          "a2a_remote_send_bytes": 47005696,
+          "a2a_remote_receive_bytes": 47005696,
+          "a2a_self_bytes": 47005696,
+          "allreduce_logical_peer_send_bytes": 16,
+          "reduce_scatter_logical_peer_send_bytes": 0
+        },
+        "byte_scope": "A2A actual application wire splits; MAX/RS logical peer payload separately, not NCCL link traffic. Self and receive are not added to remote-send totals."
+      },
+      "output_parts": [
+        {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank0/fp4_side_output.pt",
+            "bytes": 121112161,
+            "sha256": "241fa7dc6656e88f8dbbe173da413999891c960cbffbc055bf48991e917f4783"
+          },
+          "tensor": {
+            "shape": [
+              11264,
+              5376
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "4a744101af8539e87ae0122a4c191e934633aab745f70c0029e131ef88e2dcf7"
+          }
+        },
+        {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank1/fp4_side_output.pt",
+            "bytes": 121800289,
+            "sha256": "50ccded62a3d95f279a4ad58969570183bb22f5067dce6ccba4dd2d42d999081"
+          },
+          "tensor": {
+            "shape": [
+              11328,
+              5376
+            ],
+            "dtype": "torch.bfloat16",
+            "finite": true,
+            "sha256": "93df0b87a2317da8d0d134341439ebc124722965030e3242d25eb8857b92cfd3"
+          }
+        }
+      ],
+      "state_parts": [
+        {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank0/fp4_side_state.pt",
+            "bytes": 722845,
+            "sha256": "3220720218dc6796a1feb253e41b4e3107ae58afda4106d22f5a286b7d692496"
+          },
+          "tensors": {
+            "down": {
+              "shape": [
+                11264,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "finite": true,
+              "sha256": "752279767fa7f87369833825840330b6353b9f27aa74afa2f5962b0c8b4bba88"
+            },
+            "activation_globals": {
+              "shape": [
+                2
+              ],
+              "dtype": "torch.float32",
+              "finite": true,
+              "sha256": "4cb9e6a4aa8d43fd914283b4d04ff7abfe6ba5a13550829bcc0cd8ca6c26b237"
+            }
+          }
+        },
+        {
+          "artifact": {
+            "file": "/data1/models/svdquant-wjq/research/20261003/E039/rank1/fp4_side_state.pt",
+            "bytes": 726941,
+            "sha256": "9760705f30f311e4ce0041406070ca7a946f0f35cbe250f5e0ff7c61f673fd1a"
+          },
+          "tensors": {
+            "down": {
+              "shape": [
+                11328,
+                32
+              ],
+              "dtype": "torch.bfloat16",
+              "finite": true,
+              "sha256": "8bc8a8833e608b4a29ec5bd7c1d0e86c7ea353599d05abee27dda3a99bde6195"
+            },
+            "activation_globals": {
+              "shape": [
+                2
+              ],
+              "dtype": "torch.float32",
+              "finite": true,
+              "sha256": "4cb9e6a4aa8d43fd914283b4d04ff7abfe6ba5a13550829bcc0cd8ca6c26b237"
+            }
+          }
+        }
+      ],
+      "activation_globals": [
+        [
+          0.00930059514939785,
+          0.0034412203822284937
+        ],
+        [
+          0.00930059514939785,
+          0.0034412203822284937
+        ]
+      ],
+      "error_vs_bf16_return": {
+        "valid": {
+          "error2": 1690.9507684894368,
+          "reference2": 28503623910.969963,
+          "value2": 28503633686.720467,
+          "dot": 28503627953.369835,
+          "elements": 121169664,
+          "max_abs": 2.0,
+          "nmse": 5.9324062574325994e-08,
+          "error_rms": 0.003735670216580877,
+          "error_l2": 41.12117177913875,
+          "reference_rms": 15.33744745070223,
+          "cosine": 0.9999999703379887
+        },
+        "real_model_padding": {
+          "error2": 1.295149303972721,
+          "reference2": 42194129.03385719,
+          "value2": 42194143.4318135,
+          "dot": 42194135.58526069,
+          "elements": 284928,
+          "max_abs": 0.0625,
+          "nmse": 3.069501216468941e-08,
+          "error_rms": 0.002132025297130447,
+          "error_l2": 1.1380462661828477,
+          "reference_rms": 12.169099679382313,
+          "cosine": 0.9999999846525109
+        },
+        "all_real": {
+          "error2": 1692.2459177934095,
+          "reference2": 28545818040.003822,
+          "value2": 28545827830.152283,
+          "dot": 28545822088.955093,
+          "elements": 121454592,
+          "max_abs": 2.0,
+          "nmse": 5.9281745417907206e-08,
+          "error_rms": 0.0037327144489163622,
+          "error_l2": 41.13691672686967,
+          "reference_rms": 15.330780896341732,
+          "cosine": 0.9999999703591471
+        }
+      },
+      "down_error_vs_bf16_return": {
+        "valid": {
+          "error2": 1.73883060587832,
+          "reference2": 160772.76261127344,
+          "value2": 160771.18734555377,
+          "dot": 160771.10556311067,
+          "elements": 721248,
+          "max_abs": 0.03125,
+          "nmse": 1.0815455165640058e-05,
+          "error_rms": 0.001552695616593767,
+          "error_l2": 1.3186472636297852,
+          "reference_rms": 0.47213253203442734,
+          "cosine": 0.9999945922579246
+        },
+        "real_model_padding": {
+          "error2": 0.002881839871406555,
+          "reference2": 278.66826482117176,
+          "value2": 279.16065192222595,
+          "dot": 278.91301745176315,
+          "elements": 1696,
+          "max_abs": 0.00390625,
+          "nmse": 1.0341471330637173e-05,
+          "error_rms": 0.001303532906138522,
+          "error_l2": 0.053682770712832575,
+          "reference_rms": 0.4053506117038801,
+          "cosine": 0.9999952233929001
+        }
+      }
+    }
+  },
+  "actual_boundaries": 104,
+  "actual_native_gemms": 130,
+  "actual_dit_calls": 0,
+  "prepare_sdpa_calls": 2,
+  "rank_receipts": [
+    {
+      "rank": 0,
+      "actual_counts": {
+        "boundary": 52,
+        "native_gemm": 65,
+        "lr_down": 78,
+        "lr_up": 52,
+        "smooth": 52,
+        "pack": 78,
+        "fp8_quant": 26,
+        "fp8_dequant": 26,
+        "amax_reduce": 52,
+        "all_to_all": 39,
+        "all_reduce": 26,
+        "reduce_scatter": 13
+      },
+      "environment": {
+        "torch": "2.11.0+cu128",
+        "cuda": "12.8",
+        "nccl": [
+          2,
+          28,
+          9
+        ],
+        "device": "NVIDIA RTX PRO 5000 72GB Blackwell",
+        "tf32": false,
+        "p2p_access_to_other_rank": true
+      },
+      "resident_baseline": {
+        "allocated": 196286976,
+        "reserved": 207618048,
+        "peak_allocated": 196286976,
+        "peak_reserved": 207618048
+      },
+      "after_warmup_baseline": {
+        "allocated": 205856256,
+        "reserved": 1700790272,
+        "peak_allocated": 692591616,
+        "peak_reserved": 1700790272
+      },
+      "released_allocated_bytes": 9568768
+    },
+    {
+      "rank": 1,
+      "actual_counts": {
+        "boundary": 52,
+        "native_gemm": 65,
+        "lr_down": 78,
+        "lr_up": 52,
+        "smooth": 52,
+        "pack": 78,
+        "fp8_quant": 26,
+        "fp8_dequant": 26,
+        "amax_reduce": 52,
+        "all_to_all": 39,
+        "all_reduce": 26,
+        "reduce_scatter": 13
+      },
+      "environment": {
+        "torch": "2.11.0+cu128",
+        "cuda": "12.8",
+        "nccl": [
+          2,
+          28,
+          9
+        ],
+        "device": "NVIDIA RTX PRO 5000 72GB Blackwell",
+        "tf32": false,
+        "p2p_access_to_other_rank": true
+      },
+      "resident_baseline": {
+        "allocated": 196286976,
+        "reserved": 207618048,
+        "peak_allocated": 196286976,
+        "peak_reserved": 207618048
+      },
+      "after_warmup_baseline": {
+        "allocated": 205856256,
+        "reserved": 1545601024,
+        "peak_allocated": 692591616,
+        "peak_reserved": 1545601024
+      },
+      "released_allocated_bytes": 9568768
+    }
+  ],
+  "limitations": [
+    "BF16-return is the original native SVD projection reference, not an all-BF16 model or quality oracle.",
+    "Real model padding53 is reported separately; artificial SF/RS zero slots are counted as transport cost, excluded from output accuracy.",
+    "LR/main partial arithmetic and FP8 alter numerical contracts. No bitwise scientific gate or quality inference.",
+    "Shared resident full and sliced weights/inputs are benchmark fixtures. Peak and increment are both reported; not full-model deployment memory.",
+    "Synchronized wall per round uses max across ranks. CUDA durations are retained per rank and never added to wall or across stages.",
+    "One actual layer/state and two GPUs; not a video-quality, novelty, or scaling result."
+  ],
+  "comparisons": {
+    "fp4_side_vs_bf16_return": {
+      "median_wall_ratio": 0.7715207318928405,
+      "paired_round_wall_ratios": [
+        0.7700810486089033,
+        0.7708102498511281,
+        0.7971737404326178,
+        0.7729595513870973,
+        0.7706664049150366,
+        0.7731745259278976,
+        0.7724515975230261,
+        0.7717786320506153,
+        0.7709111091300076,
+        0.7765133179688632
+      ],
+      "valid_nmse_delta": 5.9324062574325994e-08,
+      "pad_nmse_delta": 3.069501216468941e-08,
+      "max_peak_allocated_ratio": 0.7348633048580082
+    },
+    "fp4_side_vs_fp8_return": {
+      "median_wall_ratio": 0.44158675275148085,
+      "paired_round_wall_ratios": [
+        0.44158864126108066,
+        0.44162954983097436,
+        0.4588614741197138,
+        0.4410288314350588,
+        0.44023089298608364,
+        0.4417997605020563,
+        0.44079949556421116,
+        0.4418328263979874,
+        0.3836364497119579,
+        0.4505821838624763
+      ],
+      "valid_nmse_delta": -0.002335130293346914,
+      "pad_nmse_delta": -0.0027604389148052264,
+      "max_peak_allocated_ratio": 0.7348633048580082
+    },
+    "fp4_side_vs_row_parallel": {
+      "median_wall_ratio": 0.5589118679535826,
+      "paired_round_wall_ratios": [
+        0.568603968614839,
+        0.5628723220022086,
+        0.46440029856139287,
+        0.5579498570225865,
+        0.5684361056168707,
+        0.5441610927143443,
+        0.5611851214305763,
+        0.5434315662613652,
+        0.5523694304892134,
+        0.5736265809527957
+      ],
+      "valid_nmse_delta": -7.491797908039698e-06,
+      "pad_nmse_delta": -7.771424050305961e-06,
+      "max_peak_allocated_ratio": 0.7850139596802882
+    }
+  },
+  "cuda_initialized": false,
+  "reducer_source": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/summarize_h3_output_projection_parallel.py",
+    "bytes": 15884,
+    "sha256": "973e3ad4f24c6c72c49dfe940d0175dea858c95db31a56bf846acbf9979e9649"
+  },
+  "seconds": 4.249424584908411
+}

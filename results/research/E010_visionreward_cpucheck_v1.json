@@ -1,0 +1,312 @@
+{
+  "experiment": "E010",
+  "status": "complete",
+  "check_only": true,
+  "scope": "Two paired prompts, auxiliary video-only diagnostic; not quality equivalence or generalization; audio unassessed",
+  "official_compatibility": "Local official load_video/inference definitions executed unchanged; local model code is separately hashed",
+  "unknown_policy": "Both usable scores null if any unrecognized answer; raw literal official formula retained with explicit invalid flag",
+  "expected_cases": [
+    "/data1/models/svdquant-wjq/research/20261002/E010/decode/p030_bf16.json",
+    "/data1/models/svdquant-wjq/research/20261002/E010/decode/p030_native.json",
+    "/data1/models/svdquant-wjq/research/20261002/E010/decode/p036_bf16.json",
+    "/data1/models/svdquant-wjq/research/20261002/E010/decode/p036_native.json"
+  ],
+  "sources": {
+    "/home/wjq/workspace/svdquant-exp/scripts/research/evaluate_h3_paired_visionreward.py": {
+      "sha256": "0a039b61d5e9c1072020ca3393ffa04da4a03e4d81e7b265e68cea694bb88ec9",
+      "bytes": 15240
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/results/visionreward_contract_audit.json": {
+      "sha256": "961dfc57272467998f092fa3c201986a8486cafc93ceaf995571e5d1fd284ea7",
+      "bytes": 1591
+    },
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E010_h3_heldout_manifest.json": {
+      "sha256": "9469815d0c1d3d51bc793c2e3eaba08c80b35969ef2fab3776667db6b61fa79d",
+      "bytes": 13391
+    },
+    "/data1/models/svdquant-wjq/third_party/VisionReward/inference-video.py": {
+      "sha256": "782881168aa62d8a459f12da6e2bdfe05dc4beca5b9fd79d67cdef0289129855",
+      "bytes": 5732
+    },
+    "/data1/models/svdquant-wjq/third_party/VisionReward/VisionReward_Video/VisionReward_video_qa_select.txt": {
+      "sha256": "79de7f5e135a7957144826056a83be63fd6ddcbc61ba6460e09a0b09da580ee3",
+      "bytes": 1386
+    },
+    "/data1/models/svdquant-wjq/third_party/VisionReward/VisionReward_Video/weight.json": {
+      "sha256": "0c6367f244ae64fa881e93f0033f2a4362176893ed2f946223ec64a57e3c9204",
+      "bytes": 602
+    },
+    "/home/wjq/workspace/svdquant-exp/tools/evaluate_visionreward_video.py": {
+      "sha256": "fe235a7de07b7802cc5c40bbd267ba5a62a58b26db0d9f36971c963a95f76ea9",
+      "bytes": 4601
+    }
+  },
+  "questions": [
+    "Does the video meet all the requirements stated in the text \"[[prompt]]\"?\n",
+    "Does the video meet most of the requirements stated in the text \"[[prompt]]\"?\n",
+    "Does the video not completely fail to meet the requirements stated in the text \"[[prompt]]\"?\n",
+    "Is the composition aesthetically pleasing?\n",
+    "Does the composition have no obvious flaws?\n",
+    "Does the camera movement have no obvious flaws?\n",
+    "Are the colors not significantly unattractive?\n",
+    "Is the lighting perfectly accurate?\n",
+    "Does the lighting have no obvious errors?\n",
+    "Is there any lighting present?\n",
+    "Is the lighting exceptionally beautiful?\n",
+    "Is the lighting beautiful?\n",
+    "Is the lighting not unattractive?\n",
+    "Is the shape of the object at the beginning of the video completely accurate?\n",
+    "Does the shape of the object at the beginning have no obvious errors?\n",
+    "Is the shape of the object at the beginning not chaotic?\n",
+    "Is the shape of the object perfectly maintained throughout the video?\n",
+    "Is the shape of the object not chaotic throughout the video?\n",
+    "Is the camera motion highly dynamic?\n",
+    "Is the camera motion not minimal?\n",
+    "Is the smoothness of the object's movement very good?\n",
+    "Is the object's movement completely realistic?\n",
+    "Is the image quality very stable?\n",
+    "Are the details very refined?\n",
+    "Are the details not rough?\n",
+    "Are the details not significantly rough?\n",
+    "Are all the letters correct?\n",
+    "Are there any letters present?\n",
+    "Is the video content part of the physical world?"
+  ],
+  "weights": [
+    0.9543901856422174,
+    0.25239747290239256,
+    1.141818673357406,
+    0.03495652038170829,
+    0.025237463294006605,
+    0.12600844108184325,
+    0.03221505988621183,
+    0.16286819641189937,
+    0.21673935360893115,
+    0.01970324496671629,
+    0.13604019362894557,
+    0.09647134683834487,
+    0.15490927135496332,
+    0.1294164598219855,
+    0.09891696198970226,
+    0.18839328668539077,
+    0.1844335421380767,
+    0.2635526157239052,
+    0.11168980468489233,
+    0.05173789659242723,
+    0.02562797122879315,
+    0.4389890596048526,
+    0.26857694964769424,
+    0.42925171836383774,
+    0.00846154228462919,
+    0.12757277121689847,
+    0.05798205026065391,
+    0.1446334304609205,
+    0.39418111694677266
+  ],
+  "model_files": {
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/.gitattributes": {
+      "bytes": 1519,
+      "mtime_ns": 1789627850067621330,
+      "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/README.md": {
+      "bytes": 1111,
+      "mtime_ns": 1789627850264627811,
+      "sha256": "74b5e3496df708c3b33482ebf8889d9c037b78c40e14d6a084b81088401374c4"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/config.json": {
+      "bytes": 1010,
+      "mtime_ns": 1789627850481634951,
+      "sha256": "0fdaf6e7d825b71320d237ec57a107a79ab9964b65216ec3f672686b3807d0e4"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/configuration copy.json": {
+      "bytes": 57,
+      "mtime_ns": 1789627850127623304,
+      "sha256": "eac5f7713830bbac5e00d101f5717639acdacd61f54d8e366c3f67699d91bcb9"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/configuration.json": {
+      "bytes": 29,
+      "mtime_ns": 1789627850254627482,
+      "sha256": "8fa209ef18ac53dea0c47cf8d6f4e92c907565a4971bee413c1772e314a251fa"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/configuration_cogvlm.py": {
+      "bytes": 1623,
+      "mtime_ns": 1789627850108622679,
+      "sha256": "e2ae74be32dfd3bd554c4f9e9703b0e715e1bfea644b9b4d624cc11bed08f04c"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/generation_config.json": {
+      "bytes": 212,
+      "mtime_ns": 1789627851322662619,
+      "sha256": "0d36b7ec097a8d2b070d87d804a7fbff5b9b198d05fdc04f1fc0dbe2fabffdc2"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/model-00001-of-00006.safetensors": {
+      "bytes": 4976699712,
+      "mtime_ns": 1789631035199883119,
+      "header_sha256": "dcffb84a187ac612fd0c82f3a938843e81706b2e2231d43558561af82c907b10"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/model-00002-of-00006.safetensors": {
+      "bytes": 4999803504,
+      "mtime_ns": 1789631048375310458,
+      "header_sha256": "9c2993a11f569c63294b964a317b503966e91d1605ea3dff9413890c46fb4f45"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/model-00003-of-00006.safetensors": {
+      "bytes": 4915917160,
+      "mtime_ns": 1789631036524925545,
+      "header_sha256": "6394f6c8861ab4a833fa3bd324552de6edb61fe8bd36be2b367f539dd1fd9bae"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/model-00004-of-00006.safetensors": {
+      "bytes": 4956242104,
+      "mtime_ns": 1789631064442838110,
+      "header_sha256": "0e05561254c91ef370fbf9cf1363f75769fbcfb68e9c45091126f50ffcb16d8b"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/model-00005-of-00006.safetensors": {
+      "bytes": 4115863248,
+      "mtime_ns": 1789630911450920907,
+      "header_sha256": "5d8b7b5ac853a3b7fa8e6b86d0c3cea13f32168e4167fe75120c054b16ae9450"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/model-00006-of-00006.safetensors": {
+      "bytes": 1050673280,
+      "mtime_ns": 1789628592703050930,
+      "header_sha256": "3bcdd3578c239ae7bf07d33525be3209b402034e454acbb3831f15d932b7c59d"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/model.safetensors.index.json": {
+      "bytes": 100996,
+      "mtime_ns": 1789627852198691438,
+      "sha256": "b0dddc31695d35df38081f85e65d52c780ccaf6390282f4d1b476c8d5855b866"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/model_config.py": {
+      "bytes": 1562,
+      "mtime_ns": 1789627853437732200,
+      "sha256": "a503c33ce97e30842300e5d4138cfa87f97714f43af52d1d1a17680a92112d5d"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/modeling_cogvlm.py": {
+      "bytes": 39739,
+      "mtime_ns": 1789632258995179139,
+      "sha256": "0c4af2e78db02769beabe8ada09241d9f66ba037e1108cedb4f52a2e918dc894"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/special_tokens_map.json": {
+      "bytes": 73,
+      "mtime_ns": 1789627854866779212,
+      "sha256": "462d91939dbc37178aa5a3eae7068d1990ccc92e09f288cc71f42cdf139d69cc"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/tokenizer.json": {
+      "bytes": 9084463,
+      "mtime_ns": 1789627856727840437,
+      "sha256": "0ac333c83e2d107910928928b5912d8ade91594d08c7c73c4606d05c032d7632"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/tokenizer_config.json": {
+      "bytes": 51111,
+      "mtime_ns": 1789627856683838990,
+      "sha256": "aaf547ad0ac582a4b684cb7416e542800d7ccc5d325c98feed105f40fb7e52c6"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/util.py": {
+      "bytes": 18574,
+      "mtime_ns": 1789627858825909459,
+      "sha256": "695ce92026c948890ff148172ba829cc643e1886cf1b91aa840ceae4cd87d894"
+    },
+    "/data1/models/svdquant-wjq/models/VisionReward-Video/visual.py": {
+      "bytes": 7517,
+      "mtime_ns": 1789627859614935416,
+      "sha256": "bf4164abb4ff6f5e02eb8136708261439f4a3c9f03470127773f82b7b68478b0"
+    }
+  },
+  "model_full_hash_complete": false,
+  "official_function_source": "/data1/models/svdquant-wjq/third_party/VisionReward/inference-video.py",
+  "versions": {
+    "python": "3.12.13 | packaged by Anaconda, Inc. | (main, Jul  9 2026, 14:38:16) [GCC 14.3.0]",
+    "torch": "2.11.0+cu128",
+    "transformers": "4.49.0",
+    "decord": "0.6.0"
+  },
+  "tokenizer_probe": {
+    "yes": {
+      "ids": [
+        9891
+      ],
+      "decoded_first": "yes"
+    },
+    "Yes": {
+      "ids": [
+        9642
+      ],
+      "decoded_first": "Yes"
+    },
+    "no": {
+      "ids": [
+        2201
+      ],
+      "decoded_first": "no"
+    },
+    "No": {
+      "ids": [
+        2822
+      ],
+      "decoded_first": "No"
+    },
+    " yes": {
+      "ids": [
+        10035
+      ],
+      "decoded_first": " yes"
+    }
+  },
+  "cpu_contract": {
+    "score_fixture": {
+      "strict_official": {
+        "valid": true,
+        "score": -0.3333333333333333,
+        "raw_formula_value_even_if_invalid": -0.3333333333333333,
+        "formula": "mean(weight * (1 if first_token_decoded == \"yes\" else -1))",
+        "exact_yes_count": 1,
+        "invalid_question_indices_zero_based": []
+      },
+      "normalized_yes_no": {
+        "valid": true,
+        "score": 0.3333333333333333,
+        "normalization": "first_token_decoded.strip().casefold()",
+        "yes_count": 2,
+        "no_count": 1,
+        "invalid_question_indices_zero_based": []
+      }
+    },
+    "unknown_fixture": {
+      "strict_official": {
+        "valid": false,
+        "score": null,
+        "raw_formula_value_even_if_invalid": 0.0,
+        "formula": "mean(weight * (1 if first_token_decoded == \"yes\" else -1))",
+        "exact_yes_count": 1,
+        "invalid_question_indices_zero_based": [
+          1
+        ]
+      },
+      "normalized_yes_no": {
+        "valid": false,
+        "score": null,
+        "normalization": "first_token_decoded.strip().casefold()",
+        "yes_count": 1,
+        "no_count": 0,
+        "invalid_question_indices_zero_based": [
+          1
+        ]
+      }
+    },
+    "official_frame_fixture": [
+      0,
+      24,
+      48,
+      72,
+      96,
+      120
+    ],
+    "question_count": 29
+  },
+  "cuda_initialized": false,
+  "case_files_present": {
+    "/data1/models/svdquant-wjq/research/20261002/E010/decode/p030_bf16.json": false,
+    "/data1/models/svdquant-wjq/research/20261002/E010/decode/p030_native.json": false,
+    "/data1/models/svdquant-wjq/research/20261002/E010/decode/p036_bf16.json": false,
+    "/data1/models/svdquant-wjq/research/20261002/E010/decode/p036_native.json": false
+  },
+  "seconds_total": 2.902963378932327
+}

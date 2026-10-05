@@ -1,0 +1,110 @@
+{
+  "experiment": "E070",
+  "phase": "check",
+  "status": "complete",
+  "pid": 3253780,
+  "attempted_svd_calls": 0,
+  "returned_svd_calls": 0,
+  "complete_svd_calls": 0,
+  "new_model_forwards": 0,
+  "new_quantization_calls": 0,
+  "budget_start_unix": null,
+  "deadline_unix": null,
+  "meaning": "Single exact-SVD resource and numerical-contract pilot; no method or quality evidence",
+  "binding": {
+    "sources": {
+      "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_exact_svd_resource.py": {
+        "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_exact_svd_resource.py",
+        "bytes": 19189,
+        "sha256": "a400967abd67e342d9e03d2d9e00f503538460f34491875406ce1c888c6b62a6"
+      },
+      "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E070_h3_baseline_entry_plan.md": {
+        "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E070_h3_baseline_entry_plan.md",
+        "bytes": 4160,
+        "sha256": "1ca931fedd1d709cfc0e973ff9fd8a9bd07f4cafd958a8ed2a361ecac5e33057"
+      },
+      "/data1/models/svdquant-wjq/research/20261002/E009/legacy_export/manifest.json": {
+        "file": "/data1/models/svdquant-wjq/research/20261002/E009/legacy_export/manifest.json",
+        "bytes": 306476,
+        "sha256": "0b92e3e9f6a937ca7a6ebff6c4dfe4e6ad4e918224525ab5bf12a4e1baddfec0"
+      },
+      "/home/wjq/workspace/svdquant-exp/results/research/E069/independent_review.json": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E069/independent_review.json",
+        "bytes": 21520,
+        "sha256": "6a98b15801658cb7ca2e5b56072063756b7089005a8892b1c779247d946b167d"
+      },
+      "/home/wjq/workspace/svdquant-exp/results/research/E069/audit.json": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E069/audit.json",
+        "bytes": 20230,
+        "sha256": "aa993946fbf01fc428067ba9a0d6cb59befec0cdbf7b5bbb4fd79de10480faf0"
+      },
+      "/home/wjq/workspace/svdquant-exp/results/research/E069/upstream/source_manifest.json": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E069/upstream/source_manifest.json",
+        "bytes": 6130,
+        "sha256": "7e6fe255636a13bfc4455b1542d188c1061c4e8cb5d8b983cae888762f519ab7"
+      },
+      "/home/wjq/workspace/svdquant-exp/results/research/E069/upstream/deepcompressor/nn/patch/lowrank.py": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E069/upstream/deepcompressor/nn/patch/lowrank.py",
+        "bytes": 4095,
+        "sha256": "3eb734678fa8f44fbe5eb57cfdcd0c55546b948d837780df16813cecaaabb619"
+      }
+    },
+    "upstream": {
+      "commit": "69f3473f5e1c1504bae35cc50c7858ef900a9b17",
+      "source": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E069/upstream/deepcompressor/nn/patch/lowrank.py",
+        "bytes": 4095,
+        "sha256": "3eb734678fa8f44fbe5eb57cfdcd0c55546b948d837780df16813cecaaabb619"
+      },
+      "call": "torch.linalg.svd(weight.double())",
+      "line": 49,
+      "full_matrices": "default True; no argument supplied",
+      "driver": "default; no argument supplied"
+    },
+    "model": {
+      "file": "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors",
+      "sha256": "a32572fb90b5508b201ec7c2eddcc184b13ddfd3c6f6d2cf06a0b46535d541b4",
+      "bytes": 40225724176,
+      "mtime_ns": 1788628641816315374,
+      "whole_file_rehashed_this_probe": false,
+      "identity_basis": "E009 recorded hash plus matching size/mtime; runtime selected tensor hash"
+    },
+    "safetensors": {
+      "header_bytes": 55976,
+      "header_sha256": "d55386f89bed7f9719ae315b4d70d104b9000e7a839d7702c82a97c1835324e6",
+      "metadata": null,
+      "key": "blocks.0.mlp.fc1.weight",
+      "entry": {
+        "dtype": "BF16",
+        "shape": [
+          28672,
+          5376
+        ],
+        "data_offsets": [
+          308991488,
+          617272832
+        ]
+      }
+    },
+    "source_weight_sha256": "398fbc666059bf253c09db92db9c56a077815603082469329567deb40a2ba78d",
+    "rank": 32,
+    "expected_full_outputs": {
+      "u": [
+        28672,
+        28672
+      ],
+      "s": [
+        5376
+      ],
+      "vh": [
+        5376,
+        5376
+      ]
+    }
+  },
+  "torch_imported": false,
+  "cuda_imported": false,
+  "cuda_initialized": false,
+  "selected_weight_loaded": false,
+  "seconds_total": 0.003983858972787857
+}

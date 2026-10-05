@@ -1,0 +1,303 @@
+{
+  "experiment": "E014",
+  "status": "complete",
+  "start_epoch": 1790945509.6159468,
+  "deadline_epoch": 1790948209.6159468,
+  "wall_budget_seconds": 2700,
+  "max_complete_dit_calls": 30,
+  "planned_dit_calls": 24,
+  "freeze_sha256": "1eaf708c31c61c6b8be4932c21ee36b1598ab0a9210a264890df957042da8310",
+  "continuation_source": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/resume_h3_plain_baseline.py",
+    "sha256": "f9f4e997e67590edda670f7b0c1b01bb3697ecae4fe8b40a12a153b4597253b1"
+  },
+  "previous_launcher": {
+    "file": "/home/wjq/workspace/svdquant-exp/results/research/E014/launcher.json",
+    "sha256": "5e9d95077e9faccc050545e39abfa7ac18aff6fb9ed03570bc18dc250203768c"
+  },
+  "inherited_stage_count": 3,
+  "resume_epoch": 1790945931.5604615,
+  "stages": [
+    {
+      "name": "export",
+      "status": "complete",
+      "command": [
+        "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/export_h3_plain_nvfp4.py",
+        "--phase",
+        "export",
+        "--deadline-unix",
+        "1790948209.6159468"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E014_export.log",
+      "gpu_before": {
+        "index": 0,
+        "uuid": "GPU-f2d2bf35-6009-bfec-9e68-dfffd5b077c4",
+        "memory_mib": 0,
+        "utilization_percent": 0
+      },
+      "planned_dit_calls": 0,
+      "returncode": 0,
+      "seconds": 197.0551187992096,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E014/export.json",
+      "report_sha256": "a9af02fe2c23d1639aa79971c295da4fce04baabb2f5ff0ca3e79c2a4a9c7719"
+    },
+    {
+      "name": "evaluate_bf16",
+      "status": "complete",
+      "command": [
+        "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_plain_baseline.py",
+        "--phase",
+        "evaluate",
+        "--arm",
+        "bf16",
+        "--check-report",
+        "/home/wjq/workspace/svdquant-exp/results/research/E014/E014_check_bf16.json",
+        "--deadline-unix",
+        "1790948209.6159468"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E014_evaluate_bf16.log",
+      "gpu_before": {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0
+      },
+      "planned_dit_calls": 3,
+      "returncode": 0,
+      "seconds": 36.82625389099121,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E014/E014_evaluate_bf16.json",
+      "report_sha256": "5178a9abd3e2b9619bb9652b3796d21ee4594f709752e72cdec51fb333e3797a"
+    },
+    {
+      "name": "evaluate_svd",
+      "status": "complete",
+      "command": [
+        "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_plain_baseline.py",
+        "--phase",
+        "evaluate",
+        "--arm",
+        "svd",
+        "--check-report",
+        "/home/wjq/workspace/svdquant-exp/results/research/E014/E014_check_bf16.json",
+        "--deadline-unix",
+        "1790948209.6159468"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E014_evaluate_svd.log",
+      "gpu_before": {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0
+      },
+      "planned_dit_calls": 3,
+      "returncode": 0,
+      "seconds": 42.586196422576904,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E014/E014_evaluate_svd.json",
+      "report_sha256": "0d41c1aea1bd0961862fd381692c6a09227a6883b8d0203aba040891adafe13e"
+    },
+    {
+      "name": "evaluate_plain",
+      "status": "complete",
+      "command": [
+        "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_plain_baseline.py",
+        "--phase",
+        "evaluate",
+        "--arm",
+        "plain",
+        "--check-report",
+        "/home/wjq/workspace/svdquant-exp/results/research/E014/E014_check_bf16.json",
+        "--deadline-unix",
+        "1790948209.6159468"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E014_evaluate_plain.log",
+      "gpu_before": {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0,
+        "samples": [
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "planned_dit_calls": 3,
+      "start_epoch": 1790945932.2120926,
+      "pid": 2269985,
+      "returncode": 0,
+      "seconds": 38.5810124874115,
+      "end_epoch": 1790945970.793533,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E014/E014_evaluate_plain.json",
+      "report_sha256": "7c16721f5c411c45196ecfee652bf0735588c00f85e4d2797bb156cf16a26c3a"
+    },
+    {
+      "name": "bench_bf16",
+      "status": "complete",
+      "command": [
+        "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_plain_baseline.py",
+        "--phase",
+        "bench",
+        "--arm",
+        "bf16",
+        "--check-report",
+        "/home/wjq/workspace/svdquant-exp/results/research/E014/E014_check_bf16.json",
+        "--deadline-unix",
+        "1790948209.6159468"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E014_bench_bf16.log",
+      "gpu_before": {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0,
+        "samples": [
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "planned_dit_calls": 5,
+      "start_epoch": 1790945971.4487362,
+      "pid": 2279217,
+      "returncode": 0,
+      "seconds": 53.708425521850586,
+      "end_epoch": 1790946025.1576233,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E014/E014_bench_bf16.json",
+      "report_sha256": "149c7fbd260d5c8dfd0d11a7fee345a0ef388a4e45471274dfb92f0fd8813fa5"
+    },
+    {
+      "name": "bench_svd",
+      "status": "complete",
+      "command": [
+        "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_plain_baseline.py",
+        "--phase",
+        "bench",
+        "--arm",
+        "svd",
+        "--check-report",
+        "/home/wjq/workspace/svdquant-exp/results/research/E014/E014_check_bf16.json",
+        "--deadline-unix",
+        "1790948209.6159468"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E014_bench_svd.log",
+      "gpu_before": {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0,
+        "samples": [
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 10
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "planned_dit_calls": 5,
+      "start_epoch": 1790946027.0004003,
+      "pid": 2290905,
+      "returncode": 0,
+      "seconds": 56.15961003303528,
+      "end_epoch": 1790946083.160719,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E014/E014_bench_svd.json",
+      "report_sha256": "94305ed3f3e95bae595f315e6882cc5e6e150aebb10768e66e5e156776c87662"
+    },
+    {
+      "name": "bench_plain",
+      "status": "complete",
+      "command": [
+        "/home/wjq/.venvs/minimax-h3-svdquant-recovered/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_plain_baseline.py",
+        "--phase",
+        "bench",
+        "--arm",
+        "plain",
+        "--check-report",
+        "/home/wjq/workspace/svdquant-exp/results/research/E014/E014_check_bf16.json",
+        "--deadline-unix",
+        "1790948209.6159468"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E014_bench_plain.log",
+      "gpu_before": {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0,
+        "samples": [
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          },
+          {
+            "index": 5,
+            "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+            "memory_mib": 0,
+            "utilization_percent": 0
+          }
+        ]
+      },
+      "planned_dit_calls": 5,
+      "start_epoch": 1790946083.8333771,
+      "pid": 2304022,
+      "returncode": 0,
+      "seconds": 50.496161222457886,
+      "end_epoch": 1790946134.3300426,
+      "report": "/home/wjq/workspace/svdquant-exp/results/research/E014/E014_bench_plain.json",
+      "report_sha256": "3c87faae24f22ebaa8d617a392583c97b5b1fed9c839cac6626bdfbced007570"
+    }
+  ],
+  "reason": "Previous process exited successfully; GPU memory zero but trailing utilization 13%. Preserve failure; require two settled samples; keep original deadline and all experimental code/data.",
+  "seconds_total": 624.7167971134186
+}

@@ -1,0 +1,228 @@
+{
+  "experiment": "E009",
+  "scope": "exact original native block1.fc2 SF0 failure diagnostic",
+  "status": "complete",
+  "files": {
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_zero_scale_domain.py": {
+      "sha256": "6391a6a20153c6fc08816e7f9e9ee7fb5c415db08b87800a4558666768d7721a"
+    },
+    "/home/wjq/workspace/svdquant-exp/results/research/E009_h3_full.json": {
+      "sha256": "2caef6a433089207b62bb8ef2d508f06f975af8dc70d109f18f1ab2171fc82e0"
+    },
+    "/home/wjq/workspace/svdquant-exp/results/calib/minimax_h3_svdquant_standard_8p64s/p1/sample_p1_s00.pt": {
+      "sha256": "c89050f015479c3aa097f090f2a600cbd232dc63d86ce430d9a29c33c27e5404"
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_native_contract.py": {
+      "sha256": "0be4b1fb4a67f52e2c618ef492f49e1285cc14b57c2e6ceffbc6fa578a011c83"
+    }
+  },
+  "source_failure_sha256": "2caef6a433089207b62bb8ef2d508f06f975af8dc70d109f18f1ab2171fc82e0",
+  "installed_names": [
+    "blocks.0.attn.qkv_proj",
+    "blocks.0.attn.out_proj",
+    "blocks.0.mlp.fc1",
+    "blocks.0.mlp.fc2",
+    "blocks.1.attn.qkv_proj",
+    "blocks.1.attn.out_proj",
+    "blocks.1.mlp.fc1",
+    "blocks.1.mlp.fc2"
+  ],
+  "block0_sha256": "133552fd764a702e67b1c51ee3e828460219abc9345efacadcaaa43ad37f9d55",
+  "failed_run_block0_sha256": "133552fd764a702e67b1c51ee3e828460219abc9345efacadcaaa43ad37f9d55",
+  "capture": {
+    "file": "/data1/models/svdquant-wjq/research/20261002/E009/sf0_diagnostic_v2/block1_fc2_inputs.pt",
+    "sha256": "7203bee794efeec9f48e96ccb94c2ec5ab2ec040aae89d256fa4db959efcaacd",
+    "layer": "blocks.1.mlp.fc2",
+    "x_s_sha256": "3ee6483ba9cb224bdae0ab4545e78f25fd06956f4925453245dff587d77fd63d",
+    "shape": [
+      22400,
+      14336
+    ],
+    "trajectory": "same native block0 SHA, actual native block1 upstream; fixed p1step0"
+  },
+  "strict_guard_reproduced": "Nonzero H3 groups underflow E4M3 SF: outside validated legacy packed domain",
+  "legacy_qdq_vs_e005_decode": {
+    "finite_common": true,
+    "finite_decoded": true,
+    "torch_equal": true,
+    "metrics": {
+      "err2": 0.0,
+      "ref2": 197095451.5195941,
+      "nmse": 0.0,
+      "max_abs": 0.0,
+      "numel": 321126400
+    },
+    "zero_sign_element_differences": 87840962,
+    "other_byte_differences": 0
+  },
+  "e005_pack_stats": {
+    "exact_midpoints": 53737,
+    "negative_exact_midpoints": 26766,
+    "legacy_rne_code_changes": 26971,
+    "near_midpoints_atol_1e-6_including_exact": 53737,
+    "nonzero_subnormal_scales": 351481,
+    "zero_scales": 95,
+    "all_zero_input_groups": 0,
+    "nonzero_input_groups_with_zero_scale": 95,
+    "nonfinite_normalized_values": 0,
+    "scales_at_448": 1,
+    "elements": 321126400,
+    "groups": 20070400,
+    "global_scale": 0.1659226268529892,
+    "midpoint_fraction": 0.00016733909139827807,
+    "changed_code_fraction": 8.398873465401786e-05,
+    "scale_padding_excluded": true
+  },
+  "partitions": {
+    "video": {
+      "tokens": 21312,
+      "indices_sha256": "f5ebdfe99092b25b31e6e4d744f3036283be6492663f02162844a9fbe48f4e70",
+      "token_tag_counts": {
+        "0": 21312
+      }
+    },
+    "audio": {
+      "tokens": 414,
+      "indices_sha256": "0e4191211759e33ccf798497b934df3619995518acf315220d4562f2798cafab",
+      "token_tag_counts": {
+        "2": 414
+      }
+    },
+    "text": {
+      "tokens": 658,
+      "indices_sha256": "e79ad07c72abc57477ff860ac4b62527a3039fa0862025e352ef115b1c07536b",
+      "token_tag_counts": {
+        "1": 658
+      }
+    },
+    "pad_or_unassigned": {
+      "tokens": 16,
+      "indices_sha256": "e462282ef988b3255eecca3dd6f283528750b3f97ea1fd4386c4512dd1574a76",
+      "token_tag_counts": {
+        "-1": 16
+      }
+    }
+  },
+  "zero_scale_by_modality": {
+    "video": {
+      "groups_sf0": 0.0,
+      "groups_nonzero_sf0": 0.0,
+      "nonzero_values_sf0": 0.0,
+      "input_energy": 194461652.25794297,
+      "sf0_input_energy": 0.0,
+      "sf0_input_absmax": 0.0,
+      "nonzero_common_outputs_sf0": 0.0,
+      "tokens": 21312,
+      "groups": 19095552,
+      "sf0_input_energy_fraction": 0.0
+    },
+    "audio": {
+      "groups_sf0": 95.0,
+      "groups_nonzero_sf0": 95.0,
+      "nonzero_values_sf0": 1520.0,
+      "input_energy": 42.78971477188655,
+      "sf0_input_energy": 0.0002946959987393616,
+      "sf0_input_absmax": 0.00096893310546875,
+      "nonzero_common_outputs_sf0": 0.0,
+      "tokens": 414,
+      "groups": 370944,
+      "sf0_input_energy_fraction": 6.887075558002575e-06
+    },
+    "text": {
+      "groups_sf0": 0.0,
+      "groups_nonzero_sf0": 0.0,
+      "nonzero_values_sf0": 0.0,
+      "input_energy": 2907282.5293092118,
+      "sf0_input_energy": 0.0,
+      "sf0_input_absmax": 0.0,
+      "nonzero_common_outputs_sf0": 0.0,
+      "tokens": 658,
+      "groups": 589568,
+      "sf0_input_energy_fraction": 0.0
+    },
+    "pad_or_unassigned": {
+      "groups_sf0": 0.0,
+      "groups_nonzero_sf0": 0.0,
+      "nonzero_values_sf0": 0.0,
+      "input_energy": 4513.146856576617,
+      "sf0_input_energy": 0.0,
+      "sf0_input_absmax": 0.0,
+      "nonzero_common_outputs_sf0": 0.0,
+      "tokens": 16,
+      "groups": 14336,
+      "sf0_input_energy_fraction": 0.0
+    },
+    "valid": {
+      "groups_sf0": 95.0,
+      "groups_nonzero_sf0": 95.0,
+      "nonzero_values_sf0": 1520.0,
+      "input_energy": 197368977.57696694,
+      "sf0_input_energy": 0.0002946959987393616,
+      "sf0_input_absmax": 0.00096893310546875,
+      "nonzero_common_outputs_sf0": 0.0,
+      "tokens": 22384,
+      "groups": 20056064,
+      "sf0_input_energy_fraction": 1.4931221834213562e-12
+    },
+    "all": {
+      "groups_sf0": 95.0,
+      "groups_nonzero_sf0": 95.0,
+      "nonzero_values_sf0": 1520.0,
+      "input_energy": 197373490.72382355,
+      "sf0_input_energy": 0.0002946959987393616,
+      "sf0_input_absmax": 0.00096893310546875,
+      "nonzero_common_outputs_sf0": 0.0,
+      "tokens": 22400,
+      "groups": 20070400,
+      "sf0_input_energy_fraction": 1.4930880416545774e-12
+    }
+  },
+  "samepacket_full_main": {
+    "all": {
+      "err2": 10616855.269308534,
+      "ref2": 2327753668765.101,
+      "nmse": 4.5609874497334125e-06,
+      "max_abs": 64.0,
+      "numel": 120422400
+    },
+    "video": {
+      "err2": 10022911.5821796,
+      "ref2": 2238572533079.638,
+      "nmse": 4.477367355343599e-06,
+      "max_abs": 16.0,
+      "numel": 114573312
+    },
+    "audio": {
+      "err2": 2.4493088688003306,
+      "ref2": 325946.19191549864,
+      "nmse": 7.5144576913336435e-06,
+      "max_abs": 0.0625,
+      "numel": 2225664
+    },
+    "text": {
+      "err2": 593801.7089695216,
+      "ref2": 89155492641.52814,
+      "nmse": 6.6602930607657485e-06,
+      "max_abs": 64.0,
+      "numel": 3537408
+    },
+    "pad_or_unassigned": {
+      "err2": 139.52885054145008,
+      "ref2": 25317097.74208471,
+      "nmse": 5.511249826614633e-06,
+      "max_abs": 0.5,
+      "numel": 86016
+    },
+    "valid": {
+      "err2": 10616715.740457993,
+      "ref2": 2327728351667.359,
+      "nmse": 4.560977114384162e-06,
+      "max_abs": 64.0,
+      "numel": 120336384
+    },
+    "finite": true
+  },
+  "interpretation": "For this exact failing activation, E005 canonical-zero SF0 decodes numerically exactly as old common QDQ; zero-scale lost energy belongs to the historical quantizer too. This does not establish a full-model native baseline.",
+  "seconds_total_not_benchmark": 5.704511833842844,
+  "peak_allocated_gib": 7.3899617195129395
+}

@@ -1,0 +1,60 @@
+{
+  "status": "complete",
+  "source_result": "results/research/E009_fused_up_real.json",
+  "result_sha256": "b8c74a28308d3fd2e649743b5ea09a19bc49ecb35376e80c5a2e9981fcbe00b0",
+  "experiment_scope": "Same packed data; existing FlashInfer fused-up component baseline, no whole-linear/DiT speed or quality claim",
+  "rows": [
+    {
+      "layer": "blocks.0.attn.qkv_proj",
+      "shape_mnk": [
+        512,
+        21504,
+        5376
+      ],
+      "main_vs_torch_nmse": 0.0,
+      "full_vs_torch_nmse": 8.081553959205003e-06,
+      "torch_component_wall_ms": 0.2739999908953905,
+      "fused_component_wall_ms": 0.3431860823184252,
+      "ratio_torch_over_fused": 0.7984006491299366
+    },
+    {
+      "layer": "blocks.0.attn.qkv_proj",
+      "shape_mnk": [
+        22400,
+        21504,
+        5376
+      ],
+      "main_vs_torch_nmse": 0.0,
+      "full_vs_torch_nmse": 7.525473251153126e-06,
+      "torch_component_wall_ms": 10.161490179598331,
+      "fused_component_wall_ms": 6.6414030734449625,
+      "ratio_torch_over_fused": 1.5300216034512515
+    },
+    {
+      "layer": "blocks.0.mlp.fc2",
+      "shape_mnk": [
+        512,
+        5376,
+        14336
+      ],
+      "main_vs_torch_nmse": 0.0,
+      "full_vs_torch_nmse": 8.192610523145067e-06,
+      "torch_component_wall_ms": 0.20699785090982914,
+      "fused_component_wall_ms": 0.2899549435824156,
+      "ratio_torch_over_fused": 0.7138966087363602
+    },
+    {
+      "layer": "blocks.0.mlp.fc2",
+      "shape_mnk": [
+        22400,
+        5376,
+        14336
+      ],
+      "main_vs_torch_nmse": 0.0,
+      "full_vs_torch_nmse": 8.175916203198438e-06,
+      "torch_component_wall_ms": 5.677995970472693,
+      "fused_component_wall_ms": 5.799002014100552,
+      "ratio_torch_over_fused": 0.9791332985686803
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+# FastWan-QAD-1.3B 外部产品基线：可实施，但当前环境未安装
+
+2026-10-03；本轮仅读取官方小文件、文件清单和 83,584 B 的 safetensors 头部，无 GPU、安装或大权重下载。**建议直接建立官方产品基线，不移植到我们的 rCM loader。SM120 有官方部署路线；3 步、不同训练权重和 TAEHV decoder 应分别报告，不能称同权重单因素对照。** 尚未进行本机功能运行，因此这里是可执行准备，不是成功复现声明。
+
+## 固定版本与实际资产
+
+- HF [`FastVideo/FastWan-QAD-1.3B@621c6aeb900f9f9a2ebb9ea9ed74c0daf31d5e6a`](https://huggingface.co/FastVideo/FastWan-QAD-1.3B/tree/621c6aeb900f9f9a2ebb9ea9ed74c0daf31d5e6a)。`transformer/diffusion_pytorch_model.safetensors` 为 **5,676,070,784 B**；HTTP Range 读取实际头部证实 **825 个 tensor、1,418,996,800 参数、全部 F32**，没有预打包 FP4/scale tensor。30 blocks、12 heads、head_dim128、FFN8960、16 latent channels、patch `[1,2,2]`，配置可直接读取。不要用“4bit 模型”推算下载体积。
+- 官方推理源码固定 [`FastVideo@8444c0897a8b96848eb85b6e5750ef486f79fc92`](https://github.com/hao-ai-lab/FastVideo/tree/8444c0897a8b96848eb85b6e5750ef486f79fc92)（commit 时间 2026-10-02 18:28:07 UTC），不是浮动 `main`。TAEHV 固定 [`011dfc2112197741c540e0bdd5b7b67bcc930771`](https://github.com/madebyollin/taehv/tree/011dfc2112197741c540e0bdd5b7b67bcc930771)，`taew2_1.pth` **22,678,901 B**。
+- HF 全仓文件合计 **28,928,820,159 B**：其中 UMT5 五个 FP32 shard 为 22,723,671,744 B，完整 Wan VAE 为 507,591,892 B，其余为 transformer/tokenizer/配置。全仓加 TAEHV 为 **28,951,499,060 B**（26.963 GiB）。仅下载新 transformer + TAEHV 为 **5,698,749,685 B**（5.307 GiB），不用 TAEHV 则只需新 transformer **5,676,070,784 B**。
+- 本地 `models/Wan2.1-T2V-1.3B-Diffusers` 已有五片完整 Diffusers UMT5、tokenizer 和 Wan VAE，文件长度全部匹配；TE config/index、VAE config 与公开小文件 byte exact。**本轮未重新哈希这 23 GB 大文件，因此复用是本地资产变体，不能声称与 HF 全部资产逐字节相同。** 若要求原公开产品完整资产一致，可先离线验证已有文件 against 附件 LFS SHA，仅下载不匹配者；上面的全量数是确定上界。此前“原版 UMT5 不完整”指另一个原始 `.pt` 资产，不妨碍这里现成 Diffusers 五片。
+
+## 官方运行配方与易混点
+
+[`FastWan_QAD_TAEHV.py`](https://github.com/hao-ai-lab/FastVideo/blob/8444c0897a8b96848eb85b6e5750ef486f79fc92/examples/inference/optimizations/FastWan_QAD_TAEHV.py) 是现成入口；使用 modelcard 的 `--model <固定 HF snapshot> --distilled_model ''`。脚本默认 `distilled_model` 所寻找的 `generator_inference_transformer/...` **不在公开 HF tree 中**，不能直接无参数运行。复用本地基础资产时，该入口也明确支持 `--model <本地 Wan base> --distilled_model <新 transformer 的绝对文件名>`，无需改 loader 或 serving。示例的 `PROMPT` 固定；多 prompt 比较只需薄 harness 复用 `build_generator`/`generate` 并显式传 prompt/seed/尺寸，无需另写服务后端。
+
+当前固定源的真实配方：BF16 DiT/TE；300 类目标主干线性加载后 pack NVFP4 并移除 dense W；FlashInfer `mm_fp4(backend='cutlass')`，W outer scale 为加载时 amax 倒数尺度，A outer scale 固定 1，组内 scale 动态，W global 保存 BF16。这与我们的动态 global/legacy rounding QAD 不是同一配方。attention 设置 `FASTVIDEO_ATTENTION_BACKEND=ATTN_QAT_INFER`，SM120 使用官方 modified Sage3 FP4，默认 block mean 与 single-level P quantization；不能用 E016 FlashInfer attention 代换后仍称官方复现。[线性实现](https://github.com/hao-ai-lab/FastVideo/blob/8444c0897a8b96848eb85b6e5750ef486f79fc92/fastvideo/layers/quantization/nvfp4_qat_config.py#L73)、[attention 实现](https://github.com/hao-ai-lab/FastVideo/blob/8444c0897a8b96848eb85b6e5750ef486f79fc92/fastvideo-kernel/attn_qat_infer/api.py#L158)。这些是**推理代码事实，不反推训练过程**。
+
+QAD HF `model_index` 是 `WanPipeline`，按当前 registry 走 **FlowUniPC、flow_shift=3、示例显式 3 步/CFG1**；普通 Wan preset 是 **81 帧、480×832、16 FPS**。不要套另一个 `FastWan2.1-T2V-1.3B-Diffusers` 的 DMD `[1000,757,522]`/flow8：当前那个 preset 甚至是 61 帧/448×832。TAEHV 直接解码 normalized latents，FP16；`--no-taehv` 使用完整 Wan VAE。应同时记录 actual scheduler/timesteps、有效帧数、decoder/精度、TE/denoise/decode/总时长，不只横比“3 步 vs 4 步”。[型号映射](https://github.com/hao-ai-lab/FastVideo/blob/8444c0897a8b96848eb85b6e5750ef486f79fc92/fastvideo/models/wan/definition.py#L45)、[Wan pipeline](https://github.com/hao-ai-lab/FastVideo/blob/8444c0897a8b96848eb85b6e5750ef486f79fc92/fastvideo/pipelines/basic/wan/wan_pipeline.py#L33)、[presets](https://github.com/hao-ai-lab/FastVideo/blob/8444c0897a8b96848eb85b6e5750ef486f79fc92/fastvideo/pipelines/basic/wan/presets.py#L49)。
+
+## 最短安装/运行路径（本轮未执行）
+
+1. **新隔离 Python3.12 环境**固定上述 FastVideo commit、torch **2.12.0 CUDA13.0**、匹配 `fastvideo-kernel==0.3.5` 的 cu130 wheel；安装其声明依赖，避免覆盖现有 torch2.11 实验环境。官方要求 transformers≥5.15、diffusers≥0.38、FlashInfer 等。当前 native/fused 环境已有后两者和 FlashInfer0.7.0.post1，但没有 FastVideo/kernel/TAEHV，且 torch 版本不符，不能直接宣称可运行。官方 kernel README 明确 cu130 wheel 含 SM120a FP4，cu126 wheel/Docker 默认不含；若 wheel 路径失败，现成源码 `fastvideo-kernel/build.sh` 可编译 120a，**不需要新 kernel**。Modelcard 的旧复数路径 `fastvideo-kernels/` 在该 pin 已过时。[依赖](https://github.com/hao-ai-lab/FastVideo/blob/8444c0897a8b96848eb85b6e5750ef486f79fc92/pyproject.toml)、[kernel 安装表](https://github.com/hao-ai-lab/FastVideo/blob/8444c0897a8b96848eb85b6e5750ef486f79fc92/fastvideo-kernel/README.md#L25)。
+2. 下载固定 transformer，优先复用本地 base，必要时补 TAEHV。代码和环境下载另计：PyPI 0.3.5 的 cp312 x86_64 kernel wheel 为 **23,067,855 B**；torch/CUDA runtime 和其他 wheel 总量取决于解析/缓存，**尚未精确求和，5.699 GB 不是完整新环境的网络预算**。本机有 Docker/CUDA 工具链，但没有运行其环境验证。
+3. 先运行官方入口 `--warmups 0 --benchmark-runs 1 --no-compile --infer_steps 3 --guidance_scale 1.0`，保留固定 source/model revision 和 backend receipt `arch=sm_120 kernel=fastvideo-kernel-cutlass scheme=sage3-fp4-sm120`，确认真实 NVFP4 linear/attention；首次 GPU 成功后再开官方 compile/warmup 和多 prompt 质量/延迟评估。可先 `--no-taehv` 得到完整 VAE 外部对照，再补官方 TAEHV 产品结果；不能把换 decoder 的加速全部归因量化。
+
+结论：**值得优先落地的外部强基线；没有架构移植阻断，但仍需一次隔离依赖安装与本机功能 smoke。** 不因它不是 rCM4 步而排除；也不能把它的不同权重、scheduler、W/A scale、FP4 attention、decoder 优势当作我们同权重量化算法差异。文件大小、LFS SHA、源码 hash 与本地资产元数据见 `fastwan_qad_external_baseline_sources.json`。

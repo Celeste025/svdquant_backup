@@ -1,0 +1,947 @@
+{
+  "experiment": "E047",
+  "status": "complete",
+  "audit": "CPU filename and prompt-text selection audit; no model/tensor loading and no GPU",
+  "created_at_utc": "2026-10-03T07:15:19.017325+00:00",
+  "old_cache_directory": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches",
+  "e047_manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E047_wan_matched_calibration_manifest.json",
+    "bytes": 17616,
+    "sha256": "713f7318d9a25ce6087c223b023955cf409c5118a1b3ca85d751e1ebcd40eaef"
+  },
+  "e043_manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E043_vanilla_wan_manifest.json",
+    "bytes": 5898,
+    "sha256": "8844e616bee677d563bd662e4b66db88dde4b63be076d8d0e01273b759d8e4e9"
+  },
+  "prompt_source": {
+    "file": "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/examples/diffusion/prompts/vbench_t2v_simple.yaml",
+    "bytes": 5680,
+    "sha256": "e6c7f3a37755414c5690b8717a5d2fa3fdddf5ea6183d819f093241a49b3e360"
+  },
+  "successful_old_config": {
+    "file": "/data1/models/svdquant-wjq/runs/wan_s16_real_nvfp4/diffusion/wan2.1/wan2.1-1.3b/w.4-x.4-y.16-w.4/w.sfp4_e2m1_all-x.sfp4_e2m1_all-y.bf16-w.sint4/w.v16.sfp8_e4m3_nan.tsnr.fp32-x.v16.sfp8_e4m3_nan.tsnr.fp32-y.tnsr.bf16-w.v64.bf16/smooth.proj-w.static.lowrank/skip.x.[[w]+tan+tn].w.[e+rs+rtp+s+tpi+tpo]-extra.[tan+tn]-low.r32.i100.e.skip.[rc+tan+tn]-smth.proj.GridSearch.bn2.[AbsMax].lr.skip.[rc+tan+tn]-qdiff.64-h480.w832-t50.g6.0-s5000/run-260826.234259/config-260826.234259.yaml",
+    "bytes": 6343,
+    "sha256": "4851db231ecd258e1111d9ac0417c1ada26e8434d001da8dfb5e663b314de7d8"
+  },
+  "successful_old_log": {
+    "file": "/data1/models/svdquant-wjq/runs/wan_s16_real_nvfp4/diffusion/wan2.1/wan2.1-1.3b/w.4-x.4-y.16-w.4/w.sfp4_e2m1_all-x.sfp4_e2m1_all-y.bf16-w.sint4/w.v16.sfp8_e4m3_nan.tsnr.fp32-x.v16.sfp8_e4m3_nan.tsnr.fp32-y.tnsr.bf16-w.v64.bf16/smooth.proj-w.static.lowrank/skip.x.[[w]+tan+tn].w.[e+rs+rtp+s+tpi+tpo]-extra.[tan+tn]-low.r32.i100.e.skip.[rc+tan+tn]-smth.proj.GridSearch.bn2.[AbsMax].lr.skip.[rc+tan+tn]-qdiff.64-h480.w832-t50.g6.0-s5000/run-260826.234259/run-260826.234259.log",
+    "bytes": 1069511,
+    "sha256": "99e318db0e3af18ad7bfee73ec3ce06027c2835565715d672be852d2e1546e08"
+  },
+  "sources": {
+    "third_party/deepcompressor/deepcompressor/app/diffusion/dataset/data/__init__.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/app/diffusion/dataset/data/__init__.py",
+      "bytes": 2624,
+      "sha256": "292d6bacbf9b998ff187f99dc69ea8f394a03bd35dd66f446dba7b93b64af346",
+      "relevant_lines": [
+        10,
+        26
+      ]
+    },
+    "third_party/deepcompressor/deepcompressor/app/diffusion/dataset/base.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/app/diffusion/dataset/base.py",
+      "bytes": 2623,
+      "sha256": "ebcd726e114d57db65eadc2b9604be89ee137011a8b6bea1db625219eb003337",
+      "relevant_lines": [
+        23,
+        34
+      ]
+    },
+    "third_party/deepcompressor/deepcompressor/app/diffusion/dataset/calib.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/app/diffusion/dataset/calib.py",
+      "bytes": 20298,
+      "sha256": "46c0dd8ce683aa4470b69e10758d03d97b2e81560437fca4548412fbe5eeb765",
+      "relevant_lines": [
+        161,
+        176
+      ]
+    },
+    "third_party/deepcompressor/deepcompressor/app/diffusion/dataset/collect/calib.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/app/diffusion/dataset/collect/calib.py",
+      "bytes": 8539,
+      "sha256": "bb2484a78f6e05783e689ba99c85d75fc4b0734e419fd69ddb8abd6a866c6211",
+      "relevant_lines": [
+        116,
+        130
+      ]
+    },
+    "third_party/deepcompressor/deepcompressor/utils/common.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/deepcompressor/utils/common.py",
+      "bytes": 7001,
+      "sha256": "7e602ba6c6e0a42c13542d5fad4037a2b54d23694b55c34cc8ab6e0c6c4ae9de",
+      "relevant_lines": [
+        187,
+        205
+      ]
+    }
+  },
+  "selection_policy": {
+    "prompt_pool_size": 143,
+    "prompt_selection": "YAML insertion-order names; random.Random(0).shuffle; first16; sort; repeat=1",
+    "cache_selection": "sorted *.pt names; local random.Random(0).shuffle; first64; sort",
+    "iteration_order": "selected payloads shuffled again by local random.Random(0)",
+    "top_level_config_seed_used_for_selection": false,
+    "num_samples": 64,
+    "batch_size": 4,
+    "drop_last": true,
+    "batches": 16,
+    "dropped_records": 0
+  },
+  "directory_vs_virtual": {
+    "actual_records": 1600,
+    "virtual_records": 1600,
+    "filenames_exact": true,
+    "selected_names_exact": true,
+    "manifest_selected_names_exact": true,
+    "actual_filename_list_sha256": "6122690f893d0113df1eb68ff7cbfd3ac4aaac8e9aed2d002d1f6780a337267e",
+    "virtual_filename_list_sha256": "6122690f893d0113df1eb68ff7cbfd3ac4aaac8e9aed2d002d1f6780a337267e",
+    "actual_only": [],
+    "virtual_only": []
+  },
+  "virtual_prompt_names": [
+    "0019",
+    "0022",
+    "0023",
+    "0029",
+    "0034",
+    "0043",
+    "0046",
+    "0050",
+    "0052",
+    "0082",
+    "0095",
+    "0096",
+    "0111",
+    "0112",
+    "0114",
+    "0137"
+  ],
+  "selected_records": [
+    {
+      "filename": "0019-0-00007-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0019-0-00007-1.pt",
+      "name": "0019",
+      "replica": 0,
+      "step": 7,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0019-0-00018-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0019-0-00018-1.pt",
+      "name": "0019",
+      "replica": 0,
+      "step": 18,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0019-0-00028-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0019-0-00028-1.pt",
+      "name": "0019",
+      "replica": 0,
+      "step": 28,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0022-0-00018-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0022-0-00018-0.pt",
+      "name": "0022",
+      "replica": 0,
+      "step": 18,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0022-0-00039-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0022-0-00039-1.pt",
+      "name": "0022",
+      "replica": 0,
+      "step": 39,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0022-0-00040-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0022-0-00040-1.pt",
+      "name": "0022",
+      "replica": 0,
+      "step": 40,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0022-0-00045-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0022-0-00045-0.pt",
+      "name": "0022",
+      "replica": 0,
+      "step": 45,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0023-0-00002-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0023-0-00002-0.pt",
+      "name": "0023",
+      "replica": 0,
+      "step": 2,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0023-0-00005-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0023-0-00005-0.pt",
+      "name": "0023",
+      "replica": 0,
+      "step": 5,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0023-0-00015-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0023-0-00015-0.pt",
+      "name": "0023",
+      "replica": 0,
+      "step": 15,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0023-0-00015-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0023-0-00015-1.pt",
+      "name": "0023",
+      "replica": 0,
+      "step": 15,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0023-0-00020-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0023-0-00020-1.pt",
+      "name": "0023",
+      "replica": 0,
+      "step": 20,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0023-0-00022-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0023-0-00022-0.pt",
+      "name": "0023",
+      "replica": 0,
+      "step": 22,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0023-0-00024-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0023-0-00024-1.pt",
+      "name": "0023",
+      "replica": 0,
+      "step": 24,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0023-0-00037-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0023-0-00037-0.pt",
+      "name": "0023",
+      "replica": 0,
+      "step": 37,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0023-0-00040-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0023-0-00040-0.pt",
+      "name": "0023",
+      "replica": 0,
+      "step": 40,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0029-0-00008-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0029-0-00008-1.pt",
+      "name": "0029",
+      "replica": 0,
+      "step": 8,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0029-0-00020-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0029-0-00020-0.pt",
+      "name": "0029",
+      "replica": 0,
+      "step": 20,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0029-0-00032-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0029-0-00032-0.pt",
+      "name": "0029",
+      "replica": 0,
+      "step": 32,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0029-0-00039-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0029-0-00039-1.pt",
+      "name": "0029",
+      "replica": 0,
+      "step": 39,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0029-0-00044-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0029-0-00044-0.pt",
+      "name": "0029",
+      "replica": 0,
+      "step": 44,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0029-0-00047-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0029-0-00047-0.pt",
+      "name": "0029",
+      "replica": 0,
+      "step": 47,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0029-0-00047-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0029-0-00047-1.pt",
+      "name": "0029",
+      "replica": 0,
+      "step": 47,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0046-0-00004-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0046-0-00004-0.pt",
+      "name": "0046",
+      "replica": 0,
+      "step": 4,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0046-0-00014-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0046-0-00014-0.pt",
+      "name": "0046",
+      "replica": 0,
+      "step": 14,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0046-0-00016-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0046-0-00016-0.pt",
+      "name": "0046",
+      "replica": 0,
+      "step": 16,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0046-0-00037-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0046-0-00037-1.pt",
+      "name": "0046",
+      "replica": 0,
+      "step": 37,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0046-0-00041-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0046-0-00041-1.pt",
+      "name": "0046",
+      "replica": 0,
+      "step": 41,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0046-0-00046-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0046-0-00046-1.pt",
+      "name": "0046",
+      "replica": 0,
+      "step": 46,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0050-0-00009-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0050-0-00009-0.pt",
+      "name": "0050",
+      "replica": 0,
+      "step": 9,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0050-0-00035-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0050-0-00035-0.pt",
+      "name": "0050",
+      "replica": 0,
+      "step": 35,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0050-0-00042-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0050-0-00042-0.pt",
+      "name": "0050",
+      "replica": 0,
+      "step": 42,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0050-0-00045-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0050-0-00045-0.pt",
+      "name": "0050",
+      "replica": 0,
+      "step": 45,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0052-0-00022-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0052-0-00022-0.pt",
+      "name": "0052",
+      "replica": 0,
+      "step": 22,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0052-0-00042-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0052-0-00042-1.pt",
+      "name": "0052",
+      "replica": 0,
+      "step": 42,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0052-0-00045-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0052-0-00045-0.pt",
+      "name": "0052",
+      "replica": 0,
+      "step": 45,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0082-0-00014-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0082-0-00014-0.pt",
+      "name": "0082",
+      "replica": 0,
+      "step": 14,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0082-0-00022-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0082-0-00022-0.pt",
+      "name": "0082",
+      "replica": 0,
+      "step": 22,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0082-0-00028-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0082-0-00028-1.pt",
+      "name": "0082",
+      "replica": 0,
+      "step": 28,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0082-0-00038-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0082-0-00038-1.pt",
+      "name": "0082",
+      "replica": 0,
+      "step": 38,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0082-0-00045-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0082-0-00045-1.pt",
+      "name": "0082",
+      "replica": 0,
+      "step": 45,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0095-0-00002-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0095-0-00002-1.pt",
+      "name": "0095",
+      "replica": 0,
+      "step": 2,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0095-0-00027-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0095-0-00027-0.pt",
+      "name": "0095",
+      "replica": 0,
+      "step": 27,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0095-0-00029-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0095-0-00029-1.pt",
+      "name": "0095",
+      "replica": 0,
+      "step": 29,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0095-0-00038-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0095-0-00038-1.pt",
+      "name": "0095",
+      "replica": 0,
+      "step": 38,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0095-0-00046-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0095-0-00046-1.pt",
+      "name": "0095",
+      "replica": 0,
+      "step": 46,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0096-0-00001-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0096-0-00001-1.pt",
+      "name": "0096",
+      "replica": 0,
+      "step": 1,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0096-0-00019-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0096-0-00019-0.pt",
+      "name": "0096",
+      "replica": 0,
+      "step": 19,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0096-0-00020-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0096-0-00020-1.pt",
+      "name": "0096",
+      "replica": 0,
+      "step": 20,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0096-0-00036-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0096-0-00036-1.pt",
+      "name": "0096",
+      "replica": 0,
+      "step": 36,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0096-0-00040-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0096-0-00040-0.pt",
+      "name": "0096",
+      "replica": 0,
+      "step": 40,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0111-0-00008-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0111-0-00008-0.pt",
+      "name": "0111",
+      "replica": 0,
+      "step": 8,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0111-0-00032-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0111-0-00032-0.pt",
+      "name": "0111",
+      "replica": 0,
+      "step": 32,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0112-0-00003-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0112-0-00003-0.pt",
+      "name": "0112",
+      "replica": 0,
+      "step": 3,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0112-0-00013-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0112-0-00013-1.pt",
+      "name": "0112",
+      "replica": 0,
+      "step": 13,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0112-0-00032-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0112-0-00032-0.pt",
+      "name": "0112",
+      "replica": 0,
+      "step": 32,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0114-0-00011-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0114-0-00011-1.pt",
+      "name": "0114",
+      "replica": 0,
+      "step": 11,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0114-0-00017-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0114-0-00017-1.pt",
+      "name": "0114",
+      "replica": 0,
+      "step": 17,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0114-0-00019-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0114-0-00019-0.pt",
+      "name": "0114",
+      "replica": 0,
+      "step": 19,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0114-0-00035-1.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0114-0-00035-1.pt",
+      "name": "0114",
+      "replica": 0,
+      "step": 35,
+      "guidance": 1,
+      "branch": "uncond"
+    },
+    {
+      "filename": "0114-0-00044-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0114-0-00044-0.pt",
+      "name": "0114",
+      "replica": 0,
+      "step": 44,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0137-0-00011-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0137-0-00011-0.pt",
+      "name": "0137",
+      "replica": 0,
+      "step": 11,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0137-0-00020-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0137-0-00020-0.pt",
+      "name": "0137",
+      "replica": 0,
+      "step": 20,
+      "guidance": 0,
+      "branch": "cond"
+    },
+    {
+      "filename": "0137-0-00040-0.pt",
+      "old_file": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/wan2.1-1.3b/unipc50-g6.0-f33/vbench/s16/caches/0137-0-00040-0.pt",
+      "name": "0137",
+      "replica": 0,
+      "step": 40,
+      "guidance": 0,
+      "branch": "cond"
+    }
+  ],
+  "loader_iteration_filenames": [
+    "0050-0-00009-0.pt",
+    "0046-0-00046-1.pt",
+    "0046-0-00014-0.pt",
+    "0052-0-00022-0.pt",
+    "0052-0-00045-0.pt",
+    "0114-0-00044-0.pt",
+    "0046-0-00004-0.pt",
+    "0082-0-00045-1.pt",
+    "0023-0-00020-1.pt",
+    "0046-0-00041-1.pt",
+    "0137-0-00011-0.pt",
+    "0022-0-00018-0.pt",
+    "0022-0-00040-1.pt",
+    "0023-0-00002-0.pt",
+    "0095-0-00027-0.pt",
+    "0095-0-00046-1.pt",
+    "0023-0-00022-0.pt",
+    "0114-0-00035-1.pt",
+    "0019-0-00007-1.pt",
+    "0112-0-00032-0.pt",
+    "0019-0-00018-1.pt",
+    "0095-0-00038-1.pt",
+    "0095-0-00002-1.pt",
+    "0023-0-00037-0.pt",
+    "0023-0-00040-0.pt",
+    "0029-0-00020-0.pt",
+    "0096-0-00019-0.pt",
+    "0029-0-00044-0.pt",
+    "0137-0-00040-0.pt",
+    "0023-0-00015-1.pt",
+    "0137-0-00020-0.pt",
+    "0112-0-00013-1.pt",
+    "0082-0-00014-0.pt",
+    "0111-0-00008-0.pt",
+    "0029-0-00047-0.pt",
+    "0022-0-00039-1.pt",
+    "0095-0-00029-1.pt",
+    "0111-0-00032-0.pt",
+    "0023-0-00015-0.pt",
+    "0082-0-00028-1.pt",
+    "0052-0-00042-1.pt",
+    "0114-0-00019-0.pt",
+    "0082-0-00038-1.pt",
+    "0022-0-00045-0.pt",
+    "0096-0-00001-1.pt",
+    "0029-0-00032-0.pt",
+    "0023-0-00005-0.pt",
+    "0114-0-00017-1.pt",
+    "0023-0-00024-1.pt",
+    "0082-0-00022-0.pt",
+    "0029-0-00047-1.pt",
+    "0050-0-00035-0.pt",
+    "0029-0-00039-1.pt",
+    "0112-0-00003-0.pt",
+    "0096-0-00040-0.pt",
+    "0046-0-00016-0.pt",
+    "0050-0-00042-0.pt",
+    "0050-0-00045-0.pt",
+    "0029-0-00008-1.pt",
+    "0019-0-00028-1.pt",
+    "0046-0-00037-1.pt",
+    "0114-0-00011-1.pt",
+    "0096-0-00020-1.pt",
+    "0096-0-00036-1.pt"
+  ],
+  "coverage": {
+    "branches": {
+      "cond": 35,
+      "uncond": 29
+    },
+    "selected_prompt_count": 14,
+    "virtual_prompt_count": 16,
+    "records_per_prompt": {
+      "0019": 3,
+      "0022": 4,
+      "0023": 9,
+      "0029": 7,
+      "0034": 0,
+      "0043": 0,
+      "0046": 6,
+      "0050": 4,
+      "0052": 3,
+      "0082": 5,
+      "0095": 5,
+      "0096": 5,
+      "0111": 2,
+      "0112": 3,
+      "0114": 5,
+      "0137": 3
+    },
+    "unique_steps": 35,
+    "records_per_step": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "6": 0,
+      "7": 1,
+      "8": 2,
+      "9": 1,
+      "10": 0,
+      "11": 2,
+      "12": 0,
+      "13": 1,
+      "14": 2,
+      "15": 2,
+      "16": 1,
+      "17": 1,
+      "18": 2,
+      "19": 2,
+      "20": 4,
+      "21": 0,
+      "22": 3,
+      "23": 0,
+      "24": 1,
+      "25": 0,
+      "26": 0,
+      "27": 1,
+      "28": 2,
+      "29": 1,
+      "30": 0,
+      "31": 0,
+      "32": 3,
+      "33": 0,
+      "34": 0,
+      "35": 2,
+      "36": 1,
+      "37": 2,
+      "38": 2,
+      "39": 2,
+      "40": 4,
+      "41": 1,
+      "42": 2,
+      "43": 0,
+      "44": 2,
+      "45": 4,
+      "46": 2,
+      "47": 2,
+      "48": 0,
+      "49": 0
+    },
+    "missing_steps": [
+      0,
+      6,
+      10,
+      12,
+      21,
+      23,
+      25,
+      26,
+      30,
+      31,
+      33,
+      34,
+      43,
+      48,
+      49
+    ],
+    "ten_step_bins": {
+      "00-09": 10,
+      "10-19": 13,
+      "20-29": 12,
+      "30-39": 12,
+      "40-49": 17
+    },
+    "distinct_prompt_step_states": 62,
+    "paired_states": [
+      {
+        "name": "0023",
+        "step": 15,
+        "guidances": [
+          0,
+          1
+        ]
+      },
+      {
+        "name": "0029",
+        "step": 47,
+        "guidances": [
+          0,
+          1
+        ]
+      }
+    ],
+    "single_branch_states": 60
+  },
+  "prompt_overlap": {
+    "e043_unique_prompts": [
+      "A person is clapping",
+      "A person is folding clothes",
+      "a car turning a corner",
+      "an elephant spraying itself with water using its trunk to cool down"
+    ],
+    "full_yaml_exact_matches": [
+      {
+        "name": "0026",
+        "prompt": "A person is folding clothes"
+      },
+      {
+        "name": "0088",
+        "prompt": "a car turning a corner"
+      },
+      {
+        "name": "0130",
+        "prompt": "an elephant spraying itself with water using its trunk to cool down"
+      }
+    ],
+    "virtual16_exact_matches": [],
+    "selected14_exact_matches": [],
+    "virtual16_whitespace_casefold_matches": [],
+    "selected14_whitespace_casefold_matches": [],
+    "manifest_prompt_text_and_seed_match_old_mapping": true,
+    "scope": "No selected calibration text overlaps the four E043 texts; the entire 143-text source pool does overlap. This does not establish semantic independence or final-test status."
+  },
+  "new_cache_minimum_contract": {
+    "directory": "Store exactly the prescribed64 .pt files under the configured path or its caches/ subdirectory; do not leave extra .pt artifacts there.",
+    "payload": "CPU tensors with input_args=(hidden_states,), input_kwargs carrying actual model-call kwargs; metadata filename/step/guidance/prompt/seed outside kwargs. Preserve per-branch calls, not CFG-combined output.",
+    "hidden_states": {
+      "shape": [
+        1,
+        16,
+        21,
+        60,
+        104
+      ],
+      "dtype": "bfloat16"
+    },
+    "encoder_hidden_states": {
+      "shape": [
+        1,
+        512,
+        4096
+      ],
+      "dtype": "bfloat16"
+    },
+    "timestep": "Retain actual call dtype and leading batch dimension [1]; do not replace with zero-dimensional scalar.",
+    "outputs": "Keep raw branch model output and provenance if collected; this PTQ loader forwards only input_args/input_kwargs, so stored outputs are not direct PTQ supervised targets.",
+    "cpu_storage_reason": "DiffusionCalibDataset uses torch.load without map_location and eagerly loads all64 selected records.",
+    "collation": "Same kwargs/container schema across records; leading batch dimension1 tensors concatenate even if identical."
+  },
+  "limitations": [
+    "This reconstructs selection from the current loader and current old-directory filenames; the historic run did not archive an independently signed selected64 manifest.",
+    "35/50 distinct steps, no0/48/49,14/16 prompts,35/29 branches and only2 paired states are retained by decision; neither branch pairing nor full step coverage is required by the existing OutputsError loader.",
+    "E047 changes frame count and scheduler trajectory together; it evaluates a matched calibration baseline, not the isolated cause of a prior quality deficit.",
+    "No old cache tensors or model weights were hashed or loaded by this audit."
+  ]
+}

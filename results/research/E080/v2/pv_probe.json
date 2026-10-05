@@ -1,0 +1,26 @@
+{
+  "experiment": "E080",
+  "phase": "local_pv",
+  "status": "failed_stop",
+  "sources": {
+    "probe_h3_pv_contrast.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_pv_contrast.py",
+      "sha256": "8f7a83198320b131a7bc81a86cc35fb66f981433ab9098002dfa8b3aff3537d8",
+      "bytes": 9177
+    },
+    "e080_pv_contract.py": {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/research/e080_pv_contract.py",
+      "sha256": "f205be50215c9e579eb46f2463a713a0c7426aff38d002de0519e3b87590c69e",
+      "bytes": 6993
+    },
+    "E080_pv_contrast_plan.md": {
+      "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E080_pv_contrast_plan.md",
+      "sha256": "68b3c4460ee4bb1f63d3313d5232e30712870032ba62f71cbce0d4eabbad4bd2",
+      "bytes": 2731
+    }
+  },
+  "rows": [],
+  "error": "Traceback (most recent call last):\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_pv_contrast.py\", line 145, in <module>\n    report['rows'].append(run_case(row));dest.write_text(json.dumps(report,indent=2));gc.collect();torch.cuda.empty_cache()\n                          ^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/utils/_contextlib.py\", line 124, in decorate_context\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_pv_contrast.py\", line 116, in run_case\n    online_gap=(high-oracle).abs().max().item();assert online_gap<3e-4,online_gap\n                                                       ^^^^^^^^^^^^^^^\nAssertionError: 0.00035381317138671875\n",
+  "seconds": 3.6804942251183093,
+  "peak_allocated_bytes": 14178287616
+}

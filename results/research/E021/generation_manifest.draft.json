@@ -1,0 +1,119 @@
+{
+  "experiment": "E021",
+  "status": "draft_not_generated",
+  "settings": {
+    "seed": 20261004,
+    "height": 480,
+    "width": 832,
+    "frames": 77,
+    "fps": 16,
+    "steps": 4,
+    "sigma_max": 80.0,
+    "guidance": 0.0,
+    "max_sequence_length": 512,
+    "attention": "BF16_FLASH_ATTENTION",
+    "vae_core": 128,
+    "vae_halo": 0
+  },
+  "inventory": {
+    "path": "/home/wjq/workspace/svdquant-exp/results/research/E020/E020_cache_inventory.json",
+    "sha256": "873bcc3955ad0008ed8d486b2a4aca78f5f61237f9db6e01559eec953b1afc5d"
+  },
+  "model": {
+    "base_assets": "/data1/models/svdquant-wjq/models/Wan2.1-T2V-1.3B-Diffusers",
+    "explicit_rcm_transformer": "/data1/models/svdquant-wjq/models/rcm-Wan2.1-T2V-1.3B-Diffusers/transformer"
+  },
+  "cases": [
+    {
+      "case_id": "vbench_066",
+      "prompt": "a zebra bending down to drink water from a river",
+      "dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "seed": 20261004
+    },
+    {
+      "case_id": "vbench_091",
+      "prompt": "a drone flying over a snowy forest.",
+      "dimensions": [
+        "aesthetic_quality",
+        "imaging_quality",
+        "overall_consistency"
+      ],
+      "seed": 20261004
+    },
+    {
+      "case_id": "vbench_182",
+      "prompt": "campus",
+      "dimensions": [
+        "scene",
+        "background_consistency"
+      ],
+      "seed": 20261004
+    },
+    {
+      "case_id": "vbench_067",
+      "prompt": "a zebra running to join a herd of its kind",
+      "dimensions": [
+        "subject_consistency",
+        "dynamic_degree",
+        "motion_smoothness"
+      ],
+      "seed": 20261004
+    }
+  ],
+  "arms": [
+    {
+      "name": "bf16",
+      "weights": "/data1/models/svdquant-wjq/models/rcm-Wan2.1-T2V-1.3B-Diffusers/transformer",
+      "native_calls_per_video": 0
+    },
+    {
+      "name": "packed_step0000",
+      "weights": "/data1/models/svdquant-wjq/research/20261003/E020/packed_step0000.pt",
+      "native_calls_per_video": 1200
+    },
+    {
+      "name": "packed_step0064",
+      "weights": "/data1/models/svdquant-wjq/research/20261003/E020/packed_step0064.pt",
+      "native_calls_per_video": 1200
+    },
+    {
+      "name": "svd_lr",
+      "weights": "/data1/models/svdquant-wjq/ckpts/rcm-wan2.1-1.3b-real-nvfp4-s16",
+      "native_calls_per_video": 1200
+    }
+  ],
+  "sampling": {
+    "schedule": "rCM TrigFlow -> RectifiedFlow",
+    "angles": "[atan(80), 1.5, 1.4, 1.0, 0.0] in FP64",
+    "latent_shape": [
+      1,
+      16,
+      20,
+      60,
+      104
+    ],
+    "shared": "Per case: one saved FP64 initial latent, four saved FP32 update noises, one BF16 embedding; all arms load identical tensors",
+    "rng": "CUDA Generator reset to fixed seed for each prompt; initial FP32 draw then four FP32 draws, including last zero-coefficient update"
+  },
+  "seed_history": {
+    "claim": "Same integer seed used previously; no global unseen-seed claim. The four prompt/noise generation pairs are separate from the fixed E020 train/development cache records.",
+    "known_same_seed_record": "/home/wjq/workspace/svdquant-exp/results/vbench/rcm_lowrank_8prompt_e10_vbench20/generated/0004/run_config.json",
+    "note": "A seed integer also used for training shuffle is not by itself data leakage. Prompt selection comes from the E020 inventory, not scores."
+  },
+  "comparison_scope": "Whole deployed recipe comparison. SVD includes its frozen smooth/LR and legacy non-target quantization recipe; differences from plain QAD are not attributed solely to LR.",
+  "limits": [
+    "Four development prompts, one seed; not a final held-out benchmark or a quality conclusion.",
+    "Candidate prompts were already in a public/planned VBench manifest; absence of prior media was checked only in inventory-listed local roots.",
+    "No E020 training/validation cache state is injected into these free rollouts.",
+    "Wall times include diagnostics; this generator is not an unbiased latency benchmark."
+  ],
+  "expected_full_run": {
+    "videos": 16,
+    "dit_calls": 64,
+    "native_fp4_calls": 14400
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "experiment": "E016",
+  "status": "failed",
+  "audit_source": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/summarize_h3_full_fp4_attention.py",
+    "sha256": "36f0c7adb69daecf56da50820ff09403dabfc31c7c5094536bc4b2f246da1d20"
+  },
+  "torch": "2.11.0+cu128",
+  "numerical_source": "FP64 CPU reductions of raw tensor artifacts; imports no experiment/model runner",
+  "limitations": [
+    "Three previously inspected fixed states; no decoded quality or generalization claim.",
+    "Modes are two official complete recipes, not a causal isolation of centering granularity.",
+    "Timing compares only the same-run three SVD arms, including all online attention preprocessing.",
+    "CPU metadata caching and deferred checks are common to every main mode; validation cost is separately included.",
+    "Peak correction tensor size is not total-model memory capacity; no long-video/OOM extrapolation."
+  ],
+  "error": "Traceback (most recent call last):\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/summarize_h3_full_fp4_attention.py\", line 319, in main\n    table = run(args, result)\n            ^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/summarize_h3_full_fp4_attention.py\", line 275, in run\n    common_report(report, checked, manifest, files)\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/summarize_h3_full_fp4_attention.py\", line 81, in common_report\n    require(report['e014_binding'] == checked['e014_binding']\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/summarize_h3_plain_baseline.py\", line 35, in require\n    raise RuntimeError(message)\nRuntimeError: Inherited E014 binding/recheck changed\n",
+  "seconds_total": 0.019937559962272644
+}

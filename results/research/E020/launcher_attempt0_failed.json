@@ -1,0 +1,54 @@
+{
+  "status": "failed_stop",
+  "start_epoch": 1790959332.0807917,
+  "deadline_epoch": 1790962032.0807917,
+  "wall_budget_seconds": 2700,
+  "gpu": 5,
+  "sources": {
+    "/home/wjq/workspace/svdquant-exp/scripts/research/launch_wan_mainweight_qad.py": "df7cdccdea905de4099697d22e87fd8517abb3714c07aed08ed24c4a4621ce4f",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/train_wan_mainweight_qad.py": "0ab2b4b1eebb833c1ffb3e0adce24ff1fdc127e756215af32cb506c06e87b3f8",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/wan_mainweight_qad.py": "46d1fb41cb5a9702e2004e1478a2c0512787a32846c0de367a084e01deab0365",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/check_wan_mainweight_qad.py": "5c802c50b6318de8fb93f273dc0f99a1646034e0d97edc8775328e9907bc515b",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/wan_nvfp4_fastpack.py": "98e7e81b0aeab229006fbd721be1da24f4eb435b424de9cc95a3b136f277ebd0",
+    "/home/wjq/workspace/svdquant-exp/results/research/E020/E020_cache_inventory.json": "873bcc3955ad0008ed8d486b2a4aca78f5f61237f9db6e01559eec953b1afc5d",
+    "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E020_wan_mainweight_qad_plan.md": "b61223dabd5d83c5454c4a7bc97960f6c916eba94aad7858d32726be90579b62"
+  },
+  "stages": [
+    {
+      "name": "contract",
+      "status": "running",
+      "command": [
+        "/data1/models/svdquant-wjq/conda-envs/svdquant-ptq/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/check_wan_mainweight_qad.py"
+      ],
+      "start_epoch": 1790959332.735219,
+      "pid": 1084352,
+      "returncode": 1,
+      "seconds": 2.668959617614746
+    }
+  ],
+  "gpu_before": {
+    "index": 5,
+    "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+    "memory_mib": 0,
+    "utilization_percent": 0,
+    "samples": [
+      {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0
+      },
+      {
+        "index": 5,
+        "uuid": "GPU-9413777f-eb0d-b7df-260d-8e87cae80c9b",
+        "memory_mib": 0,
+        "utilization_percent": 0
+      }
+    ]
+  },
+  "error": "Traceback (most recent call last):\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/launch_wan_mainweight_qad.py\", line 35, in main\n    if code:raise RuntimeError(f'{name} failed with {code}')\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: contract failed with 1\n",
+  "seconds_total": 3.3276798725128174
+}

@@ -1,0 +1,126 @@
+{
+  "experiment": "E051",
+  "status": "complete",
+  "start_epoch": 1791039292.8870707,
+  "source": {
+    "file": "/home/wjq/workspace/svdquant-exp/scripts/research/continue_wan14b_plain_native.py",
+    "bytes": 6734,
+    "sha256": "10806e84c40a7e2d1f040d1ef7f3d27020aafe320cbba02de5abcbd3851cfe4c"
+  },
+  "manifest": {
+    "file": "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E051_wan14b_plain_native_manifest.json",
+    "bytes": 10046,
+    "sha256": "9f0469e89d34032e7ae80c47e0c91f362f92eca2603976be51966158ffa1e47a"
+  },
+  "stages": [
+    {
+      "name": "plain_check",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/run_wan14b_plain_native.py",
+        "--manifest",
+        "/home/wjq/workspace/svdquant-exp/research_state/06_experiments/E051_wan14b_plain_native_manifest.json",
+        "--prompt-ids",
+        "161",
+        "192",
+        "269",
+        "316",
+        "--check-only"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E051_chain_plain_check.log",
+      "status": "complete",
+      "start_epoch": 1791039292.8873672,
+      "cuda_visible_devices": "",
+      "timeout_seconds": 300,
+      "pid": 2360039,
+      "returncode": 0,
+      "result": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E051/check_plain.json",
+        "bytes": 37723,
+        "sha256": "736897d6df3abad2a349bc7668b7243d38ded6a8f07e4de11dbb4f7cde08869c"
+      },
+      "seconds": 5.6245951652526855
+    },
+    {
+      "name": "generation",
+      "command": [
+        "/data1/models/svdquant-wjq/research/envs/nvfp4-native-20261002/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/launch_wan14b_plain_native.py"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E051_chain_generation.log",
+      "status": "complete",
+      "start_epoch": 1791039298.512294,
+      "cuda_visible_devices": "",
+      "timeout_seconds": null,
+      "pid": 2361551,
+      "returncode": 0,
+      "result": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E051/launcher.json",
+        "bytes": 21272,
+        "sha256": "071c9e191b5427c45734d8fcc96fcbedab285f64f32c8b12af5aa94e181df8cd"
+      },
+      "seconds": 2952.3509352207184
+    },
+    {
+      "name": "evaluation",
+      "command": [
+        "/data1/models/svdquant-wjq/conda-envs/mjvideo/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/launch_wan14b_plain_native_evaluation.py"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E051_chain_evaluation.log",
+      "status": "complete",
+      "start_epoch": 1791042250.9735014,
+      "cuda_visible_devices": "",
+      "timeout_seconds": null,
+      "pid": 3018931,
+      "returncode": 0,
+      "result": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E051/evaluation_launcher.json",
+        "bytes": 5757,
+        "sha256": "0bd29e05bf810d637f2140aa01706189051d13e220fad54caf020ca5ce1c620b"
+      },
+      "seconds": 71.99846506118774
+    },
+    {
+      "name": "summary",
+      "command": [
+        "/data1/models/svdquant-wjq/conda-envs/mjvideo/bin/python",
+        "-u",
+        "/home/wjq/workspace/svdquant-exp/scripts/research/summarize_wan14b_plain_native.py"
+      ],
+      "log": "/home/wjq/workspace/svdquant-exp/results/logs/E051_chain_summary.log",
+      "status": "complete",
+      "start_epoch": 1791042322.9725344,
+      "cuda_visible_devices": "",
+      "timeout_seconds": 180,
+      "pid": 3044084,
+      "returncode": 0,
+      "result": {
+        "file": "/home/wjq/workspace/svdquant-exp/results/research/E051/evaluation_summary.json",
+        "bytes": 2285054,
+        "sha256": "816751ceec00b03cb4daf94a0fe14762ad08e352d96bedd1ebb25b4422910173"
+      },
+      "seconds": 1.7318756580352783
+    }
+  ],
+  "evaluation_gpu_wait": {
+    "start_epoch": 1791042250.8635361,
+    "deadline_epoch": 1791044050.8635361,
+    "status": "complete",
+    "seconds": 0.10945820808410645,
+    "gpu_at_ready": {
+      "0": {
+        "memory_used_mib": 0,
+        "utilization_pct": 0
+      },
+      "1": {
+        "memory_used_mib": 0,
+        "utilization_pct": 0
+      }
+    }
+  },
+  "seconds": 3031.817734003067
+}

@@ -1,0 +1,40 @@
+{
+  "experiment": "E008",
+  "status": "complete",
+  "source": "results/research/E008_wan_native_paired_video.json",
+  "source_sha256": "04201806e5ab5739cf014f63249846aaa6f442d8770ea478a10a08b05b02d032",
+  "seed": 1,
+  "run_kind": "historical_seed1_all_four_bf16_inputs_and_velocities_exact",
+  "steps": 4,
+  "paired_noise_verified": true,
+  "history_bf16_all_four_steps_exact": true,
+  "native_gemm_calls": 1200,
+  "validated_fastpack_flags": 1200,
+  "videos": {
+    "bf16": {
+      "path": "/data1/models/svdquant-wjq/research/20261002/E008/p0001/bf16.mp4",
+      "sha256": "d25f6350d31d3853aaab54f174c07be11cae3b6ce2e9b7d231ba2c42fc115b4d",
+      "frames": 77,
+      "height": 480,
+      "width": 832,
+      "fps": 16,
+      "decoder": "identical BF16 VAE; existing decode_spatial_tiled core128 halo0; inference_mode"
+    },
+    "nativefast": {
+      "path": "/data1/models/svdquant-wjq/research/20261002/E008/p0001/nativefast.mp4",
+      "sha256": "2f15293438dbcef6895395b4b21c3a6be4de9424485f7fecf45045bf3ea3480a",
+      "frames": 77,
+      "height": 480,
+      "width": 832,
+      "fps": 16,
+      "decoder": "identical BF16 VAE; existing decode_spatial_tiled core128 halo0; inference_mode"
+    }
+  },
+  "visual_inspection": "Fixed frames 0/25/50/76 inspected; clothing, helmet and background differ. Both show outdoor person with wheeled skating equipment. No ranking, temporal-quality or generalization conclusion.",
+  "limitations": [
+    "one original calibration prompt; qualitative paired videos only",
+    "no VBench/MJVIDEO or perceptual quality/generalization claim",
+    "independent four-step rollout with common initial latent/noises; no teacher-state injection",
+    "seed1 history requires exact four-step checks; initialization failure only falls back to new seed42"
+  ]
+}

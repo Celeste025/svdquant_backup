@@ -4,7 +4,18 @@
 > and FLUX SVDQuant work. The upstream Nunchaku documentation starts below;
 > this section is the operational handoff guide for a new server.
 
+**2026-10-04 H3 baseline:** official SageAttention3 + existing SVDQuant. Eight matched video comparisons completed; clearest additional degradation is hand contours in clapping. [Quality report](research_state/reports/077_20261004_h3_sage3_video_quality.md).
+
 ## Experiment workspace quick start
+
+[Repository map and Git scope](docs/repository_contents.md) ·
+[Research reports](research_state/README.md) ·
+[Research script guide](scripts/research/README.md).
+
+**2026-10-05 update:** new idea research is paused. The requested historical Wan
+QAD timestep replay is complete; see [report 083](research_state/reports/083_20261005_wan_qad_timestep_replay.md).
+Research JSON/CSV evidence and report figures are included in Git; models,
+generated videos, tensor captures and private blind-review mappings remain local.
 
 ### What is in Git vs. ModelScope
 

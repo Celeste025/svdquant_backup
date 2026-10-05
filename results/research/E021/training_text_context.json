@@ -1,0 +1,182 @@
+{
+  "experiment": "E021",
+  "status": "complete",
+  "scope": "CPU factual context for E020 four training prompts; no visual causal inference or new generation.",
+  "mapping": [
+    {
+      "prompt_id": "0015",
+      "mapped_text": "A person is canoeing or kayaking",
+      "yaml_line": 16,
+      "mapping_evidence": "Current tracked YAML matches E020 inventory. Not a text field recovered from cache; embedding was not re-encoded from this text in this audit.",
+      "cache_file_pattern": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0015-{step:05d}-0.pt",
+      "steps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "payload_keys": [
+        "filename",
+        "guidance",
+        "input_args",
+        "input_kwargs",
+        "outputs",
+        "step"
+      ],
+      "payload_seed": null,
+      "embedding_same_for_four_steps": true,
+      "embedding_sha256": "1baf19e759fec02d7e103549473b909f9bf7ce41a4d3939e241117a466a245f4",
+      "cache_mtime_utc_range": [
+        "2026-08-27T11:55:21.652049+00:00",
+        "2026-08-27T11:55:27.066223+00:00"
+      ]
+    },
+    {
+      "prompt_id": "0005",
+      "mapped_text": "A person is playing harp",
+      "yaml_line": 6,
+      "mapping_evidence": "Current tracked YAML matches E020 inventory. Not a text field recovered from cache; embedding was not re-encoded from this text in this audit.",
+      "cache_file_pattern": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0005-{step:05d}-0.pt",
+      "steps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "payload_keys": [
+        "filename",
+        "guidance",
+        "input_args",
+        "input_kwargs",
+        "outputs",
+        "step"
+      ],
+      "payload_seed": null,
+      "embedding_same_for_four_steps": true,
+      "embedding_sha256": "c635b70895cc9031c6f9459ecfb2f05ecda740c0c2d8cf8064c0dc847479b20b",
+      "cache_mtime_utc_range": [
+        "2026-08-27T11:54:09.577729+00:00",
+        "2026-08-27T11:54:14.964903+00:00"
+      ]
+    },
+    {
+      "prompt_id": "0006",
+      "mapped_text": "A person is riding scooter",
+      "yaml_line": 7,
+      "mapping_evidence": "Current tracked YAML matches E020 inventory. Not a text field recovered from cache; embedding was not re-encoded from this text in this audit.",
+      "cache_file_pattern": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0006-{step:05d}-0.pt",
+      "steps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "payload_keys": [
+        "filename",
+        "guidance",
+        "input_args",
+        "input_kwargs",
+        "outputs",
+        "step"
+      ],
+      "payload_seed": null,
+      "embedding_same_for_four_steps": true,
+      "embedding_sha256": "0712b61f8478c1cb57625bfad023e133381d1f809d0d1cf0cc26953f0fae0b13",
+      "cache_mtime_utc_range": [
+        "2026-08-27T11:54:16.763961+00:00",
+        "2026-08-27T11:54:22.155134+00:00"
+      ]
+    },
+    {
+      "prompt_id": "0003",
+      "mapped_text": "A person is petting animal (not cat)",
+      "yaml_line": 4,
+      "mapping_evidence": "Current tracked YAML matches E020 inventory. Not a text field recovered from cache; embedding was not re-encoded from this text in this audit.",
+      "cache_file_pattern": "/data1/models/svdquant-wjq/datasets/torch.bfloat16/rcm-wan2.1-1.3b/rcm4-sigma80-g0-f77/vbench/s16/caches/0003-{step:05d}-0.pt",
+      "steps": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "payload_keys": [
+        "filename",
+        "guidance",
+        "input_args",
+        "input_kwargs",
+        "outputs",
+        "step"
+      ],
+      "payload_seed": null,
+      "embedding_same_for_four_steps": true,
+      "embedding_sha256": "c44599d31fa1e36aa5873cd5ccfaea7cb2a09550adb06214bf75183243a3bd1f",
+      "cache_mtime_utc_range": [
+        "2026-08-27T11:53:55.250268+00:00",
+        "2026-08-27T11:54:00.617441+00:00"
+      ]
+    }
+  ],
+  "verified": {
+    "train_inventory_bound_to_completed_run": true,
+    "current_cache_files_equal_E020_inventory_SHA": 16,
+    "fresh_E020_BF16_targets_byte_equal_cached_outputs": 16,
+    "fresh_target_artifact": {
+      "file": "/data1/models/svdquant-wjq/research/20261003/E020/teacher_targets.pt",
+      "sha256": "f107d55957479740d5165c45de38359a7d21c2d5dd7446f77e3066217bff382b"
+    },
+    "yaml_worktree_clean": true,
+    "yaml_available_git_history": "92df5ff 2026-09-14T17:22:34+08:00 Restore video quantization experiment workspace",
+    "note": "The sole available restore commit does not establish the YAML or caches before workspace restoration. File mtimes are corroborating metadata, not an immutable history."
+  },
+  "legacy_read_write_scope": {
+    "collector": "scripts/collect_rcm_wan_calib.py:31-32 refuses a populated output/caches directory; :35-36 uses YAML enumeration; :89 saves only filename/step/guidance with input/output tensors. Prompt, seed, producer model digest and launch arguments were not stored.",
+    "readers": "exp_rcm_blockwise_lowrank_pilot.py:64-77 reads payloads with torch.load. Inspected old blockwise/fullmodel/joint trainers consume existing hidden states/embeddings and write learned branch/smooth checkpoints to experiment output paths; no source-cache rewrite found in these inspected paths.",
+    "conclusion": "No evidence of cache rewriting was found; there is no pre-experiment immutable cache manifest, so cannot certify that no historical/manual rewrite ever occurred. E020 uses these exact current files and recomputed teacher outputs."
+  },
+  "what_is_not_established": [
+    "The four YAML texts are all human activities and none explicitly mentions a ball; this does not prove which visual objects were present in the BF16 training trajectories.",
+    "Text-to-embedding identity is supported by the naming/YAML/collector convention, not a saved prompt field or a fresh text-encoder parity check. Original training cache seeds remain unproven.",
+    "E021 reported similar backgrounds/blue object do not establish copying from a specific training prompt or causally prove overfitting; no training-video-to-output comparison was performed here.",
+    "E021 campus remains in every arm: the reported BF16 teacher distortion prevents assigning that shared failure specifically to quantization/QAD."
+  ],
+  "future_collection_minimum": "Save full prompt text and its hash, tokenizer/text-encoder identities, exact seed plus initial noise/shared update noise hashes, scheduler/settings, BF16 transformer identity and source/command, and every cache payload hash at collection. Separate any later final-test prompt/noise pairs before training; do not infer prompt/seed from filenames.",
+  "sources": [
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E020/E020_cache_inventory.json",
+      "sha256": "873bcc3955ad0008ed8d486b2a4aca78f5f61237f9db6e01559eec953b1afc5d"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/research/E020/train_run.json",
+      "sha256": "62eafc9acc9cfb837c5a06875d772ccb0ae4e0743d4fcb7fd3fa952ed328b207"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/third_party/deepcompressor/examples/diffusion/prompts/vbench_t2v_simple.yaml",
+      "sha256": "e6c7f3a37755414c5690b8717a5d2fa3fdddf5ea6183d819f093241a49b3e360"
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/collect_rcm_wan_calib.py",
+      "sha256": "31a45cab74bdedb304945c9fdf5857222f45234a78db4eb5c2cacc77289d82a8",
+      "line": 31
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/exp_rcm_blockwise_lowrank_pilot.py",
+      "sha256": "c39a3a49987b1e3b8809d978360dd09a79eed2da63dd8ebd89221ad16db78fbe",
+      "line": 27
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/exp_rcm_fullmodel_lowrank_denoiser.py",
+      "sha256": "13f9ebc46e044f57755a74bf26c4d583df1a6550c8987a965df019267806b786",
+      "line": 58
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/scripts/exp_rcm_joint_smooth_lowrank.py",
+      "sha256": "b9c9dedcd497f9a9b4a7b5e980f708567f44aab66b857be13fe5dac8a0cb2b35",
+      "line": 357
+    },
+    {
+      "file": "/home/wjq/workspace/svdquant-exp/results/logs/rcm-wan-calib-full.log",
+      "sha256": "1dc5c8ec7f1eec844219a5c4c18f7fd64fdf69eab07858da3e02b3e75e8c81b0"
+    }
+  ],
+  "cuda_initialized": false
+}

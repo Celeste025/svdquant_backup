@@ -1,0 +1,21 @@
+{
+  "experiment": "E062",
+  "phase": "check",
+  "status": "failed_stop",
+  "start_epoch": 1791059707.4079306,
+  "deadline_unix": null,
+  "attempted_dit_calls": 0,
+  "complete_dit_calls": 0,
+  "attempted_native_fc1_calls": 0,
+  "complete_native_fc1_calls": 0,
+  "tensor_bytes": 0,
+  "tensor_byte_limit": 4294967296,
+  "cases": [],
+  "teacher_replays": [],
+  "down_weights": {},
+  "scope": "Two BF16 historical replays and six full-input native fc1 replays; local sampled diagnostic; no quality claim",
+  "null_scope": "Roll eu by 256 of 512 fixed video rows; preserves marginals, breaks content conditions, noncausal",
+  "projection": "Per-output-channel center then remove centered teacher gated-down output direction; same basis for all terms",
+  "error": "Traceback (most recent call last):\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_swiglu_interaction.py\", line 453, in main\n    manifest, cases = prerequisites(report)\n                      ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_swiglu_interaction.py\", line 40, in prerequisites\n    manifest = base.prerequisites(types.SimpleNamespace(manifest=base.MANIFEST, plan=base.PLAN), binding)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/probe_h3_plain_baseline.py\", line 105, in prerequisites\n    inherited.prerequisites(types.SimpleNamespace(arm='native', export_dir=Path(manifest['svd_export_dir'])), inherited_report)\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py\", line 154, in prerequisites\n    report['sources'] = {str(p): {'sha256': sha256(p), 'bytes': p.stat().st_size} for p in source_paths()}\n                                                                                           ^^^^^^^^^^^^^^\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_native_paired_video.py\", line 75, in source_paths\n    files.append(Path(importlib.import_module(name).__file__))\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/importlib/__init__.py\", line 90, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1331, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 935, in _load_unlocked\n  File \"<frozen importlib._bootstrap_external>\", line 999, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"/home/wjq/workspace/DiffSynth-Studio/diffsynth/utils/data/audio_video.py\", line 1, in <module>\n    import av\nModuleNotFoundError: No module named 'av'\n",
+  "elapsed_seconds": 0.053285837173461914
+}
