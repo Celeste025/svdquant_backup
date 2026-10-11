@@ -1,0 +1,82 @@
+{
+  "definition": "teacher-forced complete DiT output NMSE; BF16 has zero error by definition",
+  "splits": {
+    "train": {
+      "trend": {
+        "prompt_count": 8,
+        "log_nmse_theil_sen_slope_mean": -0.1572816736410355,
+        "bootstrap_95_ci": [
+          -0.1750230085675843,
+          -0.13777593731361928
+        ],
+        "one_sided_wilcoxon_p": 0.00390625,
+        "interpretation": "negative slope supports lower later-timestep NMSE"
+      },
+      "first_vs_late_benefit": {
+        "prompt_count": 8,
+        "step0_minus_late_log_gain_mean": 0.17979856628670887,
+        "bootstrap_95_ci": [
+          -0.13426239377765503,
+          0.46098732467416287
+        ],
+        "one_sided_wilcoxon_p": 0.15625,
+        "late_mean_log_gain": 0.040513336832223135,
+        "late_equivalence_bound_log_1p10": 0.09531017980432493,
+        "late_tost_p_lower": 1.6860154657960535e-05,
+        "late_tost_p_upper": 0.0035176994152653733,
+        "late_practically_equivalent": true,
+        "interpretation": "positive step0-minus-late means fine-tuning improves the first call more"
+      }
+    },
+    "test": {
+      "trend": {
+        "prompt_count": 5,
+        "log_nmse_theil_sen_slope_mean": -0.1845283611025835,
+        "bootstrap_95_ci": [
+          -0.2013751768738054,
+          -0.16518184723327906
+        ],
+        "one_sided_wilcoxon_p": 0.03125,
+        "interpretation": "negative slope supports lower later-timestep NMSE"
+      },
+      "first_vs_late_benefit": {
+        "prompt_count": 5,
+        "step0_minus_late_log_gain_mean": 0.22854683302636608,
+        "bootstrap_95_ci": [
+          -0.08370839895448197,
+          0.505675151959494
+        ],
+        "one_sided_wilcoxon_p": 0.15625,
+        "late_mean_log_gain": 0.025435284917229507,
+        "late_equivalence_bound_log_1p10": 0.09531017980432493,
+        "late_tost_p_lower": 0.00017117979901082325,
+        "late_tost_p_upper": 0.0013853868811410965,
+        "late_practically_equivalent": true,
+        "interpretation": "positive step0-minus-late means fine-tuning improves the first call more"
+      }
+    }
+  },
+  "holm_family": [
+    {
+      "name": "train.trend",
+      "p_value": 0.00390625,
+      "holm_p_value": 0.015625
+    },
+    {
+      "name": "train.first_vs_late",
+      "p_value": 0.15625,
+      "holm_p_value": 0.3125
+    },
+    {
+      "name": "test.trend",
+      "p_value": 0.03125,
+      "holm_p_value": 0.09375
+    },
+    {
+      "name": "test.first_vs_late",
+      "p_value": 0.15625,
+      "holm_p_value": 0.15625
+    }
+  ],
+  "limitations": "Train is in-sample. Held-out uses five independent prompts; confidence intervals and effect sizes are primary because its cluster count is small."
+}

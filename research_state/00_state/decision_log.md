@@ -691,3 +691,5 @@ D104/E075完成：[报告073](../reports/073_20261004_h3_phase_suffix_results.md
 
 
 **D116 / E084 complete（2026-10-05）：** 补齐E022原16测试轨迹的逐步同状态/自由输出/latent NMSE。288 DiT、192步哈希与48终态精确复现；CPU4192项独立校验通过。测试同状态第1–4步pooled变化−22.24%/+40.45%/+33.37%/−2.03%，开发32%降幅未稳定迁移；自由输出末步−8.33%，正交叉项增加使终态latent pooled仅−0.96%，等权+17.17%。GPU0 506.78秒/4.15GiB，无训练/视频/VAE；补测完成即停止，不恢复新idea研究。[报告083](../reports/083_20261005_wan_qad_timestep_replay.md)。
+
+**D117 / E085 started（2026-10-06）：** 用户要求优先在 MiniMax-H3 核验 SVDQuant 逐 timestep NMSE 是否随去噪推进而下降，以及首步是否相对 plain W4A4 有集中改善。为避免自由轨迹输入漂移混杂，固定 BF16 teacher-forced 完整 DiT 输出；保留 split 为既有标准 prompts {2,16,26,42,51}，校准 split 为训练时8 prompts×8 cached calls。p2/26/42/51 现运行于 GPU1 named tmux；p16 与校准 SVDQuant 结果已存在。已记录：仅 SVDQuant-vs-BF16 绝对 NMSE 不足以证明“经 SVDQuant 改善”，必须补同输入 plain W4A4 结果后才判定第二假设。无校准、训练或搜索授权。

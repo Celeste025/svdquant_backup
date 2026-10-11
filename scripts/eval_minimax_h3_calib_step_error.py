@@ -10,7 +10,7 @@ from pathlib import Path
 
 import torch
 
-from eval_minimax_h3_paired_step_error import apply_svdquant, metrics, split_output
+from eval_minimax_h3_paired_step_error import apply_plain, apply_svdquant, metrics, split_output
 from minimax_h3_svdquant_common import load_h3_pipeline, tree_device
 
 
@@ -18,6 +18,7 @@ def parse_args():
     p = argparse.ArgumentParser()
     p.add_argument("--cache-dir", type=Path, required=True)
     p.add_argument("--state", type=Path, required=True)
+    p.add_argument("--variant", choices=("svdquant", "svdquant_ft", "plain_w4a4"), default="svdquant")
     p.add_argument("--output", type=Path, required=True)
     return p.parse_args()
 
@@ -49,10 +50,10 @@ def main():
     del pipe
     gc.collect(); torch.cuda.empty_cache()
 
-    print("installing SVDQuant and replaying the same 64 calls", flush=True)
+    print(f"installing {args.variant} and replaying the same 64 calls", flush=True)
     pipe = load_h3_pipeline(full=False, reserve_gib=35.0)
     pipe.load_models_to_device(["dit"])
-    hooks = apply_svdquant(pipe.dit, args.state)
+    hooks = apply_svdquant(pipe.dit, args.state) if args.variant in ("svdquant", "svdquant_ft") else apply_plain(pipe.dit)
     details = []
     for i, ((meta, input_args, input_kwargs), (ref_video, ref_audio)) in enumerate(zip(calls, refs, strict=True), 1):
         video, audio = split_output(pipe.dit(*tree_device(input_args, "cuda"), **tree_device(input_kwargs, "cuda")))
@@ -60,7 +61,7 @@ def main():
                   "timestep": float(input_kwargs["unique_timesteps"].flatten()[0]),
                   "video": metrics(video, ref_video.to("cuda")), "audio": metrics(audio, ref_audio.to("cuda"))}
         details.append(record)
-        print(f"SVDQ {i}/64 p{record['prompt_id']} s{record['step']:02d} "
+        print(f"{args.variant} {i}/64 p{record['prompt_id']} s{record['step']:02d} "
               f"nmse={record['video']['nmse']:.6g}", flush=True)
     if any(h.act.calls != 64 for h in hooks):
         raise RuntimeError("one or more quantization hooks did not see every calibration call")
@@ -78,7 +79,7 @@ def main():
                         "video_nmse_min": min(r["video"]["nmse"] for r in rows),
                         "video_nmse_max": max(r["video"]["nmse"] for r in rows), "samples": len(rows)})
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps({"definition": "complete DiT teacher-forced output error; BF16 and SVDQuant receive identical cached calibration-call inputs", "details": details, "by_step": summary}, indent=2))
+    args.output.write_text(json.dumps({"definition": "complete DiT teacher-forced output error; quantized and BF16 receive identical cached calibration-call inputs", "variant": args.variant, "details": details, "by_step": summary}, indent=2))
     print(f"saved {args.output}", flush=True)
 
 

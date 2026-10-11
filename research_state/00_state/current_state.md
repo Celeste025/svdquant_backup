@@ -56,6 +56,8 @@ E068仅访问公开blind_review_v2，未读private key；PyAV/PIL CPU1.9009秒�
 
 另看E010两六帧配对及E038汽车转弯两八帧三臂图，差异不能直接推画质/速度；无独立人评或新的因果归因。Decoder时间压缩解释已有前期note，不再次包装。下一优先能区分机制的观察/小实验，不继续为同一不可识别手部例扩工具或文献。E072a仍停止，E068人评仍待且不重问；研究目标active，无新运行任务。
 
+**E085（2026-10-06，运行中）：** 用户要求先验证 MiniMax-H3 上 SVDQuant 的逐 timestep NMSE 现象。采用 BF16 teacher-forced 输入，校准侧为既有 8 prompts × 8 captured steps；保留侧固定标准样本 {2,16,26,42,51}，其中 p16 已有全20步结果，p2/26/42/51 在 GPU1 的 `e085_h3_timestep` tmux 中串行运行。该口径可检验 SVDQuant 相对 BF16 的随步绝对 NMSE，但“首步经 SVDQuant 显著降低、后续不降低”还须与相同输入的 plain W4A4 配对；不得将绝对 NMSE 下降误称为 SVDQuant 改善。E085 不执行重新校准、训练或参数搜索。计划见 `../06_experiments/decision_value_plan_E085_h3_svdquant_timestep_generalization.md`。
+
 **用户最新纠偏：控制工程投入，重点思考有创新性的idea、观察及实验检验。** E072a SVD提速支线已停止，0CPUcheck/0GPU/0新SVD；协议与监督草稿保留但不得据此启动。完整强基线扩展亦非当前优先项，不能以补基线为由持续派生工程小检查。研究目标仍active，非暂停。
 
 D097 / [报告067](../reports/067_20261004_research_focus_reset.md)：有界机制/近邻筛查已完成，无新增GPU。可融合RoPE旋转、AdaLN确定性shift移出、Jensen偏置通用修正均因直接已有方法覆盖不立项；详见两个prior-work note及fresh机制note。帧轴弱变化问题暂无本地阳性，Q-VDiT/DeltaQuant/ResQ已有直接区域覆盖；不把QVD timestep embedding误当frame-motion。

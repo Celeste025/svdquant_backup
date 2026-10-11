@@ -1,0 +1,12 @@
+{
+  "prompt_ids": [1, 3, 11, 12],
+  "held_out_prompt_ids": [2, 16, 26, 42, 51],
+  "steps": 20,
+  "capture_steps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+  "shape": {"height": 576, "width": 1024, "frames": 124},
+  "probe_layers": ["blocks.13.attn.qkv_proj", "blocks.13.attn.out_proj"],
+  "fit_prompt_ids": [1, 3],
+  "validation_prompt_ids": [11, 12],
+  "smoothing_grid_size": 10,
+  "study_note": "One-hour exploratory probe: two attention linears share block-13 replay; two fit and two independent validation prompts. Results are directional due to n=2 validation prompts."
+}

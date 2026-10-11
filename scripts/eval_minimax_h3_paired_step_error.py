@@ -25,15 +25,28 @@ from minimax_h3_svdquant_common import (install_runtime_hooks, load_h3_pipeline,
 def apply_svdquant(dit: torch.nn.Module, path: Path):
     """Install precisely the standard-inference SVDQuant state, without video I/O deps."""
     state = torch.load(path, map_location="cpu", weights_only=False)
-    if state.get("format") != "minimax-h3-svdquant-standard-v1" or len(state.get("layers", {})) != 200:
+    fmt = state.get("format")
+    if fmt not in ("minimax-h3-svdquant-standard-v1", "minimax-h3-svdquant-ft-v1") or len(state.get("layers", {})) != 200:
         raise RuntimeError("invalid standard H3 SVDQuant state")
+    # Fine-tuning changes only the runtime low-rank branch.  The frozen W4A4
+    # main weight must continue to be reconstructed from the original PTQ
+    # branch, rather than re-quantizing around the adapted branch.
+    base_state = state
+    if fmt == "minimax-h3-svdquant-ft-v1":
+        base_path = Path(state["base_state_path"])
+        if not base_path.is_file():
+            raise FileNotFoundError(f"fine-tune base state missing: {base_path}")
+        base_state = torch.load(base_path, map_location="cpu", weights_only=False)
+        if base_state.get("format") != "minimax-h3-svdquant-standard-v1":
+            raise RuntimeError("fine-tune base state is not a standard H3 SVDQuant state")
     hooks = []
     for i, (name, linear) in enumerate(target_linears(dit), 1):
-        layer = state["layers"][name]
+        layer, base_layer = state["layers"][name], base_state["layers"][name]
         weight, _ = linear.load_from_disk(torch.bfloat16, "cuda", assign=False)
-        smooth = layer["smooth"].to(weight)
+        smooth = (layer["smooth"] if "smooth" in layer else base_layer["smooth"]).to(weight)
         a, b = layer["final_a"].to(weight), layer["final_b"].to(weight)
-        linear.load_state_dict({"weight": nvfp4_qdq(weight * smooth - b @ a).detach().cpu()}, assign=True, strict=False)
+        base_a, base_b = base_layer["final_a"].to(weight), base_layer["final_b"].to(weight)
+        linear.load_state_dict({"weight": nvfp4_qdq(weight * smooth - base_b @ base_a).detach().cpu()}, assign=True, strict=False)
         linear.disk_offload = False
         linear.offload_dtype = linear.onload_dtype = torch.bfloat16
         linear.offload_device = linear.onload_device = torch.device("cpu")
@@ -43,9 +56,29 @@ def apply_svdquant(dit: torch.nn.Module, path: Path):
         if runtime.branch is not None:
             runtime.branch.to(device="cuda", dtype=torch.bfloat16)
         hooks.append(runtime)
-        del weight, smooth, a, b
+        del weight, smooth, a, b, base_a, base_b
         if i % 20 == 0:
             print(f"SVDQuant reload: {i}/200", flush=True)
+        torch.cuda.empty_cache()
+    return hooks
+
+
+@torch.no_grad()
+def apply_plain(dit: torch.nn.Module):
+    """Install the matched dynamic-NVFP4 W4A4 baseline without SVDQuant terms."""
+    hooks = []
+    for i, (_, linear) in enumerate(target_linears(dit), 1):
+        weight, _ = linear.load_from_disk(torch.bfloat16, "cuda", assign=False)
+        linear.load_state_dict({"weight": nvfp4_qdq(weight).detach().cpu()}, assign=True, strict=False)
+        linear.disk_offload = False
+        linear.offload_dtype = linear.onload_dtype = torch.bfloat16
+        linear.offload_device = linear.onload_device = torch.device("cpu")
+        linear.computation_dtype, linear.computation_device = torch.bfloat16, torch.device("cuda")
+        linear.vram_limit, linear.state = 0.0, 1
+        hooks.append(install_runtime_hooks(linear, None, None, None))
+        del weight
+        if i % 20 == 0:
+            print(f"plain W4A4 reload: {i}/200", flush=True)
         torch.cuda.empty_cache()
     return hooks
 
@@ -53,11 +86,16 @@ def apply_svdquant(dit: torch.nn.Module, path: Path):
 def args_parser() -> argparse.Namespace:
     p = argparse.ArgumentParser()
     p.add_argument("--state", type=Path, required=True)
+    p.add_argument("--variant", choices=("svdquant", "svdquant_ft", "plain_w4a4"), default="svdquant")
     p.add_argument("--prompt-id", type=int, default=16)
     p.add_argument("--height", type=int, default=576)
     p.add_argument("--width", type=int, default=1024)
     p.add_argument("--frames", type=int, default=124)
     p.add_argument("--steps", type=int, default=20)
+    p.add_argument("--calls-file", type=Path, default=None,
+                   help="Previously captured BF16 trajectory calls; guarantees identical inputs across arms.")
+    p.add_argument("--save-calls", type=Path, default=None,
+                   help="Write newly captured BF16 trajectory calls for later arms.")
     p.add_argument("--output", type=Path, required=True)
     return p.parse_args()
 
@@ -112,12 +150,21 @@ def main() -> None:
     if args.height % 32 or args.width % 32 or (args.frames - 5) % 17:
         raise ValueError("invalid H3 output shape")
     row = read_prompt(args.prompt_id)
-    print("capturing BF16 sampling trajectory", flush=True)
-    calls = capture_bf16(args, row)
-    print("loading SVDQuant DiT", flush=True)
+    if args.calls_file:
+        print(f"loading BF16 sampling trajectory from {args.calls_file}", flush=True)
+        calls = torch.load(args.calls_file, map_location="cpu", weights_only=False)
+        if len(calls) != args.steps:
+            raise RuntimeError(f"cached calls have {len(calls)} steps, expected {args.steps}")
+    else:
+        print("capturing BF16 sampling trajectory", flush=True)
+        calls = capture_bf16(args, row)
+        if args.save_calls:
+            args.save_calls.parent.mkdir(parents=True, exist_ok=True)
+            torch.save(calls, args.save_calls)
+    print(f"loading {args.variant} DiT", flush=True)
     pipe = load_h3_pipeline(full=True, reserve_gib=35.0)
     pipe.load_models_to_device(["dit"])
-    hooks = apply_svdquant(pipe.dit, args.state)
+    hooks = apply_svdquant(pipe.dit, args.state) if args.variant in ("svdquant", "svdquant_ft") else apply_plain(pipe.dit)
     results = []
     for step, call in enumerate(calls):
         output = pipe.dit(*tree_device(call["args"], "cuda"), **tree_device(call["kwargs"], "cuda"))
@@ -126,12 +173,13 @@ def main() -> None:
                 "video": metrics(video, call["video"].to("cuda")),
                 "audio": metrics(audio, call["audio"].to("cuda"))}
         results.append(item)
-        print(f"step={step:02d} t={item['timestep']:.6f} video_nmse={item['video']['nmse']:.6g} "
+        print(f"{args.variant} step={step:02d} t={item['timestep']:.6f} video_nmse={item['video']['nmse']:.6g} "
               f"video_cos={item['video']['cosine']:.8f}", flush=True)
     if any(h.act.calls == 0 for h in hooks):
         raise RuntimeError("one or more quantization hooks were not exercised")
     args.output.parent.mkdir(parents=True, exist_ok=True)
     payload = {"definition": "teacher-forced per-DiT-call error: quantized and BF16 receive identical BF16 trajectory inputs",
+               "variant": args.variant,
                "prompt_id": args.prompt_id, "seed": int(row["seed"]), "prompt": row["prompt"],
                "height": args.height, "width": args.width, "frames": args.frames, "steps": args.steps,
                "results": results}

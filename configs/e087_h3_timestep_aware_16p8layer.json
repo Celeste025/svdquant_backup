@@ -1,0 +1,17 @@
+{
+  "prompt_ids": [1, 3, 11, 12, 20, 21, 25, 27, 46, 47, 48, 49, 105, 106, 116, 117],
+  "held_out_prompt_ids": [2, 16, 26, 42, 51],
+  "steps": 20,
+  "capture_steps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+  "shape": {"height": 576, "width": 1024, "frames": 124},
+  "probe_layers": [
+    "blocks.3.attn.qkv_proj", "blocks.3.attn.out_proj",
+    "blocks.13.attn.qkv_proj", "blocks.13.attn.out_proj",
+    "blocks.25.mlp.fc1", "blocks.25.mlp.fc2",
+    "blocks.46.mlp.fc1", "blocks.46.mlp.fc2"
+  ],
+  "fit_prompt_ids": [1, 3, 11, 12, 20, 21, 25, 27],
+  "validation_prompt_ids": [46, 47, 48, 49, 105, 106, 116, 117],
+  "smoothing_grid_size": 10,
+  "study_note": "Main probe: 16 prompts x 20 timesteps, eight linears from four depths and all four target projection types. Eight prompts fit smoothing; eight disjoint prompts measure held-out parent-block-end NMSE."
+}

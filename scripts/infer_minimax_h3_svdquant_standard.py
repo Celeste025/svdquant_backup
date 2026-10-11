@@ -14,7 +14,7 @@ from minimax_h3_svdquant_common import install_runtime_hooks, load_h3_pipeline, 
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser()
-    p.add_argument("--case", choices=["bf16", "w4a4", "svdquant"], required=True)
+    p.add_argument("--case", choices=["bf16", "w4a4", "svdquant", "svdquant_ft"], required=True)
     p.add_argument("--state", type=Path, required=True)
     p.add_argument("--output-dir", type=Path, required=True)
     p.add_argument("--prompt-id", type=int, required=True)
@@ -56,15 +56,29 @@ def apply_plain(dit):
 @torch.no_grad()
 def apply_svdquant(dit, path: Path):
     state = torch.load(path, map_location="cpu", weights_only=False)
-    if state.get("format") != "minimax-h3-svdquant-standard-v1" or len(state.get("layers", {})) != 200:
+    fmt = state.get("format")
+    if fmt not in ("minimax-h3-svdquant-standard-v1", "minimax-h3-svdquant-ft-v1") or len(state.get("layers", {})) != 200:
         raise RuntimeError("invalid standard H3 SVDQuant state")
+    # The FT state contains only adapted A/B tensors.  Reconstruct the frozen
+    # W4A4 main weight from the original standard state, then attach those
+    # adapted low-rank runtime branches (the same semantics as E086's scorer).
+    base_state = state
+    if fmt == "minimax-h3-svdquant-ft-v1":
+        base_path = Path(state["base_state_path"])
+        if not base_path.is_file():
+            raise FileNotFoundError(f"fine-tune base state missing: {base_path}")
+        base_state = torch.load(base_path, map_location="cpu", weights_only=False)
+        if base_state.get("format") != "minimax-h3-svdquant-standard-v1":
+            raise RuntimeError("fine-tune base state is not a standard H3 SVDQuant state")
     hooks = []
     for i, (name, linear) in enumerate(target_linears(dit), 1):
-        layer = state["layers"][name]
+        layer, base_layer = state["layers"][name], base_state["layers"][name]
         weight, _ = linear.load_from_disk(torch.bfloat16, "cuda", assign=False)
-        smooth, a, b = layer["smooth"].to(weight), layer["final_a"].to(weight), layer["final_b"].to(weight)
-        hooks.append(_install(linear, nvfp4_qdq(weight * smooth - b @ a), layer["smooth"], layer["final_a"], layer["final_b"]))
-        del weight, smooth, a, b
+        smooth = (layer["smooth"] if "smooth" in layer else base_layer["smooth"]).to(weight)
+        a, b = layer["final_a"].to(weight), layer["final_b"].to(weight)
+        base_a, base_b = base_layer["final_a"].to(weight), base_layer["final_b"].to(weight)
+        hooks.append(_install(linear, nvfp4_qdq(weight * smooth - base_b @ base_a), smooth, a, b))
+        del weight, smooth, a, b, base_a, base_b
         if i % 20 == 0: print(f"SVDQuant reload: {i}/200", flush=True)
         torch.cuda.empty_cache()
     return hooks
