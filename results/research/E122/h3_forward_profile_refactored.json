@@ -1,0 +1,769 @@
+{
+  "format": "e122-h3-attention-linear-profile-v1",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "model_load_excluded": true,
+  "cached_calls": "/data1/models/svdquant-wjq/research/20261015/E101_h3_r32_fixed1_three_cases/race/bf16_teacher_calls.pt",
+  "steps": [
+    0,
+    10
+  ],
+  "linears": {
+    "count": 200,
+    "bf16_compute": true,
+    "disk_offloaded_count": 200
+  },
+  "arms": {
+    "bf16_sdpa": [
+      {
+        "step": 0,
+        "direct": {
+          "wall_seconds": 10.408404346002499,
+          "cuda_event_ms": 10408.1533203125,
+          "main_helpers": 50,
+          "refiner_helpers": 2,
+          "attention_implementation_for_unmodified_helpers": "torch"
+        },
+        "profiled": {
+          "wall_seconds": 10.198156600992661,
+          "cuda_event_ms": 10197.9150390625,
+          "main_helpers": 50,
+          "refiner_helpers": 2,
+          "attention_implementation_for_unmodified_helpers": "torch",
+          "breakdown": {
+            "cuda_event_total_ms": 10197.9150390625,
+            "synchronized_wall_seconds": 10.198156600992661,
+            "attention_helper": {
+              "main": {
+                "ms": 3385.044609069824,
+                "calls": 50
+              },
+              "refiner": {
+                "ms": 0.5242879837751389,
+                "calls": 2
+              }
+            },
+            "linear_module_including_weight_load": {
+              "adaln": {
+                "ms": 8.895936037413776,
+                "calls": 51
+              },
+              "attn_out_proj": {
+                "ms": 486.2051479816437,
+                "calls": 52
+              },
+              "mlp_fc1": {
+                "ms": 2476.8742768764496,
+                "calls": 52
+              },
+              "mlp_fc2": {
+                "ms": 875.9809240698814,
+                "calls": 52
+              },
+              "other_linear": {
+                "ms": 2.45123194064945,
+                "calls": 5
+              },
+              "qkv_proj": {
+                "ms": 1760.107961654663,
+                "calls": 52
+              }
+            },
+            "linear_gemm_only": {
+              "adaln": {
+                "ms": 2.7328320047818124,
+                "calls": 51
+              },
+              "attn_out_proj": {
+                "ms": 352.80588802695274,
+                "calls": 52
+              },
+              "mlp_fc1": {
+                "ms": 1374.6440658569336,
+                "calls": 52
+              },
+              "mlp_fc2": {
+                "ms": 694.4087048172951,
+                "calls": 52
+              },
+              "other_linear": {
+                "ms": 1.202752004377544,
+                "calls": 5
+              },
+              "qkv_proj": {
+                "ms": 1031.0685729980469,
+                "calls": 52
+              }
+            },
+            "attention_helper_ms": 3385.5688970535994,
+            "all_linear_module_ms": 5610.515478560701,
+            "linear_gemm_ms": 3456.8628157083876,
+            "linear_non_gemm_estimate_ms": 2153.6526628523134,
+            "other_exclusive_estimate_ms": 1201.8306634481996,
+            "linear_module_count": 264
+          }
+        },
+        "vs_true_bf16_dit_nmse": {
+          "video": 0.0,
+          "audio": 0.0
+        }
+      },
+      {
+        "step": 10,
+        "direct": {
+          "wall_seconds": 10.279707180990954,
+          "cuda_event_ms": 10279.51953125,
+          "main_helpers": 50,
+          "refiner_helpers": 2,
+          "attention_implementation_for_unmodified_helpers": "torch"
+        },
+        "profiled": {
+          "wall_seconds": 10.308519810991129,
+          "cuda_event_ms": 10308.2861328125,
+          "main_helpers": 50,
+          "refiner_helpers": 2,
+          "attention_implementation_for_unmodified_helpers": "torch",
+          "breakdown": {
+            "cuda_event_total_ms": 10308.2861328125,
+            "synchronized_wall_seconds": 10.308519810991129,
+            "attention_helper": {
+              "main": {
+                "ms": 3390.3687438964844,
+                "calls": 50
+              },
+              "refiner": {
+                "ms": 0.5221760123968124,
+                "calls": 2
+              }
+            },
+            "linear_module_including_weight_load": {
+              "adaln": {
+                "ms": 13.729247903451324,
+                "calls": 51
+              },
+              "attn_out_proj": {
+                "ms": 485.4581785798073,
+                "calls": 52
+              },
+              "mlp_fc1": {
+                "ms": 2483.6562480926514,
+                "calls": 52
+              },
+              "mlp_fc2": {
+                "ms": 893.9187737107277,
+                "calls": 52
+              },
+              "other_linear": {
+                "ms": 1.3864959916099906,
+                "calls": 5
+              },
+              "qkv_proj": {
+                "ms": 1820.0455420017242,
+                "calls": 52
+              }
+            },
+            "linear_gemm_only": {
+              "adaln": {
+                "ms": 3.3294080113992095,
+                "calls": 51
+              },
+              "attn_out_proj": {
+                "ms": 353.81564766168594,
+                "calls": 52
+              },
+              "mlp_fc1": {
+                "ms": 1378.7542316913605,
+                "calls": 52
+              },
+              "mlp_fc2": {
+                "ms": 697.633501470089,
+                "calls": 52
+              },
+              "other_linear": {
+                "ms": 1.1881280029192567,
+                "calls": 5
+              },
+              "qkv_proj": {
+                "ms": 1035.0713566541672,
+                "calls": 52
+              }
+            },
+            "attention_helper_ms": 3390.890919908881,
+            "all_linear_module_ms": 5698.194486279972,
+            "linear_gemm_ms": 3469.792273491621,
+            "linear_non_gemm_estimate_ms": 2228.402212788351,
+            "other_exclusive_estimate_ms": 1219.200726623647,
+            "linear_module_count": 264
+          }
+        },
+        "vs_true_bf16_dit_nmse": {
+          "video": 0.0,
+          "audio": 0.0
+        }
+      }
+    ],
+    "sage2_default": [
+      {
+        "step": 0,
+        "direct": {
+          "wall_seconds": 9.705678975995397,
+          "cuda_event_ms": 9705.44921875,
+          "main_helpers": 50,
+          "refiner_helpers": 2,
+          "attention_implementation_for_unmodified_helpers": "sage_attention"
+        },
+        "profiled": {
+          "wall_seconds": 9.662031037005363,
+          "cuda_event_ms": 9661.849609375,
+          "main_helpers": 50,
+          "refiner_helpers": 2,
+          "attention_implementation_for_unmodified_helpers": "sage_attention",
+          "breakdown": {
+            "cuda_event_total_ms": 9661.849609375,
+            "synchronized_wall_seconds": 9.662031037005363,
+            "attention_helper": {
+              "main": {
+                "ms": 2851.623264312744,
+                "calls": 50
+              },
+              "refiner": {
+                "ms": 0.7567359805107117,
+                "calls": 2
+              }
+            },
+            "linear_module_including_weight_load": {
+              "adaln": {
+                "ms": 8.577823995612562,
+                "calls": 51
+              },
+              "attn_out_proj": {
+                "ms": 483.25456216931343,
+                "calls": 52
+              },
+              "mlp_fc1": {
+                "ms": 2474.761796116829,
+                "calls": 52
+              },
+              "mlp_fc2": {
+                "ms": 876.7801905870438,
+                "calls": 52
+              },
+              "other_linear": {
+                "ms": 2.1184960044920444,
+                "calls": 5
+              },
+              "qkv_proj": {
+                "ms": 1753.9438922405243,
+                "calls": 52
+              }
+            },
+            "linear_gemm_only": {
+              "adaln": {
+                "ms": 2.5804800018668175,
+                "calls": 51
+              },
+              "attn_out_proj": {
+                "ms": 347.75049862265587,
+                "calls": 52
+              },
+              "mlp_fc1": {
+                "ms": 1372.5497277975082,
+                "calls": 52
+              },
+              "mlp_fc2": {
+                "ms": 694.9478086829185,
+                "calls": 52
+              },
+              "other_linear": {
+                "ms": 1.2075199829414487,
+                "calls": 5
+              },
+              "qkv_proj": {
+                "ms": 1033.5966075658798,
+                "calls": 52
+              }
+            },
+            "attention_helper_ms": 2852.380000293255,
+            "all_linear_module_ms": 5599.436761113815,
+            "linear_gemm_ms": 3452.6326426537707,
+            "linear_non_gemm_estimate_ms": 2146.8041184600443,
+            "other_exclusive_estimate_ms": 1210.0328479679301,
+            "linear_module_count": 264
+          }
+        },
+        "vs_true_bf16_dit_nmse": {
+          "video": 0.0005004418781027198,
+          "audio": 0.00018709173309616745
+        }
+      },
+      {
+        "step": 10,
+        "direct": {
+          "wall_seconds": 9.674614547999226,
+          "cuda_event_ms": 9674.3798828125,
+          "main_helpers": 50,
+          "refiner_helpers": 2,
+          "attention_implementation_for_unmodified_helpers": "sage_attention"
+        },
+        "profiled": {
+          "wall_seconds": 9.70150841200666,
+          "cuda_event_ms": 9701.2763671875,
+          "main_helpers": 50,
+          "refiner_helpers": 2,
+          "attention_implementation_for_unmodified_helpers": "sage_attention",
+          "breakdown": {
+            "cuda_event_total_ms": 9701.2763671875,
+            "synchronized_wall_seconds": 9.70150841200666,
+            "attention_helper": {
+              "main": {
+                "ms": 2844.8850860595703,
+                "calls": 50
+              },
+              "refiner": {
+                "ms": 0.7905279994010925,
+                "calls": 2
+              }
+            },
+            "linear_module_including_weight_load": {
+              "adaln": {
+                "ms": 51.817633064463735,
+                "calls": 51
+              },
+              "attn_out_proj": {
+                "ms": 476.33382403850555,
+                "calls": 52
+              },
+              "mlp_fc1": {
+                "ms": 2477.2741684913635,
+                "calls": 52
+              },
+              "mlp_fc2": {
+                "ms": 872.8003492951393,
+                "calls": 52
+              },
+              "other_linear": {
+                "ms": 1.405535999685526,
+                "calls": 5
+              },
+              "qkv_proj": {
+                "ms": 1758.3572437763214,
+                "calls": 52
+              }
+            },
+            "linear_gemm_only": {
+              "adaln": {
+                "ms": 2.901919989846647,
+                "calls": 51
+              },
+              "attn_out_proj": {
+                "ms": 345.7626567184925,
+                "calls": 52
+              },
+              "mlp_fc1": {
+                "ms": 1366.0214433670044,
+                "calls": 52
+              },
+              "mlp_fc2": {
+                "ms": 691.212894320488,
+                "calls": 52
+              },
+              "other_linear": {
+                "ms": 1.1937920162454247,
+                "calls": 5
+              },
+              "qkv_proj": {
+                "ms": 1029.6925067901611,
+                "calls": 52
+              }
+            },
+            "attention_helper_ms": 2845.6756140589714,
+            "all_linear_module_ms": 5637.988754665479,
+            "linear_gemm_ms": 3436.785213202238,
+            "linear_non_gemm_estimate_ms": 2201.203541463241,
+            "other_exclusive_estimate_ms": 1217.6119984630495,
+            "linear_module_count": 264
+          }
+        },
+        "vs_true_bf16_dit_nmse": {
+          "video": 0.0008311812416650355,
+          "audio": 0.000678091892041266
+        }
+      }
+    ],
+    "sage3_fixed": [
+      {
+        "step": 0,
+        "direct": {
+          "wall_seconds": 8.67861205599911,
+          "cuda_event_ms": 8678.4267578125,
+          "main_helpers": 50,
+          "refiner_helpers": 2,
+          "attention_implementation_for_unmodified_helpers": "torch"
+        },
+        "profiled": {
+          "wall_seconds": 8.635414728996693,
+          "cuda_event_ms": 8635.2255859375,
+          "main_helpers": 50,
+          "refiner_helpers": 2,
+          "attention_implementation_for_unmodified_helpers": "torch",
+          "breakdown": {
+            "cuda_event_total_ms": 8635.2255859375,
+            "synchronized_wall_seconds": 8.635414728996693,
+            "attention_helper": {
+              "main": {
+                "ms": 1871.2833442687988,
+                "calls": 50
+              },
+              "refiner": {
+                "ms": 0.5263039916753769,
+                "calls": 2
+              }
+            },
+            "linear_module_including_weight_load": {
+              "adaln": {
+                "ms": 10.701856072060764,
+                "calls": 51
+              },
+              "attn_out_proj": {
+                "ms": 449.45110565423965,
+                "calls": 52
+              },
+              "mlp_fc1": {
+                "ms": 2440.290589094162,
+                "calls": 52
+              },
+              "mlp_fc2": {
+                "ms": 863.6548444032669,
+                "calls": 52
+              },
+              "other_linear": {
+                "ms": 1.3653760394081473,
+                "calls": 5
+              },
+              "qkv_proj": {
+                "ms": 1790.4993933439255,
+                "calls": 52
+              }
+            },
+            "linear_gemm_only": {
+              "adaln": {
+                "ms": 2.3989119990728796,
+                "calls": 51
+              },
+              "attn_out_proj": {
+                "ms": 342.5515519976616,
+                "calls": 52
+              },
+              "mlp_fc1": {
+                "ms": 1353.0405782461166,
+                "calls": 52
+              },
+              "mlp_fc2": {
+                "ms": 683.3529952168465,
+                "calls": 52
+              },
+              "other_linear": {
+                "ms": 1.1750719929113984,
+                "calls": 5
+              },
+              "qkv_proj": {
+                "ms": 1019.2472987174988,
+                "calls": 52
+              }
+            },
+            "attention_helper_ms": 1871.8096482604742,
+            "all_linear_module_ms": 5555.963164607063,
+            "linear_gemm_ms": 3401.7664081701078,
+            "linear_non_gemm_estimate_ms": 2154.196756436955,
+            "other_exclusive_estimate_ms": 1207.4527730699629,
+            "linear_module_count": 264
+          }
+        },
+        "vs_true_bf16_dit_nmse": {
+          "video": 0.011608884669840336,
+          "audio": 0.007710082456469536
+        }
+      },
+      {
+        "step": 10,
+        "direct": {
+          "wall_seconds": 8.667800334995263,
+          "cuda_event_ms": 8667.619140625,
+          "main_helpers": 50,
+          "refiner_helpers": 2,
+          "attention_implementation_for_unmodified_helpers": "torch"
+        },
+        "profiled": {
+          "wall_seconds": 8.620867682999233,
+          "cuda_event_ms": 8620.6572265625,
+          "main_helpers": 50,
+          "refiner_helpers": 2,
+          "attention_implementation_for_unmodified_helpers": "torch",
+          "breakdown": {
+            "cuda_event_total_ms": 8620.6572265625,
+            "synchronized_wall_seconds": 8.620867682999233,
+            "attention_helper": {
+              "main": {
+                "ms": 1874.9273300170898,
+                "calls": 50
+              },
+              "refiner": {
+                "ms": 0.5181440114974976,
+                "calls": 2
+              }
+            },
+            "linear_module_including_weight_load": {
+              "adaln": {
+                "ms": 8.027072021737695,
+                "calls": 51
+              },
+              "attn_out_proj": {
+                "ms": 477.46051728725433,
+                "calls": 52
+              },
+              "mlp_fc1": {
+                "ms": 2450.2452721595764,
+                "calls": 52
+              },
+              "mlp_fc2": {
+                "ms": 867.2666536569595,
+                "calls": 52
+              },
+              "other_linear": {
+                "ms": 1.3800320168957114,
+                "calls": 5
+              },
+              "qkv_proj": {
+                "ms": 1743.1151597499847,
+                "calls": 52
+              }
+            },
+            "linear_gemm_only": {
+              "adaln": {
+                "ms": 2.6307520046830177,
+                "calls": 51
+              },
+              "attn_out_proj": {
+                "ms": 344.7003844976425,
+                "calls": 52
+              },
+              "mlp_fc1": {
+                "ms": 1360.7093102931976,
+                "calls": 52
+              },
+              "mlp_fc2": {
+                "ms": 686.8959712386131,
+                "calls": 52
+              },
+              "other_linear": {
+                "ms": 1.1850880170240998,
+                "calls": 5
+              },
+              "qkv_proj": {
+                "ms": 1025.4359387159348,
+                "calls": 52
+              }
+            },
+            "attention_helper_ms": 1875.4454740285873,
+            "all_linear_module_ms": 5547.494706892408,
+            "linear_gemm_ms": 3421.557444767095,
+            "linear_non_gemm_estimate_ms": 2125.9372621253133,
+            "other_exclusive_estimate_ms": 1197.7170456415042,
+            "linear_module_count": 264
+          }
+        },
+        "vs_true_bf16_dit_nmse": {
+          "video": 0.019306400790810585,
+          "audio": 0.014501799829304218
+        }
+      }
+    ],
+    "split_mixed": [
+      {
+        "step": 0,
+        "direct": {
+          "wall_seconds": 8.866258395995828,
+          "cuda_event_ms": 8866.0732421875,
+          "main_helpers": 50,
+          "refiner_helpers": 2,
+          "attention_implementation_for_unmodified_helpers": "torch"
+        },
+        "profiled": {
+          "wall_seconds": 8.86539663298754,
+          "cuda_event_ms": 8865.212890625,
+          "main_helpers": 50,
+          "refiner_helpers": 2,
+          "attention_implementation_for_unmodified_helpers": "torch",
+          "breakdown": {
+            "cuda_event_total_ms": 8865.212890625,
+            "synchronized_wall_seconds": 8.86539663298754,
+            "attention_helper": {
+              "main": {
+                "ms": 2096.1334800720215,
+                "calls": 50
+              },
+              "refiner": {
+                "ms": 0.5181440114974976,
+                "calls": 2
+              }
+            },
+            "linear_module_including_weight_load": {
+              "adaln": {
+                "ms": 7.62038398720324,
+                "calls": 51
+              },
+              "attn_out_proj": {
+                "ms": 469.2544679939747,
+                "calls": 52
+              },
+              "mlp_fc1": {
+                "ms": 2440.2700605392456,
+                "calls": 52
+              },
+              "mlp_fc2": {
+                "ms": 866.6837182044983,
+                "calls": 52
+              },
+              "other_linear": {
+                "ms": 1.3840959891676903,
+                "calls": 5
+              },
+              "qkv_proj": {
+                "ms": 1782.9889730215073,
+                "calls": 52
+              }
+            },
+            "linear_gemm_only": {
+              "adaln": {
+                "ms": 2.304159991443157,
+                "calls": 51
+              },
+              "attn_out_proj": {
+                "ms": 343.3677121400833,
+                "calls": 52
+              },
+              "mlp_fc1": {
+                "ms": 1355.9615290164948,
+                "calls": 52
+              },
+              "mlp_fc2": {
+                "ms": 684.9829439520836,
+                "calls": 52
+              },
+              "other_linear": {
+                "ms": 1.1920319879427552,
+                "calls": 5
+              },
+              "qkv_proj": {
+                "ms": 1022.5109800100327,
+                "calls": 52
+              }
+            },
+            "attention_helper_ms": 2096.651624083519,
+            "all_linear_module_ms": 5568.201699735597,
+            "linear_gemm_ms": 3410.31935709808,
+            "linear_non_gemm_estimate_ms": 2157.8823426375166,
+            "other_exclusive_estimate_ms": 1200.3595668058842,
+            "linear_module_count": 264
+          }
+        },
+        "vs_true_bf16_dit_nmse": {
+          "video": 0.013225733302533627,
+          "audio": 0.0063673583790659904
+        }
+      },
+      {
+        "step": 10,
+        "direct": {
+          "wall_seconds": 8.872876987996278,
+          "cuda_event_ms": 8872.6474609375,
+          "main_helpers": 50,
+          "refiner_helpers": 2,
+          "attention_implementation_for_unmodified_helpers": "torch"
+        },
+        "profiled": {
+          "wall_seconds": 9.12089081799786,
+          "cuda_event_ms": 9120.685546875,
+          "main_helpers": 50,
+          "refiner_helpers": 2,
+          "attention_implementation_for_unmodified_helpers": "torch",
+          "breakdown": {
+            "cuda_event_total_ms": 9120.685546875,
+            "synchronized_wall_seconds": 9.12089081799786,
+            "attention_helper": {
+              "main": {
+                "ms": 2078.8037452697754,
+                "calls": 50
+              },
+              "refiner": {
+                "ms": 0.5528959929943085,
+                "calls": 2
+              }
+            },
+            "linear_module_including_weight_load": {
+              "adaln": {
+                "ms": 9.180160047486424,
+                "calls": 51
+              },
+              "attn_out_proj": {
+                "ms": 452.3325446546078,
+                "calls": 52
+              },
+              "mlp_fc1": {
+                "ms": 2449.819764018059,
+                "calls": 52
+              },
+              "mlp_fc2": {
+                "ms": 870.24630433321,
+                "calls": 52
+              },
+              "other_linear": {
+                "ms": 1.4270399948582053,
+                "calls": 5
+              },
+              "qkv_proj": {
+                "ms": 1794.784478187561,
+                "calls": 52
+              }
+            },
+            "linear_gemm_only": {
+              "adaln": {
+                "ms": 3.0472000101581216,
+                "calls": 51
+              },
+              "attn_out_proj": {
+                "ms": 344.2151021659374,
+                "calls": 52
+              },
+              "mlp_fc1": {
+                "ms": 1357.478267788887,
+                "calls": 52
+              },
+              "mlp_fc2": {
+                "ms": 685.820672750473,
+                "calls": 52
+              },
+              "other_linear": {
+                "ms": 1.2106879958882928,
+                "calls": 5
+              },
+              "qkv_proj": {
+                "ms": 1024.6764497756958,
+                "calls": 52
+              }
+            },
+            "attention_helper_ms": 2079.3566412627697,
+            "all_linear_module_ms": 5577.790291235782,
+            "linear_gemm_ms": 3416.4483804870397,
+            "linear_non_gemm_estimate_ms": 2161.3419107487425,
+            "other_exclusive_estimate_ms": 1463.538614376448,
+            "linear_module_count": 264
+          }
+        },
+        "vs_true_bf16_dit_nmse": {
+          "video": 0.019378701224923134,
+          "audio": 0.018380770459771156
+        }
+      }
+    ]
+  }
+}

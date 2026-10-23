@@ -12,6 +12,7 @@ import sys
 
 import torch
 import triton
+import triton.language as tl
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT / "third_party/sage3_h3_maskfix"),
@@ -25,9 +26,22 @@ from sageattn3.api import (preprocess_qkv, scale_and_quant_fp4,
                            scale_and_quant_fp4_permute,
                            scale_and_quant_fp4_transpose)
 
-from e119_sparse_v_correction import compact_route
 from e120_split_native_mixed import (dequant_qk4, split_selected_fp8_pv,
                                      zero_selected_v4)
+
+
+@triton.jit
+def _compact_route_all(ROUTE, IDS, COUNTS, TILES: tl.constexpr,
+                       BLOCK: tl.constexpr):
+    """Compact every tile, including indices >=128 in long H3 sequences."""
+    head = tl.program_id(0)
+    idx = tl.arange(0, BLOCK)
+    chosen = tl.load(ROUTE + head * TILES + idx,
+                     mask=idx < TILES, other=0).to(tl.int32)
+    pos = tl.cumsum(chosen) - 1
+    tl.store(IDS + head * TILES + pos, idx,
+             mask=(idx < TILES) & (chosen != 0))
+    tl.store(COUNTS + head, tl.sum(chosen))
 
 
 def _pack(q: torch.Tensor, k: torch.Tensor, v: torch.Tensor):
@@ -76,7 +90,8 @@ def split_mixed_attention(q: torch.Tensor, k: torch.Tensor, v: torch.Tensor,
     kdec = torch.empty((1, heads, kp.shape[2], 128),
                        device=q.device, dtype=torch.float16)
     zero_selected_v4[(tiles, heads)](v4[0], route, heads, vp.shape[2], tiles)
-    compact_route[(heads,)](route, ids, counts, tiles)
+    _compact_route_all[(heads,)](route, ids, counts, tiles,
+                                 triton.next_power_of_2(tiles))
     dequant_qk4[(qp.shape[2] // 32, heads)](
         q4[0], q4[1], route, qdec, qp.shape[2], tiles, False)
     dequant_qk4[(kp.shape[2] // 32, heads)](
