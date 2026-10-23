@@ -1,0 +1,99 @@
+{
+  "format": "e119-sparse-v-correction-v1",
+  "capture": "/data1/models/svdquant-wjq/research/20261014/E098/h3_p1_s0_b25_480x832_73f_qkv.pt",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "shape": [
+    1,
+    56,
+    9482,
+    128
+  ],
+  "query_block": 64,
+  "selected_tiles": 106,
+  "force_all_route": false,
+  "total_tiles": 4200,
+  "correction_vs_native_mixed_nmse": 1.4758299585082568e-05,
+  "correction_vs_pure_nmse": 2.1830257537658326e-05,
+  "native_mixed_vs_pure_nmse": 2.6167377654928714e-05,
+  "reference_query_rows": [
+    0,
+    1,
+    13,
+    127,
+    128,
+    500,
+    1024,
+    3000,
+    4096,
+    7000,
+    9000,
+    9481
+  ],
+  "pure_vs_bf16_sample_nmse": 0.00800318643450737,
+  "native_mixed_vs_bf16_sample_nmse": 0.007975755259394646,
+  "correction_vs_bf16_sample_nmse": 0.007995372638106346,
+  "timing": {
+    "pure_lse_core": {
+      "mean_ms": 4.653031721115112,
+      "batch_means_ms": [
+        4.6324992179870605,
+        4.649059295654297,
+        4.648224020004273,
+        4.651072025299072,
+        4.684304046630859
+      ],
+      "calls": 50
+    },
+    "delta_pack": {
+      "mean_ms": 0.03021120011806488,
+      "batch_means_ms": [
+        0.030211200192570686,
+        0.0303872000426054,
+        0.03060160018503666,
+        0.029343999922275543,
+        0.030512000247836114
+      ],
+      "calls": 50
+    },
+    "route_compact": {
+      "mean_ms": 0.013800319992005825,
+      "batch_means_ms": [
+        0.015190399903804063,
+        0.01396160013973713,
+        0.013465599901974202,
+        0.013120000064373017,
+        0.013263999950140715
+      ],
+      "calls": 50
+    },
+    "sparse_correction": {
+      "mean_ms": 0.7850905549526215,
+      "batch_means_ms": [
+        0.7856319963932037,
+        0.7848287999629975,
+        0.784988796710968,
+        0.7855679929256439,
+        0.7844351887702942
+      ],
+      "calls": 50
+    },
+    "mixed_baseline_core": {
+      "mean_ms": 15.160625324249267,
+      "batch_means_ms": [
+        15.103324794769287,
+        15.199235248565675,
+        15.184156799316407,
+        15.154076766967773,
+        15.162333011627197
+      ],
+      "calls": 50
+    }
+  },
+  "pure_vs_bf16_full_nmse": 0.007484344765543938,
+  "native_mixed_vs_bf16_full_nmse": 0.007452374789863825,
+  "correction_vs_bf16_full_nmse": 0.007475400809198618,
+  "oracle_alpha_to_bf16": 0.7145510911941528,
+  "oracle_alpha_to_native_mixed": 0.7611106038093567,
+  "oracle_alpha_bf16_nmse": 0.007473703473806381,
+  "oracle_alpha_native_nmse": 1.3513235899154097e-05
+}

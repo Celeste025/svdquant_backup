@@ -1,0 +1,142 @@
+{
+  "format": "e118-mixed-fp8-candidate-v1",
+  "candidate": "inplace",
+  "capture": "/data1/models/svdquant-wjq/research/20261014/E098/h3_p1_s0_b25_480x832_73f_qkv.pt",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "cases": {
+    "control_128": {
+      "shape": [
+        1,
+        4,
+        128,
+        128
+      ],
+      "selected_tiles": 4,
+      "total_tiles": 4,
+      "zero_vs_pure_nmse": 0.0,
+      "real_vs_baseline_nmse": 0.0,
+      "real_vs_pure_nmse": 0.005964977201074362,
+      "zero_bitwise_equal": true,
+      "real_bitwise_equal": true,
+      "zero_max_abs_diff": 0.0,
+      "real_max_abs_diff": 0.0,
+      "zero_equal_fraction": 1.0,
+      "real_equal_fraction": 1.0
+    },
+    "tail_54": {
+      "shape": [
+        1,
+        56,
+        54,
+        128
+      ],
+      "selected_tiles": 56,
+      "total_tiles": 56,
+      "zero_vs_pure_nmse": 0.0,
+      "real_vs_baseline_nmse": 0.0,
+      "real_vs_pure_nmse": 0.0007115729385986924,
+      "zero_bitwise_equal": true,
+      "real_bitwise_equal": true,
+      "zero_max_abs_diff": 0.0,
+      "real_max_abs_diff": 0.0,
+      "zero_equal_fraction": 0.9999999403953552,
+      "real_equal_fraction": 0.9999999403953552
+    },
+    "main_9482": {
+      "shape": [
+        1,
+        56,
+        9482,
+        128
+      ],
+      "selected_tiles": 106,
+      "total_tiles": 4200,
+      "zero_vs_pure_nmse": 0.0,
+      "real_vs_baseline_nmse": 1.375636583811346e-12,
+      "real_vs_pure_nmse": 2.6167372197960503e-05,
+      "zero_bitwise_equal": true,
+      "real_bitwise_equal": false,
+      "zero_max_abs_diff": 0.0,
+      "real_max_abs_diff": 0.03125,
+      "zero_equal_fraction": 1.0,
+      "real_equal_fraction": 0.9999987483024597
+    }
+  },
+  "timing": {
+    "pure": {
+      "mean_ms": 4.670595015088717,
+      "cv_percent": 0.6183478752736499,
+      "batch_means_ms": [
+        4.643775979677836,
+        4.636026660601298,
+        4.648338675498962,
+        4.657168070475261,
+        4.681032021840413,
+        4.684877355893453,
+        4.719389319419861,
+        4.694152037302653
+      ],
+      "calls": 96
+    },
+    "baseline_zero": {
+      "mean_ms": 13.16777198513349,
+      "cv_percent": 0.05670948783529846,
+      "batch_means_ms": [
+        13.176640033721924,
+        13.179658651351929,
+        13.167618672053019,
+        13.16761589050293,
+        13.165664037068685,
+        13.161762873331705,
+        13.166794538497925,
+        13.156421184539795
+      ],
+      "calls": 96
+    },
+    "candidate_zero": {
+      "mean_ms": 11.396357357501984,
+      "cv_percent": 0.10431130142150168,
+      "batch_means_ms": [
+        11.403616110483805,
+        11.386594613393148,
+        11.388013362884521,
+        11.391493320465088,
+        11.389096101125082,
+        11.407378673553467,
+        11.418181339899698,
+        11.38648533821106
+      ],
+      "calls": 96
+    },
+    "baseline_real": {
+      "mean_ms": 15.53667402267456,
+      "cv_percent": 0.4129820392812864,
+      "batch_means_ms": [
+        15.57041335105896,
+        15.616605361302694,
+        15.580426692962646,
+        15.553509394327799,
+        15.57748524347941,
+        15.501541376113892,
+        15.448314746220907,
+        15.445096015930176
+      ],
+      "calls": 96
+    },
+    "candidate_real": {
+      "mean_ms": 13.708419352769852,
+      "cv_percent": 0.10751026883832897,
+      "batch_means_ms": [
+        13.715282599131266,
+        13.694773356119791,
+        13.700034697850546,
+        13.688024044036865,
+        13.708056052525839,
+        13.714383999506632,
+        13.710824012756348,
+        13.735976060231527
+      ],
+      "calls": 96
+    }
+  }
+}

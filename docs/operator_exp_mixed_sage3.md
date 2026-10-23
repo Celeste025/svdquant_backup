@@ -11,6 +11,9 @@ default), Q/K/V preprocessing and corrected K-tail mask. The split path is
 experimental: it is not yet integrated into H3 generation and does not
 produce bitwise-identical output to the native mixed kernel. See
 `results/research/E120/README.md` for the numerical and timing comparison.
+The noncausal tail-mask finding and repair are documented separately in
+`docs/sage3_noncausal_tail_mask_bug.md`. The fixed vendored Sage3 fork is
+used here; an external upstream Sage3 installation is not changed.
 
 ## Build on the current server
 

@@ -1,0 +1,21 @@
+{
+  "format": "e115-fp4-vs-bf16-v1",
+  "capture": "/data1/models/svdquant-wjq/research/20261014/E098/h3_p1_s0_b25_480x832_73f_qkv.pt",
+  "shape": [
+    1,
+    56,
+    9482,
+    128
+  ],
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "reference": "torch.nn.functional.scaled_dot_product_attention BF16",
+  "nmse_vs_bf16": {
+    "historical_e113_triton_all_fp4": 0.007412956561893225,
+    "updated_triton_all_fp4_default_mask": 0.007484419737011194,
+    "updated_triton_all_fp4_official_mask": 0.007502339780330658,
+    "official_sage3_all_fp4": 0.007502260617911816
+  },
+  "updated_vs_official_nmse": 1.7385396859026514e-05,
+  "compatible_vs_official_nmse": 1.1452797821220884e-08,
+  "historical_report": "/home/wjq/workspace/svdquant-exp/results/research/E113/native_full_attention_preflight.json"
+}

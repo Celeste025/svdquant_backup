@@ -1,0 +1,55 @@
+{
+  "format": "e117-sparse-router-v1",
+  "capture": "/data1/models/svdquant-wjq/research/20261014/E098/h3_p1_s0_b25_480x832_73f_qkv.pt",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "cases": {
+    "main_9482": {
+      "selected_tiles": 106,
+      "total_tiles": 4200,
+      "selected_scale_bitwise_equal": true,
+      "selected_fp8_code_bitwise_equal": true,
+      "attention_output_bitwise_equal": true,
+      "attention_output_nmse": 0.0
+    },
+    "tail_54": {
+      "selected_tiles": 0,
+      "total_tiles": 56,
+      "selected_scale_bitwise_equal": true,
+      "selected_fp8_code_bitwise_equal": true,
+      "attention_output_bitwise_equal": true,
+      "attention_output_nmse": 0.0
+    }
+  },
+  "timing": {
+    "router_dense": {
+      "mean_ms": 2.289540690680345,
+      "cv_percent": 0.052548006103004835,
+      "batch_means_ms": [
+        2.2905787030855813,
+        2.290490686893463,
+        2.288922687371572,
+        2.288434684276581,
+        2.2892266710599265,
+        2.2915200193723044,
+        2.287997384866079,
+        2.2891546885172525
+      ],
+      "calls": 96
+    },
+    "router_sparse": {
+      "mean_ms": 0.18853266770020127,
+      "cv_percent": 1.0923518936805015,
+      "batch_means_ms": [
+        0.18922933439413706,
+        0.1888373320301374,
+        0.18895466749866804,
+        0.18839200089375177,
+        0.19038133323192596,
+        0.18432267010211945,
+        0.19096799939870834,
+        0.18717600405216217
+      ],
+      "calls": 96
+    }
+  }
+}

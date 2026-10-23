@@ -1,0 +1,94 @@
+{
+  "format": "e114-native-sage3-mixed-profile-v1",
+  "capture": "/data1/models/svdquant-wjq/research/20261014/E098/h3_p1_s0_b25_480x832_73f_qkv.pt",
+  "shape": [
+    1,
+    56,
+    9482,
+    128
+  ],
+  "padded_tokens": 9600,
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "threshold": 0.1,
+  "selected_v_tiles": 106,
+  "total_v_tiles": 4200,
+  "fp4_group": 16,
+  "fp8_group": 128,
+  "nmse": {
+    "copied_fp4_vs_installed_core": 0.0,
+    "native_mixed_vs_official_fp4": 2.616781603137497e-05,
+    "native_mixed_vs_triton_mixed": 6.585716619156301e-05,
+    "triton_mixed_vs_official_fp4": 9.142282215179875e-05,
+    "official_full_vs_official_core": 0.0
+  },
+  "timing": {
+    "router_pack_v": {
+      "median_ms": 2.2556159496307373,
+      "mean_ms": 2.2556159496307373,
+      "min_ms": 2.2556159496307373,
+      "max_ms": 2.2556159496307373,
+      "std_ms": 0.0,
+      "warmup": 1,
+      "repeats": 1
+    },
+    "official_fp4_core": {
+      "median_ms": 4.317728042602539,
+      "mean_ms": 4.317728042602539,
+      "min_ms": 4.317728042602539,
+      "max_ms": 4.317728042602539,
+      "std_ms": 0.0,
+      "warmup": 1,
+      "repeats": 1
+    },
+    "copied_fp4_core": {
+      "median_ms": 12.019424438476562,
+      "mean_ms": 12.019424438476562,
+      "min_ms": 12.019424438476562,
+      "max_ms": 12.019424438476562,
+      "std_ms": 0.0,
+      "warmup": 1,
+      "repeats": 1
+    },
+    "native_mixed_core": {
+      "median_ms": 15.209280014038086,
+      "mean_ms": 15.209280014038086,
+      "min_ms": 15.209280014038086,
+      "max_ms": 15.209280014038086,
+      "std_ms": 0.0,
+      "warmup": 1,
+      "repeats": 1
+    },
+    "official_full_api": {
+      "median_ms": 7.723104000091553,
+      "mean_ms": 7.723104000091553,
+      "min_ms": 7.723104000091553,
+      "max_ms": 7.723104000091553,
+      "std_ms": 0.0,
+      "warmup": 1,
+      "repeats": 1
+    },
+    "native_mixed_full_api": {
+      "median_ms": 20.28937530517578,
+      "mean_ms": 20.28937530517578,
+      "min_ms": 20.28937530517578,
+      "max_ms": 20.28937530517578,
+      "std_ms": 0.0,
+      "warmup": 1,
+      "repeats": 1
+    },
+    "triton_mixed_full_api": {
+      "median_ms": 284.8294372558594,
+      "mean_ms": 284.8294372558594,
+      "min_ms": 284.8294372558594,
+      "max_ms": 284.8294372558594,
+      "std_ms": 0.0,
+      "warmup": 1,
+      "repeats": 1
+    }
+  },
+  "peak_allocated_gib": 2.396103858947754,
+  "triton_mma_check": {
+    "nvfp4_block16_mma": true,
+    "fp8_mma": true
+  }
+}

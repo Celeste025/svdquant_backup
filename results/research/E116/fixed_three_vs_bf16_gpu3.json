@@ -1,0 +1,80 @@
+{
+  "format": "e116-fixed-three-vs-bf16-v1",
+  "capture": "/data1/models/svdquant-wjq/research/20261014/E098/h3_p1_s0_b25_480x832_73f_qkv.pt",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "reference": "torch.nn.functional.scaled_dot_product_attention BF16, same QKV, scale=128^-0.5, noncausal",
+  "pure_extension": "/home/wjq/workspace/svdquant-exp/third_party/sage3_h3_maskfix/fp4attn_cuda.cpython-312-x86_64-linux-gnu.so",
+  "mixed_extension": "/home/wjq/workspace/svdquant-exp/third_party/sage3_native_mixed/fp4attn_mixed_maskfix_cuda.cpython-312-x86_64-linux-gnu.so",
+  "threshold": 0.1,
+  "cases": {
+    "meaningful_main": {
+      "qkv_shape": [
+        1,
+        56,
+        9482,
+        128
+      ],
+      "bf16_output_energy": 2936121856.0,
+      "fp8_tiles": 106,
+      "total_v_tiles": 4200,
+      "errors_vs_bf16": {
+        "fixed_sage3_fp4": {
+          "nmse": 0.007484344682457212,
+          "squared_error_sum": 21974948.0,
+          "bf16_energy_sum": 2936121856.0
+        },
+        "fixed_native_mixed": {
+          "nmse": 0.007452374619699708,
+          "squared_error_sum": 21881080.0,
+          "bf16_energy_sum": 2936121856.0
+        },
+        "triton_mixed": {
+          "nmse": 0.007452446823787411,
+          "squared_error_sum": 21881292.0,
+          "bf16_energy_sum": 2936121856.0
+        }
+      },
+      "triton_vs_native_mixed_nmse": 1.1375682947900635e-08,
+      "native_mixed_vs_pure_nmse": 2.6167378218527747e-05
+    },
+    "alignment_tail": {
+      "qkv_shape": [
+        1,
+        56,
+        54,
+        128
+      ],
+      "bf16_output_energy": 14962528.0,
+      "fp8_tiles": 0,
+      "total_v_tiles": 56,
+      "errors_vs_bf16": {
+        "fixed_sage3_fp4": {
+          "nmse": 0.0007104635044375522,
+          "squared_error_sum": 10630.330078125,
+          "bf16_energy_sum": 14962528.0
+        },
+        "fixed_native_mixed": {
+          "nmse": 0.0007104635044375522,
+          "squared_error_sum": 10630.330078125,
+          "bf16_energy_sum": 14962528.0
+        },
+        "triton_mixed": {
+          "nmse": 0.0007104635044375522,
+          "squared_error_sum": 10630.330078125,
+          "bf16_energy_sum": 14962528.0
+        }
+      },
+      "triton_vs_native_mixed_nmse": 0.0,
+      "native_mixed_vs_pure_nmse": 0.0
+    }
+  },
+  "both_segments_aggregate_nmse": {
+    "fixed_sage3_fp4": 0.007449999887932084,
+    "fixed_native_mixed": 0.007418191919136299,
+    "triton_mixed": 0.007418263757136307
+  },
+  "main_relative_nmse_reduction_vs_pure_percent": {
+    "fixed_native_mixed": 0.42715914504097824,
+    "triton_mixed": 0.4261944101073662
+  }
+}

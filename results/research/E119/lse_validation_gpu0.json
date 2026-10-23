@@ -1,0 +1,102 @@
+{
+  "format": "e119-lse-validation-v1",
+  "capture": "/data1/models/svdquant-wjq/research/20261014/E098/h3_p1_s0_b25_480x832_73f_qkv.pt",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "cases": {
+    "control_128": {
+      "shape": [
+        1,
+        4,
+        128,
+        128
+      ],
+      "output_bitwise_equal": true,
+      "lse_finite": true,
+      "lse_reference_mae": 0.11155357956886292,
+      "lse_reference_p99_abs": 0.6114864945411682,
+      "lse_reference_max_abs": 0.8790750503540039,
+      "lse_range": [
+        5.467462062835693,
+        18.21495819091797
+      ],
+      "reference_range": [
+        5.458451271057129,
+        18.721948623657227
+      ]
+    },
+    "tail_54": {
+      "shape": [
+        1,
+        4,
+        54,
+        128
+      ],
+      "output_bitwise_equal": true,
+      "lse_finite": true,
+      "lse_reference_mae": 1.430511474609375e-06,
+      "lse_reference_p99_abs": 1.430511474609375e-06,
+      "lse_reference_max_abs": 1.430511474609375e-06,
+      "lse_range": [
+        3.988982677459717,
+        3.988982677459717
+      ],
+      "reference_range": [
+        3.9889841079711914,
+        3.9889841079711914
+      ]
+    },
+    "main_9482": {
+      "shape": [
+        1,
+        56,
+        9482,
+        128
+      ],
+      "output_bitwise_equal": true,
+      "lse_finite": true,
+      "lse_reference_mae": 0.14136910438537598,
+      "lse_reference_p99_abs": 0.6491506695747375,
+      "lse_reference_max_abs": 0.928985595703125,
+      "lse_range": [
+        10.429436683654785,
+        29.00821304321289
+      ],
+      "reference_range": [
+        10.500078201293945,
+        26.274089813232422
+      ]
+    }
+  },
+  "timing": {
+    "original_fp4_core": {
+      "mean_ms": 4.726211334268252,
+      "cv_percent": 1.054403860089045,
+      "batch_means_ms": [
+        4.628583987553914,
+        4.692016005516052,
+        4.7031253178914385,
+        4.741698702176412,
+        4.742631991704305,
+        4.748320023218791,
+        4.771077315012614,
+        4.78223733107249
+      ],
+      "calls": 96
+    },
+    "fp4_lse_core": {
+      "mean_ms": 4.765444328387578,
+      "cv_percent": 0.0998915190908771,
+      "batch_means_ms": [
+        4.759618639945984,
+        4.7633893092473345,
+        4.759405334790547,
+        4.768914659818013,
+        4.764493346214294,
+        4.7732640107472735,
+        4.76855464776357,
+        4.765914678573608
+      ],
+      "calls": 96
+    }
+  }
+}

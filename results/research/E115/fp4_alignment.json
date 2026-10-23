@@ -1,0 +1,117 @@
+{
+  "format": "e115-sage3-fp4-alignment-v1",
+  "capture": "/data1/models/svdquant-wjq/research/20261014/E098/h3_p1_s0_b25_480x832_73f_qkv.pt",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "cases": {
+    "main_1024_h4": {
+      "shape": [
+        1,
+        4,
+        1024,
+        128
+      ],
+      "qkv_pack": {
+        "q": {
+          "nmse_official_pack_vs_rne_reference": 0.0,
+          "mismatched_decoded_elements": 0,
+          "elements": 524288,
+          "max_abs_difference": 0.0,
+          "triton_actual_code": {
+            "code_mismatches": 0,
+            "scale_mismatches": 0,
+            "elements": 524288
+          }
+        },
+        "k": {
+          "nmse_official_pack_vs_rne_reference": 0.0,
+          "mismatched_decoded_elements": 0,
+          "elements": 524288,
+          "max_abs_difference": 0.0,
+          "triton_actual_code": {
+            "code_mismatches": 0,
+            "scale_mismatches": 0,
+            "elements": 524288
+          }
+        },
+        "v": {
+          "nmse_official_pack_vs_rne_reference": 0.0,
+          "mismatched_decoded_elements": 0,
+          "elements": 524288,
+          "max_abs_difference": 0.0,
+          "triton_actual_code": {
+            "code_mismatches": 0,
+            "scale_mismatches": 0,
+            "elements": 524288
+          }
+        }
+      },
+      "output": {
+        "selected_fp8_tiles": 8,
+        "total_v_tiles": 32,
+        "triton_all_fp4_vs_official_fp4_nmse": 3.529354580678046e-05,
+        "triton_all_fp4_compat_vs_official_fp4_nmse": 3.529354580678046e-05,
+        "native_mixed_vs_official_fp4_nmse": 4.106041160412133e-05,
+        "triton_mixed_vs_triton_all_fp4_nmse": 4.175661888439208e-05,
+        "triton_mixed_compat_vs_native_mixed_nmse": 3.316499714856036e-05,
+        "triton_mixed_vs_native_mixed_nmse": 3.316499714856036e-05,
+        "mixed_delta_difference_nmse": 3.6966755487810588e-06,
+        "mixed_delta_cosine": 0.9554013013839722,
+        "all_outputs_finite": true,
+        "triton_native_mma_check": {
+          "nvfp4_block16_mma": true,
+          "fp8_mma": true
+        }
+      }
+    },
+    "main_9482_h56": {
+      "shape": [
+        1,
+        56,
+        9482,
+        128
+      ],
+      "output": {
+        "selected_fp8_tiles": 106,
+        "total_v_tiles": 4200,
+        "triton_all_fp4_vs_official_fp4_nmse": 6.658532947767526e-05,
+        "triton_all_fp4_compat_vs_official_fp4_nmse": 4.9471320380689576e-05,
+        "native_mixed_vs_official_fp4_nmse": 2.616781603137497e-05,
+        "triton_mixed_vs_triton_all_fp4_nmse": 2.627003959787544e-05,
+        "triton_mixed_compat_vs_native_mixed_nmse": 4.8751076974440366e-05,
+        "triton_mixed_vs_native_mixed_nmse": 6.585521623492241e-05,
+        "mixed_delta_difference_nmse": 1.9137069102725945e-06,
+        "mixed_delta_cosine": 0.9635064601898193,
+        "all_outputs_finite": true,
+        "triton_native_mma_check": {
+          "nvfp4_block16_mma": true,
+          "fp8_mma": true
+        }
+      }
+    },
+    "short_54_h4": {
+      "shape": [
+        1,
+        4,
+        54,
+        128
+      ],
+      "output": {
+        "selected_fp8_tiles": 0,
+        "total_v_tiles": 4,
+        "triton_all_fp4_vs_official_fp4_nmse": 0.0064681218937039375,
+        "triton_all_fp4_compat_vs_official_fp4_nmse": 0.0,
+        "native_mixed_vs_official_fp4_nmse": 0.0,
+        "triton_mixed_vs_triton_all_fp4_nmse": 0.0,
+        "triton_mixed_compat_vs_native_mixed_nmse": 0.0,
+        "triton_mixed_vs_native_mixed_nmse": 0.0064681218937039375,
+        "mixed_delta_difference_nmse": 0.0,
+        "mixed_delta_cosine": null,
+        "all_outputs_finite": true,
+        "triton_native_mma_check": {
+          "nvfp4_block16_mma": true,
+          "fp8_mma": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "format": "e118-noinline-fp8-v1",
+  "capture": "/data1/models/svdquant-wjq/research/20261014/E098/h3_p1_s0_b25_480x832_73f_qkv.pt",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "cases": {
+    "control_128": {
+      "shape": [
+        1,
+        4,
+        128,
+        128
+      ],
+      "selected_tiles": 4,
+      "total_tiles": 4,
+      "zero_vs_pure_nmse": 0.0,
+      "real_vs_baseline_nmse": 0.0,
+      "real_vs_pure_nmse": 0.005964977201074362,
+      "zero_bitwise_equal": true,
+      "real_bitwise_equal": true,
+      "zero_max_abs_diff": 0.0,
+      "real_max_abs_diff": 0.0,
+      "zero_equal_fraction": 1.0,
+      "real_equal_fraction": 1.0
+    },
+    "tail_54": {
+      "shape": [
+        1,
+        56,
+        54,
+        128
+      ],
+      "selected_tiles": 56,
+      "total_tiles": 56,
+      "zero_vs_pure_nmse": 0.0,
+      "real_vs_baseline_nmse": 0.0,
+      "real_vs_pure_nmse": 0.0007115729385986924,
+      "zero_bitwise_equal": true,
+      "real_bitwise_equal": true,
+      "zero_max_abs_diff": 0.0,
+      "real_max_abs_diff": 0.0,
+      "zero_equal_fraction": 0.9999999403953552,
+      "real_equal_fraction": 0.9999999403953552
+    },
+    "main_9482": {
+      "shape": [
+        1,
+        56,
+        9482,
+        128
+      ],
+      "selected_tiles": 106,
+      "total_tiles": 4200,
+      "zero_vs_pure_nmse": 3.563228531677787e-11,
+      "real_vs_baseline_nmse": 5.774694611382358e-11,
+      "real_vs_pure_nmse": 2.6167383111896925e-05,
+      "zero_bitwise_equal": false,
+      "real_bitwise_equal": false,
+      "zero_max_abs_diff": 0.0625,
+      "real_max_abs_diff": 0.125,
+      "zero_equal_fraction": 0.999998152256012,
+      "real_equal_fraction": 0.9999979138374329
+    }
+  },
+  "timing": {
+    "pure": {
+      "mean_ms": 4.67834131916364,
+      "cv_percent": 0.689046822513231,
+      "batch_means_ms": [
+        4.647864063580831,
+        4.652874668439229,
+        4.679114619890849,
+        4.647626598676045,
+        4.65501594543457,
+        4.704754670461019,
+        4.713287989298503,
+        4.726191997528076
+      ],
+      "calls": 96
+    },
+    "baseline_zero": {
+      "mean_ms": 13.1682990193367,
+      "cv_percent": 0.046106885081412266,
+      "batch_means_ms": [
+        13.1664559841156,
+        13.174642562866211,
+        13.16813858350118,
+        13.161106586456299,
+        13.162498871485392,
+        13.1757333278656,
+        13.174949407577515,
+        13.162866830825806
+      ],
+      "calls": 96
+    },
+    "candidate_zero": {
+      "mean_ms": 109.55734554926555,
+      "cv_percent": 0.028112348291816264,
+      "batch_means_ms": [
+        109.58349927266438,
+        109.59113502502441,
+        109.54190381368001,
+        109.52563603719075,
+        109.54746437072754,
+        109.6043020884196,
+        109.52891222635905,
+        109.5359115600586
+      ],
+      "calls": 96
+    },
+    "baseline_real": {
+      "mean_ms": 15.391806960105896,
+      "cv_percent": 0.1008001054131438,
+      "batch_means_ms": [
+        15.375397284825643,
+        15.396541118621826,
+        15.38479995727539,
+        15.377946694691977,
+        15.389472007751465,
+        15.421805381774902,
+        15.383410533269247,
+        15.405082702636719
+      ],
+      "calls": 96
+    },
+    "candidate_real": {
+      "mean_ms": 112.69426163037618,
+      "cv_percent": 0.04224451858066733,
+      "batch_means_ms": [
+        112.77365430196126,
+        112.64350446065266,
+        112.6747309366862,
+        112.69064013163249,
+        112.7433484395345,
+        112.72209040323894,
+        112.65058326721191,
+        112.65554110209148
+      ],
+      "calls": 96
+    }
+  }
+}

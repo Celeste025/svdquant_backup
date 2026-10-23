@@ -1,0 +1,94 @@
+{
+  "format": "e114-native-sage3-mixed-profile-v1",
+  "capture": "/data1/models/svdquant-wjq/research/20261014/E098/h3_p1_s0_b25_480x832_73f_qkv.pt",
+  "shape": [
+    1,
+    56,
+    9482,
+    128
+  ],
+  "padded_tokens": 9600,
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "threshold": 0.1,
+  "selected_v_tiles": 106,
+  "total_v_tiles": 4200,
+  "fp4_group": 16,
+  "fp8_group": 128,
+  "nmse": {
+    "copied_fp4_vs_installed_core": 0.0,
+    "native_mixed_vs_official_fp4": 2.616781603137497e-05,
+    "native_mixed_vs_triton_mixed": 0.001476489589549601,
+    "triton_mixed_vs_official_fp4": 0.0015127017395570874,
+    "official_full_vs_official_core": 0.0
+  },
+  "timing": {
+    "router_pack_v": {
+      "median_ms": 2.288528084754944,
+      "mean_ms": 2.2892693519592284,
+      "min_ms": 2.2798399925231934,
+      "max_ms": 2.302623987197876,
+      "std_ms": 0.005133332165254034,
+      "warmup": 10,
+      "repeats": 30
+    },
+    "official_fp4_core": {
+      "median_ms": 4.45363187789917,
+      "mean_ms": 4.465749343236287,
+      "min_ms": 4.398496150970459,
+      "max_ms": 4.600992202758789,
+      "std_ms": 0.047530816013329695,
+      "warmup": 10,
+      "repeats": 30
+    },
+    "copied_fp4_core": {
+      "median_ms": 12.110687732696533,
+      "mean_ms": 12.117095438639323,
+      "min_ms": 12.06719970703125,
+      "max_ms": 12.174528121948242,
+      "std_ms": 0.02766374270199412,
+      "warmup": 10,
+      "repeats": 30
+    },
+    "native_mixed_core": {
+      "median_ms": 14.891088008880615,
+      "mean_ms": 14.910643196105957,
+      "min_ms": 14.820927619934082,
+      "max_ms": 15.171584129333496,
+      "std_ms": 0.07342518786267986,
+      "warmup": 10,
+      "repeats": 30
+    },
+    "official_full_api": {
+      "median_ms": 7.802655935287476,
+      "mean_ms": 7.80374182065328,
+      "min_ms": 7.727488040924072,
+      "max_ms": 7.933311939239502,
+      "std_ms": 0.050568960783958485,
+      "warmup": 10,
+      "repeats": 30
+    },
+    "native_mixed_full_api": {
+      "median_ms": 20.620911598205566,
+      "mean_ms": 20.638028780619305,
+      "min_ms": 20.571231842041016,
+      "max_ms": 20.77574348449707,
+      "std_ms": 0.0518285356203915,
+      "warmup": 10,
+      "repeats": 30
+    },
+    "triton_mixed_full_api": {
+      "median_ms": 272.64842224121094,
+      "mean_ms": 272.6501922607422,
+      "min_ms": 272.3702392578125,
+      "max_ms": 272.9508361816406,
+      "std_ms": 0.12233234834250793,
+      "warmup": 10,
+      "repeats": 30
+    }
+  },
+  "peak_allocated_gib": 2.396103858947754,
+  "triton_mma_check": {
+    "nvfp4_block16_mma": true,
+    "fp8_mma": true
+  }
+}

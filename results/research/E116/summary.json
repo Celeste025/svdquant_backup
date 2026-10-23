@@ -1,0 +1,75 @@
+{
+  "format": "e116-sage3-maskfix-summary-v1",
+  "capture": "/data1/models/svdquant-wjq/research/20261014/E098/h3_p1_s0_b25_480x832_73f_qkv.pt",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "repeat_count_per_arm": 3,
+  "cuda_event_calls_per_scope_per_run": 96,
+  "timings": {
+    "pure_core": {
+      "baseline_runs_ms": [
+        4.67754901945591,
+        4.707681333025297,
+        4.700086335341136
+      ],
+      "fixed_runs_ms": [
+        4.821908657749494,
+        4.819061314066251,
+        4.834952329595883
+      ],
+      "baseline_mean_ms": 4.695105562607448,
+      "fixed_mean_ms": 4.825307433803876,
+      "fixed_vs_baseline_latency_percent": 2.773140442962063,
+      "paired_latency_percent": [
+        3.0862239538940406,
+        2.3659201454355294,
+        2.8694365301474622
+      ]
+    },
+    "pure_online": {
+      "baseline_runs_ms": [
+        7.593226999044418,
+        7.587216337521871,
+        7.607690314451854
+      ],
+      "fixed_runs_ms": [
+        7.748715961972873,
+        7.754778017600377,
+        7.755845675865809
+      ],
+      "baseline_mean_ms": 7.596044550339381,
+      "fixed_mean_ms": 7.753113218479687,
+      "fixed_vs_baseline_latency_percent": 2.067769180385959,
+      "paired_latency_percent": [
+        2.047732313916373,
+        2.2084737356155903,
+        1.9474420657280778
+      ]
+    },
+    "mixed_core": {
+      "baseline_runs_ms": [
+        15.31966303785642,
+        15.148203343153,
+        15.3004796008269
+      ],
+      "fixed_runs_ms": [
+        15.419431666533153,
+        15.384670694669088,
+        15.293716023365656
+      ],
+      "baseline_mean_ms": 15.256115327278774,
+      "fixed_mean_ms": 15.365939461522633,
+      "fixed_vs_baseline_latency_percent": 0.7198695859848891,
+      "paired_latency_percent": [
+        0.6512455817741847,
+        1.5610257279981221,
+        -0.04420500296525853
+      ]
+    }
+  },
+  "baseline_54_nmse_vs_logical_triton": 0.0064681218937039375,
+  "fixed_54_nmse_vs_logical_triton": 0.0,
+  "baseline_main_nmse_vs_logical_triton": 1.7385396859026514e-05,
+  "fixed_main_nmse_vs_logical_triton": 1.1311892755827557e-08,
+  "fixed_main_mixed_nmse_vs_logical_triton": 1.137568261810884e-08,
+  "status": "complete"
+}

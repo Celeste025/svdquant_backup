@@ -1,0 +1,123 @@
+{
+  "format": "e115-sage3-fp4-alignment-v1",
+  "capture": "/data1/models/svdquant-wjq/research/20261014/E098/h3_p1_s0_b25_480x832_73f_qkv.pt",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "cases": {
+    "main_1024_h4": {
+      "shape": [
+        1,
+        4,
+        1024,
+        128
+      ],
+      "qkv_pack": {
+        "q": {
+          "nmse_official_pack_vs_rne_reference": 0.0,
+          "mismatched_decoded_elements": 0,
+          "elements": 524288,
+          "max_abs_difference": 0.0,
+          "triton_actual_code": {
+            "code_mismatches": 0,
+            "scale_mismatches": 0,
+            "elements": 524288
+          }
+        },
+        "k": {
+          "nmse_official_pack_vs_rne_reference": 0.0,
+          "mismatched_decoded_elements": 0,
+          "elements": 524288,
+          "max_abs_difference": 0.0,
+          "triton_actual_code": {
+            "code_mismatches": 0,
+            "scale_mismatches": 0,
+            "elements": 524288
+          }
+        },
+        "v": {
+          "nmse_official_pack_vs_rne_reference": 0.0,
+          "mismatched_decoded_elements": 0,
+          "elements": 524288,
+          "max_abs_difference": 0.0,
+          "triton_actual_code": {
+            "code_mismatches": 0,
+            "scale_mismatches": 0,
+            "elements": 524288
+          }
+        }
+      },
+      "output": {
+        "selected_fp8_tiles": 8,
+        "total_v_tiles": 32,
+        "triton_all_fp4_vs_official_fp4_nmse": 6.198646484989467e-09,
+        "triton_all_fp4_compat_vs_official_fp4_nmse": 6.198646484989467e-09,
+        "native_mixed_vs_official_fp4_nmse": 4.106041160412133e-05,
+        "triton_mixed_vs_triton_all_fp4_nmse": 4.1058938222704455e-05,
+        "triton_mixed_compat_vs_triton_all_fp4_compat_nmse": 4.1058938222704455e-05,
+        "triton_mixed_compat_vs_native_mixed_nmse": 5.320184293111652e-09,
+        "triton_mixed_vs_native_mixed_nmse": 5.320184293111652e-09,
+        "mixed_delta_difference_nmse": 1.095927792960083e-08,
+        "mixed_delta_cosine": 0.9998664855957031,
+        "mixed_delta_compat_cosine": 0.9998664855957031,
+        "all_outputs_finite": true,
+        "triton_native_mma_check": {
+          "nvfp4_block16_mma": true,
+          "fp8_mma": true
+        }
+      }
+    },
+    "main_9482_h56": {
+      "shape": [
+        1,
+        56,
+        9482,
+        128
+      ],
+      "output": {
+        "selected_fp8_tiles": 106,
+        "total_v_tiles": 4200,
+        "triton_all_fp4_vs_official_fp4_nmse": 1.7385396859026514e-05,
+        "triton_all_fp4_compat_vs_official_fp4_nmse": 1.1452797821220884e-08,
+        "native_mixed_vs_official_fp4_nmse": 2.616781603137497e-05,
+        "triton_mixed_vs_triton_all_fp4_nmse": 2.616733945615124e-05,
+        "triton_mixed_compat_vs_triton_all_fp4_compat_nmse": 2.6168123440584168e-05,
+        "triton_mixed_compat_vs_native_mixed_nmse": 1.132222049449183e-08,
+        "triton_mixed_vs_native_mixed_nmse": 1.737490492814686e-05,
+        "mixed_delta_difference_nmse": 1.1473783700921558e-07,
+        "mixed_delta_cosine": 0.9978076815605164,
+        "mixed_delta_compat_cosine": 0.9998229742050171,
+        "all_outputs_finite": true,
+        "triton_native_mma_check": {
+          "nvfp4_block16_mma": true,
+          "fp8_mma": true
+        }
+      }
+    },
+    "short_54_h4": {
+      "shape": [
+        1,
+        4,
+        54,
+        128
+      ],
+      "output": {
+        "selected_fp8_tiles": 0,
+        "total_v_tiles": 4,
+        "triton_all_fp4_vs_official_fp4_nmse": 0.0064681218937039375,
+        "triton_all_fp4_compat_vs_official_fp4_nmse": 0.0,
+        "native_mixed_vs_official_fp4_nmse": 0.0,
+        "triton_mixed_vs_triton_all_fp4_nmse": 0.0,
+        "triton_mixed_compat_vs_triton_all_fp4_compat_nmse": 0.0,
+        "triton_mixed_compat_vs_native_mixed_nmse": 0.0,
+        "triton_mixed_vs_native_mixed_nmse": 0.0064681218937039375,
+        "mixed_delta_difference_nmse": 0.0,
+        "mixed_delta_cosine": null,
+        "mixed_delta_compat_cosine": null,
+        "all_outputs_finite": true,
+        "triton_native_mma_check": {
+          "nvfp4_block16_mma": true,
+          "fp8_mma": true
+        }
+      }
+    }
+  }
+}
