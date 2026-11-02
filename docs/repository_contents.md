@@ -1,10 +1,9 @@
 # Repository contents and Git publication scope
 
 This repository contains inference/quantization code and an exploratory research
-record. It is not a release of a validated new quantization method. The current
-working baseline is MiniMax-H3 with the existing SVDQuant recipe and official
-SageAttention3. New idea research is paused; E084 completed the requested
-historical Wan QAD timestep measurements.
+record. It is not a release of a validated new quantization method. Recent work
+includes MiniMax-H3 SVDQuant, DraftAttention2 routing and attention experiments;
+individual reports describe their own configurations and limitations.
 
 ## Start here
 
@@ -12,7 +11,12 @@ historical Wan QAD timestep measurements.
   current status; older report statements describe their historical stage.
 - [Research index](../research_state/README.md): reports, experiments and decisions.
 - [Intermediate overview](../research_state/reports/070_20261004_midterm_report.md).
-- [Latest result: Wan QAD timestep replay](../research_state/reports/083_20261005_wan_qad_timestep_replay.md).
+- [DraftAttention2 block-selection study](../results/research/draftmap_maxprob_20261102/README.md).
+- [Seven attention/linear schedules](../results/research/h3_r64_draft_schedules/plan.json)
+  and their [numerical summary](../results/research/h3_r64_draft_schedules/summary.csv).
+- [Second set of four prompts](../results/research/h3_r64_draft_secondset/plan.json)
+  and its [numerical summary](../results/research/h3_r64_draft_secondset/summary.csv).
+- [Historical Wan QAD timestep replay](../research_state/reports/083_20261005_wan_qad_timestep_replay.md).
 - [Research script guide](../scripts/research/README.md).
 
 ## Directory map
@@ -21,7 +25,7 @@ historical Wan QAD timestep measurements.
 |---|---|---|
 | `nunchaku/`, `src/`, `app/`, `comfyui/` | Engine and integration source | Keep |
 | `configs/`, `requirements/`, `scripts/`, `tools/` | Recipes, environments, inference and evaluation entrypoints | Keep source; exclude caches and compiled files |
-| `third_party/` | Vendored patches and pinned submodules | Preserve existing source and submodule revisions |
+| `third_party/` | Vendored patches and pinned submodules | Preserve tracked source/submodule revisions; reconstruct independently cloned checkouts using [patches](../third_party/patches/README.md) |
 | `research_state/` | Plans, literature checks, decisions, reports and figures | Keep; plans are not evidence of execution |
 | `results/research/` | Experiment JSON/CSV, report figures, configuration and source snapshots | Keep allowed extensions; exclude private blind-review mappings |
 | `results/mjvideo/`, selected `results/samples/` files | Existing evaluation records and manifests | Preserve existing allowlist |
@@ -29,9 +33,9 @@ historical Wan QAD timestep measurements.
 | `outputs/` | Historical outputs | Retain existing text-record allowlist only |
 | External data disk | Models, checkpoints, calibration states, captures and videos | Not part of Git |
 
-Research evidence currently includes about 147 MiB of JSON, plus small tables,
-figures and source snapshots. These are intentionally retained instead of silently
-dropping detailed negative results. This is not a self-contained model bundle.
+Research evidence includes numerical JSON/CSV/selected JSONL, tables, figures and
+source snapshots. Large E093 element-level images remain local; smaller previews
+are tracked with a note in that report. This is not a self-contained model bundle.
 
 ## Reading and reproducing experiments
 
@@ -61,5 +65,5 @@ remove files already tracked. Review newly included result records for large
 payloads and credentials. Keep weights, videos, tensor captures, logs, credentials
 and `results/research/**/private/` local. Do not force-add those paths.
 
-This cleanup changes ignore/documentation policy only; it does not relocate
-artifacts, modify recorded experiments, create a commit, or push a remote branch.
+No artifact relocation, commit or push is implied by this policy. Existing
+tracked files remain tracked even if a later ignore rule matches their suffix.

@@ -1,0 +1,113 @@
+diff --git a/pv_hadamard/quant.py b/pv_hadamard/quant.py
+index 94db4c0..6272755 100644
+--- a/pv_hadamard/quant.py
++++ b/pv_hadamard/quant.py
+@@ -30,21 +30,19 @@ UE4M3_MAX = 448.0
+ def round_rne_e2m1(x: torch.Tensor) -> torch.Tensor:
+     """RNE rounding to the e2m1 grid {0, .5, 1, 1.5, 2, 3, 4, 6}.
+ 
+-    Compare chain instead of searchsorted (same results incl. the exact tie
+-    rule — ties at a grid midpoint pick the side given by the original
+-    searchsorted implementation's `idx % 2 == 1`; everything >= 5 maps to 6,
+-    so no clamp is needed). ~3x fewer memory passes: this runs once per
+-    P tile per head at generation time (8e10 elements per attention call).
++    Exact midpoints go to the E2M1 code with an even low bit, matching
++    ``cvt.rn.satfinite.e2m1x2.f32``. The comparisons below follow the same
++    rule as the searchsorted reference. Everything above 5 maps to 6.
+     """
+     ax = x.abs()
+     r = torch.zeros_like(ax)
+-    r = torch.where(ax >= 0.25, 0.5, r)
+-    r = torch.where(ax > 0.75, 1.0, r)
+-    r = torch.where(ax >= 1.25, 1.5, r)
+-    r = torch.where(ax > 1.75, 2.0, r)
+-    r = torch.where(ax >= 2.5, 3.0, r)
+-    r = torch.where(ax > 3.5, 4.0, r)
+-    r = torch.where(ax >= 5.0, 6.0, r)
++    r = torch.where(ax > 0.25, 0.5, r)
++    r = torch.where(ax >= 0.75, 1.0, r)
++    r = torch.where(ax > 1.25, 1.5, r)
++    r = torch.where(ax >= 1.75, 2.0, r)
++    r = torch.where(ax > 2.5, 3.0, r)
++    r = torch.where(ax >= 3.5, 4.0, r)
++    r = torch.where(ax > 5.0, 6.0, r)
+     return torch.sign(x) * r
+ 
+ 
+diff --git a/triton_adaptive_pv.py b/triton_adaptive_pv.py
+index 02ba58d..73be58d 100644
+--- a/triton_adaptive_pv.py
++++ b/triton_adaptive_pv.py
+@@ -35,13 +35,13 @@ from pv_hadamard.quant import nvfp4_qdq
+ def _round_e2m1(ax):
+     """RNE rounding to E2M1 grid. Input must be non-negative (abs-value)."""
+     r = tl.zeros_like(ax)
+-    r = tl.where(ax >= 0.25, 0.5, r)
+-    r = tl.where(ax >  0.75, 1.0, r)
+-    r = tl.where(ax >= 1.25, 1.5, r)
+-    r = tl.where(ax >  1.75, 2.0, r)
+-    r = tl.where(ax >= 2.5,  3.0, r)
+-    r = tl.where(ax >  3.5,  4.0, r)
+-    r = tl.where(ax >= 5.0,  6.0, r)
++    r = tl.where(ax >  0.25, 0.5, r)
++    r = tl.where(ax >= 0.75, 1.0, r)
++    r = tl.where(ax >  1.25, 1.5, r)
++    r = tl.where(ax >= 1.75, 2.0, r)
++    r = tl.where(ax >  2.5,  3.0, r)
++    r = tl.where(ax >= 3.5,  4.0, r)
++    r = tl.where(ax >  5.0,  6.0, r)
+     return r
+ 
+ 
+@@ -118,6 +118,26 @@ def _adaptive_pv_kernel(
+         # Tile-level decision: scalar bool, same for all threads
+         use_fp4 = sq_diff < threshold_sq * sq_orig
+ 
++        # Find one row maximum for the whole 128-key tile.  P's FP4 scale is
++        # quantized per 16 keys, but its unnormalized numerator must use the
++        # same tile-wide running maximum as the PyTorch 128-key reference.
++        m_tile = m
++        for g in range(NGROUPS):
++            g_start = kv_start + g * GROUP
++            k_g = tl.load(K_ptr
++                          + pid_h * stride_kh
++                          + (g_start + g_rows[:, None]) * stride_kl
++                          + d_cols[None, :] * stride_kd).to(tl.bfloat16)
++            s_g = tl.dot(q, tl.trans(k_g), out_dtype=tl.float32) * scale
++            ds_g = tl.load(DS_ptr
++                           + pid_h * stride_dsh
++                           + pid_q * stride_dsb
++                           + (g_start + g_rows) * stride_dsk)
++            m_tile = tl.maximum(m_tile, tl.max(s_g + ds_g[None, :], axis=1))
++        alpha = tl.exp(m - m_tile)
++        l_sum = l_sum * alpha
++        acc = acc * alpha[:, None]
++
+         # ── Phase 1: Online softmax + quantized PV accumulation ──────────────
+         for g in range(NGROUPS):
+             g_start = kv_start + g * GROUP
+@@ -138,12 +158,9 @@ def _adaptive_pv_kernel(
+                            + (g_start + g_rows) * stride_dsk)   # (GROUP,)
+             s_g = s_g + ds_g[None, :]
+ 
+-            # Online softmax update
+-            m_new   = tl.maximum(m, tl.max(s_g, axis=1))        # (BLOCK_Q,)
+-            alpha   = tl.exp(m - m_new)
+-            p_g     = tl.exp(s_g - m_new[:, None])              # (BLOCK_Q, GROUP) >= 0
+-            l_sum   = l_sum * alpha + tl.sum(p_g, axis=1)
+-            acc     = acc   * alpha[:, None]
++            # All 16-key groups share this 128-key tile's online-softmax max.
++            p_g     = tl.exp(s_g - m_tile[:, None])             # (BLOCK_Q, GROUP) >= 0
++            l_sum   = l_sum + tl.sum(p_g, axis=1)
+ 
+             # Load V group (second time; expect L2 cache hit)
+             v_g = tl.load(V_ptr
+@@ -188,7 +205,7 @@ def _adaptive_pv_kernel(
+             # Accumulate: (BLOCK_Q, GROUP) @ (GROUP, HEAD_DIM) → (BLOCK_Q, HEAD_DIM)
+             acc = acc + tl.dot(p_q_g.to(tl.bfloat16), v_q_g.to(tl.bfloat16),
+                                out_dtype=tl.float32)
+-            m = m_new
++        m = m_tile
+ 
+     # Normalize and store
+     out = acc / l_sum[:, None]

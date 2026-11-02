@@ -110,7 +110,15 @@ struct SoftmaxFused{
                 float scores_max_cur = !InfCheck
                                         ? row_max(mi)
                                         : (row_max(mi) == -INFINITY ? 0.0f : row_max(mi));
+#ifdef E130_SKIP_UNCHANGED_MAX_EXP
+                // If the running max is unchanged, exp2(0) is exactly 1.
+                // Keep the original arithmetic for all changing/inf cases.
+                scores_scale(mi) = scores_max_prev(mi) == scores_max_cur
+                    ? 1.f
+                    : flash::ptx_exp2((scores_max_prev(mi) - scores_max_cur) * softmax_scale_log2);
+#else
                 scores_scale(mi) = flash::ptx_exp2((scores_max_prev(mi) - scores_max_cur) * softmax_scale_log2);
+#endif
 
                 const float max_scaled = InfCheck
                                         ? (row_max(mi) == -INFINITY ? 0.f : (row_max(mi) * softmax_scale_log2 + fp8_scalexfp4_scale_log2))

@@ -1,0 +1,115 @@
+{
+  "format": "e154-exact-route-reuse-v1",
+  "timestamp_utc": "2026-11-01T16:53:34.081320+00:00",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "capture": "/data1/models/svdquant-wjq/research/20261101/E169_h3_480p5s_attention/race_480p_124f_step0_block0.pt",
+  "shape_bshd": [
+    1,
+    15795,
+    56,
+    128
+  ],
+  "video_grid": [
+    37,
+    15,
+    26
+  ],
+  "prefix_tokens": 1365,
+  "layer": 0,
+  "policy": {
+    "query_block": 128,
+    "skip_fraction": 0.0,
+    "retained_nvfp4_fraction": 0.9,
+    "retained_int8_fraction": 0.09999999999999998,
+    "first_step": "dense INT8; actual quantized QK physical-tile maximum captured in kernel (adjacent K64 tiles merged for Q128 routing)",
+    "later_steps": "reuse cached first-step route; no DraftMap pooling/scoring/sorting"
+  },
+  "checks": {
+    "cache_entries": 1,
+    "cache_bytes_one_layer": 2585860,
+    "reuse_draftmap_and_route_selection_mocked_to_raise": true,
+    "first_vs_dense_int8_nmse": 0.0,
+    "reuse_vs_legacy_proxy_route_nmse": 0.000517469676742025,
+    "reuse_vs_dense_int8_nmse": 0.0011389770145269847
+  },
+  "timings": {
+    "dense_int8_no_capture": {
+      "mean_ms": 33.30992571512858,
+      "median_ms": 33.223344802856445,
+      "min_ms": 33.186302185058594,
+      "samples_ms": [
+        33.20694351196289,
+        33.21027374267578,
+        33.23596954345703,
+        33.21072006225586,
+        33.196895599365234,
+        33.186302185058594,
+        33.19475173950195,
+        33.53299331665039,
+        33.554176330566406,
+        33.30662536621094,
+        33.374752044677734,
+        33.508705139160156
+      ]
+    },
+    "dense_int8_first_step_capture": {
+      "mean_ms": 32.19278875986735,
+      "median_ms": 32.20327949523926,
+      "min_ms": 32.0645751953125,
+      "samples_ms": [
+        32.143009185791016,
+        32.196128845214844,
+        32.0645751953125,
+        32.13804626464844,
+        32.16281509399414,
+        32.21043014526367,
+        32.21577453613281,
+        32.24137496948242,
+        32.245792388916016,
+        32.29935836791992,
+        32.215423583984375,
+        32.18073654174805
+      ]
+    },
+    "cached_exact_route_reuse": {
+      "mean_ms": 28.28659741083781,
+      "median_ms": 28.28763198852539,
+      "min_ms": 28.259456634521484,
+      "samples_ms": [
+        28.31804847717285,
+        28.30169677734375,
+        28.299840927124023,
+        28.289119720458984,
+        28.286144256591797,
+        28.28278350830078,
+        28.276031494140625,
+        28.296863555908203,
+        28.259456634521484,
+        28.265056610107422,
+        28.293567657470703,
+        28.270559310913086
+      ]
+    },
+    "legacy_proxy_route_each_step": {
+      "mean_ms": 29.717122554779053,
+      "median_ms": 29.71449565887451,
+      "min_ms": 29.671199798583984,
+      "samples_ms": [
+        29.760000228881836,
+        29.76470375061035,
+        29.735231399536133,
+        29.727231979370117,
+        29.712671279907227,
+        29.729183197021484,
+        29.716320037841797,
+        29.683616638183594,
+        29.671199798583984,
+        29.695104598999023,
+        29.70902442932129,
+        29.701183319091797
+      ]
+    }
+  },
+  "kernel_profiles": {},
+  "status": "complete"
+}

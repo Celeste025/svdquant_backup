@@ -1,0 +1,827 @@
+{
+  "format": "h3-e137-axis-intervention-contract-v1",
+  "purpose": "CPU validation only on saved BF16-trajectory outputs; not a closed-loop quality result",
+  "video_grid_thw": [
+    37,
+    18,
+    32
+  ],
+  "invariants": {
+    "spatial_shared": "preserves each token's complete 96D error vector and its temporal path; changes spatial coordinate",
+    "temporal_frame": "preserves each frame's complete spatial error field; changes temporal coordinate"
+  },
+  "cases": {
+    "race": {
+      "prompt_id": 16,
+      "seed": 20026,
+      "steps": [
+        {
+          "step": 0,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.8856549202160491,
+            "spatial_w_signed_vector_cosine": 0.8836467341885194,
+            "temporal_signed_vector_cosine": 0.8415841885718337
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": 0.012797463301335178,
+              "spatial_w_signed_vector_cosine": 0.0015425887475118522,
+              "temporal_signed_vector_cosine": 0.8415841885775929
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.8856549202160487,
+              "spatial_w_signed_vector_cosine": 0.8836467341885187,
+              "temporal_signed_vector_cosine": 0.38631903121357286
+            }
+          }
+        },
+        {
+          "step": 1,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.920311654915799,
+            "spatial_w_signed_vector_cosine": 0.9171189022283314,
+            "temporal_signed_vector_cosine": 0.8773210194962807
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.02063024822041761,
+              "spatial_w_signed_vector_cosine": 0.0060873519011922506,
+              "temporal_signed_vector_cosine": 0.877321019539756
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.9203116549157984,
+              "spatial_w_signed_vector_cosine": 0.9171189022283308,
+              "temporal_signed_vector_cosine": 0.2827885738657082
+            }
+          }
+        },
+        {
+          "step": 2,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.8918545164414632,
+            "spatial_w_signed_vector_cosine": 0.8927209487169265,
+            "temporal_signed_vector_cosine": 0.877124660359903
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": 0.009678694690474571,
+              "spatial_w_signed_vector_cosine": -0.0038861731771947443,
+              "temporal_signed_vector_cosine": 0.8771246603041701
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.8918545164414636,
+              "spatial_w_signed_vector_cosine": 0.8927209487169262,
+              "temporal_signed_vector_cosine": 0.4250849496543211
+            }
+          }
+        },
+        {
+          "step": 3,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.7838207972558286,
+            "spatial_w_signed_vector_cosine": 0.8165918059173244,
+            "temporal_signed_vector_cosine": 0.8275221234664517
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.010197000666220821,
+              "spatial_w_signed_vector_cosine": -0.028935881591873838,
+              "temporal_signed_vector_cosine": 0.8275221234751242
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.7838207972558296,
+              "spatial_w_signed_vector_cosine": 0.8165918059173245,
+              "temporal_signed_vector_cosine": 0.28922092787145853
+            }
+          }
+        },
+        {
+          "step": 4,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.7173505187741547,
+            "spatial_w_signed_vector_cosine": 0.7613571354066968,
+            "temporal_signed_vector_cosine": 0.8096430995282088
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": 0.0014460881137419957,
+              "spatial_w_signed_vector_cosine": -0.011716920822107254,
+              "temporal_signed_vector_cosine": 0.8096430995198457
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.7173505187741545,
+              "spatial_w_signed_vector_cosine": 0.7613571354066968,
+              "temporal_signed_vector_cosine": 0.2751806733940443
+            }
+          }
+        },
+        {
+          "step": 5,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.6887634510095914,
+            "spatial_w_signed_vector_cosine": 0.7220240563270087,
+            "temporal_signed_vector_cosine": 0.7085818185928479
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.0010922322672450352,
+              "spatial_w_signed_vector_cosine": 0.00084935261339252,
+              "temporal_signed_vector_cosine": 0.7085818185670218
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.688763451009592,
+              "spatial_w_signed_vector_cosine": 0.7220240563270084,
+              "temporal_signed_vector_cosine": 0.17903011418636613
+            }
+          }
+        },
+        {
+          "step": 6,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.6454331551349846,
+            "spatial_w_signed_vector_cosine": 0.681919454848942,
+            "temporal_signed_vector_cosine": 0.6632209233331631
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.009520870205605384,
+              "spatial_w_signed_vector_cosine": 0.014269849745496775,
+              "temporal_signed_vector_cosine": 0.6632209233496277
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.6454331551349854,
+              "spatial_w_signed_vector_cosine": 0.6819194548489421,
+              "temporal_signed_vector_cosine": 0.17739189244638404
+            }
+          }
+        },
+        {
+          "step": 7,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.5680227056788664,
+            "spatial_w_signed_vector_cosine": 0.6138878587694341,
+            "temporal_signed_vector_cosine": 0.6096667930759346
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.0026648452089854838,
+              "spatial_w_signed_vector_cosine": -0.004212608506056453,
+              "temporal_signed_vector_cosine": 0.6096667930705347
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.5680227056788665,
+              "spatial_w_signed_vector_cosine": 0.6138878587694332,
+              "temporal_signed_vector_cosine": 0.13400321019481085
+            }
+          }
+        },
+        {
+          "step": 8,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.5551358702464323,
+            "spatial_w_signed_vector_cosine": 0.6065229366903003,
+            "temporal_signed_vector_cosine": 0.5608651260989012
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.003913234182169593,
+              "spatial_w_signed_vector_cosine": 0.005133039605979976,
+              "temporal_signed_vector_cosine": 0.5608651261377893
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.5551358702464326,
+              "spatial_w_signed_vector_cosine": 0.6065229366903004,
+              "temporal_signed_vector_cosine": 0.09365714463147877
+            }
+          }
+        },
+        {
+          "step": 9,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.5044121470693247,
+            "spatial_w_signed_vector_cosine": 0.5456761483269956,
+            "temporal_signed_vector_cosine": 0.4958860450774928
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.008094287497576786,
+              "spatial_w_signed_vector_cosine": -0.0005040682115157045,
+              "temporal_signed_vector_cosine": 0.495886045077068
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.5044121470693241,
+              "spatial_w_signed_vector_cosine": 0.5456761483269958,
+              "temporal_signed_vector_cosine": 0.140032772834168
+            }
+          }
+        },
+        {
+          "step": 10,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.4657014775578522,
+            "spatial_w_signed_vector_cosine": 0.4945607186951297,
+            "temporal_signed_vector_cosine": 0.43878743664212433
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.0012356657671751523,
+              "spatial_w_signed_vector_cosine": -0.0010865011116741989,
+              "temporal_signed_vector_cosine": 0.4387874366581807
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.46570147755785235,
+              "spatial_w_signed_vector_cosine": 0.49456071869512935,
+              "temporal_signed_vector_cosine": 0.12835930021023959
+            }
+          }
+        },
+        {
+          "step": 11,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.4367463008854479,
+            "spatial_w_signed_vector_cosine": 0.45054938074280604,
+            "temporal_signed_vector_cosine": 0.40872563564838327
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": 0.0018571522346686414,
+              "spatial_w_signed_vector_cosine": -0.009762211908653574,
+              "temporal_signed_vector_cosine": 0.40872563564739695
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.43674630088544736,
+              "spatial_w_signed_vector_cosine": 0.45054938074280587,
+              "temporal_signed_vector_cosine": 0.0776040084838247
+            }
+          }
+        },
+        {
+          "step": 12,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.4156955444942477,
+            "spatial_w_signed_vector_cosine": 0.4236815882894912,
+            "temporal_signed_vector_cosine": 0.3900920107673044
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.0007981939379850827,
+              "spatial_w_signed_vector_cosine": 0.00025755212307925233,
+              "temporal_signed_vector_cosine": 0.3900920107655902
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.41569554449424795,
+              "spatial_w_signed_vector_cosine": 0.423681588289491,
+              "temporal_signed_vector_cosine": 0.09745491269688299
+            }
+          }
+        },
+        {
+          "step": 13,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.3632612376620201,
+            "spatial_w_signed_vector_cosine": 0.3888445425487868,
+            "temporal_signed_vector_cosine": 0.3478787683523572
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.007969428165431837,
+              "spatial_w_signed_vector_cosine": -0.004062303842924091,
+              "temporal_signed_vector_cosine": 0.347878768347458
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.3632612376620205,
+              "spatial_w_signed_vector_cosine": 0.3888445425487868,
+              "temporal_signed_vector_cosine": 0.06655823582543516
+            }
+          }
+        },
+        {
+          "step": 14,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.3102213529101803,
+            "spatial_w_signed_vector_cosine": 0.3241857903271899,
+            "temporal_signed_vector_cosine": 0.31142646430368354
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": 0.0014905895731877905,
+              "spatial_w_signed_vector_cosine": -0.005472801658403192,
+              "temporal_signed_vector_cosine": 0.31142646429946286
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.31022135291018016,
+              "spatial_w_signed_vector_cosine": 0.3241857903271897,
+              "temporal_signed_vector_cosine": 0.07317007091782335
+            }
+          }
+        },
+        {
+          "step": 15,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.25981860739222307,
+            "spatial_w_signed_vector_cosine": 0.27533778921122637,
+            "temporal_signed_vector_cosine": 0.26469230410834194
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": 0.0021613459844616032,
+              "spatial_w_signed_vector_cosine": -0.0035647310440074715,
+              "temporal_signed_vector_cosine": 0.2646923041047185
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.2598186073922232,
+              "spatial_w_signed_vector_cosine": 0.2753377892112265,
+              "temporal_signed_vector_cosine": 0.06061243712327363
+            }
+          }
+        },
+        {
+          "step": 16,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.21605023805404538,
+            "spatial_w_signed_vector_cosine": 0.2296201081851129,
+            "temporal_signed_vector_cosine": 0.22618055111003715
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.0033207252860256416,
+              "spatial_w_signed_vector_cosine": 0.0017671777599263503,
+              "temporal_signed_vector_cosine": 0.22618055111415827
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.21605023805404533,
+              "spatial_w_signed_vector_cosine": 0.22962010818511308,
+              "temporal_signed_vector_cosine": 0.052942728811893366
+            }
+          }
+        },
+        {
+          "step": 17,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.16582848147400284,
+            "spatial_w_signed_vector_cosine": 0.1836485565917532,
+            "temporal_signed_vector_cosine": 0.1871469862585046
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.0016157953110659104,
+              "spatial_w_signed_vector_cosine": -0.0005200723840278889,
+              "temporal_signed_vector_cosine": 0.18714698625777249
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.16582848147400275,
+              "spatial_w_signed_vector_cosine": 0.183648556591753,
+              "temporal_signed_vector_cosine": 0.037435331111195444
+            }
+          }
+        },
+        {
+          "step": 18,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.1225381712910412,
+            "spatial_w_signed_vector_cosine": 0.13264179142589425,
+            "temporal_signed_vector_cosine": 0.13764885143672853
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.0013640006138455581,
+              "spatial_w_signed_vector_cosine": -0.0029979969639845573,
+              "temporal_signed_vector_cosine": 0.13764885143971536
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.12253817129104103,
+              "spatial_w_signed_vector_cosine": 0.13264179142589436,
+              "temporal_signed_vector_cosine": 0.04440579706985812
+            }
+          }
+        },
+        {
+          "step": 19,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.08312187860737043,
+            "spatial_w_signed_vector_cosine": 0.0823728232444857,
+            "temporal_signed_vector_cosine": 0.08091647414673439
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.000240905821604057,
+              "spatial_w_signed_vector_cosine": -0.0008119033396619899,
+              "temporal_signed_vector_cosine": 0.08091647414901061
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.08312187860737036,
+              "spatial_w_signed_vector_cosine": 0.08237282324448568,
+              "temporal_signed_vector_cosine": 0.021525374786476426
+            }
+          }
+        }
+      ]
+    },
+    "clap0": {
+      "prompt_id": 161,
+      "seed": 38001610,
+      "steps": [
+        {
+          "step": 0,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.6524108318421808,
+            "spatial_w_signed_vector_cosine": 0.6463317239555384,
+            "temporal_signed_vector_cosine": 0.5899615646246749
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": 0.009442200081850406,
+              "spatial_w_signed_vector_cosine": -0.009361489086233124,
+              "temporal_signed_vector_cosine": 0.5899615646065177
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.6524108318421807,
+              "spatial_w_signed_vector_cosine": 0.6463317239555383,
+              "temporal_signed_vector_cosine": 0.5473682754427212
+            }
+          }
+        },
+        {
+          "step": 1,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.8268626524145516,
+            "spatial_w_signed_vector_cosine": 0.8071618612489344,
+            "temporal_signed_vector_cosine": 0.7246936042951996
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": 0.015498405073480877,
+              "spatial_w_signed_vector_cosine": 0.022129208796191235,
+              "temporal_signed_vector_cosine": 0.7246936043108558
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.8268626524145515,
+              "spatial_w_signed_vector_cosine": 0.8071618612489349,
+              "temporal_signed_vector_cosine": 0.6481967908259874
+            }
+          }
+        },
+        {
+          "step": 2,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.89727164055995,
+            "spatial_w_signed_vector_cosine": 0.8708716790081181,
+            "temporal_signed_vector_cosine": 0.8186135764310906
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.01977805314599856,
+              "spatial_w_signed_vector_cosine": -0.012473769166322285,
+              "temporal_signed_vector_cosine": 0.8186135764267103
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.8972716405599491,
+              "spatial_w_signed_vector_cosine": 0.8708716790081185,
+              "temporal_signed_vector_cosine": 0.7588973254283081
+            }
+          }
+        },
+        {
+          "step": 3,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.8815827819625552,
+            "spatial_w_signed_vector_cosine": 0.8290594663726154,
+            "temporal_signed_vector_cosine": 0.7676711506609365
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.010998351700865086,
+              "spatial_w_signed_vector_cosine": 0.01001708883353717,
+              "temporal_signed_vector_cosine": 0.76767115067146
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.8815827819625549,
+              "spatial_w_signed_vector_cosine": 0.8290594663726142,
+              "temporal_signed_vector_cosine": 0.6740148622152955
+            }
+          }
+        },
+        {
+          "step": 4,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.8402810584933748,
+            "spatial_w_signed_vector_cosine": 0.759012192742694,
+            "temporal_signed_vector_cosine": 0.6156390370612153
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.027102230319127306,
+              "spatial_w_signed_vector_cosine": -0.004939744789768935,
+              "temporal_signed_vector_cosine": 0.6156390370355259
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.8402810584933739,
+              "spatial_w_signed_vector_cosine": 0.7590121927426936,
+              "temporal_signed_vector_cosine": 0.5662766951162845
+            }
+          }
+        },
+        {
+          "step": 5,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.7093370290530538,
+            "spatial_w_signed_vector_cosine": 0.6163923278785989,
+            "temporal_signed_vector_cosine": 0.5552657847144712
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.005694808335180875,
+              "spatial_w_signed_vector_cosine": -0.015252216185781826,
+              "temporal_signed_vector_cosine": 0.5552657846881823
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.7093370290530547,
+              "spatial_w_signed_vector_cosine": 0.6163923278785987,
+              "temporal_signed_vector_cosine": 0.4676221224809682
+            }
+          }
+        },
+        {
+          "step": 6,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.5740885693682118,
+            "spatial_w_signed_vector_cosine": 0.4955556848067344,
+            "temporal_signed_vector_cosine": 0.4866627976755549
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": 0.0001360338482339087,
+              "spatial_w_signed_vector_cosine": 0.011725097619839106,
+              "temporal_signed_vector_cosine": 0.48666279766528353
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.5740885693682113,
+              "spatial_w_signed_vector_cosine": 0.49555568480673423,
+              "temporal_signed_vector_cosine": 0.3535620753035084
+            }
+          }
+        },
+        {
+          "step": 7,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.5237170525471363,
+            "spatial_w_signed_vector_cosine": 0.5407797100600409,
+            "temporal_signed_vector_cosine": 0.5474390851146287
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": 0.0044241038263254425,
+              "spatial_w_signed_vector_cosine": -0.003293168890602623,
+              "temporal_signed_vector_cosine": 0.5474390851270102
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.5237170525471365,
+              "spatial_w_signed_vector_cosine": 0.5407797100600402,
+              "temporal_signed_vector_cosine": 0.40286823098967706
+            }
+          }
+        },
+        {
+          "step": 8,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.4370063602529837,
+            "spatial_w_signed_vector_cosine": 0.352707884995581,
+            "temporal_signed_vector_cosine": 0.3639753904479251
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.008715957084732018,
+              "spatial_w_signed_vector_cosine": 0.0034799320594950498,
+              "temporal_signed_vector_cosine": 0.36397539044603644
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.4370063602529835,
+              "spatial_w_signed_vector_cosine": 0.35270788499558087,
+              "temporal_signed_vector_cosine": 0.2672873754185809
+            }
+          }
+        },
+        {
+          "step": 9,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.39699202561886104,
+            "spatial_w_signed_vector_cosine": 0.30932618305472764,
+            "temporal_signed_vector_cosine": 0.3286054184328534
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": 0.0026419993464600207,
+              "spatial_w_signed_vector_cosine": -0.0006820363210244271,
+              "temporal_signed_vector_cosine": 0.32860541843809205
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.39699202561886093,
+              "spatial_w_signed_vector_cosine": 0.3093261830547275,
+              "temporal_signed_vector_cosine": 0.25148631237924207
+            }
+          }
+        },
+        {
+          "step": 10,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.28210755907448537,
+            "spatial_w_signed_vector_cosine": 0.25631465604893655,
+            "temporal_signed_vector_cosine": 0.37358645413241826
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.006266235456509476,
+              "spatial_w_signed_vector_cosine": -0.004141520820346782,
+              "temporal_signed_vector_cosine": 0.3735864541345346
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.28210755907448576,
+              "spatial_w_signed_vector_cosine": 0.2563146560489364,
+              "temporal_signed_vector_cosine": 0.24833302938612523
+            }
+          }
+        },
+        {
+          "step": 11,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.27290690285162017,
+            "spatial_w_signed_vector_cosine": 0.23589557171142114,
+            "temporal_signed_vector_cosine": 0.3273752024738556
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.00989331720896255,
+              "spatial_w_signed_vector_cosine": -0.007392843610320208,
+              "temporal_signed_vector_cosine": 0.3273752024732801
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.2729069028516203,
+              "spatial_w_signed_vector_cosine": 0.23589557171142075,
+              "temporal_signed_vector_cosine": 0.23494762770494793
+            }
+          }
+        },
+        {
+          "step": 12,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.25673465045662136,
+            "spatial_w_signed_vector_cosine": 0.19944437023924194,
+            "temporal_signed_vector_cosine": 0.3244620888404565
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": 0.002666756922192629,
+              "spatial_w_signed_vector_cosine": -0.0023415712604584753,
+              "temporal_signed_vector_cosine": 0.3244620888396031
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.2567346504566216,
+              "spatial_w_signed_vector_cosine": 0.19944437023924177,
+              "temporal_signed_vector_cosine": 0.17595643709535957
+            }
+          }
+        },
+        {
+          "step": 13,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.21790623584443233,
+            "spatial_w_signed_vector_cosine": 0.1904530225960686,
+            "temporal_signed_vector_cosine": 0.3015034711569814
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.005881464142736469,
+              "spatial_w_signed_vector_cosine": 0.0030170474343253375,
+              "temporal_signed_vector_cosine": 0.30150347115535864
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.2179062358444323,
+              "spatial_w_signed_vector_cosine": 0.19045302259606878,
+              "temporal_signed_vector_cosine": 0.19398038296712689
+            }
+          }
+        },
+        {
+          "step": 14,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.18535189839145075,
+            "spatial_w_signed_vector_cosine": 0.15835102168194887,
+            "temporal_signed_vector_cosine": 0.2515732003288963
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.005581076120545027,
+              "spatial_w_signed_vector_cosine": 0.0005550159745170336,
+              "temporal_signed_vector_cosine": 0.2515732003276857
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.18535189839145072,
+              "spatial_w_signed_vector_cosine": 0.1583510216819489,
+              "temporal_signed_vector_cosine": 0.15325409752157892
+            }
+          }
+        },
+        {
+          "step": 15,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.16188561411541538,
+            "spatial_w_signed_vector_cosine": 0.13439150540656808,
+            "temporal_signed_vector_cosine": 0.2433112975488622
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": 0.0011976697477795685,
+              "spatial_w_signed_vector_cosine": -0.0017380911689025929,
+              "temporal_signed_vector_cosine": 0.24331129754697858
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.16188561411541552,
+              "spatial_w_signed_vector_cosine": 0.13439150540656808,
+              "temporal_signed_vector_cosine": 0.16175419774173358
+            }
+          }
+        },
+        {
+          "step": 16,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.1363593307562385,
+            "spatial_w_signed_vector_cosine": 0.11965243771725587,
+            "temporal_signed_vector_cosine": 0.2151828690934598
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.00044249289166317136,
+              "spatial_w_signed_vector_cosine": 0.0022991354131110826,
+              "temporal_signed_vector_cosine": 0.21518286909086726
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.13635933075623866,
+              "spatial_w_signed_vector_cosine": 0.11965243771725588,
+              "temporal_signed_vector_cosine": 0.09355331772588495
+            }
+          }
+        },
+        {
+          "step": 17,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.10924656800243704,
+            "spatial_w_signed_vector_cosine": 0.1024899953735704,
+            "temporal_signed_vector_cosine": 0.2010290912644521
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.0023646251369388006,
+              "spatial_w_signed_vector_cosine": -0.001395706043197695,
+              "temporal_signed_vector_cosine": 0.20102909126264015
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.10924656800243716,
+              "spatial_w_signed_vector_cosine": 0.10248999537357029,
+              "temporal_signed_vector_cosine": 0.09674117135820949
+            }
+          }
+        },
+        {
+          "step": 18,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.08680451394182914,
+            "spatial_w_signed_vector_cosine": 0.07627618359448624,
+            "temporal_signed_vector_cosine": 0.17616308989866467
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.00283927548683904,
+              "spatial_w_signed_vector_cosine": -0.0012691044156586204,
+              "temporal_signed_vector_cosine": 0.17616308989953902
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.08680451394182927,
+              "spatial_w_signed_vector_cosine": 0.07627618359448621,
+              "temporal_signed_vector_cosine": 0.07300861185176209
+            }
+          }
+        },
+        {
+          "step": 19,
+          "original": {
+            "spatial_h_signed_vector_cosine": 0.06546611577650267,
+            "spatial_w_signed_vector_cosine": 0.06148994104161776,
+            "temporal_signed_vector_cosine": 0.1494185599961795
+          },
+          "transforms": {
+            "spatial_shared": {
+              "spatial_h_signed_vector_cosine": -0.0028915273936183507,
+              "spatial_w_signed_vector_cosine": -0.00041934264020683146,
+              "temporal_signed_vector_cosine": 0.14941855999819767
+            },
+            "temporal_frame": {
+              "spatial_h_signed_vector_cosine": 0.06546611577650266,
+              "spatial_w_signed_vector_cosine": 0.06148994104161777,
+              "temporal_signed_vector_cosine": 0.053043805279951645
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "format": "h3-top-0.1pct-clean-video-nvfp4-v1",
+  "timestamp_utc": "2026-10-14T10:40:35.089170+00:00",
+  "scope": "block-25 FC2; p11 calibration, p1 held-out; 21,312 video rows each",
+  "calibration": "/data1/models/svdquant-wjq/results/E088_native_bench/h3_block25_p11_s00_calib.pt",
+  "evaluation": "/data1/models/svdquant-wjq/results/E088_native_bench/h3_block25_p1_s00.pt",
+  "calibration_call": "/data1/models/svdquant-wjq/results/E087_timestep_aware/cache_16p20s/p11/sample_p11_s00.pt",
+  "evaluation_call": "/data1/models/svdquant-wjq/results/E087_timestep_aware/cache_16p20s/p1/sample_p1_s00.pt",
+  "fraction": 0.001,
+  "alpha": 0.5,
+  "mask_rule": "exact largest ceil(0.001*N) raw |X| entries within each video tensor; ties broken by lowest flattened index",
+  "target": "the same cleaned BF16 XW.T for plain and smoothed W4A4",
+  "cases": {
+    "none": {
+      "masks": {
+        "calibration": {
+          "k": 0
+        },
+        "evaluation": {
+          "k": 0
+        }
+      },
+      "original_to_clean_bf16_nmse": {
+        "calibration": 0.0,
+        "evaluation": 0.0
+      },
+      "clean_to_original_output_energy_ratio": {
+        "calibration": 1.0,
+        "evaluation": 1.0
+      },
+      "smoothing_scale_stats": {
+        "min": 0.280587375164032,
+        "median": 5.46173095703125,
+        "max": 24.00539779663086
+      },
+      "arms": {
+        "plain": {
+          "output_nmse": {
+            "calibration": {
+              "static_p11": 0.009642209857702255,
+              "current_input": 0.009642209857702255
+            },
+            "evaluation": {
+              "static_p11": 0.010277296416461468,
+              "current_input": 0.00968239177018404
+            }
+          },
+          "bf16_reparameterization_nmse": {
+            "calibration": 0.0,
+            "evaluation": 0.0
+          },
+          "activation_amax": {
+            "calibration": 2336.0,
+            "evaluation": 4512.0
+          },
+          "weight_amax": 3.21875
+        },
+        "p99_smooth_alpha_0.5": {
+          "output_nmse": {
+            "calibration": {
+              "static_p11": 0.007276088930666447,
+              "current_input": 0.007276088930666447
+            },
+            "evaluation": {
+              "static_p11": 0.010862885974347591,
+              "current_input": 0.009722449816763401
+            }
+          },
+          "bf16_reparameterization_nmse": {
+            "calibration": 8.68968345457688e-06,
+            "evaluation": 8.555015483580064e-06
+          },
+          "activation_amax": {
+            "calibration": 388.0,
+            "evaluation": 900.0
+          },
+          "weight_amax": 23.125
+        }
+      }
+    },
+    "top_0.1pct_zero": {
+      "masks": {
+        "calibration": {
+          "k": 305529,
+          "total": 305528832,
+          "cutoff": 81.0,
+          "strictly_greater": 302195,
+          "ties_selected": 3334
+        },
+        "evaluation": {
+          "k": 305529,
+          "total": 305528832,
+          "cutoff": 84.5,
+          "strictly_greater": 300849,
+          "ties_selected": 4680
+        }
+      },
+      "original_to_clean_bf16_nmse": {
+        "calibration": 0.3622971475124359,
+        "evaluation": 0.3515544831752777
+      },
+      "clean_to_original_output_energy_ratio": {
+        "calibration": 0.5829592347145081,
+        "evaluation": 0.5909615159034729
+      },
+      "smoothing_scale_stats": {
+        "min": 0.280587375164032,
+        "median": 5.442574977874756,
+        "max": 12.28161907196045
+      },
+      "arms": {
+        "plain": {
+          "output_nmse": {
+            "calibration": {
+              "static_p11": 0.01145936455577612,
+              "current_input": 0.01145936455577612
+            },
+            "evaluation": {
+              "static_p11": 0.011426379904150963,
+              "current_input": 0.011446172371506691
+            }
+          },
+          "bf16_reparameterization_nmse": {
+            "calibration": 0.0,
+            "evaluation": 0.0
+          },
+          "activation_amax": {
+            "calibration": 81.0,
+            "evaluation": 84.5
+          },
+          "weight_amax": 3.21875
+        },
+        "p99_smooth_alpha_0.5": {
+          "output_nmse": {
+            "calibration": {
+              "static_p11": 0.009790616109967232,
+              "current_input": 0.009790616109967232
+            },
+            "evaluation": {
+              "static_p11": 0.011203990317881107,
+              "current_input": 0.011197460815310478
+            }
+          },
+          "bf16_reparameterization_nmse": {
+            "calibration": 8.62766319187358e-06,
+            "evaluation": 8.574140338168945e-06
+          },
+          "activation_amax": {
+            "calibration": 126.5,
+            "evaluation": 226.0
+          },
+          "weight_amax": 11.375
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "format": "e126-h3-vbench5-attention-manifest-v1",
+  "source_scripts": {
+    "bf16": "third_party/MixAttention/run_bf16_vbench5.py",
+    "bf16_sha256": "4efcb16b35f99f13f9b48a1a7a8f5a148bf6d2fe2c261701140bebd3c3ead73a",
+    "sage2pp": "third_party/MixAttention/run_sageattn2pp_vbench5.py",
+    "sage2pp_sha256": "71b49e163b1bdc35516df37adc24484e999d5155e3cf4d6b2e1405034d893eb1"
+  },
+  "prompts": [
+    {"id": "vbench_000", "prompt": "a person swimming in ocean", "seed": 42},
+    {"id": "vbench_001", "prompt": "a person giving a presentation to a room full of colleagues", "seed": 42},
+    {"id": "vbench_002", "prompt": "a person washing the dishes", "seed": 42},
+    {"id": "vbench_003", "prompt": "a person eating a burger", "seed": 42},
+    {"id": "vbench_004", "prompt": "a person walking in the snowstorm", "seed": 42}
+  ],
+  "arms": ["bf16", "sage3_fixed", "split_mixed"],
+  "settings": {
+    "height": 768,
+    "width": 1344,
+    "frames": 124,
+    "steps": 50,
+    "cfg_scale": 1.0,
+    "flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "tiled": true,
+    "fps": 24
+  },
+  "model": "Same local BF16 MiniMax-H3 as E124/E125; DiffSynth pipeline with forced true BF16 SDPA baseline",
+  "note": "Prompts, seed, width, height, frames and denoising-step count match the two MixAttention vbench5 generator defaults. Diffusers and DiffSynth random-number implementations may not be bitwise identical despite matching seed. All three E126 arms use one DiffSynth pipeline and identical initial latents per prompt."
+}

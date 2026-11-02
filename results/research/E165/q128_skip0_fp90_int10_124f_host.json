@@ -1,0 +1,79 @@
+{
+  "format": "e154-exact-route-reuse-v1",
+  "timestamp_utc": "2026-11-01T13:56:14.776086+00:00",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "capture": "/data1/models/svdquant-wjq/research/20261101/E151_long_h3_attention/race_768p_124f_step0_block0.pt",
+  "shape_bshd": [
+    1,
+    38661,
+    56,
+    128
+  ],
+  "video_grid": [
+    37,
+    24,
+    42
+  ],
+  "prefix_tokens": 1365,
+  "layer": 0,
+  "policy": {
+    "query_block": 128,
+    "skip_fraction": 0.0,
+    "retained_nvfp4_fraction": 0.9,
+    "retained_int8_fraction": 0.09999999999999998,
+    "first_step": "dense INT8; actual quantized QK physical-tile maximum captured in kernel (adjacent K64 tiles merged for Q128 routing)",
+    "later_steps": "reuse cached first-step route; no DraftMap pooling/scoring/sorting"
+  },
+  "checks": {
+    "cache_entries": 1,
+    "cache_bytes_one_layer": 10078212,
+    "reuse_draftmap_and_route_selection_mocked_to_raise": true,
+    "first_vs_dense_int8_nmse": 0.0,
+    "reuse_vs_legacy_proxy_route_nmse": 0.00028342184457604,
+    "reuse_vs_dense_int8_nmse": 0.0007087846262923579
+  },
+  "timings": {
+    "dense_int8_no_capture": {
+      "mean_ms": 118.17467753092448,
+      "median_ms": 118.61788940429688,
+      "min_ms": 116.95565032958984,
+      "samples_ms": [
+        116.95565032958984,
+        118.61788940429688,
+        118.95049285888672
+      ]
+    },
+    "dense_int8_first_step_capture": {
+      "mean_ms": 135.10407002766928,
+      "median_ms": 135.1176300048828,
+      "min_ms": 135.06399536132812,
+      "samples_ms": [
+        135.06399536132812,
+        135.1176300048828,
+        135.13058471679688
+      ]
+    },
+    "cached_exact_route_reuse": {
+      "mean_ms": 98.1767807006836,
+      "median_ms": 98.17059326171875,
+      "min_ms": 98.15936279296875,
+      "samples_ms": [
+        98.20038604736328,
+        98.17059326171875,
+        98.15936279296875
+      ]
+    },
+    "legacy_proxy_route_each_step": {
+      "mean_ms": 99.54319254557292,
+      "median_ms": 99.54803466796875,
+      "min_ms": 99.53187561035156,
+      "samples_ms": [
+        99.54803466796875,
+        99.53187561035156,
+        99.54966735839844
+      ]
+    }
+  },
+  "kernel_profiles": {},
+  "status": "complete"
+}

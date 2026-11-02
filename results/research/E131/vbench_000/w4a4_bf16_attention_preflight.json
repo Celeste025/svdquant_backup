@@ -1,0 +1,50 @@
+{
+  "format": "e127-h3-w4a4-preflight-v1",
+  "suite": "e126",
+  "case": "vbench_000",
+  "arm": "w4a4_bf16_attention",
+  "seed": 42,
+  "settings": {
+    "height": 768,
+    "width": 1344,
+    "frames": 124,
+    "steps": 50,
+    "cfg_scale": 1.0,
+    "flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "tiled": true,
+    "fps": 24
+  },
+  "linears": {
+    "count": 200,
+    "format": "native NVFP4 E2M1 scaled_mm",
+    "group_size": 16,
+    "tensor_scale": "dynamic",
+    "smoothing": false,
+    "low_rank": false,
+    "export_dir": "/data1/models/svdquant-wjq/research/20261024/E128_plain_export_rehydrated",
+    "export_manifest_sha256": "687a8a0bcb2d551820b287797c16e98759ae487969cd5efe512f0f847cbdf99f",
+    "resident_allocated_gib": 37.53783178329468,
+    "exact_weight_roundtrip_count": 200
+  },
+  "dit_seconds": 14.735691528010648,
+  "main_tokens": 37715,
+  "attention_main_calls": 50,
+  "attention_refiner_calls": 2,
+  "video_output_energy": 4.05124568939209,
+  "audio_output_energy": 1.142645001411438,
+  "peak_allocated_gib": 53.295316219329834,
+  "free_gib": 13.85400390625,
+  "hooks": {
+    "native_dit_calls": 1,
+    "recompute_fraction": 0.1,
+    "recompute_modules_observed": 200,
+    "recompute_calls_per_linear": [
+      1,
+      1
+    ],
+    "recomputed_rows_total": 755200
+  },
+  "status": "complete"
+}

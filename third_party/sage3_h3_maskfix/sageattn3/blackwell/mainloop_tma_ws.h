@@ -51,6 +51,7 @@ struct CollectiveMainloopFwd {
     using SmemLayoutV = typename Ktraits::SmemLayoutV;
     using SmemLayoutVt = typename Ktraits::SmemLayoutVt;
     using SmemLayoutDS = typename Ktraits::SmemLayoutDS;
+    using ElementDS = typename Ktraits::ElementDS;
     using SmemLayoutAtomDS = typename Ktraits::SmemLayoutAtomDS;
     using LayoutDS = decltype(
         blocked_product(
@@ -90,7 +91,7 @@ struct CollectiveMainloopFwd {
     
     using TMA_DS = decltype(make_tma_copy(
         GmemTiledCopy{},
-        make_tensor(make_gmem_ptr(static_cast<float const*>(nullptr)), LayoutDS{}),
+        make_tensor(make_gmem_ptr(static_cast<ElementDS const*>(nullptr)), LayoutDS{}),
         take<0, 2>(SmemLayoutDS{}),
         make_shape(shape<0>(TileShape_MNK{}), shape<1>(TileShape_MNK{})),
         _1{}));
@@ -145,7 +146,7 @@ struct CollectiveMainloopFwd {
     
     static constexpr uint32_t TmaTransactionBytesK = static_cast<uint32_t>(
         cutlass::bits_to_bytes(cosize(take<0,2>(SmemLayoutSFK{})) * cute::sizeof_bits_v<ElementSF>) +
-        cutlass::bits_to_bytes(cosize(take<0,2>(SmemLayoutDS{})) * cute::sizeof_bits_v<float>) +
+        cutlass::bits_to_bytes(cosize(take<0,2>(SmemLayoutDS{})) * cute::sizeof_bits_v<ElementDS>) +
         cutlass::bits_to_bytes(size(take<0,2>(SmemLayoutK{})) * sizeof_bits<Element>::value));
     
     static constexpr uint32_t TmaTransactionBytesV = static_cast<uint32_t>(
@@ -170,7 +171,7 @@ struct CollectiveMainloopFwd {
         ShapeSF const shape_SFK{};
         ElementSF const* ptr_SFVt{nullptr};
         ShapeSF const shape_SFVt{};
-        float const* ptr_ds;
+        ElementDS const* ptr_ds;
         ShapeQKV const shape_ds;
         StrideQKV const stride_ds;
         float const softmax_scale_log2;
@@ -689,13 +690,39 @@ struct CollectiveMainloopFwd {
         //     cute::gemm(tiled_mma_pv, make_zip_tensor(tOrP(_, _, block_id), tOrSFP(_, _, block_id)), make_zip_tensor(tOrVt(_, _, block_id), tOrSFVt(_, _, block_id)), tOrO);
         // };
         auto add_delta_s = [&](auto& acc) {
+#ifdef E130_BF16_DELTA
+            auto tSsDS_stage = recast<uint64_t>(sDS(_, _, smem_pipe_read_k.index()));
+            auto acc_float4 = recast<float4>(acc);
+            auto expand_bf16x4 = [](uint64_t bits) {
+#ifdef E130_BF16_CVT
+                float f0, f1, f2, f3;
+                asm volatile("cvt.f32.bf16 %0, %1;" : "=f"(f0) : "h"(uint16_t(bits)));
+                asm volatile("cvt.f32.bf16 %0, %1;" : "=f"(f1) : "h"(uint16_t(bits >> 16)));
+                asm volatile("cvt.f32.bf16 %0, %1;" : "=f"(f2) : "h"(uint16_t(bits >> 32)));
+                asm volatile("cvt.f32.bf16 %0, %1;" : "=f"(f3) : "h"(uint16_t(bits >> 48)));
+                return make_float4(f0, f1, f2, f3);
+#else
+                return make_float4(
+                    __uint_as_float(uint32_t(bits & 0xffffu) << 16),
+                    __uint_as_float(uint32_t((bits >> 16) & 0xffffu) << 16),
+                    __uint_as_float(uint32_t((bits >> 32) & 0xffffu) << 16),
+                    __uint_as_float(uint32_t((bits >> 48) & 0xffffu) << 16));
+#endif
+            };
+#else
             auto tSsDS_stage = recast<float4>(sDS(_, _, smem_pipe_read_k.index()));
             auto acc_float4 = recast<float4>(acc);
+#endif
             int quad_id = (threadIdx.x % 4) * 2;
             for (int i = 0; i < 4; i++) {
                 auto num = quad_id + i * 8;
+#ifdef E130_BF16_DELTA
+                float4 delta_s_0 = expand_bf16x4(tSsDS_stage(make_coord(_0{}, _0{}), make_coord(num, _0{})));
+                float4 delta_s_1 = expand_bf16x4(tSsDS_stage(make_coord(_0{}, _0{}), make_coord(num + 1, _0{})));
+#else
                 float4 delta_s_0 = tSsDS_stage(make_coord(_0{}, _0{}), make_coord(num, _0{}));
                 float4 delta_s_1 = tSsDS_stage(make_coord(_0{}, _0{}), make_coord(num + 1, _0{}));
+#endif
                 acc_float4(make_coord(make_coord(_0{}, _0{}), _0{}), _0{}, i) = delta_s_0;
                 acc_float4(make_coord(make_coord(_0{}, _0{}), _1{}), _0{}, i) = delta_s_0;
                 acc_float4(make_coord(make_coord(_0{}, _1{}), _0{}), _0{}, i) = delta_s_1;
@@ -738,6 +765,7 @@ struct CollectiveMainloopFwd {
             CUTLASS_PRAGMA_UNROLL
             for (int i = 0; i < size(tSrS); ++i) {
                 if constexpr (!Is_causal) {  // Just masking based on col
+#ifndef E130_DELTA_TAIL_MASK
                     // K's FP4 pack permutes token rows within each 32-key group.
                     // MMA columns address that physical order, while the unpadded
                     // length is a logical-token boundary.
@@ -747,6 +775,7 @@ struct CollectiveMainloopFwd {
                                       (local_col / 8) * 2 +
                                       ((local_col % 8) / 2) * 8 + local_col % 2;
                     if (logical_col >= int(unpadded_seqlen_k - n_block * kBlockN)) { tSrS(i) = -INFINITY; }
+#endif
                 } else { 
                     if (int(get<1>(tScS(i))) >= std::min(seqlen_k - n_block * kBlockN,
                                                         col_limit_causal(int(get<0>(tScS(i))), n_block))) {

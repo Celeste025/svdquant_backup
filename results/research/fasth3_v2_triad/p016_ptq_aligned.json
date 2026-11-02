@@ -1,0 +1,459 @@
+{
+  "arm": "ptq",
+  "prompt_id": 16,
+  "seed": 20026,
+  "source": "/data1/models/svdquant-wjq/models/fastvideo-v2-triad/ptq/diffusion_models/fastvideo_fasth3_8step_v2_pruned_nvfp4.safetensors",
+  "width": 1024,
+  "height": 576,
+  "frames": 124,
+  "workflow": {
+    "1": {
+      "class_type": "UNETLoader",
+      "inputs": {
+        "unet_name": "fastvideo_fasth3_8step_v2_pruned_nvfp4.safetensors",
+        "weight_dtype": "default"
+      }
+    },
+    "2": {
+      "class_type": "CLIPLoader",
+      "inputs": {
+        "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "type": "minimax"
+      }
+    },
+    "3": {
+      "class_type": "VAELoader",
+      "inputs": {
+        "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+      }
+    },
+    "4": {
+      "class_type": "VAELoader",
+      "inputs": {
+        "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+      }
+    },
+    "5": {
+      "class_type": "MiniMaxH3ImageToVideo",
+      "inputs": {
+        "clip": [
+          "2",
+          0
+        ],
+        "vae": [
+          "3",
+          0
+        ],
+        "prompt": "# Core Summary\nA high-octane FPV chase sequence follows a sleek flying car weaving through a narrow, ancient cliffside city alley before bursting into an open valley. The clip utilizes a 10mm ultra-wide lens with edge distortion and unstable synchronized camera motion to create an immersive, adrenaline-fueled experience. The narrative progresses from a tight, dangerous drift in the city, through a slow-mo obstacle dodge, culminating in a Hitchcock dolly zoom turn that releases into a sunlit valley with a rainbow. The structure is a multi-shot progression (3 shots) designed to maximize pacing and visual impact within 15 seconds.\n\n# Scene\n[shot1][00:00-00:05] Narrow alleyway carved into ancient megalithic stone cliffs. Weathered stone textures with rough displacement details. Early morning sunlight strikes from the front side, casting long shadows. Air shimmers with heat distortion from thrusters. Colorful fabrics hang on lines between buildings.\n[shot2][00:05-00:09] Same alley environment, focusing on a collapsing stone archway ahead. Debris and gravel suspended in air. Lighting remains high dynamic range early morning.\n[shot3][00:09-00:15] Transition from cramped alley to open valley. Massive vertical drop-off with mist rising from waterfalls below. Sunlight creates volumetric beams and spectral dispersion (rainbow) in the mist. Sky is clear blue.\n\n**Audio Description**: High-pitched electric propulsion roar dominates, layered with cracking stone and wind shear sounds. Rhythm accelerates with the car's speed. At the valley burst, sound opens up to a wide, echoing release with ambient wind.\n\n# Subjects Description\n<ID_A> (Flying Car): Sleek, streamlined metallic shell with aerodynamic curves. Pale blue plasma glow emits from rear thrusters. Surface reflects rim light sharply. No visible driver, autonomous or cockpit obscured by glare.\n**Vocal Characteristics**: None. Emits high-frequency electric turbine whine and bass-heavy thruster rumble.\n\n# Dynamic Narrative\n[shot1][00:00-00:05] **FPV Follow Shot**. Camera locks behind <ID_A>, maintaining highly synchronized unstable motion with large roll movements and forced vibration. <ID_A> performs nonlinear drifting on the narrow cliff road, hugging the stone walls. 10mm lens creates obvious physical distortion and stretching at frame edges. Pale blue plasma glow from thrusters causes intense heat distortion in the air. <ID_A> passes close to clotheslines, wake lifts colorful fabrics which fragment into afterimages. Sound of electric propulsion roar and wind shear builds.\n[shot2][00:05-00:09] **Snap-Zoom to Slow-Mo**. <ID_A> approaches a collapsing archway. Camera executes snap-zoom movement. As <ID_A> dodges falling debris, image enters brief 120fps slow-motion. Flying gravel and stone fragments hang suspended in air, detailed against the light. <ID_A> banks sharply left to avoid collision. Instantly switches back to 2.5x speed forward motion. Sound dips to a muffled bass thrum during slow-mo, then cracks back to high-pitched roar.\n[shot3][00:09-00:15] **Dolly Zoom & Release**. <ID_A> approaches a sharp cliffside turn. Camera uses Hitchcock dolly zoom to create spatial compression with strong centripetal motion blur around the frame. <ID_A> bursts from the cramped alley into the open valley. Camera stabilizes slightly as view expands. Mist and waterfalls below form a vivid rainbow. <ID_A> dives toward the valley floor, disappearing into the light. Sound design reaches a sudden release moment, echoing into the open space.\n\n# Style, Color & Aesthetics\nVisual style is high-octane sci-fi action with an ancient futurism aesthetic. Color palette features warm stone greys and browns contrasted with cool pale blue plasma glow and vibrant fabric colors. Lighting is early morning HDR, with jumping rim light on the metallic shell and realistic volumetric light in the valley. Image quality is high resolution with intentional lens distortion and motion blur for speed sensation.\n\n# Atmosphere & Emotion\nAdrenaline-surging, deeply immersive, and epic. The mood emphasizes an adventurous thrill of walking on a knife's edge, transitioning from claustrophobic danger to liberating openness. The viewer should feel the G-force and the sudden breath of fresh air at the end.",
+        "width": 1024,
+        "height": 576,
+        "length": 124
+      }
+    },
+    "6": {
+      "class_type": "MiniMaxH3SigmaShift",
+      "inputs": {
+        "model": [
+          "1",
+          0
+        ],
+        "shift_video": 10.0,
+        "shift_audio": 3.0
+      }
+    },
+    "7": {
+      "class_type": "BasicGuider",
+      "inputs": {
+        "model": [
+          "8",
+          0
+        ],
+        "conditioning": [
+          "5",
+          0
+        ]
+      }
+    },
+    "9": {
+      "class_type": "BasicScheduler",
+      "inputs": {
+        "model": [
+          "8",
+          0
+        ],
+        "scheduler": "simple",
+        "steps": 8,
+        "denoise": 1.0
+      }
+    },
+    "10": {
+      "class_type": "KSamplerSelect",
+      "inputs": {
+        "sampler_name": "res_multistep"
+      }
+    },
+    "11": {
+      "class_type": "RandomNoise",
+      "inputs": {
+        "noise_seed": 20026
+      }
+    },
+    "12": {
+      "class_type": "SamplerCustomAdvanced",
+      "inputs": {
+        "noise": [
+          "11",
+          0
+        ],
+        "guider": [
+          "7",
+          0
+        ],
+        "sampler": [
+          "10",
+          0
+        ],
+        "sigmas": [
+          "9",
+          0
+        ],
+        "latent_image": [
+          "5",
+          1
+        ]
+      }
+    },
+    "13": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": [
+          "12",
+          0
+        ],
+        "vae": [
+          "3",
+          0
+        ]
+      }
+    },
+    "14": {
+      "class_type": "VAEDecodeAudio",
+      "inputs": {
+        "samples": [
+          "12",
+          0
+        ],
+        "vae": [
+          "4",
+          0
+        ]
+      }
+    },
+    "15": {
+      "class_type": "CreateVideo",
+      "inputs": {
+        "images": [
+          "13",
+          0
+        ],
+        "audio": [
+          "14",
+          0
+        ],
+        "fps": 24.0
+      }
+    },
+    "16": {
+      "class_type": "SaveVideo",
+      "inputs": {
+        "video": [
+          "15",
+          0
+        ],
+        "filename_prefix": "fasth3_v2_triad/p016_ptq_seed20026",
+        "format": "mp4",
+        "format.codec": "h264"
+      }
+    },
+    "8": {
+      "class_type": "BlockSparseAttention",
+      "inputs": {
+        "model": [
+          "6",
+          0
+        ],
+        "selection": "vsa",
+        "selection.keep_percent": 20.0,
+        "start_percent": 0.0,
+        "end_percent": 1.0,
+        "dense_blocks": "",
+        "min_tokens": 12288,
+        "extra_tokens": 0,
+        "sink_conditioning": "exact_kv_and_rows",
+        "verbose": false
+      }
+    }
+  },
+  "result": {
+    "prompt": [
+      4,
+      "14495bfc-a012-4f74-97c5-a99dbeedf669",
+      {
+        "1": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "fastvideo_fasth3_8step_v2_pruned_nvfp4.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "2": {
+          "class_type": "CLIPLoader",
+          "inputs": {
+            "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+            "type": "minimax"
+          }
+        },
+        "3": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+          }
+        },
+        "4": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "5": {
+          "class_type": "MiniMaxH3ImageToVideo",
+          "inputs": {
+            "clip": [
+              "2",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "prompt": "# Core Summary\nA high-octane FPV chase sequence follows a sleek flying car weaving through a narrow, ancient cliffside city alley before bursting into an open valley. The clip utilizes a 10mm ultra-wide lens with edge distortion and unstable synchronized camera motion to create an immersive, adrenaline-fueled experience. The narrative progresses from a tight, dangerous drift in the city, through a slow-mo obstacle dodge, culminating in a Hitchcock dolly zoom turn that releases into a sunlit valley with a rainbow. The structure is a multi-shot progression (3 shots) designed to maximize pacing and visual impact within 15 seconds.\n\n# Scene\n[shot1][00:00-00:05] Narrow alleyway carved into ancient megalithic stone cliffs. Weathered stone textures with rough displacement details. Early morning sunlight strikes from the front side, casting long shadows. Air shimmers with heat distortion from thrusters. Colorful fabrics hang on lines between buildings.\n[shot2][00:05-00:09] Same alley environment, focusing on a collapsing stone archway ahead. Debris and gravel suspended in air. Lighting remains high dynamic range early morning.\n[shot3][00:09-00:15] Transition from cramped alley to open valley. Massive vertical drop-off with mist rising from waterfalls below. Sunlight creates volumetric beams and spectral dispersion (rainbow) in the mist. Sky is clear blue.\n\n**Audio Description**: High-pitched electric propulsion roar dominates, layered with cracking stone and wind shear sounds. Rhythm accelerates with the car's speed. At the valley burst, sound opens up to a wide, echoing release with ambient wind.\n\n# Subjects Description\n<ID_A> (Flying Car): Sleek, streamlined metallic shell with aerodynamic curves. Pale blue plasma glow emits from rear thrusters. Surface reflects rim light sharply. No visible driver, autonomous or cockpit obscured by glare.\n**Vocal Characteristics**: None. Emits high-frequency electric turbine whine and bass-heavy thruster rumble.\n\n# Dynamic Narrative\n[shot1][00:00-00:05] **FPV Follow Shot**. Camera locks behind <ID_A>, maintaining highly synchronized unstable motion with large roll movements and forced vibration. <ID_A> performs nonlinear drifting on the narrow cliff road, hugging the stone walls. 10mm lens creates obvious physical distortion and stretching at frame edges. Pale blue plasma glow from thrusters causes intense heat distortion in the air. <ID_A> passes close to clotheslines, wake lifts colorful fabrics which fragment into afterimages. Sound of electric propulsion roar and wind shear builds.\n[shot2][00:05-00:09] **Snap-Zoom to Slow-Mo**. <ID_A> approaches a collapsing archway. Camera executes snap-zoom movement. As <ID_A> dodges falling debris, image enters brief 120fps slow-motion. Flying gravel and stone fragments hang suspended in air, detailed against the light. <ID_A> banks sharply left to avoid collision. Instantly switches back to 2.5x speed forward motion. Sound dips to a muffled bass thrum during slow-mo, then cracks back to high-pitched roar.\n[shot3][00:09-00:15] **Dolly Zoom & Release**. <ID_A> approaches a sharp cliffside turn. Camera uses Hitchcock dolly zoom to create spatial compression with strong centripetal motion blur around the frame. <ID_A> bursts from the cramped alley into the open valley. Camera stabilizes slightly as view expands. Mist and waterfalls below form a vivid rainbow. <ID_A> dives toward the valley floor, disappearing into the light. Sound design reaches a sudden release moment, echoing into the open space.\n\n# Style, Color & Aesthetics\nVisual style is high-octane sci-fi action with an ancient futurism aesthetic. Color palette features warm stone greys and browns contrasted with cool pale blue plasma glow and vibrant fabric colors. Lighting is early morning HDR, with jumping rim light on the metallic shell and realistic volumetric light in the valley. Image quality is high resolution with intentional lens distortion and motion blur for speed sensation.\n\n# Atmosphere & Emotion\nAdrenaline-surging, deeply immersive, and epic. The mood emphasizes an adventurous thrill of walking on a knife's edge, transitioning from claustrophobic danger to liberating openness. The viewer should feel the G-force and the sudden breath of fresh air at the end.",
+            "width": 1024,
+            "height": 576,
+            "length": 124
+          }
+        },
+        "6": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "1",
+              0
+            ],
+            "shift_video": 10.0,
+            "shift_audio": 3.0
+          }
+        },
+        "7": {
+          "class_type": "BasicGuider",
+          "inputs": {
+            "model": [
+              "8",
+              0
+            ],
+            "conditioning": [
+              "5",
+              0
+            ]
+          }
+        },
+        "9": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "8",
+              0
+            ],
+            "scheduler": "simple",
+            "steps": 8,
+            "denoise": 1.0
+          }
+        },
+        "10": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "res_multistep"
+          }
+        },
+        "11": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 20026
+          }
+        },
+        "12": {
+          "class_type": "SamplerCustomAdvanced",
+          "inputs": {
+            "noise": [
+              "11",
+              0
+            ],
+            "guider": [
+              "7",
+              0
+            ],
+            "sampler": [
+              "10",
+              0
+            ],
+            "sigmas": [
+              "9",
+              0
+            ],
+            "latent_image": [
+              "5",
+              1
+            ]
+          }
+        },
+        "13": {
+          "class_type": "VAEDecode",
+          "inputs": {
+            "samples": [
+              "12",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ]
+          }
+        },
+        "14": {
+          "class_type": "VAEDecodeAudio",
+          "inputs": {
+            "samples": [
+              "12",
+              0
+            ],
+            "vae": [
+              "4",
+              0
+            ]
+          }
+        },
+        "15": {
+          "class_type": "CreateVideo",
+          "inputs": {
+            "images": [
+              "13",
+              0
+            ],
+            "audio": [
+              "14",
+              0
+            ],
+            "fps": 24.0
+          }
+        },
+        "16": {
+          "class_type": "SaveVideo",
+          "inputs": {
+            "video": [
+              "15",
+              0
+            ],
+            "filename_prefix": "fasth3_v2_triad/p016_ptq_seed20026",
+            "format": "mp4",
+            "format.codec": "h264"
+          }
+        },
+        "8": {
+          "class_type": "BlockSparseAttention",
+          "inputs": {
+            "model": [
+              "6",
+              0
+            ],
+            "selection": "vsa",
+            "selection.keep_percent": 20.0,
+            "start_percent": 0.0,
+            "end_percent": 1.0,
+            "dense_blocks": "",
+            "min_tokens": 12288,
+            "extra_tokens": 0,
+            "sink_conditioning": "exact_kv_and_rows",
+            "verbose": false
+          }
+        }
+      },
+      {
+        "client_id": "fasth3-v2-triad",
+        "create_time": 1793288794046
+      },
+      [
+        "16"
+      ]
+    ],
+    "outputs": {
+      "16": {
+        "images": [
+          {
+            "filename": "p016_ptq_seed20026_00002_.mp4",
+            "subfolder": "fasth3_v2_triad",
+            "type": "output"
+          }
+        ],
+        "animated": [
+          true
+        ]
+      }
+    },
+    "status": {
+      "status_str": "success",
+      "completed": true,
+      "messages": [
+        [
+          "execution_start",
+          {
+            "prompt_id": "14495bfc-a012-4f74-97c5-a99dbeedf669",
+            "timestamp": 1793288835762
+          }
+        ],
+        [
+          "execution_cached",
+          {
+            "nodes": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "9",
+              "10",
+              "11",
+              "8"
+            ],
+            "prompt_id": "14495bfc-a012-4f74-97c5-a99dbeedf669",
+            "timestamp": 1793288835765
+          }
+        ],
+        [
+          "execution_success",
+          {
+            "prompt_id": "14495bfc-a012-4f74-97c5-a99dbeedf669",
+            "timestamp": 1793288884225
+          }
+        ]
+      ]
+    },
+    "meta": {
+      "16": {
+        "node_id": "16",
+        "display_node": "16",
+        "parent_node": null,
+        "real_node_id": "16"
+      }
+    }
+  }
+}

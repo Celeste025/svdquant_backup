@@ -1,0 +1,81 @@
+{
+  "format": "e109-h3-sage3-prescale-two-scope-v1",
+  "timestamp_utc": "2026-10-20T07:35:52.044413+00:00",
+  "source": "/home/wjq/workspace/svdquant-exp/third_party/SageAttention3_prescale/sageattention3_blackwell",
+  "module": "sageattn3_pvhad",
+  "gpu": 0,
+  "gpu_name": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "capture": "/data1/models/svdquant-wjq/research/20261014/E098/h3_p1_s0_b25_480x832_73f_qkv.pt",
+  "shape_hnd": [
+    1,
+    56,
+    9482,
+    128
+  ],
+  "is_causal": false,
+  "per_block_mean": true,
+  "p_hadamard": false,
+  "fp4attn_sha256": "b06297e59553d8ba54e4adfe5ef4ee06cfc0a3436ca260c4a795267e689a4301",
+  "operations": 2577851465728,
+  "operation_convention": "4*B*H*N*N*D, MAC=2 ops",
+  "timing": "CUDA event mean of 12 batch means x 12 calls; 25 warmups",
+  "online_k_policy": "Restored disposable K before each event; copy excluded",
+  "core_policy": "QKV preprocess excluded; core result cropped only for accuracy",
+  "results": {
+    "online": {
+      "timing": {
+        "mean_ms": 7.707874678903156,
+        "median_ms": 7.70846406618754,
+        "std_batch_mean_ms": 0.002219729920599717,
+        "cv_batch_mean_percent": 0.028798209792839913,
+        "batch_mean_ms": [
+          7.70413601398468,
+          7.709698637326558,
+          7.7064240376154585,
+          7.710370739301045,
+          7.70908264319102,
+          7.706960002581279,
+          7.70908002058665,
+          7.710301319758098,
+          7.708250721295674,
+          7.7036159833272295,
+          7.7078986167907715,
+          7.708677411079407
+        ],
+        "min_call_ms": 7.6809282302856445,
+        "max_call_ms": 7.735263824462891,
+        "calls": 144
+      },
+      "tops": 334.44387371576113,
+      "nmse_vs_bf16": 0.007502339937603194
+    },
+    "core_only": {
+      "timing": {
+        "mean_ms": 4.60195353296068,
+        "median_ms": 4.6195919911066685,
+        "std_batch_mean_ms": 0.036896013821907436,
+        "cv_batch_mean_percent": 0.8017467703149597,
+        "batch_mean_ms": [
+          4.530914664268494,
+          4.533480008443196,
+          4.566928029060364,
+          4.60374120871226,
+          4.61191193262736,
+          4.6172639926274615,
+          4.623506665229797,
+          4.6219199895858765,
+          4.628058632214864,
+          4.62940267721812,
+          4.626679976781209,
+          4.629634618759155
+        ],
+        "min_call_ms": 4.516895771026611,
+        "max_call_ms": 4.649375915527344,
+        "calls": 144
+      },
+      "tops": 560.1646012426231,
+      "nmse_vs_bf16": 0.007502339937603194,
+      "nmse_vs_online": 0.0
+    }
+  }
+}

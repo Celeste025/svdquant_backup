@@ -1,0 +1,960 @@
+{
+  "format": "e113-h3-attention-denoise-v1",
+  "status": "denoise_complete",
+  "case": "p016",
+  "arm": "svdquant_bf16_attention",
+  "prompt_id": 16,
+  "seed": 20026,
+  "prompt": "# Core Summary\nA high-octane FPV chase sequence follows a sleek flying car weaving through a narrow, ancient cliffside city alley before bursting into an open valley. The clip utilizes a 10mm ultra-wide lens with edge distortion and unstable synchronized camera motion to create an immersive, adrenaline-fueled experience. The narrative progresses from a tight, dangerous drift in the city, through a slow-mo obstacle dodge, culminating in a Hitchcock dolly zoom turn that releases into a sunlit valley with a rainbow. The structure is a multi-shot progression (3 shots) designed to maximize pacing and visual impact within 15 seconds.\n\n# Scene\n[shot1][00:00-00:05] Narrow alleyway carved into ancient megalithic stone cliffs. Weathered stone textures with rough displacement details. Early morning sunlight strikes from the front side, casting long shadows. Air shimmers with heat distortion from thrusters. Colorful fabrics hang on lines between buildings.\n[shot2][00:05-00:09] Same alley environment, focusing on a collapsing stone archway ahead. Debris and gravel suspended in air. Lighting remains high dynamic range early morning.\n[shot3][00:09-00:15] Transition from cramped alley to open valley. Massive vertical drop-off with mist rising from waterfalls below. Sunlight creates volumetric beams and spectral dispersion (rainbow) in the mist. Sky is clear blue.\n\n**Audio Description**: High-pitched electric propulsion roar dominates, layered with cracking stone and wind shear sounds. Rhythm accelerates with the car's speed. At the valley burst, sound opens up to a wide, echoing release with ambient wind.\n\n# Subjects Description\n<ID_A> (Flying Car): Sleek, streamlined metallic shell with aerodynamic curves. Pale blue plasma glow emits from rear thrusters. Surface reflects rim light sharply. No visible driver, autonomous or cockpit obscured by glare.\n**Vocal Characteristics**: None. Emits high-frequency electric turbine whine and bass-heavy thruster rumble.\n\n# Dynamic Narrative\n[shot1][00:00-00:05] **FPV Follow Shot**. Camera locks behind <ID_A>, maintaining highly synchronized unstable motion with large roll movements and forced vibration. <ID_A> performs nonlinear drifting on the narrow cliff road, hugging the stone walls. 10mm lens creates obvious physical distortion and stretching at frame edges. Pale blue plasma glow from thrusters causes intense heat distortion in the air. <ID_A> passes close to clotheslines, wake lifts colorful fabrics which fragment into afterimages. Sound of electric propulsion roar and wind shear builds.\n[shot2][00:05-00:09] **Snap-Zoom to Slow-Mo**. <ID_A> approaches a collapsing archway. Camera executes snap-zoom movement. As <ID_A> dodges falling debris, image enters brief 120fps slow-motion. Flying gravel and stone fragments hang suspended in air, detailed against the light. <ID_A> banks sharply left to avoid collision. Instantly switches back to 2.5x speed forward motion. Sound dips to a muffled bass thrum during slow-mo, then cracks back to high-pitched roar.\n[shot3][00:09-00:15] **Dolly Zoom & Release**. <ID_A> approaches a sharp cliffside turn. Camera uses Hitchcock dolly zoom to create spatial compression with strong centripetal motion blur around the frame. <ID_A> bursts from the cramped alley into the open valley. Camera stabilizes slightly as view expands. Mist and waterfalls below form a vivid rainbow. <ID_A> dives toward the valley floor, disappearing into the light. Sound design reaches a sudden release moment, echoing into the open space.\n\n# Style, Color & Aesthetics\nVisual style is high-octane sci-fi action with an ancient futurism aesthetic. Color palette features warm stone greys and browns contrasted with cool pale blue plasma glow and vibrant fabric colors. Lighting is early morning HDR, with jumping rim light on the metallic shell and realistic volumetric light in the valley. Image quality is high resolution with intentional lens distortion and motion blur for speed sensation.\n\n# Atmosphere & Emotion\nAdrenaline-surging, deeply immersive, and epic. The mood emphasizes an adventurous thrill of walking on a knife's edge, transitioning from claustrophobic danger to liberating openness. The viewer should feel the G-force and the sudden breath of fresh air at the end.",
+  "settings": {
+    "height": 576,
+    "width": 1024,
+    "frames": 124,
+    "steps": 20,
+    "cfg_scale": 1.0,
+    "flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "tiled": true
+  },
+  "plan_sha256": "2f9ef83b00ea8f3a3444f28cca92ff8d047eef61c44bff3d4f50ec26637d666a",
+  "steps": [
+    {
+      "step": 0,
+      "dit_seconds": 24.882077093003318,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22677,
+      "video_output_energy": 3.647456407546997,
+      "audio_output_energy": 1.2399091720581055,
+      "output_sha256": {
+        "video": "b6f65a57f9741c0b533d84c5abc15cb34b9fd3aab74f89215933074a5ae7d8bb",
+        "audio": "7695ae0fb01859a58fcdd883764713cf4b3cbe0a7fef6dee32dd4944ef50248e"
+      },
+      "attention_main_rows": [
+        {
+          "block": 0,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 1,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 2,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 3,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 4,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 5,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 6,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 7,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 8,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 9,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 10,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 11,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 12,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 13,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 14,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 15,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 16,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 17,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 18,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 19,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 20,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 21,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 22,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 23,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 24,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 25,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 26,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 27,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 28,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 29,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 30,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 31,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 32,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 33,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 34,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 35,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 36,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 37,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 38,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 39,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 40,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 41,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 42,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 43,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 44,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 45,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 46,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 47,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 48,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 49,
+          "input_shape": [
+            22720,
+            56,
+            128
+          ],
+          "valid_length": 22677,
+          "padding_length": 43,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "dit_seconds": 26.292421863006894,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22677,
+      "video_output_energy": 2.6451361179351807,
+      "audio_output_energy": 1.200196623802185
+    },
+    {
+      "step": 2,
+      "dit_seconds": 26.02220057800878,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22677,
+      "video_output_energy": 2.505032777786255,
+      "audio_output_energy": 1.179908275604248
+    },
+    {
+      "step": 3,
+      "dit_seconds": 25.88773946702713,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22677,
+      "video_output_energy": 2.425405740737915,
+      "audio_output_energy": 1.1284297704696655
+    },
+    {
+      "step": 4,
+      "dit_seconds": 26.35956106899539,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22677,
+      "video_output_energy": 2.4077484607696533,
+      "audio_output_energy": 1.1661295890808105
+    },
+    {
+      "step": 5,
+      "dit_seconds": 25.97460852601216,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22677,
+      "video_output_energy": 2.1779980659484863,
+      "audio_output_energy": 1.1222472190856934
+    },
+    {
+      "step": 6,
+      "dit_seconds": 26.502737307018833,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22677,
+      "video_output_energy": 2.0525002479553223,
+      "audio_output_energy": 1.11201012134552
+    },
+    {
+      "step": 7,
+      "dit_seconds": 27.231818219996057,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22677,
+      "video_output_energy": 1.9835755825042725,
+      "audio_output_energy": 1.1093051433563232
+    },
+    {
+      "step": 8,
+      "dit_seconds": 25.998364456027048,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22677,
+      "video_output_energy": 1.9726043939590454,
+      "audio_output_energy": 1.0921297073364258
+    },
+    {
+      "step": 9,
+      "dit_seconds": 27.567269237013534,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22677,
+      "video_output_energy": 1.9599684476852417,
+      "audio_output_energy": 1.0368609428405762
+    },
+    {
+      "step": 10,
+      "dit_seconds": 26.27496162598254,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22677,
+      "video_output_energy": 1.9634431600570679,
+      "audio_output_energy": 0.9931405186653137
+    },
+    {
+      "step": 11,
+      "dit_seconds": 26.773077705991454,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22677,
+      "video_output_energy": 1.9622774124145508,
+      "audio_output_energy": 0.9750101566314697
+    },
+    {
+      "step": 12,
+      "dit_seconds": 27.090939949004678,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22677,
+      "video_output_energy": 1.9729830026626587,
+      "audio_output_energy": 0.9183838963508606
+    },
+    {
+      "step": 13,
+      "dit_seconds": 25.951526977994945,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22677,
+      "video_output_energy": 1.968233585357666,
+      "audio_output_energy": 0.8732864260673523
+    },
+    {
+      "step": 14,
+      "dit_seconds": 27.756640156992944,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22677,
+      "video_output_energy": 1.973960518836975,
+      "audio_output_energy": 0.8627310395240784
+    },
+    {
+      "step": 15,
+      "dit_seconds": 26.00601444300264,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22677,
+      "video_output_energy": 1.971303939819336,
+      "audio_output_energy": 0.8279353976249695
+    },
+    {
+      "step": 16,
+      "dit_seconds": 26.810029857995687,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22677,
+      "video_output_energy": 1.9764413833618164,
+      "audio_output_energy": 0.803686261177063
+    },
+    {
+      "step": 17,
+      "dit_seconds": 26.966621686995495,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22677,
+      "video_output_energy": 1.9745094776153564,
+      "audio_output_energy": 0.775637686252594
+    },
+    {
+      "step": 18,
+      "dit_seconds": 26.054928730998654,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22677,
+      "video_output_energy": 1.9507375955581665,
+      "audio_output_energy": 0.7555986642837524
+    },
+    {
+      "step": 19,
+      "dit_seconds": 27.74769919400569,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22677,
+      "video_output_energy": 1.8911367654800415,
+      "audio_output_energy": 0.7005802392959595
+    }
+  ],
+  "started_unix": 1792863713.9892805,
+  "linears": {
+    "count": 200,
+    "format": "NVFP4 W4A4 BF16-GEMM Q/DQ",
+    "rank": 64,
+    "group_size": 16,
+    "tensor_scale": "dynamic",
+    "state": "/home/wjq/workspace/svdquant-exp/results/checkpoints/minimax_h3_svdquant_standard_r64_8p64s/quant_state.pt",
+    "state_sha256": "d199da3e5c89d248653d72b035e57cc505644075f269c6f44cc4c552e1f10f73"
+  },
+  "attention_router": {
+    "mode": "bf16",
+    "sources": {
+      "adapter": {
+        "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_fp4_attention.py",
+        "sha256": "515e28f5fdbe3333ddd87c6dacb08e6c8dd4103ca433d69edf20cf9253269af0",
+        "bytes": 21054
+      },
+      "comfy": {
+        "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit_comfy.py",
+        "sha256": "e8a2eb4cb986ba384052100fdc03984446f3fa35d0ab1e9ebfacffc039a2e8ff",
+        "bytes": 3011
+      },
+      "original_helper": {
+        "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit.py",
+        "sha256": "bd617a4312c70405e916707e1908100b484b2259dfbeba4af7de5bb145206d80",
+        "bytes": 18207
+      }
+    },
+    "main_blocks": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49
+    ],
+    "refiner_blocks": 2,
+    "official_per_block_mean": null,
+    "reference_operations": "Original bound forward preserves QKV, QK RMSNorm, RoPE and out projection",
+    "global_mean_semantics": "Official K centering before padding and Q mean after padding; not no-centering",
+    "metadata_policy": "BF16 and both FP4 modes share prebound CPU main boundaries and deferred actual-cu verification; refiner helper remains unchanged for all modes.",
+    "cpu_fixture_only": false,
+    "e121_arm": "bf16",
+    "corrected_sage3": "/home/wjq/workspace/svdquant-exp/third_party/sage3_h3_maskfix/sageattn3/__init__.py",
+    "split_threshold": null,
+    "e129_arm": "svdquant_bf16_attention",
+    "main_attention": "BF16 SDPA"
+  },
+  "initial_latent_sha256": {
+    "video": "c6e954babd536b4fb5f36770e1adc1ad6cd012e839d08aecea6406a6bc01f4d9",
+    "audio": "25a1dfd8eb0aba82159ad3c9bfbc6572400ee2e741bd05428dd8a4063cf41739"
+  },
+  "terminal_latents": "/data1/models/svdquant-wjq/research/20261025/E129_h3_svdquant_attention/p016/svdquant_bf16_attention/final_latents.pt",
+  "terminal_sha256": "58f6d43e75c7397bd5616708321949cd6c3f855db39bf7e0bcec0a4416e63712",
+  "peak_allocated_gib": 17.859490394592285,
+  "completed_unix": 1792864289.0616963
+}

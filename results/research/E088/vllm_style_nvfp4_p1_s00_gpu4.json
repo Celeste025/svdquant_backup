@@ -1,0 +1,133 @@
+{
+  "format": "h3-vllm-style-nvfp4-linear-v1",
+  "timestamp_utc": "2026-10-14T01:09:04.373960+00:00",
+  "scope": "one H3 blocks.25.mlp.fc2, not a model engine",
+  "device": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "gpu": 0,
+  "torch_version": "2.11.0+cu128",
+  "flashinfer_version": "0.7.0.post1",
+  "backend": "cutlass",
+  "sample": "/data1/models/svdquant-wjq/results/E088_native_bench/h3_block25_p1_s00.pt",
+  "calibration": "/data1/models/svdquant-wjq/results/E088_native_bench/h3_block25_p11_s00_calib.pt",
+  "evaluation_call": "/data1/models/svdquant-wjq/results/E087_timestep_aware/cache_16p20s/p1/sample_p1_s00.pt",
+  "calibration_call": "/data1/models/svdquant-wjq/results/E087_timestep_aware/cache_16p20s/p11/sample_p11_s00.pt",
+  "weight": "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors",
+  "weight_key": "blocks.25.mlp.fc2.weight",
+  "shape": {
+    "M": 22400,
+    "K": 14336,
+    "N": 5376
+  },
+  "calibration_amax": 2512.0,
+  "evaluation_amax": 5152.0,
+  "weight_amax": 3.21875,
+  "input_global_scale": 1.070063694267516,
+  "weight_global_scale": 835.1067961165048,
+  "quantized_contract": {
+    "codes_shape": [
+      22400,
+      7168
+    ],
+    "codes_dtype": "torch.uint8",
+    "scales_shape": [
+      22400,
+      896
+    ],
+    "scales_dtype": "torch.uint8"
+  },
+  "output_nmse": 0.010424480773508549,
+  "output_relative_rms_error": 0.1021003465885819,
+  "output_cosine": 0.9947797060012817,
+  "eval_derived_scale_accuracy_control_nmse": 0.00964315701276064,
+  "measurements": {
+    "bf16": {
+      "median_ms": 18.153262329101562,
+      "mean_ms": 20.388497369939632,
+      "cv_percent": 28.70273117799004,
+      "min_ms": 15.293527221679687,
+      "max_ms": 30.213882446289062,
+      "batch_ms": [
+        16.941311645507813,
+        15.416030883789062,
+        20.57703552246094,
+        15.293527221679687,
+        16.0849853515625,
+        16.000762939453125,
+        18.532492065429686,
+        18.153262329101562,
+        27.023431396484376,
+        30.036749267578124,
+        30.213882446289062
+      ]
+    },
+    "nvfp4_quantize": {
+      "median_ms": 1.718114471435547,
+      "mean_ms": 1.717555132779208,
+      "cv_percent": 0.23224726283699637,
+      "min_ms": 1.711440086364746,
+      "max_ms": 1.7240631103515625,
+      "batch_ms": [
+        1.7226112365722657,
+        1.7189287185668944,
+        1.718114471435547,
+        1.7240631103515625,
+        1.718667221069336,
+        1.7173559188842773,
+        1.7169544219970703,
+        1.712312889099121,
+        1.7132080078125,
+        1.7194503784179687,
+        1.711440086364746
+      ]
+    },
+    "nvfp4_gemm_prepacked": {
+      "median_ms": 8.935735321044922,
+      "mean_ms": 8.786804337935013,
+      "cv_percent": 3.9833526808280135,
+      "min_ms": 7.8088836669921875,
+      "max_ms": 8.967238616943359,
+      "batch_ms": [
+        8.956302642822266,
+        8.937531280517579,
+        8.96075897216797,
+        8.9339599609375,
+        8.932327270507812,
+        8.967238616943359,
+        8.935735321044922,
+        8.951008605957032,
+        8.544058990478515,
+        8.727042388916015,
+        7.8088836669921875
+      ]
+    },
+    "nvfp4_full": {
+      "median_ms": 5.570451354980468,
+      "mean_ms": 5.674881987138228,
+      "cv_percent": 24.35505653640121,
+      "min_ms": 4.91955680847168,
+      "max_ms": 9.737411499023438,
+      "batch_ms": [
+        9.737411499023438,
+        4.91955680847168,
+        4.955725479125976,
+        4.954262542724609,
+        4.9539039611816404,
+        5.025191879272461,
+        5.586752700805664,
+        5.574687957763672,
+        5.574989700317383,
+        5.570767974853515,
+        5.570451354980468
+      ]
+    }
+  },
+  "validity": {
+    "calibration_disjoint": true,
+    "weight_pack_excluded": true,
+    "online_block16_quant_included": true,
+    "external_global_amax_excluded": true,
+    "bias": "none in original FC2",
+    "stable_cv_threshold_percent": 3.0,
+    "stable": false
+  }
+}

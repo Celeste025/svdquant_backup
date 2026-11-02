@@ -1,0 +1,74 @@
+{
+  "format": "e154-exact-route-reuse-v1",
+  "timestamp_utc": "2026-11-01T08:05:03.469902+00:00",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "capture": "/data1/models/svdquant-wjq/research/20261101/E151_long_h3_attention/race_768p_124f_step0_block0.pt",
+  "shape_bshd": [
+    1,
+    38661,
+    56,
+    128
+  ],
+  "video_grid": [
+    37,
+    24,
+    42
+  ],
+  "prefix_tokens": 1365,
+  "layer": 0,
+  "policy": {
+    "query_block": 64,
+    "skip_fraction": 0.75,
+    "retained_nvfp4_fraction": 0.6,
+    "retained_int8_fraction": 0.4,
+    "first_step": "dense INT8; actual quantized QK 64x64 tile maximum captured in kernel",
+    "later_steps": "reuse cached first-step route; no DraftMap pooling/scoring/sorting"
+  },
+  "checks": {
+    "cache_entries": 1,
+    "cache_bytes_one_layer": 10343428,
+    "reuse_draftmap_and_route_selection_mocked_to_raise": true,
+    "first_vs_dense_int8_nmse": 0.0,
+    "reuse_vs_legacy_proxy_route_nmse": 0.008037867857220568,
+    "reuse_vs_dense_int8_nmse": 0.017385060825844696
+  },
+  "timings": {
+    "dense_int8_first_step_capture": {
+      "mean_ms": 259.0736450195312,
+      "median_ms": 242.35609436035156,
+      "min_ms": 215.08758544921875,
+      "samples_ms": [
+        215.08758544921875,
+        237.5413055419922,
+        242.35609436035156,
+        281.5881652832031,
+        318.7950744628906
+      ]
+    },
+    "cached_exact_route_reuse": {
+      "mean_ms": 50.805728912353516,
+      "median_ms": 50.82227325439453,
+      "min_ms": 50.73574447631836,
+      "samples_ms": [
+        50.82227325439453,
+        50.76454544067383,
+        50.862369537353516,
+        50.843711853027344,
+        50.73574447631836
+      ]
+    },
+    "legacy_proxy_route_each_step": {
+      "mean_ms": 54.209676361083986,
+      "median_ms": 54.222206115722656,
+      "min_ms": 54.1497917175293,
+      "samples_ms": [
+        54.1497917175293,
+        54.24764633178711,
+        54.268001556396484,
+        54.222206115722656,
+        54.160736083984375
+      ]
+    }
+  },
+  "status": "complete"
+}

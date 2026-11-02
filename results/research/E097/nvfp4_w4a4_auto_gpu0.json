@@ -1,0 +1,133 @@
+{
+  "format": "h3-vllm-style-nvfp4-linear-v1",
+  "timestamp_utc": "2026-10-14T10:54:30.769076+00:00",
+  "scope": "one H3 blocks.25.mlp.fc2, not a model engine",
+  "device": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "gpu": 0,
+  "torch_version": "2.11.0+cu128",
+  "flashinfer_version": "0.7.0.post1",
+  "backend": "auto",
+  "sample": "/data1/models/svdquant-wjq/results/E088_native_bench/h3_block25_p1_s00.pt",
+  "calibration": "/data1/models/svdquant-wjq/results/E088_native_bench/h3_block25_p11_s00_calib.pt",
+  "evaluation_call": "/data1/models/svdquant-wjq/results/E087_timestep_aware/cache_16p20s/p1/sample_p1_s00.pt",
+  "calibration_call": "/data1/models/svdquant-wjq/results/E087_timestep_aware/cache_16p20s/p11/sample_p11_s00.pt",
+  "weight": "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors",
+  "weight_key": "blocks.25.mlp.fc2.weight",
+  "shape": {
+    "M": 22400,
+    "K": 14336,
+    "N": 5376
+  },
+  "calibration_amax": 2512.0,
+  "evaluation_amax": 5152.0,
+  "weight_amax": 3.21875,
+  "input_global_scale": 1.070063694267516,
+  "weight_global_scale": 835.1067961165048,
+  "quantized_contract": {
+    "codes_shape": [
+      22400,
+      7168
+    ],
+    "codes_dtype": "torch.uint8",
+    "scales_shape": [
+      22400,
+      896
+    ],
+    "scales_dtype": "torch.uint8"
+  },
+  "output_nmse": 0.010424480773508549,
+  "output_relative_rms_error": 0.1021003465885819,
+  "output_cosine": 0.9947797060012817,
+  "eval_derived_scale_accuracy_control_nmse": 0.00964315701276064,
+  "measurements": {
+    "bf16": {
+      "median_ms": 14.058140055338542,
+      "mean_ms": 14.056619725082859,
+      "cv_percent": 0.04072805865830151,
+      "min_ms": 14.048072306315104,
+      "max_ms": 14.063314819335938,
+      "batch_ms": [
+        14.049545288085938,
+        14.048072306315104,
+        14.04985860188802,
+        14.060701497395833,
+        14.05804443359375,
+        14.058479817708333,
+        14.058140055338542,
+        14.062850952148438,
+        14.063314819335938,
+        14.061937459309895,
+        14.051871744791667
+      ]
+    },
+    "nvfp4_quantize": {
+      "median_ms": 0.8114271799723307,
+      "mean_ms": 0.811645964420203,
+      "cv_percent": 0.12781216354340338,
+      "min_ms": 0.8104703903198243,
+      "max_ms": 0.8134592056274415,
+      "batch_ms": [
+        0.8134592056274415,
+        0.8125877380371094,
+        0.8120778401692709,
+        0.8127232233683268,
+        0.8104703903198243,
+        0.8114271799723307,
+        0.81102294921875,
+        0.8105183919270833,
+        0.8106655756632487,
+        0.8123445510864258,
+        0.8108085632324219
+      ]
+    },
+    "nvfp4_gemm_prepacked": {
+      "median_ms": 4.1963551839192705,
+      "mean_ms": 4.197533416748047,
+      "cv_percent": 0.12222300509520187,
+      "min_ms": 4.190205891927083,
+      "max_ms": 4.2056223551432295,
+      "batch_ms": [
+        4.198181406656901,
+        4.19969482421875,
+        4.195305633544922,
+        4.193640645345052,
+        4.1963551839192705,
+        4.202985636393229,
+        4.190205891927083,
+        4.19634780883789,
+        4.1906987508138025,
+        4.203829447428386,
+        4.2056223551432295
+      ]
+    },
+    "nvfp4_full": {
+      "median_ms": 4.9936370849609375,
+      "mean_ms": 4.9935615770744555,
+      "cv_percent": 0.037856677464762886,
+      "min_ms": 4.990774536132813,
+      "max_ms": 4.996310424804688,
+      "batch_ms": [
+        4.9948674519856775,
+        4.993910217285157,
+        4.995897420247396,
+        4.990774536132813,
+        4.992870585123698,
+        4.991274515787761,
+        4.991675821940104,
+        4.9936370849609375,
+        4.995304361979167,
+        4.992654927571615,
+        4.996310424804688
+      ]
+    }
+  },
+  "validity": {
+    "calibration_disjoint": true,
+    "weight_pack_excluded": true,
+    "online_block16_quant_included": true,
+    "external_global_amax_excluded": true,
+    "bias": "none in original FC2",
+    "stable_cv_threshold_percent": 3.0,
+    "stable": true
+  }
+}

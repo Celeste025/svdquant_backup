@@ -1,0 +1,29 @@
+{
+  "format": "h3-e137-axis-permutation-summary-v1",
+  "case": "race",
+  "definition": "decoded H.264 RGB distance to paired BF16 free rollout; a divergence proxy, not perceptual quality",
+  "baseline": {
+    "bf16": "/home/wjq/workspace/svdquant-exp/results/samples/minimax_h3_svdquant_standard_8p64s/p16/bf16_id16_seed20026_576x1024_124f_20steps.mp4",
+    "svdquant": "/home/wjq/workspace/svdquant-exp/results/samples/minimax_h3_svdquant_standard_8p64s/p16/svdquant_id16_seed20026_576x1024_124f_20steps.mp4",
+    "original_svdquant_rgb_nmse": 0.5191012248515098
+  },
+  "complete_arms": [
+    {
+      "arm": "spatial_shared",
+      "video_path": "/data1/models/svdquant-wjq/research/20261030/E137_h3_error_axis_permutation/attempt2/race/spatial_shared/race_spatial_shared_576x1024_124f_20steps.mp4",
+      "video_sha256": "08cbaa5cf27e2537382a64ca2ac1449327d7905a248ce5a13a9bdfa81b5cd0df",
+      "error_energy_gate": {
+        "max_abs_relative_mse_change": 0.0002270474571770542,
+        "gate_limit": 0.005,
+        "passes": true
+      },
+      "decoded_rgb_distance_to_bf16": {
+        "frames": 124,
+        "rgb_nmse": 0.194423722433201,
+        "rgb_mae": null
+      },
+      "relative_reduction_vs_original_svdquant": 0.6254608675045674
+    }
+  ],
+  "incomplete_arms_are_excluded": true
+}

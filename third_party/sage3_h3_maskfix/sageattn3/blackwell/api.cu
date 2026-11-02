@@ -237,6 +237,11 @@ mha_fwd(at::Tensor &q,         // batch_size x seqlen_q x num_heads x (head_size
     TORCH_CHECK(k.stride(-1) == 1, "Input tensor must have contiguous last dimension");
     TORCH_CHECK(v.stride(-1) == 1, "Input tensor must have contiguous last dimension");
     TORCH_CHECK(delta_s.stride(-1) == 1, "Input tensor must have contiguous last dimension");
+#ifdef E130_BF16_DELTA
+    TORCH_CHECK(delta_s.dtype() == torch::kBFloat16, "BF16 delta_s kernel requires bfloat16 delta_s");
+#else
+    TORCH_CHECK(delta_s.dtype() == torch::kFloat32, "FP32 delta_s kernel requires float32 delta_s");
+#endif
 
     TORCH_CHECK(q.is_contiguous(), "Input tensor must be contiguous");
     TORCH_CHECK(k.is_contiguous(), "Input tensor must be contiguous");
@@ -338,4 +343,14 @@ mha_fwd(at::Tensor &q,         // batch_size x seqlen_q x num_heads x (head_size
 PYBIND11_MODULE(TORCH_EXTENSION_NAME, m) {
     m.doc() = "FlashAttention";
     m.def("fwd", &mha_fwd, "Forward pass");
+#ifdef E130_BF16_DELTA
+    m.attr("delta_s_dtype") = "bf16";
+#else
+    m.attr("delta_s_dtype") = "fp32";
+#endif
+#ifdef E130_DELTA_TAIL_MASK
+    m.attr("delta_tail_mask_in_delta") = true;
+#else
+    m.attr("delta_tail_mask_in_delta") = false;
+#endif
 }

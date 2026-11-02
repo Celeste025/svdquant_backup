@@ -1,0 +1,55 @@
+--- a/sageattn3_prescale/blackwell/mainloop_tma_ws.h
++++ b/sageattn3_prescale/blackwell/mainloop_tma_ws.h
+@@ -145,7 +145,6 @@
+     
+     static constexpr uint32_t TmaTransactionBytesK = static_cast<uint32_t>(
+         cutlass::bits_to_bytes(cosize(take<0,2>(SmemLayoutSFK{})) * cute::sizeof_bits_v<ElementSF>) +
+-        cutlass::bits_to_bytes(cosize(take<0,2>(SmemLayoutDS{})) * cute::sizeof_bits_v<float>) +
+         cutlass::bits_to_bytes(size(take<0,2>(SmemLayoutK{})) * sizeof_bits<Element>::value));
+     
+     static constexpr uint32_t TmaTransactionBytesV = static_cast<uint32_t>(
+@@ -518,8 +517,6 @@
+             tKgK(_, n_block), tKsK(_, smem_pipe_write_k.index()));
+         copy(mainloop_params.tma_load_SFK.with(*pipeline_k.producer_get_barrier(smem_pipe_write_k), mcast_mask_kv),
+             tKgSFK(_, n_block), tKsSFK(_, smem_pipe_write_k.index()));
+-        copy(mainloop_params.tma_load_DS.with(*pipeline_k.producer_get_barrier(smem_pipe_write_k), mcast_mask_kv),
+-            tDSgDS(_, n_block), tDSsDS(_, smem_pipe_write_k.index()));
+         ++smem_pipe_write_k;
+         pipeline_v.producer_acquire(smem_pipe_write_v);
+         copy(mainloop_params.tma_load_Vt.with(*pipeline_v.producer_get_barrier(smem_pipe_write_v), mcast_mask_kv),
+@@ -539,8 +536,6 @@
+                     tKgK(_, n_block), tKsK(_, smem_pipe_write_k.index()));
+                 copy(mainloop_params.tma_load_SFK.with(*pipeline_k.producer_get_barrier(smem_pipe_write_k), mcast_mask_kv),
+                     tKgSFK(_, n_block), tKsSFK(_, smem_pipe_write_k.index()));
+-                copy(mainloop_params.tma_load_DS.with(*pipeline_k.producer_get_barrier(smem_pipe_write_k), mcast_mask_kv),
+-                    tDSgDS(_, n_block), tDSsDS(_, smem_pipe_write_k.index()));
+                 ++smem_pipe_write_k;
+                 pipeline_v.producer_acquire(smem_pipe_write_v);
+                 copy(mainloop_params.tma_load_Vt.with(*pipeline_v.producer_get_barrier(smem_pipe_write_v), mcast_mask_kv),
+@@ -715,7 +710,7 @@
+         );
+         consumer_wait(pipeline_k, smem_pipe_read_k);
+         copy_k_block(_0{});
+-        add_delta_s(tSrS);
++        cute::clear(tSrS);
+         CUTLASS_PRAGMA_UNROLL
+         for (int k_block = 0; k_block < size<2>(tSrQ); ++k_block) {
+             cute::gemm(tiled_mma_qk, make_zip_tensor(tSrQ(_, _, k_block), tSrSFQ(_, _, k_block)), 
+@@ -823,7 +818,7 @@
+             Tensor tSrS_converion_view = make_tensor(tSrS.data(), flash::convert_to_conversion_layout(tSrS.layout()));
+             consumer_wait(pipeline_k, smem_pipe_read_k);
+             copy_k_block(_0{});
+-            add_delta_s(tSrS);
++            cute::clear(tSrS);
+             CUTLASS_PRAGMA_UNROLL
+             for (int k_block = 0; k_block < size<2>(tSrQ); ++k_block) {
+                 cute::gemm(tiled_mma_qk, make_zip_tensor(tSrQ(_, _, k_block), tSrSFQ(_, _, k_block)), 
+@@ -867,7 +862,7 @@
+             Tensor tSrS_converion_view = make_tensor(tSrS.data(), flash::convert_to_conversion_layout(tSrS.layout()));
+             consumer_wait(pipeline_k, smem_pipe_read_k);
+             copy_k_block(_0{});
+-            add_delta_s(tSrS);
++            cute::clear(tSrS);
+             CUTLASS_PRAGMA_UNROLL
+             for (int k_block = 0; k_block < size<2>(tSrQ); ++k_block) {
+                 cute::gemm(tiled_mma_qk, make_zip_tensor(tSrQ(_, _, k_block), tSrSFQ(_, _, k_block)), 

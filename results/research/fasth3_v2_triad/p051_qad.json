@@ -1,0 +1,109 @@
+{
+  "arm": "qad",
+  "prompt_id": 51,
+  "seed": 41698,
+  "model_root": "/data1/models/svdquant-wjq/models/fastvideo-v2-triad/qad_infer",
+  "contract": {
+    "attention_backend": "VIDEO_SPARSE_ATTN_H3",
+    "audio_scheduler_shift": 3.0,
+    "checkpoint_step": 1300,
+    "dmd_denoising_steps": [
+      999,
+      874,
+      749,
+      624,
+      500,
+      375,
+      250,
+      125
+    ],
+    "fastvideo_commit": "24bbe7fddd05ca6f2c34b3dbed06ac1c75b72086",
+    "guidance_scale": 1.0,
+    "model_id": "FastVideo/FastVideo-FastH3-8-Step-V2.1-NVFP4-Consumer",
+    "num_gpus": 4,
+    "num_inference_steps": 9,
+    "schema_version": "fasth3-inference-contract-v1",
+    "sequence_parallel_size": 4,
+    "task": "t2av",
+    "torch_compile": false,
+    "training_parent_run_id": "20260829T210445Z-h3-v14-8step-datafree-vsa80-vshift10",
+    "transformer_forwards": 8,
+    "use_fsdp_inference": true,
+    "video_scheduler_shift": 10.0,
+    "vsa_kernel": "sm100a",
+    "vsa_sparsity": 0.8,
+    "vsa_tile_size": 64,
+    "quantization": "nvfp4_attention_mlp_gate_qad_linears",
+    "source_model": "FastVideo/FastVideo-FastH3-8-Step-V2"
+  },
+  "config": {
+    "model_path": "/data1/models/svdquant-wjq/models/fastvideo-v2-triad/qad_infer",
+    "engine": {
+      "num_gpus": 1,
+      "use_fsdp_inference": false,
+      "quantization": {
+        "transformer_quant": "NVFP4",
+        "layer_profile": "h3_dit_vsa"
+      },
+      "parallelism": {
+        "tp_size": 1,
+        "sp_size": 1
+      },
+      "offload": {
+        "dit": false,
+        "dit_layerwise": false,
+        "text_encoder": false,
+        "image_encoder": false,
+        "vae": true,
+        "pin_cpu_memory": false,
+        "lazy_module_load": false
+      },
+      "compile": {
+        "enabled": false,
+        "vae_enabled": false
+      }
+    },
+    "pipeline": {
+      "workload_type": "t2v",
+      "vae_tiling": true,
+      "experimental": {
+        "attention_backend": "VIDEO_SPARSE_ATTN_H3",
+        "h3_vsa_fp4": {
+          "enabled": false,
+          "prefix_precision": "fp8",
+          "two_level_p": true,
+          "smooth_k": true
+        },
+        "VSA_sparsity": 0.8,
+        "VSA_tile_size": 64,
+        "h3_sequential_load": true,
+        "inference_torch_compile": false,
+        "vae_parallel_decode": false,
+        "video_decode_backend": "h3-vae"
+      }
+    }
+  },
+  "request": {
+    "prompt": "# Core Summary\nA professional skier in a blue and white suit descends a majestic snowy mountain with extreme speed and power. The clip utilizes a single continuous dynamic shot to maintain uninterrupted momentum. The sequence begins with the skier carving down from the background, transitions into a close pass reflecting sunlight in the goggles, and culminates in a powerful spray of snow filling the frame as the skier exits.\n\n# Scene\n[shot1][00:00-00:05]\nA majestic, sun-drenched mountain peak covered in pristine white snow under a clear deep blue sky. The terrain is steep with powdery surface snow ready to be displaced. Lighting is bright natural sunlight with high contrast between the white snow and blue shadows in the crevices. The camera is positioned low on the slope, looking slightly upward to emphasize the height and speed of the descent.\n**Audio Description**: High-fidelity outdoor recording. Intense wind rushing sound mixed with the sharp scraping sound of ski edges cutting through hard-packed snow. The audio volume swells as the subject approaches.\n\n# Subjects Description\n<ID_A>\n- *Gender*: Male.\n- *Race/Ethnicity*: European/North American.\n- *Age*: Young adult.\n- *Appearance features*: Wearing a tight blue and white professional ski suit with aerodynamic seams. Equipped with a matte black professional ski helmet and large reflective goggles. Physique is athletic and muscular, visible through the tight suit.\n- *Vocal Characteristics*: N/A (No dialogue).\n\n# Dynamic Narrative\n[shot1][00:00-00:05]\nThe camera tracks <ID_A> skiing rapidly from the upper background toward the foreground. <ID_A> leans deeply into a carve, body angled low to the ground, knees bent to absorb terrain. As <ID_A> approaches the mid-ground, the sun glints sharply off the reflective goggles, momentarily flashing white. <ID_A> shifts weight aggressively to the left, causing the ski edges to dig into the snow. A large plume of powdery snow sprays upward and outward toward the camera lens, catching the sunlight. <ID_A> maintains a focused, determined expression visible through the lower face mask. The camera pans quickly to the right to follow <ID_A>'s trajectory as <ID_A> speeds past the camera position and exits the frame, leaving the lingering cloud of snow hanging in the air.\n\n# Style, Color & Aesthetics\nHigh-energy sports photography style. Color palette dominated by crisp white snow, deep azure sky, and the vibrant blue of the ski suit. High contrast lighting with sharp shadows to define muscle tension and fabric folds. Motion blur is applied to the background and snow spray to emphasize speed, while the subject remains in sharp focus. Telephoto lens compression flattens the distance, making the mountain appear more imposing.\n\n# Atmosphere & Emotion\nIntense, adrenaline-fueled, and majestic. The atmosphere conveys the raw power of nature and the peak physical performance of the athlete. The mood is exhilarating and fast-paced, designed to grab attention immediately.",
+    "negative_prompt": "",
+    "sampling": {
+      "seed": 41698,
+      "height": 576,
+      "width": 1024,
+      "num_frames": 124,
+      "fps": 24,
+      "num_inference_steps": 9,
+      "guidance_scale": 1.0,
+      "batch_cfg": false
+    },
+    "output": {
+      "output_path": "/data1/models/svdquant-wjq/models/fastvideo-v2-triad/outputs/p051_qad.mp4",
+      "save_video": true,
+      "return_frames": false
+    }
+  },
+  "load_s": 7.699063095031306,
+  "generate_s": 86.98793507402297,
+  "output_exists": true,
+  "output_bytes": 3797479
+}

@@ -14,10 +14,14 @@ from minimax_h3_svdquant_common import install_runtime_hooks, load_h3_pipeline, 
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser()
-    p.add_argument("--case", choices=["bf16", "w4a4", "svdquant", "svdquant_ft"], required=True)
+    p.add_argument("--case", choices=["bf16", "w4a4", "svdquant", "svdquant_ft", "svdquant_fixed1"], required=True)
     p.add_argument("--state", type=Path, required=True)
     p.add_argument("--output-dir", type=Path, required=True)
     p.add_argument("--prompt-id", type=int, required=True)
+    p.add_argument("--prompt-text", type=str, default=None,
+                   help="Explicit prompt text for a source outside the standard H3 prompt JSONL.")
+    p.add_argument("--seed", type=int, default=None,
+                   help="Explicit seed; required together with --prompt-text.")
     p.add_argument("--height", type=int, default=576)
     p.add_argument("--width", type=int, default=1024)
     p.add_argument("--frames", type=int, default=124)
@@ -26,7 +30,7 @@ def parse_args() -> argparse.Namespace:
 
 
 @torch.no_grad()
-def _install(linear, qweight, smooth=None, a=None, b=None):
+def _install(linear, qweight, smooth=None, a=None, b=None, *, tensor_scale_mode="dynamic"):
     linear.load_state_dict({"weight": qweight.detach().cpu()}, assign=True, strict=False)
     linear.disk_offload = False
     linear.offload_dtype = linear.onload_dtype = torch.bfloat16
@@ -35,7 +39,7 @@ def _install(linear, qweight, smooth=None, a=None, b=None):
     linear.computation_device = torch.device("cuda")
     linear.vram_limit = 0.0
     linear.state = 1
-    runtime = install_runtime_hooks(linear, smooth, a, b)
+    runtime = install_runtime_hooks(linear, smooth, a, b, tensor_scale_mode=tensor_scale_mode)
     if runtime.branch is not None:
         runtime.branch.to(device="cuda", dtype=torch.bfloat16)
     return runtime
@@ -54,7 +58,7 @@ def apply_plain(dit):
 
 
 @torch.no_grad()
-def apply_svdquant(dit, path: Path):
+def apply_svdquant(dit, path: Path, *, tensor_scale_mode="dynamic"):
     state = torch.load(path, map_location="cpu", weights_only=False)
     fmt = state.get("format")
     if fmt not in ("minimax-h3-svdquant-standard-v1", "minimax-h3-svdquant-ft-v1") or len(state.get("layers", {})) != 200:
@@ -77,7 +81,8 @@ def apply_svdquant(dit, path: Path):
         smooth = (layer["smooth"] if "smooth" in layer else base_layer["smooth"]).to(weight)
         a, b = layer["final_a"].to(weight), layer["final_b"].to(weight)
         base_a, base_b = base_layer["final_a"].to(weight), base_layer["final_b"].to(weight)
-        hooks.append(_install(linear, nvfp4_qdq(weight * smooth - base_b @ base_a), smooth, a, b))
+        hooks.append(_install(linear, nvfp4_qdq(weight * smooth - base_b @ base_a), smooth, a, b,
+                              tensor_scale_mode=tensor_scale_mode))
         del weight, smooth, a, b, base_a, base_b
         if i % 20 == 0: print(f"SVDQuant reload: {i}/200", flush=True)
         torch.cuda.empty_cache()
@@ -89,12 +94,16 @@ def main() -> None:
     if args.height % 32 or args.width % 32 or (args.frames - 5) % 17:
         raise ValueError("invalid H3 output shape")
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    row = read_prompt(args.prompt_id)
+    if (args.prompt_text is None) != (args.seed is None):
+        raise ValueError("--prompt-text and --seed must be provided together")
+    row = ({"prompt": args.prompt_text, "seed": args.seed} if args.prompt_text is not None
+           else read_prompt(args.prompt_id))
     pipe = load_h3_pipeline(full=True, reserve_gib=35.0)
     hooks = []
     if args.case != "bf16":
         pipe.load_models_to_device(["dit"])
-        hooks = apply_plain(pipe.dit) if args.case == "w4a4" else apply_svdquant(pipe.dit, args.state)
+        hooks = apply_plain(pipe.dit) if args.case == "w4a4" else apply_svdquant(
+            pipe.dit, args.state, tensor_scale_mode="fixed_one" if args.case == "svdquant_fixed1" else "dynamic")
     video, audio = pipe(prompt=row["prompt"], seed=int(row["seed"]), height=args.height, width=args.width,
                         num_frames=args.frames, num_inference_steps=args.steps, cfg_scale=1.0,
                         rand_device="cpu", tiled=True)
@@ -104,6 +113,8 @@ def main() -> None:
     write_video_audio(video=video, audio=audio, output_path=str(target), fps=24, audio_sample_rate=pipe.audio_vae.sample_rate)
     (args.output_dir / f"{args.case}.json").write_text(json.dumps({"case": args.case, "prompt_id": args.prompt_id,
         "seed": int(row["seed"]), "height": args.height, "width": args.width, "frames": len(video), "steps": args.steps,
+        "prompt_source": "explicit" if args.prompt_text is not None else "standard_h3_jsonl",
+        "prompt": row["prompt"] if args.prompt_text is not None else None,
         "output": str(target)}, indent=2, ensure_ascii=False))
     print(f"saved {target}", flush=True)
 

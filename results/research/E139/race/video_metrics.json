@@ -1,0 +1,89 @@
+{
+  "case": "race",
+  "frames": 124,
+  "initial_latent_sha256": {
+    "video": "c6e954babd536b4fb5f36770e1adc1ad6cd012e839d08aecea6406a6bc01f4d9",
+    "audio": "25a1dfd8eb0aba82159ad3c9bfbc6572400ee2e741bd05428dd8a4063cf41739"
+  },
+  "experiment": "E139",
+  "dit_seconds": {
+    "s70_int8_30": {
+      "sum": 187.51057700486854,
+      "per_step": [
+        12.570113732013851,
+        10.070044533000328,
+        10.082321009016596,
+        10.06194238900207,
+        10.110414227005094,
+        10.114206021069549,
+        10.141921458998695,
+        10.087004101020284,
+        10.061179867945611,
+        10.067841580021195,
+        8.611125641968101,
+        8.378510275972076,
+        8.395141770946793,
+        8.368960038060322,
+        8.409198120934889,
+        8.394492082996294,
+        8.380037341965362,
+        8.393275224952959,
+        8.38974887796212,
+        8.423098710016347
+      ]
+    },
+    "s70_fp4_20_int8_10": {
+      "sum": 187.84402080229484,
+      "per_step": [
+        12.542426667059772,
+        10.123571305070072,
+        10.146545951021835,
+        10.112496506073512,
+        10.148997897980735,
+        10.155667050043121,
+        10.177942645037547,
+        10.150244663003832,
+        10.115638960967772,
+        10.121649333043024,
+        8.598156742984429,
+        8.37913920194842,
+        8.389894312014803,
+        8.364187218016014,
+        8.385455844923854,
+        8.380937485024333,
+        8.370042711030692,
+        8.385422053048387,
+        8.38856421795208,
+        8.407040036050603
+      ]
+    }
+  },
+  "sources": {
+    "bf16": "/data1/models/svdquant-wjq/research/20261023/E121_h3_split_generation/race/bf16/race_bf16_576x1024_124f_20steps.mp4",
+    "s70_int8_30": "/data1/models/svdquant-wjq/research/20261031/E139_draftattention2/race/s70_int8_30/race_s70_int8_30_576x1024_124f_20steps.mp4",
+    "s70_fp4_20_int8_10": "/data1/models/svdquant-wjq/research/20261031/E139_draftattention2/race/s70_fp4_20_int8_10/race_s70_fp4_20_int8_10_576x1024_124f_20steps.mp4"
+  },
+  "metric_scope": "decoded RGB divergence and LPIPS to matched BF16; inspect media as well",
+  "summary": {
+    "s70_int8_30": {
+      "rgb_nmse": 0.016242738669046176,
+      "lpips_alex": 0.08622003430801053
+    },
+    "s70_fp4_20_int8_10": {
+      "rgb_nmse": 0.01971490429345082,
+      "lpips_alex": 0.10633475555767936
+    }
+  },
+  "source_commit": "97a1c8b14f26f387214c8cfb8fc7e890390b93b4",
+  "local_compatibility_changes": [
+    "NVCC cassert preinclude flag",
+    "explicit host tensor-check array type"
+  ],
+  "source_sha256": {
+    "/home/wjq/workspace/svdquant-exp/third_party/anemoi-code/setup.py": "8054b572265a48f746275fbab7034fdb5c6a5ece6834a1dfac22eb400930802d",
+    "/home/wjq/workspace/svdquant-exp/third_party/anemoi-code/csrc/attention/cuda/sm120/q64_attention_host.cu": "0a262a75f3a0646e0e9ab230aff91fba1d5f74f8b4701f8c7356e87116ff05b8",
+    "/home/wjq/workspace/svdquant-exp/scripts/research/run_e139_draftattention2.py": "e0e4d03cac6dbe6c3d214cc297977b60ffe973a5add1c8065524ea6d9ad4f3a5"
+  },
+  "comparison_video": "/data1/models/svdquant-wjq/research/20261031/E139_draftattention2/race/race_bf16_int8_mixed.mp4",
+  "comparison_audio": "none; individual originals contain audio"
+}

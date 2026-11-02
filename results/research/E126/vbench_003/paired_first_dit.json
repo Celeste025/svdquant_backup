@@ -1,0 +1,68 @@
+{
+  "format": "e126-h3-paired-first-dit-v1",
+  "case": "vbench_003",
+  "prompt": "a person eating a burger",
+  "seed": 42,
+  "settings": {
+    "height": 768,
+    "width": 1344,
+    "frames": 124,
+    "steps": 50,
+    "cfg_scale": 1.0,
+    "flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "tiled": true,
+    "fps": 24
+  },
+  "arms": {
+    "bf16": {
+      "dit_seconds": 20.723050986009184,
+      "main_tokens": 37715,
+      "attention_main_calls": 50,
+      "video_output_energy": 2.4798197746276855,
+      "audio_output_energy": 1.0947884321212769,
+      "output_sha256": {
+        "video": "62648aa01798f40ba8ce1b31374af3d001f69979faebb13713ece7147ceed7db",
+        "audio": "b782da9507487926c3da40b4f4f12e4e4bd4434216de72743e5fc3fe9456f6fc"
+      }
+    },
+    "sage3_fixed": {
+      "dit_seconds": 14.82299481901282,
+      "main_tokens": 37715,
+      "attention_main_calls": 50,
+      "video_output_energy": 2.618680000305176,
+      "audio_output_energy": 1.1170448064804077,
+      "output_sha256": {
+        "video": "78379f60d7097786e4c9f7257717ab48bdc5d814bc16055d4d48902468a24a74",
+        "audio": "ed359c6abb064cf3c9c7d4bf23feebbc3d335979e61df69ab34242895cc46402"
+      }
+    },
+    "split_mixed": {
+      "dit_seconds": 15.134531382005662,
+      "main_tokens": 37715,
+      "attention_main_calls": 50,
+      "video_output_energy": 2.5865979194641113,
+      "audio_output_energy": 1.1198333501815796,
+      "output_sha256": {
+        "video": "5458ff6c845d79741e3a917e6715c92b07c046726b2fabb40e54b8b3ef2084e4",
+        "audio": "466420ad2c22815203bf8ac57ff23bc449d21b870244aa0e45469c0c9a088074"
+      }
+    }
+  },
+  "paired_nmse": {
+    "sage3_fixed_vs_bf16": {
+      "video": 0.009824596462395587,
+      "audio": 0.004417736984541755
+    },
+    "split_mixed_vs_bf16": {
+      "video": 0.00807929300081581,
+      "audio": 0.00613636911613642
+    },
+    "split_mixed_vs_sage3_fixed": {
+      "video": 0.0019427575459830843,
+      "audio": 0.001079012653945478
+    }
+  },
+  "peak_allocated_gib": 23.007245540618896
+}

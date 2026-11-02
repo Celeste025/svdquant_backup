@@ -1,0 +1,139 @@
+{
+  "format": "e130-h3-sage-length-sweep-v1",
+  "timestamp_utc": "2026-10-24T22:31:22.236586+00:00",
+  "capture": "/data1/models/svdquant-wjq/research/20261023/E121_h3_split_generation/race/block25_qkv_h56.pt",
+  "sage3_dir": "/tmp/e130-api-fast.QuFcWd",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "input_policy": "contiguous prefix of real H3 HND QKV; requested heads selected and repeated across batch",
+  "timing_policy": "CUDA events; 10 warmups; 6 batches x 12 calls; K restore excluded",
+  "lengths": [
+    {
+      "tokens": 1024,
+      "shape_hnd": [
+        4,
+        32,
+        1024,
+        128
+      ],
+      "ops": 68719476736,
+      "quality": {
+        "sage2pp_vs_bf16": {
+          "nmse": 0.00031103968724042113,
+          "relative_rms_error": 0.01763631728112253,
+          "cosine": 0.9998446365725414
+        },
+        "sage3_vs_bf16": {
+          "nmse": 0.008729440829516016,
+          "relative_rms_error": 0.09343147665276418,
+          "cosine": 0.9958208303951006
+        },
+        "sage3_fused_equal_public": true,
+        "sage3_api_fast_equal_public": true
+      },
+      "timings": {
+        "bf16_online": {
+          "mean_ms": 0.3927004453208711,
+          "cv_batch_percent": 0.14085590257312083,
+          "batch_mean_ms": [
+            0.3927706629037857,
+            0.393784003953139,
+            0.39237866550683975,
+            0.39236800372600555,
+            0.3925280049443245,
+            0.39237333089113235
+          ],
+          "calls": 72
+        },
+        "sage2pp_online": {
+          "mean_ms": 0.4699408879710568,
+          "cv_batch_percent": 0.19270377726530435,
+          "batch_mean_ms": [
+            0.4710826675097148,
+            0.47043466319640476,
+            0.46982133388519287,
+            0.46961866567532223,
+            0.4684160028894742,
+            0.4702719946702321
+          ],
+          "calls": 72
+        },
+        "sage3_online": {
+          "mean_ms": 0.3697306646241082,
+          "cv_batch_percent": 0.41807941767296347,
+          "batch_mean_ms": [
+            0.36884266634782154,
+            0.3696559965610504,
+            0.3722426618138949,
+            0.37012533595164615,
+            0.3699413314461708,
+            0.3675759956240654
+          ],
+          "calls": 72
+        },
+        "sage3_fused_online": {
+          "mean_ms": 0.3753742207255628,
+          "cv_batch_percent": 0.1689652308785359,
+          "batch_mean_ms": [
+            0.3747626642386119,
+            0.37520000090201694,
+            0.3757733305295308,
+            0.37591200073560077,
+            0.37454132984081906,
+            0.3760559981067975
+          ],
+          "calls": 72
+        },
+        "sage3_api_fast_online": {
+          "mean_ms": 0.37189288644327056,
+          "cv_batch_percent": 0.21797222709101025,
+          "batch_mean_ms": [
+            0.371269332865874,
+            0.37163999925057095,
+            0.37239999572436017,
+            0.37124532957871753,
+            0.37149599691232044,
+            0.3733066643277804
+          ],
+          "calls": 72
+        },
+        "sage2pp_core": {
+          "mean_ms": 0.19087866817911467,
+          "cv_batch_percent": 0.04653454980106639,
+          "batch_mean_ms": [
+            0.19079733515779176,
+            0.19076533367236456,
+            0.19088000183304152,
+            0.19088266914089522,
+            0.19100533425807953,
+            0.1909413350125154
+          ],
+          "calls": 72
+        },
+        "sage3_core": {
+          "mean_ms": 0.14093466993007395,
+          "cv_batch_percent": 0.42970044661653506,
+          "batch_mean_ms": [
+            0.14040800432364145,
+            0.14200267071525255,
+            0.14066666985551515,
+            0.1408160018424193,
+            0.14125600208838782,
+            0.14045867075522742
+          ],
+          "calls": 72
+        }
+      },
+      "tops": {
+        "bf16_online": 174.99210289881412,
+        "sage2pp_online": 146.23004402254176,
+        "sage3_online": 185.86361184259525,
+        "sage3_fused_online": 183.0692491433529,
+        "sage3_api_fast_online": 184.78298252279865,
+        "sage2pp_core": 360.016535066746,
+        "sage3_core": 487.5980961256433
+      },
+      "sage3_over_sage2pp_online": 1.2710357374572345,
+      "sage3_over_sage2pp_core": 1.3543769483677857
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+{
+  "format": "h3-sage-real-operator-v1",
+  "timestamp_utc": "2026-10-14T11:29:07.191871+00:00",
+  "gpu": 0,
+  "gpu_name": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "torch_version": "2.11.0+cu128",
+  "sample": "/data1/models/svdquant-wjq/research/20261014/E098/h3_p1_s0_b25_480x832_73f_qkv.pt",
+  "sample_sha256": "9eaf8041a56d06cfe084cc5b46d05df876b91ca4f4ceca546081fe6f8396bb07",
+  "weight": null,
+  "block": 25,
+  "prompt_id": 1,
+  "step": 0,
+  "geometry": {
+    "all_rows": 9536,
+    "valid_rows": 9482,
+    "padding_rows": 54,
+    "video_tokens": 8580,
+    "height": 480,
+    "width": 832,
+    "frames": 73,
+    "fps": 24,
+    "heads": 56,
+    "head_dim": 128
+  },
+  "cached_bf16_replay": null,
+  "source_paths": {
+    "sage3_api": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell/sageattn3/api.py",
+    "sage3_extension": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell/fp4attn_cuda.cpython-312-x86_64-linux-gnu.so",
+    "sage2_core": "/data1/models/svdquant-wjq/research/envs/sageattention2pp-sm120-20261014/sageattention/core.py",
+    "sage2_package": "/data1/models/svdquant-wjq/research/envs/sageattention2pp-sm120-20261014/sageattention/__init__.py"
+  },
+  "warmup": 20,
+  "repeats": 10,
+  "batches": 11,
+  "results": {
+    "bf16_sdpa": {
+      "error": {
+        "nmse": 0.0,
+        "relative_rms_error": 0.0,
+        "cosine": 1.0
+      },
+      "timing": {
+        "median_ms": 12.304153442382812,
+        "cv_percent": 0.38743943840148537,
+        "batch_ms": [
+          12.234044647216797,
+          12.238301086425782,
+          12.237939453125,
+          12.235350036621094,
+          12.241241455078125,
+          12.304153442382812,
+          12.322515106201172,
+          12.330454254150391,
+          12.328546905517578,
+          12.341580963134765,
+          12.333618927001954
+        ]
+      }
+    },
+    "sage3_official": {
+      "error": {
+        "nmse": 0.007502260456046699,
+        "relative_rms_error": 0.08661559014430774,
+        "cosine": 0.9964293523843931
+      },
+      "timing": {
+        "median_ms": 8.888489532470704,
+        "cv_percent": 0.15316048173340135,
+        "batch_ms": [
+          8.914927673339843,
+          8.911203002929687,
+          8.885935974121093,
+          8.880422210693359,
+          8.880416107177734,
+          8.898953247070313,
+          8.88986587524414,
+          8.882991790771484,
+          8.888489532470704,
+          8.909865570068359,
+          8.877945709228516
+        ]
+      }
+    },
+    "sage2pp_official": {
+      "error": {
+        "nmse": 0.00021017345879545705,
+        "relative_rms_error": 0.014497360407862427,
+        "cosine": 0.9998952069069007
+      },
+      "timing": {
+        "median_ms": 7.4892829895019535,
+        "cv_percent": 0.03392897716006434,
+        "batch_ms": [
+          7.491651153564453,
+          7.486319732666016,
+          7.491020965576172,
+          7.4880928039550785,
+          7.486537933349609,
+          7.490207672119141,
+          7.492940521240234,
+          7.489411163330078,
+          7.48431396484375,
+          7.488518524169922,
+          7.4892829895019535
+        ]
+      }
+    },
+    "bf16_full_helper": {
+      "error": {
+        "nmse": 0.0,
+        "relative_rms_error": 0.0,
+        "cosine": 1.0
+      },
+      "timing": {
+        "median_ms": 12.631446075439452,
+        "cv_percent": 0.38754995623238303,
+        "batch_ms": [
+          12.525247955322266,
+          12.525981140136718,
+          12.535327911376953,
+          12.61584014892578,
+          12.631501007080079,
+          12.637443542480469,
+          12.634575653076173,
+          12.641007995605468,
+          12.631446075439452,
+          12.636361694335937,
+          12.631136322021485
+        ]
+      }
+    },
+    "sage3_full_helper": {
+      "error": {
+        "nmse": 0.007464222859138784,
+        "relative_rms_error": 0.0863957340332194,
+        "cosine": 0.9964464810544389
+      },
+      "timing": {
+        "median_ms": 9.194790649414063,
+        "cv_percent": 0.1461619968498331,
+        "batch_ms": [
+          9.170899200439454,
+          9.207548522949219,
+          9.206448364257813,
+          9.207103729248047,
+          9.179344177246094,
+          9.204959869384766,
+          9.179446411132812,
+          9.20269775390625,
+          9.185408020019532,
+          9.185411071777343,
+          9.194790649414063
+        ]
+      }
+    },
+    "sage2pp_full_helper_guarded": {
+      "error": {
+        "nmse": 0.00020910784396371574,
+        "relative_rms_error": 0.014460561675250231,
+        "cosine": 0.9998957719243017
+      },
+      "timing": {
+        "median_ms": 8.149276733398438,
+        "cv_percent": 0.03244798065534029,
+        "batch_ms": [
+          8.151446533203124,
+          8.151548767089844,
+          8.151465606689452,
+          8.148563385009766,
+          8.149276733398438,
+          8.148095703125,
+          8.148041534423829,
+          8.151376342773437,
+          8.143292999267578,
+          8.148998260498047,
+          8.152780914306641
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,941 @@
+{
+  "format": "h3-e103-output-error-pattern-summary-v1",
+  "scope": "one race prompt/seed, 20 teacher-forced BF16 trajectory DiT calls, rank-32 SVDQuant dynamic",
+  "manifest": "/home/wjq/workspace/svdquant-exp/results/research/E103/manifest.json",
+  "video_grid_thw": [
+    37,
+    18,
+    32
+  ],
+  "video_channels": 96,
+  "metric_definitions": {
+    "nmse": "sum(quant-BF16)^2 / sum(BF16)^2 over the selected video elements",
+    "top_1pct_token_error_energy_share": "fraction of total squared error in the 1% highest-error video tokens",
+    "adjacency_corr": "Pearson correlation of log(token error RMS), demeaned separately within each latent frame; adjacent axes t/h/w; permutation baseline shuffles spatial positions independently within each frame",
+    "signed_error_neighbor_cosine": "global cosine of adjacent 96-dimensional signed error vectors after subtracting each latent frame's per-channel mean error; spatial-position permutation baseline"
+  },
+  "pooled_video_nmse": 0.08194748284075863,
+  "top_12_channels_by_error_energy": [
+    {
+      "channel": 80,
+      "error_energy_share": 0.015459090863032184,
+      "signal_energy_share": 0.010531142813002745,
+      "channel_nmse": 0.12029402750743305
+    },
+    {
+      "channel": 65,
+      "error_energy_share": 0.015338536746226617,
+      "signal_energy_share": 0.014373803575403816,
+      "channel_nmse": 0.08744758965293141
+    },
+    {
+      "channel": 82,
+      "error_energy_share": 0.015228042944820091,
+      "signal_energy_share": 0.010349773120673781,
+      "channel_nmse": 0.12057267085655113
+    },
+    {
+      "channel": 66,
+      "error_energy_share": 0.01517658359396663,
+      "signal_energy_share": 0.014626895447712304,
+      "channel_nmse": 0.08502712199549053
+    },
+    {
+      "channel": 81,
+      "error_energy_share": 0.015154810188901427,
+      "signal_energy_share": 0.010406149715889414,
+      "channel_nmse": 0.11934275229710248
+    },
+    {
+      "channel": 67,
+      "error_energy_share": 0.015081649190655142,
+      "signal_energy_share": 0.014146048578875565,
+      "channel_nmse": 0.08736737905079302
+    },
+    {
+      "channel": 64,
+      "error_energy_share": 0.014746553428915827,
+      "signal_energy_share": 0.014604875534058924,
+      "channel_nmse": 0.08274243291278256
+    },
+    {
+      "channel": 83,
+      "error_energy_share": 0.014612838750243037,
+      "signal_energy_share": 0.010298682575270978,
+      "channel_nmse": 0.11627558612357812
+    },
+    {
+      "channel": 13,
+      "error_energy_share": 0.014437860736808868,
+      "signal_energy_share": 0.010636752698435444,
+      "channel_nmse": 0.11123191245773117
+    },
+    {
+      "channel": 14,
+      "error_energy_share": 0.014426413558976942,
+      "signal_energy_share": 0.010610141664060239,
+      "channel_nmse": 0.11142247813546616
+    },
+    {
+      "channel": 15,
+      "error_energy_share": 0.014272006037526158,
+      "signal_energy_share": 0.010385026990126781,
+      "channel_nmse": 0.11261934812257048
+    },
+    {
+      "channel": 12,
+      "error_energy_share": 0.014223377577606517,
+      "signal_energy_share": 0.010735525986138432,
+      "channel_nmse": 0.10857129790226483
+    }
+  ],
+  "signed_spatial_map_top_channel": 80,
+  "top_10_channels_error_share": 0.14966238000254675,
+  "top_10_channels_signal_share_at_same_channels": 0.12058426572338322,
+  "adjacent_step_channel_error_share_corr": [
+    0.3392563871003469,
+    0.6941673133484777,
+    0.8549244973783116,
+    0.8877352903181334,
+    0.8232803632568066,
+    0.9308320061220864,
+    0.8838132704137097,
+    0.9416929932672284,
+    0.9032328609081895,
+    0.9388185725686021,
+    0.9544901066539471,
+    0.9653980804010067,
+    0.9839946773880914,
+    0.9755178357240751,
+    0.9807576525871655,
+    0.974133730063368,
+    0.9741048598314693,
+    0.9857697380190641,
+    0.9709573327950525
+  ],
+  "adjacent_step_token_error_log_energy_corr": [
+    0.5511661912912441,
+    0.5866622651648581,
+    0.4539546681904176,
+    0.6904478499662892,
+    0.646437294069257,
+    0.718612422333798,
+    0.7644284478265994,
+    0.778009364128175,
+    0.7712331413901037,
+    0.811480926388659,
+    0.7837682397774266,
+    0.7951278046626468,
+    0.796217397573249,
+    0.7859354010247228,
+    0.7676204989960936,
+    0.7489266989488339,
+    0.7506659648817134,
+    0.7429141831672953,
+    0.7104931547047122
+  ],
+  "subpatch_2x2": {
+    "error_energy_share": [
+      [
+        0.25198368088206136,
+        0.2510186506354714
+      ],
+      [
+        0.2498453668447005,
+        0.24715230163776689
+      ]
+    ],
+    "signal_energy_share": [
+      [
+        0.2507950882634685,
+        0.24965125556063425
+      ],
+      [
+        0.24981300697830827,
+        0.24974064919758912
+      ]
+    ],
+    "nmse": [
+      [
+        0.08233585636869016,
+        0.08239632730653197
+      ],
+      [
+        0.08195809801899925,
+        0.08109816748930922
+      ]
+    ]
+  },
+  "pooled_audio_nmse": 0.04003238256253723,
+  "top_8_audio_channels_by_error_energy": [
+    {
+      "channel": 1,
+      "error_energy_share": 0.1249374441164245,
+      "signal_energy_share": 0.03728999166138574,
+      "channel_nmse": 0.13412562825626706
+    },
+    {
+      "channel": 8,
+      "error_energy_share": 0.10024232747797522,
+      "signal_energy_share": 0.035070807631895344,
+      "channel_nmse": 0.11442391759771885
+    },
+    {
+      "channel": 16,
+      "error_energy_share": 0.07845006596318232,
+      "signal_energy_share": 0.032761726594798285,
+      "channel_nmse": 0.09586012030248225
+    },
+    {
+      "channel": 10,
+      "error_energy_share": 0.05910313952579051,
+      "signal_energy_share": 0.04762957287513823,
+      "channel_nmse": 0.04967584946323318
+    },
+    {
+      "channel": 5,
+      "error_energy_share": 0.05135534526757044,
+      "signal_energy_share": 0.03424540214097947,
+      "channel_nmse": 0.06003365999088147
+    },
+    {
+      "channel": 12,
+      "error_energy_share": 0.041952856830847526,
+      "signal_energy_share": 0.031060834089170684,
+      "channel_nmse": 0.05407043511524333
+    },
+    {
+      "channel": 7,
+      "error_energy_share": 0.03668160643917477,
+      "signal_energy_share": 0.03026327964601328,
+      "channel_nmse": 0.04852256989849808
+    },
+    {
+      "channel": 13,
+      "error_energy_share": 0.03581942237396042,
+      "signal_energy_share": 0.028587364886963028,
+      "channel_nmse": 0.05015981099739002
+    }
+  ],
+  "steps": [
+    {
+      "step": 0,
+      "unique_timesteps": [
+        0.0
+      ],
+      "video_nmse": 0.06000654210112383,
+      "audio_nmse": 0.010385128043256421,
+      "video_ref_rms": 1.957663851181388,
+      "video_error_rms": 0.47955389427477335,
+      "video_error_mean": 0.002606845460832119,
+      "abs_error_quantiles": {
+        "p50": 0.3125,
+        "p90": 0.765625,
+        "p99": 1.3359375,
+        "p999": 1.9609375
+      },
+      "top_1pct_token_error_energy_share": 0.04626765333344134,
+      "signal_energy_share_at_same_top_tokens": 0.018348950549973878,
+      "top_0p1pct_element_error_energy_share": 0.02664397383934003,
+      "spatial_h_magnitude_corr_frame_demeaned": 0.9365638462924418,
+      "spatial_w_magnitude_corr_frame_demeaned": 0.9258101196111895,
+      "temporal_magnitude_corr_frame_demeaned": 0.8658696514831171,
+      "reference_spatial_h_magnitude_corr_frame_demeaned": 0.7600944868621413,
+      "reference_spatial_w_magnitude_corr_frame_demeaned": 0.7508209962373157,
+      "reference_temporal_magnitude_corr_frame_demeaned": 0.754929338623144,
+      "shuffled_spatial_h_corr": -0.014460135559624684,
+      "shuffled_spatial_w_corr": 0.0024749366130962657,
+      "shuffled_temporal_corr": 0.001323906814365961,
+      "signed_error_neighbor_cosine_h": 0.8856549202808458,
+      "signed_error_neighbor_cosine_w": 0.8836467342858801,
+      "signed_error_neighbor_cosine_t": 0.8415841886641731,
+      "shuffled_signed_error_cosine_h": -0.0020771459003712587,
+      "shuffled_signed_error_cosine_w": 0.000996945766665302,
+      "shuffled_signed_error_cosine_t": 0.0002496359018248453
+    },
+    {
+      "step": 1,
+      "unique_timesteps": [
+        0.004366821143776178,
+        0.01724139414727688
+      ],
+      "video_nmse": 0.0983514978579158,
+      "audio_nmse": 0.01833941206427795,
+      "video_ref_rms": 1.7065241314143849,
+      "video_error_rms": 0.5351837559197159,
+      "video_error_mean": -0.006472076755017042,
+      "abs_error_quantiles": {
+        "p50": 0.28125,
+        "p90": 0.87939453125,
+        "p99": 1.6796875,
+        "p999": 2.375
+      },
+      "top_1pct_token_error_energy_share": 0.05914770313084027,
+      "signal_energy_share_at_same_top_tokens": 0.013112291452453264,
+      "top_0p1pct_element_error_energy_share": 0.027485791586610474,
+      "spatial_h_magnitude_corr_frame_demeaned": 0.9515840655721037,
+      "spatial_w_magnitude_corr_frame_demeaned": 0.9318507666344713,
+      "temporal_magnitude_corr_frame_demeaned": 0.916994737326706,
+      "reference_spatial_h_magnitude_corr_frame_demeaned": 0.7917711473841049,
+      "reference_spatial_w_magnitude_corr_frame_demeaned": 0.7881390751343336,
+      "reference_temporal_magnitude_corr_frame_demeaned": 0.748653550687696,
+      "shuffled_spatial_h_corr": 0.001555740401170985,
+      "shuffled_spatial_w_corr": 0.0006667241257886073,
+      "shuffled_temporal_corr": -0.006097018523282308,
+      "signed_error_neighbor_cosine_h": 0.9203116548703872,
+      "signed_error_neighbor_cosine_w": 0.9171189021345318,
+      "signed_error_neighbor_cosine_t": 0.8773210194528203,
+      "shuffled_signed_error_cosine_h": 0.0005692863321313266,
+      "shuffled_signed_error_cosine_w": 0.002699822358979987,
+      "shuffled_signed_error_cosine_t": 0.00464771134645363
+    },
+    {
+      "step": 2,
+      "unique_timesteps": [
+        0.009174316190183163,
+        0.03571435436606407
+      ],
+      "video_nmse": 0.1688570749042653,
+      "audio_nmse": 0.02812116580488525,
+      "video_ref_rms": 1.787327342466686,
+      "video_error_rms": 0.7344525281638283,
+      "video_error_mean": 0.011965863406658173,
+      "abs_error_quantiles": {
+        "p50": 0.4052734375,
+        "p90": 1.171875,
+        "p99": 2.333984375,
+        "p999": 3.53515625
+      },
+      "top_1pct_token_error_energy_share": 0.05315789587426227,
+      "signal_energy_share_at_same_top_tokens": 0.018058404308603372,
+      "top_0p1pct_element_error_energy_share": 0.030549410423221544,
+      "spatial_h_magnitude_corr_frame_demeaned": 0.9413815546564217,
+      "spatial_w_magnitude_corr_frame_demeaned": 0.9235571180387379,
+      "temporal_magnitude_corr_frame_demeaned": 0.8905005294316047,
+      "reference_spatial_h_magnitude_corr_frame_demeaned": 0.8501332208310515,
+      "reference_spatial_w_magnitude_corr_frame_demeaned": 0.8336415473534319,
+      "reference_temporal_magnitude_corr_frame_demeaned": 0.8453878580116804,
+      "shuffled_spatial_h_corr": 0.0042294252240883965,
+      "shuffled_spatial_w_corr": -0.009528066369417122,
+      "shuffled_temporal_corr": 0.0024293999351856985,
+      "signed_error_neighbor_cosine_h": 0.891854516425009,
+      "signed_error_neighbor_cosine_w": 0.892720948612085,
+      "signed_error_neighbor_cosine_t": 0.8771246603447642,
+      "shuffled_signed_error_cosine_h": -0.001845062584522402,
+      "shuffled_signed_error_cosine_w": 0.0023825421360560628,
+      "shuffled_signed_error_cosine_t": -0.000553906391179168
+    },
+    {
+      "step": 3,
+      "unique_timesteps": [
+        0.01449267566204071,
+        0.055555541068315506
+      ],
+      "video_nmse": 0.18341807742232008,
+      "audio_nmse": 0.06757472880276183,
+      "video_ref_rms": 1.6790528810737,
+      "video_error_rms": 0.7190936318085984,
+      "video_error_mean": 0.013242606073617935,
+      "abs_error_quantiles": {
+        "p50": 0.3984375,
+        "p90": 1.146484375,
+        "p99": 2.27734375,
+        "p999": 3.4453125
+      },
+      "top_1pct_token_error_energy_share": 0.052901186207635745,
+      "signal_energy_share_at_same_top_tokens": 0.015750432783706993,
+      "top_0p1pct_element_error_energy_share": 0.02899821965222898,
+      "spatial_h_magnitude_corr_frame_demeaned": 0.9277127384194944,
+      "spatial_w_magnitude_corr_frame_demeaned": 0.9139566037948172,
+      "temporal_magnitude_corr_frame_demeaned": 0.8430958631571596,
+      "reference_spatial_h_magnitude_corr_frame_demeaned": 0.7834576377998584,
+      "reference_spatial_w_magnitude_corr_frame_demeaned": 0.7558531730040633,
+      "reference_temporal_magnitude_corr_frame_demeaned": 0.761457946429895,
+      "shuffled_spatial_h_corr": -0.010798829348455885,
+      "shuffled_spatial_w_corr": 0.008218816354934348,
+      "shuffled_temporal_corr": -0.006675272899763925,
+      "signed_error_neighbor_cosine_h": 0.7838207971331146,
+      "signed_error_neighbor_cosine_w": 0.8165918057885508,
+      "signed_error_neighbor_cosine_t": 0.827522123385838,
+      "shuffled_signed_error_cosine_h": -0.0007901347943038243,
+      "shuffled_signed_error_cosine_w": -0.006542183317405859,
+      "shuffled_signed_error_cosine_t": 0.006087841069117148
+    },
+    {
+      "step": 4,
+      "unique_timesteps": [
+        0.02040814235806465,
+        0.07692303508520126
+      ],
+      "video_nmse": 0.20193441838731085,
+      "audio_nmse": 0.09772303756221162,
+      "video_ref_rms": 1.6022023228721034,
+      "video_error_rms": 0.7199834788532182,
+      "video_error_mean": 0.003461746033281088,
+      "abs_error_quantiles": {
+        "p50": 0.3984375,
+        "p90": 1.15625,
+        "p99": 2.26953125,
+        "p999": 3.37890625
+      },
+      "top_1pct_token_error_energy_share": 0.05404219701932979,
+      "signal_energy_share_at_same_top_tokens": 0.017119237297866713,
+      "top_0p1pct_element_error_energy_share": 0.029618616941718846,
+      "spatial_h_magnitude_corr_frame_demeaned": 0.9173581265582742,
+      "spatial_w_magnitude_corr_frame_demeaned": 0.9124739866725071,
+      "temporal_magnitude_corr_frame_demeaned": 0.863516712821655,
+      "reference_spatial_h_magnitude_corr_frame_demeaned": 0.7474891733751023,
+      "reference_spatial_w_magnitude_corr_frame_demeaned": 0.7472702727351062,
+      "reference_temporal_magnitude_corr_frame_demeaned": 0.6932074825127961,
+      "shuffled_spatial_h_corr": -0.0026100275179436814,
+      "shuffled_spatial_w_corr": 0.012814318453504418,
+      "shuffled_temporal_corr": -0.0069220337067574834,
+      "signed_error_neighbor_cosine_h": 0.7173505187374788,
+      "signed_error_neighbor_cosine_w": 0.7613571354478004,
+      "signed_error_neighbor_cosine_t": 0.8096430995452462,
+      "shuffled_signed_error_cosine_h": -0.0007341036954832653,
+      "shuffled_signed_error_cosine_w": -0.00404272206119389,
+      "shuffled_signed_error_cosine_t": 0.00201009719660216
+    },
+    {
+      "step": 5,
+      "unique_timesteps": [
+        0.027027038857340813,
+        0.10000000149011612
+      ],
+      "video_nmse": 0.17777022303239962,
+      "audio_nmse": 0.07994301478944411,
+      "video_ref_rms": 1.5202272986771614,
+      "video_error_rms": 0.6409704904015181,
+      "video_error_mean": -0.008448305539786816,
+      "abs_error_quantiles": {
+        "p50": 0.35107421875,
+        "p90": 1.03125,
+        "p99": 2.0147680664062477,
+        "p999": 3.046875
+      },
+      "top_1pct_token_error_energy_share": 0.05914725211350215,
+      "signal_energy_share_at_same_top_tokens": 0.016430252242271664,
+      "top_0p1pct_element_error_energy_share": 0.03044917407334617,
+      "spatial_h_magnitude_corr_frame_demeaned": 0.8803225929941326,
+      "spatial_w_magnitude_corr_frame_demeaned": 0.8772722501912532,
+      "temporal_magnitude_corr_frame_demeaned": 0.7766245550534365,
+      "reference_spatial_h_magnitude_corr_frame_demeaned": 0.5862580482379148,
+      "reference_spatial_w_magnitude_corr_frame_demeaned": 0.6026952611648569,
+      "reference_temporal_magnitude_corr_frame_demeaned": 0.5402462978273711,
+      "shuffled_spatial_h_corr": -8.088445229298633e-05,
+      "shuffled_spatial_w_corr": -0.00393681311280644,
+      "shuffled_temporal_corr": -0.0031948451165987103,
+      "signed_error_neighbor_cosine_h": 0.6887634510277626,
+      "signed_error_neighbor_cosine_w": 0.7220240562584532,
+      "signed_error_neighbor_cosine_t": 0.7085818185853464,
+      "shuffled_signed_error_cosine_h": 3.8655571752771554e-05,
+      "shuffled_signed_error_cosine_w": -0.000984071698972802,
+      "shuffled_signed_error_cosine_t": 0.0009010789112280746
+    },
+    {
+      "step": 6,
+      "unique_timesteps": [
+        0.03448278829455376,
+        0.12500005960464478
+      ],
+      "video_nmse": 0.13597856829226082,
+      "audio_nmse": 0.05935676013296513,
+      "video_ref_rms": 1.4711806740293742,
+      "video_error_rms": 0.5425018747306073,
+      "video_error_mean": -0.002686897059902549,
+      "abs_error_quantiles": {
+        "p50": 0.30078125,
+        "p90": 0.865234375,
+        "p99": 1.71875,
+        "p999": 2.58984375
+      },
+      "top_1pct_token_error_energy_share": 0.06358221646858578,
+      "signal_energy_share_at_same_top_tokens": 0.015174935198418628,
+      "top_0p1pct_element_error_energy_share": 0.03253844221666946,
+      "spatial_h_magnitude_corr_frame_demeaned": 0.8690346280264873,
+      "spatial_w_magnitude_corr_frame_demeaned": 0.8615691117961458,
+      "temporal_magnitude_corr_frame_demeaned": 0.7604241616386115,
+      "reference_spatial_h_magnitude_corr_frame_demeaned": 0.4931772333004545,
+      "reference_spatial_w_magnitude_corr_frame_demeaned": 0.5205089684457891,
+      "reference_temporal_magnitude_corr_frame_demeaned": 0.4369915430264009,
+      "shuffled_spatial_h_corr": -0.009182200993599173,
+      "shuffled_spatial_w_corr": 0.003825638635671687,
+      "shuffled_temporal_corr": -0.0028492020117859224,
+      "signed_error_neighbor_cosine_h": 0.6454331551180091,
+      "signed_error_neighbor_cosine_w": 0.6819194547633072,
+      "signed_error_neighbor_cosine_t": 0.6632209232949191,
+      "shuffled_signed_error_cosine_h": 0.00047403654488440664,
+      "shuffled_signed_error_cosine_w": -0.0018067209307686466,
+      "shuffled_signed_error_cosine_t": -0.000689250681655334
+    },
+    {
+      "step": 7,
+      "unique_timesteps": [
+        0.042944762855768204,
+        0.1521739512681961
+      ],
+      "video_nmse": 0.09812683420102633,
+      "audio_nmse": 0.05213955318649056,
+      "video_ref_rms": 1.4347179594933024,
+      "video_error_rms": 0.4494283130640945,
+      "video_error_mean": -0.013141910545527935,
+      "abs_error_quantiles": {
+        "p50": 0.245361328125,
+        "p90": 0.7109375,
+        "p99": 1.43310546875,
+        "p999": 2.3379145507811927
+      },
+      "top_1pct_token_error_energy_share": 0.07734305496080884,
+      "signal_energy_share_at_same_top_tokens": 0.01572428150463367,
+      "top_0p1pct_element_error_energy_share": 0.038413600691686124,
+      "spatial_h_magnitude_corr_frame_demeaned": 0.8605986656370107,
+      "spatial_w_magnitude_corr_frame_demeaned": 0.8610963866293035,
+      "temporal_magnitude_corr_frame_demeaned": 0.7563247085174793,
+      "reference_spatial_h_magnitude_corr_frame_demeaned": 0.42756943633547956,
+      "reference_spatial_w_magnitude_corr_frame_demeaned": 0.45758798524950006,
+      "reference_temporal_magnitude_corr_frame_demeaned": 0.38526660847788824,
+      "shuffled_spatial_h_corr": -0.008985414641287309,
+      "shuffled_spatial_w_corr": -0.007551784591307788,
+      "shuffled_temporal_corr": 0.002452230947403194,
+      "signed_error_neighbor_cosine_h": 0.5680227056925509,
+      "signed_error_neighbor_cosine_w": 0.6138878587493923,
+      "signed_error_neighbor_cosine_t": 0.6096667930962348,
+      "shuffled_signed_error_cosine_h": 0.00019138622763413364,
+      "shuffled_signed_error_cosine_w": -0.004399800164786059,
+      "shuffled_signed_error_cosine_t": -0.001753722397458644
+    },
+    {
+      "step": 8,
+      "unique_timesteps": [
+        0.05263159051537514,
+        0.1818181723356247
+      ],
+      "video_nmse": 0.09327906195769015,
+      "audio_nmse": 0.05239118499772852,
+      "video_ref_rms": 1.4236658207733748,
+      "video_error_rms": 0.4348106207483186,
+      "video_error_mean": -0.009699184447526932,
+      "abs_error_quantiles": {
+        "p50": 0.2265625,
+        "p90": 0.6640625,
+        "p99": 1.4293655395507798,
+        "p999": 2.608678466796789
+      },
+      "top_1pct_token_error_energy_share": 0.11724017253158182,
+      "signal_energy_share_at_same_top_tokens": 0.01573808025932524,
+      "top_0p1pct_element_error_energy_share": 0.05677112686564156,
+      "spatial_h_magnitude_corr_frame_demeaned": 0.8464037234874353,
+      "spatial_w_magnitude_corr_frame_demeaned": 0.8522078324309152,
+      "temporal_magnitude_corr_frame_demeaned": 0.717001572581384,
+      "reference_spatial_h_magnitude_corr_frame_demeaned": 0.4387586162027178,
+      "reference_spatial_w_magnitude_corr_frame_demeaned": 0.4641920878592078,
+      "reference_temporal_magnitude_corr_frame_demeaned": 0.38073017427096106,
+      "shuffled_spatial_h_corr": 0.012892260610585208,
+      "shuffled_spatial_w_corr": 0.011394539420418983,
+      "shuffled_temporal_corr": 0.005159924782244101,
+      "signed_error_neighbor_cosine_h": 0.5551358702730381,
+      "signed_error_neighbor_cosine_w": 0.6065229366761701,
+      "signed_error_neighbor_cosine_t": 0.5608651260857248,
+      "shuffled_signed_error_cosine_h": -0.0018849389184678066,
+      "shuffled_signed_error_cosine_w": -0.0013993687617912098,
+      "shuffled_signed_error_cosine_t": 0.002082930716900585
+    },
+    {
+      "step": 9,
+      "unique_timesteps": [
+        0.06382977217435837,
+        0.21428558230400085
+      ],
+      "video_nmse": 0.060544485090487606,
+      "audio_nmse": 0.04333661721936306,
+      "video_ref_rms": 1.4118882286015801,
+      "video_error_rms": 0.34740623804168685,
+      "video_error_mean": -0.008479852229356766,
+      "abs_error_quantiles": {
+        "p50": 0.1875,
+        "p90": 0.54296875,
+        "p99": 1.12109375,
+        "p999": 1.8515625
+      },
+      "top_1pct_token_error_energy_share": 0.07468982663425933,
+      "signal_energy_share_at_same_top_tokens": 0.013088737511714682,
+      "top_0p1pct_element_error_energy_share": 0.0410814448485962,
+      "spatial_h_magnitude_corr_frame_demeaned": 0.8178384220474036,
+      "spatial_w_magnitude_corr_frame_demeaned": 0.8339349635816525,
+      "temporal_magnitude_corr_frame_demeaned": 0.6887746485450145,
+      "reference_spatial_h_magnitude_corr_frame_demeaned": 0.39714295892588036,
+      "reference_spatial_w_magnitude_corr_frame_demeaned": 0.41954209915646795,
+      "reference_temporal_magnitude_corr_frame_demeaned": 0.32790027583120684,
+      "shuffled_spatial_h_corr": -0.004156319483260351,
+      "shuffled_spatial_w_corr": 0.004277946924269392,
+      "shuffled_temporal_corr": -0.0015708303954500744,
+      "signed_error_neighbor_cosine_h": 0.5044121471038079,
+      "signed_error_neighbor_cosine_w": 0.5456761482964108,
+      "signed_error_neighbor_cosine_t": 0.4958860450833443,
+      "shuffled_signed_error_cosine_h": -0.0011175628807750864,
+      "shuffled_signed_error_cosine_w": -0.004082671633154938,
+      "shuffled_signed_error_cosine_t": -0.006350621291158494
+    },
+    {
+      "step": 10,
+      "unique_timesteps": [
+        0.07692309468984604,
+        0.25
+      ],
+      "video_nmse": 0.04727646419646712,
+      "audio_nmse": 0.04062823038170698,
+      "video_ref_rms": 1.4056820847776719,
+      "video_error_rms": 0.30563958685726506,
+      "video_error_mean": -0.010049012489616871,
+      "abs_error_quantiles": {
+        "p50": 0.16845703125,
+        "p90": 0.48095703125,
+        "p99": 0.974609375,
+        "p999": 1.6015625
+      },
+      "top_1pct_token_error_energy_share": 0.07290006852777133,
+      "signal_energy_share_at_same_top_tokens": 0.011963881797536872,
+      "top_0p1pct_element_error_energy_share": 0.04154847285177805,
+      "spatial_h_magnitude_corr_frame_demeaned": 0.8010309335644351,
+      "spatial_w_magnitude_corr_frame_demeaned": 0.8222406036929142,
+      "temporal_magnitude_corr_frame_demeaned": 0.6359018695564234,
+      "reference_spatial_h_magnitude_corr_frame_demeaned": 0.38271629173293786,
+      "reference_spatial_w_magnitude_corr_frame_demeaned": 0.40577654829582055,
+      "reference_temporal_magnitude_corr_frame_demeaned": 0.3230725404881805,
+      "shuffled_spatial_h_corr": 0.010921705063490954,
+      "shuffled_spatial_w_corr": -0.007395391600442198,
+      "shuffled_temporal_corr": 0.005637362199551206,
+      "signed_error_neighbor_cosine_h": 0.4657014776268089,
+      "signed_error_neighbor_cosine_w": 0.4945607186835214,
+      "signed_error_neighbor_cosine_t": 0.43878743666443276,
+      "shuffled_signed_error_cosine_h": -0.0005031767101116785,
+      "shuffled_signed_error_cosine_w": 0.00016675472296567338,
+      "shuffled_signed_error_cosine_t": 0.00021008503343568878
+    },
+    {
+      "step": 11,
+      "unique_timesteps": [
+        0.0924370139837265,
+        0.28947368264198303
+      ],
+      "video_nmse": 0.033585720574439586,
+      "audio_nmse": 0.025780860607000532,
+      "video_ref_rms": 1.4038034614637243,
+      "video_error_rms": 0.25726674050618054,
+      "video_error_mean": -0.006613702513277531,
+      "abs_error_quantiles": {
+        "p50": 0.140625,
+        "p90": 0.40625,
+        "p99": 0.8125,
+        "p999": 1.353515625
+      },
+      "top_1pct_token_error_energy_share": 0.06831732663466225,
+      "signal_energy_share_at_same_top_tokens": 0.011175786945968429,
+      "top_0p1pct_element_error_energy_share": 0.04115366451429625,
+      "spatial_h_magnitude_corr_frame_demeaned": 0.7872354616374828,
+      "spatial_w_magnitude_corr_frame_demeaned": 0.8101137497542479,
+      "temporal_magnitude_corr_frame_demeaned": 0.6334870694771637,
+      "reference_spatial_h_magnitude_corr_frame_demeaned": 0.37680872437439555,
+      "reference_spatial_w_magnitude_corr_frame_demeaned": 0.3997351751806278,
+      "reference_temporal_magnitude_corr_frame_demeaned": 0.3212233641377452,
+      "shuffled_spatial_h_corr": 0.012392896477385595,
+      "shuffled_spatial_w_corr": 0.00600454833607066,
+      "shuffled_temporal_corr": -0.001590390817271422,
+      "signed_error_neighbor_cosine_h": 0.4367463008710608,
+      "signed_error_neighbor_cosine_w": 0.4505493807743589,
+      "signed_error_neighbor_cosine_t": 0.40872563564419523,
+      "shuffled_signed_error_cosine_h": -0.0036458363495362116,
+      "shuffled_signed_error_cosine_w": -0.003909330503729501,
+      "shuffled_signed_error_cosine_t": 0.0016938942022190616
+    },
+    {
+      "step": 12,
+      "unique_timesteps": [
+        0.11111108213663101,
+        0.3333333134651184
+      ],
+      "video_nmse": 0.024916825239559716,
+      "audio_nmse": 0.03541374536934633,
+      "video_ref_rms": 1.4019160399771295,
+      "video_error_rms": 0.22129334720580499,
+      "video_error_mean": -0.0032647589687258005,
+      "abs_error_quantiles": {
+        "p50": 0.125,
+        "p90": 0.349609375,
+        "p99": 0.6875,
+        "p999": 1.12890625
+      },
+      "top_1pct_token_error_energy_share": 0.06338058599202555,
+      "signal_energy_share_at_same_top_tokens": 0.010854168179696123,
+      "top_0p1pct_element_error_energy_share": 0.03967109364815227,
+      "spatial_h_magnitude_corr_frame_demeaned": 0.7649103452651702,
+      "spatial_w_magnitude_corr_frame_demeaned": 0.7881479708715341,
+      "temporal_magnitude_corr_frame_demeaned": 0.6196112641250529,
+      "reference_spatial_h_magnitude_corr_frame_demeaned": 0.37661662743690827,
+      "reference_spatial_w_magnitude_corr_frame_demeaned": 0.40058104945265993,
+      "reference_temporal_magnitude_corr_frame_demeaned": 0.3272474411521794,
+      "shuffled_spatial_h_corr": -0.01897948416972722,
+      "shuffled_spatial_w_corr": -0.009497698086057738,
+      "shuffled_temporal_corr": -0.013908672943081573,
+      "signed_error_neighbor_cosine_h": 0.41569554442781653,
+      "signed_error_neighbor_cosine_w": 0.4236815882834679,
+      "signed_error_neighbor_cosine_t": 0.3900920107234825,
+      "shuffled_signed_error_cosine_h": -0.00368692567594846,
+      "shuffled_signed_error_cosine_w": -0.0014403356157978505,
+      "shuffled_signed_error_cosine_t": -0.000334788782996988
+    },
+    {
+      "step": 13,
+      "unique_timesteps": [
+        0.1340206265449524,
+        0.3823530375957489
+      ],
+      "video_nmse": 0.020374482448162413,
+      "audio_nmse": 0.03554559676675351,
+      "video_ref_rms": 1.3984037333818677,
+      "video_error_rms": 0.1996070460094148,
+      "video_error_mean": -0.0036368821747601032,
+      "abs_error_quantiles": {
+        "p50": 0.11328125,
+        "p90": 0.3125,
+        "p99": 0.6171875,
+        "p999": 1.01953125
+      },
+      "top_1pct_token_error_energy_share": 0.0631017404672551,
+      "signal_energy_share_at_same_top_tokens": 0.01039127480063811,
+      "top_0p1pct_element_error_energy_share": 0.03945152087449022,
+      "spatial_h_magnitude_corr_frame_demeaned": 0.7149606687873034,
+      "spatial_w_magnitude_corr_frame_demeaned": 0.7489862996386419,
+      "temporal_magnitude_corr_frame_demeaned": 0.5585877558266753,
+      "reference_spatial_h_magnitude_corr_frame_demeaned": 0.37307477152762014,
+      "reference_spatial_w_magnitude_corr_frame_demeaned": 0.3953056343627205,
+      "reference_temporal_magnitude_corr_frame_demeaned": 0.3235149764128991,
+      "shuffled_spatial_h_corr": 0.007782012879100353,
+      "shuffled_spatial_w_corr": 0.0055555206504258785,
+      "shuffled_temporal_corr": -0.013266901693743598,
+      "signed_error_neighbor_cosine_h": 0.3632612376842609,
+      "signed_error_neighbor_cosine_w": 0.38884454248141526,
+      "signed_error_neighbor_cosine_t": 0.3478787683755347,
+      "shuffled_signed_error_cosine_h": -0.0025685658025168404,
+      "shuffled_signed_error_cosine_w": -0.0013475726390744106,
+      "shuffled_signed_error_cosine_t": -0.0003175049331133764
+    },
+    {
+      "step": 14,
+      "unique_timesteps": [
+        0.1627907156944275,
+        0.4375
+      ],
+      "video_nmse": 0.01629546718631559,
+      "audio_nmse": 0.025237727885200723,
+      "video_ref_rms": 1.3957315555204044,
+      "video_error_rms": 0.17817029761130082,
+      "video_error_mean": -0.003925057593733072,
+      "abs_error_quantiles": {
+        "p50": 0.104248046875,
+        "p90": 0.28125,
+        "p99": 0.5390625,
+        "p999": 0.8828125
+      },
+      "top_1pct_token_error_energy_share": 0.05519994883607936,
+      "signal_energy_share_at_same_top_tokens": 0.010252640347768467,
+      "top_0p1pct_element_error_energy_share": 0.037032859872431816,
+      "spatial_h_magnitude_corr_frame_demeaned": 0.691765440250739,
+      "spatial_w_magnitude_corr_frame_demeaned": 0.7246473234220119,
+      "temporal_magnitude_corr_frame_demeaned": 0.5670651178545857,
+      "reference_spatial_h_magnitude_corr_frame_demeaned": 0.3740802378952679,
+      "reference_spatial_w_magnitude_corr_frame_demeaned": 0.3985032689384869,
+      "reference_temporal_magnitude_corr_frame_demeaned": 0.3277492325009019,
+      "shuffled_spatial_h_corr": -0.0021626947475902564,
+      "shuffled_spatial_w_corr": -0.006700554256411915,
+      "shuffled_temporal_corr": 0.020833629521122,
+      "signed_error_neighbor_cosine_h": 0.3102213529189063,
+      "signed_error_neighbor_cosine_w": 0.3241857902578435,
+      "signed_error_neighbor_cosine_t": 0.31142646428076964,
+      "shuffled_signed_error_cosine_h": -0.002939354670137435,
+      "shuffled_signed_error_cosine_w": -0.0025187020124750794,
+      "shuffled_signed_error_cosine_t": -0.0004150079276842822
+    },
+    {
+      "step": 15,
+      "unique_timesteps": [
+        0.20000000298023224,
+        0.5
+      ],
+      "video_nmse": 0.012882277107733422,
+      "audio_nmse": 0.021541584498880925,
+      "video_ref_rms": 1.393429151111575,
+      "video_error_rms": 0.15815437505066204,
+      "video_error_mean": -0.003732098964974284,
+      "abs_error_quantiles": {
+        "p50": 0.09375,
+        "p90": 0.25,
+        "p99": 0.4765625,
+        "p999": 0.7734375
+      },
+      "top_1pct_token_error_energy_share": 0.05194758566394409,
+      "signal_energy_share_at_same_top_tokens": 0.010064325906134913,
+      "top_0p1pct_element_error_energy_share": 0.036956106336169324,
+      "spatial_h_magnitude_corr_frame_demeaned": 0.6428098952586767,
+      "spatial_w_magnitude_corr_frame_demeaned": 0.6810965727104544,
+      "temporal_magnitude_corr_frame_demeaned": 0.5323154696797905,
+      "reference_spatial_h_magnitude_corr_frame_demeaned": 0.3847444018337852,
+      "reference_spatial_w_magnitude_corr_frame_demeaned": 0.41111359220681176,
+      "reference_temporal_magnitude_corr_frame_demeaned": 0.33887272133973023,
+      "shuffled_spatial_h_corr": -0.007532157934177431,
+      "shuffled_spatial_w_corr": -0.013292358503419395,
+      "shuffled_temporal_corr": 0.002113460464632826,
+      "signed_error_neighbor_cosine_h": 0.2598186073457044,
+      "signed_error_neighbor_cosine_w": 0.2753377891881323,
+      "signed_error_neighbor_cosine_t": 0.2646923041474194,
+      "shuffled_signed_error_cosine_h": -0.0011104827455254982,
+      "shuffled_signed_error_cosine_w": -0.001509634229691954,
+      "shuffled_signed_error_cosine_t": 0.002586427691125816
+    },
+    {
+      "step": 16,
+      "unique_timesteps": [
+        0.25,
+        0.5714285373687744
+      ],
+      "video_nmse": 0.011377106665547197,
+      "audio_nmse": 0.016634180449082672,
+      "video_ref_rms": 1.3914405080274044,
+      "video_error_rms": 0.14841594354447404,
+      "video_error_mean": -0.0032053361646831036,
+      "abs_error_quantiles": {
+        "p50": 0.0888671875,
+        "p90": 0.234375,
+        "p99": 0.44140625,
+        "p999": 0.7109853515623854
+      },
+      "top_1pct_token_error_energy_share": 0.05107611221826454,
+      "signal_energy_share_at_same_top_tokens": 0.010106909116845695,
+      "top_0p1pct_element_error_energy_share": 0.038136001045132664,
+      "spatial_h_magnitude_corr_frame_demeaned": 0.608793073897608,
+      "spatial_w_magnitude_corr_frame_demeaned": 0.6642491181406988,
+      "temporal_magnitude_corr_frame_demeaned": 0.5559764203301789,
+      "reference_spatial_h_magnitude_corr_frame_demeaned": 0.38793215444608364,
+      "reference_spatial_w_magnitude_corr_frame_demeaned": 0.41367527334732757,
+      "reference_temporal_magnitude_corr_frame_demeaned": 0.34059943962220285,
+      "shuffled_spatial_h_corr": 0.0031893675268446138,
+      "shuffled_spatial_w_corr": -0.013254895426765983,
+      "shuffled_temporal_corr": -0.0022129388192436484,
+      "signed_error_neighbor_cosine_h": 0.2160502380179422,
+      "signed_error_neighbor_cosine_w": 0.2296201081834975,
+      "signed_error_neighbor_cosine_t": 0.22618055108578114,
+      "shuffled_signed_error_cosine_h": -0.0018376251643508637,
+      "shuffled_signed_error_cosine_w": -0.0003505423568589229,
+      "shuffled_signed_error_cosine_t": -0.0006825584984509965
+    },
+    {
+      "step": 17,
+      "unique_timesteps": [
+        0.3207547068595886,
+        0.6538460850715637
+      ],
+      "video_nmse": 0.01091179657305629,
+      "audio_nmse": 0.015363856864832803,
+      "video_ref_rms": 1.3871740179530152,
+      "video_error_rms": 0.14490356696000958,
+      "video_error_mean": -0.0028637878131121397,
+      "abs_error_quantiles": {
+        "p50": 0.0859375,
+        "p90": 0.23046875,
+        "p99": 0.4273681640625,
+        "p999": 0.6826171875
+      },
+      "top_1pct_token_error_energy_share": 0.05412223433288051,
+      "signal_energy_share_at_same_top_tokens": 0.01000094166797354,
+      "top_0p1pct_element_error_energy_share": 0.04379371357177835,
+      "spatial_h_magnitude_corr_frame_demeaned": 0.5577258836571478,
+      "spatial_w_magnitude_corr_frame_demeaned": 0.6490863269207323,
+      "temporal_magnitude_corr_frame_demeaned": 0.5503773155850573,
+      "reference_spatial_h_magnitude_corr_frame_demeaned": 0.3959315217583807,
+      "reference_spatial_w_magnitude_corr_frame_demeaned": 0.4225321804055666,
+      "reference_temporal_magnitude_corr_frame_demeaned": 0.3467710756095649,
+      "shuffled_spatial_h_corr": 0.001416540201770921,
+      "shuffled_spatial_w_corr": -0.009515633842434255,
+      "shuffled_temporal_corr": 0.011290334470612699,
+      "signed_error_neighbor_cosine_h": 0.1658284814165944,
+      "signed_error_neighbor_cosine_w": 0.18364855659857152,
+      "signed_error_neighbor_cosine_t": 0.18714698624309936,
+      "shuffled_signed_error_cosine_h": -0.0020951593014564398,
+      "shuffled_signed_error_cosine_w": -0.0015536251954475727,
+      "shuffled_signed_error_cosine_t": -0.001339870579791162
+    },
+    {
+      "step": 18,
+      "unique_timesteps": [
+        0.4285714030265808,
+        0.75
+      ],
+      "video_nmse": 0.011424777011622134,
+      "audio_nmse": 0.01877642816829542,
+      "video_ref_rms": 1.3799855324378911,
+      "video_error_rms": 0.14750216658270673,
+      "video_error_mean": -0.0023090417962521315,
+      "abs_error_quantiles": {
+        "p50": 0.08984375,
+        "p90": 0.234375,
+        "p99": 0.4306640625,
+        "p999": 0.6667600097655964
+      },
+      "top_1pct_token_error_energy_share": 0.0446682628644153,
+      "signal_energy_share_at_same_top_tokens": 0.010016933494586076,
+      "top_0p1pct_element_error_energy_share": 0.036230505941907895,
+      "spatial_h_magnitude_corr_frame_demeaned": 0.5563460607413232,
+      "spatial_w_magnitude_corr_frame_demeaned": 0.633825086075183,
+      "temporal_magnitude_corr_frame_demeaned": 0.533374751701243,
+      "reference_spatial_h_magnitude_corr_frame_demeaned": 0.406518044840284,
+      "reference_spatial_w_magnitude_corr_frame_demeaned": 0.4349544804650724,
+      "reference_temporal_magnitude_corr_frame_demeaned": 0.35416469367458864,
+      "shuffled_spatial_h_corr": -0.002390012640177645,
+      "shuffled_spatial_w_corr": -0.003995918349437653,
+      "shuffled_temporal_corr": -0.002549633808430358,
+      "signed_error_neighbor_cosine_h": 0.12253817127265018,
+      "signed_error_neighbor_cosine_w": 0.1326417914080211,
+      "signed_error_neighbor_cosine_t": 0.13764885142491468,
+      "shuffled_signed_error_cosine_h": -0.0030298531960407608,
+      "shuffled_signed_error_cosine_w": -0.001333420467408491,
+      "shuffled_signed_error_cosine_t": 0.002125964753451976
+    },
+    {
+      "step": 19,
+      "unique_timesteps": [
+        0.6129031777381897,
+        0.8636363744735718
+      ],
+      "video_nmse": 0.01618602069971329,
+      "audio_nmse": 0.028998844634313275,
+      "video_ref_rms": 1.3591521998843656,
+      "video_error_rms": 0.17291717755137767,
+      "video_error_mean": -0.0013639836106449366,
+      "abs_error_quantiles": {
+        "p50": 0.109375,
+        "p90": 0.28125,
+        "p99": 0.4990234375,
+        "p999": 0.71875
+      },
+      "top_1pct_token_error_energy_share": 0.027924479845610934,
+      "signal_energy_share_at_same_top_tokens": 0.010485436043415548,
+      "top_0p1pct_element_error_energy_share": 0.02335393074133025,
+      "spatial_h_magnitude_corr_frame_demeaned": 0.5859461430811882,
+      "spatial_w_magnitude_corr_frame_demeaned": 0.6378675548758235,
+      "temporal_magnitude_corr_frame_demeaned": 0.502436761101739,
+      "reference_spatial_h_magnitude_corr_frame_demeaned": 0.43146656189595234,
+      "reference_spatial_w_magnitude_corr_frame_demeaned": 0.4632035590883992,
+      "reference_temporal_magnitude_corr_frame_demeaned": 0.3774879105030843,
+      "shuffled_spatial_h_corr": 0.009280445622559315,
+      "shuffled_spatial_w_corr": 0.004613735652103896,
+      "shuffled_temporal_corr": 0.002101214142190927,
+      "signed_error_neighbor_cosine_h": 0.08312187863767738,
+      "signed_error_neighbor_cosine_w": 0.08237282316775582,
+      "signed_error_neighbor_cosine_t": 0.08091647413001467,
+      "shuffled_signed_error_cosine_h": -0.0028358563986847175,
+      "shuffled_signed_error_cosine_w": -0.0020763170860768547,
+      "shuffled_signed_error_cosine_t": 0.0001191323614798383
+    }
+  ]
+}

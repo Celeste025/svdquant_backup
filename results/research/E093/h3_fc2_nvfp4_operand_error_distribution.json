@@ -1,0 +1,749 @@
+{
+  "format": "h3-nvfp4-operand-error-distribution-v1",
+  "timestamp_utc": "2026-10-14T07:51:00.615042+00:00",
+  "scope": "one H3 block-25 FC2 BF16 weight and p1/p11 step-0 input; plain native NVFP4 Q/DQ",
+  "quantization": "FlashInfer native NVFP4 E2M1, E4M3 K16 blocks, current-input FP32 global scale; weight global scale from weight",
+  "p1": "/data1/models/svdquant-wjq/results/E088_native_bench/h3_block25_p1_s00.pt",
+  "p11": "/data1/models/svdquant-wjq/results/E088_native_bench/h3_block25_p11_s00_calib.pt",
+  "p1_call": "/data1/models/svdquant-wjq/results/E087_timestep_aware/cache_16p20s/p1/sample_p1_s00.pt",
+  "p11_call": "/data1/models/svdquant-wjq/results/E087_timestep_aware/cache_16p20s/p11/sample_p11_s00.pt",
+  "weight": "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors",
+  "weight_key": "blocks.25.mlp.fc2.weight",
+  "gpu": 7,
+  "operands": {
+    "p1_activation": {
+      "shape": [
+        22400,
+        14336
+      ],
+      "global_amax": 5152.0,
+      "global_nmse": 0.004858125787072766,
+      "total_error_energy": 106492469.39512858,
+      "total_signal_energy": 21920484166.651222,
+      "rows": {
+        "top_1pct_error_share": {
+          "count": 224,
+          "fraction": 0.04939445660404225
+        },
+        "top_1pct_signal_share": {
+          "count": 224,
+          "fraction": 0.06558373316463263
+        },
+        "top_0_1pct_error_share": {
+          "count": 23,
+          "fraction": 0.008840930295088182
+        },
+        "local_nmse_percentiles": {
+          "p50": 0.0053325677290558815,
+          "p90": 0.006059578619897366,
+          "p99": 0.006466786377131939
+        },
+        "top_error": [
+          {
+            "index": 2670,
+            "error_share": 0.0006047830597045902,
+            "signal_share": 0.0011380620095342545,
+            "local_nmse": 0.002581680218934682,
+            "modality": "video"
+          },
+          {
+            "index": 20429,
+            "error_share": 0.0005426054384206889,
+            "signal_share": 0.001428933901574104,
+            "local_nmse": 0.0018447637568775033,
+            "modality": "video"
+          },
+          {
+            "index": 15906,
+            "error_share": 0.0005317642801523601,
+            "signal_share": 0.0006659658487312911,
+            "local_nmse": 0.0038791445041421752,
+            "modality": "video"
+          },
+          {
+            "index": 288,
+            "error_share": 0.0005301603924614773,
+            "signal_share": 0.0018781668168207847,
+            "local_nmse": 0.0013713296661589799,
+            "modality": "text"
+          },
+          {
+            "index": 21646,
+            "error_share": 0.0004949611584944584,
+            "signal_share": 0.001362094529166543,
+            "local_nmse": 0.0017653573347458404,
+            "modality": "video"
+          },
+          {
+            "index": 18279,
+            "error_share": 0.0004620002506402345,
+            "signal_share": 0.000597791187354966,
+            "local_nmse": 0.003754580828132309,
+            "modality": "video"
+          },
+          {
+            "index": 15965,
+            "error_share": 0.00041427346870527484,
+            "signal_share": 0.00045714335920800234,
+            "local_nmse": 0.004402541523744283,
+            "modality": "video"
+          },
+          {
+            "index": 4452,
+            "error_share": 0.00036669387505373305,
+            "signal_share": 0.0004117400746478651,
+            "local_nmse": 0.004326625169735385,
+            "modality": "video"
+          }
+        ]
+      },
+      "input_channels": {
+        "top_1pct_error_share": {
+          "count": 144,
+          "fraction": 0.06646389840992852
+        },
+        "top_1pct_signal_share": {
+          "count": 144,
+          "fraction": 0.23153891719886455
+        },
+        "local_nmse_percentiles": {
+          "p50": 0.01034230925142765,
+          "p90": 0.03522169217467308,
+          "p99": 0.12107711285352707
+        },
+        "top_error": [
+          {
+            "index": 6699,
+            "error_share": 0.0013464105668734819,
+            "signal_share": 0.009115028292103755,
+            "local_nmse": 0.0007176096096796259
+          },
+          {
+            "index": 9786,
+            "error_share": 0.0011532487144817129,
+            "signal_share": 0.007756947117452051,
+            "local_nmse": 0.0007222722075965937
+          },
+          {
+            "index": 6702,
+            "error_share": 0.0011301173956615794,
+            "signal_share": 0.00013503442019082814,
+            "local_nmse": 0.040658170372593234
+          },
+          {
+            "index": 3671,
+            "error_share": 0.001105843775389538,
+            "signal_share": 0.0068952641189834185,
+            "local_nmse": 0.0007791330497265809
+          },
+          {
+            "index": 14108,
+            "error_share": 0.0010764427974709388,
+            "signal_share": 0.008709157061009777,
+            "local_nmse": 0.0006004593184011294
+          },
+          {
+            "index": 10073,
+            "error_share": 0.0009564853811830921,
+            "signal_share": 0.006161389948920533,
+            "local_nmse": 0.0007541685129177393
+          },
+          {
+            "index": 3679,
+            "error_share": 0.0009224171502359094,
+            "signal_share": 0.00021058289615010205,
+            "local_nmse": 0.021280068922620677
+          },
+          {
+            "index": 14109,
+            "error_share": 0.0008924992597200214,
+            "signal_share": 8.392944606710857e-05,
+            "local_nmse": 0.05166093512784891
+          }
+        ]
+      },
+      "k16_groups": {
+        "top_1pct_error_share": {
+          "count": 9,
+          "fraction": 0.0368455894154082
+        },
+        "top_1pct_signal_share": {
+          "count": 9,
+          "fraction": 0.06426507263415161
+        },
+        "local_nmse_percentiles": {
+          "p50": 0.005359861068427563,
+          "p90": 0.006163452751934528,
+          "p99": 0.0066274963319301605
+        },
+        "top_error": [
+          {
+            "index": 25,
+            "error_share": 0.005941348614850321,
+            "signal_share": 0.00641985950935116,
+            "local_nmse": 0.004496020337166318
+          },
+          {
+            "index": 611,
+            "error_share": 0.005506257173137404,
+            "signal_share": 0.008530960584230475,
+            "local_nmse": 0.00313564805498233
+          },
+          {
+            "index": 418,
+            "error_share": 0.004727894788372907,
+            "signal_share": 0.009737883916354897,
+            "local_nmse": 0.002358695974120735
+          },
+          {
+            "index": 229,
+            "error_share": 0.004434394731233604,
+            "signal_share": 0.007923917383482582,
+            "local_nmse": 0.0027187117622871335
+          },
+          {
+            "index": 881,
+            "error_share": 0.0035589068023651805,
+            "signal_share": 0.009346574733627589,
+            "local_nmse": 0.0018498345547009307
+          },
+          {
+            "index": 629,
+            "error_share": 0.003441064126047017,
+            "signal_share": 0.006669461892889816,
+            "local_nmse": 0.0025065174123780247
+          },
+          {
+            "index": 684,
+            "error_share": 0.0033175966799969293,
+            "signal_share": 0.004115323229226753,
+            "local_nmse": 0.00391641217091675
+          },
+          {
+            "index": 811,
+            "error_share": 0.0029743429500046965,
+            "signal_share": 0.005440461918905199,
+            "local_nmse": 0.0026559752462937303
+          }
+        ]
+      },
+      "modality": {
+        "text": {
+          "rows": 658,
+          "error_energy_share": 0.029395148973380816,
+          "signal_energy_share": 0.03914723701203609,
+          "nmse": 0.003647903201917428,
+          "row_local_nmse_percentiles": {
+            "p50": 0.004076424054801464,
+            "p90": 0.004761099815368652,
+            "p99": 0.005134700331836939
+          }
+        },
+        "audio": {
+          "rows": 414,
+          "error_energy_share": 0.0010342412891169482,
+          "signal_energy_share": 0.0013511927014485039,
+          "nmse": 0.0037185475256994037,
+          "row_local_nmse_percentiles": {
+            "p50": 0.0040179151110351086,
+            "p90": 0.004553542006760836,
+            "p99": 0.0048872241750359535
+          }
+        },
+        "video": {
+          "rows": 21312,
+          "error_energy_share": 0.9694229546594185,
+          "signal_energy_share": 0.9593656653555478,
+          "nmse": 0.00490905483141904,
+          "row_local_nmse_percentiles": {
+            "p50": 0.00537640368565917,
+            "p90": 0.006071458104997873,
+            "p99": 0.006473375950008631
+          }
+        },
+        "padding": {
+          "rows": 16,
+          "error_energy_share": 0.00014765507808379663,
+          "signal_energy_share": 0.00013590493096770788,
+          "nmse": 0.005278152435849277,
+          "row_local_nmse_percentiles": {
+            "p50": 0.005278152413666248,
+            "p90": 0.005278152413666248,
+            "p99": 0.005278152413666248
+          }
+        }
+      },
+      "e090_global_nmse_gate_delta": 6.136716135252129e-12
+    },
+    "p11_activation": {
+      "shape": [
+        22464,
+        14336
+      ],
+      "global_amax": 2512.0,
+      "global_nmse": 0.00484630647807095,
+      "total_error_energy": 95959256.64322147,
+      "total_signal_energy": 19800492824.262657,
+      "rows": {
+        "top_1pct_error_share": {
+          "count": 225,
+          "fraction": 0.044345500981714164
+        },
+        "top_1pct_signal_share": {
+          "count": 225,
+          "fraction": 0.055275182974639854
+        },
+        "top_0_1pct_error_share": {
+          "count": 23,
+          "fraction": 0.008029807647104448
+        },
+        "local_nmse_percentiles": {
+          "p50": 0.00529895257204771,
+          "p90": 0.006020285654813051,
+          "p99": 0.006437133066356182
+        },
+        "top_error": [
+          {
+            "index": 20306,
+            "error_share": 0.0010067165302641153,
+            "signal_share": 0.0015176570939237593,
+            "local_nmse": 0.003214729375781631,
+            "modality": "video"
+          },
+          {
+            "index": 18696,
+            "error_share": 0.0005337267022917888,
+            "signal_share": 0.0005982739101821603,
+            "local_nmse": 0.0043234430430847005,
+            "modality": "video"
+          },
+          {
+            "index": 22064,
+            "error_share": 0.0004511894739197586,
+            "signal_share": 0.0005175400805570739,
+            "local_nmse": 0.004224991556095747,
+            "modality": "video"
+          },
+          {
+            "index": 19226,
+            "error_share": 0.00044659912082777037,
+            "signal_share": 0.0005032113590735125,
+            "local_nmse": 0.004301087750390449,
+            "modality": "video"
+          },
+          {
+            "index": 4074,
+            "error_share": 0.00038464976761241106,
+            "signal_share": 0.0006910323916225068,
+            "local_nmse": 0.0026976024324874763,
+            "modality": "video"
+          },
+          {
+            "index": 21613,
+            "error_share": 0.00038147332649342763,
+            "signal_share": 0.0004113851758712766,
+            "local_nmse": 0.004493931142465004,
+            "modality": "video"
+          },
+          {
+            "index": 21991,
+            "error_share": 0.00037593770227122724,
+            "signal_share": 0.0004294162025776542,
+            "local_nmse": 0.00424275868244326,
+            "modality": "video"
+          },
+          {
+            "index": 588,
+            "error_share": 0.00031164692641473334,
+            "signal_share": 0.0003368886842019432,
+            "local_nmse": 0.004483191597641412,
+            "modality": "text"
+          }
+        ]
+      },
+      "input_channels": {
+        "top_1pct_error_share": {
+          "count": 144,
+          "fraction": 0.0704902614576334
+        },
+        "top_1pct_signal_share": {
+          "count": 144,
+          "fraction": 0.2561381054864112
+        },
+        "local_nmse_percentiles": {
+          "p50": 0.010801698081195354,
+          "p90": 0.039354488253593445,
+          "p99": 0.13781589269638062
+        },
+        "top_error": [
+          {
+            "index": 5446,
+            "error_share": 0.002246326709256857,
+            "signal_share": 0.015658928518135825,
+            "local_nmse": 0.000695219195255086
+          },
+          {
+            "index": 6699,
+            "error_share": 0.0011668965045477423,
+            "signal_share": 0.007337768290049585,
+            "local_nmse": 0.0007706891067815192
+          },
+          {
+            "index": 3807,
+            "error_share": 0.0011339532054336543,
+            "signal_share": 0.007977593226709774,
+            "local_nmse": 0.0006888650009031558
+          },
+          {
+            "index": 5450,
+            "error_share": 0.0011074159469633903,
+            "signal_share": 5.138769228853653e-05,
+            "local_nmse": 0.10443895879879755
+          },
+          {
+            "index": 6702,
+            "error_share": 0.0010741454727346885,
+            "signal_share": 0.00020387994830356828,
+            "local_nmse": 0.02553285993163848
+          },
+          {
+            "index": 5453,
+            "error_share": 0.0009201730454198364,
+            "signal_share": 3.3297988307571066e-05,
+            "local_nmse": 0.13392522544524021
+          },
+          {
+            "index": 4350,
+            "error_share": 0.0008985632889682412,
+            "signal_share": 0.0006757085152349156,
+            "local_nmse": 0.006444662143660531
+          },
+          {
+            "index": 7635,
+            "error_share": 0.0008342619418049623,
+            "signal_share": 0.0042058422070836736,
+            "local_nmse": 0.0009613030765081679
+          }
+        ]
+      },
+      "k16_groups": {
+        "top_1pct_error_share": {
+          "count": 9,
+          "fraction": 0.040094764893316315
+        },
+        "top_1pct_signal_share": {
+          "count": 9,
+          "fraction": 0.06502166637886223
+        },
+        "local_nmse_percentiles": {
+          "p50": 0.005368023179471493,
+          "p90": 0.00622525904327631,
+          "p99": 0.006640180479735136
+        },
+        "top_error": [
+          {
+            "index": 340,
+            "error_share": 0.007427538437418349,
+            "signal_share": 0.016072358262742694,
+            "local_nmse": 0.002239629496613703
+          },
+          {
+            "index": 588,
+            "error_share": 0.005009351110978398,
+            "signal_share": 0.0052768634035237055,
+            "local_nmse": 0.0046006214077581155
+          },
+          {
+            "index": 418,
+            "error_share": 0.004497311397488459,
+            "signal_share": 0.007937316590054588,
+            "local_nmse": 0.0027459342351116595
+          },
+          {
+            "index": 733,
+            "error_share": 0.0044966540769574015,
+            "signal_share": 0.005759855989930921,
+            "local_nmse": 0.003783456360870605
+          },
+          {
+            "index": 271,
+            "error_share": 0.0038859741431389394,
+            "signal_share": 0.0037903140750677237,
+            "local_nmse": 0.004968617716243991
+          },
+          {
+            "index": 477,
+            "error_share": 0.0038439539000689185,
+            "signal_share": 0.005175297050690422,
+            "local_nmse": 0.0035995960241209436
+          },
+          {
+            "index": 237,
+            "error_share": 0.0036930853036528525,
+            "signal_share": 0.008410037066710289,
+            "local_nmse": 0.0021281503386004026
+          },
+          {
+            "index": 503,
+            "error_share": 0.003677533852849856,
+            "signal_share": 0.0038774796143801445,
+            "local_nmse": 0.004596402278504455
+          }
+        ]
+      },
+      "modality": {
+        "text": {
+          "rows": 738,
+          "error_energy_share": 0.03924894362706786,
+          "signal_energy_share": 0.051029573843515585,
+          "nmse": 0.003727493596959973,
+          "row_local_nmse_percentiles": {
+            "p50": 0.004127102438360453,
+            "p90": 0.0047775981947779655,
+            "p99": 0.005283490289002657
+          }
+        },
+        "audio": {
+          "rows": 414,
+          "error_energy_share": 0.0009824678441595345,
+          "signal_energy_share": 0.0011647910705733827,
+          "nmse": 0.004087720448700662,
+          "row_local_nmse_percentiles": {
+            "p50": 0.004405978135764599,
+            "p90": 0.0049722143448889256,
+            "p99": 0.005624308250844479
+          }
+        },
+        "video": {
+          "rows": 21312,
+          "error_energy_share": 0.9597685885287727,
+          "signal_energy_share": 0.9478056350859111,
+          "nmse": 0.004907475283805836,
+          "row_local_nmse_percentiles": {
+            "p50": 0.005342972930520773,
+            "p90": 0.00603520730510354,
+            "p99": 0.0064407819882035255
+          }
+        },
+        "padding": {
+          "rows": 0,
+          "error_energy_share": 0.0,
+          "signal_energy_share": 0.0,
+          "nmse": null,
+          "row_local_nmse_percentiles": null
+        }
+      },
+      "e090_global_nmse_gate_delta": 4.3380726094666144e-11
+    },
+    "weight": {
+      "shape": [
+        5376,
+        14336
+      ],
+      "global_amax": 3.21875,
+      "global_nmse": 0.008871217886386416,
+      "total_error_energy": 16800.88873259099,
+      "total_signal_energy": 1893864.9628224415,
+      "rows": {
+        "top_1pct_error_share": {
+          "count": 54,
+          "fraction": 0.012423630066058367
+        },
+        "top_1pct_signal_share": {
+          "count": 54,
+          "fraction": 0.012320574015127782
+        },
+        "top_0_1pct_error_share": {
+          "count": 6,
+          "fraction": 0.0015119482325019935
+        },
+        "local_nmse_percentiles": {
+          "p50": 0.008871832862496376,
+          "p90": 0.00904174242168665,
+          "p99": 0.009174799546599388
+        },
+        "top_error": [
+          {
+            "index": 2173,
+            "error_share": 0.0003079204325372655,
+            "signal_share": 0.0003329177446537829,
+            "local_nmse": 0.008205117608102218
+          },
+          {
+            "index": 2320,
+            "error_share": 0.00026291446043471927,
+            "signal_share": 0.00026783440108355097,
+            "local_nmse": 0.008708259486317935
+          },
+          {
+            "index": 3474,
+            "error_share": 0.00024664827603982807,
+            "signal_share": 0.00025247226009997954,
+            "local_nmse": 0.008666578249762634
+          },
+          {
+            "index": 621,
+            "error_share": 0.00023278659676534958,
+            "signal_share": 0.00024505509049748287,
+            "local_nmse": 0.008427087218402442
+          },
+          {
+            "index": 4288,
+            "error_share": 0.000230968903183955,
+            "signal_share": 0.00022421804458457427,
+            "local_nmse": 0.009138316538799748
+          },
+          {
+            "index": 3863,
+            "error_share": 0.00023070956354087613,
+            "signal_share": 0.00022429802143035163,
+            "local_nmse": 0.00912480098394337
+          },
+          {
+            "index": 1136,
+            "error_share": 0.00022992270783765733,
+            "signal_share": 0.000228873629324283,
+            "local_nmse": 0.008911880517985988
+          },
+          {
+            "index": 988,
+            "error_share": 0.00022934702522173464,
+            "signal_share": 0.00022376453965877879,
+            "local_nmse": 0.009092537340541695
+          }
+        ]
+      },
+      "input_channels": {
+        "top_1pct_error_share": {
+          "count": 144,
+          "fraction": 0.014281134574425257
+        },
+        "top_1pct_signal_share": {
+          "count": 144,
+          "fraction": 0.022223938993286993
+        },
+        "local_nmse_percentiles": {
+          "p50": 0.00936062540858984,
+          "p90": 0.01062728837132454,
+          "p99": 0.011626744642853737
+        },
+        "top_error": [
+          {
+            "index": 3010,
+            "error_share": 0.00012068407748776413,
+            "signal_share": 0.0002472451351651516,
+            "local_nmse": 0.004330175176536283
+          },
+          {
+            "index": 3020,
+            "error_share": 0.00012045119681562959,
+            "signal_share": 0.00015863195697274693,
+            "local_nmse": 0.006736024896995005
+          },
+          {
+            "index": 12238,
+            "error_share": 0.00011311074505966839,
+            "signal_share": 0.00014825378153981184,
+            "local_nmse": 0.006768326947844933
+          },
+          {
+            "index": 10509,
+            "error_share": 0.00011112753406365453,
+            "signal_share": 0.00017252185057793032,
+            "local_nmse": 0.005714270769488372
+          },
+          {
+            "index": 12227,
+            "error_share": 0.00010670538648811784,
+            "signal_share": 0.00015081835748596733,
+            "local_nmse": 0.006276468919078647
+          },
+          {
+            "index": 6894,
+            "error_share": 0.00010599254763563118,
+            "signal_share": 0.00015093455363136328,
+            "local_nmse": 0.006229739723518753
+          },
+          {
+            "index": 3011,
+            "error_share": 0.00010581294846541714,
+            "signal_share": 0.00010450982347077841,
+            "local_nmse": 0.008981832423630072
+          },
+          {
+            "index": 10499,
+            "error_share": 0.00010577031183529019,
+            "signal_share": 0.00012817813612512306,
+            "local_nmse": 0.007320370779037917
+          }
+        ]
+      },
+      "k16_groups": {
+        "top_1pct_error_share": {
+          "count": 9,
+          "fraction": 0.012120267648481781
+        },
+        "top_1pct_signal_share": {
+          "count": 9,
+          "fraction": 0.012217644809567607
+        },
+        "local_nmse_percentiles": {
+          "p50": 0.00887655932456255,
+          "p90": 0.008956925012171268,
+          "p99": 0.009034506045281887
+        },
+        "top_error": [
+          {
+            "index": 188,
+            "error_share": 0.0014790792305269592,
+            "signal_share": 0.0015254511197042317,
+            "local_nmse": 0.008601543475072136
+          },
+          {
+            "index": 764,
+            "error_share": 0.0013836289934788576,
+            "signal_share": 0.0013913361267733255,
+            "local_nmse": 0.00882207687910645
+          },
+          {
+            "index": 656,
+            "error_share": 0.0013549840411924527,
+            "signal_share": 0.0013574097920526446,
+            "local_nmse": 0.008855364630763213
+          },
+          {
+            "index": 548,
+            "error_share": 0.0013492447136604065,
+            "signal_share": 0.0013442540746290586,
+            "local_nmse": 0.008904152914871719
+          },
+          {
+            "index": 46,
+            "error_share": 0.0013243707171080202,
+            "signal_share": 0.0013336479295848519,
+            "local_nmse": 0.008809507316876594
+          },
+          {
+            "index": 634,
+            "error_share": 0.001312844857872833,
+            "signal_share": 0.0013152595328299215,
+            "local_nmse": 0.008854931285046951
+          },
+          {
+            "index": 131,
+            "error_share": 0.0013108467777035477,
+            "signal_share": 0.0013329653841862446,
+            "local_nmse": 0.00872401303037207
+          },
+          {
+            "index": 739,
+            "error_share": 0.0013082098150137434,
+            "signal_share": 0.0013039963786550086,
+            "local_nmse": 0.00889988231567518
+          }
+        ]
+      },
+      "e090_global_nmse_gate_delta": 1.14416200472367e-10
+    }
+  }
+}

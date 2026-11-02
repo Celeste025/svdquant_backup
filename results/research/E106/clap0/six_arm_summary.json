@@ -1,0 +1,66 @@
+{
+  "format": "h3-e106-six-arm-summary-v1",
+  "case": "clap0",
+  "definition": "decoded H.264 RGB distance to separately generated BF16; free-rollout divergence, NOT perceptual quality",
+  "sources": {
+    "bf16": "/data1/models/svdquant-wjq/research/20261004/E073/decode_full_bf16_r0/vbench0161_r0.mp4",
+    "svdquant": "/data1/models/svdquant-wjq/research/20261015/E101_h3_r32_fixed1_three_cases/clap0/svdquant/svdquant_id161_seed38001610_576x1024_124f_20steps.mp4",
+    "permuted_error": "/data1/models/svdquant-wjq/research/20261017/E106_h3_error_permutation/clap0/permuted_error/clap0_permuted_error_576x1024_124f_20steps.mp4",
+    "tail_restore": "/data1/models/svdquant-wjq/research/20261016/E105_h3_output_interventions/clap0/tail_restore/clap0_tail_restore_576x1024_124f_20steps.mp4",
+    "rademacher_flat": "/data1/models/svdquant-wjq/research/20261016/E105_h3_output_interventions/clap0/rademacher_flat/clap0_rademacher_flat_576x1024_124f_20steps.mp4",
+    "gaussian": "/data1/models/svdquant-wjq/research/20261016/E105_h3_output_interventions/clap0/gaussian/clap0_gaussian_576x1024_124f_20steps.mp4"
+  },
+  "source_sha256": {
+    "bf16": "9841e16d4337331536a47382570a9a9d619aa95ce3c9734790380aed8d6b8bba",
+    "svdquant": "6b724fb3466242219dd6bf2d2d4075ca9685080ec6c386c382b374ba914c2d41",
+    "permuted_error": "1d2088752d048238e06743964c2c2e7624bea1c8e94472b0d63ac6f43db8b44c",
+    "tail_restore": "27972ce1fb18355f83c2385c890991d0bdf52b9e69a648d75e27a28e811d5054",
+    "rademacher_flat": "78fb6576c647eed169a735ca176dff44ab5c3fef95e583d962bdc0ddd85837e2",
+    "gaussian": "0ff4910b21bb862e267a85b2d84d35a6a289773c9a77b3fdd4ef8929990c9ca5"
+  },
+  "frames": 124,
+  "fps": 24,
+  "montage": "/data1/models/svdquant-wjq/research/20261017/E106_h3_error_permutation/clap0/clap0_six_arm_montage.mp4",
+  "montage_sha256": "100a61a1f4b5a49b1f4c72e99606e202ccb8bc45ed80963a36909d8cd31dc749",
+  "montage_audio": "none; individual source MP4s contain audio",
+  "poster": "/home/wjq/workspace/svdquant-exp/results/research/E106/clap0/six_arm_poster.jpg",
+  "poster_sha256": "37ab49252cb3cfd99717af00bb35100f9fc0038482a235a33ac006f8879715a6",
+  "permutation_error_validation": {
+    "video": {
+      "target_nmse_mean": 0.024438357293915927,
+      "realized_nmse_mean": 0.024440654224544733,
+      "max_absolute_relative_mse_change": 0.0003784412473422094,
+      "max_bf16_rounding_distortion_over_target_mse": 0.0003928622171919837,
+      "mean_original_vs_permuted_same_position_cosine": 0.0029018380172191544
+    },
+    "audio": {
+      "target_nmse_mean": 0.017216528793772185,
+      "realized_nmse_mean": 0.017218225142304196,
+      "max_absolute_relative_mse_change": 0.0004574338588871907,
+      "max_bf16_rounding_distortion_over_target_mse": 0.0002786923653469898,
+      "mean_original_vs_permuted_same_position_cosine": 0.015800196546573234
+    }
+  },
+  "rollout_distance_proxy": {
+    "svdquant": {
+      "rgb_mae": 29.0220374012791,
+      "rgb_nmse": 0.5720025002354444
+    },
+    "permuted_error": {
+      "rgb_mae": 19.789612873765588,
+      "rgb_nmse": 0.29723313575375043
+    },
+    "tail_restore": {
+      "rgb_mae": 28.24566880092826,
+      "rgb_nmse": 0.5620636170489225
+    },
+    "rademacher_flat": {
+      "rgb_mae": 19.076673391472053,
+      "rgb_nmse": 0.2841858077641414
+    },
+    "gaussian": {
+      "rgb_mae": 19.526800504294776,
+      "rgb_nmse": 0.2936369015873624
+    }
+  }
+}

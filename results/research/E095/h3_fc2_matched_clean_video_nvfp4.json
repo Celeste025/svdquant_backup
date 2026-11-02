@@ -1,0 +1,85 @@
+{
+  "format": "h3-fc2-matched-clean-video-nvfp4-v1",
+  "timestamp_utc": "2026-10-14T10:36:27.613120+00:00",
+  "scope": "p1 video rows, identical zero mask and cleaned BF16 target for plain versus p11-video-p99 alpha .5 smoothing",
+  "calibration": "/data1/models/svdquant-wjq/results/E088_native_bench/h3_block25_p11_s00_calib.pt",
+  "evaluation": "/data1/models/svdquant-wjq/results/E088_native_bench/h3_block25_p1_s00.pt",
+  "calibration_call": "/data1/models/svdquant-wjq/results/E087_timestep_aware/cache_16p20s/p11/sample_p11_s00.pt",
+  "evaluation_call": "/data1/models/svdquant-wjq/results/E087_timestep_aware/cache_16p20s/p1/sample_p1_s00.pt",
+  "plain_calibration_amax": 2336.0,
+  "smooth_calibration_amax": 388.0,
+  "rows": [
+    {
+      "mask": "none",
+      "removed_elements": 0,
+      "removed_fraction": 0.0,
+      "cleaned_target_energy_ratio": 1.0,
+      "arms": {
+        "plain": {
+          "activation_amax": 4512.0,
+          "bf16_reparameterization_nmse": 0.0,
+          "nmse": {
+            "static_p11_video": 0.010277296416461468,
+            "current_input": 0.00968239177018404
+          }
+        },
+        "p99_smooth_alpha_0.5": {
+          "activation_amax": 900.0,
+          "bf16_reparameterization_nmse": 8.555015483580064e-06,
+          "nmse": {
+            "static_p11_video": 0.010862885974347591,
+            "current_input": 0.009722449816763401
+          }
+        }
+      }
+    },
+    {
+      "mask": "raw_above_p11_video_amax",
+      "removed_elements": 8,
+      "removed_fraction": 2.6184109103155606e-08,
+      "cleaned_target_energy_ratio": 0.9944234225838826,
+      "arms": {
+        "plain": {
+          "activation_amax": 1968.0,
+          "bf16_reparameterization_nmse": 0.0,
+          "nmse": {
+            "static_p11_video": 0.009701522998511791,
+            "current_input": 0.009704518131911755
+          }
+        },
+        "p99_smooth_alpha_0.5": {
+          "activation_amax": 900.0,
+          "bf16_reparameterization_nmse": 8.558738954889122e-06,
+          "nmse": {
+            "static_p11_video": 0.009922441095113754,
+            "current_input": 0.009730914607644081
+          }
+        }
+      }
+    },
+    {
+      "mask": "smoothed_above_p11_video_amax",
+      "removed_elements": 91,
+      "removed_fraction": 2.9784425237266987e-07,
+      "cleaned_target_energy_ratio": 0.9909156033337897,
+      "arms": {
+        "plain": {
+          "activation_amax": 1936.0,
+          "bf16_reparameterization_nmse": 0.0,
+          "nmse": {
+            "static_p11_video": 0.009713681414723396,
+            "current_input": 0.009726010262966156
+          }
+        },
+        "p99_smooth_alpha_0.5": {
+          "activation_amax": 388.0,
+          "bf16_reparameterization_nmse": 8.557817636756226e-06,
+          "nmse": {
+            "static_p11_video": 0.009631293825805187,
+            "current_input": 0.009631293825805187
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "format": "h3-paired-dit-token-error-video-overlay-v1",
+  "case": "race",
+  "definition": "100 * sqrt(mean_channel((SVDQuant-BF16)^2)) / sqrt(mean_all_video_output(BF16^2)); full-step BF16 input paired DiT output",
+  "caveat": "Token positions are spatial guides over final BF16 decoded video; VAE mixes latent tokens across space/time, so the heatmap is not decoded-pixel-error attribution; temporal frame centers are approximate.",
+  "selected_steps": [
+    0,
+    4,
+    10,
+    19
+  ],
+  "latent_times": [
+    8,
+    18,
+    28
+  ],
+  "approximate_decoded_frames": [
+    27,
+    61,
+    95
+  ],
+  "video_grid_thw": [
+    37,
+    18,
+    32
+  ],
+  "step_video_nmse": {
+    "0": 0.06000654210112383,
+    "4": 0.20193441838731085,
+    "10": 0.047276464196467125,
+    "19": 0.01618602069971329
+  },
+  "case_shared_colorbar_max_percent_p99": 78.36250305175781,
+  "clipped_cells": 70,
+  "total_cells": 6912,
+  "source_capture_manifest": "/home/wjq/workspace/svdquant-exp/results/research/E103/manifest.json",
+  "source_capture_sha256": {
+    "0": "e691604ccc4c8ef2a55e9b9581713dee860825bb70d44b858c0d2bd3c7b993c6",
+    "4": "e70dfff314e9806e70595e0ee778ef5d5cc589c8e40e49dae7cbd49edade9191",
+    "10": "f08c41535980f4dae664ff2074bd10755a6774eac57d50049ccad21393adaef3",
+    "19": "f52669511b7411cb17ab7ef4554f9e0762d86bad0e41327820a18b097e6d3100"
+  },
+  "bf16_video": "/home/wjq/workspace/svdquant-exp/results/samples/minimax_h3_svdquant_standard_8p64s/p16/bf16_id16_seed20026_576x1024_124f_20steps.mp4",
+  "bf16_video_sha256": "f1738e8bf0fdae8e0deeec802fc8d426d2c6e5bb3b75d77e1bcd5a7ec021cbe0",
+  "figure": "/home/wjq/workspace/svdquant-exp/results/research/E103/figures/video_frame_aligned_token_error.png",
+  "figure_sha256": "471b0da2b17cb22c9ce2180cb8c995cab277400612a07c4a862c5ad015bd6312"
+}

@@ -1,0 +1,21 @@
+{
+  "format": "e125-h3-clap-attention-triplet-v1",
+  "case": "clap0",
+  "prompt_id": 161,
+  "prompt": "A person is clapping",
+  "seed": 38001610,
+  "source": "E101 clap0 / E113 clap0, checked by run_e105_h3_output_interventions.case_info",
+  "arms": ["bf16", "sage3_fixed", "split_mixed"],
+  "settings": {
+    "height": 576,
+    "width": 1024,
+    "frames": 124,
+    "steps": 20,
+    "cfg_scale": 1.0,
+    "flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "tiled": true
+  },
+  "note": "All arms use the same BF16 weights and initial latents; only main attention differs. BF16 forces PyTorch SDPA."
+}

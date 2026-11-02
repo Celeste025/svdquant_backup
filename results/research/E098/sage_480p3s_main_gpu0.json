@@ -1,0 +1,319 @@
+{
+  "format": "h3-sage-real-operator-v1",
+  "timestamp_utc": "2026-10-14T11:28:23.526528+00:00",
+  "gpu": 0,
+  "gpu_name": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "torch_version": "2.11.0+cu128",
+  "sample": "/data1/models/svdquant-wjq/research/20261014/E098/h3_p1_s0_b25_480x832_73f_qkv.pt",
+  "sample_sha256": "9eaf8041a56d06cfe084cc5b46d05df876b91ca4f4ceca546081fe6f8396bb07",
+  "weight": null,
+  "block": 25,
+  "prompt_id": 1,
+  "step": 0,
+  "geometry": {
+    "all_rows": 9536,
+    "valid_rows": 9482,
+    "padding_rows": 54,
+    "video_tokens": 8580,
+    "height": 480,
+    "width": 832,
+    "frames": 73,
+    "fps": 24,
+    "heads": 56,
+    "head_dim": 128
+  },
+  "cached_bf16_replay": null,
+  "source_paths": {
+    "sage3_api": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell/sageattn3/api.py",
+    "sage3_extension": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell/fp4attn_cuda.cpython-312-x86_64-linux-gnu.so",
+    "sage2_core": "/data1/models/svdquant-wjq/research/envs/sageattention2pp-sm120-20261014/sageattention/core.py",
+    "sage2_package": "/data1/models/svdquant-wjq/research/envs/sageattention2pp-sm120-20261014/sageattention/__init__.py"
+  },
+  "warmup": 20,
+  "repeats": 10,
+  "batches": 11,
+  "results": {
+    "bf16_sdpa": {
+      "error": {
+        "nmse": 0.0,
+        "relative_rms_error": 0.0,
+        "cosine": 1.0
+      },
+      "timing": {
+        "median_ms": 12.280076599121093,
+        "cv_percent": 0.37057565464589026,
+        "batch_ms": [
+          12.238368225097656,
+          12.235494232177734,
+          12.235897827148438,
+          12.238579559326173,
+          12.237881469726563,
+          12.280076599121093,
+          12.320285034179687,
+          12.324566650390626,
+          12.333468627929687,
+          12.33064956665039,
+          12.330963134765625
+        ]
+      },
+      "profile_kernels": [
+        {
+          "kernel": "aten::_flash_attention_forward",
+          "calls": 3,
+          "total_gpu_ms": 36.570824,
+          "mean_gpu_ms": 12.190274666666667
+        },
+        {
+          "kernel": "void pytorch_flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 128, 64, 4, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 128, 64, 4, cutlass::bfloat16_t> >, false, false, false, false, false, true, false, false>(pytorch_flash::Flash_fwd_params)",
+          "calls": 3,
+          "total_gpu_ms": 36.570824,
+          "mean_gpu_ms": 12.190274666666667
+        },
+        {
+          "kernel": "Activity Buffer Request",
+          "calls": 1,
+          "total_gpu_ms": 12.253495999999998,
+          "mean_gpu_ms": 12.253495999999998
+        }
+      ]
+    },
+    "sage3_official": {
+      "error": {
+        "nmse": 0.007502260456046699,
+        "relative_rms_error": 0.08661559014430774,
+        "cosine": 0.9964293523843931
+      },
+      "timing": {
+        "median_ms": 8.90066909790039,
+        "cv_percent": 0.14328020200433808,
+        "batch_ms": [
+          8.9001953125,
+          8.912406158447265,
+          8.90066909790039,
+          8.868476867675781,
+          8.903517150878907,
+          8.909369659423827,
+          8.90389404296875,
+          8.902118682861328,
+          8.887251281738282,
+          8.883757019042969,
+          8.893682861328125
+        ]
+      },
+      "profile_kernels": [
+        {
+          "kernel": "void flash::compute_attn_ws<Flash_fwd_kernel_traits<128, 128, 128, 3, 1, true, cutlass::nv_float4_t<cutlass::float_e2m1_t>, cutlass::bfloat16_t>, false, flash::StaticPersistentTileScheduler>(Flash_fwd_params, flash::CollectiveMainloopFwd<Flash_fwd_kernel_traits<128, 128, 128, 3, 1, true, cutlass::nv_float4_t<cutlass::float_e2m1_t>, cutlass::bfloat16_t>, false>::Params, flash::CollectiveEpilogueFwd<Flash_fwd_kernel_traits<128, 128, 128, 3, 1, true, cutlass::nv_float4_t<cutlass::float_e2m1_t>, cutlass::bfloat16_t> >::Params, flash::StaticPersistentTileScheduler::Params)",
+          "calls": 3,
+          "total_gpu_ms": 16.630781,
+          "mean_gpu_ms": 5.543593666666666
+        },
+        {
+          "kernel": "aten::copy_",
+          "calls": 18,
+          "total_gpu_ms": 4.765002000000002,
+          "mean_gpu_ms": 0.2647223333333334
+        },
+        {
+          "kernel": "void at::native::elementwise_kernel<128, 4, at::native::gpu_kernel_impl_nocast<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#12}::operator()() const::{lambda(c10::BFloat16)#1}>(at::TensorIteratorBase&, at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#12}::operator()() const::{lambda(c10::BFloat16)#1} const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#12}::operator()() const::{lambda(c10::BFloat16)#1}>(at::TensorIteratorBase&, at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#12}::operator()() const::{lambda(c10::BFloat16)#1} const&)::{lambda(int)#1})",
+          "calls": 12,
+          "total_gpu_ms": 3.389381999999996,
+          "mean_gpu_ms": 0.28244849999999966
+        },
+        {
+          "kernel": "aten::fill_",
+          "calls": 9,
+          "total_gpu_ms": 0.9752969999999986,
+          "mean_gpu_ms": 0.10836633333333319
+        },
+        {
+          "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::FillFunctor<c10::BFloat16>, std::array<char*, 1ul> >(int, at::native::FillFunctor<c10::BFloat16>, std::array<char*, 1ul>)",
+          "calls": 9,
+          "total_gpu_ms": 0.9752969999999986,
+          "mean_gpu_ms": 0.10836633333333319
+        },
+        {
+          "kernel": "group_mean_kernel",
+          "calls": 3,
+          "total_gpu_ms": 0.7920329999999994,
+          "mean_gpu_ms": 0.26401099999999983
+        },
+        {
+          "kernel": "aten::sub_",
+          "calls": 3,
+          "total_gpu_ms": 0.7748170000000025,
+          "mean_gpu_ms": 0.25827233333333416
+        },
+        {
+          "kernel": "void at::native::elementwise_kernel<128, 4, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<c10::BFloat16> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<c10::BFloat16> const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<c10::BFloat16> >(at::TensorIteratorBase&, at::native::CUDAFunctor_add<c10::BFloat16> const&)::{lambda(int)#1})",
+          "calls": 3,
+          "total_gpu_ms": 0.7748170000000025,
+          "mean_gpu_ms": 0.25827233333333416
+        },
+        {
+          "kernel": "aten::bmm",
+          "calls": 3,
+          "total_gpu_ms": 0.7584319999999989,
+          "mean_gpu_ms": 0.2528106666666663
+        },
+        {
+          "kernel": "void cutlass::Kernel2<cutlass_80_wmma_tensorop_bf16_s161616gemm_bf16_32x32_32x1_tn_align8>(cutlass_80_wmma_tensorop_bf16_s161616gemm_bf16_32x32_32x1_tn_align8::Params)",
+          "calls": 3,
+          "total_gpu_ms": 0.7584319999999989,
+          "mean_gpu_ms": 0.2528106666666663
+        },
+        {
+          "kernel": "Memcpy DtoD (Device -> Device)",
+          "calls": 3,
+          "total_gpu_ms": 0.7202260000000019,
+          "mean_gpu_ms": 0.24007533333333397
+        },
+        {
+          "kernel": "void at::native::unrolled_elementwise_kernel<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>, 4, TrivialOffsetCalculator<1, unsigned int>, TrivialOffsetCalculator<1, unsigned int>, at::native::memory::LoadWithCast<1>, at::native::memory::StoreWithCast<1> >(int, at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>, TrivialOffsetCalculator<1, unsigned int>, TrivialOffsetCalculator<1, unsigned int>, at::native::memory::LoadWithCast<1>, at::native::memory::StoreWithCast<1>)",
+          "calls": 3,
+          "total_gpu_ms": 0.6553940000000034,
+          "mean_gpu_ms": 0.2184646666666678
+        },
+        {
+          "kernel": "void scaled_fp4_quant_kernel<128u, 128u, true, __nv_bfloat16>(__nv_bfloat16 const*, unsigned char*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int, int)",
+          "calls": 3,
+          "total_gpu_ms": 0.5581770000000006,
+          "mean_gpu_ms": 0.1860590000000002
+        },
+        {
+          "kernel": "void scaled_fp4_quant_trans_kernel<128u, 128u, __nv_bfloat16>(__nv_bfloat16 const*, unsigned char*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int, int)",
+          "calls": 3,
+          "total_gpu_ms": 0.5421139999999987,
+          "mean_gpu_ms": 0.18070466666666624
+        },
+        {
+          "kernel": "void scaled_fp4_quant_kernel<128u, 128u, false, __nv_bfloat16>(__nv_bfloat16 const*, unsigned char*, unsigned char*, int, int, int, int, int, int, int, int, int, int, int, int)",
+          "calls": 3,
+          "total_gpu_ms": 0.5410249999999996,
+          "mean_gpu_ms": 0.18034166666666654
+        },
+        {
+          "kernel": "aten::mean",
+          "calls": 3,
+          "total_gpu_ms": 0.34710499999999933,
+          "mean_gpu_ms": 0.11570166666666644
+        },
+        {
+          "kernel": "void at::native::reduce_kernel<128, 4, at::native::ReduceOp<c10::BFloat16, at::native::MeanOps<c10::BFloat16, float, float, c10::BFloat16>, unsigned int, c10::BFloat16, 4, 8> >(at::native::ReduceOp<c10::BFloat16, at::native::MeanOps<c10::BFloat16, float, float, c10::BFloat16>, unsigned int, c10::BFloat16, 4, 8>)",
+          "calls": 3,
+          "total_gpu_ms": 0.34537599999999974,
+          "mean_gpu_ms": 0.11512533333333325
+        },
+        {
+          "kernel": "Activity Buffer Request",
+          "calls": 1,
+          "total_gpu_ms": 0.24044900000000008,
+          "mean_gpu_ms": 0.24044900000000008
+        },
+        {
+          "kernel": "Memset (Device)",
+          "calls": 3,
+          "total_gpu_ms": 0.001728999999999587,
+          "mean_gpu_ms": 0.0005763333333331957
+        }
+      ]
+    },
+    "sage2pp_official": {
+      "error": {
+        "nmse": 0.00021017345879545705,
+        "relative_rms_error": 0.014497360407862427,
+        "cosine": 0.9998952069069007
+      },
+      "timing": {
+        "median_ms": 7.488607788085938,
+        "cv_percent": 0.021198617492609435,
+        "batch_ms": [
+          7.488243103027344,
+          7.492192077636719,
+          7.491241455078125,
+          7.488396453857422,
+          7.488607788085938,
+          7.488460540771484,
+          7.489209747314453,
+          7.4919586181640625,
+          7.4881538391113285,
+          7.489907073974609,
+          7.48803482055664
+        ]
+      },
+      "profile_kernels": [
+        {
+          "kernel": "sageattention_sm89::qk_int8_sv_f8_accum_f16_fuse_v_scale_attn_inst_buf",
+          "calls": 3,
+          "total_gpu_ms": 18.636028,
+          "mean_gpu_ms": 6.212009333333333
+        },
+        {
+          "kernel": "void qk_int_sv_f8_attn_kernel<128u, 64u, 32u, 64u, 128u, (DataType)1, (QuantGranularity)2, (QuantGranularity)2, float, true, __nv_bfloat16, (ComputeUnit)1, (MaskMode)0, false, true, false, true>(signed char*, signed char*, signed char*, __nv_bfloat16*, float*, float*, float*, float*, float*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, float)",
+          "calls": 3,
+          "total_gpu_ms": 18.636028,
+          "mean_gpu_ms": 6.212009333333333
+        },
+        {
+          "kernel": "void TransposePadPermuteKernel<128u, 64u, true, __nv_bfloat16>(__nv_bfloat16*, __nv_bfloat16*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int)",
+          "calls": 3,
+          "total_gpu_ms": 1.111011999999998,
+          "mean_gpu_ms": 0.37033733333333263
+        },
+        {
+          "kernel": "aten::copy_",
+          "calls": 3,
+          "total_gpu_ms": 0.7272329999999992,
+          "mean_gpu_ms": 0.24241099999999977
+        },
+        {
+          "kernel": "Memcpy DtoD (Device -> Device)",
+          "calls": 3,
+          "total_gpu_ms": 0.7272329999999992,
+          "mean_gpu_ms": 0.24241099999999977
+        },
+        {
+          "kernel": "void QuantInt8Kernel<128u, 64u, 1u, false, true, __nv_bfloat16>(__nv_bfloat16*, __nv_bfloat16*, signed char*, float*, float, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int)",
+          "calls": 3,
+          "total_gpu_ms": 0.5833620000000037,
+          "mean_gpu_ms": 0.19445400000000124
+        },
+        {
+          "kernel": "void QuantInt8Kernel<128u, 32u, 1u, false, false, __nv_bfloat16>(__nv_bfloat16*, __nv_bfloat16*, signed char*, float*, float, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int)",
+          "calls": 3,
+          "total_gpu_ms": 0.5186569999999986,
+          "mean_gpu_ms": 0.1728856666666662
+        },
+        {
+          "kernel": "void MeanScaleKernel<64u, false, __nv_bfloat16>(__nv_bfloat16*, signed char*, float*, float*, float, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int)",
+          "calls": 3,
+          "total_gpu_ms": 0.504865999999999,
+          "mean_gpu_ms": 0.16828866666666636
+        },
+        {
+          "kernel": "aten::mean",
+          "calls": 3,
+          "total_gpu_ms": 0.35542600000000085,
+          "mean_gpu_ms": 0.11847533333333361
+        },
+        {
+          "kernel": "void at::native::reduce_kernel<128, 4, at::native::ReduceOp<c10::BFloat16, at::native::MeanOps<c10::BFloat16, float, float, c10::BFloat16>, unsigned int, c10::BFloat16, 4, 8> >(at::native::ReduceOp<c10::BFloat16, at::native::MeanOps<c10::BFloat16, float, float, c10::BFloat16>, unsigned int, c10::BFloat16, 4, 8>)",
+          "calls": 3,
+          "total_gpu_ms": 0.3539850000000015,
+          "mean_gpu_ms": 0.1179950000000005
+        },
+        {
+          "kernel": "Activity Buffer Request",
+          "calls": 1,
+          "total_gpu_ms": 0.242049,
+          "mean_gpu_ms": 0.242049
+        },
+        {
+          "kernel": "Memset (Device)",
+          "calls": 3,
+          "total_gpu_ms": 0.0014409999999993488,
+          "mean_gpu_ms": 0.00048033333333311626
+        }
+      ]
+    }
+  }
+}

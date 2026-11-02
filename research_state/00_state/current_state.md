@@ -1,5 +1,9 @@
 # Current State
 
+**2026-10-31 文献与候选更新：** E138 已完成，普通 activation 随机舍入局部相关性下降但赛车/拍手的 RGB NMSE 与 LPIPS 均变差，停止作为主方法。新一轮有限主源查新覆盖 DraftAttention2、SLA2、QuantSparse、FPSAttention、FastH3 QAD、PulseQuant、DSAQuant、Veda，以及 10 月 ALLOT。保留待验证的“冻结量化主干下按有符号残差收益选块”与较保守的“低精度路由决策稳定性”两问题；不宣称 novelty 或有效性。见 `../01_literature/video_quant_sparse_review_20261031.md` 与 C139 collision map。本轮只调研，不启动 GPU。
+
+**2026-10-30 新选题讨论（临时，非已验证方法）：** 用户重新提出视频生成加速论文构思。基于 E105/E106 同 NMSE 误差置换现象和有限查新，主推“量化误差拓扑对闭环生成的因果作用及可部署整形”；先做单因素机制判别，再决定是否投入 FP4 kernel/权重优化。与 PulseQuant、DSAQuant、FPSAttention、QuantSparse、Q-VDiT 有明确碰撞，不能宣称已证实 novelty 或顶会价值。记录见 [H3 误差拓扑选题](../02_problems/h3_error_topology_idea_20261030.md)。以下为 2026-10-05 的旧研究状态，不自动重启旧实验。
+
 2026-10-05。用户已暂停新 idea 研究，10 项提案仍待逐项审核。**本轮仅获授权补测旧 E022 Wan QAD 的逐步测试 NMSE 和时间步差异（E084），不恢复其他实验。** 后续研究仍以 MiniMax-H3 为主，普通基线工程不作为创新。当前无可投稿核心贡献、无独立人评验证的等质量优化。
 
 ## 最新决策与实验

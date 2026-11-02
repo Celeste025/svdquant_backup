@@ -1,0 +1,52 @@
+{
+  "status": "complete_three_forwards",
+  "prompt_id": 16,
+  "seed": 20026,
+  "settings": {
+    "height": 768,
+    "width": 1344,
+    "frames": 124,
+    "steps": 20,
+    "cfg_scale": 1.0,
+    "flow_shift": 12.0,
+    "audio_flow_shift": 3.0
+  },
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "attention_backend": "torch BF16 SDPA",
+  "timing_scope": "synchronized DiT forward including weight offload; no model load or VAE",
+  "steps": [
+    {
+      "step": 0,
+      "dit_seconds": 22.20176867104601,
+      "main_tokens": 38661,
+      "peak_allocated_gib": 17.696337699890137,
+      "peak_reserved_gib": 19.109375,
+      "free_gib": 51.60986328125,
+      "attention_main_calls": 50
+    },
+    {
+      "step": 1,
+      "dit_seconds": 20.949675610056147,
+      "main_tokens": 38661,
+      "peak_allocated_gib": 17.696337699890137,
+      "peak_reserved_gib": 19.109375,
+      "free_gib": 51.60986328125,
+      "attention_main_calls": 50
+    },
+    {
+      "step": 2,
+      "dit_seconds": 21.042702861945145,
+      "main_tokens": 38661,
+      "peak_allocated_gib": 17.696337699890137,
+      "peak_reserved_gib": 19.109375,
+      "free_gib": 51.60986328125,
+      "attention_main_calls": 50
+    }
+  ],
+  "linears": {
+    "count": 200,
+    "computation_dtype": "torch.bfloat16",
+    "disk_offloaded_count": 200
+  },
+  "total_elapsed_seconds": 77.7963491199771
+}

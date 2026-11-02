@@ -1,0 +1,83 @@
+{
+  "format": "e129-svdquant-video-summary-v1",
+  "cases": [
+    {
+      "suite": "12-prompt",
+      "case": "p016",
+      "plain_rgb_nmse": 0.2987249505067408,
+      "svd_rgb_nmse": 0.25409725711072434,
+      "svd_vs_plain_rgb_nmse": 0.2310593379941812,
+      "svd_rgb_relative_change": -0.14939392682235775,
+      "plain_lpips": 0.4662806653688031,
+      "svd_lpips": 0.4233258429073518,
+      "svd_vs_plain_lpips": 0.4155498291215589,
+      "svd_lpips_relative_change": -0.09212224664618318,
+      "svd_sum_dit_seconds": 530.1512381450739
+    },
+    {
+      "suite": "VBench5",
+      "case": "vbench_000",
+      "plain_rgb_nmse": 0.10234168330413264,
+      "svd_rgb_nmse": 0.10745371638785649,
+      "svd_vs_plain_rgb_nmse": 0.07381286480564182,
+      "svd_rgb_relative_change": 0.04995064492472956,
+      "plain_lpips": 0.36232581109769885,
+      "svd_lpips": 0.4211538222528273,
+      "svd_vs_plain_lpips": 0.3623053604556668,
+      "svd_lpips_relative_change": 0.16236218716216677,
+      "svd_sum_dit_seconds": 2295.6760254378605
+    },
+    {
+      "suite": "VBench5",
+      "case": "vbench_003",
+      "plain_rgb_nmse": 0.5722197210719349,
+      "svd_rgb_nmse": 0.3333738658608196,
+      "svd_vs_plain_rgb_nmse": 0.8175806341832844,
+      "svd_rgb_relative_change": -0.4174023481114687,
+      "plain_lpips": 0.6690509785567561,
+      "svd_lpips": 0.4913525179989876,
+      "svd_vs_plain_lpips": 0.6615757932586055,
+      "svd_lpips_relative_change": -0.26559778888761343,
+      "svd_sum_dit_seconds": 2298.7602236509265
+    }
+  ],
+  "aggregate": {
+    "12-prompt": {
+      "n": 1,
+      "plain_rgb_nmse": 0.2987249505067408,
+      "svd_rgb_nmse": 0.25409725711072434,
+      "svd_vs_plain_rgb_nmse": 0.2310593379941812,
+      "svd_rgb_relative_change": -0.14939392682235775,
+      "plain_lpips": 0.4662806653688031,
+      "svd_lpips": 0.4233258429073518,
+      "svd_vs_plain_lpips": 0.4155498291215589,
+      "svd_lpips_relative_change": -0.09212224664618318,
+      "svd_sum_dit_seconds": 530.1512381450739
+    },
+    "VBench5": {
+      "n": 2,
+      "plain_rgb_nmse": 0.33728070218803374,
+      "svd_rgb_nmse": 0.22041379112433804,
+      "svd_vs_plain_rgb_nmse": 0.44569674949446314,
+      "svd_rgb_relative_change": -0.18372585159336957,
+      "plain_lpips": 0.5156883948272275,
+      "svd_lpips": 0.4562531701259075,
+      "svd_vs_plain_lpips": 0.5119405768571361,
+      "svd_lpips_relative_change": -0.05161780086272333,
+      "svd_sum_dit_seconds": 2297.2181245443935
+    },
+    "all": {
+      "n": 3,
+      "plain_rgb_nmse": 0.32442878496093613,
+      "svd_rgb_nmse": 0.23164161311980014,
+      "svd_vs_plain_rgb_nmse": 0.37415094566103585,
+      "svd_rgb_relative_change": -0.17228187666969896,
+      "plain_lpips": 0.4992191516744193,
+      "svd_lpips": 0.44527739438638897,
+      "svd_vs_plain_lpips": 0.4798103276119437,
+      "svd_lpips_relative_change": -0.06511928279054328,
+      "svd_sum_dit_seconds": 1708.1958290779537
+    }
+  },
+  "caution": "Frame-paired free-rollout RGB NMSE and LPIPS measure distance to a separately generated BF16 video, not teacher-forced DiT quantization error or human video quality. SVDQuant uses BF16-GEMM fake NVFP4; E128 plain W4A4 uses native FP4 GEMM, so timings are not comparable."
+}

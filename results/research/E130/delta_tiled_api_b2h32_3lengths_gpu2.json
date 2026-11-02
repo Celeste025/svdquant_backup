@@ -1,0 +1,54 @@
+{
+  "format": "e130-api-fast-validation-v1",
+  "timestamp_utc": "2026-10-24T23:22:53.439914+00:00",
+  "source": "/tmp/e130-delta-tiled-api.DmRXwH",
+  "attention_extension": "/tmp/e130-delta-tiled-api.DmRXwH/fp4attn_cuda.cpython-312-x86_64-linux-gnu.so",
+  "delta_s_dtype": "bf16",
+  "fast_delta_gemm": true,
+  "batch_size": 2,
+  "heads": 32,
+  "capture": "/data1/models/svdquant-wjq/research/20261023/E121_h3_split_generation/race/block25_qkv_h56.pt",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "cases": [
+    {
+      "tokens": 129,
+      "bitwise_equal": true,
+      "fast_keeps_k": true,
+      "finite": true,
+      "shape": [
+        2,
+        32,
+        129,
+        128
+      ],
+      "passed": true
+    },
+    {
+      "tokens": 1025,
+      "bitwise_equal": true,
+      "fast_keeps_k": true,
+      "finite": true,
+      "shape": [
+        2,
+        32,
+        1025,
+        128
+      ],
+      "passed": true
+    },
+    {
+      "tokens": 22677,
+      "bitwise_equal": true,
+      "fast_keeps_k": true,
+      "finite": true,
+      "shape": [
+        2,
+        32,
+        22677,
+        128
+      ],
+      "passed": true
+    }
+  ],
+  "passed": true
+}

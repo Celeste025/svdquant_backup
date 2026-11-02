@@ -1,0 +1,88 @@
+{
+  "status": "queued",
+  "cases": {
+    "p016": {
+      "frames": 124,
+      "seed": 20026,
+      "resolution": "576x1024",
+      "reference": "E124 5s racer + rainbow"
+    },
+    "p011": {
+      "frames": 124,
+      "seed": 1571,
+      "resolution": "768x1344",
+      "reference": "E150 starry ocean boat"
+    },
+    "p045": {
+      "frames": 243,
+      "seed": 32449,
+      "resolution": "768x1344",
+      "reference": "E150 gymnast"
+    },
+    "p089": {
+      "frames": 243,
+      "seed": 28517,
+      "resolution": "768x1344",
+      "reference": "E150 miniature fruit village"
+    }
+  },
+  "common": {
+    "resolution": "p016 576x1024; others 768x1344",
+    "steps": 20,
+    "cfg": 1,
+    "attention_q_tile": 128,
+    "video_fps": 24,
+    "attention_prefix": "INT8 except BF16 dense sections; refiner and padding BF16",
+    "reference": "p016 E124 BF16; other cases E150 BF16",
+    "weights": "phase-level CPU/GPU switch between BF16 and packed FP4 weights included in timings",
+    "rank64": "SM120 CuTe DSL NVFP4 GEMM with fused low-rank up; BF16 low-rank down; H3 dynamic scaling",
+    "plain_w4a4": "native NVFP4 scaled_mm; dynamic activation packing",
+    "w8a8": "K128 group symmetric INT8 dynamic activation and static weight, INT8 dot INT32 accumulated per group; group scales applied in FP32",
+    "timing": "per-step complete DiT forward wall time synchronized GPU, includes weight phase transfer, compile and packing; excludes initialization and VAE"
+  },
+  "schedules": {
+    "c1": {
+      "attention": "75% skip /15% NVFP4 /10% INT8; INT8 dense steps 0,1,18,19 and block0 all steps",
+      "linear": "BF16 steps 0,1,18,19; rank64 SVDQuant otherwise"
+    },
+    "c2": {
+      "attention": "80% skip /10% NVFP4 /10% INT8; INT8 dense steps 0,1",
+      "linear": "BF16 steps 0,19; rank64 SVDQuant otherwise"
+    },
+    "c3": {
+      "attention": "80% skip /10% NVFP4 /10% INT8; INT8 dense steps 0,1",
+      "linear": "BF16 steps 0,1,18,19; plain NVFP4 W4A4 otherwise"
+    },
+    "c4": {
+      "attention": "75% skip /15% NVFP4 /10% INT8; BF16 dense steps 0,1 and block0 all steps",
+      "linear": "BF16 steps 0,1,18,19; plain NVFP4 W4A4 otherwise"
+    },
+    "c5": {
+      "attention": "75% skip /15% NVFP4 /10% INT8; BF16 dense steps 0,1 and block0 all steps",
+      "linear": "K128 group W8A8 on all 20 steps"
+    },
+    "c6": {
+      "attention": "Sage2++ on all 20 steps, refiner/padding BF16",
+      "linear": "BF16 steps 0,1,18,19; rank64 SVDQuant otherwise"
+    },
+    "c7": {
+      "attention": "Sage3 on all 20 steps, refiner/padding BF16; >=65536 tokens head batch of 8",
+      "linear": "BF16 steps 0,1,18,19; rank64 SVDQuant otherwise"
+    }
+  },
+  "gpu_queues": {
+    "2": [
+      16,
+      45
+    ],
+    "3": [
+      11,
+      89
+    ]
+  },
+  "source": "scripts/research/run_h3_r64_draft_secondset.py",
+  "sessions": [
+    "h3_secondset_gpu2",
+    "h3_secondset_gpu3"
+  ]
+}

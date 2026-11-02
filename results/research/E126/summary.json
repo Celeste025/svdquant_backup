@@ -1,0 +1,283 @@
+{
+  "format": "e126-h3-vbench5-summary-v1",
+  "cases": 5,
+  "frames_per_case": 124,
+  "settings": {
+    "height": 768,
+    "width": 1344,
+    "frames": 124,
+    "steps": 50,
+    "cfg_scale": 1.0,
+    "flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "tiled": true,
+    "fps": 24
+  },
+  "metric_state_sha256": "929af6bd644b576a0480a4f69155213b416d1a5424bc98c2e1b8ef4bcdd22ec1",
+  "environment": {
+    "torch": "2.11.0+cu128",
+    "torchmetrics": "1.9.0",
+    "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell"
+  },
+  "per_case": [
+    {
+      "case": "vbench_000",
+      "prompt": "a person swimming in ocean",
+      "main_tokens": 37715,
+      "arms": {
+        "bf16": {
+          "dit_seconds_sum": 1052.666224555971,
+          "peak_allocated_gib": 8.48619556427002,
+          "terminal_latent_nmse_vs_bf16": {
+            "video": 0.0,
+            "audio": 0.0
+          }
+        },
+        "sage3_fixed": {
+          "dit_seconds_sum": 740.8600389279891,
+          "peak_allocated_gib": 18.056708335876465,
+          "terminal_latent_nmse_vs_bf16": {
+            "video": 0.10310001843411429,
+            "audio": 0.05342454116215714
+          }
+        },
+        "split_mixed": {
+          "dit_seconds_sum": 798.190934342012,
+          "peak_allocated_gib": 17.812567710876465,
+          "terminal_latent_nmse_vs_bf16": {
+            "video": 0.10393336290444545,
+            "audio": 0.07202202221738777
+          }
+        }
+      },
+      "pairs": {
+        "sage3_fixed_vs_bf16": {
+          "rgb_nmse": 0.05235492458018242,
+          "lpips_alex": 0.2217720607596059
+        },
+        "split_mixed_vs_bf16": {
+          "rgb_nmse": 0.051431682000479734,
+          "lpips_alex": 0.22495525318288034
+        },
+        "split_mixed_vs_sage3_fixed": {
+          "rgb_nmse": 0.00812117801100923,
+          "lpips_alex": 0.10575535556962413
+        }
+      }
+    },
+    {
+      "case": "vbench_001",
+      "prompt": "a person giving a presentation to a room full of colleagues",
+      "main_tokens": 37721,
+      "arms": {
+        "bf16": {
+          "dit_seconds_sum": 983.4599384000612,
+          "peak_allocated_gib": 17.813371658325195,
+          "terminal_latent_nmse_vs_bf16": {
+            "video": 0.0,
+            "audio": 0.0
+          }
+        },
+        "sage3_fixed": {
+          "dit_seconds_sum": 798.8427081040136,
+          "peak_allocated_gib": 12.436866283416748,
+          "terminal_latent_nmse_vs_bf16": {
+            "video": 0.33006521161749913,
+            "audio": 0.20639296916609895
+          }
+        },
+        "split_mixed": {
+          "dit_seconds_sum": 771.023108771973,
+          "peak_allocated_gib": 18.057512283325195,
+          "terminal_latent_nmse_vs_bf16": {
+            "video": 0.2818687145291176,
+            "audio": 0.093841850307792
+          }
+        }
+      },
+      "pairs": {
+        "sage3_fixed_vs_bf16": {
+          "rgb_nmse": 0.21830148285722006,
+          "lpips_alex": 0.3858930994906733
+        },
+        "split_mixed_vs_bf16": {
+          "rgb_nmse": 0.1721667118622831,
+          "lpips_alex": 0.3484874386941233
+        },
+        "split_mixed_vs_sage3_fixed": {
+          "rgb_nmse": 0.11543764130475002,
+          "lpips_alex": 0.26110610149560437
+        }
+      }
+    },
+    {
+      "case": "vbench_002",
+      "prompt": "a person washing the dishes",
+      "main_tokens": 37715,
+      "arms": {
+        "bf16": {
+          "dit_seconds_sum": 996.7771187139442,
+          "peak_allocated_gib": 18.056708335876465,
+          "terminal_latent_nmse_vs_bf16": {
+            "video": 0.0,
+            "audio": 0.0
+          }
+        },
+        "sage3_fixed": {
+          "dit_seconds_sum": 761.2697126199055,
+          "peak_allocated_gib": 17.812567710876465,
+          "terminal_latent_nmse_vs_bf16": {
+            "video": 0.18642385379713905,
+            "audio": 0.07488365079224334
+          }
+        },
+        "split_mixed": {
+          "dit_seconds_sum": 822.248779608024,
+          "peak_allocated_gib": 13.988730430603027,
+          "terminal_latent_nmse_vs_bf16": {
+            "video": 0.14033132069296664,
+            "audio": 0.05005165640732896
+          }
+        }
+      },
+      "pairs": {
+        "sage3_fixed_vs_bf16": {
+          "rgb_nmse": 0.180117910072821,
+          "lpips_alex": 0.2504733496856305
+        },
+        "split_mixed_vs_bf16": {
+          "rgb_nmse": 0.15384474937835654,
+          "lpips_alex": 0.21882560524728992
+        },
+        "split_mixed_vs_sage3_fixed": {
+          "rgb_nmse": 0.09975205251169557,
+          "lpips_alex": 0.18228597254041704
+        }
+      }
+    },
+    {
+      "case": "vbench_003",
+      "prompt": "a person eating a burger",
+      "main_tokens": 37715,
+      "arms": {
+        "bf16": {
+          "dit_seconds_sum": 1054.9864398560312,
+          "peak_allocated_gib": 8.48619556427002,
+          "terminal_latent_nmse_vs_bf16": {
+            "video": 0.0,
+            "audio": 0.0
+          }
+        },
+        "sage3_fixed": {
+          "dit_seconds_sum": 765.7085303829226,
+          "peak_allocated_gib": 18.056708335876465,
+          "terminal_latent_nmse_vs_bf16": {
+            "video": 0.2227533088290437,
+            "audio": 0.06502019956796576
+          }
+        },
+        "split_mixed": {
+          "dit_seconds_sum": 787.6664673059568,
+          "peak_allocated_gib": 17.812567710876465,
+          "terminal_latent_nmse_vs_bf16": {
+            "video": 0.837472998229971,
+            "audio": 0.24441393928782093
+          }
+        }
+      },
+      "pairs": {
+        "sage3_fixed_vs_bf16": {
+          "rgb_nmse": 0.11780011499624735,
+          "lpips_alex": 0.30111395195126534
+        },
+        "split_mixed_vs_bf16": {
+          "rgb_nmse": 0.5113033256857414,
+          "lpips_alex": 0.6184338908041677
+        },
+        "split_mixed_vs_sage3_fixed": {
+          "rgb_nmse": 0.4915979592633521,
+          "lpips_alex": 0.6129296172049737
+        }
+      }
+    },
+    {
+      "case": "vbench_004",
+      "prompt": "a person walking in the snowstorm",
+      "main_tokens": 37717,
+      "arms": {
+        "bf16": {
+          "dit_seconds_sum": 987.2962107850472,
+          "peak_allocated_gib": 17.812835693359375,
+          "terminal_latent_nmse_vs_bf16": {
+            "video": 0.0,
+            "audio": 0.0
+          }
+        },
+        "sage3_fixed": {
+          "dit_seconds_sum": 797.8005710450816,
+          "peak_allocated_gib": 12.436721324920654,
+          "terminal_latent_nmse_vs_bf16": {
+            "video": 0.16074393929118586,
+            "audio": 0.03629809613001281
+          }
+        },
+        "split_mixed": {
+          "dit_seconds_sum": 791.2805221710296,
+          "peak_allocated_gib": 18.056976318359375,
+          "terminal_latent_nmse_vs_bf16": {
+            "video": 0.16717972964102829,
+            "audio": 0.0393427557044774
+          }
+        }
+      },
+      "pairs": {
+        "sage3_fixed_vs_bf16": {
+          "rgb_nmse": 0.05978956989606887,
+          "lpips_alex": 0.2302887663245201
+        },
+        "split_mixed_vs_bf16": {
+          "rgb_nmse": 0.054738365334417775,
+          "lpips_alex": 0.2517419241128429
+        },
+        "split_mixed_vs_sage3_fixed": {
+          "rgb_nmse": 0.02220466482674253,
+          "lpips_alex": 0.2015709420365672
+        }
+      }
+    }
+  ],
+  "mean_of_case_metrics": {
+    "sage3_fixed_vs_bf16": {
+      "rgb_nmse": 0.12567280048050794,
+      "lpips_alex": 0.27790824564233907
+    },
+    "split_mixed_vs_bf16": {
+      "rgb_nmse": 0.18869696685225573,
+      "lpips_alex": 0.33248882240826083
+    },
+    "split_mixed_vs_sage3_fixed": {
+      "rgb_nmse": 0.1474226991835099,
+      "lpips_alex": 0.27272959776943734
+    }
+  },
+  "mean_dit_seconds_sum": {
+    "bf16": 1015.0371864622109,
+    "sage3_fixed": 772.8963122159824,
+    "split_mixed": 794.0819624397991
+  },
+  "mean_terminal_latent_nmse_vs_bf16": {
+    "bf16": {
+      "video": 0.0,
+      "audio": 0.0
+    },
+    "sage3_fixed": {
+      "video": 0.2006172663937964,
+      "audio": 0.0872038913636956
+    },
+    "split_mixed": {
+      "video": 0.30615722519950583,
+      "audio": 0.09993444478496141
+    }
+  }
+}

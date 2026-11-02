@@ -1,0 +1,13 @@
+# E090 — SmoothQuant-style smoothing before H3 FC2 NVFP4 W4A4
+
+- **Mode:** exploration.
+- **Problem addressed:** On the same real H3 FC2 weight and two cached calls as E089, does channel-wise SmoothQuant-style smoothing reduce native NVFP4 W4A4 complete-linear output NMSE?
+- **Hypothesis:** A calibrated channel scale `s_j = max_calib|X_j|^alpha / max|W_:,j|^(1-alpha)` shifts difficult activation-channel ranges into weights and reduces W4A4 output NMSE at one or more fixed `alpha` values.
+- **Decision informed:** Whether explicit activation/weight smoothing is worth pursuing for plain H3 NVFP4 W4A4, independently of SVDQuant low-rank compensation or rowwise second-level scales.
+- **Minimum valid setup:** Use the same block-25 FC2 BF16 weight; prompt 11 step 0 supplies channel maxima and static NVFP4 activation global scale, and prompt 1 step 0 is the cross-input evaluation. Record prompt-11 in-sample error separately. A has shape `[tokens,K]`, W has shape `[outputs,K]`; transform `A/s`, `W*s` along K and retain native K-contiguous block-16 NVFP4 packing. Fixed alpha grid `{0, 0.25, 0.5, 0.75, 1}` plus unsmoothed control. Quantize and GEMM with the actual FlashInfer dense NVFP4 operators. Measure output NMSE against original BF16 `A @ W.T`, plus unquantized BF16 smoothing roundoff. After a static-scale cross-input failure, add a **diagnostic only** current-input global activation-scale control with the same fixed channel smoothing/weight to separate scale mismatch from smoothing quality; do not use it for alpha selection.
+- **Invalid cheap proxy to avoid:** Activation-only rescale without compensating the weight, smoothing across the packed K-block dimension incorrectly, using evaluation prompt 1 to choose scales or alpha, mixing low-rank SVDQuant compensation into the plain-W4A4 comparison, or claiming deployment latency from this error experiment.
+- **Expected outcomes:** If one alpha improves the cross-input output NMSE materially without large BF16 roundoff, consider extension to more layers/timesteps. If only in-sample error improves, treat it as overfit. If all variants are tied/worse, do not pursue this SmoothQuant recipe for this FC2.
+- **Stop condition:** Stop after this layer/two-call screen if best calibration-selected alpha improves prompt-1 NMSE by <2% relative to unsmoothed native W4A4; otherwise propose a larger independent test before any general H3 claim. Abort conclusions if unsmoothed native baseline does not reproduce E089 within numerical tolerance.
+- **Evidence class:** Necessary for deciding whether this plain W4A4 smoothing idea merits further experiment; broader model evidence would be supporting.
+- **Scope:** Error only; no timing, rank compensation, or free-generation metric.
+

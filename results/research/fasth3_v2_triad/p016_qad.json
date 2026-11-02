@@ -1,0 +1,109 @@
+{
+  "arm": "qad",
+  "prompt_id": 16,
+  "seed": 20026,
+  "model_root": "/data1/models/svdquant-wjq/models/fastvideo-v2-triad/qad_infer",
+  "contract": {
+    "attention_backend": "VIDEO_SPARSE_ATTN_H3",
+    "audio_scheduler_shift": 3.0,
+    "checkpoint_step": 1300,
+    "dmd_denoising_steps": [
+      999,
+      874,
+      749,
+      624,
+      500,
+      375,
+      250,
+      125
+    ],
+    "fastvideo_commit": "24bbe7fddd05ca6f2c34b3dbed06ac1c75b72086",
+    "guidance_scale": 1.0,
+    "model_id": "FastVideo/FastVideo-FastH3-8-Step-V2.1-NVFP4-Consumer",
+    "num_gpus": 4,
+    "num_inference_steps": 9,
+    "schema_version": "fasth3-inference-contract-v1",
+    "sequence_parallel_size": 4,
+    "task": "t2av",
+    "torch_compile": false,
+    "training_parent_run_id": "20260829T210445Z-h3-v14-8step-datafree-vsa80-vshift10",
+    "transformer_forwards": 8,
+    "use_fsdp_inference": true,
+    "video_scheduler_shift": 10.0,
+    "vsa_kernel": "sm100a",
+    "vsa_sparsity": 0.8,
+    "vsa_tile_size": 64,
+    "quantization": "nvfp4_attention_mlp_gate_qad_linears",
+    "source_model": "FastVideo/FastVideo-FastH3-8-Step-V2"
+  },
+  "config": {
+    "model_path": "/data1/models/svdquant-wjq/models/fastvideo-v2-triad/qad_infer",
+    "engine": {
+      "num_gpus": 1,
+      "use_fsdp_inference": false,
+      "quantization": {
+        "transformer_quant": "NVFP4",
+        "layer_profile": "h3_dit_vsa"
+      },
+      "parallelism": {
+        "tp_size": 1,
+        "sp_size": 1
+      },
+      "offload": {
+        "dit": false,
+        "dit_layerwise": false,
+        "text_encoder": false,
+        "image_encoder": false,
+        "vae": true,
+        "pin_cpu_memory": false,
+        "lazy_module_load": false
+      },
+      "compile": {
+        "enabled": false,
+        "vae_enabled": false
+      }
+    },
+    "pipeline": {
+      "workload_type": "t2v",
+      "vae_tiling": true,
+      "experimental": {
+        "attention_backend": "VIDEO_SPARSE_ATTN_H3",
+        "h3_vsa_fp4": {
+          "enabled": false,
+          "prefix_precision": "fp8",
+          "two_level_p": true,
+          "smooth_k": true
+        },
+        "VSA_sparsity": 0.8,
+        "VSA_tile_size": 64,
+        "h3_sequential_load": true,
+        "inference_torch_compile": false,
+        "vae_parallel_decode": false,
+        "video_decode_backend": "h3-vae"
+      }
+    }
+  },
+  "request": {
+    "prompt": "# Core Summary\nA high-octane FPV chase sequence follows a sleek flying car weaving through a narrow, ancient cliffside city alley before bursting into an open valley. The clip utilizes a 10mm ultra-wide lens with edge distortion and unstable synchronized camera motion to create an immersive, adrenaline-fueled experience. The narrative progresses from a tight, dangerous drift in the city, through a slow-mo obstacle dodge, culminating in a Hitchcock dolly zoom turn that releases into a sunlit valley with a rainbow. The structure is a multi-shot progression (3 shots) designed to maximize pacing and visual impact within 15 seconds.\n\n# Scene\n[shot1][00:00-00:05] Narrow alleyway carved into ancient megalithic stone cliffs. Weathered stone textures with rough displacement details. Early morning sunlight strikes from the front side, casting long shadows. Air shimmers with heat distortion from thrusters. Colorful fabrics hang on lines between buildings.\n[shot2][00:05-00:09] Same alley environment, focusing on a collapsing stone archway ahead. Debris and gravel suspended in air. Lighting remains high dynamic range early morning.\n[shot3][00:09-00:15] Transition from cramped alley to open valley. Massive vertical drop-off with mist rising from waterfalls below. Sunlight creates volumetric beams and spectral dispersion (rainbow) in the mist. Sky is clear blue.\n\n**Audio Description**: High-pitched electric propulsion roar dominates, layered with cracking stone and wind shear sounds. Rhythm accelerates with the car's speed. At the valley burst, sound opens up to a wide, echoing release with ambient wind.\n\n# Subjects Description\n<ID_A> (Flying Car): Sleek, streamlined metallic shell with aerodynamic curves. Pale blue plasma glow emits from rear thrusters. Surface reflects rim light sharply. No visible driver, autonomous or cockpit obscured by glare.\n**Vocal Characteristics**: None. Emits high-frequency electric turbine whine and bass-heavy thruster rumble.\n\n# Dynamic Narrative\n[shot1][00:00-00:05] **FPV Follow Shot**. Camera locks behind <ID_A>, maintaining highly synchronized unstable motion with large roll movements and forced vibration. <ID_A> performs nonlinear drifting on the narrow cliff road, hugging the stone walls. 10mm lens creates obvious physical distortion and stretching at frame edges. Pale blue plasma glow from thrusters causes intense heat distortion in the air. <ID_A> passes close to clotheslines, wake lifts colorful fabrics which fragment into afterimages. Sound of electric propulsion roar and wind shear builds.\n[shot2][00:05-00:09] **Snap-Zoom to Slow-Mo**. <ID_A> approaches a collapsing archway. Camera executes snap-zoom movement. As <ID_A> dodges falling debris, image enters brief 120fps slow-motion. Flying gravel and stone fragments hang suspended in air, detailed against the light. <ID_A> banks sharply left to avoid collision. Instantly switches back to 2.5x speed forward motion. Sound dips to a muffled bass thrum during slow-mo, then cracks back to high-pitched roar.\n[shot3][00:09-00:15] **Dolly Zoom & Release**. <ID_A> approaches a sharp cliffside turn. Camera uses Hitchcock dolly zoom to create spatial compression with strong centripetal motion blur around the frame. <ID_A> bursts from the cramped alley into the open valley. Camera stabilizes slightly as view expands. Mist and waterfalls below form a vivid rainbow. <ID_A> dives toward the valley floor, disappearing into the light. Sound design reaches a sudden release moment, echoing into the open space.\n\n# Style, Color & Aesthetics\nVisual style is high-octane sci-fi action with an ancient futurism aesthetic. Color palette features warm stone greys and browns contrasted with cool pale blue plasma glow and vibrant fabric colors. Lighting is early morning HDR, with jumping rim light on the metallic shell and realistic volumetric light in the valley. Image quality is high resolution with intentional lens distortion and motion blur for speed sensation.\n\n# Atmosphere & Emotion\nAdrenaline-surging, deeply immersive, and epic. The mood emphasizes an adventurous thrill of walking on a knife's edge, transitioning from claustrophobic danger to liberating openness. The viewer should feel the G-force and the sudden breath of fresh air at the end.",
+    "negative_prompt": "",
+    "sampling": {
+      "seed": 20026,
+      "height": 576,
+      "width": 1024,
+      "num_frames": 124,
+      "fps": 24,
+      "num_inference_steps": 9,
+      "guidance_scale": 1.0,
+      "batch_cfg": false
+    },
+    "output": {
+      "output_path": "/data1/models/svdquant-wjq/models/fastvideo-v2-triad/outputs/p016_qad.mp4",
+      "save_video": true,
+      "return_frames": false
+    }
+  },
+  "load_s": 9.01150651392527,
+  "generate_s": 98.40788603096735,
+  "output_exists": true,
+  "output_bytes": 3864073
+}

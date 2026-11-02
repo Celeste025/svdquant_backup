@@ -1,0 +1,65 @@
+{
+  "format": "e125-h3-clap-attention-summary-v1",
+  "prompt_id": 161,
+  "seed": 38001610,
+  "settings": {
+    "height": 576,
+    "width": 1024,
+    "frames": 124,
+    "steps": 20,
+    "cfg_scale": 1.0,
+    "flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "tiled": true
+  },
+  "initial_latent_sha256": {
+    "video": "b3be07832d06581bebfb84c374414c163f3734a4cfe5000ca68d22d3201fbee1",
+    "audio": "210d3e45214954804375dc4fe43398c67d189f81dd42b8c5a0f58d49d813d0ce"
+  },
+  "arms": {
+    "bf16": {
+      "video": "/data1/models/svdquant-wjq/research/20261023/E125_h3_clap_attention/clap0/bf16/clap0_bf16_576x1024_124f_20steps.mp4",
+      "video_sha256": "ee8575dcc54248d74b60b71c2afd9f72f2568279d039589639620663c94c412f",
+      "dit_seconds_sum": 220.7795876050077,
+      "terminal_latent_nmse_vs_bf16": {
+        "video": 0.0,
+        "audio": 0.0
+      }
+    },
+    "sage3_fixed": {
+      "video": "/data1/models/svdquant-wjq/research/20261023/E125_h3_clap_attention/clap0/sage3_fixed/clap0_sage3_fixed_576x1024_124f_20steps.mp4",
+      "video_sha256": "5f40926a63711e9e8dac24c7185ca723bc056df594f4d38edada3dc3944ee74e",
+      "dit_seconds_sum": 174.5784982019686,
+      "terminal_latent_nmse_vs_bf16": {
+        "video": 0.09890212182934184,
+        "audio": 0.04377231461419107
+      }
+    },
+    "split_mixed": {
+      "video": "/data1/models/svdquant-wjq/research/20261023/E125_h3_clap_attention/clap0/split_mixed/clap0_split_mixed_576x1024_124f_20steps.mp4",
+      "video_sha256": "3bc10aa45c504138b6f2ec3f04a0523ac2370dcf5dc315301fba1e22d8ff0b15",
+      "dit_seconds_sum": 179.03603740000108,
+      "terminal_latent_nmse_vs_bf16": {
+        "video": 0.08201802191925303,
+        "audio": 0.03668955933950046
+      }
+    }
+  },
+  "video_metrics": {
+    "sage3_fixed_vs_bf16": {
+      "rgb_nmse": 0.11071585954610054,
+      "lpips_alex": 0.1767267132959058
+    },
+    "split_mixed_vs_bf16": {
+      "rgb_nmse": 0.09535247102282375,
+      "lpips_alex": 0.1568587778676902
+    },
+    "split_mixed_vs_sage3_fixed": {
+      "rgb_nmse": 0.06925180295148241,
+      "lpips_alex": 0.13614086710637616
+    }
+  },
+  "preview_video_only": "/data1/models/svdquant-wjq/research/20261023/E125_h3_clap_attention/previews/clap0_triplet_video_only.mp4",
+  "preview_sha256": "7d13adf43ace077abbf76f9cf82675f3a31a8ae18add4b7078456c23c0a5e192"
+}

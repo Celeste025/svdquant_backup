@@ -1,0 +1,60 @@
+{
+  "format": "h3-e105-output-intervention-denoise-v1",
+  "status": "failed",
+  "case": "race",
+  "arm": "tail_restore",
+  "prompt_id": 16,
+  "seed": 20026,
+  "settings": {
+    "height": 576,
+    "width": 1024,
+    "frames": 124,
+    "steps": 20,
+    "cfg": 1.0,
+    "video_flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "tiled": true,
+    "fps": 24
+  },
+  "state_sha256": "e5ccf2d809f0b03e6a0eaef400e4f610ccfc37478eb3715d75040cf07446652d",
+  "plan_sha256": "f4026953792ce51c8e82385ce09cce69eb7cbd649dc60691c945fa7667270ada",
+  "steps": [
+    {
+      "step": 0,
+      "modalities": {
+        "video": {
+          "target_mse": 0.229971937457378,
+          "target_nmse": 0.060006542086323236,
+          "reference_mean_square": 3.8324477542223434,
+          "output_elements": 2045952,
+          "error_mean": 0.0026068456936627626,
+          "error_std": 0.47954681515693665,
+          "repaired_elements": 2302,
+          "repaired_fraction": 0.0011251486139371991,
+          "removed_error_energy_share": 0.028688661374534928,
+          "realized_mse": 0.22337435041801756,
+          "realized_nmse": 0.058285034720151924,
+          "relative_mse_change": -0.028688661374534963
+        },
+        "audio": {
+          "target_mse": 0.012121184131782845,
+          "target_nmse": 0.010385128043256421,
+          "reference_mean_square": 1.16716751890736,
+          "output_elements": 13248,
+          "error_mean": -0.004333121702075005,
+          "error_std": 0.11001094430685043,
+          "repaired_elements": 11,
+          "repaired_fraction": 0.0008303140057250857,
+          "removed_error_energy_share": 0.016246412373506627,
+          "realized_mse": 0.011924258375922698,
+          "realized_nmse": 0.010216406970514012,
+          "relative_mse_change": -0.016246412373506547
+        }
+      }
+    }
+  ],
+  "started_unix": 1792159721.21807,
+  "failed_unix": 1792159893.4378695,
+  "failure": "RuntimeError('tail restoration had no positive effect')"
+}

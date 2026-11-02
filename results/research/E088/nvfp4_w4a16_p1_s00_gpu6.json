@@ -1,0 +1,73 @@
+{
+  "format": "h3-flashinfer-nvfp4-w4a16-linear-v1",
+  "timestamp_utc": "2026-10-14T01:44:08.038568+00:00",
+  "scope": "one H3 FC2 linear, not complete DiT or model engine",
+  "flashinfer_version": "0.7.0.post1",
+  "torch_version": "2.11.0+cu128",
+  "gpu": 6,
+  "gpu_name": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "sample": "/data1/models/svdquant-wjq/results/E088_native_bench/h3_block25_p1_s00.pt",
+  "cached_call": "/data1/models/svdquant-wjq/results/E087_timestep_aware/cache_16p20s/p1/sample_p1_s00.pt",
+  "weight": "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors",
+  "weight_key": "blocks.25.mlp.fc2.weight",
+  "shape": {
+    "M": 22400,
+    "K": 14336,
+    "N": 5376
+  },
+  "quantization": "NVFP4 E2M1 weight; block-16 E4M3 scales and offline global scale; BF16 activation",
+  "backend": "cute-dsl",
+  "input_activation_quantization": false,
+  "cutlass_site": "/data1/models/svdquant-wjq/research/deps/cutlass-dsl-4.6.2-cu13",
+  "weight_global_scale": 835.1067961165048,
+  "offline_weight_quant_and_prepare_excluded": true,
+  "prepared_weight": {
+    "shape": [
+      896,
+      10752
+    ],
+    "dtype": "torch.int32",
+    "scale_shape": [
+      896,
+      5376
+    ],
+    "scale_dtype": "torch.uint8"
+  },
+  "output_nmse": 0.006390561815351248,
+  "output_relative_rms_error": 0.07994098958201136,
+  "output_cosine": 0.9968027472496033,
+  "measurements": {
+    "bf16": {
+      "median_ms": 30.032403564453126,
+      "min_ms": 23.304415893554687,
+      "mean_ms": 28.670003400530135,
+      "cv_percent": 9.368668227995647,
+      "batch_ms": [
+        30.452597045898436,
+        23.304415893554687,
+        30.095294189453124,
+        29.93809814453125,
+        30.032403564453126,
+        26.743502807617187,
+        30.123712158203126
+      ]
+    },
+    "nvfp4_w4a16_gemm": {
+      "median_ms": 61.176605224609375,
+      "min_ms": 55.09962768554688,
+      "mean_ms": 75.04428274972098,
+      "cv_percent": 29.899782260175574,
+      "batch_ms": [
+        114.0533203125,
+        94.48713989257813,
+        55.09962768554688,
+        57.882763671875,
+        61.0951171875,
+        61.176605224609375,
+        81.5154052734375
+      ]
+    }
+  },
+  "stable_cv_threshold_percent": 3.0,
+  "timing_stable": false
+}

@@ -20,6 +20,8 @@
 #include <c10/cuda/CUDAGuard.h>
 #include <cuda_runtime_api.h>
 #include <cuda_runtime.h>
+#include <cuda_fp16.h>
+#include <cuda_bf16.h>
 
 #include <ATen/cuda/CUDAContext.h>
 #include <c10/cuda/CUDAGuard.h>
@@ -130,13 +132,15 @@ struct PackedVec {
   typename TypeConverter<Type>::Type elts[8];
 };
 
-template <uint32_t head_dim, uint32_t BLOCK_SIZE, bool permute, typename T>
+template <uint32_t head_dim, uint32_t BLOCK_SIZE, bool permute, bool fuse_center,
+          bool fuse_group_center, typename T, bool center_readonly = false>
 __global__ void scaled_fp4_quant_kernel(
-    const T* input, uint8_t* output, uint8_t* output_sf,
+    T* input, const T* mean, uint8_t* output, uint8_t* output_sf,
     int batch_size, int num_heads, int num_tokens,
     int stride_bz_input, int stride_h_input, int stride_seq_input,
     int stride_bz_output, int stride_h_output, int stride_seq_output,
-    int stride_bz_output_sf, int stride_h_output_sf, int stride_seq_output_sf) {
+    int stride_bz_output_sf, int stride_h_output_sf, int stride_seq_output_sf,
+    int stride_bz_mean, int stride_h_mean, int stride_seq_mean) {
   static_assert(std::is_same<T, half>::value || std::is_same<T, nv_bfloat16>::value, "Only half and bfloat16 input are supported");
   using PackedVec = PackedVec<T>;
 
@@ -180,6 +184,54 @@ __global__ void scaled_fp4_quant_kernel(
                                           head_id * stride_h_input +   // head dim
                                           load_token_id * stride_seq_input + // seq dim
                                           (threadIdx.x % NUM_THREADS_PER_TOKEN) * CVT_FP4_ELTS_PER_THREAD)[0]; // feature dim
+  }
+
+  if constexpr (fuse_center) {
+    // Match the separate BF16/FP16 in-place subtract: round the centered
+    // value to the input dtype before computing the NVFP4 local scale.
+    if (load_token_id < num_tokens) {
+      const int feature_offset = (threadIdx.x % NUM_THREADS_PER_TOKEN) * CVT_FP4_ELTS_PER_THREAD;
+      const PackedVec mean_vec = reinterpret_cast<PackedVec const*>(
+          mean + batch_id * stride_bz_mean + head_id * stride_h_mean + feature_offset)[0];
+      #pragma unroll
+      for (int i = 0; i < CVT_FP4_ELTS_PER_THREAD / 2; i++) {
+        if constexpr (std::is_same<T, half>::value) {
+          float2 x = __half22float2(in_vec.elts[i]);
+          float2 m = __half22float2(mean_vec.elts[i]);
+          in_vec.elts[i] = __floats2half2_rn(x.x - m.x, x.y - m.y);
+        } else {
+          float2 x = __bfloat1622float2(in_vec.elts[i]);
+          float2 m = __bfloat1622float2(mean_vec.elts[i]);
+          in_vec.elts[i] = __floats2bfloat162_rn(x.x - m.x, x.y - m.y);
+        }
+      }
+      if constexpr (!center_readonly) {
+        reinterpret_cast<PackedVec*>(input +
+            batch_id * stride_bz_input + head_id * stride_h_input +
+            load_token_id * stride_seq_input + feature_offset)[0] = in_vec;
+      }
+    }
+  }
+
+  if constexpr (fuse_group_center) {
+    // Q is centered per 128-token group. The last padded group also subtracts
+    // its mean from zero-valued padding, matching the BF16 intermediate path.
+    const int feature_offset = (threadIdx.x % NUM_THREADS_PER_TOKEN) * CVT_FP4_ELTS_PER_THREAD;
+    const PackedVec mean_vec = reinterpret_cast<PackedVec const*>(
+        mean + batch_id * stride_bz_mean + head_id * stride_h_mean +
+        token_block_id * stride_seq_mean + feature_offset)[0];
+    #pragma unroll
+    for (int i = 0; i < CVT_FP4_ELTS_PER_THREAD / 2; i++) {
+      if constexpr (std::is_same<T, half>::value) {
+        float2 x = __half22float2(in_vec.elts[i]);
+        float2 m = __half22float2(mean_vec.elts[i]);
+        in_vec.elts[i] = __floats2half2_rn(x.x - m.x, x.y - m.y);
+      } else {
+        float2 x = __bfloat1622float2(in_vec.elts[i]);
+        float2 m = __bfloat1622float2(mean_vec.elts[i]);
+        in_vec.elts[i] = __floats2bfloat162_rn(x.x - m.x, x.y - m.y);
+      }
+    }
   }
 
   // calculate max of every consecutive 16 elements
@@ -450,15 +502,17 @@ void scaled_fp4_quant(torch::Tensor const& input,
       dim3 block(BLOCK_SIZE * HEAD_DIM / CVT_FP4_ELTS_PER_THREAD, 1, 1);
       dim3 grid((num_tokens + BLOCK_SIZE - 1) / BLOCK_SIZE, batch_size, num_heads);
 
-      scaled_fp4_quant_kernel<HEAD_DIM, BLOCK_SIZE, false, c_type>
+      scaled_fp4_quant_kernel<HEAD_DIM, BLOCK_SIZE, false, false, false, c_type>
           <<<grid, block, 0, stream>>>(
               reinterpret_cast<c_type*>(input.data_ptr()),
+              nullptr,
               reinterpret_cast<uint8_t*>(output.data_ptr()),
               reinterpret_cast<uint8_t*>(output_sf.data_ptr()),
               batch_size, num_heads, num_tokens,
               stride_bz_input, stride_h_input, stride_seq_input,
               stride_bz_output, stride_h_output, stride_seq_output,
-              stride_bz_output_sf, stride_h_output_sf, stride_seq_output_sf);
+              stride_bz_output_sf, stride_h_output_sf, stride_seq_output_sf,
+              0, 0, 0);
     });
   });
 }
@@ -529,15 +583,169 @@ void scaled_fp4_quant_permute(torch::Tensor const& input,
       dim3 block(BLOCK_SIZE * HEAD_DIM / CVT_FP4_ELTS_PER_THREAD, 1, 1);
       dim3 grid((num_tokens + BLOCK_SIZE - 1) / BLOCK_SIZE, batch_size, num_heads);
 
-      scaled_fp4_quant_kernel<HEAD_DIM, BLOCK_SIZE, true, c_type>
+      scaled_fp4_quant_kernel<HEAD_DIM, BLOCK_SIZE, true, false, false, c_type>
           <<<grid, block, 0, stream>>>(
               reinterpret_cast<c_type*>(input.data_ptr()),
+              nullptr,
               reinterpret_cast<uint8_t*>(output.data_ptr()),
               reinterpret_cast<uint8_t*>(output_sf.data_ptr()),
               batch_size, num_heads, num_tokens,
               stride_bz_input, stride_h_input, stride_seq_input,
               stride_bz_output, stride_h_output, stride_seq_output,
-              stride_bz_output_sf, stride_h_output_sf, stride_seq_output_sf);
+              stride_bz_output_sf, stride_h_output_sf, stride_seq_output_sf,
+              0, 0, 0);
+    });
+  });
+}
+
+// HND-only experimental path: center K in place while its permuted NVFP4
+// representation is packed. The centered BF16/FP16 K remains available for
+// the subsequent group-mean correction GEMM.
+void scaled_fp4_quant_permute_center(torch::Tensor& input,
+                                    torch::Tensor const& mean,
+                                    torch::Tensor const& output,
+                                    torch::Tensor const& output_sf) {
+  constexpr int BLOCK_SIZE = 128;
+  CHECK_CUDA(input);
+  CHECK_CUDA(mean);
+  CHECK_CUDA(output);
+  CHECK_CUDA(output_sf);
+  CHECK_LASTDIM_CONTIGUOUS(input);
+  CHECK_LASTDIM_CONTIGUOUS(mean);
+  CHECK_LASTDIM_CONTIGUOUS(output);
+  CHECK_LASTDIM_CONTIGUOUS(output_sf);
+  CHECK_DIMS(input, 4);
+  CHECK_DIMS(mean, 4);
+  CHECK_DIMS(output, 4);
+  CHECK_DIMS(output_sf, 4);
+  TORCH_CHECK(mean.scalar_type() == input.scalar_type(), "mean dtype must match input");
+  CHECK_DTYPE(output, at::ScalarType::Byte);
+  CHECK_DTYPE(output_sf, at::ScalarType::Float8_e4m3fn);
+  const int batch_size = input.size(0);
+  const int num_heads = input.size(1);
+  const int num_tokens = input.size(2);
+  const int head_dim = input.size(3);
+  const int padded_tokens = ((num_tokens + BLOCK_SIZE - 1) / BLOCK_SIZE) * BLOCK_SIZE;
+  CHECK_SHAPE(mean, batch_size, num_heads, 1, head_dim);
+  CHECK_SHAPE(output, batch_size, num_heads, padded_tokens, head_dim / 2);
+  CHECK_SHAPE(output_sf, batch_size, num_heads, padded_tokens, head_dim / 16);
+  auto stream = at::cuda::getCurrentCUDAStream(input.get_device());
+  DISPATCH_PYTORCH_DTYPE_TO_CTYPE_FP16(input.scalar_type(), c_type, {
+    DISPATCH_HEAD_DIM(head_dim, HEAD_DIM, {
+      dim3 block(BLOCK_SIZE * HEAD_DIM / CVT_FP4_ELTS_PER_THREAD, 1, 1);
+      dim3 grid((num_tokens + BLOCK_SIZE - 1) / BLOCK_SIZE, batch_size, num_heads);
+      scaled_fp4_quant_kernel<HEAD_DIM, BLOCK_SIZE, true, true, false, c_type>
+          <<<grid, block, 0, stream>>>(
+              reinterpret_cast<c_type*>(input.data_ptr()),
+              reinterpret_cast<c_type const*>(mean.data_ptr()),
+              reinterpret_cast<uint8_t*>(output.data_ptr()),
+              reinterpret_cast<uint8_t*>(output_sf.data_ptr()),
+              batch_size, num_heads, num_tokens,
+              input.stride(0), input.stride(1), input.stride(2),
+              output.stride(0), output.stride(1), output.stride(2),
+              output_sf.stride(0), output_sf.stride(1), output_sf.stride(2),
+              mean.stride(0), mean.stride(1), 0);
+    });
+  });
+}
+
+// Center K in registers for FP4 packing without overwriting the caller's K.
+// The original in-place entrypoint remains available to existing callers.
+void scaled_fp4_quant_permute_center_readonly(torch::Tensor const& input,
+                                             torch::Tensor const& mean,
+                                             torch::Tensor const& output,
+                                             torch::Tensor const& output_sf) {
+  constexpr int BLOCK_SIZE = 128;
+  CHECK_CUDA(input);
+  CHECK_CUDA(mean);
+  CHECK_CUDA(output);
+  CHECK_CUDA(output_sf);
+  CHECK_LASTDIM_CONTIGUOUS(input);
+  CHECK_LASTDIM_CONTIGUOUS(mean);
+  CHECK_LASTDIM_CONTIGUOUS(output);
+  CHECK_LASTDIM_CONTIGUOUS(output_sf);
+  CHECK_DIMS(input, 4);
+  CHECK_DIMS(mean, 4);
+  CHECK_DIMS(output, 4);
+  CHECK_DIMS(output_sf, 4);
+  TORCH_CHECK(mean.scalar_type() == input.scalar_type(), "mean dtype must match input");
+  CHECK_DTYPE(output, at::ScalarType::Byte);
+  CHECK_DTYPE(output_sf, at::ScalarType::Float8_e4m3fn);
+  const int batch_size = input.size(0);
+  const int num_heads = input.size(1);
+  const int num_tokens = input.size(2);
+  const int head_dim = input.size(3);
+  const int padded_tokens = ((num_tokens + BLOCK_SIZE - 1) / BLOCK_SIZE) * BLOCK_SIZE;
+  CHECK_SHAPE(mean, batch_size, num_heads, 1, head_dim);
+  CHECK_SHAPE(output, batch_size, num_heads, padded_tokens, head_dim / 2);
+  CHECK_SHAPE(output_sf, batch_size, num_heads, padded_tokens, head_dim / 16);
+  auto stream = at::cuda::getCurrentCUDAStream(input.get_device());
+  DISPATCH_PYTORCH_DTYPE_TO_CTYPE_FP16(input.scalar_type(), c_type, {
+    DISPATCH_HEAD_DIM(head_dim, HEAD_DIM, {
+      dim3 block(BLOCK_SIZE * HEAD_DIM / CVT_FP4_ELTS_PER_THREAD, 1, 1);
+      dim3 grid((num_tokens + BLOCK_SIZE - 1) / BLOCK_SIZE, batch_size, num_heads);
+      scaled_fp4_quant_kernel<HEAD_DIM, BLOCK_SIZE, true, true, false, c_type, true>
+          <<<grid, block, 0, stream>>>(
+              reinterpret_cast<c_type*>(input.data_ptr()),
+              reinterpret_cast<c_type const*>(mean.data_ptr()),
+              reinterpret_cast<uint8_t*>(output.data_ptr()),
+              reinterpret_cast<uint8_t*>(output_sf.data_ptr()),
+              batch_size, num_heads, num_tokens,
+              input.stride(0), input.stride(1), input.stride(2),
+              output.stride(0), output.stride(1), output.stride(2),
+              output_sf.stride(0), output_sf.stride(1), output_sf.stride(2),
+              mean.stride(0), mean.stride(1), 0);
+    });
+  });
+}
+
+// Experimental HND Q path: pack centered Q directly from the original tensor.
+// Mean is the BF16 per-128-token Q mean already used by delta_s.
+void scaled_fp4_quant_group_center(torch::Tensor const& input,
+                                   torch::Tensor const& mean,
+                                   torch::Tensor const& output,
+                                   torch::Tensor const& output_sf) {
+  constexpr int BLOCK_SIZE = 128;
+  CHECK_CUDA(input);
+  CHECK_CUDA(mean);
+  CHECK_CUDA(output);
+  CHECK_CUDA(output_sf);
+  CHECK_LASTDIM_CONTIGUOUS(input);
+  CHECK_LASTDIM_CONTIGUOUS(mean);
+  CHECK_LASTDIM_CONTIGUOUS(output);
+  CHECK_LASTDIM_CONTIGUOUS(output_sf);
+  CHECK_DIMS(input, 4);
+  CHECK_DIMS(mean, 4);
+  CHECK_DIMS(output, 4);
+  CHECK_DIMS(output_sf, 4);
+  TORCH_CHECK(mean.scalar_type() == input.scalar_type(), "mean dtype must match input");
+  CHECK_DTYPE(output, at::ScalarType::Byte);
+  CHECK_DTYPE(output_sf, at::ScalarType::Float8_e4m3fn);
+  const int batch_size = input.size(0);
+  const int num_heads = input.size(1);
+  const int num_tokens = input.size(2);
+  const int head_dim = input.size(3);
+  const int groups = (num_tokens + BLOCK_SIZE - 1) / BLOCK_SIZE;
+  const int padded_tokens = groups * BLOCK_SIZE;
+  CHECK_SHAPE(mean, batch_size, num_heads, groups, head_dim);
+  CHECK_SHAPE(output, batch_size, num_heads, padded_tokens, head_dim / 2);
+  CHECK_SHAPE(output_sf, batch_size, num_heads, padded_tokens, head_dim / 16);
+  auto stream = at::cuda::getCurrentCUDAStream(input.get_device());
+  DISPATCH_PYTORCH_DTYPE_TO_CTYPE_FP16(input.scalar_type(), c_type, {
+    DISPATCH_HEAD_DIM(head_dim, HEAD_DIM, {
+      dim3 block(BLOCK_SIZE * HEAD_DIM / CVT_FP4_ELTS_PER_THREAD, 1, 1);
+      dim3 grid(groups, batch_size, num_heads);
+      scaled_fp4_quant_kernel<HEAD_DIM, BLOCK_SIZE, false, false, true, c_type>
+          <<<grid, block, 0, stream>>>(
+              reinterpret_cast<c_type*>(input.data_ptr()),
+              reinterpret_cast<c_type const*>(mean.data_ptr()),
+              reinterpret_cast<uint8_t*>(output.data_ptr()),
+              reinterpret_cast<uint8_t*>(output_sf.data_ptr()),
+              batch_size, num_heads, num_tokens,
+              input.stride(0), input.stride(1), input.stride(2),
+              output.stride(0), output.stride(1), output.stride(2),
+              output_sf.stride(0), output_sf.stride(1), output_sf.stride(2),
+              mean.stride(0), mean.stride(1), mean.stride(2));
     });
   });
 }
@@ -624,5 +832,8 @@ void scaled_fp4_quant_trans(torch::Tensor const& input,
 PYBIND11_MODULE(TORCH_EXTENSION_NAME, m) {
   m.def("scaled_fp4_quant", &scaled_fp4_quant);
   m.def("scaled_fp4_quant_permute", &scaled_fp4_quant_permute);
+  m.def("scaled_fp4_quant_permute_center", &scaled_fp4_quant_permute_center);
+  m.def("scaled_fp4_quant_permute_center_readonly", &scaled_fp4_quant_permute_center_readonly);
+  m.def("scaled_fp4_quant_group_center", &scaled_fp4_quant_group_center);
   m.def("scaled_fp4_quant_trans", &scaled_fp4_quant_trans);
 }

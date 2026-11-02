@@ -1,5 +1,9 @@
 # 领域工作地图（第一版）
 
+2026-10-31 bounded update: see [video quantization/sparsity review](video_quant_sparse_review_20261031.md).
+Added DraftAttention2/SLA2/Veda and ALLOT collision coverage; E138 plain
+activation SR is negative on two rollouts. Candidate C139 remains untested.
+
 更新：2026-10-02；配套 [paper_index.md](paper_index.md)。本文区分论文证据与待检验推断，未在本机复现任何文献结果。
 
 ## 当前判断

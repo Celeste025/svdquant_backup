@@ -1,0 +1,166 @@
+{
+  "format": "h3-vllm-int8-int4-linear-v1",
+  "timestamp_utc": "2026-10-14T10:52:09.162948+00:00",
+  "scope": "one H3 FC2 linear, not a vLLM engine or full DiT block",
+  "vllm_version": "0.26.0",
+  "torch_version": "2.11.0+cu128",
+  "gpu": 0,
+  "gpu_name": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "sample": "/data1/models/svdquant-wjq/results/E088_native_bench/h3_block25_p1_s00.pt",
+  "cached_call": "/data1/models/svdquant-wjq/results/E087_timestep_aware/cache_16p20s/p1/sample_p1_s00.pt",
+  "weight": "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors",
+  "weight_key": "blocks.25.mlp.fc2.weight",
+  "shape": {
+    "M": 22400,
+    "K": 14336,
+    "N": 5376
+  },
+  "offline_weight_pack_excluded": true,
+  "bf16_timing": {
+    "median_ms": 14.091888427734375,
+    "min_ms": 14.083255004882812,
+    "mean_ms": 14.092956727923768,
+    "cv_percent": 0.04306080297637076,
+    "batch_ms": [
+      14.084599812825521,
+      14.091888427734375,
+      14.083255004882812,
+      14.090433756510416,
+      14.089971923828125,
+      14.091717529296876,
+      14.094024658203125,
+      14.100563557942708,
+      14.094340006510416,
+      14.101294962565104,
+      14.100434366861979
+    ]
+  },
+  "arms": {
+    "w8a8": {
+      "quantization": "symmetric per-token A8 / per-output-channel W8",
+      "online_ops": [
+        "vllm.scaled_int8_quant",
+        "vllm.triton_scaled_mm"
+      ],
+      "weight_scale_shape": [
+        5376,
+        1
+      ],
+      "weight_stride": [
+        1,
+        14336
+      ],
+      "output": {
+        "nmse": 0.0023187831975519657,
+        "relative_rms_error": 0.04815374541561607,
+        "cosine": 0.9988428950309753
+      },
+      "timing": {
+        "activation_quant": {
+          "median_ms": 0.9321727752685547,
+          "min_ms": 0.9311818440755208,
+          "mean_ms": 0.9324439135464755,
+          "cv_percent": 0.10464512286025178,
+          "batch_ms": [
+            0.9344138463338216,
+            0.933140246073405,
+            0.9311818440755208,
+            0.9321727752685547,
+            0.9316533406575521,
+            0.9331754684448242,
+            0.9322442372639974,
+            0.9319061279296875,
+            0.9317386627197266,
+            0.9317813237508138,
+            0.9334751764933268
+          ]
+        },
+        "gemm_prepacked": {
+          "median_ms": 8.089289347330729,
+          "min_ms": 8.080130004882813,
+          "mean_ms": 8.089307842832623,
+          "cv_percent": 0.07278853438985225,
+          "batch_ms": [
+            8.082191975911458,
+            8.080130004882813,
+            8.082440694173178,
+            8.09588368733724,
+            8.088572692871093,
+            8.097601318359375,
+            8.090916442871094,
+            8.090053304036458,
+            8.089289347330729,
+            8.089008076985676,
+            8.09629872639974
+          ]
+        },
+        "full": {
+          "median_ms": 8.99806416829427,
+          "min_ms": 8.996377563476562,
+          "mean_ms": 8.998015710079308,
+          "cv_percent": 0.014220981085961116,
+          "batch_ms": [
+            8.99806416829427,
+            8.998853556315105,
+            8.999833170572916,
+            8.998154703776041,
+            8.999721272786458,
+            8.996377563476562,
+            8.996500651041666,
+            8.996487426757813,
+            8.997509765625,
+            8.999247233072916,
+            8.997423299153645
+          ]
+        }
+      }
+    },
+    "w4a16": {
+      "quantization": "symmetric uint4b8, K-group 128, round-to-nearest; no GPTQ correction",
+      "online_ops": [
+        "vllm.marlin_gemm"
+      ],
+      "packed_shape": [
+        896,
+        10752
+      ],
+      "scale_shape": [
+        112,
+        5376
+      ],
+      "layout_gate": {
+        "nmse": 4.9090444917965215e-06,
+        "relative_rms_error": 0.0022156363627176103,
+        "cosine": 0.9999975562095642
+      },
+      "output": {
+        "nmse": 0.010437916964292526,
+        "relative_rms_error": 0.10216612434800748,
+        "cosine": 0.9948277473449707
+      },
+      "timing": {
+        "full": {
+          "median_ms": 15.983290608723959,
+          "min_ms": 15.887278238932291,
+          "mean_ms": 15.973077392578125,
+          "cv_percent": 0.23484778588487554,
+          "batch_ms": [
+            15.887278238932291,
+            15.913855997721354,
+            15.9716552734375,
+            15.982316080729166,
+            15.981760660807291,
+            15.983290608723959,
+            15.988557942708333,
+            15.992909749348959,
+            15.99859619140625,
+            16.001541137695312,
+            16.00208943684896
+          ]
+        }
+      }
+    }
+  },
+  "stable_cv_threshold_percent": 3.0,
+  "timing_stable": true
+}

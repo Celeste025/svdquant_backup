@@ -1,0 +1,47 @@
+{
+  "format": "h3-paired-dit-token-error-video-overlay-v1",
+  "case": "clap0",
+  "definition": "100 * sqrt(mean_channel((SVDQuant-BF16)^2)) / sqrt(mean_all_video_output(BF16^2)); full-step BF16 input paired DiT output",
+  "caveat": "Token positions are spatial guides over final BF16 decoded video; VAE mixes latent tokens across space/time, so the heatmap is not decoded-pixel-error attribution; temporal frame centers are approximate.",
+  "selected_steps": [
+    0,
+    4,
+    10,
+    19
+  ],
+  "latent_times": [
+    8,
+    18,
+    28
+  ],
+  "approximate_decoded_frames": [
+    27,
+    61,
+    95
+  ],
+  "video_grid_thw": [
+    37,
+    18,
+    32
+  ],
+  "step_video_nmse": {
+    "0": 0.015545227310994841,
+    "4": 0.07038952883559657,
+    "10": 0.01635143973841178,
+    "19": 0.011396981651017619
+  },
+  "case_shared_colorbar_max_percent_p99": 53.084598541259766,
+  "clipped_cells": 70,
+  "total_cells": 6912,
+  "source_capture_manifest": "/home/wjq/workspace/svdquant-exp/results/research/E104/manifest.json",
+  "source_capture_sha256": {
+    "0": "559db110186f9ca014f22b46a3d33d644d163c17905ca062855ebecc786811eb",
+    "4": "2cc6997e47cd43048e8af459366cec42fefe6337a77b610105a778a56367f302",
+    "10": "98550e4877116a5eecc22c16b18a81ca99f0c2a3b948fdbb40c2cb5ef8a1894f",
+    "19": "4ade4ae4252833b209423dfabd9f2a5eda2394cf9bf3820c8674c564372960ce"
+  },
+  "bf16_video": "/data1/models/svdquant-wjq/research/20261004/E073/decode_full_bf16_r0/vbench0161_r0.mp4",
+  "bf16_video_sha256": "9841e16d4337331536a47382570a9a9d619aa95ce3c9734790380aed8d6b8bba",
+  "figure": "/home/wjq/workspace/svdquant-exp/results/research/E104/figures/video_frame_aligned_token_error.png",
+  "figure_sha256": "10913f3c04073faa6662c5c637ea53cbad5df3272b375ae1b8a85597aa312bdc"
+}

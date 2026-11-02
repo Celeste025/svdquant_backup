@@ -1,0 +1,65 @@
+{
+  "format": "e154-exact-route-reuse-v1",
+  "timestamp_utc": "2026-11-01T08:05:40.648707+00:00",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "capture": "/data1/models/svdquant-wjq/research/20261101/E151_long_h3_attention/race_768p_362f_step0_block0.pt",
+  "shape_bshd": [
+    1,
+    110013,
+    56,
+    128
+  ],
+  "video_grid": [
+    107,
+    24,
+    42
+  ],
+  "prefix_tokens": 2157,
+  "layer": 0,
+  "policy": {
+    "query_block": 64,
+    "skip_fraction": 0.75,
+    "retained_nvfp4_fraction": 0.6,
+    "retained_int8_fraction": 0.4,
+    "first_step": "dense INT8; actual quantized QK 64x64 tile maximum captured in kernel",
+    "later_steps": "reuse cached first-step route; no DraftMap pooling/scoring/sorting"
+  },
+  "checks": {
+    "cache_entries": 1,
+    "cache_bytes_one_layer": 83600388,
+    "reuse_draftmap_and_route_selection_mocked_to_raise": true,
+    "first_vs_dense_int8_nmse": 0.0,
+    "reuse_vs_legacy_proxy_route_nmse": 0.003725475691918713,
+    "reuse_vs_dense_int8_nmse": 0.007313140150221535
+  },
+  "timings": {
+    "dense_int8_first_step_capture": {
+      "mean_ms": 2592.4842529296875,
+      "median_ms": 2592.4842529296875,
+      "min_ms": 2087.30517578125,
+      "samples_ms": [
+        3097.663330078125,
+        2087.30517578125
+      ]
+    },
+    "cached_exact_route_reuse": {
+      "mean_ms": 356.59458923339844,
+      "median_ms": 356.59458923339844,
+      "min_ms": 318.2458801269531,
+      "samples_ms": [
+        318.2458801269531,
+        394.94329833984375
+      ]
+    },
+    "legacy_proxy_route_each_step": {
+      "mean_ms": 608.5800170898438,
+      "median_ms": 608.5800170898438,
+      "min_ms": 597.7266845703125,
+      "samples_ms": [
+        619.433349609375,
+        597.7266845703125
+      ]
+    }
+  },
+  "status": "complete"
+}

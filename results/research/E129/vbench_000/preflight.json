@@ -1,0 +1,38 @@
+{
+  "format": "e129-svdquant-preflight-v1",
+  "suite": "e126",
+  "case": "vbench_000",
+  "seed": 42,
+  "settings": {
+    "height": 768,
+    "width": 1344,
+    "frames": 124,
+    "steps": 50,
+    "cfg_scale": 1.0,
+    "flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "tiled": true,
+    "fps": 24
+  },
+  "linears": {
+    "count": 200,
+    "format": "NVFP4 W4A4 BF16-GEMM Q/DQ",
+    "rank": 64,
+    "group_size": 16,
+    "tensor_scale": "dynamic",
+    "state": "/home/wjq/workspace/svdquant-exp/results/checkpoints/minimax_h3_svdquant_standard_r64_8p64s/quant_state.pt",
+    "state_sha256": "d199da3e5c89d248653d72b035e57cc505644075f269c6f44cc4c552e1f10f73"
+  },
+  "dit_seconds": 43.38548425200861,
+  "attention_main_calls": 50,
+  "attention_refiner_calls": 2,
+  "peak_allocated_gib": 17.812875747680664,
+  "free_gib": 53.10986328125,
+  "hooks": {
+    "count": 200,
+    "min_calls": 1,
+    "max_calls": 1
+  },
+  "status": "complete"
+}

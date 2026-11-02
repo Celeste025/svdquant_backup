@@ -106,7 +106,21 @@ class PlainNativeH3Linear(nn.Module):
                                      mode=mode, include_bias=include_bias)
 
     def forward(self, raw_x):
-        return self.main_forward(raw_x, mode=self.execution_mode, include_bias=True)
+        if self.execution_mode == 'bf16':
+            return F.linear(raw_x, self.bf16_recompute_weight, self.bias)
+        out = self.main_forward(raw_x, mode=self.execution_mode, include_bias=True)
+        if not hasattr(self, 'recompute_fraction'):
+            return out
+        rows = raw_x.reshape(-1, self.in_features)
+        count = max(1, round(rows.shape[0] * self.recompute_fraction))
+        selected = torch.randperm(rows.shape[0], device=rows.device,
+                                  generator=self.recompute_generator)[:count]
+        exact = F.linear(rows.index_select(0, selected), self.bf16_recompute_weight,
+                         self.bias)
+        out.reshape(-1, self.out_features).index_copy_(0, selected, exact)
+        self.recompute_calls += 1
+        self.recompute_rows += count
+        return out
 
     @classmethod
     def from_export(cls, payload, *, device='cuda', activation_packer=pack_activation_fast,
@@ -135,12 +149,15 @@ def plain_execution_mode(dit, mode):
 
 
 def install_plain_h3(dit, export_dir, *, activation_packer=pack_activation_fast,
-                     chunk_rows=1024, device='cuda', verify_hashes=True):
+                     chunk_rows=1024, device='cuda', verify_hashes=True,
+                     recompute_fraction=0.0, recompute_seed=0, retain_bf16=False):
     """Install 200 original-W packets and clear stale original Parameter refs."""
     export_dir = Path(export_dir)
     manifest_path = export_dir/'manifest.json'
     manifest = json.loads(manifest_path.read_text())
     rows = manifest['layers']
+    if not 0 <= recompute_fraction <= 1:
+        raise ValueError('recompute_fraction must be in [0, 1]')
     if (manifest.get('status') != 'complete' or manifest.get('format') != FORMAT
             or manifest.get('recipe') != RECIPE or manifest.get('target_count') != 200
             or manifest.get('exact_roundtrip_count') != 200
@@ -158,7 +175,7 @@ def install_plain_h3(dit, export_dir, *, activation_packer=pack_activation_fast,
                 or getattr(old, 'lora_A_weights', []) or old.weight is None
                 or old.weight.device.type == 'meta' or getattr(old, 'disk_offload', False)):
             raise ValueError(f'{name}: requires resident original Linear without hooks/LoRA/offload')
-    for row in rows:
+    for layer_index, row in enumerate(rows):
         name = row['name']
         old = dit.get_submodule(name)
         path = export_dir/row['file']
@@ -177,6 +194,14 @@ def install_plain_h3(dit, export_dir, *, activation_packer=pack_activation_fast,
             raise ValueError(f'{name}: changed original bias')
         replacement = PlainNativeH3Linear.from_export(payload, device=device,
                               activation_packer=activation_packer, chunk_rows=chunk_rows)
+        if recompute_fraction or retain_bf16:
+            replacement.register_buffer('bf16_recompute_weight', old.weight.detach())
+        if recompute_fraction:
+            replacement.recompute_fraction = recompute_fraction
+            replacement.recompute_generator = torch.Generator(device=device)
+            replacement.recompute_generator.manual_seed(recompute_seed + layer_index)
+            replacement.recompute_calls = 0
+            replacement.recompute_rows = 0
         parent, attr = name.rsplit('.', 1)
         setattr(dit.get_submodule(parent), attr, replacement)
         old.weight = None

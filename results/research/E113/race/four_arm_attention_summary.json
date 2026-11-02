@@ -1,0 +1,37 @@
+{
+  "format": "e113-four-arm-attention-video-summary-v1",
+  "case": "race",
+  "scope": "124 aligned RGB8 frames, 1024x576, no temporal/spatial alignment",
+  "interpretation": "RGB NMSE is distance to the named reference video, not a perceptual quality score",
+  "sources": {
+    "bf16": "/home/wjq/workspace/svdquant-exp/results/samples/minimax_h3_svdquant_standard_8p64s/p16/bf16_id16_seed20026_576x1024_124f_20steps.mp4",
+    "sage3": "/data1/models/svdquant-wjq/research/20261020/E113_h3_mixed_pv_generation/race/sage3/race_sage3_576x1024_124f_20steps.mp4",
+    "native_fp4": "/data1/models/svdquant-wjq/research/20261020/E113_h3_mixed_pv_generation/race/native_fp4/race_native_fp4_576x1024_124f_20steps.mp4",
+    "native_mixed": "/data1/models/svdquant-wjq/research/20261020/E113_h3_mixed_pv_generation/race/native_mixed/race_native_mixed_576x1024_124f_20steps.mp4"
+  },
+  "sha256": {
+    "bf16": "f1738e8bf0fdae8e0deeec802fc8d426d2c6e5bb3b75d77e1bcd5a7ec021cbe0",
+    "sage3": "4c501d778a64cbd5f8fa2985e070e8c25b26b3b1822a2e2d15089ae21c7a0fb9",
+    "native_fp4": "b47af5fa22ad13b2d3a082b079a303152cf4e0ac02d429e6a0976ee3b40a1527",
+    "native_mixed": "c9211bfb0b6be8e352b8ea928915409bc8d3853b71a08b07a7c82c49f9382d26"
+  },
+  "prompt_id": 16,
+  "seed": 20026,
+  "initial_latent_sha256": {
+    "video": "c6e954babd536b4fb5f36770e1adc1ad6cd012e839d08aecea6406a6bc01f4d9",
+    "audio": "25a1dfd8eb0aba82159ad3c9bfbc6572400ee2e741bd05428dd8a4063cf41739"
+  },
+  "frames": 124,
+  "rgb_nmse": {
+    "sage3_vs_bf16": 0.1768239494581724,
+    "native_fp4_vs_bf16": 0.16596548358561636,
+    "native_mixed_vs_bf16": 0.17030077314724945,
+    "native_mixed_vs_native_fp4": 0.1012944925005515,
+    "native_fp4_vs_sage3": 0.08800629122660829,
+    "native_mixed_vs_sage3": 0.1200028072615783
+  },
+  "montage": "/data1/models/svdquant-wjq/research/20261020/E113_h3_mixed_pv_generation/race/race_four_arm_attention_montage.mp4",
+  "montage_sha256": "3d44fcf99fdc21fef8caa6bef6f123840574bbcc6e17d38d87d0faedbef41b4e",
+  "poster": "/home/wjq/workspace/svdquant-exp/results/research/E113/race/four_arm_attention_poster.jpg",
+  "poster_sha256": "94e06754d9b5777918c89469a3beaf7a6d86c61e675d09012aeedf585808096f"
+}

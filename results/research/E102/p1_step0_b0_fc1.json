@@ -1,0 +1,39 @@
+{
+  "format": "h3-e102-global-scale-paired-v1",
+  "layer": "blocks.0.mlp.fc1",
+  "prompt_id": 1,
+  "step": 0,
+  "input_shape": [
+    15552,
+    5376
+  ],
+  "weight_shape": [
+    28672,
+    5376
+  ],
+  "activation_global_scale_dynamic": 0.0007178896949404762,
+  "local_ideal_scale_stats": {
+    "min": 0.00164794921875,
+    "median": 0.0330403670668602,
+    "max": 0.3216145932674408,
+    "under_fp8_min_normal_fixed_one": 401689,
+    "under_fp8_min_subnormal_fixed_one": 6,
+    "groups": 5225472
+  },
+  "input_weight_capture": "/data1/models/svdquant-wjq/research/20261015/E102_h3_fc_scale/p1_step0_b0_fc1_input_weight.pt",
+  "input_weight_capture_sha256": "acc597a78bc2dd8d97469edd7e331fcd59488f0df45dac1da8fdfc5aa9bd2e75",
+  "definition": "same x, BF16 W, SVDQuant smooth/A/B and quantized residual W in both arms; activation quantization uses the existing dynamic versus fixed_one runtime recipes; BF16 Wx reference",
+  "runtime_recipe_note": "dynamic FP4 codes divide by FP8-rounded local scale times FP32 tensor scale; fixed_one FP4 codes divide by the raw clamped local scale, then reconstruct using its FP8-rounded value",
+  "results": {
+    "dynamic": {
+      "svdquant_output_nmse": 0.012368234005724224,
+      "main_branch_output_nmse": 0.012358388175692202,
+      "activation_nmse": 0.008430754281134779
+    },
+    "fixed_one": {
+      "svdquant_output_nmse": 0.012600166735747135,
+      "main_branch_output_nmse": 0.012592692531419189,
+      "activation_nmse": 0.008770264846834065
+    }
+  }
+}

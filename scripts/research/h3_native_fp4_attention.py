@@ -38,7 +38,8 @@ class AttentionCallLog:
         self.expected_cu = tuple(int(v) for v in expected_cu)
         self.expected_refiner_cu = tuple(int(v) for v in expected_refiner_cu)
         _require(len(self.expected_cu) == 3 and self.expected_cu[0] == 0
-                 and 0 < self.expected_cu[1] < self.expected_cu[2], 'Expected nonempty main and padding segments')
+                 and 0 < self.expected_cu[1] <= self.expected_cu[2],
+                 'Expected nonempty main segment and optional padding segment')
         _require(len(self.expected_refiner_cu) == 3 and self.expected_refiner_cu[0] == 0
                  and self.expected_refiner_cu[1] == self.expected_refiner_cu[2] > 0,
                  'Expected one nonempty refiner segment')
@@ -95,7 +96,10 @@ class AttentionCallLog:
         _require([r['block'] for r in self.main_rows] == list(range(50)), 'Expected main blocks 0..49 exactly once')
         _require(self.refiner_helpers == 2, 'Expected exactly two original refiner helpers')
         _require(self.fp4_calls == (50 if low else 0), 'Unexpected official FP4 attention call count')
-        _require(self.original_bf16_segments == (52 if low else 102), 'Unexpected original BF16 segment count')
+        has_padding = self.expected_cu[1] < self.expected_cu[2]
+        expected_original = 2 + (0 if low else 50) + (50 if has_padding else 0)
+        _require(self.original_bf16_segments == expected_original,
+                 'Unexpected original BF16 segment count')
         _require(all(r['exact'] for r in cu_rows), 'Actual attention boundaries differ from bound case')
         _require(finite_ok is not False, 'Nonfinite QKV/correction/attention output')
 
@@ -187,7 +191,7 @@ class H3AttentionRouter:
                'per_block_mean': None if self.mode == 'bf16' else self.mode == 'block_mean'}
         log.main_rows.append(row)
         if self.mode == 'bf16':
-            log.original_bf16_segments += 2
+            log.original_bf16_segments += 1 + int(total > n)
             out = self.original_helper(q, k, v, log.main_cpu_cu, softmax_scale)
             log.finite(out)
             return out
@@ -214,8 +218,9 @@ class H3AttentionRouter:
         out[:n] = result[0, :, :n, :].transpose(0, 1)
         # Local boundary maps the exact original independent padding segment.
         # Original helper accepts CPU cu because it only calls .tolist().
-        out[n:] = self.original_helper(q[n:], k[n:], v[n:], log.padding_cpu_cu, softmax_scale)
-        log.original_bf16_segments += 1
+        if total > n:
+            out[n:] = self.original_helper(q[n:], k[n:], v[n:], log.padding_cpu_cu, softmax_scale)
+            log.original_bf16_segments += 1
         log.finite(out)
         return out
 

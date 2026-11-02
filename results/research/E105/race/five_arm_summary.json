@@ -1,0 +1,110 @@
+{
+  "format": "h3-e105-five-arm-summary-v1",
+  "case": "race",
+  "definition": "decoded H.264 RGB distance to separately generated BF16; free-rollout divergence, NOT perceptual quality",
+  "sources": {
+    "bf16": "/home/wjq/workspace/svdquant-exp/results/samples/minimax_h3_svdquant_standard_8p64s/p16/bf16_id16_seed20026_576x1024_124f_20steps.mp4",
+    "svdquant": "/home/wjq/workspace/svdquant-exp/results/samples/minimax_h3_svdquant_standard_8p64s/p16/svdquant_id16_seed20026_576x1024_124f_20steps.mp4",
+    "tail_restore": "/data1/models/svdquant-wjq/research/20261016/E105_h3_output_interventions/race/tail_restore/race_tail_restore_576x1024_124f_20steps.mp4",
+    "rademacher_flat": "/data1/models/svdquant-wjq/research/20261016/E105_h3_output_interventions/race/rademacher_flat/race_rademacher_flat_576x1024_124f_20steps.mp4",
+    "gaussian": "/data1/models/svdquant-wjq/research/20261016/E105_h3_output_interventions/race/gaussian/race_gaussian_576x1024_124f_20steps.mp4"
+  },
+  "source_sha256": {
+    "bf16": "f1738e8bf0fdae8e0deeec802fc8d426d2c6e5bb3b75d77e1bcd5a7ec021cbe0",
+    "svdquant": "a614b3f5cc0a017d1c04d072a294b04d404eff70bc05474c52430b3d80e1aaaf",
+    "tail_restore": "5472a9eca5fc49df13de2acae55164d50eb2c5a170b9015a91ec36ed5994df08",
+    "rademacher_flat": "8fcfbcff39a3d61247e4a4a5038198c62807ed195faea0e3eca856c7cc883361",
+    "gaussian": "6e4b4f2de30b101c2171812f6179fba18252260b7e07583e43586d1c84d3c490"
+  },
+  "frames": 124,
+  "fps": 24,
+  "montage": "/data1/models/svdquant-wjq/research/20261016/E105_h3_output_interventions/race/race_five_arm_montage.mp4",
+  "montage_sha256": "1df595b40cacd68174be05499805bc65fcf0158a442dd98da9b9f8b41c93a18c",
+  "montage_audio": "none; original arm videos contain audio",
+  "poster": "/home/wjq/workspace/svdquant-exp/results/research/E105/race/five_arm_poster.jpg",
+  "poster_sha256": "d5834ca844afb0f905bc0388b25f9c3e4630fd951e8d9d0f059a7529a130285b",
+  "intervention_error_validation": {
+    "tail_restore": {
+      "video": {
+        "target_nmse_mean": 0.07278534405704325,
+        "realized_nmse_mean": 0.0674804335391857,
+        "relative_mse_change_mean": -0.07868018979965082,
+        "relative_mse_change_range": [
+          -0.1370326709858597,
+          -0.028688661374534963
+        ],
+        "repaired_fraction_mean": 0.003084432048490271,
+        "removed_error_energy_share_mean": 0.07868018979965082
+      },
+      "audio": {
+        "target_nmse_mean": 0.038061675012732235,
+        "realized_nmse_mean": 0.037817790388993806,
+        "relative_mse_change_mean": -0.008779533851331433,
+        "relative_mse_change_range": [
+          -0.058904217154861715,
+          0.0
+        ],
+        "repaired_fraction_mean": 0.0004378019271825906,
+        "removed_error_energy_share_mean": 0.008779533851331444
+      }
+    },
+    "rademacher_flat": {
+      "video": {
+        "target_nmse_mean": 0.07405763147353253,
+        "realized_nmse_mean": 0.0739907257687045,
+        "relative_mse_change_mean": -0.000653202689452903,
+        "relative_mse_change_range": [
+          -0.004846072481972108,
+          0.0035941695721155575
+        ]
+      },
+      "audio": {
+        "target_nmse_mean": 0.03477056041414483,
+        "realized_nmse_mean": 0.03476082852894483,
+        "relative_mse_change_mean": -0.0005837012186337753,
+        "relative_mse_change_range": [
+          -0.0048971905387463766,
+          0.003805114150262634
+        ]
+      }
+    },
+    "gaussian": {
+      "video": {
+        "target_nmse_mean": 0.07623780288222326,
+        "realized_nmse_mean": 0.07624001536359737,
+        "relative_mse_change_mean": 9.092574297261402e-05,
+        "relative_mse_change_range": [
+          4.815476944974861e-06,
+          0.0002522245305607296
+        ]
+      },
+      "audio": {
+        "target_nmse_mean": 0.03716746848131256,
+        "realized_nmse_mean": 0.03717106775611944,
+        "relative_mse_change_mean": 0.0001336384224544296,
+        "relative_mse_change_range": [
+          -0.00020504812211696866,
+          0.0007009391140482268
+        ]
+      }
+    }
+  },
+  "rollout_distance_proxy": {
+    "svdquant": {
+      "rgb_mae": 41.76572781908042,
+      "rgb_nmse": 0.5191012248515098
+    },
+    "tail_restore": {
+      "rgb_mae": 37.59024985802216,
+      "rgb_nmse": 0.4454314764501543
+    },
+    "rademacher_flat": {
+      "rgb_mae": 13.568831918914686,
+      "rgb_nmse": 0.10188482321004791
+    },
+    "gaussian": {
+      "rgb_mae": 11.751169316372707,
+      "rgb_nmse": 0.07993587215619792
+    }
+  }
+}

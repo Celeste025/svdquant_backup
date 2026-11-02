@@ -1,0 +1,61 @@
+{
+  "format": "h3-e137-axis-permutation-denoise-v1",
+  "status": "failed",
+  "case": "race",
+  "arm": "temporal_frame",
+  "prompt_id": 16,
+  "seed": 20026,
+  "settings": {
+    "height": 576,
+    "width": 1024,
+    "frames": 124,
+    "steps": 20,
+    "cfg": 1.0,
+    "video_flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "tiled": true,
+    "fps": 24
+  },
+  "state_sha256": "e5ccf2d809f0b03e6a0eaef400e4f610ccfc37478eb3715d75040cf07446652d",
+  "plan_sha256": "0f8d6204fa77348da43ca36a9ad0582a4072bb9a90e745b9fb6974c266a57949",
+  "steps": [
+    {
+      "step": 0,
+      "modalities": {
+        "video": {
+          "target_mse": 0.229971937457378,
+          "target_nmse": 0.060006542086323236,
+          "reference_mean_square": 3.8324477542223434,
+          "output_elements": 2045952,
+          "intervention_scope": "video_only",
+          "axis": "temporal",
+          "permutation_scope": "one whole-frame permutation shared by all HxW locations",
+          "permutation_length": 37,
+          "random_seed": 138020026,
+          "fp32_token_error_vectors_preserved_before_bf16_cast": true,
+          "original_vs_relocated_same_position_cosine": 0.4833234512151412,
+          "bf16_rounding_distortion_over_target_mse": 4.033909250073631e-05,
+          "realized_mse": 0.22997894042449582,
+          "realized_nmse": 0.0600083693694506,
+          "relative_mse_change": 3.0451398528086315e-05
+        },
+        "audio": {
+          "target_mse": 0.012121184131782845,
+          "target_nmse": 0.010385128043256421,
+          "reference_mean_square": 1.16716751890736,
+          "output_elements": 13248,
+          "intervention_scope": "video_only",
+          "axis": "none",
+          "reason": "audio error is deliberately unchanged",
+          "realized_mse": 0.012121184131782845,
+          "realized_nmse": 0.010385128043256421,
+          "relative_mse_change": 0.0
+        }
+      }
+    }
+  ],
+  "started_unix": 1793361687.6082706,
+  "failed_unix": 1793361778.640047,
+  "failure": "RuntimeError('less than 5 GiB free before paired DiT call')"
+}

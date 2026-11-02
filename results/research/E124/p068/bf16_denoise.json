@@ -1,0 +1,954 @@
+{
+  "format": "e113-h3-attention-denoise-v1",
+  "status": "denoise_complete",
+  "case": "p068",
+  "arm": "bf16",
+  "prompt_id": 68,
+  "seed": 38691,
+  "prompt": "# Core Summary\nA classic Disney-style animated clip featuring a blonde young woman and a friendly white wolf playing joyfully in a snowy landscape before suddenly falling into a hidden ice cavern where they discover an ancient skeleton holding a map. The clip uses a multi-shot progression (3 shots) to transition from whimsical adventure to mysterious discovery. Shot 1 establishes the playful bond in bright snow. Shot 2 captures the sudden descent into darkness. Shot 3 reveals the cavern interior and the skeletal clue, ending on a note of intrigue.\n\n# Scene\n[shot1][00:00-00:05] A sunlit snowy meadow surrounded by pine trees, soft powder snow covering the ground. The lighting is warm and golden, typical of a winter afternoon, with volumetric light rays filtering through the trees. Snow particles float gently in the air.\n[shot2][00:05-00:08] The interior of a glacial crevasse, walls of translucent blue ice rushing past. The lighting shifts from bright white to deep cool blues and shadows as the viewpoint descends rapidly. Ice shards sparkle in the dim light.\n[shot3][00:08-00:15] A spacious ice cavern with a frozen floor. The environment is dimly lit by a bioluminescent glow emanating from the ice walls. In the center, a patch of spotlight illuminates an ancient skeleton seated against a rock. Dust motes dance in the still air.\n\n# Subjects Description\n<ID_A>: Female, European, young adult. Long wavy blonde hair, fair skin, rosy cheeks. Wearing a stylized winter cloak in soft blue tones with fur trim, a brown leather belt, and warm boots. Her design features large expressive eyes and soft shapes characteristic of classic animation.\n<ID_B>: Non-human (Wolf), large white wolf. Thick fluffy fur, bright blue eyes, black nose. The design is anthropomorphized in expression (eyebrows, smiles) but anatomically wolf-like, resembling a loyal companion animal.\nSkeleton: An ancient human skeleton, tattered remnants of explorer clothing, seated in a slumped position. One bony hand extends forward holding a rolled parchment map.\n\n# Dynamic Narrative\n[shot1][00:00-00:05] <ID_A> and <ID_B> are positioned center-frame in a medium wide shot. <ID_A> laughs and throws a snowball gently; <ID_B> leaps playfully to catch it, paws kicking up powder. The camera tracks laterally with them, maintaining a lively, bouncing rhythm. Suddenly, the snow beneath <ID_A>'s feet cracks visibly. <ID_A>'s expression shifts from joy to surprise, eyes widening, mouth opening. <ID_B> stops mid-landing, ears perking up. The ground gives way beneath them. Sound of cheerful laughter cuts abruptly to the sharp crack of breaking ice.\n\n[shot2][00:05-00:08] High-angle shot looking down as <ID_A> and <ID_B> slide rapidly downwards into the crevasse. <ID_A> flails arms slightly for balance, cloak billowing upward; <ID_B> tumbles close beside her, fur ruffling in the wind. The background blurs into streaks of blue and white ice walls. Camera tilts down sharply, accelerating with their fall. Sound of rushing wind and sliding ice intensifies, creating a sense of rapid descent.\n\n[shot3][00:08-00:15] Medium wide shot inside the cavern. <ID_A> and <ID_B> land softly on a pile of snow at the bottom, sliding to a halt in the foreground left. They stand up, brushing off snow, and turn their gaze toward the center right. The camera dollies in slowly past them to focus on the skeleton seated against the back wall. The skeleton's bony hand holds a rolled map clearly visible in the spotlight. <ID_A> steps forward cautiously, eyes fixed on the map. <ID_B> sniffs the air, tail low. A magical chime sounds as the map is revealed.\n\n# Style, Color & Aesthetics\nVisual style mimics classic hand-drawn Disney animation blended with modern 3D rendering techniques (like *Frozen* or *Tangled*). Soft edges, painterly textures on snow and fur. Color palette transitions from warm whites and golds in the snow to cool cyans and deep blues in the cavern. Lighting is cinematic with strong rim lighting on characters to separate them from backgrounds. High resolution, smooth frame rate, magical atmosphere.\n\n# Atmosphere & Emotion\nBegins with lighthearted joy and whimsical adventure, evoking warmth and friendship. Shifts abruptly to tension and thrill during the fall. Resolves into mystery and awe upon the discovery. The overall tone is family-friendly adventure with a hint of ancient secret intrigue.",
+  "settings": {
+    "height": 576,
+    "width": 1024,
+    "frames": 124,
+    "steps": 20,
+    "cfg_scale": 1.0,
+    "flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "tiled": true
+  },
+  "plan_sha256": "2f9ef83b00ea8f3a3444f28cca92ff8d047eef61c44bff3d4f50ec26637d666a",
+  "steps": [
+    {
+      "step": 0,
+      "dit_seconds": 11.4829877900047,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22749,
+      "video_output_energy": 4.723867416381836,
+      "audio_output_energy": 1.212625503540039,
+      "output_sha256": {
+        "video": "6eb812bc28b645c2ce0ce25cbb42bc30b2ff55281aa78ce6900bcb5cc7b52c66",
+        "audio": "f3c9ccce9db5e67f026230be4c708e8cefe2a79af0dd1b74dfa3ffe54235631f"
+      },
+      "attention_main_rows": [
+        {
+          "block": 0,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 1,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 2,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 3,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 4,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 5,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 6,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 7,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 8,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 9,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 10,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 11,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 12,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 13,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 14,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 15,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 16,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 17,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 18,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 19,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 20,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 21,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 22,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 23,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 24,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 25,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 26,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 27,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 28,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 29,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 30,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 31,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 32,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 33,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 34,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 35,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 36,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 37,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 38,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 39,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 40,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 41,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 42,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 43,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 44,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 45,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 46,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 47,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 48,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        },
+        {
+          "block": 49,
+          "input_shape": [
+            22784,
+            56,
+            128
+          ],
+          "valid_length": 22749,
+          "padding_length": 35,
+          "softmax_scale": 0.08838834764831845,
+          "mode": "bf16",
+          "per_block_mean": null
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "dit_seconds": 10.058784518987522,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22749,
+      "video_output_energy": 2.6794137954711914,
+      "audio_output_energy": 1.2258387804031372
+    },
+    {
+      "step": 2,
+      "dit_seconds": 10.096486684007687,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22749,
+      "video_output_energy": 2.4358606338500977,
+      "audio_output_energy": 1.2374742031097412
+    },
+    {
+      "step": 3,
+      "dit_seconds": 10.093217054003617,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22749,
+      "video_output_energy": 2.309882402420044,
+      "audio_output_energy": 1.185772180557251
+    },
+    {
+      "step": 4,
+      "dit_seconds": 10.111834398005158,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22749,
+      "video_output_energy": 2.27173113822937,
+      "audio_output_energy": 1.1541208028793335
+    },
+    {
+      "step": 5,
+      "dit_seconds": 10.128339449001942,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22749,
+      "video_output_energy": 2.223062515258789,
+      "audio_output_energy": 1.142763376235962
+    },
+    {
+      "step": 6,
+      "dit_seconds": 10.196708898991346,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22749,
+      "video_output_energy": 2.1232924461364746,
+      "audio_output_energy": 1.0789501667022705
+    },
+    {
+      "step": 7,
+      "dit_seconds": 10.115530662995297,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22749,
+      "video_output_energy": 2.099118232727051,
+      "audio_output_energy": 1.0560888051986694
+    },
+    {
+      "step": 8,
+      "dit_seconds": 10.113945198987494,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22749,
+      "video_output_energy": 2.0478806495666504,
+      "audio_output_energy": 1.0148547887802124
+    },
+    {
+      "step": 9,
+      "dit_seconds": 10.107740822990309,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22749,
+      "video_output_energy": 2.035472869873047,
+      "audio_output_energy": 0.9904495477676392
+    },
+    {
+      "step": 10,
+      "dit_seconds": 10.101149694004562,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22749,
+      "video_output_energy": 2.0175793170928955,
+      "audio_output_energy": 0.9611574411392212
+    },
+    {
+      "step": 11,
+      "dit_seconds": 10.150939117011148,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22749,
+      "video_output_energy": 2.001103639602661,
+      "audio_output_energy": 0.9243447184562683
+    },
+    {
+      "step": 12,
+      "dit_seconds": 10.122617864006315,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22749,
+      "video_output_energy": 1.995123028755188,
+      "audio_output_energy": 0.8890926241874695
+    },
+    {
+      "step": 13,
+      "dit_seconds": 10.132902985991677,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22749,
+      "video_output_energy": 1.9812610149383545,
+      "audio_output_energy": 0.8468544483184814
+    },
+    {
+      "step": 14,
+      "dit_seconds": 10.1315396320133,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22749,
+      "video_output_energy": 1.9738596677780151,
+      "audio_output_energy": 0.7877950668334961
+    },
+    {
+      "step": 15,
+      "dit_seconds": 10.164177693004603,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22749,
+      "video_output_energy": 1.9663313627243042,
+      "audio_output_energy": 0.7394758462905884
+    },
+    {
+      "step": 16,
+      "dit_seconds": 10.293428767006844,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22749,
+      "video_output_energy": 1.9617167711257935,
+      "audio_output_energy": 0.6954923272132874
+    },
+    {
+      "step": 17,
+      "dit_seconds": 10.117714235006133,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22749,
+      "video_output_energy": 1.9538064002990723,
+      "audio_output_energy": 0.6619094610214233
+    },
+    {
+      "step": 18,
+      "dit_seconds": 10.14544314899831,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22749,
+      "video_output_energy": 1.9350483417510986,
+      "audio_output_energy": 0.6511227488517761
+    },
+    {
+      "step": 19,
+      "dit_seconds": 10.15130704100011,
+      "attention_main_calls": 50,
+      "attention_refiner_calls": 2,
+      "main_tokens": 22749,
+      "video_output_energy": 1.8906641006469727,
+      "audio_output_energy": 0.6237537860870361
+    }
+  ],
+  "started_unix": 1792752130.544366,
+  "linears": {
+    "count": 200,
+    "computation_dtype": "torch.bfloat16",
+    "disk_offloaded_count": 200
+  },
+  "attention_router": {
+    "mode": "bf16",
+    "sources": {
+      "adapter": {
+        "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_fp4_attention.py",
+        "sha256": "76de03ce6f458342e7ed4b67e1a4f700c6784de4978963408e2bdc7d725fb47b",
+        "bytes": 20815
+      },
+      "comfy": {
+        "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit_comfy.py",
+        "sha256": "e8a2eb4cb986ba384052100fdc03984446f3fa35d0ab1e9ebfacffc039a2e8ff",
+        "bytes": 3011
+      },
+      "original_helper": {
+        "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit.py",
+        "sha256": "bd617a4312c70405e916707e1908100b484b2259dfbeba4af7de5bb145206d80",
+        "bytes": 18207
+      }
+    },
+    "main_blocks": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49
+    ],
+    "refiner_blocks": 2,
+    "official_per_block_mean": null,
+    "reference_operations": "Original bound forward preserves QKV, QK RMSNorm, RoPE and out projection",
+    "global_mean_semantics": "Official K centering before padding and Q mean after padding; not no-centering",
+    "metadata_policy": "BF16 and both FP4 modes share prebound CPU main boundaries and deferred actual-cu verification; refiner helper remains unchanged for all modes.",
+    "cpu_fixture_only": false,
+    "e121_arm": "bf16",
+    "corrected_sage3": "/home/wjq/workspace/svdquant-exp/third_party/sage3_h3_maskfix/sageattn3/__init__.py",
+    "split_threshold": null
+  },
+  "initial_latent_sha256": {
+    "video": "687ab07f1b9b922337ca3faefedeba642f7cf2a851be5b3f5f7e8cd94fe26ecb",
+    "audio": "563fba3cc47c260494f53e7c7dd28bf08144f414106aa4032bd2e652505dd1a9"
+  },
+  "terminal_latents": "/data1/models/svdquant-wjq/research/20261023/E124_h3_attention_12prompt/p068/bf16/final_latents.pt",
+  "terminal_sha256": "9bb943c913afc8972387e921f0c10fcb60a1b992dcab7593a4b874f95521b2d7",
+  "peak_allocated_gib": 17.702136516571045,
+  "completed_unix": 1792752343.7261808
+}

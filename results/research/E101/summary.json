@@ -1,0 +1,113 @@
+{
+  "definition": "Teacher-forced means same BF16 trajectory DiT inputs; decoded RGB is free-rollout H.264 distance and must not be read as DiT NMSE.",
+  "cases": [
+    {
+      "case": "race",
+      "prompt_id": 16,
+      "seed": 20026,
+      "teacher_forced": {
+        "video": {
+          "dynamic": 0.07417488601324447,
+          "fixed": 0.07486565269181406,
+          "fixed_over_dynamic": 1.0093126759702231,
+          "fixed_minus_dynamic_pct_of_dynamic": 0.9312675970223117,
+          "steps_fixed_lower": 6
+        },
+        "audio": {
+          "dynamic": 0.03866158291143988,
+          "fixed": 0.03741613479475468,
+          "fixed_over_dynamic": 0.9677858995184423,
+          "fixed_minus_dynamic_pct_of_dynamic": -3.2214100481557706,
+          "steps_fixed_lower": 7
+        }
+      },
+      "decoded_rgb": {
+        "dynamic": {
+          "mae": 41.76572781908042,
+          "mse": 4068.6700761947723,
+          "nmse": 0.5191012248515098,
+          "psnr_db": 12.036278860299294
+        },
+        "fixed": {
+          "mae": 41.05691072106219,
+          "mse": 3953.2281025302027,
+          "nmse": 0.5043725619699522,
+          "psnr_db": 12.161284868709764
+        }
+      },
+      "montage": "/data1/models/svdquant-wjq/research/20261015/E101_h3_r32_fixed1_three_cases/race/triplet.mp4"
+    },
+    {
+      "case": "clap0",
+      "prompt_id": 161,
+      "seed": 38001610,
+      "teacher_forced": {
+        "video": {
+          "dynamic": 0.02263411440808424,
+          "fixed": 0.023447177028249108,
+          "fixed_over_dynamic": 1.0359219983386876,
+          "fixed_minus_dynamic_pct_of_dynamic": 3.592199833868759,
+          "steps_fixed_lower": 4
+        },
+        "audio": {
+          "dynamic": 0.016937227173510226,
+          "fixed": 0.016818948534965242,
+          "fixed_over_dynamic": 0.9930166468611833,
+          "fixed_minus_dynamic_pct_of_dynamic": -0.6983353138816706,
+          "steps_fixed_lower": 8
+        }
+      },
+      "decoded_rgb": {
+        "dynamic": {
+          "mae": 29.0220374012791,
+          "mse": 1643.8037261507131,
+          "nmse": 0.5720025002354444,
+          "psnr_db": 15.972304003028368
+        },
+        "fixed": {
+          "mae": 28.62774239361215,
+          "mse": 1760.6023302932795,
+          "nmse": 0.6126454873090924,
+          "psnr_db": 15.674190885249526
+        }
+      },
+      "montage": "/data1/models/svdquant-wjq/research/20261015/E101_h3_r32_fixed1_three_cases/clap0/triplet.mp4"
+    },
+    {
+      "case": "clap1",
+      "prompt_id": 161,
+      "seed": 38001611,
+      "teacher_forced": {
+        "video": {
+          "dynamic": 0.029404545523516255,
+          "fixed": 0.03037526637716783,
+          "fixed_over_dynamic": 1.033012612042422,
+          "fixed_minus_dynamic_pct_of_dynamic": 3.3012612042421896,
+          "steps_fixed_lower": 3
+        },
+        "audio": {
+          "dynamic": 0.02311847725062949,
+          "fixed": 0.025372238363876882,
+          "fixed_over_dynamic": 1.0974874378106378,
+          "fixed_minus_dynamic_pct_of_dynamic": 9.748743781063784,
+          "steps_fixed_lower": 4
+        }
+      },
+      "decoded_rgb": {
+        "dynamic": {
+          "mae": 45.166197080623576,
+          "mse": 4127.102170964723,
+          "nmse": 0.3623849098928351,
+          "psnr_db": 11.974351404186642
+        },
+        "fixed": {
+          "mae": 47.38755838446577,
+          "mse": 4411.95536600931,
+          "nmse": 0.38739676933870615,
+          "psnr_db": 11.684492506613877
+        }
+      },
+      "montage": "/data1/models/svdquant-wjq/research/20261015/E101_h3_r32_fixed1_three_cases/clap1/triplet.mp4"
+    }
+  ]
+}

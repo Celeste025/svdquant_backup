@@ -241,6 +241,16 @@ cython_debug/
 !/results/research/**/*.png
 !/results/research/**/*.pdf
 !/results/research/**/*.svg
+# Bounded per-cell numerical evidence for the recent DraftMap analyses and
+# the E099 call-level report. Other potentially large JSONL streams stay local.
+!/results/research/draftmap_hit_20261102/per_cell.jsonl
+!/results/research/draftmap_maxprob_20261102/per_cell.jsonl
+!/results/research/E099/h3_svd_scale_p1_480p5s_calls.jsonl
+# Full-resolution E093 diagnostic heatmaps are 17–24 MiB each. Keep the
+# numerical reports and smaller figures; these review images stay local.
+/results/research/E093/figures/*_3000x3000.png
+# Raw generated disassembly listings, rather than numerical summaries.
+/results/research/E19[012]/source.txt
 # Preserve blind-review separation even when JSON records are allowed above.
 /results/research/**/private/
 /results/research/**/blind_key*.json
@@ -255,10 +265,29 @@ cython_debug/
 /cache/
 /tmp/
 
+# Independent nested checkouts are not submodules of this repository. Their
+# source revisions and local patches are recorded in third_party/patches/.
+/third_party/anemoi-code/
+/third_party/FastVideo_v2/
+/third_party/MixAttention/
+/third_party/SageAttention3_prescale/
+# Local compiler intermediates and machine-specific links, never source.
+/third_party/sage3_h3_maskfix/tmp/
+/third_party/sage3_h3_maskfix/csrc/cutlass
+*.ii
+*.bc
+*.module_id
+
 # Model / tensor / media artifacts
 *.pt
 *.pth
 *.ckpt
+*.pkl
+*.pickle
+*.gguf
+*.ggml
+*.h5
+*.hdf5
 *.safetensors
 *.bin
 *.onnx
@@ -272,6 +301,9 @@ cython_debug/
 *.webm
 *.mov
 *.mkv
+*.m4v
+*.mpeg
+*.mpg
 *.mp3
 *.m4a
 *.safetensors.index.json

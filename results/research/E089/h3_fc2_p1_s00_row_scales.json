@@ -1,0 +1,111 @@
+{
+  "format": "h3-nvfp4-row-scales-v1",
+  "timestamp_utc": "2026-10-14T02:51:25.307054+00:00",
+  "scope": "one real H3 block-25 FC2 linear; error only",
+  "sample": "/data1/models/svdquant-wjq/results/E088_native_bench/h3_block25_p1_s00.pt",
+  "calibration": "/data1/models/svdquant-wjq/results/E088_native_bench/h3_block25_p11_s00_calib.pt",
+  "sample_call": "/data1/models/svdquant-wjq/results/E087_timestep_aware/cache_16p20s/p1/sample_p1_s00.pt",
+  "calibration_call": "/data1/models/svdquant-wjq/results/E087_timestep_aware/cache_16p20s/p11/sample_p11_s00.pt",
+  "weight": "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors",
+  "weight_key": "blocks.25.mlp.fc2.weight",
+  "shape": {
+    "M": 22400,
+    "K": 14336,
+    "N": 5376
+  },
+  "smoke_subset": false,
+  "gpu": 7,
+  "quantization": "native FlashInfer NVFP4 E2M1 and E4M3 per K-16 block; grouped FP32 global scales",
+  "comparison_gemm": "FP32 GEMM on dequantized native codes and scales, output rounded BF16",
+  "calibrated_activation_amax": 2512.0,
+  "weight_amax": 3.21875,
+  "native_baseline_nmse": 0.010424480773508549,
+  "proxy_vs_native_nmse": 3.5517144780783383e-09,
+  "proxy_gate_threshold": 2e-05,
+  "rows": [
+    {
+      "activation_scale": "calibrated_tensor",
+      "weight_scale": "tensor",
+      "output_nmse": 0.010424479842185974,
+      "relative_to_calibrated_baseline": 1.0
+    },
+    {
+      "activation_scale": "eval_tensor",
+      "weight_scale": "tensor",
+      "output_nmse": 0.009643156081438065,
+      "relative_to_calibrated_baseline": 0.9250491369760212
+    },
+    {
+      "activation_scale": "512",
+      "weight_scale": "tensor",
+      "output_nmse": 0.009644482284784317,
+      "relative_to_calibrated_baseline": 0.9251763570739377
+    },
+    {
+      "activation_scale": "calibrated_tensor",
+      "weight_scale": "512",
+      "output_nmse": 0.010424813255667686,
+      "relative_to_calibrated_baseline": 1.000031983704392
+    },
+    {
+      "activation_scale": "512",
+      "weight_scale": "512",
+      "output_nmse": 0.009649231098592281,
+      "relative_to_calibrated_baseline": 0.9256319015116321
+    },
+    {
+      "activation_scale": "128",
+      "weight_scale": "tensor",
+      "output_nmse": 0.009637034498155117,
+      "relative_to_calibrated_baseline": 0.9244619054425901
+    },
+    {
+      "activation_scale": "calibrated_tensor",
+      "weight_scale": "128",
+      "output_nmse": 0.010431937873363495,
+      "relative_to_calibrated_baseline": 1.000715434370868
+    },
+    {
+      "activation_scale": "128",
+      "weight_scale": "128",
+      "output_nmse": 0.009640909731388092,
+      "relative_to_calibrated_baseline": 0.9248336490011793
+    },
+    {
+      "activation_scale": "32",
+      "weight_scale": "tensor",
+      "output_nmse": 0.009626897051930428,
+      "relative_to_calibrated_baseline": 0.9234894400171533
+    },
+    {
+      "activation_scale": "calibrated_tensor",
+      "weight_scale": "32",
+      "output_nmse": 0.01042152103036642,
+      "relative_to_calibrated_baseline": 0.9997161669585105
+    },
+    {
+      "activation_scale": "32",
+      "weight_scale": "32",
+      "output_nmse": 0.009623106569051743,
+      "relative_to_calibrated_baseline": 0.9231258263945967
+    },
+    {
+      "activation_scale": "1",
+      "weight_scale": "tensor",
+      "output_nmse": 0.009572243317961693,
+      "relative_to_calibrated_baseline": 0.9182466140156523
+    },
+    {
+      "activation_scale": "calibrated_tensor",
+      "weight_scale": "1",
+      "output_nmse": 0.010417263023555279,
+      "relative_to_calibrated_baseline": 0.9993077046778401
+    },
+    {
+      "activation_scale": "1",
+      "weight_scale": "1",
+      "output_nmse": 0.009566932916641235,
+      "relative_to_calibrated_baseline": 0.9177371975842475
+    }
+  ]
+}

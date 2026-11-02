@@ -1,0 +1,770 @@
+{
+  "format": "h3-e108-oracle-previous-error-denoise-v1",
+  "status": "denoise_complete",
+  "case": "race",
+  "arm": "oracle_prev_error_k06",
+  "prompt_id": 16,
+  "seed": 20026,
+  "settings": {
+    "height": 576,
+    "width": 1024,
+    "frames": 124,
+    "steps": 20,
+    "cfg": 1.0,
+    "video_flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "tiled": true,
+    "fps": 24
+  },
+  "state_sha256": "e5ccf2d809f0b03e6a0eaef400e4f610ccfc37478eb3715d75040cf07446652d",
+  "plan_sha256": "582e92eee580a5f6c1706009f6f24cb7c7e6b256de61d548e6a7d91baddf7f79",
+  "steps": [
+    {
+      "step": 0,
+      "modalities": {
+        "video": {
+          "target_mse": 0.229971937457378,
+          "target_nmse": 0.060006542086323236,
+          "reference_mean_square": 3.8324477542223434,
+          "output_elements": 2045952,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": false,
+          "prior_error_cosine": null,
+          "previous_over_current_error_rms": null,
+          "k_opt_oracle": null,
+          "bf16_rounding_distortion_over_target_mse": 0.0,
+          "realized_mse": 0.229971937457378,
+          "realized_nmse": 0.060006542086323236,
+          "relative_mse_change": 0.0
+        },
+        "audio": {
+          "target_mse": 0.012121184131782845,
+          "target_nmse": 0.010385128043256421,
+          "reference_mean_square": 1.16716751890736,
+          "output_elements": 13248,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": false,
+          "prior_error_cosine": null,
+          "previous_over_current_error_rms": null,
+          "k_opt_oracle": null,
+          "bf16_rounding_distortion_over_target_mse": 0.0,
+          "realized_mse": 0.012121184131782845,
+          "realized_nmse": 0.010385128043256421,
+          "relative_mse_change": 0.0
+        }
+      }
+    },
+    {
+      "step": 1,
+      "modalities": {
+        "video": {
+          "target_mse": 0.2731074937491954,
+          "target_nmse": 0.09548893415238374,
+          "reference_mean_square": 2.860095739610658,
+          "output_elements": 2045952,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.6172937055094206,
+          "previous_over_current_error_rms": 0.917636360196208,
+          "k_opt_oracle": 0.6726997014126943,
+          "bf16_rounding_distortion_over_target_mse": 2.6467746194367163e-05,
+          "realized_mse": 0.17026256178300617,
+          "realized_nmse": 0.05953037145748969,
+          "relative_mse_change": -0.3765730868616718
+        },
+        "audio": {
+          "target_mse": 0.01490024519083063,
+          "target_nmse": 0.012981357575468679,
+          "reference_mean_square": 1.147818716509908,
+          "output_elements": 13248,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.5367651907785491,
+          "previous_over_current_error_rms": 0.9019361973804741,
+          "k_opt_oracle": 0.5951254560328054,
+          "bf16_rounding_distortion_over_target_mse": 0.00020979749458415725,
+          "realized_mse": 0.01061339012349096,
+          "realized_nmse": 0.009246573497043463,
+          "relative_mse_change": -0.2877036593986877
+        }
+      }
+    },
+    {
+      "step": 2,
+      "modalities": {
+        "video": {
+          "target_mse": 0.4443109676773104,
+          "target_nmse": 0.157716385336127,
+          "reference_mean_square": 2.8171516024184147,
+          "output_elements": 2045952,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.5457679066996605,
+          "previous_over_current_error_rms": 0.7840130497934784,
+          "k_opt_oracle": 0.6961209470217676,
+          "bf16_rounding_distortion_over_target_mse": 1.794024480956907e-05,
+          "realized_mse": 0.3144961711435305,
+          "realized_nmse": 0.111636225353846,
+          "relative_mse_change": -0.29217103780355125
+        },
+        "audio": {
+          "target_mse": 0.020891124517331244,
+          "target_nmse": 0.01824886334308969,
+          "reference_mean_square": 1.1447904521265486,
+          "output_elements": 13248,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.6695450827858046,
+          "previous_over_current_error_rms": 0.8445313946650601,
+          "k_opt_oracle": 0.7928007022774388,
+          "bf16_rounding_distortion_over_target_mse": 0.00015613458732527516,
+          "realized_mse": 0.01208092239451524,
+          "realized_nmse": 0.01055295523479766,
+          "relative_mse_change": -0.4217198607718351
+        }
+      }
+    },
+    {
+      "step": 3,
+      "modalities": {
+        "video": {
+          "target_mse": 0.6866417976528669,
+          "target_nmse": 0.23543860721201723,
+          "reference_mean_square": 2.9164367126693547,
+          "output_elements": 2045952,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.5293938791339471,
+          "previous_over_current_error_rms": 0.8044117369460031,
+          "k_opt_oracle": 0.6581130717259577,
+          "bf16_rounding_distortion_over_target_mse": 1.0057801214990333e-05,
+          "realized_mse": 0.495711966727167,
+          "realized_nmse": 0.16997178940099544,
+          "relative_mse_change": -0.27806322245215964
+        },
+        "audio": {
+          "target_mse": 0.04988335794734956,
+          "target_nmse": 0.044811464423738206,
+          "reference_mean_square": 1.1131829452314126,
+          "output_elements": 13248,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.35331495524600576,
+          "previous_over_current_error_rms": 0.6471471880287237,
+          "k_opt_oracle": 0.5459576457748957,
+          "bf16_rounding_distortion_over_target_mse": 6.4360202509427e-05,
+          "realized_mse": 0.04370485055379495,
+          "realized_nmse": 0.039261157153920846,
+          "relative_mse_change": -0.1238590914444021
+        }
+      }
+    },
+    {
+      "step": 4,
+      "modalities": {
+        "video": {
+          "target_mse": 0.624723688746004,
+          "target_nmse": 0.23593765270876396,
+          "reference_mean_square": 2.647833788179408,
+          "output_elements": 2045952,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.7227480691995579,
+          "previous_over_current_error_rms": 1.0483858029459632,
+          "k_opt_oracle": 0.6893913167925744,
+          "bf16_rounding_distortion_over_target_mse": 1.1511112507232945e-05,
+          "realized_mse": 0.30387753521992394,
+          "realized_nmse": 0.11476458098560009,
+          "relative_mse_change": -0.5135808987331799
+        },
+        "audio": {
+          "target_mse": 0.09023824548007219,
+          "target_nmse": 0.08234366137697233,
+          "reference_mean_square": 1.0958736103190525,
+          "output_elements": 13248,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.9153521585614003,
+          "previous_over_current_error_rms": 0.7435026470444943,
+          "k_opt_oracle": 1.2311350365732077,
+          "bf16_rounding_distortion_over_target_mse": 3.409731671916458e-05,
+          "realized_mse": 0.03451020864303496,
+          "realized_nmse": 0.031491048162924244,
+          "relative_mse_change": -0.6175656069171243
+        }
+      }
+    },
+    {
+      "step": 5,
+      "modalities": {
+        "video": {
+          "target_mse": 0.47512488332284225,
+          "target_nmse": 0.20409974261410777,
+          "reference_mean_square": 2.3279053527331626,
+          "output_elements": 2045952,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.5943703373115685,
+          "previous_over_current_error_rms": 1.1466743532598227,
+          "k_opt_oracle": 0.5183427497282582,
+          "bf16_rounding_distortion_over_target_mse": 1.3677608106294401e-05,
+          "realized_mse": 0.3114471841958537,
+          "realized_nmse": 0.1337885940380642,
+          "relative_mse_change": -0.3444940580301522
+        },
+        "audio": {
+          "target_mse": 0.127291670529562,
+          "target_nmse": 0.11789952274620243,
+          "reference_mean_square": 1.0796623053646932,
+          "output_elements": 13248,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.9370903062462187,
+          "previous_over_current_error_rms": 0.8419675005291699,
+          "k_opt_oracle": 1.1129768140186704,
+          "bf16_rounding_distortion_over_target_mse": 2.3253837360910885e-05,
+          "realized_mse": 0.03926431925003781,
+          "realized_nmse": 0.036367222468487434,
+          "relative_mse_change": -0.6915405455306745
+        }
+      }
+    },
+    {
+      "step": 6,
+      "modalities": {
+        "video": {
+          "target_mse": 0.35630223908396735,
+          "target_nmse": 0.16482373670009734,
+          "reference_mean_square": 2.161716790417584,
+          "output_elements": 2045952,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.6881564719170908,
+          "previous_over_current_error_rms": 1.1547676587006057,
+          "k_opt_oracle": 0.5959263465097682,
+          "bf16_rounding_distortion_over_target_mse": 1.6728421322909134e-05,
+          "realized_mse": 0.18758434664688822,
+          "realized_nmse": 0.08677563475401054,
+          "relative_mse_change": -0.4735246482616645
+        },
+        "audio": {
+          "target_mse": 0.07618768146823052,
+          "target_nmse": 0.07303840987773863,
+          "reference_mean_square": 1.0431180196250651,
+          "output_elements": 13248,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.877153095413189,
+          "previous_over_current_error_rms": 1.2925805431615063,
+          "k_opt_oracle": 0.6786061418407021,
+          "bf16_rounding_distortion_over_target_mse": 3.876259621239859e-05,
+          "realized_mse": 0.018358403175646295,
+          "realized_nmse": 0.017599545622119517,
+          "relative_mse_change": -0.759037119625414
+        }
+      }
+    },
+    {
+      "step": 7,
+      "modalities": {
+        "video": {
+          "target_mse": 0.2498052669448579,
+          "target_nmse": 0.12082184389352264,
+          "reference_mean_square": 2.0675505264180973,
+          "output_elements": 2045952,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.7114632199414284,
+          "previous_over_current_error_rms": 1.1942863822851792,
+          "k_opt_oracle": 0.595722458611724,
+          "bf16_rounding_distortion_over_target_mse": 2.242934102731436e-05,
+          "realized_mse": 0.12336928400105898,
+          "realized_nmse": 0.05966929582842582,
+          "relative_mse_change": -0.506138179110965
+        },
+        "audio": {
+          "target_mse": 0.06700486338391841,
+          "target_nmse": 0.06485988439322793,
+          "reference_mean_square": 1.0330709653703058,
+          "output_elements": 13248,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.8460727661111795,
+          "previous_over_current_error_rms": 1.066324077561464,
+          "k_opt_oracle": 0.7934480557224509,
+          "bf16_rounding_distortion_over_target_mse": 4.192505902971116e-05,
+          "realized_mse": 0.021907157088480577,
+          "realized_nmse": 0.021205858864330702,
+          "relative_mse_change": -0.6730512386398144
+        }
+      }
+    },
+    {
+      "step": 8,
+      "modalities": {
+        "video": {
+          "target_mse": 0.18059743473823303,
+          "target_nmse": 0.09001279293653203,
+          "reference_mean_square": 2.006352973244283,
+          "output_elements": 2045952,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.7334495429896096,
+          "previous_over_current_error_rms": 1.1761020497040866,
+          "k_opt_oracle": 0.6236274676794835,
+          "bf16_rounding_distortion_over_target_mse": 3.0133266120259673e-05,
+          "realized_mse": 0.08359017172218706,
+          "realized_nmse": 0.0416627447098809,
+          "relative_mse_change": -0.53714640607522
+        },
+        "audio": {
+          "target_mse": 0.059424431805747156,
+          "target_nmse": 0.0586147334686841,
+          "reference_mean_square": 1.0138139046131747,
+          "output_elements": 13248,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.8980048382881607,
+          "previous_over_current_error_rms": 1.0618682709317677,
+          "k_opt_oracle": 0.8456838412736258,
+          "bf16_rounding_distortion_over_target_mse": 4.660682947248368e-05,
+          "realized_mse": 0.015560946386615714,
+          "realized_nmse": 0.015348917898845611,
+          "relative_mse_change": -0.7381389116603929
+        }
+      }
+    },
+    {
+      "step": 9,
+      "modalities": {
+        "video": {
+          "target_mse": 0.1274085704175112,
+          "target_nmse": 0.06483623461062898,
+          "reference_mean_square": 1.9650828149206612,
+          "output_elements": 2045952,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.7448602395621996,
+          "previous_over_current_error_rms": 1.1905742003954558,
+          "k_opt_oracle": 0.6256310940677112,
+          "bf16_rounding_distortion_over_target_mse": 4.1610790768991246e-05,
+          "realized_mse": 0.056845047669759174,
+          "realized_nmse": 0.028927558288200823,
+          "relative_mse_change": -0.5538365473886023
+        },
+        "audio": {
+          "target_mse": 0.04943453846360414,
+          "target_nmse": 0.050291535479899306,
+          "reference_mean_square": 0.9829594183570376,
+          "output_elements": 13248,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.7989545278429738,
+          "previous_over_current_error_rms": 1.0963955824454044,
+          "k_opt_oracle": 0.7287100939069666,
+          "bf16_rounding_distortion_over_target_mse": 5.445474143796553e-05,
+          "realized_mse": 0.018869371409283228,
+          "realized_nmse": 0.019196490777637944,
+          "relative_mse_change": -0.6182957908431637
+        }
+      }
+    },
+    {
+      "step": 10,
+      "modalities": {
+        "video": {
+          "target_mse": 0.09041108453380034,
+          "target_nmse": 0.046238992175775206,
+          "reference_mean_square": 1.955299635210628,
+          "output_elements": 2045952,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.7487526967899285,
+          "previous_over_current_error_rms": 1.1871032170679428,
+          "k_opt_oracle": 0.6307393375946637,
+          "bf16_rounding_distortion_over_target_mse": 5.801638301061375e-05,
+          "realized_mse": 0.03984992197608923,
+          "realized_nmse": 0.020380468168908816,
+          "relative_mse_change": -0.559236323935576
+        },
+        "audio": {
+          "target_mse": 0.04096775689429591,
+          "target_nmse": 0.04307174829152056,
+          "reference_mean_square": 0.9511514744424977,
+          "output_elements": 13248,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.9065143870485836,
+          "previous_over_current_error_rms": 1.0984850458309867,
+          "k_opt_oracle": 0.8252405351251911,
+          "bf16_rounding_distortion_over_target_mse": 6.378101632406668e-05,
+          "realized_mse": 0.009809105692637685,
+          "realized_nmse": 0.010312874401406082,
+          "relative_mse_change": -0.7605652240627447
+        }
+      }
+    },
+    {
+      "step": 11,
+      "modalities": {
+        "video": {
+          "target_mse": 0.060879928725604694,
+          "target_nmse": 0.03131531811328127,
+          "reference_mean_square": 1.9440942131060344,
+          "output_elements": 2045952,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.7342796463169241,
+          "previous_over_current_error_rms": 1.218635349615333,
+          "k_opt_oracle": 0.6025425460936303,
+          "bf16_rounding_distortion_over_target_mse": 8.597185260905573e-05,
+          "realized_mse": 0.028060871458477164,
+          "realized_nmse": 0.014433905141688045,
+          "relative_mse_change": -0.5390784443104085
+        },
+        "audio": {
+          "target_mse": 0.050857670317291326,
+          "target_nmse": 0.05446367019636424,
+          "reference_mean_square": 0.9337907293784685,
+          "output_elements": 13248,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.8721718331643102,
+          "previous_over_current_error_rms": 0.8975173686745961,
+          "k_opt_oracle": 0.9717603955144458,
+          "bf16_rounding_distortion_over_target_mse": 4.997107949167491e-05,
+          "realized_mse": 0.01782969053097999,
+          "realized_nmse": 0.01909388256922131,
+          "relative_mse_change": -0.6494198334342893
+        }
+      }
+    },
+    {
+      "step": 12,
+      "modalities": {
+        "video": {
+          "target_mse": 0.04611225988326995,
+          "target_nmse": 0.023824626447932675,
+          "reference_mean_square": 1.9354872146283424,
+          "output_elements": 2045952,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.7255334585866954,
+          "previous_over_current_error_rms": 1.1490233762799384,
+          "k_opt_oracle": 0.631434898161665,
+          "bf16_rounding_distortion_over_target_mse": 0.00011320692476338779,
+          "realized_mse": 0.02190467638239258,
+          "realized_nmse": 0.011317396579444096,
+          "relative_mse_change": -0.524970659910341
+        },
+        "audio": {
+          "target_mse": 0.03260748061668092,
+          "target_nmse": 0.03598015052249581,
+          "reference_mean_square": 0.9062630406811055,
+          "output_elements": 13248,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.7644408199093484,
+          "previous_over_current_error_rms": 1.2488768309705567,
+          "k_opt_oracle": 0.6121026517204807,
+          "bf16_rounding_distortion_over_target_mse": 7.721184367151979e-05,
+          "realized_mse": 0.013563514699133274,
+          "realized_nmse": 0.014966421546816653,
+          "relative_mse_change": -0.5840367166485526
+        }
+      }
+    },
+    {
+      "step": 13,
+      "modalities": {
+        "video": {
+          "target_mse": 0.03398396146791127,
+          "target_nmse": 0.01762395105102825,
+          "reference_mean_square": 1.9282827879806508,
+          "output_elements": 2045952,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.676743062532745,
+          "previous_over_current_error_rms": 1.1648532133598892,
+          "k_opt_oracle": 0.5809685330057639,
+          "bf16_rounding_distortion_over_target_mse": 0.00015265659426588033,
+          "realized_mse": 0.018442779509884908,
+          "realized_nmse": 0.009564354162595974,
+          "relative_mse_change": -0.4573093096489307
+        },
+        "audio": {
+          "target_mse": 0.02623801230498794,
+          "target_nmse": 0.02988153792734442,
+          "reference_mean_square": 0.8780676673598412,
+          "output_elements": 13248,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.7812814998178097,
+          "previous_over_current_error_rms": 1.1147902371442184,
+          "k_opt_oracle": 0.7008327430452163,
+          "bf16_rounding_distortion_over_target_mse": 8.99482912691194e-05,
+          "realized_mse": 0.010553845396999264,
+          "realized_nmse": 0.0120193987198417,
+          "relative_mse_change": -0.5977650565019005
+        }
+      }
+    },
+    {
+      "step": 14,
+      "modalities": {
+        "video": {
+          "target_mse": 0.027539282580561465,
+          "target_nmse": 0.014278451414575254,
+          "reference_mean_square": 1.928730349038393,
+          "output_elements": 2045952,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.6901169267438211,
+          "previous_over_current_error_rms": 1.1108634818205698,
+          "k_opt_oracle": 0.6212436883898673,
+          "bf16_rounding_distortion_over_target_mse": 0.00018767604787460097,
+          "realized_mse": 0.014443743328878073,
+          "realized_nmse": 0.007488731297290619,
+          "relative_mse_change": -0.4755221641440597
+        },
+        "audio": {
+          "target_mse": 0.02824536775164923,
+          "target_nmse": 0.03312552671730632,
+          "reference_mean_square": 0.852676788891406,
+          "output_elements": 13248,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.7720464304251285,
+          "previous_over_current_error_rms": 0.9638109340992914,
+          "k_opt_oracle": 0.8010351440416349,
+          "bf16_rounding_distortion_over_target_mse": 8.136034745611207e-05,
+          "realized_mse": 0.012469198101945623,
+          "realized_nmse": 0.01462359274275221,
+          "relative_mse_change": -0.5585400688855413
+        }
+      }
+    },
+    {
+      "step": 15,
+      "modalities": {
+        "video": {
+          "target_mse": 0.02323526663457996,
+          "target_nmse": 0.012072485862951999,
+          "reference_mean_square": 1.9246464148601128,
+          "output_elements": 2045952,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.6734970523612285,
+          "previous_over_current_error_rms": 1.0886856058666137,
+          "k_opt_oracle": 0.6186331928446068,
+          "bf16_rounding_distortion_over_target_mse": 0.0002223379660201309,
+          "realized_mse": 0.012710161139324685,
+          "realized_nmse": 0.006603894118519679,
+          "relative_mse_change": -0.45297975963793125
+        },
+        "audio": {
+          "target_mse": 0.021095274556905172,
+          "target_nmse": 0.02529380366276745,
+          "reference_mean_square": 0.8340095795065207,
+          "output_elements": 13248,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.7687926568194712,
+          "previous_over_current_error_rms": 1.1571269955751737,
+          "k_opt_oracle": 0.6643978230214281,
+          "bf16_rounding_distortion_over_target_mse": 0.00010562998297958681,
+          "realized_mse": 0.008742895828393025,
+          "realized_nmse": 0.01048296811358708,
+          "relative_mse_change": -0.5855519298974381
+        }
+      }
+    },
+    {
+      "step": 16,
+      "modalities": {
+        "video": {
+          "target_mse": 0.02013491843821615,
+          "target_nmse": 0.010469619840126987,
+          "reference_mean_square": 1.9231756974637133,
+          "output_elements": 2045952,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.6305681333256451,
+          "previous_over_current_error_rms": 1.0742339976261277,
+          "k_opt_oracle": 0.5869932758775948,
+          "bf16_rounding_distortion_over_target_mse": 0.0002567339611719274,
+          "realized_mse": 0.01213761407477837,
+          "realized_nmse": 0.006311235156925846,
+          "relative_mse_change": -0.3971858335546503
+        },
+        "audio": {
+          "target_mse": 0.016015727535927622,
+          "target_nmse": 0.019730170040448577,
+          "reference_mean_square": 0.8117379375390064,
+          "output_elements": 13248,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.6880950731301549,
+          "previous_over_current_error_rms": 1.1476758818582784,
+          "k_opt_oracle": 0.5995552263553839,
+          "bf16_rounding_distortion_over_target_mse": 0.00013416682690290234,
+          "realized_mse": 0.008436857391591944,
+          "realized_nmse": 0.010393572853291125,
+          "relative_mse_change": -0.4732142281600519
+        }
+      }
+    },
+    {
+      "step": 17,
+      "modalities": {
+        "video": {
+          "target_mse": 0.019046183922588503,
+          "target_nmse": 0.009952923605654865,
+          "reference_mean_square": 1.913627058462219,
+          "output_elements": 2045952,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.5946291244161498,
+          "previous_over_current_error_rms": 1.0281842582695546,
+          "k_opt_oracle": 0.578329340907161,
+          "bf16_rounding_distortion_over_target_mse": 0.00027022238063556124,
+          "realized_mse": 0.012326460394548626,
+          "realized_nmse": 0.006441412050503773,
+          "relative_mse_change": -0.3528120675171251
+        },
+        "audio": {
+          "target_mse": 0.01361805740251606,
+          "target_nmse": 0.017265396363699413,
+          "reference_mean_square": 0.7887486111322702,
+          "output_elements": 13248,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.5566035796502071,
+          "previous_over_current_error_rms": 1.0844655381849149,
+          "k_opt_oracle": 0.5132515142729223,
+          "bf16_rounding_distortion_over_target_mse": 0.0001597506142304273,
+          "realized_mse": 0.009518415488790873,
+          "realized_nmse": 0.012067742946801423,
+          "relative_mse_change": -0.3010445464099557
+        }
+      }
+    },
+    {
+      "step": 18,
+      "modalities": {
+        "video": {
+          "target_mse": 0.02063402003165446,
+          "target_nmse": 0.010905034601335158,
+          "reference_mean_square": 1.8921553929895951,
+          "output_elements": 2045952,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.5345568131882927,
+          "previous_over_current_error_rms": 0.9607536941247172,
+          "k_opt_oracle": 0.5563931905307885,
+          "bf16_rounding_distortion_over_target_mse": 0.0002474763256406772,
+          "realized_mse": 0.014778892469245969,
+          "realized_nmse": 0.007810612449697062,
+          "relative_mse_change": -0.28376087419834783
+        },
+        "audio": {
+          "target_mse": 0.015480584319072437,
+          "target_nmse": 0.01960172737928749,
+          "reference_mean_square": 0.789756128096663,
+          "output_elements": 13248,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.422609475442077,
+          "previous_over_current_error_rms": 0.9379159158391214,
+          "k_opt_oracle": 0.45058354198412626,
+          "bf16_rounding_distortion_over_target_mse": 0.00013416515704315116,
+          "realized_mse": 0.013018116468601699,
+          "realized_nmse": 0.016483716941805525,
+          "relative_mse_change": -0.1590681462480018
+        }
+      }
+    },
+    {
+      "step": 19,
+      "modalities": {
+        "video": {
+          "target_mse": 0.028598723983975748,
+          "target_nmse": 0.015603563613807773,
+          "reference_mean_square": 1.8328328509949103,
+          "output_elements": 2045952,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.4413804248056296,
+          "previous_over_current_error_rms": 0.8494123982752649,
+          "k_opt_oracle": 0.5196303064351947,
+          "bf16_rounding_distortion_over_target_mse": 0.00017309521834330644,
+          "realized_mse": 0.023165411604488675,
+          "realized_nmse": 0.012639129417564659,
+          "relative_mse_change": -0.1899844336597476
+        },
+        "audio": {
+          "target_mse": 0.02179961313007537,
+          "target_nmse": 0.028741144275962617,
+          "reference_mean_square": 0.7584810444832313,
+          "output_elements": 13248,
+          "coefficient": 0.6,
+          "previous_error_definition": "raw previous Q-BF16 on this arm's own trajectory",
+          "previous_error_available": true,
+          "prior_error_cosine": 0.32369610898425766,
+          "previous_over_current_error_rms": 0.8426927963177894,
+          "k_opt_oracle": 0.3841211297861718,
+          "bf16_rounding_distortion_over_target_mse": 9.452760958943684e-05,
+          "realized_mse": 0.020236418535662246,
+          "realized_nmse": 0.0266801902075875,
+          "relative_mse_change": -0.07170744659943051
+        }
+      }
+    }
+  ],
+  "started_unix": 1792167820.8825061,
+  "completed_unix": 1792169169.2702994,
+  "terminal_latents": "/data1/models/svdquant-wjq/research/20261017/E108_h3_oracle_temporal_correction/race/oracle_prev_error_k06/final_latents.pt",
+  "terminal_sha256": "6f07c1fe1a1c5574e46621427741411829db9b123e2eb3ec4ba5ddbad4aefe21",
+  "terminal_bytes": 4120229,
+  "peak_cuda_allocated_gib": 6.729864120483398
+}

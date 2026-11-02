@@ -1,0 +1,3 @@
+# E161 periodic route refresh
+
+Four E159 cases p025, p048 (5s); p044, p007 (10s). E150 BF16 and E159 proxy / first-only reuse are existing controls. Prompt, seed, dimensions, steps, scheduler and initial noise hashes must match E150/E159. BF16 linears; Q128; zero skip; NVFP4 90% and INT8 10% on reuse steps; layer 0 BF16. One-based steps 1, 6, 11 and 16 perform dense INT8 attention and refresh the exact QK tile-max route; each is followed by four mixed-precision reuse steps. Each refreshed layer replaces its own existing cache. This follows the user's explicit sequence (period 5). Report video latent NMSE vs BF16, full-frame video LPIPS-Alex and PSNR, and compare with E159/E160 controls.

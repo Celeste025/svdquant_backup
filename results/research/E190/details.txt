@@ -1,0 +1,74 @@
+[2017493] python3.12@127.0.0.1
+  void mixed_attention_sm120_q128_nv_int8_fp16_kernel<128, 1, 0, 0>(signed char *, signed char *, __nv_fp8_e4m3 *, __half *, __half *, __half *, __half *, __half *, int *, int *, int *, int *, float *, float *, float *, signed char *, signed char *, __nv_fp8_e4m3 *, unsigned char *, unsigned char *, unsigned char *, int *, const float *, const float *, const float *, const int *, float *, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, float) (148, 56, 1)x(32, 4, 1), Context 1, Stream 7, Device 0, CC 12.0
+    Section: Launch Statistics
+    -------------------------------- --------------- ---------------
+    Metric Name                          Metric Unit    Metric Value
+    -------------------------------- --------------- ---------------
+    Block Size                                                   128
+    Cluster Scheduling Policy                           PolicySpread
+    Cluster Size                                                   0
+    Function Cache Configuration                     CachePreferNone
+    Grid Size                                                  8,288
+    Preferred Cluster Size                                         0
+    Registers Per Thread             register/thread             255
+    Shared Memory Configuration Size           Kbyte          102.40
+    Driver Shared Memory Per Block       Kbyte/block            1.02
+    Dynamic Shared Memory Per Block      Kbyte/block           33.28
+    Static Shared Memory Per Block        byte/block               0
+    # SMs                                         SM             110
+    Stack Size                                                 1,024
+    Threads                                   thread       1,060,864
+    # TPCs                                                        55
+    Enabled TPC IDs                                              all
+    Uses Green Context                                             0
+    Waves Per SM                                               37.67
+    -------------------------------- --------------- ---------------
+
+    Section: Occupancy
+    ------------------------------- ----------- ------------
+    Metric Name                     Metric Unit Metric Value
+    ------------------------------- ----------- ------------
+    Max Active Clusters                 cluster            0
+    Max Cluster Size                      block            8
+    Overall GPU Occupancy                     %            0
+    Cluster Occupancy                         %            0
+    Block Limit Barriers                  block           24
+    Block Limit SM                        block           24
+    Block Limit Registers                 block            2
+    Block Limit Shared Mem                block            2
+    Block Limit Warps                     block           12
+    Theoretical Active Warps per SM        warp            8
+    Theoretical Occupancy                     %        16.67
+    Achieved Occupancy                        %        16.57
+    Achieved Active Warps Per SM           warp         7.95
+    ------------------------------- ----------- ------------
+
+    OPT   Est. Local Speedup: 83.33%                                                                                    
+          The 2.00 theoretical warps per scheduler this kernel can issue according to its occupancy are below the       
+          hardware maximum of 12. This kernel's theoretical occupancy (16.7%) is limited by the number of required      
+          registers, and the required amount of shared memory.                                                          
+
+    Section: Source Counters
+    ------------------------- ----------- ------------
+    Metric Name               Metric Unit Metric Value
+    ------------------------- ----------- ------------
+    Branch Instructions Ratio           %         0.01
+    Branch Instructions              inst  126,782,208
+    Branch Efficiency                   %        99.73
+    Avg. Divergent Branches      branches       602.76
+    ------------------------- ----------- ------------
+
+    OPT   Est. Speedup: 5.778%                                                                                          
+          This kernel has uncoalesced global accesses resulting in a total of 59744295 excessive sectors (6% of the     
+          total 1022423288 sectors). Check the L2 Theoretical Sectors Global Excessive table for the primary source     
+          locations. The CUDA Programming Guide                                                                         
+          (https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#device-memory-accesses) has additional      
+          information on reducing uncoalesced device memory accesses.                                                   
+    ----- --------------------------------------------------------------------------------------------------------------
+    OPT   Est. Speedup: 34.96%                                                                                          
+          This kernel has uncoalesced shared accesses resulting in a total of 699906045 excessive wavefronts (35% of    
+          the total 1987246941 wavefronts). Check the L1 Wavefronts Shared Excessive table for the primary source       
+          locations. The CUDA Best Practices Guide                                                                      
+           (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#shared-memory-in-matrix-multiplication-c
+          -ab) has an example on optimizing shared memory accesses.                                                     
+

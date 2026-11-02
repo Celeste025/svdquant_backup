@@ -17,7 +17,7 @@ import types
 from contextlib import contextmanager
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any, Callable, Iterable
 
 import torch
 import torch.nn as nn
@@ -180,7 +180,9 @@ def _fp8_round_positive(scale: torch.Tensor) -> torch.Tensor:
 
 
 @torch.no_grad()
-def nvfp4_qdq(tensor: torch.Tensor, *, group_size: int = 16, element_size: int = 128) -> torch.Tensor:
+def nvfp4_qdq(tensor: torch.Tensor, *, group_size: int = 16, element_size: int = 128,
+              scale_observer: Callable[[torch.Tensor, torch.Tensor, torch.Tensor], None] | None = None,
+              tensor_scale_mode: str = "dynamic") -> torch.Tensor:
     """NVFP4-aligned fake quant: FP32 tensor scale, E4M3 group scale, E2M1 values.
 
     The last dimension is grouped by 16.  Work is chunked along flattened rows
@@ -188,19 +190,33 @@ def nvfp4_qdq(tensor: torch.Tensor, *, group_size: int = 16, element_size: int =
     """
     if tensor.shape[-1] % group_size:
         raise ValueError(f"last dim {tensor.shape[-1]} is not divisible by {group_size}")
+    if tensor_scale_mode not in ("dynamic", "fixed_one"):
+        raise ValueError(f"unknown tensor_scale_mode: {tensor_scale_mode}")
     dtype, shape = tensor.dtype, tensor.shape
     rows = tensor.reshape(-1, shape[-1])
     out = torch.empty_like(rows)
     levels = torch.tensor(FP4_VALUES, device=tensor.device, dtype=torch.float32)
     # One FP32 tensor scale maps the largest ideal block scale into E4M3 range.
-    absmax = tensor.detach().float().abs().amax().clamp_min(1e-12)
-    tensor_scale = (absmax / (6.0 * 448.0)).clamp_min(1e-12)
+    if tensor_scale_mode == "dynamic" or scale_observer is not None:
+        absmax = tensor.detach().float().abs().amax().clamp_min(1e-12)
+    else:
+        absmax = None
+    tensor_scale = (absmax / (6.0 * 448.0)).clamp_min(1e-12) if tensor_scale_mode == "dynamic" else torch.ones((), device=tensor.device)
+    if scale_observer is not None:
+        scale_observer(tensor, absmax, tensor_scale)
     for start in range(0, rows.shape[0], element_size):
         stop = min(rows.shape[0], start + element_size)
         x = rows[start:stop].float().reshape(-1, shape[-1] // group_size, group_size)
         ideal = x.abs().amax(dim=-1, keepdim=True).div(6.0).clamp_min(1e-12)
-        block_scale = _fp8_round_positive(ideal / tensor_scale) * tensor_scale
-        z = x / block_scale
+        if tensor_scale_mode == "fixed_one":
+            # Nunchaku-style second-level scale = 1: cap the raw local scale
+            # before E4M3 storage and use that raw scale to quantize E2M1.
+            raw_scale = ideal.clamp_max(448.0)
+            block_scale = _fp8_round_positive(raw_scale)
+            z = x / raw_scale
+        else:
+            block_scale = _fp8_round_positive(ideal / tensor_scale) * tensor_scale
+            z = x / block_scale
         # 15 values; explicit nearest-codebook rounding keeps E2M1 semantics.
         idx = (z.unsqueeze(-1) - levels).abs().argmin(dim=-1)
         q = levels[idx] * block_scale
@@ -210,11 +226,15 @@ def nvfp4_qdq(tensor: torch.Tensor, *, group_size: int = 16, element_size: int =
 
 class DynamicActivationQDQ:
     def __init__(self, smooth: torch.Tensor | None, element_size: int = 128,
-                 branch: LowRankBranch | None = None):
+                 branch: LowRankBranch | None = None,
+                 scale_observer: Callable[[torch.Tensor, torch.Tensor, torch.Tensor], None] | None = None,
+                 tensor_scale_mode: str = "dynamic"):
         self.smooth = smooth
         self.element_size = element_size
         self.calls = 0
         self.branch = branch
+        self.scale_observer = scale_observer
+        self.tensor_scale_mode = tensor_scale_mode
         self.branch_output: torch.Tensor | None = None
 
     def clear(self) -> None:
@@ -226,7 +246,8 @@ class DynamicActivationQDQ:
         if self.smooth is not None:
             x = x / self.smooth.to(device=x.device, dtype=x.dtype)
         self.calls += 1
-        quantized = nvfp4_qdq(x, element_size=self.element_size)
+        quantized = nvfp4_qdq(x, element_size=self.element_size, scale_observer=self.scale_observer,
+                              tensor_scale_mode=self.tensor_scale_mode)
         # Forward hooks receive the inputs AFTER pre-hooks have replaced them.
         # Compute the high-precision branch here, before losing x to A4 Q/DQ.
         # Keep the module reference: inference may move it to CUDA after install.
@@ -250,7 +271,7 @@ class RuntimeHooks:
 
 def install_runtime_hooks(
     linear: nn.Linear, smooth: torch.Tensor | None, a: torch.Tensor | None, b: torch.Tensor | None,
-    *, element_size: int = 128,
+    *, element_size: int = 128, tensor_scale_mode: str = "dynamic",
 ) -> RuntimeHooks:
     branch = None
     if a is not None and b is not None:
@@ -259,7 +280,8 @@ def install_runtime_hooks(
         branch.b.weight.data.copy_(b.to(branch.b.weight))
         branch.to(device=linear.weight.device, dtype=linear.weight.dtype)
 
-    act = DynamicActivationQDQ(smooth=smooth, element_size=element_size, branch=branch)
+    act = DynamicActivationQDQ(smooth=smooth, element_size=element_size, branch=branch,
+                               tensor_scale_mode=tensor_scale_mode)
     handles = [linear.register_forward_pre_hook(act)]
     if branch is not None:
         def add_branch(_module, _inputs, output):

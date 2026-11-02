@@ -1,0 +1,57 @@
+{
+  "format": "h3-e108-three-arm-summary-v1",
+  "case": "clap0",
+  "definition": "decoded H.264 RGB distance to separately generated BF16; free-rollout divergence, NOT perceptual quality",
+  "oracle_definition": "Q_t - 0.6*(Q_(t-1)-BF16_(t-1)) on the corrected arm's own trajectory; step 0 unchanged",
+  "sources": {
+    "bf16": "/data1/models/svdquant-wjq/research/20261004/E073/decode_full_bf16_r0/vbench0161_r0.mp4",
+    "svdquant": "/data1/models/svdquant-wjq/research/20261015/E101_h3_r32_fixed1_three_cases/clap0/svdquant/svdquant_id161_seed38001610_576x1024_124f_20steps.mp4",
+    "oracle_prev_error_k06": "/data1/models/svdquant-wjq/research/20261017/E108_h3_oracle_temporal_correction/clap0/oracle_prev_error_k06/clap0_oracle_prev_error_k06_576x1024_124f_20steps.mp4"
+  },
+  "source_sha256": {
+    "bf16": "9841e16d4337331536a47382570a9a9d619aa95ce3c9734790380aed8d6b8bba",
+    "svdquant": "6b724fb3466242219dd6bf2d2d4075ca9685080ec6c386c382b374ba914c2d41",
+    "oracle_prev_error_k06": "ea1d6e43a6c8116b63dada5bd417abeb6f2b08b34cb510de7a516cfc51d838db"
+  },
+  "frames": 124,
+  "fps": 24,
+  "montage": "/data1/models/svdquant-wjq/research/20261017/E108_h3_oracle_temporal_correction/clap0/clap0_three_arm_montage.mp4",
+  "montage_sha256": "76461df64bc13a8c739d80fa2795826a1da83b10414265c151e87d74ebcbfc6e",
+  "montage_audio": "none; individual source MP4s contain audio",
+  "poster": "/home/wjq/workspace/svdquant-exp/results/research/E108/clap0/three_arm_poster.jpg",
+  "poster_sha256": "7a214f98c9159ff983bf2e9a0eebbbfdaca7afb197da0f9a0528088323afffee",
+  "paired_dit_output": {
+    "video": {
+      "step_0_target_nmse": 0.015545227308466853,
+      "step_0_realized_nmse": 0.015545227308466853,
+      "steps_1_19_raw_nmse_pooled": 0.02990291258508313,
+      "steps_1_19_corrected_nmse_pooled": 0.02216178203160509,
+      "steps_1_19_relative_error_energy_change": -0.2588754701219189,
+      "steps_1_19_improved_count": 18,
+      "steps_1_19_worsened_count": 1,
+      "steps_1_19_mean_previous_error_cosine": 0.553420772722808,
+      "steps_1_19_max_bf16_rounding_distortion_over_raw_mse": 0.00044503559942925974
+    },
+    "audio": {
+      "step_0_target_nmse": 0.014977215541145089,
+      "step_0_realized_nmse": 0.014977215541145089,
+      "steps_1_19_raw_nmse_pooled": 0.029254653056859623,
+      "steps_1_19_corrected_nmse_pooled": 0.015056658217282365,
+      "steps_1_19_relative_error_energy_change": -0.4853243281327555,
+      "steps_1_19_improved_count": 19,
+      "steps_1_19_worsened_count": 0,
+      "steps_1_19_mean_previous_error_cosine": 0.6718902285506512,
+      "steps_1_19_max_bf16_rounding_distortion_over_raw_mse": 0.00038267281432406084
+    }
+  },
+  "rollout_distance_proxy": {
+    "svdquant": {
+      "rgb_mae": 29.0220374012791,
+      "rgb_nmse": 0.5720025002354444
+    },
+    "oracle_prev_error_k06": {
+      "rgb_mae": 27.770771345642164,
+      "rgb_nmse": 0.5256473106905966
+    }
+  }
+}

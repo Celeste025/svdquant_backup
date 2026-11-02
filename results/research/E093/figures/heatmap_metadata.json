@@ -1,0 +1,80 @@
+{
+  "format": "h3-nvfp4-error-heatmap-3000x3000-v1",
+  "timestamp_utc": "2026-10-14T08:29:29.528299+00:00",
+  "gpu": 7,
+  "definition": "native NVFP4 Q/DQ minus original BF16, elementwise; no pooling, averaging, interpolation, or smoothing",
+  "quantization": "FlashInfer E2M1, K16 E4M3, current-input per-tensor FP32 global scale; weight scale fixed from BF16 weight",
+  "crop": {
+    "row_start": 0,
+    "row_stop_exclusive": 3000,
+    "input_channel_start": 4500,
+    "input_channel_stop_exclusive": 7500,
+    "shape": [
+      3000,
+      3000
+    ]
+  },
+  "color": {
+    "signed": "blue negative, off-white zero, orange positive; linear symmetric limit",
+    "absolute": "off-white zero, gold mid, red high; linear limit",
+    "limits": "common p1/p11 activation 99.5th percentile of deterministic 16x16 stride sample; independent weight limit; values beyond limits saturate, raw pixels are not averaged"
+  },
+  "cases": {
+    "p1_activation": {
+      "source": "/data1/models/svdquant-wjq/results/E088_native_bench/h3_block25_p1_s00.pt",
+      "cache_call": "/data1/models/svdquant-wjq/results/E087_timestep_aware/cache_16p20s/p1/sample_p1_s00.pt",
+      "full_shape": [
+        22400,
+        14336
+      ],
+      "global_amax": 5152.0,
+      "files": {
+        "signed": "/home/wjq/workspace/svdquant-exp/results/research/E093/figures/p1_activation_signed_3000x3000.png",
+        "absolute": "/home/wjq/workspace/svdquant-exp/results/research/E093/figures/p1_activation_absolute_3000x3000.png"
+      },
+      "display_limit_abs": 2.7704017162323,
+      "saturated_elements": 42742,
+      "saturated_fraction": 0.004749111111111111,
+      "raw_min": -78.5,
+      "raw_max": 64.0
+    },
+    "p11_activation": {
+      "source": "/data1/models/svdquant-wjq/results/E088_native_bench/h3_block25_p11_s00_calib.pt",
+      "cache_call": "/data1/models/svdquant-wjq/results/E087_timestep_aware/cache_16p20s/p11/sample_p11_s00.pt",
+      "full_shape": [
+        22464,
+        14336
+      ],
+      "global_amax": 2512.0,
+      "files": {
+        "signed": "/home/wjq/workspace/svdquant-exp/results/research/E093/figures/p11_activation_signed_3000x3000.png",
+        "absolute": "/home/wjq/workspace/svdquant-exp/results/research/E093/figures/p11_activation_absolute_3000x3000.png"
+      },
+      "display_limit_abs": 2.7704017162323,
+      "saturated_elements": 40275,
+      "saturated_fraction": 0.004475,
+      "raw_min": -43.4285888671875,
+      "raw_max": 60.5712890625
+    },
+    "weight": {
+      "source": "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors",
+      "key": "blocks.25.mlp.fc2.weight",
+      "full_shape": [
+        5376,
+        14336
+      ],
+      "global_amax": 3.21875,
+      "files": {
+        "signed": "/home/wjq/workspace/svdquant-exp/results/research/E093/figures/weight_signed_3000x3000.png",
+        "absolute": "/home/wjq/workspace/svdquant-exp/results/research/E093/figures/weight_absolute_3000x3000.png"
+      },
+      "display_limit_abs": 0.054036468267440796,
+      "saturated_elements": 43734,
+      "saturated_fraction": 0.0048593333333333336,
+      "raw_min": -0.1540178656578064,
+      "raw_max": 0.1395089030265808
+    }
+  },
+  "activation_common_display_limit_abs": 2.7704017162323,
+  "weight_display_limit_abs": 0.054036468267440796
+}

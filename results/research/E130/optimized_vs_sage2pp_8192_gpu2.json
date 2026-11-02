@@ -1,0 +1,155 @@
+{
+  "format": "e130-optimized-vs-sage2pp-two-scope-v1",
+  "timestamp_utc": "2026-10-25T02:35:41.991390+00:00",
+  "capture": "/data1/models/svdquant-wjq/research/20261023/E121_h3_split_generation/race/block25_qkv_h56.pt",
+  "sage2_dir": "/data1/models/svdquant-wjq/research/envs/sageattention2pp-sm120-20261014",
+  "sage3_dir": "/data1/models/svdquant-wjq/research/20261025/E130/optin_rawk_readonly",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "scope": "Online includes each implementation native dynamic QKV quantization/centering/correction, core uses prepared quantized tensors; K restore excluded from timing",
+  "flops": "4 * batch * heads * query_tokens * key_tokens * head_dim (noncausal QK + PV, multiply-add=2 FLOPs)",
+  "timing": "CUDA events, 25 warmups + 6x12 calls per arm, forward and reverse arm order",
+  "rows": [
+    {
+      "tokens": 8192,
+      "shape_hnd": [
+        1,
+        56,
+        8192,
+        128
+      ],
+      "flops": 1924145348608,
+      "core_online_consistency": {
+        "sage3_bitwise_equal": true,
+        "sage2pp_nmse": 0.0
+      },
+      "means_ms": {
+        "sage2pp_online": 5.539363765054279,
+        "sage3_online": 4.157965554131402,
+        "sage2pp_core": 4.756857759422726,
+        "sage3_core": 3.451102458768421
+      },
+      "effective_tops": {
+        "sage2pp_online": 347.3585469773072,
+        "sage3_online": 462.76125272277625,
+        "sage2pp_core": 404.4992400280447,
+        "sage3_core": 557.5451240861336
+      },
+      "sage3_over_sage2pp_online": 1.3322293542211536,
+      "sage3_over_sage2pp_core": 1.378358891471534,
+      "rounds": {
+        "sage2pp_online": [
+          {
+            "mean_ms": 5.520339118109809,
+            "batch_means_ms": [
+              5.485184033711751,
+              5.499885360399882,
+              5.52130667368571,
+              5.5321679910024,
+              5.538181344668071,
+              5.54530930519104
+            ],
+            "cv_batch_percent": 0.42382118396863694,
+            "calls": 72
+          },
+          {
+            "mean_ms": 5.558388411998749,
+            "batch_means_ms": [
+              5.557946562767029,
+              5.555805325508118,
+              5.55457063515981,
+              5.56440265973409,
+              5.556608001391093,
+              5.560997287432353
+            ],
+            "cv_batch_percent": 0.06614669505187833,
+            "calls": 72
+          }
+        ],
+        "sage3_online": [
+          {
+            "mean_ms": 4.150428440835741,
+            "batch_means_ms": [
+              4.17518937587738,
+              4.145557284355164,
+              4.15123728911082,
+              4.146989345550537,
+              4.141040007273356,
+              4.142557342847188
+            ],
+            "cv_batch_percent": 0.3046540844946491,
+            "calls": 72
+          },
+          {
+            "mean_ms": 4.165502667427063,
+            "batch_means_ms": [
+              4.189053297042847,
+              4.184472004572551,
+              4.1617493232091265,
+              4.15335734685262,
+              4.152711987495422,
+              4.1516720453898115
+            ],
+            "cv_batch_percent": 0.40612535162938523,
+            "calls": 72
+          }
+        ],
+        "sage2pp_core": [
+          {
+            "mean_ms": 4.749379515647888,
+            "batch_means_ms": [
+              4.746141235033671,
+              4.737658619880676,
+              4.747986634572347,
+              4.754789312680562,
+              4.7551093101501465,
+              4.754591981569926
+            ],
+            "cv_batch_percent": 0.1455937346082393,
+            "calls": 72
+          },
+          {
+            "mean_ms": 4.764336003197564,
+            "batch_means_ms": [
+              4.768362641334534,
+              4.763781348864238,
+              4.762285391489665,
+              4.763202667236328,
+              4.763509313265483,
+              4.764874656995137
+            ],
+            "cv_batch_percent": 0.04500180649285307,
+            "calls": 72
+          }
+        ],
+        "sage3_core": [
+          {
+            "mean_ms": 3.449823131163915,
+            "batch_means_ms": [
+              3.4574373364448547,
+              3.4487333496411643,
+              3.4530480106671653,
+              3.4490266839663186,
+              3.446440041065216,
+              3.444253365198771
+            ],
+            "cv_batch_percent": 0.137598489952576,
+            "calls": 72
+          },
+          {
+            "mean_ms": 3.4523817863729267,
+            "batch_means_ms": [
+              3.4557946721712747,
+              3.4499146938323975,
+              3.4525279998779297,
+              3.457304040590922,
+              3.4470160007476807,
+              3.4517333110173545
+            ],
+            "cv_batch_percent": 0.10930132562931266,
+            "calls": 72
+          }
+        ]
+      }
+    }
+  ]
+}

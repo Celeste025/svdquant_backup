@@ -1,0 +1,669 @@
+{
+  "format": "e154-exact-route-reuse-v1",
+  "timestamp_utc": "2026-11-01T13:53:37.120236+00:00",
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "capture": "/data1/models/svdquant-wjq/research/20261101/E151_long_h3_attention/race_768p_362f_step0_block0.pt",
+  "shape_bshd": [
+    1,
+    110013,
+    56,
+    128
+  ],
+  "video_grid": [
+    107,
+    24,
+    42
+  ],
+  "prefix_tokens": 2157,
+  "layer": 0,
+  "policy": {
+    "query_block": 128,
+    "skip_fraction": 0.0,
+    "retained_nvfp4_fraction": 0.9,
+    "retained_int8_fraction": 0.09999999999999998,
+    "first_step": "dense INT8; actual quantized QK physical-tile maximum captured in kernel (adjacent K64 tiles merged for Q128 routing)",
+    "later_steps": "reuse cached first-step route; no DraftMap pooling/scoring/sorting"
+  },
+  "checks": {
+    "cache_entries": 1,
+    "cache_bytes_one_layer": 82833412,
+    "reuse_draftmap_and_route_selection_mocked_to_raise": true,
+    "first_vs_dense_int8_nmse": 0.0,
+    "reuse_vs_legacy_proxy_route_nmse": 0.00010755137740159674,
+    "reuse_vs_dense_int8_nmse": 0.0004532645133672412
+  },
+  "timings": {
+    "dense_int8_no_capture": {
+      "mean_ms": 923.1353454589844,
+      "median_ms": 923.1353454589844,
+      "min_ms": 922.7429809570312,
+      "samples_ms": [
+        922.7429809570312,
+        923.5277099609375
+      ]
+    },
+    "dense_int8_first_step_capture": {
+      "mean_ms": 1058.4798583984375,
+      "median_ms": 1058.4798583984375,
+      "min_ms": 1058.1380615234375,
+      "samples_ms": [
+        1058.1380615234375,
+        1058.8216552734375
+      ]
+    },
+    "cached_exact_route_reuse": {
+      "mean_ms": 731.4201354980469,
+      "median_ms": 731.4201354980469,
+      "min_ms": 731.3378295898438,
+      "samples_ms": [
+        731.3378295898438,
+        731.50244140625
+      ]
+    },
+    "legacy_proxy_route_each_step": {
+      "mean_ms": 738.302490234375,
+      "median_ms": 738.302490234375,
+      "min_ms": 738.02294921875,
+      "samples_ms": [
+        738.02294921875,
+        738.58203125
+      ]
+    }
+  },
+  "kernel_profiles": {
+    "dense_int8_no_capture": [
+      {
+        "name": "void (anonymous namespace)::prepare_h3_qk_microscaling_kernel<__nv_bfloat16, 128, true, false, 128>(__nv_bfloat16 const*, __nv_bfloat16 const*, long const*, bool const*, int const*, float const*, float const*, __half*, __half*, __half*, __half*, __half*, __half*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, signed char*, float*, signed char*, float*, signed char*, float*, bool, bool, bool, long, long, long, long, long, long, long, long, long, long, long, long)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 16338.837
+      },
+      {
+        "name": "void (anonymous namespace)::prepare_h3_v_microscaling_kernel<__nv_bfloat16, 128>(__nv_bfloat16 const*, long const*, bool const*, float const*, __half*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, float*, bool, bool, bool, long, long, long, long, long, long, long)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 3653.4519999999975
+      },
+      {
+        "name": "void (anonymous namespace)::prepare_h3_int8_v_from_partials_kernel<128>(__half const*, float const*, __nv_fp8_e4m3*, float*, long, long, long, long)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 2529.959999999999
+      },
+      {
+        "name": "void (anonymous namespace)::elementwise_kernel_with_index<int, at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}>(int, at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}, function_traits<at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}>::result_type*)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.3439999999973224
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFunctor<int, int, int, at::native::binary_internal::MulFunctor<int> >, std::array<char*, 2ul> >(int, at::native::AUnaryFunctor<int, int, int, at::native::binary_internal::MulFunctor<int> >, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.3119999999980791
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnOther_add<int>, std::array<char*, 2ul> >(int, at::native::CUDAFunctorOnOther_add<int>, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.3119999999980791
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul> >(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.1519999999945867
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul> >(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.504000000000815
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnSelf_add<int>, std::array<char*, 2ul> >(int, at::native::CUDAFunctorOnSelf_add<int>, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.2799999999988358
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul> >(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.2799999999988358
+      },
+      {
+        "name": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_alignedK_contig<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 3, 128, 1, 16>(at::native::(anonymous namespace)::OpaqueType<4u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.2160000000003492
+      },
+      {
+        "name": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_alignedK_contig<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 2, 128, 1, 16>(at::native::(anonymous namespace)::OpaqueType<4u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.5680000000065775
+      },
+      {
+        "name": "void cutlass::Kernel2<cutlass_80_tensorop_f16_s16816gemm_relu_f16_64x64_32x6_tn_align8>(cutlass_80_tensorop_f16_s16816gemm_relu_f16_64x64_32x6_tn_align8::Params)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 133.43999999999505
+      },
+      {
+        "name": "void mpa::attention::mixed_attention_sm120_q128_int8_dense_kernel<128u, true, false, false>(signed char*, signed char*, __nv_fp8_e4m3*, __half*, __half*, __half*, __half*, __half*, int*, int*, int*, int*, float*, float*, float*, int const*, float*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, float)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 17172.759
+      },
+      {
+        "name": "(anonymous namespace)::row_softmax_fp16_kernel(__half*, long, long)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 764.3220000000001
+      },
+      {
+        "name": "(anonymous namespace)::initialize_composite_sort_kernel(__half const*, unsigned int*, int*, int, int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 642.9460000000036
+      },
+      {
+        "name": "Memset (Device)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 0.4480000000039581
+      },
+      {
+        "name": "Memset (Device)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 0.9919999999983702
+      },
+      {
+        "name": "void cub::CUB_200700_1200_NS::DeviceRadixSortHistogramKernel<cub::CUB_200700_1200_NS::DeviceRadixSortPolicy<unsigned int, int, unsigned int>::Policy900, false, unsigned int, unsigned int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t>(unsigned int*, unsigned int const*, unsigned int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 182.81699999999546
+      },
+      {
+        "name": "void cub::CUB_200700_1200_NS::DeviceRadixSortExclusiveSumKernel<cub::CUB_200700_1200_NS::DeviceRadixSortPolicy<unsigned int, int, unsigned int>::Policy900, unsigned int>(unsigned int*)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.3759999999965657
+      },
+      {
+        "name": "Memset (Device)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 3.3919999999998254
+      },
+      {
+        "name": "void cub::CUB_200700_1200_NS::DeviceRadixSortOnesweepKernel<cub::CUB_200700_1200_NS::DeviceRadixSortPolicy<unsigned int, int, unsigned int>::Policy900, false, unsigned int, int, unsigned int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t>(int*, int*, unsigned int*, unsigned int const*, unsigned int*, unsigned int const*, int*, int const*, int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1033.9230000000025
+      },
+      {
+        "name": "Memset (Device)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 3.584000000002561
+      },
+      {
+        "name": "void cub::CUB_200700_1200_NS::DeviceRadixSortOnesweepKernel<cub::CUB_200700_1200_NS::DeviceRadixSortPolicy<unsigned int, int, unsigned int>::Policy900, false, unsigned int, int, unsigned int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t>(int*, int*, unsigned int*, unsigned int const*, unsigned int*, unsigned int const*, int*, int const*, int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 862.2750000000015
+      },
+      {
+        "name": "Memset (Device)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 3.3280000000013388
+      },
+      {
+        "name": "void cub::CUB_200700_1200_NS::DeviceRadixSortOnesweepKernel<cub::CUB_200700_1200_NS::DeviceRadixSortPolicy<unsigned int, int, unsigned int>::Policy900, false, unsigned int, int, unsigned int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t>(int*, int*, unsigned int*, unsigned int const*, unsigned int*, unsigned int const*, int*, int const*, int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 623.9060000000027
+      },
+      {
+        "name": "(anonymous namespace)::scatter_precision_kernel(int const*, unsigned char*, int, int, int, int, int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1208.4839999999967
+      },
+      {
+        "name": "(anonymous namespace)::pack_active_rows_kernel(unsigned char const*, int*, int*, int*, int*, int, int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 391.6819999999934
+      },
+      {
+        "name": "(anonymous namespace)::materialize_physical_route_kernel(int const*, int const*, int const*, int const*, int*, int*, int*, int*, int, int, int, int, int, int, bool, bool)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 466.97699999999895
+      },
+      {
+        "name": "void mpa::attention::mixed_attention_sm120_q128_int8_kernel<128u, true, false, false>(signed char*, signed char*, __nv_fp8_e4m3*, __half*, __half*, __half*, __half*, __half*, int*, int*, int*, int*, float*, float*, float*, int const*, float*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, float)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 878009.828
+      },
+      {
+        "name": "void (anonymous namespace)::assemble_h3_k64_output_kernel<__half, __nv_bfloat16, true>(__half const*, __half const*, long const*, __nv_bfloat16*, long, long, long, long, long, long, long, long, long, int const*, int const*, int const*, long, int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 3322.0590000000084
+      }
+    ],
+    "dense_int8_first_step_capture": [
+      {
+        "name": "void (anonymous namespace)::prepare_h3_qk_microscaling_kernel<__nv_bfloat16, 128, false, false, 128>(__nv_bfloat16 const*, __nv_bfloat16 const*, long const*, bool const*, int const*, float const*, float const*, __half*, __half*, __half*, __half*, __half*, __half*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, signed char*, float*, signed char*, float*, signed char*, float*, bool, bool, bool, long, long, long, long, long, long, long, long, long, long, long, long)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 14603.091
+      },
+      {
+        "name": "void (anonymous namespace)::prepare_h3_v_microscaling_kernel<__nv_bfloat16, 128>(__nv_bfloat16 const*, long const*, bool const*, float const*, __half*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, float*, bool, bool, bool, long, long, long, long, long, long, long)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 3657.8050000000003
+      },
+      {
+        "name": "void (anonymous namespace)::prepare_h3_int8_v_from_partials_kernel<128>(__half const*, float const*, __nv_fp8_e4m3*, float*, long, long, long, long)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 2528.4580000000024
+      },
+      {
+        "name": "void (anonymous namespace)::elementwise_kernel_with_index<int, at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}>(int, at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}, function_traits<at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}>::result_type*)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.3449999999975262
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFunctor<int, int, int, at::native::binary_internal::MulFunctor<int> >, std::array<char*, 2ul> >(int, at::native::AUnaryFunctor<int, int, int, at::native::binary_internal::MulFunctor<int> >, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.3119999999980791
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnOther_add<int>, std::array<char*, 2ul> >(int, at::native::CUDAFunctorOnOther_add<int>, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.3440000000009604
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul> >(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.120999999999185
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul> >(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.5360000000000582
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnSelf_add<int>, std::array<char*, 2ul> >(int, at::native::CUDAFunctorOnSelf_add<int>, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.3120000000017171
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul> >(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.2799999999988358
+      },
+      {
+        "name": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_alignedK_contig<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 3, 128, 1, 16>(at::native::(anonymous namespace)::OpaqueType<4u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.1520000000018626
+      },
+      {
+        "name": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_alignedK_contig<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 2, 128, 1, 16>(at::native::(anonymous namespace)::OpaqueType<4u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.5360000000000582
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::FillFunctor<c10::Half>, std::array<char*, 1ul> >(int, at::native::FillFunctor<c10::Half>, std::array<char*, 1ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 135.9360000000015
+      },
+      {
+        "name": "void mpa::attention::mixed_attention_sm120_q128_int8_dense_kernel<128u, true, false, false>(signed char*, signed char*, __nv_fp8_e4m3*, __half*, __half*, __half*, __half*, __half*, int*, int*, int*, int*, float*, float*, float*, int const*, float*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, float)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 18288.545
+      },
+      {
+        "name": "void mpa::attention::mixed_attention_sm120_q128_int8_dense_importance_kernel<128u, true, false, false>(signed char*, signed char*, __nv_fp8_e4m3*, __half*, __half*, __half*, __half*, __half*, int*, int*, int*, int*, float*, float*, float*, int const*, float*, unsigned int, __half*, unsigned int, unsigned int, unsigned int, unsigned int, float)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1022140.6299999999
+      },
+      {
+        "name": "void at::native::reduce_kernel<512, 1, at::native::ReduceOp<c10::Half, at::native::func_wrapper_t<c10::Half, at::native::MaxNanFunctor<c10::Half> >, unsigned int, c10::Half, 4, 4> >(at::native::ReduceOp<c10::Half, at::native::func_wrapper_t<c10::Half, at::native::MaxNanFunctor<c10::Half> >, unsigned int, c10::Half, 4, 4>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 711.3949999997858
+      },
+      {
+        "name": "(anonymous namespace)::initialize_composite_sort_kernel(__half const*, unsigned int*, int*, int, int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 372.9290000000037
+      },
+      {
+        "name": "Memset (Device)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 0.41599999996833503
+      },
+      {
+        "name": "Memset (Device)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 0.9599999999627471
+      },
+      {
+        "name": "void cub::CUB_200700_1200_NS::DeviceRadixSortHistogramKernel<cub::CUB_200700_1200_NS::DeviceRadixSortPolicy<unsigned int, int, unsigned int>::Policy900, false, unsigned int, unsigned int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t>(unsigned int*, unsigned int const*, unsigned int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 174.464999999851
+      },
+      {
+        "name": "void cub::CUB_200700_1200_NS::DeviceRadixSortExclusiveSumKernel<cub::CUB_200700_1200_NS::DeviceRadixSortPolicy<unsigned int, int, unsigned int>::Policy900, unsigned int>(unsigned int*)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.1520000000018626
+      },
+      {
+        "name": "Memset (Device)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 3.2639999999664724
+      },
+      {
+        "name": "void cub::CUB_200700_1200_NS::DeviceRadixSortOnesweepKernel<cub::CUB_200700_1200_NS::DeviceRadixSortPolicy<unsigned int, int, unsigned int>::Policy900, false, unsigned int, int, unsigned int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t>(int*, int*, unsigned int*, unsigned int const*, unsigned int*, unsigned int const*, int*, int const*, int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 622.9459999999963
+      },
+      {
+        "name": "Memset (Device)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 3.3919999999925494
+      },
+      {
+        "name": "void cub::CUB_200700_1200_NS::DeviceRadixSortOnesweepKernel<cub::CUB_200700_1200_NS::DeviceRadixSortPolicy<unsigned int, int, unsigned int>::Policy900, false, unsigned int, int, unsigned int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t>(int*, int*, unsigned int*, unsigned int const*, unsigned int*, unsigned int const*, int*, int const*, int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 614.2099999999627
+      },
+      {
+        "name": "Memset (Device)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 3.4239999998826534
+      },
+      {
+        "name": "void cub::CUB_200700_1200_NS::DeviceRadixSortOnesweepKernel<cub::CUB_200700_1200_NS::DeviceRadixSortPolicy<unsigned int, int, unsigned int>::Policy900, false, unsigned int, int, unsigned int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t>(int*, int*, unsigned int*, unsigned int const*, unsigned int*, unsigned int const*, int*, int const*, int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 626.3699999998789
+      },
+      {
+        "name": "(anonymous namespace)::scatter_precision_kernel(int const*, unsigned char*, int, int, int, int, int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1188.1969999999274
+      },
+      {
+        "name": "(anonymous namespace)::pack_active_rows_kernel(unsigned char const*, int*, int*, int*, int*, int, int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 388.99300000001676
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<int>, std::array<char*, 3ul> >(int, at::native::CUDAFunctor_add<int>, std::array<char*, 3ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.9200000001583248
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<int>, std::array<char*, 3ul> >(int, at::native::CUDAFunctor_add<int>, std::array<char*, 3ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.6319999999832362
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::FillFunctor<int>, std::array<char*, 1ul> >(int, at::native::FillFunctor<int>, std::array<char*, 1ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 0.9599999999627471
+      },
+      {
+        "name": "void at_cuda_detail::cub::DeviceScanInitKernel<at_cuda_detail::cub::ScanTileState<int, true> >(at_cuda_detail::cub::ScanTileState<int, true>, int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 0.9599999999627471
+      },
+      {
+        "name": "void at_cuda_detail::cub::DeviceScanKernel<at_cuda_detail::cub::DeviceScanPolicy<int, std::plus<int> >::Policy900, int const*, int*, at_cuda_detail::cub::ScanTileState<int, true>, std::plus<int>, at_cuda_detail::cub::NullType, unsigned int, int, false>(int const*, int*, at_cuda_detail::cub::ScanTileState<int, true>, int, std::plus<int>, at_cuda_detail::cub::NullType, unsigned int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 2.4319999997969717
+      },
+      {
+        "name": "Memcpy DtoD (Device -> Device)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.0879999999888241
+      },
+      {
+        "name": "Memcpy DtoH (Device -> Pinned)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 0.8000000000465661
+      },
+      {
+        "name": "void (anonymous namespace)::pack_route_ids_kernel<short>(int const*, int const*, int const*, int const*, int const*, short*, int, int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 238.27299999981187
+      },
+      {
+        "name": "void (anonymous namespace)::assemble_h3_k64_output_kernel<__half, __nv_bfloat16, false>(__half const*, __half const*, long const*, __nv_bfloat16*, long, long, long, long, long, long, long, long, long, int const*, int const*, int const*, long, int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 3239.30700000003
+      }
+    ],
+    "cached_exact_route_reuse": [
+      {
+        "name": "void (anonymous namespace)::prepare_h3_qk_microscaling_kernel<__nv_bfloat16, 128, false, false, 128>(__nv_bfloat16 const*, __nv_bfloat16 const*, long const*, bool const*, int const*, float const*, float const*, __half*, __half*, __half*, __half*, __half*, __half*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, signed char*, float*, signed char*, float*, signed char*, float*, bool, bool, bool, long, long, long, long, long, long, long, long, long, long, long, long)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 19113.767
+      },
+      {
+        "name": "void (anonymous namespace)::prepare_h3_v_microscaling_kernel<__nv_bfloat16, 128>(__nv_bfloat16 const*, long const*, bool const*, float const*, __half*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, float*, bool, bool, bool, long, long, long, long, long, long, long)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 5719.734
+      },
+      {
+        "name": "void (anonymous namespace)::prepare_h3_int8_v_from_partials_kernel<128>(__half const*, float const*, __nv_fp8_e4m3*, float*, long, long, long, long)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 2521.385000000002
+      },
+      {
+        "name": "void (anonymous namespace)::elementwise_kernel_with_index<int, at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}>(int, at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}, function_traits<at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}>::result_type*)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.3760000000002037
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFunctor<int, int, int, at::native::binary_internal::MulFunctor<int> >, std::array<char*, 2ul> >(int, at::native::AUnaryFunctor<int, int, int, at::native::binary_internal::MulFunctor<int> >, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.3110000000015134
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnOther_add<int>, std::array<char*, 2ul> >(int, at::native::CUDAFunctorOnOther_add<int>, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.3450000000011642
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul> >(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.1519999999982247
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul> >(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.504000000000815
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnSelf_add<int>, std::array<char*, 2ul> >(int, at::native::CUDAFunctorOnSelf_add<int>, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.2479999999995925
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul> >(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.27900000000227
+      },
+      {
+        "name": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_alignedK_contig<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 3, 128, 1, 16>(at::native::(anonymous namespace)::OpaqueType<4u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.1520000000018626
+      },
+      {
+        "name": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_alignedK_contig<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 2, 128, 1, 16>(at::native::(anonymous namespace)::OpaqueType<4u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.5689999999995052
+      },
+      {
+        "name": "void (anonymous namespace)::materialize_packed_route_kernel<short>(short const*, int const*, int const*, int const*, int const*, int*, int*, int*, int*, int, int, int, int, int, bool, bool)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 401.21700000000055
+      },
+      {
+        "name": "void mpa::attention::mixed_attention_sm120_q128_int8_dense_kernel<128u, true, false, false>(signed char*, signed char*, __nv_fp8_e4m3*, __half*, __half*, __half*, __half*, __half*, int*, int*, int*, int*, float*, float*, float*, int const*, float*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, float)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 18546.052999999996
+      },
+      {
+        "name": "void mpa::attention::mixed_attention_sm120_q128_nv_int8_fp16_kernel<128u, true, false, false>(signed char*, signed char*, __nv_fp8_e4m3*, __half*, __half*, __half*, __half*, __half*, int*, int*, int*, int*, float*, float*, float*, signed char*, signed char*, __nv_fp8_e4m3*, unsigned char*, unsigned char*, unsigned char*, int*, float const*, float const*, float const*, int const*, float*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, float)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 690871.1969999999
+      },
+      {
+        "name": "void (anonymous namespace)::assemble_h3_k64_output_kernel<__half, __nv_bfloat16, true>(__half const*, __half const*, long const*, __nv_bfloat16*, long, long, long, long, long, long, long, long, long, int const*, int const*, int const*, long, int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 3279.243999999948
+      }
+    ],
+    "legacy_proxy_route_each_step": [
+      {
+        "name": "void (anonymous namespace)::prepare_h3_qk_microscaling_kernel<__nv_bfloat16, 128, true, true, 128>(__nv_bfloat16 const*, __nv_bfloat16 const*, long const*, bool const*, int const*, float const*, float const*, __half*, __half*, __half*, __half*, __half*, __half*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, signed char*, float*, signed char*, float*, signed char*, float*, bool, bool, bool, long, long, long, long, long, long, long, long, long, long, long, long)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 21883.190000000002
+      },
+      {
+        "name": "void (anonymous namespace)::prepare_h3_v_microscaling_kernel<__nv_bfloat16, 128>(__nv_bfloat16 const*, long const*, bool const*, float const*, __half*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, float*, bool, bool, bool, long, long, long, long, long, long, long)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 5712.055
+      },
+      {
+        "name": "void (anonymous namespace)::prepare_h3_int8_v_from_partials_kernel<128>(__half const*, float const*, __nv_fp8_e4m3*, float*, long, long, long, long)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 2439.5939999999973
+      },
+      {
+        "name": "void (anonymous namespace)::elementwise_kernel_with_index<int, at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}>(int, at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}, function_traits<at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}>::result_type*)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.3760000000002037
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFunctor<int, int, int, at::native::binary_internal::MulFunctor<int> >, std::array<char*, 2ul> >(int, at::native::AUnaryFunctor<int, int, int, at::native::binary_internal::MulFunctor<int> >, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.2479999999995925
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnOther_add<int>, std::array<char*, 2ul> >(int, at::native::CUDAFunctorOnOther_add<int>, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.3119999999980791
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul> >(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.1199999999989814
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul> >(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.504000000000815
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnSelf_add<int>, std::array<char*, 2ul> >(int, at::native::CUDAFunctorOnSelf_add<int>, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.3119999999980791
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul> >(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul>)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.2800000000024738
+      },
+      {
+        "name": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_alignedK_contig<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 3, 128, 1, 16>(at::native::(anonymous namespace)::OpaqueType<4u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.1519999999982247
+      },
+      {
+        "name": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_alignedK_contig<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 2, 128, 1, 16>(at::native::(anonymous namespace)::OpaqueType<4u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.5679999999993015
+      },
+      {
+        "name": "void cutlass::Kernel2<cutlass_80_tensorop_f16_s16816gemm_relu_f16_64x64_32x6_tn_align8>(cutlass_80_tensorop_f16_s16816gemm_relu_f16_64x64_32x6_tn_align8::Params)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 135.80899999999747
+      },
+      {
+        "name": "void mpa::attention::mixed_attention_sm120_q128_int8_dense_kernel<128u, true, false, false>(signed char*, signed char*, __nv_fp8_e4m3*, __half*, __half*, __half*, __half*, __half*, int*, int*, int*, int*, float*, float*, float*, int const*, float*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, float)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 18319.879999999997
+      },
+      {
+        "name": "void cutlass::Kernel2<cutlass_80_tensorop_f16_s16816gemm_relu_f16_64x64_32x6_tn_align8>(cutlass_80_tensorop_f16_s16816gemm_relu_f16_64x64_32x6_tn_align8::Params)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 791.1390000000029
+      },
+      {
+        "name": "(anonymous namespace)::row_softmax_fusion_fp16_kernel(__half*, __half const*, long, long, float)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 796.2279999999955
+      },
+      {
+        "name": "(anonymous namespace)::initialize_composite_sort_kernel(__half const*, unsigned int*, int*, int, int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 397.0570000000007
+      },
+      {
+        "name": "Memset (Device)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 0.6399999999994179
+      },
+      {
+        "name": "Memset (Device)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.0239999999976135
+      },
+      {
+        "name": "void cub::CUB_200700_1200_NS::DeviceRadixSortHistogramKernel<cub::CUB_200700_1200_NS::DeviceRadixSortPolicy<unsigned int, int, unsigned int>::Policy900, false, unsigned int, unsigned int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t>(unsigned int*, unsigned int const*, unsigned int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 180.89700000000448
+      },
+      {
+        "name": "void cub::CUB_200700_1200_NS::DeviceRadixSortExclusiveSumKernel<cub::CUB_200700_1200_NS::DeviceRadixSortPolicy<unsigned int, int, unsigned int>::Policy900, unsigned int>(unsigned int*)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1.3439999999973224
+      },
+      {
+        "name": "Memset (Device)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 3.4880000000048312
+      },
+      {
+        "name": "void cub::CUB_200700_1200_NS::DeviceRadixSortOnesweepKernel<cub::CUB_200700_1200_NS::DeviceRadixSortPolicy<unsigned int, int, unsigned int>::Policy900, false, unsigned int, int, unsigned int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t>(int*, int*, unsigned int*, unsigned int const*, unsigned int*, unsigned int const*, int*, int const*, int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1038.7880000000005
+      },
+      {
+        "name": "Memset (Device)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 3.551999999996042
+      },
+      {
+        "name": "void cub::CUB_200700_1200_NS::DeviceRadixSortOnesweepKernel<cub::CUB_200700_1200_NS::DeviceRadixSortPolicy<unsigned int, int, unsigned int>::Policy900, false, unsigned int, int, unsigned int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t>(int*, int*, unsigned int*, unsigned int const*, unsigned int*, unsigned int const*, int*, int const*, int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 753.4749999999985
+      },
+      {
+        "name": "Memset (Device)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 3.455999999998312
+      },
+      {
+        "name": "void cub::CUB_200700_1200_NS::DeviceRadixSortOnesweepKernel<cub::CUB_200700_1200_NS::DeviceRadixSortPolicy<unsigned int, int, unsigned int>::Policy900, false, unsigned int, int, unsigned int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t>(int*, int*, unsigned int*, unsigned int const*, unsigned int*, unsigned int const*, int*, int const*, int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 624.002999999997
+      },
+      {
+        "name": "(anonymous namespace)::scatter_precision_kernel(int const*, unsigned char*, int, int, int, int, int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 1258.7560000000012
+      },
+      {
+        "name": "(anonymous namespace)::pack_active_rows_kernel(unsigned char const*, int*, int*, int*, int*, int, int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 387.2330000000002
+      },
+      {
+        "name": "(anonymous namespace)::materialize_physical_route_kernel(int const*, int const*, int const*, int const*, int*, int*, int*, int*, int, int, int, int, int, int, bool, bool)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 468.5460000000021
+      },
+      {
+        "name": "void mpa::attention::mixed_attention_sm120_q128_nv_int8_fp16_kernel<128u, true, false, false>(signed char*, signed char*, __nv_fp8_e4m3*, __half*, __half*, __half*, __half*, __half*, int*, int*, int*, int*, float*, float*, float*, signed char*, signed char*, __nv_fp8_e4m3*, unsigned char*, unsigned char*, unsigned char*, int*, float const*, float const*, float const*, int const*, float*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, float)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 687638.3489999999
+      },
+      {
+        "name": "void (anonymous namespace)::assemble_h3_k64_output_kernel<__half, __nv_bfloat16, true>(__half const*, __half const*, long const*, __nv_bfloat16*, long, long, long, long, long, long, long, long, long, int const*, int const*, int const*, long, int)",
+        "device_type": "DeviceType.CUDA",
+        "self_device_time_us": 3306.3499999999767
+      }
+    ]
+  },
+  "status": "complete"
+}

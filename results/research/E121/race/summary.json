@@ -1,0 +1,118 @@
+{
+  "format": "e121-h3-end-to-end-summary-v1",
+  "case": "race",
+  "prompt_id": 16,
+  "seed": 20026,
+  "settings": {
+    "height": 576,
+    "width": 1024,
+    "frames": 124,
+    "steps": 20,
+    "cfg_scale": 1.0,
+    "flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "rand_device": "cpu",
+    "tiled": true
+  },
+  "initial_latent_sha256": {
+    "video": "c6e954babd536b4fb5f36770e1adc1ad6cd012e839d08aecea6406a6bc01f4d9",
+    "audio": "25a1dfd8eb0aba82159ad3c9bfbc6572400ee2e741bd05428dd8a4063cf41739"
+  },
+  "preflight_nmse": {
+    "sage3_fixed": {
+      "video": 0.014368990436196327,
+      "audio": 0.003848479362204671
+    },
+    "split_mixed": {
+      "video": 0.014063749462366104,
+      "audio": 0.003956592176109552
+    }
+  },
+  "arms": {
+    "bf16": {
+      "denoise_wall_seconds": 330.78131039100117,
+      "decode_wall_seconds": 36.13628401400638,
+      "total_wall_seconds": 366.91759440500755,
+      "sum_dit_seconds": 192.6316662980098,
+      "mean_dit_seconds_steps_1_to_19": 9.541463499263811,
+      "median_dit_seconds_steps_1_to_19": 9.541643556993222,
+      "first_dit_seconds": 11.34385981199739,
+      "peak_allocated_gib": 17.693462371826172,
+      "main_tokens": 22677,
+      "video": "/data1/models/svdquant-wjq/research/20261023/E121_h3_split_generation/race/bf16/race_bf16_576x1024_124f_20steps.mp4",
+      "total_speedup_vs_warm_bf16": 0.5935072034366005,
+      "dit_speedup_vs_warm_bf16": 1.0266051780502508,
+      "total_slowdown_vs_sage3": 1.83583836428887,
+      "dit_slowdown_vs_sage3": 1.06880104393147,
+      "terminal_latent_nmse_vs_bf16": {
+        "video_latents": 0.0,
+        "audio_latents": 0.0
+      }
+    },
+    "sage3_fixed": {
+      "denoise_wall_seconds": 188.488593475995,
+      "decode_wall_seconds": 11.37518622398784,
+      "total_wall_seconds": 199.86377969998284,
+      "sum_dit_seconds": 180.23154766899825,
+      "mean_dit_seconds_steps_1_to_19": 8.93747509620995,
+      "median_dit_seconds_steps_1_to_19": 8.940077510997071,
+      "first_dit_seconds": 10.419520841009216,
+      "peak_allocated_gib": 17.693462371826172,
+      "main_tokens": 22677,
+      "video": "/data1/models/svdquant-wjq/research/20261023/E121_h3_split_generation/race/sage3_fixed/race_sage3_fixed_576x1024_124f_20steps.mp4",
+      "total_speedup_vs_warm_bf16": 1.0895832935507102,
+      "dit_speedup_vs_warm_bf16": 1.0972366860055605,
+      "total_slowdown_vs_sage3": 1.0,
+      "dit_slowdown_vs_sage3": 1.0,
+      "terminal_latent_nmse_vs_bf16": {
+        "video_latents": 0.18922969698905945,
+        "audio_latents": 0.06013287603855133
+      }
+    },
+    "split_mixed": {
+      "denoise_wall_seconds": 190.85642907999863,
+      "decode_wall_seconds": 11.35808692399587,
+      "total_wall_seconds": 202.2145160039945,
+      "sum_dit_seconds": 182.79103000402392,
+      "mean_dit_seconds_steps_1_to_19": 9.061927574790866,
+      "median_dit_seconds_steps_1_to_19": 9.057015901009436,
+      "first_dit_seconds": 10.614406082997448,
+      "peak_allocated_gib": 17.693462371826172,
+      "main_tokens": 22677,
+      "video": "/data1/models/svdquant-wjq/research/20261023/E121_h3_split_generation/race/split_mixed/race_split_mixed_576x1024_124f_20steps.mp4",
+      "total_speedup_vs_warm_bf16": 1.0769169278762318,
+      "dit_speedup_vs_warm_bf16": 1.0818729238170575,
+      "total_slowdown_vs_sage3": 1.0117616924264135,
+      "dit_slowdown_vs_sage3": 1.0142010783801638,
+      "terminal_latent_nmse_vs_bf16": {
+        "video_latents": 0.15329602360725403,
+        "audio_latents": 0.05099520832300186
+      },
+      "terminal_latent_nmse_vs_sage3": {
+        "video_latents": 0.11401461064815521,
+        "audio_latents": 0.014504910446703434
+      }
+    },
+    "bf16_warm": {
+      "denoise_wall_seconds": 205.75863751600264,
+      "decode_wall_seconds": 12.009597830998246,
+      "total_wall_seconds": 217.76823534700088,
+      "sum_dit_seconds": 197.75666607798485,
+      "mean_dit_seconds_steps_1_to_19": 9.811255289525818,
+      "median_dit_seconds_steps_1_to_19": 9.643873826993513,
+      "first_dit_seconds": 11.342815576994326,
+      "peak_allocated_gib": 17.693462371826172,
+      "main_tokens": 22677,
+      "video": "/data1/models/svdquant-wjq/research/20261023/E121_h3_split_generation/race/bf16_warm/race_bf16_warm_576x1024_124f_20steps.mp4",
+      "total_speedup_vs_warm_bf16": 1.0,
+      "dit_speedup_vs_warm_bf16": 1.0,
+      "total_slowdown_vs_sage3": 1.0895832935507102,
+      "dit_slowdown_vs_sage3": 1.0972366860055605,
+      "terminal_latent_nmse_vs_bf16": {
+        "video_latents": 0.0,
+        "audio_latents": 0.0
+      }
+    }
+  },
+  "timing_note": "Each arm sequentially ran full denoise and separate VAE decode on one GPU; total includes both phase model loads and media writing. The first BF16 run is a cold-cache reference; bf16_warm is the fair speed baseline."
+}

@@ -1,0 +1,150 @@
+{
+  "format": "e113-attention-preflight-v1",
+  "case": "race",
+  "prompt_id": 16,
+  "seed": 20026,
+  "cached_calls": "/data1/models/svdquant-wjq/research/20261015/E101_h3_r32_fixed1_three_cases/race/bf16_teacher_calls.pt",
+  "contract": {
+    "expected_cu": [
+      0,
+      22677,
+      22720
+    ],
+    "expected_refiner_cu": [
+      0,
+      951,
+      951
+    ]
+  },
+  "linears": {
+    "count": 200,
+    "computation_dtype": "torch.bfloat16",
+    "disk_offloaded_count": 200
+  },
+  "arms": {
+    "sage3": {
+      "seconds": 109.1065003650001,
+      "attention": {
+        "mode": "block_mean",
+        "main_helper_calls": 50,
+        "refiner_helper_calls": 2,
+        "fp4_calls": 50,
+        "original_bf16_segments": 52,
+        "expected_cu": [
+          0,
+          22677,
+          22720
+        ],
+        "expected_refiner_cu": [
+          0,
+          951,
+          951
+        ],
+        "actual_cu_checks": [
+          {
+            "kind": "refiner",
+            "actual": [
+              0,
+              951,
+              951
+            ],
+            "expected": [
+              0,
+              951,
+              951
+            ],
+            "exact": true
+          },
+          {
+            "kind": "main",
+            "actual": [
+              0,
+              22677,
+              22720
+            ],
+            "expected": [
+              0,
+              22677,
+              22720
+            ],
+            "exact": true
+          }
+        ],
+        "diagnostics": false,
+        "finite_flag_count": 0,
+        "finite": null,
+        "timing_boundary": "Context exit checks tiny cu metadata and optional finite flags after the caller end synchronization",
+        "metadata_policy": "All main modes use the same prebound CPU boundaries and deferred actual-cu verification; refiner uses original boundaries/helper in every mode."
+      },
+      "output_sha256": {
+        "video": "f4fa603649de249580f078e547acd69bc0c23401c4bd324fb93db78f8ba4fc83",
+        "audio": "486695b524a4710095a166ae127d617841952fcd516f1354557a0bf67d3ce9bd"
+      }
+    },
+    "mixed_pv": {
+      "seconds": 37.30988068899023,
+      "attention": {
+        "mode": "block_mean",
+        "main_helper_calls": 50,
+        "refiner_helper_calls": 2,
+        "fp4_calls": 50,
+        "original_bf16_segments": 52,
+        "expected_cu": [
+          0,
+          22677,
+          22720
+        ],
+        "expected_refiner_cu": [
+          0,
+          951,
+          951
+        ],
+        "actual_cu_checks": [
+          {
+            "kind": "refiner",
+            "actual": [
+              0,
+              951,
+              951
+            ],
+            "expected": [
+              0,
+              951,
+              951
+            ],
+            "exact": true
+          },
+          {
+            "kind": "main",
+            "actual": [
+              0,
+              22677,
+              22720
+            ],
+            "expected": [
+              0,
+              22677,
+              22720
+            ],
+            "exact": true
+          }
+        ],
+        "diagnostics": false,
+        "finite_flag_count": 0,
+        "finite": null,
+        "timing_boundary": "Context exit checks tiny cu metadata and optional finite flags after the caller end synchronization",
+        "metadata_policy": "All main modes use the same prebound CPU boundaries and deferred actual-cu verification; refiner uses original boundaries/helper in every mode."
+      },
+      "output_sha256": {
+        "video": "9b3949b94a2586b0cb362a7925edddb85cbce4e9479c6e1fbafbb310c673c976",
+        "audio": "a76626eb09e714fd6b5e25974f586d1eb9d7427ffe78a9aa5676c2afc2c078a8"
+      }
+    }
+  },
+  "mixed_vs_sage3_output_nmse": {
+    "video": 0.01053648255765438,
+    "audio": 0.0020731454715132713
+  },
+  "peak_allocated_gib": 18.152915000915527,
+  "status": "complete"
+}

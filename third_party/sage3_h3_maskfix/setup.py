@@ -114,6 +114,18 @@ if not SKIP_CUDA_BUILD:
         "-DCTA256",
         "-DDQINRMEM",
     ]
+    attention_variant_flags = (["-DE130_BF16_DELTA"]
+                               if os.environ.get("E130_BF16_DELTA") == "1" else [])
+    if os.environ.get("E130_DELTA_TAIL_MASK") == "1":
+        if os.environ.get("E130_BF16_DELTA") != "1":
+            raise RuntimeError("E130_DELTA_TAIL_MASK requires E130_BF16_DELTA=1")
+        attention_variant_flags.append("-DE130_DELTA_TAIL_MASK")
+    if os.environ.get("E130_BF16_CVT") == "1":
+        if os.environ.get("E130_BF16_DELTA") != "1":
+            raise RuntimeError("E130_BF16_CVT requires E130_BF16_DELTA=1")
+        attention_variant_flags.append("-DE130_BF16_CVT")
+    if os.environ.get("E130_SKIP_UNCHANGED_MAX_EXP") == "1":
+        attention_variant_flags.append("-DE130_SKIP_UNCHANGED_MAX_EXP")
     include_dirs = [
         repo_dir / "sageattn3",
         cutlass_dir / "include",
@@ -127,7 +139,7 @@ if not SKIP_CUDA_BUILD:
             extra_compile_args={
                 "cxx": ["-O3", "-std=c++17"],
                 "nvcc": append_nvcc_threads(
-                    nvcc_flags + ["-DEXECMODE=0"] + cc_flag
+                    nvcc_flags + attention_variant_flags + ["-DEXECMODE=0"] + cc_flag
                 ),
             },
             include_dirs=include_dirs,

@@ -1,0 +1,153 @@
+{
+  "status": "failed",
+  "prompt_id": 44,
+  "seed": 17080,
+  "prompt": "# Core Summary\nA cinematic sports sequence featuring a male swimmer <ID_A> performing a technical breaststroke in a bright indoor pool, captured via a dynamic water-level tracking shot. The clip utilizes a 2-shot progression to emphasize stroke mechanics and fluid momentum. Shot 1 focuses on the upper body arm pull and water displacement [cut-in], transitioning to Shot 2 which widens to capture the synchronized leg kick and forward glide [cut-out].\n\n# Scene\n[shot1][00:00-00:05] Indoor swimming pool, clear blue water surface with sunlight refracting through creating caustic patterns on the tiled pool floor below. The water is calm except for the disturbance caused by the swimmer. Bright, high-key lighting illuminates the lane ropes and white pool deck in the blurred background.\n[shot2][00:05-00:10] Same indoor pool environment, camera maintains water-level perspective but frames slightly wider to include the lower body. The blue tiles of the pool bottom are clearly visible through the transparent water, providing a grid for motion reference. Light reflects off the wet skin and water droplets.\n\n# Subjects Description\n<ID_A>: Male, East Asian, young adult. Athletic build with defined shoulder muscles. Wearing a dark blue silicone swim cap and mirrored goggles. Black swim trunks. Skin is wet and glistening.\n**Vocal Characteristics**: None. Breathing sounds are rhythmic and controlled.\n\n# Dynamic Narrative\n[shot1][00:00-00:05] Low-angle water-level tracking shot. <ID_A> is centered in the frame, chest partially submerged. <ID_A>'s arms sweep outward slowly against the water resistance, palms pressing back, creating a V-shaped wake. Water droplets fly upward as arms recover. The camera tracks backward at the same speed as <ID_A> moves forward, keeping distance constant. Sound of water splashing and rhythmic breathing is crisp.\n[shot2][00:05-00:10] [cut-out] Camera pulls back slightly to a medium shot while continuing the water-level track. <ID_A>'s legs whip outward and kick back simultaneously, propelling the body forward into a streamlined glide. The water surface ripples outward from the kick. <ID_A>'s body rises slightly with momentum then settles into the water, sliding smoothly. Sound of a deeper underwater kick thud followed by the hiss of gliding water.\n\n# Style, Color & Aesthetics\nVisual style is high-definition sports realism with a focus on fluid dynamics. Color palette is dominated by aquatic blues, clean whites, and natural skin tones. Lighting is bright and even, emphasizing the texture of the water and the athlete's musculature. High shutter speed freezes water droplets in mid-air.\n\n# Atmosphere & Emotion\nAtmosphere is focused, disciplined, and serene. The emotion conveys determination and physical mastery. The sound design emphasizes the isolation of the swimmer in the water, creating an immersive, almost meditative experience of the sport.",
+  "source_frames": 241,
+  "frames": 243,
+  "settings": {
+    "height": 768,
+    "width": 1344,
+    "steps": 20,
+    "cfg_scale": 1.0,
+    "flow_shift": 12.0,
+    "audio_flow_shift": 3.0,
+    "fps": 24,
+    "rand_device": "cpu"
+  },
+  "manifest_sha256": "a23defdb464e6e40dae75e5bd9ed2c792ea35660ec806ba42f0a7f8f5a563a34",
+  "steps": [
+    {
+      "step": 0,
+      "dit_seconds": 42.13135888101533,
+      "main_tokens": 74019,
+      "attention_main_calls": 50
+    },
+    {
+      "step": 1,
+      "dit_seconds": 36.167657050071284,
+      "main_tokens": 74019,
+      "attention_main_calls": 50
+    }
+  ],
+  "started_unix": 1793562154.9966564,
+  "linears": {
+    "main_linears": "rank64 NVFP4 fused GEMM + BF16 low-rank down",
+    "bf16_endpoint_weights_resident": false,
+    "weight_transfer_policy": "phase-level BF16/NVFP4 swap between CPU and GPU; included in step timings",
+    "export_manifest_sha256": "f203e6dc170f617dcff9db2956bb470b4a9b8ede3ae14bdaf04c0a68aa6c121a",
+    "target_count": 200
+  },
+  "attention_router": {
+    "mode": "bf16",
+    "sources": {
+      "adapter": {
+        "file": "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_fp4_attention.py",
+        "sha256": "515e28f5fdbe3333ddd87c6dacb08e6c8dd4103ca433d69edf20cf9253269af0",
+        "bytes": 21054
+      },
+      "comfy": {
+        "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit_comfy.py",
+        "sha256": "e8a2eb4cb986ba384052100fdc03984446f3fa35d0ab1e9ebfacffc039a2e8ff",
+        "bytes": 3011
+      },
+      "original_helper": {
+        "file": "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit.py",
+        "sha256": "bd617a4312c70405e916707e1908100b484b2259dfbeba4af7de5bb145206d80",
+        "bytes": 18207
+      }
+    },
+    "main_blocks": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49
+    ],
+    "refiner_blocks": 2,
+    "official_per_block_mean": null,
+    "reference_operations": "Original bound forward preserves QKV, QK RMSNorm, RoPE and out projection",
+    "global_mean_semantics": "Official K centering before padding and Q mean after padding; not no-centering",
+    "metadata_policy": "BF16 and both FP4 modes share prebound CPU main boundaries and deferred actual-cu verification; refiner helper remains unchanged for all modes.",
+    "cpu_fixture_only": false,
+    "e121_arm": "bf16",
+    "corrected_sage3": "/home/wjq/workspace/svdquant-exp/third_party/sage3_h3_maskfix/sageattn3/__init__.py",
+    "split_threshold": null,
+    "arm": "s70_fp4_20_int8_10",
+    "code_commit": "97a1c8b14f26f387214c8cfb8fc7e890390b93b4",
+    "sparse_config": {
+      "query_block_size": 64,
+      "sparsity_ratio": 0.7,
+      "layer_sparsity_bands": [],
+      "maxpool_weight": 0.2
+    },
+    "quant_config": {
+      "nvfp4_ratio": 0.6666666666666666,
+      "int8_ratio": 0.3333333333333333,
+      "fp16_ratio": 0.0,
+      "prefix_kv_precision": "int8",
+      "prefix_query_precision": "int8"
+    },
+    "dense_first_steps": 10,
+    "dense_first_layers": 2,
+    "video_grid": [
+      37,
+      18,
+      32
+    ],
+    "prefix_policy": "official dense INT8",
+    "linears": "BF16",
+    "schedule": "c2",
+    "video_tile_skip": 0.8,
+    "query_block_size": 128,
+    "real_attention": "Anemoi INT8 QK + FP8 PV and NVFP4",
+    "linear": "rank64 fused SVDQuant"
+  },
+  "error": "Traceback (most recent call last):\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/run_e150_whitebox_bf16.py\", line 116, in denoise\n    pipe(prompt=prompt['prompt'],seed=info['seed'],height=768,width=1344,num_frames=info['frames'],\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/utils/_contextlib.py\", line 124, in decorate_context\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/workspace/DiffSynth-Studio/diffsynth/pipelines/minimax_h3_audio_video.py\", line 183, in __call__\n    noise_pred_video, noise_pred_audio = self.cfg_guided_model_fn(\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/workspace/DiffSynth-Studio/diffsynth/diffusion/base_pipeline.py\", line 335, in cfg_guided_model_fn\n    noise_pred_posi = model_fn(**inputs_posi, **inputs_shared, **inputs_others)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/workspace/DiffSynth-Studio/diffsynth/pipelines/minimax_h3_audio_video.py\", line 1042, in model_fn_minimax_h3\n    v_video_rows, v_audio_rows = dit(\n                                 ^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1885, in _call_impl\n    return inner()\n           ^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/nn/modules/module.py\", line 1833, in inner\n    result = forward_call(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/run_e150_whitebox_bf16.py\", line 93, in forward\n    with router.forward_context(**contract,diagnostics=False) as log:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/wjq/.conda/envs/convrot-wan/lib/python3.12/contextlib.py\", line 144, in __exit__\n    next(self.gen)\n  File \"/home/wjq/workspace/svdquant-exp/scripts/research/run_h3_r64_draft_experiment.py\", line 109, in forward_context\n    endpoint=self.step in ({0,19} if STATE['variant']=='c2' else {0,1,18,19})\n                                       ^^^^^^^^^^^^^^^^^^^^^\nProbeComplete\n",
+  "failed_unix": 1793562290.8874936
+}

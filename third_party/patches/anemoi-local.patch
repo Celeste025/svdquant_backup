@@ -1,0 +1,2154 @@
+diff --git a/anemoi/__init__.py b/anemoi/__init__.py
+index e8aa390..f56418c 100644
+--- a/anemoi/__init__.py
++++ b/anemoi/__init__.py
+@@ -3,6 +3,7 @@
+ from anemoi.engine import AnemoiEngine
+ from anemoi.layers.attention import (
+     NVFP4Calibration,
++    AttentionRouteCache,
+     QuantConfig,
+     SparseConfig,
+     VisualLayout,
+@@ -13,6 +14,7 @@ from anemoi.models import get_model_registry
+ __all__ = [
+     "AnemoiEngine",
+     "NVFP4Calibration",
++    "AttentionRouteCache",
+     "QuantConfig",
+     "SparseConfig",
+     "VisualLayout",
+diff --git a/anemoi/layers/attention/__init__.py b/anemoi/layers/attention/__init__.py
+index 3667b2a..7202a73 100644
+--- a/anemoi/layers/attention/__init__.py
++++ b/anemoi/layers/attention/__init__.py
+@@ -1,5 +1,6 @@
+ from anemoi.layers.attention.api import (
+     NVFP4Calibration,
++    AttentionRouteCache,
+     QuantConfig,
+     SparseConfig,
+     VisualLayout,
+@@ -7,6 +8,7 @@ from anemoi.layers.attention.api import (
+ )
+ __all__ = [
+     "NVFP4Calibration",
++    "AttentionRouteCache",
+     "QuantConfig",
+     "SparseConfig",
+     "VisualLayout",
+diff --git a/anemoi/layers/attention/api.py b/anemoi/layers/attention/api.py
+index 3e07e93..009a976 100644
+--- a/anemoi/layers/attention/api.py
++++ b/anemoi/layers/attention/api.py
+@@ -7,6 +7,8 @@ from dataclasses import dataclass
+ 
+ import torch
+ 
++from anemoi.layers.attention.mpa.routing import AttentionRouteCache
++
+ @dataclass(frozen=True)
+ class VisualLayout:
+     """Structured visual tokens following an optional packed prefix."""
+@@ -145,6 +147,8 @@ def anemoi_attention(
+     dropout_p: float = 0.0,
+     is_causal: bool = False,
+     scale: float | None = None,
++    first_step: bool | None = None,
++    route_cache: AttentionRouteCache | None = None,
+ ) -> torch.Tensor:
+     """Run structured visual inference attention on BSHD Q/K/V tensors."""
+     if attn_mask is not None:
+@@ -157,6 +161,13 @@ def anemoi_attention(
+         raise TypeError("layout must be VisualLayout")
+     if type(layer) is not int or layer < 0:
+         raise ValueError("layer must be a nonnegative integer")
++    if first_step is not None and type(first_step) is not bool:
++        raise TypeError("first_step must be bool or None")
++    if first_step is None:
++        if route_cache is not None:
++            raise ValueError("route_cache requires an explicit first_step flag")
++    elif not isinstance(route_cache, AttentionRouteCache):
++        raise TypeError("first_step routing requires an AttentionRouteCache")
+     if query.ndim != 4 or query.size(1) != layout.sequence_tokens:
+         raise ValueError("Q sequence length must match layout.sequence_tokens")
+     expected_scale = 1.0 / math.sqrt(query.size(-1))
+@@ -191,11 +202,14 @@ def anemoi_attention(
+         prefix_query_precision=quant.prefix_query_precision,
+         maxpool_weight=float(sparse.maxpool_weight),
+         nvfp4_scales=resolved_calibration.scales,
++        first_step=first_step,
++        route_cache=route_cache,
+     )
+ 
+ 
+ __all__ = [
+     "NVFP4Calibration",
++    "AttentionRouteCache",
+     "QuantConfig",
+     "SparseConfig",
+     "VisualLayout",
+diff --git a/anemoi/layers/attention/mpa/backends/sm120_q128.py b/anemoi/layers/attention/mpa/backends/sm120_q128.py
+index 6f71859..7b410d6 100644
+--- a/anemoi/layers/attention/mpa/backends/sm120_q128.py
++++ b/anemoi/layers/attention/mpa/backends/sm120_q128.py
+@@ -60,6 +60,14 @@ def _load_prefix_int8() -> Callable[..., torch.Tensor]:
+     )
+ 
+ 
++@lru_cache(maxsize=1)
++def _load_dense_int8_importance() -> Callable[..., tuple[torch.Tensor, torch.Tensor]]:
++    import_native_extension("sm120_q64")
++    return resolve_mixed_attention_operator(
++        "sm120_q128_dense_int8_importance_attention_forward"
++    )
++
++
+ @lru_cache(maxsize=1)
+ def _load_mxfp8() -> Callable[..., tuple[torch.Tensor, torch.Tensor]]:
+     import_native_extension("sm120_q64")
+@@ -115,6 +123,23 @@ def sm120_q128_prefix_int8_attention(
+     )
+ 
+ 
++def sm120_q128_dense_int8_importance_attention(
++    int8_operands: tuple[torch.Tensor, ...],
++    valid_k_counts: torch.Tensor,
++) -> tuple[torch.Tensor, torch.Tensor]:
++    q8, q8_scale, k8, k8_scale, v8, v8_scale = int8_operands
++    return _load_dense_int8_importance()(
++        q8,
++        k8,
++        v8,
++        q8_scale,
++        k8_scale,
++        v8_scale,
++        valid_k_counts,
++        1.0 / math.sqrt(q8.size(-1)),
++    )
++
++
+ def sm120_q128_nv_int8_fp16_attention(
+     nv_operands: tuple[torch.Tensor, ...],
+     int8_operands: tuple[torch.Tensor, ...],
+diff --git a/anemoi/layers/attention/mpa/backends/sm120_q64.py b/anemoi/layers/attention/mpa/backends/sm120_q64.py
+index 4390819..4d63e14 100644
+--- a/anemoi/layers/attention/mpa/backends/sm120_q64.py
++++ b/anemoi/layers/attention/mpa/backends/sm120_q64.py
+@@ -78,6 +78,18 @@ def _load_h3_route_materialization() -> Callable[..., tuple[torch.Tensor, ...]]:
+     return resolve_mixed_attention_operator("sm120_h3_materialize_route")
+ 
+ 
++@lru_cache(maxsize=1)
++def _load_h3_route_packing() -> Callable[..., tuple[torch.Tensor, ...]]:
++    import_native_extension("sm120_q64")
++    return resolve_mixed_attention_operator("sm120_h3_pack_route")
++
++
++@lru_cache(maxsize=1)
++def _load_h3_packed_route_materialization() -> Callable[..., tuple[torch.Tensor, ...]]:
++    import_native_extension("sm120_q64")
++    return resolve_mixed_attention_operator("sm120_h3_materialize_packed_route")
++
++
+ @lru_cache(maxsize=1)
+ def _load_int8() -> Callable[..., tuple[torch.Tensor, torch.Tensor]]:
+     import_native_extension("sm120_q64")
+@@ -92,6 +104,14 @@ def _load_prefix_int8() -> Callable[..., torch.Tensor]:
+     )
+ 
+ 
++@lru_cache(maxsize=1)
++def _load_dense_int8_importance() -> Callable[..., tuple[torch.Tensor, torch.Tensor]]:
++    import_native_extension("sm120_q64")
++    return resolve_mixed_attention_operator(
++        "sm120_q64_dense_int8_importance_attention_forward"
++    )
++
++
+ @lru_cache(maxsize=1)
+ def _load_nvfp4() -> Callable[..., tuple[torch.Tensor, torch.Tensor]]:
+     import_native_extension("sm120_q64")
+@@ -150,6 +170,7 @@ def prepare_h3_sm120_operands(
+     has_mxfp8: bool,
+     has_fp16: bool,
+     has_prefix_query_int8: bool,
++    has_pool: bool = True,
+     has_maxpool: bool,
+     global_scales: tuple[torch.Tensor, torch.Tensor, torch.Tensor] | None,
+ ) -> tuple[torch.Tensor, ...]:
+@@ -168,6 +189,7 @@ def prepare_h3_sm120_operands(
+         has_mxfp8,
+         has_fp16,
+         has_prefix_query_int8,
++        has_pool,
+         has_maxpool,
+         *scales,
+     )
+@@ -249,6 +271,46 @@ def sm120_h3_materialize_route(
+     )
+ 
+ 
++def sm120_h3_pack_route(
++    logical_ids: torch.Tensor,
++    nvfp4_counts: torch.Tensor,
++    middle_counts: torch.Tensor,
++    fp16_counts: torch.Tensor,
++) -> tuple[torch.Tensor, torch.Tensor]:
++    return _load_h3_route_packing()(
++        logical_ids, nvfp4_counts, middle_counts, fp16_counts
++    )
++
++
++def sm120_h3_materialize_packed_route(
++    packed_ids: torch.Tensor,
++    row_offsets: torch.Tensor,
++    nvfp4_counts: torch.Tensor,
++    middle_counts: torch.Tensor,
++    fp16_counts: torch.Tensor,
++    *,
++    logical_columns: int,
++    query_block_size: int,
++    prefix_blocks: int,
++    prefix_phase: int,
++    prefix_first: bool,
++    has_fp16: bool,
++) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
++    return _load_h3_packed_route_materialization()(
++        packed_ids,
++        row_offsets,
++        nvfp4_counts,
++        middle_counts,
++        fp16_counts,
++        logical_columns,
++        query_block_size,
++        prefix_blocks,
++        prefix_phase,
++        prefix_first,
++        has_fp16,
++    )
++
++
+ def sm120_q64_fp16_attention(
+     query: torch.Tensor,
+     key: torch.Tensor,
+@@ -289,6 +351,23 @@ def sm120_q64_prefix_int8_attention(
+     )
+ 
+ 
++def sm120_q64_dense_int8_importance_attention(
++    int8_operands: tuple[torch.Tensor, ...],
++    valid_k_counts: torch.Tensor,
++) -> tuple[torch.Tensor, torch.Tensor]:
++    q8, q8_scale, k8, k8_scale, v8, v8_scale = int8_operands
++    return _load_dense_int8_importance()(
++        q8,
++        k8,
++        v8,
++        q8_scale,
++        k8_scale,
++        v8_scale,
++        valid_k_counts,
++        1.0 / math.sqrt(q8.size(-1)),
++    )
++
++
+ def sm120_q64_mxfp8_attention(
+     q_mxfp8: torch.Tensor,
+     q_mxfp8_scale: torch.Tensor,
+@@ -449,6 +528,8 @@ __all__ = [
+     "sm120_h3_k_tail_r1_probability",
+     "sm120_h3_k_tail_r2_probability",
+     "sm120_h3_materialize_route",
++    "sm120_h3_materialize_packed_route",
++    "sm120_h3_pack_route",
+     "sm120_h3_route_precision",
+     "sm120_q64_fp16_attention",
+     "sm120_q64_fp16_kernel_metadata",
+diff --git a/anemoi/layers/attention/mpa/executor.py b/anemoi/layers/attention/mpa/executor.py
+index 0feff92..9130574 100644
+--- a/anemoi/layers/attention/mpa/executor.py
++++ b/anemoi/layers/attention/mpa/executor.py
+@@ -25,10 +25,13 @@ from anemoi.layers.attention.mpa.backends.sm120_q64 import (
+     prepare_h3_sm120_operands,
+     prepare_mxfp8,
+     prepare_q64_nvfp4,
++    sm120_q64_dense_int8_importance_attention,
+     sm120_h3_draft_probability,
+     sm120_h3_k_tail_r1_probability,
+     sm120_h3_k_tail_r2_probability,
+     sm120_h3_materialize_route,
++    sm120_h3_materialize_packed_route,
++    sm120_h3_pack_route,
+     sm120_h3_route_precision,
+     sm120_q64_fp16_attention,
+     sm120_q64_int8_fp16_attention,
+@@ -40,6 +43,7 @@ from anemoi.layers.attention.mpa.backends.sm120_q64 import (
+ )
+ from anemoi.layers.attention.mpa.backends.sm120_q128 import (
+     prepare_q128_nvfp4,
++    sm120_q128_dense_int8_importance_attention,
+     sm120_q128_fp16_attention,
+     sm120_q128_int8_fp16_attention,
+     sm120_q128_mxfp8_attention,
+@@ -50,6 +54,7 @@ from anemoi.layers.attention.mpa.backends.sm120_q128 import (
+ )
+ from anemoi.layers.attention.mpa.layout import materialize_ragged_2d_layout
+ from anemoi.layers.attention.mpa.routing import (
++    AttentionRouteCache,
+     RaggedRoutePlan,
+     _route_counts,
+     draft_probability,
+@@ -80,6 +85,15 @@ def _sm89_prefix_stream(device: torch.device) -> torch.cuda.Stream:
+     return torch.cuda.Stream(device=device)
+ 
+ 
++def _join_prefix_stream(
++    current_stream: torch.cuda.Stream,
++    prefix_stream: torch.cuda.Stream,
++    prefix_output: torch.Tensor,
++) -> None:
++    current_stream.wait_stream(prefix_stream)
++    prefix_output.record_stream(current_stream)
++
++
+ def _pool_query(
+     query_fp16: torch.Tensor,
+     counts: torch.Tensor,
+@@ -331,6 +345,29 @@ def _route_sm120_probability(
+     )
+ 
+ 
++def _compact_exact_route(route: RaggedRoutePlan) -> RaggedRoutePlan:
++    """Pack active per-row IDs into a true ragged int16/int32 cache."""
++
++    logical_columns = route.block_ids.size(-1)
++    packed_ids, row_offsets = sm120_h3_pack_route(
++        route.block_ids,
++        route.nvfp4_counts,
++        route.fp8_counts,
++        route.fp16_counts,
++    )
++    return RaggedRoutePlan(
++        block_ids=packed_ids,
++        nvfp4_counts=route.nvfp4_counts,
++        fp8_counts=route.fp8_counts,
++        fp16_counts=route.fp16_counts,
++        fp16_blocks_per_head=route.fp16_blocks_per_head,
++        fp8_blocks_per_head=route.fp8_blocks_per_head,
++        nvfp4_blocks_per_head=route.nvfp4_blocks_per_head,
++        packed_offsets=row_offsets,
++        logical_columns=logical_columns,
++    )
++
++
+ def _expand_q128_valid_k(
+     prefix_counts: torch.Tensor,
+     video_counts: torch.Tensor,
+@@ -380,6 +417,7 @@ def _prepare_h3_sm120_inputs(
+     query_block_size: int,
+     phases: tuple[str, ...],
+     has_prefix_query_int8: bool = False,
++    has_pool: bool = True,
+     has_maxpool: bool = False,
+     global_scales: tuple[torch.Tensor, torch.Tensor, torch.Tensor] | None,
+ ) -> tuple[object, ...]:
+@@ -397,6 +435,7 @@ def _prepare_h3_sm120_inputs(
+         has_mxfp8="mxfp8" in phases,
+         has_fp16="fp16" in phases,
+         has_prefix_query_int8=has_prefix_query_int8,
++        has_pool=has_pool,
+         has_maxpool=has_maxpool,
+         global_scales=global_scales,
+     )
+@@ -781,6 +820,7 @@ def sm89_ragged_h3_attention(
+     moments = diag_jensen
+     q_second = None
+     k_second = None
++    probability = None
+     if moments:
+         denominator = video_counts.to(torch.float32).view(1, 1, video_blocks, 1)
+         q_second = (
+@@ -895,6 +935,8 @@ def sm120_ragged_h3_attention(
+     enable_anchors: bool = False,
+     profile_nvtx: bool = False,
+     nvfp4_scales: tuple[float, float, float] = (1.0, 1.0, 1.0),
++    first_step: bool | None = None,
++    route_cache: AttentionRouteCache | None = None,
+ ) -> torch.Tensor:
+     """Run per-frame ragged Q64/Q128 routing through native SM120 phases."""
+ 
+@@ -949,6 +991,13 @@ def sm120_ragged_h3_attention(
+         raise ValueError("video_shape must match the post-prefix token count")
+     if any(type(value) is not bool for value in (diag_jensen, enable_anchors, profile_nvtx)):
+         raise TypeError("attention switches must be bool")
++    if first_step is not None and type(first_step) is not bool:
++        raise TypeError("first_step must be bool or None")
++    if first_step is None:
++        if route_cache is not None:
++            raise ValueError("route_cache requires an explicit first_step flag")
++    elif not isinstance(route_cache, AttentionRouteCache):
++        raise TypeError("first_step routing requires an AttentionRouteCache")
+     ratios = tuple(
+         map(
+             float,
+@@ -961,17 +1010,26 @@ def sm120_ragged_h3_attention(
+         )
+     )
+     video_phases = _sm120_phase_config(ratios)
++    captured_route_mode = first_step is not None
++    preparation_phases = ("int8",) if first_step is True else video_phases
+     resolved_prefix_query_precision = _resolve_sm120_prefix_query_precision(
+         video_phases, prefix_query_precision
+     )
++    if first_step is True:
++        resolved_prefix_query_precision = "int8"
+     native_prefix_int8 = prefix_tokens > 0 and (
+         resolved_prefix_query_precision == "int8" and "int8" in video_phases
+     )
++    if first_step is True:
++        native_prefix_int8 = prefix_tokens > 0
+     prefix_phase = (
+-        _resolve_sm120_prefix_phase(video_phases, prefix_kv_precision) if prefix_tokens else None
++        ("int8" if first_step is True else _resolve_sm120_prefix_phase(video_phases, prefix_kv_precision))
++        if prefix_tokens else None
+     )
+     phases = (
+-        video_phases if prefix_phase is None else _active_sm120_phases(video_phases, prefix_phase)
++        preparation_phases
++        if prefix_phase is None
++        else _active_sm120_phases(preparation_phases, prefix_phase)
+     )
+ 
+     frames, height, width = video_shape
+@@ -1034,7 +1092,8 @@ def sm120_ragged_h3_attention(
+             query_block_size=query_block_size,
+             phases=phases,
+             has_prefix_query_int8=native_prefix_int8,
+-            has_maxpool=maxpool_weight != 0.0,
++            has_pool=not captured_route_mode,
++            has_maxpool=not captured_route_mode and maxpool_weight != 0.0,
+             global_scales=global_scales,
+         )
+     else:
+@@ -1098,47 +1157,97 @@ def sm120_ragged_h3_attention(
+             )
+         if profile_nvtx:
+             torch.cuda.nvtx.range_pop()
+-    if profile_nvtx:
+-        torch.cuda.nvtx.range_push("anemoi.peripheral.draft_route_materialize")
+-    q_second = None
+-    k_second = None
+-    if diag_jensen:
+-        denominator = video_counts.to(torch.float32).view(1, 1, video_blocks, 1)
+-        q_second = (
+-            query_fp16.view(1, heads, video_blocks, query_block_size, -1)
+-            .float()
+-            .square_()
+-            .sum(dim=3)
+-            .div_(denominator)
+-            .to(torch.float16)
+-            .contiguous()
++    route_signature = (
++        q_bshd.device.type,
++        q_bshd.device.index,
++        q_bshd.size(0),
++        q_bshd.size(2),
++        q_bshd.size(3),
++        video_shape,
++        prefix_tokens,
++        query_block_size,
++        float(sparsity_ratio),
++        ratios,
++        bool(enable_anchors),
++    )
++    if first_step is True:
++        dense_function = (
++            sm120_q64_dense_int8_importance_attention
++            if query_block_size == 64
++            else sm120_q128_dense_int8_importance_attention
+         )
+-        k_second = (
+-            key_video.view(1, heads, video_blocks, query_block_size, -1)
+-            .float()
+-            .square_()
+-            .sum(dim=3)
+-            .div_(denominator)
+-            .to(torch.float16)
+-            .contiguous()
++        video_output, physical_importance = dense_function(
++            int8_operands, valid_k
+         )
+-    if diag_jensen:
+-        probability = draft_probability(q_pool, k_pool, q_second=q_second, k_second=k_second)
+-    elif draftmap_proxy in ("k_tail_r1", "k_tail_r2"):
+-        k_tail_probability = (
+-            sm120_h3_k_tail_r1_probability
+-            if draftmap_proxy == "k_tail_r1"
+-            else sm120_h3_k_tail_r2_probability
++        video_importance = physical_importance[..., prefix_blocks:]
++        if query_block_size == 128:
++            video_importance = video_importance.view(
++                *video_importance.shape[:-1], video_blocks, 2
++            ).amax(dim=-1)
++        video_importance = video_importance.to(torch.float16).contiguous()
++        route = _route_sm120_probability(
++            video_importance,
++            layout.anchors,
++            layout.anchor_ids,
++            anchor_count=layout.anchor_count,
++            sparsity_ratio=float(sparsity_ratio),
++            ratios=ratios,
+         )
+-        probability = k_tail_probability(
+-            q_pool,
+-            k_pool,
+-            key_fp16,
+-            layout.counts,
+-            prefix_blocks,
++        route = _compact_exact_route(route)
++        route_cache.store(layer, route_signature, route)
++        del physical_importance, video_importance
++        _join_prefix_stream(current_stream, prefix_stream, prefix_output)
++        return assemble_h3_k64_output(
++            prefix_output,
++            video_output,
++            layout.inverse,
++            output_dtype=q_bshd.dtype,
+         )
++    if profile_nvtx:
++        torch.cuda.nvtx.range_push("anemoi.peripheral.draft_route_materialize")
++    q_second = None
++    k_second = None
++    probability = None
++    if first_step is False:
++        route = route_cache.load(layer, route_signature)
+     else:
+-        if maxpool_weight == 0.0:
++        if diag_jensen:
++            denominator = video_counts.to(torch.float32).view(1, 1, video_blocks, 1)
++            q_second = (
++                query_fp16.view(1, heads, video_blocks, query_block_size, -1)
++                .float()
++                .square_()
++                .sum(dim=3)
++                .div_(denominator)
++                .to(torch.float16)
++                .contiguous()
++            )
++            k_second = (
++                key_video.view(1, heads, video_blocks, query_block_size, -1)
++                .float()
++                .square_()
++                .sum(dim=3)
++                .div_(denominator)
++                .to(torch.float16)
++                .contiguous()
++            )
++            probability = draft_probability(
++                q_pool, k_pool, q_second=q_second, k_second=k_second
++            )
++        elif draftmap_proxy in ("k_tail_r1", "k_tail_r2"):
++            k_tail_probability = (
++                sm120_h3_k_tail_r1_probability
++                if draftmap_proxy == "k_tail_r1"
++                else sm120_h3_k_tail_r2_probability
++            )
++            probability = k_tail_probability(
++                q_pool,
++                k_pool,
++                key_fp16,
++                layout.counts,
++                prefix_blocks,
++            )
++        elif maxpool_weight == 0.0:
+             probability = sm120_h3_draft_probability(q_pool, k_pool)
+         else:
+             probability = sm120_h3_draft_probability(
+@@ -1148,19 +1257,15 @@ def sm120_ragged_h3_attention(
+                 k_max_pool,
+                 maxpool_weight=maxpool_weight,
+             )
+-    route = _route_sm120_probability(
+-        probability,
+-        layout.anchors,
+-        layout.anchor_ids,
+-        anchor_count=layout.anchor_count,
+-        sparsity_ratio=float(sparsity_ratio),
+-        ratios=ratios,
+-    )
+-    block_ids, nv_counts, middle_counts, fp16_counts = sm120_h3_materialize_route(
+-        route.block_ids,
+-        route.nvfp4_counts,
+-        route.fp8_counts,
+-        route.fp16_counts,
++        route = _route_sm120_probability(
++            probability,
++            layout.anchors,
++            layout.anchor_ids,
++            anchor_count=layout.anchor_count,
++            sparsity_ratio=float(sparsity_ratio),
++            ratios=ratios,
++        )
++    materialize_kwargs = dict(
+         query_block_size=query_block_size,
+         prefix_blocks=prefix_blocks,
+         prefix_phase={
+@@ -1172,6 +1277,26 @@ def sm120_ragged_h3_attention(
+         prefix_first=prefix_phase is None or prefix_phase == phases[0],
+         has_fp16="fp16" in phases,
+     )
++    if route.packed_offsets is None:
++        block_ids, nv_counts, middle_counts, fp16_counts = sm120_h3_materialize_route(
++            route.block_ids,
++            route.nvfp4_counts,
++            route.fp8_counts,
++            route.fp16_counts,
++            **materialize_kwargs,
++        )
++    else:
++        block_ids, nv_counts, middle_counts, fp16_counts = (
++            sm120_h3_materialize_packed_route(
++                route.block_ids,
++                route.packed_offsets,
++                route.nvfp4_counts,
++                route.fp8_counts,
++                route.fp16_counts,
++                logical_columns=route.logical_columns,
++                **materialize_kwargs,
++            )
++        )
+     _warmup_sync("SM120 DraftMap routing", q_bshd.device)
+ 
+     if profile_nvtx:
+@@ -1242,6 +1367,8 @@ def execute_ragged_attention(
+     maxpool_weight: float = 0.2,
+     nvfp4_scales: tuple[float, float, float] = (1.0, 1.0, 1.0),
+     smooth_k: bool = False,
++    first_step: bool | None = None,
++    route_cache: AttentionRouteCache | None = None,
+ ) -> torch.Tensor:
+     """Dispatch the stable routing configuration to the native backend."""
+ 
+@@ -1249,7 +1376,12 @@ def execute_ragged_attention(
+     if capability == (12, 0):
+         ratios = (nvfp4_ratio, int8_ratio, 0.0, fp16_ratio)
+         phases = _sm120_phase_config(ratios)
+-        if prefix_tokens and prefix_query_precision == "int8" and "int8" not in phases:
++        if (
++            prefix_tokens
++            and prefix_query_precision == "int8"
++            and "int8" not in phases
++            and first_step is not True
++        ):
+             raise RuntimeError("prefix-query INT8 requires an active INT8 phase")
+         return sm120_ragged_h3_attention(
+             query,
+@@ -1271,8 +1403,12 @@ def execute_ragged_attention(
+             maxpool_weight=maxpool_weight,
+             enable_anchors=False,
+             nvfp4_scales=nvfp4_scales,
++            first_step=first_step,
++            route_cache=route_cache,
+         )
+     if capability == (8, 9):
++        if first_step is not None:
++            raise RuntimeError("exact first-step DraftMap reuse currently requires SM120")
+         if query_block_size not in (64, 128) or nvfp4_ratio != 0.0:
+             raise RuntimeError("SM89 supports Q64/Q128 INT8/FP16 only")
+         return sm89_ragged_h3_attention(
+diff --git a/anemoi/layers/attention/mpa/routing.py b/anemoi/layers/attention/mpa/routing.py
+index 1aa8a63..5612dd9 100644
+--- a/anemoi/layers/attention/mpa/routing.py
++++ b/anemoi/layers/attention/mpa/routing.py
+@@ -18,6 +18,76 @@ class RaggedRoutePlan:
+     fp16_blocks_per_head: int
+     fp8_blocks_per_head: int
+     nvfp4_blocks_per_head: int
++    packed_offsets: Any = None
++    logical_columns: int | None = None
++
++
++@dataclass(frozen=True)
++class CachedExactRoute:
++    """One layer's route derived from dense INT8 QK tile maxima."""
++
++    signature: tuple[Any, ...]
++    plan: RaggedRoutePlan
++
++
++class AttentionRouteCache:
++    """Request-local per-layer routes captured by ``first_step=True``."""
++
++    def __init__(self) -> None:
++        self._routes: dict[int, CachedExactRoute] = {}
++
++    def clear(self) -> None:
++        self._routes.clear()
++
++    def store(
++        self,
++        layer: int,
++        signature: tuple[Any, ...],
++        plan: RaggedRoutePlan,
++    ) -> None:
++        if type(layer) is not int or layer < 0:
++            raise ValueError("layer must be a nonnegative integer")
++        self._routes[layer] = CachedExactRoute(signature, plan)
++
++    def load(self, layer: int, signature: tuple[Any, ...]) -> RaggedRoutePlan:
++        cached = self._routes.get(layer)
++        if cached is None:
++            raise RuntimeError(
++                f"no exact DraftMap route is cached for layer {layer}; "
++                "run the layer once with first_step=True"
++            )
++        if cached.signature != signature:
++            raise RuntimeError(
++                f"cached exact DraftMap geometry/policy mismatch for layer {layer}"
++            )
++        return cached.plan
++
++    def __len__(self) -> int:
++        return len(self._routes)
++
++    @property
++    def allocated_bytes(self) -> int:
++        total = 0
++        seen: set[int] = set()
++        for cached in self._routes.values():
++            plan = cached.plan
++            for tensor in (
++                plan.block_ids,
++                plan.packed_offsets,
++                plan.nvfp4_counts,
++                plan.fp8_counts,
++                plan.fp16_counts,
++            ):
++                identity = id(tensor)
++                if (
++                    identity not in seen
++                    and tensor is not None
++                    and hasattr(tensor, "numel")
++                    and hasattr(tensor, "element_size")
++                ):
++                    seen.add(identity)
++                    total += tensor.numel() * tensor.element_size()
++        return total
+ 
+ 
+ def _route_counts(
+diff --git a/anemoi/models/minimax_h3/mpa_attention.py b/anemoi/models/minimax_h3/mpa_attention.py
+index c7cd15e..286f319 100644
+--- a/anemoi/models/minimax_h3/mpa_attention.py
++++ b/anemoi/models/minimax_h3/mpa_attention.py
+@@ -15,6 +15,7 @@ import torch
+ import torch.nn.functional as F
+ 
+ from anemoi.layers.attention.api import (
++    AttentionRouteCache,
+     NVFP4Calibration,
+     QuantConfig,
+     SparseConfig,
+@@ -97,6 +98,7 @@ class H3MPAConfig:
+     strict: bool = True
+     maxpool_weight: float = _FROZEN_SPARSE_CONFIG.maxpool_weight
+     smooth_k: bool = False
++    reuse_first_step_route: bool = False
+ 
+     def __post_init__(self) -> None:
+         if (
+@@ -113,6 +115,8 @@ class H3MPAConfig:
+             raise ValueError("query_block_size must be 64 or 128")
+         if type(self.smooth_k) is not bool:
+             raise TypeError("smooth_k must be a boolean")
++        if type(self.reuse_first_step_route) is not bool:
++            raise TypeError("reuse_first_step_route must be a boolean")
+         if self.prefix_kv_precision not in (
+             "auto",
+             "fp16",
+@@ -428,6 +432,7 @@ class H3MPAAttention:
+         self.mpa_calls = 0
+         self.last_request_mpa_calls: int | None = None
+         self._mpa_at_request_start = 0
++        self._route_cache = AttentionRouteCache()
+         self._last_closed_request = -1
+ 
+     @staticmethod
+@@ -486,6 +491,7 @@ class H3MPAAttention:
+                     reversed_request = True
+         if self.step < 0 or reversed_request:
+             self.close_request()
++            self._route_cache.clear()
+             self.request += 1
+             self.step = 0
+             self._direction = 0
+@@ -548,6 +554,8 @@ class H3MPAAttention:
+                     if quant_config.nvfp4_ratio > 0.0 or prefix_nvfp4
+                     else None
+                 ),
++                first_step=(self.step == 0) if self.config.reuse_first_step_route else None,
++                route_cache=self._route_cache if self.config.reuse_first_step_route else None,
+             ).squeeze(0)
+         draftmap_proxy = self.config.draftmap(layer)
+         capability = _device_capability(q_full)
+@@ -600,6 +608,8 @@ class H3MPAAttention:
+                     if nvfp4 > 0.0 or prefix_nvfp4
+                     else (1.0, 1.0, 1.0)
+                 ),
++                first_step=(self.step == 0) if self.config.reuse_first_step_route else None,
++                route_cache=self._route_cache if self.config.reuse_first_step_route else None,
+             )
+         else:
+             raise RuntimeError(
+@@ -613,7 +623,10 @@ class H3MPAAttention:
+             raise RuntimeError("the H3 layout observer did not run")
+         layer = self.layer
+         self.layer += 1
+-        if self.step < self.config.dense_first_steps or layer < self.config.dense_first_layers:
++        if layer < self.config.dense_first_layers or (
++            not self.config.reuse_first_step_route
++            and self.step < self.config.dense_first_steps
++        ):
+             self.dense_calls += 1
+             return self.dense(q, k, v)
+         self.mpa_calls += 1
+@@ -632,6 +645,8 @@ class H3MPAAttention:
+             "mpa_calls": self.mpa_calls,
+             "mpa_calls_measured_request": self.last_request_mpa_calls,
+             "mpa_fraction": self.mpa_calls / total if total else None,
++            "cached_exact_routes": len(self._route_cache),
++            "cached_exact_route_bytes": self._route_cache.allocated_bytes,
+         }
+ 
+ 
+diff --git a/anemoi/models/minimax_h3/runner.py b/anemoi/models/minimax_h3/runner.py
+index c7d31f2..2f776c1 100644
+--- a/anemoi/models/minimax_h3/runner.py
++++ b/anemoi/models/minimax_h3/runner.py
+@@ -139,6 +139,7 @@ _EXPERIMENTAL_MPA_CONFIG_KEYS = _STABLE_MPA_CONFIG_KEYS | {
+     "diag_jensen",
+     "enable_anchors",
+     "smooth_k",
++    "reuse_first_step_route",
+ }
+ 
+ 
+@@ -390,6 +391,11 @@ def _apply_mpa_config(profile: dict[str, Any], config: dict[str, Any]) -> None:
+             raise TypeError("diag_jensen must be a boolean")
+         profile["diag_jensen"] = config["diag_jensen"]
+ 
++    if "reuse_first_step_route" in config:
++        if type(config["reuse_first_step_route"]) is not bool:
++            raise TypeError("reuse_first_step_route must be a boolean")
++        profile["reuse_first_step_route"] = config["reuse_first_step_route"]
++
+     if "maxpool_weight" in config:
+         profile["maxpool_weight"] = _finite_ratio(
+             config["maxpool_weight"], "maxpool_weight", allow_one=True
+@@ -811,6 +817,7 @@ def _make_mpa_attention(
+             diag_jensen=candidate.get("diag_jensen", False),
+             enable_anchors=candidate.get("enable_anchors", False),
+             smooth_k=candidate.get("smooth_k", False),
++            reuse_first_step_route=candidate.get("reuse_first_step_route", False),
+             strict=True,
+             maxpool_weight=candidate.get("maxpool_weight", _FROZEN_SPARSE_CONFIG.maxpool_weight),
+         )
+diff --git a/csrc/attention/cuda/sm120/api.h b/csrc/attention/cuda/sm120/api.h
+index c7fb9a9..ca58d6b 100644
+--- a/csrc/attention/cuda/sm120/api.h
++++ b/csrc/attention/cuda/sm120/api.h
+@@ -29,6 +29,7 @@ H3SM120Prepared prepare_h3_sm120_operands(
+     bool has_mxfp8,
+     bool has_fp16,
+     bool has_prefix_query_int8,
++    bool has_pool,
+     bool has_maxpool,
+     std::optional<torch::Tensor> q_global_scale,
+     std::optional<torch::Tensor> k_global_scale,
+@@ -86,6 +87,26 @@ sm120_h3_materialize_route(
+     bool prefix_first,
+     bool has_high);
+ 
++std::tuple<torch::Tensor, torch::Tensor> sm120_h3_pack_route(
++    torch::Tensor logical_ids,
++    torch::Tensor low_counts,
++    torch::Tensor middle_counts,
++    torch::Tensor high_counts);
++
++std::tuple<torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor>
++sm120_h3_materialize_packed_route(
++    torch::Tensor packed_ids,
++    torch::Tensor row_offsets,
++    torch::Tensor low_counts,
++    torch::Tensor middle_counts,
++    torch::Tensor high_counts,
++    int64_t logical_columns,
++    int64_t query_block_size,
++    int64_t prefix_blocks,
++    int64_t prefix_phase,
++    bool prefix_first,
++    bool has_high);
++
+ // Native SM120 Q64xK64 all-FP16 foundation. Every physical K64 block has an
+ // explicit valid-token count for score and value tail masking.
+ std::tuple<torch::Tensor, torch::Tensor> sm120_q64_fp16_attention_forward(
+@@ -141,6 +162,18 @@ MPA_DECLARE_PREFIX_INT8_FORWARD(sm120_q64_prefix_int8_attention_forward);
+ MPA_DECLARE_PREFIX_INT8_FORWARD(sm120_q128_prefix_int8_attention_forward);
+ #undef MPA_DECLARE_PREFIX_INT8_FORWARD
+ 
++#define MPA_DECLARE_DENSE_INT8_IMPORTANCE_FORWARD(name) \
++std::tuple<torch::Tensor, torch::Tensor> name( \
++    torch::Tensor q8, torch::Tensor k8, torch::Tensor v8, \
++    torch::Tensor q_scale, torch::Tensor k_scale, torch::Tensor v_scale, \
++    torch::Tensor valid_k_counts, double softmax_scale)
++
++MPA_DECLARE_DENSE_INT8_IMPORTANCE_FORWARD(
++    sm120_q64_dense_int8_importance_attention_forward);
++MPA_DECLARE_DENSE_INT8_IMPORTANCE_FORWARD(
++    sm120_q128_dense_int8_importance_attention_forward);
++#undef MPA_DECLARE_DENSE_INT8_IMPORTANCE_FORWARD
++
+ std::tuple<torch::Tensor, torch::Tensor> sm120_q64_mxfp8_attention_forward(
+     torch::Tensor q_mxfp8,
+     torch::Tensor q_mxfp8_scale,
+diff --git a/csrc/attention/cuda/sm120/bindings.cpp b/csrc/attention/cuda/sm120/bindings.cpp
+index fba2fe1..2a2296a 100644
+--- a/csrc/attention/cuda/sm120/bindings.cpp
++++ b/csrc/attention/cuda/sm120/bindings.cpp
+@@ -27,6 +27,16 @@ TORCH_LIBRARY_FRAGMENT(mixed_attention, m) {
+       "Tensor high_counts, int query_block_size, int prefix_blocks, "
+       "int prefix_phase, bool prefix_first, bool has_high) "
+       "-> (Tensor, Tensor, Tensor, Tensor)");
++  m.def(
++      "sm120_h3_pack_route(Tensor logical_ids, Tensor low_counts, "
++      "Tensor middle_counts, Tensor high_counts) -> (Tensor, Tensor)");
++  m.def(
++      "sm120_h3_materialize_packed_route("
++      "Tensor packed_ids, Tensor row_offsets, Tensor low_counts, "
++      "Tensor middle_counts, Tensor high_counts, int logical_columns, "
++      "int query_block_size, int prefix_blocks, int prefix_phase, "
++      "bool prefix_first, bool has_high) "
++      "-> (Tensor, Tensor, Tensor, Tensor)");
+   m.def(
+       "sm120_q64_fp16_attention_forward("
+       "Tensor query, Tensor key, Tensor value, Tensor block_ids, "
+@@ -61,6 +71,16 @@ TORCH_LIBRARY_FRAGMENT(mixed_attention, m) {
+       "Tensor q8, Tensor k8, Tensor v8, Tensor q_scale, Tensor k_scale, "
+       "Tensor v_scale, Tensor valid_k_counts, int prefix_tokens, "
+       "float softmax_scale) -> Tensor");
++  m.def(
++      "sm120_q64_dense_int8_importance_attention_forward("
++      "Tensor q8, Tensor k8, Tensor v8, Tensor q_scale, Tensor k_scale, "
++      "Tensor v_scale, Tensor valid_k_counts, float softmax_scale) "
++      "-> (Tensor, Tensor)");
++  m.def(
++      "sm120_q128_dense_int8_importance_attention_forward("
++      "Tensor q8, Tensor k8, Tensor v8, Tensor q_scale, Tensor k_scale, "
++      "Tensor v_scale, Tensor valid_k_counts, float softmax_scale) "
++      "-> (Tensor, Tensor)");
+   m.def(
+       "sm120_q64_mxfp8_attention_forward("
+       "Tensor q_mxfp8, Tensor q_mxfp8_scale, Tensor k_mxfp8, "
+@@ -90,7 +110,8 @@ TORCH_LIBRARY_FRAGMENT(mixed_attention, m) {
+       "Tensor query, Tensor key, Tensor value, Tensor video_token_indices, "
+       "Tensor video_slot_valid, Tensor video_valid_counts, int prefix_tokens, "
+       "int query_block_size, bool has_nvfp4, bool has_int8, bool has_mxfp8, "
+-      "bool has_fp16, bool has_prefix_query_int8, bool has_maxpool, "
++      "bool has_fp16, bool has_prefix_query_int8, bool has_pool, "
++      "bool has_maxpool, "
+       "Tensor? q_global_scale, Tensor? k_global_scale, Tensor? v_global_scale) "
+       "-> (Tensor, Tensor, Tensor, Tensor, Tensor, Tensor, Tensor, Tensor, "
+       "Tensor, Tensor, Tensor, Tensor, Tensor, Tensor, Tensor, Tensor, "
+@@ -185,6 +206,10 @@ TORCH_LIBRARY_IMPL(mixed_attention, CUDA, m) {
+       &sm120_h3_k_tail_r2_probability);
+   m.impl("sm120_h3_route_precision", &sm120_h3_route_precision);
+   m.impl("sm120_h3_materialize_route", &sm120_h3_materialize_route);
++  m.impl("sm120_h3_pack_route", &sm120_h3_pack_route);
++  m.impl(
++      "sm120_h3_materialize_packed_route",
++      &sm120_h3_materialize_packed_route);
+   m.impl(
+       "sm120_q64_fp16_attention_forward",
+       &sm120_q64_fp16_attention_forward);
+@@ -203,6 +228,12 @@ TORCH_LIBRARY_IMPL(mixed_attention, CUDA, m) {
+   m.impl(
+       "sm120_q128_prefix_int8_attention_forward",
+       &sm120_q128_prefix_int8_attention_forward);
++  m.impl(
++      "sm120_q64_dense_int8_importance_attention_forward",
++      &sm120_q64_dense_int8_importance_attention_forward);
++  m.impl(
++      "sm120_q128_dense_int8_importance_attention_forward",
++      &sm120_q128_dense_int8_importance_attention_forward);
+   m.impl(
+       "sm120_q64_mxfp8_attention_forward",
+       &sm120_q64_mxfp8_attention_forward);
+diff --git a/csrc/attention/cuda/sm120/h3_route_precision.cu b/csrc/attention/cuda/sm120/h3_route_precision.cu
+index edc8428..4d1f7ee 100644
+--- a/csrc/attention/cuda/sm120/h3_route_precision.cu
++++ b/csrc/attention/cuda/sm120/h3_route_precision.cu
+@@ -40,6 +40,9 @@
+ #ifndef MPA_IMPLICIT_HIGH_PREFIX
+ #define MPA_IMPLICIT_HIGH_PREFIX 0
+ #endif
++#ifndef MPA_ENABLE_PACKED_ROUTE
++#define MPA_ENABLE_PACKED_ROUTE 1
++#endif
+ 
+ namespace {
+ 
+@@ -368,6 +371,101 @@ __global__ __launch_bounds__(kThreads) void materialize_physical_route_kernel(
+   }
+ }
+ 
++#if MPA_ENABLE_PACKED_ROUTE
++template <typename PackedId>
++__global__ __launch_bounds__(kThreads) void pack_route_ids_kernel(
++    const int* __restrict__ logical_ids,
++    const int* __restrict__ row_offsets,
++    const int* __restrict__ low_counts,
++    const int* __restrict__ middle_counts,
++    const int* __restrict__ high_counts,
++    PackedId* __restrict__ packed_ids,
++    int row_count,
++    int logical_columns) {
++  const int row = static_cast<int>(blockIdx.x);
++  if (row >= row_count) return;
++  const int active = low_counts[row] + middle_counts[row] + high_counts[row];
++  const int destination = row_offsets[row];
++  for (int position = threadIdx.x; position < active; position += blockDim.x) {
++    packed_ids[destination + position] =
++        static_cast<PackedId>(logical_ids[row * logical_columns + position]);
++  }
++}
++
++template <typename PackedId>
++__global__ __launch_bounds__(kThreads) void materialize_packed_route_kernel(
++    const PackedId* __restrict__ packed_ids,
++    const int* __restrict__ row_offsets,
++    const int* __restrict__ low_counts,
++    const int* __restrict__ middle_counts,
++    const int* __restrict__ high_counts,
++    int* __restrict__ physical_ids,
++    int* __restrict__ physical_low_counts,
++    int* __restrict__ physical_middle_counts,
++    int* __restrict__ physical_high_counts,
++    int row_count,
++    int physical_columns,
++    int factor,
++    int prefix_blocks,
++    int prefix_phase,
++    bool prefix_first,
++    bool has_high) {
++  const int row = static_cast<int>(blockIdx.x);
++  if (row >= row_count) return;
++  const int low = low_counts[row];
++  const int middle = middle_counts[row];
++  const int high = has_high ? high_counts[row] : 0;
++  const int active = low + middle + high;
++  const bool implicit_high_prefix =
++      MPA_IMPLICIT_HIGH_PREFIX && prefix_phase == 2;
++  const int prefix_position = prefix_first
++      ? 0
++      : (prefix_phase == 0
++            ? 0
++            : (prefix_phase == 1 ? low * factor : active * factor));
++
++  for (int column = threadIdx.x; column < physical_columns;
++       column += blockDim.x) {
++    physical_ids[row * physical_columns + column] = 0;
++  }
++  __syncthreads();
++
++  const int source = row_offsets[row];
++  for (int position = threadIdx.x; position < active;
++       position += blockDim.x) {
++    int destination = position * factor;
++    if (!implicit_high_prefix && destination >= prefix_position) {
++      destination += prefix_blocks;
++    }
++    const int first = prefix_blocks +
++        static_cast<int>(packed_ids[source + position]) * factor;
++#pragma unroll
++    for (int stage = 0; stage < 2; ++stage) {
++      if (stage < factor) {
++        physical_ids[row * physical_columns + destination + stage] =
++            first + stage;
++      }
++    }
++  }
++  if (!implicit_high_prefix) {
++    for (int prefix = threadIdx.x; prefix < prefix_blocks;
++         prefix += blockDim.x) {
++      physical_ids[row * physical_columns + prefix_position + prefix] = prefix;
++    }
++  }
++  if (threadIdx.x == 0) {
++    physical_low_counts[row] =
++        low * factor + (prefix_phase == 0 ? prefix_blocks : 0);
++    physical_middle_counts[row] =
++        middle * factor + (prefix_phase == 1 ? prefix_blocks : 0);
++    if (has_high) {
++      physical_high_counts[row] =
++          high * factor + (prefix_phase == 2 ? prefix_blocks : 0);
++    }
++  }
++}
++#endif
++
+ }  // namespace
+ 
+ std::tuple<torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor>
+@@ -646,6 +744,173 @@ MPA_MATERIALIZE_ROUTE_FUNCTION(
+       physical_high_counts};
+ }
+ 
++#if MPA_ENABLE_PACKED_ROUTE
++std::tuple<torch::Tensor, torch::Tensor> sm120_h3_pack_route(
++    torch::Tensor logical_ids,
++    torch::Tensor low_counts,
++    torch::Tensor middle_counts,
++    torch::Tensor high_counts) {
++  TORCH_CHECK(
++      logical_ids.defined() && logical_ids.is_cuda() &&
++          logical_ids.is_contiguous() &&
++          logical_ids.scalar_type() == at::ScalarType::Int &&
++          logical_ids.dim() == 4,
++      "logical_ids must be contiguous CUDA int32 [B,H,R,C]");
++  const auto check_counts = [&](const torch::Tensor& counts, const char* name) {
++    TORCH_CHECK(
++        counts.defined() && counts.is_cuda() && counts.is_contiguous() &&
++            counts.scalar_type() == at::ScalarType::Int &&
++            counts.device() == logical_ids.device() && counts.dim() == 3 &&
++            counts.sizes() == logical_ids.sizes().slice(0, 3),
++        name, " must be contiguous CUDA int32 [B,H,R]");
++  };
++  check_counts(low_counts, "low_counts");
++  check_counts(middle_counts, "middle_counts");
++  check_counts(high_counts, "high_counts");
++  const int64_t logical_columns = logical_ids.size(3);
++  const int64_t row_count = logical_ids.numel() / logical_columns;
++  TORCH_CHECK(
++      logical_columns > 0 && logical_columns <= std::numeric_limits<int>::max() &&
++          row_count > 0 && row_count <= kMaxGridX,
++      "logical route geometry exceeds CUDA range");
++
++  c10::cuda::CUDAGuard device_guard(logical_ids.device());
++  auto active = (low_counts + middle_counts + high_counts).reshape({row_count});
++  auto offsets = torch::empty({row_count + 1}, logical_ids.options());
++  offsets.narrow(0, 0, 1).zero_();
++  offsets.narrow(0, 1, row_count).copy_(
++      active.cumsum(0, at::ScalarType::Int));
++  const int64_t total = offsets.select(0, row_count).item<int>();
++  TORCH_CHECK(total > 0, "packed route must retain at least one block");
++  const bool use_short = logical_columns <= std::numeric_limits<int16_t>::max();
++  auto packed = torch::empty(
++      {total},
++      logical_ids.options().dtype(
++          use_short ? at::ScalarType::Short : at::ScalarType::Int));
++  const cudaStream_t stream =
++      at::cuda::getCurrentCUDAStream(logical_ids.get_device());
++  if (use_short) {
++    pack_route_ids_kernel<<<
++        static_cast<unsigned int>(row_count), kThreads, 0, stream>>>(
++        logical_ids.data_ptr<int>(), offsets.data_ptr<int>(),
++        low_counts.data_ptr<int>(), middle_counts.data_ptr<int>(),
++        high_counts.data_ptr<int>(), packed.data_ptr<int16_t>(),
++        static_cast<int>(row_count), static_cast<int>(logical_columns));
++  } else {
++    pack_route_ids_kernel<<<
++        static_cast<unsigned int>(row_count), kThreads, 0, stream>>>(
++        logical_ids.data_ptr<int>(), offsets.data_ptr<int>(),
++        low_counts.data_ptr<int>(), middle_counts.data_ptr<int>(),
++        high_counts.data_ptr<int>(), packed.data_ptr<int>(),
++        static_cast<int>(row_count), static_cast<int>(logical_columns));
++  }
++  C10_CUDA_KERNEL_LAUNCH_CHECK();
++  return {packed, offsets};
++}
++
++std::tuple<torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor>
++sm120_h3_materialize_packed_route(
++    torch::Tensor packed_ids,
++    torch::Tensor row_offsets,
++    torch::Tensor low_counts,
++    torch::Tensor middle_counts,
++    torch::Tensor high_counts,
++    int64_t logical_columns_value,
++    int64_t query_block_size_value,
++    int64_t prefix_blocks_value,
++    int64_t prefix_phase_value,
++    bool prefix_first,
++    bool has_high) {
++  TORCH_CHECK(
++      packed_ids.defined() && packed_ids.is_cuda() &&
++          packed_ids.is_contiguous() && packed_ids.dim() == 1 &&
++          (packed_ids.scalar_type() == at::ScalarType::Short ||
++           packed_ids.scalar_type() == at::ScalarType::Int),
++      "packed_ids must be contiguous CUDA int16/int32 [N]");
++  const auto check_counts = [&](const torch::Tensor& counts, const char* name) {
++    TORCH_CHECK(
++        counts.defined() && counts.is_cuda() && counts.is_contiguous() &&
++            counts.scalar_type() == at::ScalarType::Int &&
++            counts.device() == packed_ids.device() && counts.dim() == 3,
++        name, " must be contiguous CUDA int32 [B,H,R]");
++  };
++  check_counts(low_counts, "low_counts");
++  check_counts(middle_counts, "middle_counts");
++  check_counts(high_counts, "high_counts");
++  TORCH_CHECK(
++      middle_counts.sizes() == low_counts.sizes() &&
++          high_counts.sizes() == low_counts.sizes(),
++      "all packed route count tensors must have matching shapes");
++  const int64_t row_count = low_counts.numel();
++  TORCH_CHECK(
++      row_offsets.defined() && row_offsets.is_cuda() &&
++          row_offsets.is_contiguous() &&
++          row_offsets.scalar_type() == at::ScalarType::Int &&
++          row_offsets.device() == packed_ids.device() &&
++          row_offsets.dim() == 1 && row_offsets.numel() == row_count + 1,
++      "row_offsets must be contiguous CUDA int32 [rows+1]");
++  const int logical_columns =
++      require_nonnegative_int32(logical_columns_value, "logical_columns");
++  TORCH_CHECK(logical_columns > 0, "logical_columns must be positive");
++  TORCH_CHECK(
++      query_block_size_value == 64 || query_block_size_value == 128,
++      "query_block_size must be 64 or 128");
++  const int prefix_blocks =
++      require_nonnegative_int32(prefix_blocks_value, "prefix_blocks");
++  const int prefix_phase =
++      require_nonnegative_int32(prefix_phase_value, "prefix_phase");
++  TORCH_CHECK(prefix_phase < 3, "prefix_phase must be 0, 1, or 2");
++  TORCH_CHECK(
++      has_high || prefix_phase != 2,
++      "FP16 prefix requires active high counts");
++
++  const int factor = static_cast<int>(query_block_size_value / 64);
++  const int64_t physical_columns_value =
++      checked_positive_product(logical_columns, factor, "physical route columns") +
++      prefix_blocks;
++  TORCH_CHECK(
++      physical_columns_value <= std::numeric_limits<int>::max() &&
++          row_count > 0 && row_count <= kMaxGridX,
++      "packed physical route geometry exceeds CUDA range");
++
++  c10::cuda::CUDAGuard device_guard(packed_ids.device());
++  auto physical_sizes = low_counts.sizes().vec();
++  physical_sizes.push_back(physical_columns_value);
++  auto physical_ids = torch::empty(
++      physical_sizes, packed_ids.options().dtype(at::ScalarType::Int));
++  auto physical_low_counts = torch::empty_like(low_counts);
++  auto physical_middle_counts = torch::empty_like(middle_counts);
++  auto physical_high_counts = has_high
++      ? torch::empty_like(high_counts)
++      : torch::empty({0}, high_counts.options());
++  const cudaStream_t stream =
++      at::cuda::getCurrentCUDAStream(packed_ids.get_device());
++#define MPA_LAUNCH_PACKED_MATERIALIZE(id_type) \
++  materialize_packed_route_kernel<<< \
++      static_cast<unsigned int>(row_count), kThreads, 0, stream>>>( \
++      packed_ids.data_ptr<id_type>(), row_offsets.data_ptr<int>(), \
++      low_counts.data_ptr<int>(), middle_counts.data_ptr<int>(), \
++      high_counts.data_ptr<int>(), physical_ids.data_ptr<int>(), \
++      physical_low_counts.data_ptr<int>(), \
++      physical_middle_counts.data_ptr<int>(), \
++      has_high ? physical_high_counts.data_ptr<int>() : nullptr, \
++      static_cast<int>(row_count), static_cast<int>(physical_columns_value), \
++      factor, prefix_blocks, prefix_phase, prefix_first, has_high)
++  if (packed_ids.scalar_type() == at::ScalarType::Short) {
++    MPA_LAUNCH_PACKED_MATERIALIZE(int16_t);
++  } else {
++    MPA_LAUNCH_PACKED_MATERIALIZE(int);
++  }
++#undef MPA_LAUNCH_PACKED_MATERIALIZE
++  C10_CUDA_KERNEL_LAUNCH_CHECK();
++  return {
++      physical_ids,
++      physical_low_counts,
++      physical_middle_counts,
++      physical_high_counts};
++}
++#endif
++
+ #undef MPA_ROUTE_PRECISION_FUNCTION
+ #undef MPA_MATERIALIZE_ROUTE_FUNCTION
+ #undef MPA_ROUTE_DEVICE_OK
+diff --git a/csrc/attention/cuda/sm120/q128_microscaling_preparation.cu b/csrc/attention/cuda/sm120/q128_microscaling_preparation.cu
+index ff50592..3fc3ae9 100644
+--- a/csrc/attention/cuda/sm120/q128_microscaling_preparation.cu
++++ b/csrc/attention/cuda/sm120/q128_microscaling_preparation.cu
+@@ -242,7 +242,9 @@ __device__ __forceinline__ float subgroup_max(float value) {
+   return __shfl_sync(0xffffffffU, value, 0, Group);
+ }
+ 
+-template <typename InputT, int QueryBlock, bool HasMaxPool, int HeadDim>
++template <
++    typename InputT, int QueryBlock, bool HasPool, bool HasMaxPool, int HeadDim,
++    int OperandMode = 0>
+ __global__ void prepare_h3_qk_microscaling_kernel(
+     const InputT* __restrict__ query,
+     const InputT* __restrict__ key,
+@@ -271,6 +273,7 @@ __global__ void prepare_h3_qk_microscaling_kernel(
+     float* __restrict__ k_int8_scale,
+     int8_t* __restrict__ prefix_q_int8,
+     float* __restrict__ prefix_q_int8_scale,
++    bool write_packed_qk,
+     bool has_nvfp4,
+     bool has_int8,
+     bool has_mxfp8,
+@@ -287,6 +290,14 @@ __global__ void prepare_h3_qk_microscaling_kernel(
+     int64_t k_stride_head,
+     int64_t k_stride_token) {
+   static_assert(QueryBlock == 64 || QueryBlock == 128);
++  static_assert(!HasMaxPool || HasPool);
++  if constexpr (OperandMode == 1) {
++    has_nvfp4 = true; has_int8 = true; has_mxfp8 = false;
++    write_packed_qk = false;
++  } else if constexpr (OperandMode == 2) {
++    has_nvfp4 = false; has_int8 = true; has_mxfp8 = false;
++    write_packed_qk = false;
++  }
+   __shared__ int64_t staged_token_indices[128];
+   __shared__ bool staged_slot_valid[128];
+   __shared__ float int8_warp_amax[2][HeadDim / 32];
+@@ -358,7 +369,7 @@ __global__ void prepare_h3_qk_microscaling_kernel(
+ 
+   // Q128 metadata still needs 128 threads when HeadDim is 64.
+   if (HeadDim == 128 || channel < HeadDim) {
+-#pragma unroll 1
++#pragma unroll (OperandMode == 0 ? 1 : 4)
+     for (int token = 0; token < task_tokens; ++token) {
+       const bool token_valid = is_prefix
+           ? prefix_block * task_tokens + token < prefix_tokens
+@@ -372,13 +383,15 @@ __global__ void prepare_h3_qk_microscaling_kernel(
+             raw_token * stride_token + channel;
+         narrowed = load_narrowed_half(input, raw_offset);
+       }
+-      if (!is_prefix) {
++      if constexpr (HasPool) {
++        if (!is_prefix) {
+         pool_sum += __half2float(narrowed);
+         if constexpr (HasMaxPool) {
+           if (token_valid) {
+             pool_max = fmaxf(pool_max, __half2float(narrowed));
+           }
+         }
++        }
+       }
+ 
+       const int64_t natural_row = is_prefix_query
+@@ -391,7 +404,7 @@ __global__ void prepare_h3_qk_microscaling_kernel(
+       const int64_t natural_element =
+           ((batch * heads + head) * output_tokens + natural_row) * HeadDim +
+           channel;
+-      if (!is_prefix_query) packed[natural_element] = narrowed;
++      if (write_packed_qk && !is_prefix_query) packed[natural_element] = narrowed;
+       const float value = __half2float(narrowed);
+ 
+       if (has_int8) {
+@@ -473,7 +486,7 @@ __global__ void prepare_h3_qk_microscaling_kernel(
+     __syncthreads();
+ 
+     if (HeadDim == 128 || channel < HeadDim) {
+-#pragma unroll 1
++#pragma unroll (OperandMode == 0 ? 1 : 4)
+       for (int token = 0; token < task_tokens; ++token) {
+         const bool token_valid = is_prefix
+             ? prefix_block * task_tokens + token < prefix_tokens
+@@ -508,7 +521,8 @@ __global__ void prepare_h3_qk_microscaling_kernel(
+     }
+   }
+ 
+-  if (!is_prefix && (HeadDim == 128 || channel < HeadDim)) {
++  if constexpr (HasPool) {
++    if (!is_prefix && (HeadDim == 128 || channel < HeadDim)) {
+     const int32_t valid_count = video_valid_counts[logical_block];
+     const int64_t pool_offset =
+         ((batch * heads + head) * video_blocks + logical_block) * HeadDim +
+@@ -518,6 +532,7 @@ __global__ void prepare_h3_qk_microscaling_kernel(
+     if constexpr (HasMaxPool) {
+       max_pool[pool_offset] = __float2half_rn(pool_max);
+     }
++    }
+   }
+ }
+ 
+@@ -1034,6 +1049,7 @@ H3SM120Prepared prepare_h3_sm120_operands(
+     bool has_mxfp8,
+     bool has_fp16,
+     bool has_prefix_query_int8,
++    bool has_pool,
+     bool has_maxpool,
+     std::optional<torch::Tensor> q_global_scale,
+     std::optional<torch::Tensor> k_global_scale,
+@@ -1106,13 +1122,16 @@ H3SM120Prepared prepare_h3_sm120_operands(
+       k_global_scale, query, "k_global_scale", has_nvfp4);
+   const float* v_scale = check_h3_optional_scale(
+       v_global_scale, query, "v_global_scale", has_nvfp4);
+-  (void)has_fp16;
+ 
+   const auto fp16_options = query.options().dtype(at::ScalarType::Half);
+   const int64_t head_dim = query.size(3);
+   const auto byte_options = query.options().dtype(at::ScalarType::Byte);
+-  auto q_pool = torch::empty(
+-      {query.size(0), query.size(1), video_blocks, head_dim}, fp16_options);
++  TORCH_CHECK(!has_maxpool || has_pool,
++              "max pooling requires DraftMap pooling");
++  auto q_pool = has_pool
++      ? torch::empty(
++            {query.size(0), query.size(1), video_blocks, head_dim}, fp16_options)
++      : torch::empty({0}, fp16_options);
+   auto k_pool = torch::empty_like(q_pool);
+   auto q_max_pool = has_maxpool ? torch::empty_like(q_pool)
+                                 : torch::empty({0}, fp16_options);
+@@ -1248,15 +1267,20 @@ H3SM120Prepared prepare_h3_sm120_operands(
+       "H3 donor-first preparation grid exceeds CUDA limits");
+   const cudaStream_t stream =
+       at::cuda::getCurrentCUDAStream(query.get_device());
+-  const auto launch = [&](auto head_dim_tag, auto query_block_tag, auto* input_tag, auto max_tag) {
++  const auto launch = [&](auto head_dim_tag, auto query_block_tag, auto* input_tag,
++                          auto pool_tag, auto max_tag) {
+     constexpr int HeadDim = decltype(head_dim_tag)::value;
+     constexpr int QueryBlock = decltype(query_block_tag)::value;
+     using InputT = std::remove_pointer_t<decltype(input_tag)>;
++    constexpr bool HasPool = decltype(pool_tag)::value;
+     constexpr bool HasMaxPool = decltype(max_tag)::value;
+     const dim3 qk_grid(
+         static_cast<uint32_t>(qk_tasks),
+         static_cast<uint32_t>(query.size(0)));
+-    prepare_h3_qk_microscaling_kernel<InputT, QueryBlock, HasMaxPool, HeadDim><<<
++    const auto launch_qk = [&](auto mode_tag) {
++    constexpr int OperandMode = decltype(mode_tag)::value;
++    prepare_h3_qk_microscaling_kernel<
++        InputT, QueryBlock, HasPool, HasMaxPool, HeadDim, OperandMode><<<
+         qk_grid, 128, 0, stream>>>(
+         reinterpret_cast<const InputT*>(query.data_ptr()),
+         reinterpret_cast<const InputT*>(key.data_ptr()),
+@@ -1265,8 +1289,8 @@ H3SM120Prepared prepare_h3_sm120_operands(
+         video_valid_counts.data_ptr<int32_t>(),
+         q_scale,
+         k_scale,
+-        reinterpret_cast<half*>(q_pool.data_ptr<at::Half>()),
+-        reinterpret_cast<half*>(k_pool.data_ptr<at::Half>()),
++        HasPool ? reinterpret_cast<half*>(q_pool.data_ptr<at::Half>()) : nullptr,
++        HasPool ? reinterpret_cast<half*>(k_pool.data_ptr<at::Half>()) : nullptr,
+         HasMaxPool
+             ? reinterpret_cast<half*>(q_max_pool.data_ptr<at::Half>())
+             : nullptr,
+@@ -1291,6 +1315,7 @@ H3SM120Prepared prepare_h3_sm120_operands(
+         has_prefix_query_int8
+             ? prefix_q_int8_scale.data_ptr<float>()
+             : nullptr,
++        has_fp16 || has_pool,
+         has_nvfp4,
+         has_int8,
+         has_mxfp8,
+@@ -1302,6 +1327,18 @@ H3SM120Prepared prepare_h3_sm120_operands(
+         key_physical_tokens,
+         query.stride(0), query.stride(1), query.stride(2),
+         key.stride(0), key.stride(1), key.stride(2));
++    };
++    if constexpr (HeadDim == 128 && QueryBlock == 128 && !HasPool) {
++      if (has_nvfp4 && has_int8 && !has_mxfp8 && !has_fp16) {
++        launch_qk(std::integral_constant<int, 1>{});
++      } else if (!has_nvfp4 && has_int8 && !has_mxfp8 && !has_fp16) {
++        launch_qk(std::integral_constant<int, 2>{});
++      } else {
++        launch_qk(std::integral_constant<int, 0>{});
++      }
++    } else {
++      launch_qk(std::integral_constant<int, 0>{});
++    }
+     C10_CUDA_KERNEL_LAUNCH_CHECK();
+ 
+     const dim3 v_grid(
+@@ -1352,15 +1389,25 @@ H3SM120Prepared prepare_h3_sm120_operands(
+   const auto dispatch_input = [&](auto head_dim_tag, auto* input_tag) {
+     if (query_block_size == 64) {
+       if (has_maxpool) {
+-        launch(head_dim_tag, std::integral_constant<int, 64>{}, input_tag, std::true_type{});
++        launch(head_dim_tag, std::integral_constant<int, 64>{}, input_tag,
++               std::true_type{}, std::true_type{});
++      } else if (has_pool) {
++        launch(head_dim_tag, std::integral_constant<int, 64>{}, input_tag,
++               std::true_type{}, std::false_type{});
+       } else {
+-        launch(head_dim_tag, std::integral_constant<int, 64>{}, input_tag, std::false_type{});
++        launch(head_dim_tag, std::integral_constant<int, 64>{}, input_tag,
++               std::false_type{}, std::false_type{});
+       }
+     } else {
+       if (has_maxpool) {
+-        launch(head_dim_tag, std::integral_constant<int, 128>{}, input_tag, std::true_type{});
++        launch(head_dim_tag, std::integral_constant<int, 128>{}, input_tag,
++               std::true_type{}, std::true_type{});
++      } else if (has_pool) {
++        launch(head_dim_tag, std::integral_constant<int, 128>{}, input_tag,
++               std::true_type{}, std::false_type{});
+       } else {
+-        launch(head_dim_tag, std::integral_constant<int, 128>{}, input_tag, std::false_type{});
++        launch(head_dim_tag, std::integral_constant<int, 128>{}, input_tag,
++               std::false_type{}, std::false_type{});
+       }
+     }
+   };
+diff --git a/csrc/attention/cuda/sm120/q64_attention.cuh b/csrc/attention/cuda/sm120/q64_attention.cuh
+index 6663cb1..edeb1cd 100644
+--- a/csrc/attention/cuda/sm120/q64_attention.cuh
++++ b/csrc/attention/cuda/sm120/q64_attention.cuh
+@@ -56,6 +56,9 @@
+ #ifndef MPA_STORE_LSE
+ #define MPA_STORE_LSE 1
+ #endif
++#ifndef MPA_CAPTURE_IMPORTANCE
++#define MPA_CAPTURE_IMPORTANCE 0
++#endif
+ #define MPA_THREE_PHASE \
+   (MPA_LOW4_NVFP4 && (MPA_MIDDLE_MXFP8 || MPA_MIDDLE_INT8))
+ 
+@@ -76,6 +79,44 @@ static_assert(
+ 
+ namespace mpa::attention {
+ 
++#if MPA_CAPTURE_IMPORTANCE
++static_assert(MPA_DENSE_SEQUENTIAL && MPA_MIDDLE_INT8 && !MPA_LOW4_NVFP4);
++
++template <uint32_t NumTilesQ, uint32_t NumTilesK>
++__device__ __forceinline__ void capture_tile_max_importance(
++    float (&scores)[NumTilesQ][NumTilesK][8],
++    float score_scale,
++    half* tile_importance,
++    float* warp_maxima,
++    uint32_t warp_id,
++    uint32_t num_warps,
++    uint32_t metadata_row,
++    uint32_t num_physical_stages,
++    uint32_t absolute_stage) {
++  float local_max = -__int_as_float(0x7f800000);
++#pragma unroll
++  for (uint32_t fq = 0; fq < NumTilesQ; ++fq) {
++#pragma unroll
++    for (uint32_t fk = 0; fk < NumTilesK; ++fk) {
++#pragma unroll
++      for (uint32_t element = 0; element < 8; ++element) {
++        local_max = fmaxf(local_max, scores[fq][fk][element]);
++      }
++    }
++  }
++  for (uint32_t offset = 16; offset != 0; offset >>= 1) {
++    local_max = fmaxf(
++        local_max,
++        __shfl_down_sync(0xffffffffU, local_max, offset));
++  }
++  if (get_lane_id() == 0) {
++    tile_importance[(metadata_row * num_physical_stages + absolute_stage) *
++                        num_warps + warp_id] =
++        __float2half_rn(fmaxf(-3.402823466e+38F, local_max * score_scale));
++  }
++}
++#endif
++
+ #ifndef MPA_CTA_Q
+ #define MPA_CTA_Q 128
+ #endif
+@@ -1214,6 +1255,9 @@ void MPA_ATTENTION_KERNEL_ENTRY(
+     const int32_t* __restrict__ valid_k_counts,
+     float* __restrict__ lse,
+     uint32_t fp16_prefix_stages,
++#endif
++#if MPA_CAPTURE_IMPORTANCE
++    half* __restrict__ tile_importance,
+ #endif
+     uint32_t qo_len,
+     uint32_t kv_len,
+@@ -1231,6 +1275,9 @@ void MPA_ATTENTION_KERNEL_ENTRY(
+   constexpr uint32_t num_warps_q = kCtaQ / kWarpQ;
+   constexpr uint32_t num_warps_k = kCtaK / kWarpK;
+   constexpr uint32_t num_warps = num_warps_q * num_warps_k;
++#if MPA_CAPTURE_IMPORTANCE
++  __shared__ float importance_warp_maxima[num_warps];
++#endif
+   constexpr uint32_t num_tiles_q = kWarpQ / kMmaQkM;
+   constexpr uint32_t num_tiles_k = kWarpK / kMmaQkN;
+   constexpr uint32_t num_tiles_v = HeadDim / kMmaPvN;
+@@ -1492,6 +1539,9 @@ void MPA_ATTENTION_LAUNCH_ENTRY(
+     const int32_t* valid_k_counts,
+     float* lse,
+     uint32_t fp16_prefix_stages,
++#endif
++#if MPA_CAPTURE_IMPORTANCE
++    half* tile_importance,
+ #endif
+     uint32_t batch_size,
+     uint32_t qo_len,
+@@ -1537,6 +1587,9 @@ void MPA_ATTENTION_LAUNCH_ENTRY(
+ #endif
+ #if defined(MPA_K64_BLOCK_MODE)
+       valid_k_counts, lse, fp16_prefix_stages,
++#endif
++#if MPA_CAPTURE_IMPORTANCE
++      tile_importance,
+ #endif
+       qo_len, kv_len,
+       padded_kv_len, num_qo_heads / num_kv_heads, softmax_scale);
+@@ -1547,4 +1600,5 @@ void MPA_ATTENTION_LAUNCH_ENTRY(
+ #undef MPA_THREE_PHASE
+ #undef MPA_DENSE_SEQUENTIAL
+ #undef MPA_STORE_LSE
++#undef MPA_CAPTURE_IMPORTANCE
+ #undef MPA_MIN_BLOCKS_PER_SM
+diff --git a/csrc/attention/cuda/sm120/q64_attention_decl.cuh b/csrc/attention/cuda/sm120/q64_attention_decl.cuh
+index 37e4681..db859b0 100644
+--- a/csrc/attention/cuda/sm120/q64_attention_decl.cuh
++++ b/csrc/attention/cuda/sm120/q64_attention_decl.cuh
+@@ -163,6 +163,24 @@ MPA_DECLARE_INT8_LAUNCH(launch_mixed_attention_sm120_q64_int8_dense);
+ MPA_DECLARE_INT8_LAUNCH(launch_mixed_attention_sm120_q128_int8_dense);
+ #undef MPA_DECLARE_INT8_LAUNCH
+ 
++#define MPA_DECLARE_INT8_IMPORTANCE_LAUNCH(name) \
++template <uint32_t HeadDim, bool HasFp8, bool HasFp16, bool SmoothK> \
++void name( \
++    int8_t* q8, int8_t* k8, __nv_fp8_e4m3* v8, \
++    half* q16, half* k16, half* v16, half* k_mean, half* output, \
++    int32_t* fp8_lut, int32_t* fp8_count, int32_t* fp16_lut, \
++    int32_t* fp16_count, float* q_scale, float* k_scale, float* v_scale, \
++    const int32_t* valid_k_counts, float* lse, uint32_t fp16_prefix_stages, \
++    half* tile_importance, uint32_t batch_size, uint32_t qo_len, \
++    uint32_t kv_len, uint32_t padded_kv_len, uint32_t num_qo_heads, \
++    uint32_t num_kv_heads, float softmax_scale, cudaStream_t stream)
++
++MPA_DECLARE_INT8_IMPORTANCE_LAUNCH(
++    launch_mixed_attention_sm120_q64_int8_dense_importance);
++MPA_DECLARE_INT8_IMPORTANCE_LAUNCH(
++    launch_mixed_attention_sm120_q128_int8_dense_importance);
++#undef MPA_DECLARE_INT8_IMPORTANCE_LAUNCH
++
+ #define MPA_DECLARE_THREE_PHASE_LAUNCH(name, scale_type) \
+ template <uint32_t HeadDim, bool HasFp8, bool HasFp16, bool SmoothK> \
+ void name( \
+diff --git a/csrc/attention/cuda/sm120/q64_attention_host.cu b/csrc/attention/cuda/sm120/q64_attention_host.cu
+index 7b0feb7..f8a8f58 100644
+--- a/csrc/attention/cuda/sm120/q64_attention_host.cu
++++ b/csrc/attention/cuda/sm120/q64_attention_host.cu
+@@ -11,6 +11,7 @@
+ #include <array>
+ #include <cmath>
+ #include <cstdint>
++#include <limits>
+ #include <tuple>
+ #include <type_traits>
+ 
+@@ -543,6 +544,142 @@ torch::Tensor sm120_q128_prefix_int8_attention_forward(
+       prefix_tokens, softmax_scale);
+ }
+ 
++template <uint32_t QueryBlock>
++std::tuple<torch::Tensor, torch::Tensor>
++dense_int8_importance_attention_forward(
++    torch::Tensor q8,
++    torch::Tensor k8,
++    torch::Tensor v8,
++    torch::Tensor q_scale,
++    torch::Tensor k_scale,
++    torch::Tensor v_scale,
++    torch::Tensor valid_k_counts,
++    double softmax_scale) {
++  static_assert(QueryBlock == 64 || QueryBlock == 128);
++  const std::pair<const torch::Tensor*, const char*> tensors[] = {
++      {&q8, "q8"}, {&k8, "k8"}, {&v8, "v8"},
++      {&q_scale, "q_scale"}, {&k_scale, "k_scale"},
++      {&v_scale, "v_scale"}, {&valid_k_counts, "valid_k_counts"}};
++  for (const auto& item : tensors) {
++    check_cuda_contiguous(*item.first, item.second);
++    check_same_device(*item.first, q8, item.second);
++  }
++  TORCH_CHECK(
++      q8.scalar_type() == at::ScalarType::Char &&
++          k8.scalar_type() == at::ScalarType::Char,
++      "q8/k8 must be int8");
++  TORCH_CHECK(
++      v8.scalar_type() == at::ScalarType::Float8_e4m3fn,
++      "v8 must be float8_e4m3fn");
++  TORCH_CHECK(
++      q8.dim() == 4 && q8.size(0) > 0 && q8.size(1) > 0 &&
++          q8.size(2) > 0 && q8.size(2) % QueryBlock == 0 &&
++          (q8.size(3) == 64 || q8.size(3) == 128),
++      "q8 must have shape [B,Hq,Q,D] with Q divisible by query block");
++  TORCH_CHECK(
++      k8.dim() == 4 && k8.size(0) == q8.size(0) && k8.size(1) > 0 &&
++          k8.size(2) > 0 && k8.size(2) % 64 == 0 &&
++          k8.size(3) == q8.size(3) && q8.size(1) % k8.size(1) == 0,
++      "k8 must have compatible [B,Hkv,K,D] K64 layout");
++  TORCH_CHECK(
++      v8.dim() == 4 && v8.size(0) == q8.size(0) &&
++          v8.size(1) == k8.size(1) && v8.size(2) == q8.size(3) &&
++          v8.size(3) >= ((k8.size(2) + 127) / 128) * 128 &&
++          v8.size(3) % 128 == 0,
++      "v8 must have verified [B,Hkv,D,padded_K] layout");
++  TORCH_CHECK(
++      std::isfinite(softmax_scale) && softmax_scale > 0.0,
++      "softmax_scale must be finite and positive");
++
++  const int64_t query_blocks = q8.size(2) / QueryBlock;
++  const int64_t key_blocks = k8.size(2) / 64;
++  for (const auto& item : {
++           std::pair<const torch::Tensor*, const char*>(&q_scale, "q_scale"),
++           std::pair<const torch::Tensor*, const char*>(&k_scale, "k_scale"),
++           std::pair<const torch::Tensor*, const char*>(&v_scale, "v_scale")}) {
++    TORCH_CHECK(
++        item.first->scalar_type() == at::ScalarType::Float,
++        item.second, " must be FP32");
++  }
++  TORCH_CHECK(
++      q_scale.sizes() == torch::IntArrayRef(
++          {q8.size(0), q8.size(1), query_blocks}),
++      "q_scale must have shape [B,Hq,Q/query_block]");
++  TORCH_CHECK(
++      k_scale.sizes() == torch::IntArrayRef(
++          {q8.size(0), k8.size(1), key_blocks}),
++      "k_scale must have shape [B,Hkv,K/64]");
++  TORCH_CHECK(
++      v_scale.sizes() == torch::IntArrayRef(
++          {q8.size(0), k8.size(1), q8.size(3)}),
++      "v_scale must have shape [B,Hkv,D]");
++  TORCH_CHECK(
++      valid_k_counts.scalar_type() == at::ScalarType::Int &&
++          valid_k_counts.sizes() ==
++              torch::IntArrayRef({q8.size(0), key_blocks}),
++      "valid_k_counts must have shape [B,K/64]");
++
++  auto output = torch::empty(
++      q8.sizes(), q8.options().dtype(at::ScalarType::Half));
++  auto importance = torch::empty(
++      // Q64 capture uses warp-Q16; Q128 capture uses warp-Q32: four warps each.
++      {q8.size(0), q8.size(1), query_blocks, key_blocks, 4},
++      q8.options().dtype(at::ScalarType::Half));
++  c10::cuda::CUDAGuard device_guard(q8.device());
++  cudaStream_t stream = at::cuda::getCurrentCUDAStream(q8.get_device());
++  const auto launch = [&](auto head_dim_tag) {
++    constexpr uint32_t HeadDim = decltype(head_dim_tag)::value;
++    auto launcher = QueryBlock == 64
++        ? launch_mixed_attention_sm120_q64_int8_dense_importance<
++              HeadDim, true, false, false>
++        : launch_mixed_attention_sm120_q128_int8_dense_importance<
++              HeadDim, true, false, false>;
++    launcher(
++        q8.data_ptr<int8_t>(), k8.data_ptr<int8_t>(),
++        reinterpret_cast<__nv_fp8_e4m3*>(v8.data_ptr()),
++        nullptr, nullptr, nullptr, nullptr,
++        reinterpret_cast<half*>(output.data_ptr<at::Half>()),
++        nullptr, nullptr, nullptr, nullptr,
++        q_scale.data_ptr<float>(), k_scale.data_ptr<float>(),
++        v_scale.data_ptr<float>(), valid_k_counts.data_ptr<int32_t>(),
++        nullptr, 0, reinterpret_cast<half*>(importance.data_ptr<at::Half>()),
++        static_cast<uint32_t>(q8.size(0)),
++        static_cast<uint32_t>(q8.size(2)),
++        static_cast<uint32_t>(k8.size(2)),
++        static_cast<uint32_t>(v8.size(3)),
++        static_cast<uint32_t>(q8.size(1)),
++        static_cast<uint32_t>(k8.size(1)),
++        static_cast<float>(softmax_scale), stream);
++  };
++  if (q8.size(3) == 64) {
++    launch(std::integral_constant<uint32_t, 64>{});
++  } else {
++    launch(std::integral_constant<uint32_t, 128>{});
++  }
++  C10_CUDA_KERNEL_LAUNCH_CHECK();
++  return {output, importance.amax({-1}, false)};
++}
++
++std::tuple<torch::Tensor, torch::Tensor>
++sm120_q64_dense_int8_importance_attention_forward(
++    torch::Tensor q8, torch::Tensor k8, torch::Tensor v8,
++    torch::Tensor q_scale, torch::Tensor k_scale, torch::Tensor v_scale,
++    torch::Tensor valid_k_counts, double softmax_scale) {
++  return dense_int8_importance_attention_forward<64>(
++      q8, k8, v8, q_scale, k_scale, v_scale, valid_k_counts,
++      softmax_scale);
++}
++
++std::tuple<torch::Tensor, torch::Tensor>
++sm120_q128_dense_int8_importance_attention_forward(
++    torch::Tensor q8, torch::Tensor k8, torch::Tensor v8,
++    torch::Tensor q_scale, torch::Tensor k_scale, torch::Tensor v_scale,
++    torch::Tensor valid_k_counts, double softmax_scale) {
++  return dense_int8_importance_attention_forward<128>(
++      q8, k8, v8, q_scale, k_scale, v_scale, valid_k_counts,
++      softmax_scale);
++}
++
+ template <uint32_t QueryBlock, bool CompactSequential = false>
+ std::tuple<torch::Tensor, torch::Tensor> mxfp8_attention_forward(
+     torch::Tensor q_mxfp8,
+@@ -1034,7 +1171,7 @@ std::tuple<torch::Tensor, torch::Tensor> three_phase_forward(
+     torch::Tensor k_global_scale, torch::Tensor v_global_scale,
+     int64_t fp16_prefix_blocks, double softmax_scale, bool active_fp16) {
+   static_assert(QueryBlock == 64 || QueryBlock == 128);
+-  for (const auto& item : {
++  const std::pair<const torch::Tensor*, const char*> tensors_to_check[] = {
+            std::pair<const torch::Tensor*, const char*>(&q4, "q4"),
+            {&q4_scale, "q4_scale"}, {&k4, "k4"},
+            {&k4_scale, "k4_scale"}, {&v4, "v4"},
+@@ -1048,7 +1185,8 @@ std::tuple<torch::Tensor, torch::Tensor> three_phase_forward(
+            {&valid_k_counts, "valid_k_counts"},
+            {&q_global_scale, "q_global_scale"},
+            {&k_global_scale, "k_global_scale"},
+-           {&v_global_scale, "v_global_scale"}}) {
++           {&v_global_scale, "v_global_scale"}};
++  for (const auto& item : tensors_to_check) {
+     check_cuda_contiguous(*item.first, item.second);
+     check_same_device(*item.first, q16, item.second);
+   }
+diff --git a/csrc/attention/cuda/sm120/q64_attention_phase_composer.inl b/csrc/attention/cuda/sm120/q64_attention_phase_composer.inl
+index 289420f..d61de86 100644
+--- a/csrc/attention/cuda/sm120/q64_attention_phase_composer.inl
++++ b/csrc/attention/cuda/sm120/q64_attention_phase_composer.inl
+@@ -697,6 +697,12 @@
+             apply_out_of_bound_mask<num_tiles_q, num_tiles_k>(
+                 k_index_base, rs_storage.as_float, valid_k);
+           }
++#endif
++#if MPA_CAPTURE_IMPORTANCE
++          capture_tile_max_importance(
++              rs_storage.as_float, current_dequant_scale, tile_importance,
++              importance_warp_maxima, warp_id, num_warps,
++              metadata_row, num_physical_stages, absolute_stage);
+ #endif
+           update_mdo<
+               num_tiles_q, num_tiles_k, num_tiles_v, false, true, false>(
+@@ -811,6 +817,13 @@
+           }
+ #endif
+ 
++#if MPA_CAPTURE_IMPORTANCE
++          capture_tile_max_importance(
++              rs_storage.as_float, 1.0f, tile_importance,
++              importance_warp_maxima, warp_id, num_warps,
++              metadata_row, num_physical_stages, absolute_stage);
++#endif
++
+           __syncthreads();
+ #if MPA_DENSE_SEQUENTIAL
+           absolute_stage = low_iterations - 1;
+@@ -927,6 +940,12 @@
+               2 * (lane_id % 4);
+           apply_out_of_bound_mask<num_tiles_q, num_tiles_k>(
+               k_index_base, rs_storage.as_float, kv_len);
++#endif
++#if MPA_CAPTURE_IMPORTANCE
++          capture_tile_max_importance(
++              rs_storage.as_float, 1.0f, tile_importance,
++              importance_warp_maxima, warp_id, num_warps,
++              metadata_row, num_physical_stages, absolute_stage);
+ #endif
+           update_mdo<
+               num_tiles_q, num_tiles_k, num_tiles_v, false, true, false>(
+diff --git a/csrc/attention/cuda/sm89/h3_route_precision.cu b/csrc/attention/cuda/sm89/h3_route_precision.cu
+index 0549b36..70b658d 100644
+--- a/csrc/attention/cuda/sm89/h3_route_precision.cu
++++ b/csrc/attention/cuda/sm89/h3_route_precision.cu
+@@ -12,5 +12,6 @@
+ // its explicit video route. Preserve that exact ordering for auto/fp16 while
+ // materializing explicit leading prefix IDs for the INT8 phase.
+ #define MPA_IMPLICIT_HIGH_PREFIX 1
++#define MPA_ENABLE_PACKED_ROUTE 0
+ 
+ #include "../sm120/h3_route_precision.cu"
+diff --git a/setup.py b/setup.py
+index a8622d6..9e0e134 100644
+--- a/setup.py
++++ b/setup.py
+@@ -109,8 +109,8 @@ def _extensions():
+                         "--use_fast_math",
+                         "-lineinfo",
+                         "-Xptxas=-v",
+-                        "-Xcompiler",
+-                        "-include,cassert",
++                        "-include",
++                        "cassert",
+                     ],
+                 },
+             )
+@@ -133,9 +133,11 @@ def _extensions():
+                     _source(sm120 / "instantiations" / "inst_q64_k64_d128_int8.cu"),
+                     _source(sm120 / "instantiations" / "inst_q64_k64_d128_int8_fp16.cu"),
+                     _source(sm120 / "instantiations" / "inst_q64_k64_d128_int8_dense.cu"),
++                    _source(sm120 / "instantiations" / "inst_q64_k64_d128_int8_dense_importance.cu"),
+                     _source(sm120 / "instantiations" / "inst_q128_k64_d128_fp16.cu"),
+                     _source(sm120 / "instantiations" / "inst_q128_k64_d128_int8.cu"),
+                     _source(sm120 / "instantiations" / "inst_q128_k64_d128_int8_dense.cu"),
++                    _source(sm120 / "instantiations" / "inst_q128_k64_d128_int8_dense_importance.cu"),
+                     _source(sm120 / "instantiations" / "inst_q128_k64_d128_mxfp8.cu"),
+                     _source(sm120 / "instantiations" / "inst_q128_k64_d128_mxfp8_compact.cu"),
+                     _source(sm120 / "instantiations" / "inst_q128_k64_d128_nvfp4.cu"),
+@@ -163,8 +165,8 @@ def _extensions():
+                         "--use_fast_math",
+                         "-lineinfo",
+                         "-Xptxas=-v",
+-                        "-Xcompiler",
+-                        "-include,cassert",
++                        "-include",
++                        "cassert",
+                     ],
+                 },
+             )
+diff --git a/tests/test_minimax_h3_config.py b/tests/test_minimax_h3_config.py
+index aab9c38..b80ad1f 100644
+--- a/tests/test_minimax_h3_config.py
++++ b/tests/test_minimax_h3_config.py
+@@ -47,6 +47,7 @@ class MiniMaxH3MPAConfigTests(unittest.TestCase):
+                 "strict",
+                 "maxpool_weight",
+                 "smooth_k",
++                "reuse_first_step_route",
+             ),
+         )
+ 
+diff --git a/tests/test_sm120_q64_backend.py b/tests/test_sm120_q64_backend.py
+index 7e210c3..2cff358 100644
+--- a/tests/test_sm120_q64_backend.py
++++ b/tests/test_sm120_q64_backend.py
+@@ -221,6 +221,7 @@ class SM120Q64BackendTests(unittest.TestCase):
+                 True,
+                 True,
+                 True,
++                True,
+                 *scales,
+             ),
+         )
+diff --git a/csrc/attention/cuda/sm120/instantiations/inst_q128_k64_d128_int8_dense_importance.cu b/csrc/attention/cuda/sm120/instantiations/inst_q128_k64_d128_int8_dense_importance.cu
+new file mode 100644
+index 0000000..807b873
+--- /dev/null
++++ b/csrc/attention/cuda/sm120/instantiations/inst_q128_k64_d128_int8_dense_importance.cu
+@@ -0,0 +1,27 @@
++/* Dense sequential Q128 INT8 attention with exact-QK tile maxima. */
++#define MPA_CTA_Q 128
++#define MPA_WARP_Q 32
++#define MPA_K64_BLOCK_MODE 1
++#define MPA_MIDDLE_INT8 1
++#define MPA_DENSE_SEQUENTIAL 1
++#define MPA_CAPTURE_IMPORTANCE 1
++#define MPA_STORE_LSE 0
++#define MPA_ATTENTION_KERNEL_ENTRY \
++  mixed_attention_sm120_q128_int8_dense_importance_kernel
++#define MPA_ATTENTION_LAUNCH_ENTRY \
++  launch_mixed_attention_sm120_q128_int8_dense_importance
++#include "../q64_attention.cuh"
++
++template void launch_mixed_attention_sm120_q128_int8_dense_importance<
++    128, true, false, false>(
++    int8_t*, int8_t*, __nv_fp8_e4m3*, half*, half*, half*, half*, half*,
++    int32_t*, int32_t*, int32_t*, int32_t*, float*, float*, float*,
++    const int32_t*, float*, uint32_t, half*, uint32_t, uint32_t, uint32_t,
++    uint32_t, uint32_t, uint32_t, float, cudaStream_t);
++
++template void launch_mixed_attention_sm120_q128_int8_dense_importance<
++    64, true, false, false>(
++    int8_t*, int8_t*, __nv_fp8_e4m3*, half*, half*, half*, half*, half*,
++    int32_t*, int32_t*, int32_t*, int32_t*, float*, float*, float*,
++    const int32_t*, float*, uint32_t, half*, uint32_t, uint32_t, uint32_t,
++    uint32_t, uint32_t, uint32_t, float, cudaStream_t);
+diff --git a/csrc/attention/cuda/sm120/instantiations/inst_q64_k64_d128_int8_dense_importance.cu b/csrc/attention/cuda/sm120/instantiations/inst_q64_k64_d128_int8_dense_importance.cu
+new file mode 100644
+index 0000000..66d312e
+--- /dev/null
++++ b/csrc/attention/cuda/sm120/instantiations/inst_q64_k64_d128_int8_dense_importance.cu
+@@ -0,0 +1,27 @@
++/* Dense sequential INT8 attention that also captures exact-QK tile maxima. */
++#define MPA_CTA_Q 64
++#define MPA_WARP_Q 16
++#define MPA_K64_BLOCK_MODE 1
++#define MPA_MIDDLE_INT8 1
++#define MPA_DENSE_SEQUENTIAL 1
++#define MPA_CAPTURE_IMPORTANCE 1
++#define MPA_STORE_LSE 0
++#define MPA_ATTENTION_KERNEL_ENTRY \
++  mixed_attention_sm120_q64_int8_dense_importance_kernel
++#define MPA_ATTENTION_LAUNCH_ENTRY \
++  launch_mixed_attention_sm120_q64_int8_dense_importance
++#include "../q64_attention.cuh"
++
++template void launch_mixed_attention_sm120_q64_int8_dense_importance<
++    128, true, false, false>(
++    int8_t*, int8_t*, __nv_fp8_e4m3*, half*, half*, half*, half*, half*,
++    int32_t*, int32_t*, int32_t*, int32_t*, float*, float*, float*,
++    const int32_t*, float*, uint32_t, half*, uint32_t, uint32_t, uint32_t,
++    uint32_t, uint32_t, uint32_t, float, cudaStream_t);
++
++template void launch_mixed_attention_sm120_q64_int8_dense_importance<
++    64, true, false, false>(
++    int8_t*, int8_t*, __nv_fp8_e4m3*, half*, half*, half*, half*, half*,
++    int32_t*, int32_t*, int32_t*, int32_t*, float*, float*, float*,
++    const int32_t*, float*, uint32_t, half*, uint32_t, uint32_t, uint32_t,
++    uint32_t, uint32_t, uint32_t, float, cudaStream_t);
+diff --git a/docs/exact_first_step_route_reuse.md b/docs/exact_first_step_route_reuse.md
+new file mode 100644
+index 0000000..08f2be3
+--- /dev/null
++++ b/docs/exact_first_step_route_reuse.md
+@@ -0,0 +1,101 @@
++# Exact first-step route reuse
++
++The SM120 MiniMax-H3 path can derive its sparse mixed-precision route from the
++actual dense INT8 QK computation at the first denoising step and reuse that
++route at later steps. This mode removes the Mean/MeanMax DraftMap from both
++the capture and reuse paths.
++
++## Public attention API
++
++Create one request-local cache and use the same instance for every layer and
++denoising step:
++
++```python
++from anemoi import (
++    AttentionRouteCache,
++    NVFP4Calibration,
++    QuantConfig,
++    SparseConfig,
++    VisualLayout,
++    anemoi_attention,
++)
++
++route_cache = AttentionRouteCache()
++sparse = SparseConfig(query_block_size=64, sparsity_ratio=0.75)
++quant = QuantConfig(nvfp4_ratio=0.60, int8_ratio=0.40)
++
++# Step 0: dense INT8 output plus exact QK-tile importance capture.
++out0 = anemoi_attention(
++    q0, k0, v0,
++    layout=layout,
++    layer=layer,
++    sparse_config=sparse,
++    quant_config=quant,
++    calibration=calibration,
++    first_step=True,
++    route_cache=route_cache,
++)
++
++# Steps 1..N: no DraftMap pooling, scoring, or route sorting.
++out1 = anemoi_attention(
++    q1, k1, v1,
++    layout=layout,
++    layer=layer,
++    sparse_config=sparse,
++    quant_config=quant,
++    calibration=calibration,
++    first_step=False,
++    route_cache=route_cache,
++)
++```
++
++`first_step=True` computes the returned attention output entirely with the
++dense INT8 path. Inside the same QK kernel it reduces each actual quantized
++Q-by-64 physical QK tile to its maximum score. Q128 routing then max-pools each
++adjacent pair of physical K64 tiles into its logical Q128-by-K128 score. The
++existing global fixed-budget router assigns retained tiles to the requested
++precision fractions. The route is stored per layer as a ragged int16 ID stream
++plus row offsets.
++
++`first_step=False` requires a matching cached route. Geometry, device,
++sparsity, precision fractions, and anchor policy are included in the cache
++signature; a mismatch fails instead of silently using a stale route.
++
++The cache is request-local. Clear it before a new request, or let the H3
++adapter clear it when the denoising step sequence restarts.
++
++## MiniMax-H3 adapter
++
++Set `reuse_first_step_route=True` in `H3MPAConfig`. The adapter passes
++`first_step=(step == 0)`, owns the request-local cache, and exposes cached
++entry/byte counts in its runtime statistics.
++
++This mode intentionally bypasses `dense_first_steps`: the first step is dense
++INT8 by construction. `dense_first_layers` remains an independent policy.
++
++## Memory representation
++
++The route cache does not retain an `[heads, query_blocks, key_blocks]` int32
++matrix. Only active tile IDs are stored, ordered by NVFP4, middle precision,
++and FP16 phase, with one offset per route row. The native materializer expands
++one layer's route directly into the physical K64 execution list when needed.
++
++For the measured 75% skip policy on 56-head H3 inputs:
++
++| Q tile | Tokens | Cached route / layer | Approx. 50-layer cache |
++|---:|---:|---:|---:|
++| 64 | 38,661 | 10.34 MB | 0.52 GB |
++| 128 | 38,661 | 2.72 MB | 0.14 GB |
++| 64 | 110,013 | 83.60 MB | 4.18 GB |
++
++## Current limitations
++
++- The captured statistic is the maximum actual quantized QK score in each
++  tile. Other reductions (softmax mass, top-k sum, or temporal aggregation)
++  are not yet exposed.
++- The route is fixed after step 0. It does not currently refresh when the
++  attention structure drifts later in denoising.
++- Capture and routing add work to the already-dense first step. The approach
++  is most attractive when the first step is dense for quality anyway, or for
++  long sequences where eliminating repeated quadratic DraftMap routing is
++  valuable.
+diff --git a/tests/test_exact_route_cache.py b/tests/test_exact_route_cache.py
+new file mode 100644
+index 0000000..39bf742
+--- /dev/null
++++ b/tests/test_exact_route_cache.py
+@@ -0,0 +1,55 @@
++from __future__ import annotations
++
++import unittest
++from unittest import mock
++
++import torch
++
++from anemoi.layers.attention.mpa.routing import (
++    AttentionRouteCache,
++    RaggedRoutePlan,
++)
++from anemoi.layers.attention.mpa.executor import _compact_exact_route
++
++
++class ExactRouteCacheTests(unittest.TestCase):
++    def _plan(self) -> RaggedRoutePlan:
++        ids = torch.zeros((1, 2, 3, 4), dtype=torch.int32)
++        counts = torch.zeros((1, 2, 3), dtype=torch.int32)
++        return RaggedRoutePlan(ids, counts, counts, counts, 0, 1, 2)
++
++    def test_cache_is_layer_scoped_and_signature_checked(self) -> None:
++        cache = AttentionRouteCache()
++        plan = self._plan()
++        cache.store(7, ("cuda", 0, 3), plan)
++        self.assertIs(cache.load(7, ("cuda", 0, 3)), plan)
++        self.assertEqual(len(cache), 1)
++        self.assertEqual(cache.allocated_bytes, 120)
++        with self.assertRaisesRegex(RuntimeError, "mismatch"):
++            cache.load(7, ("cuda", 0, 4))
++        with self.assertRaisesRegex(RuntimeError, "first_step=True"):
++            cache.load(8, ("cuda", 0, 3))
++        cache.clear()
++        self.assertEqual(len(cache), 0)
++
++    def test_exact_route_compaction_records_ragged_storage_metadata(self) -> None:
++        ids = torch.arange(24, dtype=torch.int32).view(1, 2, 3, 4)
++        low = torch.tensor([[[1, 2, 1], [1, 1, 1]]], dtype=torch.int32)
++        middle = torch.tensor([[[0, 1, 0], [0, 0, 0]]], dtype=torch.int32)
++        high = torch.zeros_like(low)
++        plan = RaggedRoutePlan(ids, low, middle, high, 0, 1, 2)
++        packed = torch.arange(9, dtype=torch.int16)
++        offsets = torch.arange(7, dtype=torch.int32)
++        with mock.patch(
++            "anemoi.layers.attention.mpa.executor.sm120_h3_pack_route",
++            return_value=(packed, offsets),
++        ) as pack:
++            compact = _compact_exact_route(plan)
++        pack.assert_called_once_with(ids, low, middle, high)
++        self.assertIs(compact.block_ids, packed)
++        self.assertIs(compact.packed_offsets, offsets)
++        self.assertEqual(compact.logical_columns, 4)
++
++
++if __name__ == "__main__":
++    unittest.main()

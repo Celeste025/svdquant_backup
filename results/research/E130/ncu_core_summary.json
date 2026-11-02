@@ -1,0 +1,574 @@
+{
+  "format": "e130-sage2pp-sage3-core-ncu-v1",
+  "scope": "same real H3 [1,56,9482,128] QKV, noncausal Sage3 before/after tail-mask fix, GPU2",
+  "caveat": "NCU replay perturbs duration; compare CUDA-event time separately. Pipe percentages overlap and are not additive.",
+  "summary": {
+    "sage2pp": {
+      "grid_ctas": {
+        "value": "4200",
+        "unit": ""
+      },
+      "sm_count": {
+        "value": "110",
+        "unit": "SM"
+      },
+      "waves_per_sm": {
+        "value": "19.09",
+        "unit": ""
+      },
+      "threads_per_cta": {
+        "value": "128",
+        "unit": ""
+      },
+      "registers_per_thread": {
+        "value": "255",
+        "unit": "register/thread"
+      },
+      "dynamic_shared_kb": {
+        "value": "32.768000",
+        "unit": "Kbyte/block"
+      },
+      "spilling_requests": {
+        "value": "0",
+        "unit": "inst"
+      },
+      "tensor_pipe_pct_elapsed": {
+        "value": "73.589713",
+        "unit": "%"
+      },
+      "sm_throughput_pct_elapsed": {
+        "value": "73.589713",
+        "unit": "%"
+      },
+      "dram_throughput_pct_elapsed": {
+        "value": "2.803875",
+        "unit": "%"
+      },
+      "l2_sector_hit_pct": {
+        "value": "96.740503",
+        "unit": "%"
+      },
+      "achieved_occupancy_pct": {
+        "value": "16.492477",
+        "unit": "%"
+      },
+      "eligible_warps_per_scheduler_cycle": {
+        "value": "0.477512",
+        "unit": "warp"
+      },
+      "warp_stall_wait_per_issue": {
+        "value": "1.974215",
+        "unit": "inst"
+      },
+      "warp_stall_sleeping_per_issue": {
+        "value": "0",
+        "unit": "inst"
+      },
+      "warp_stall_short_scoreboard_per_issue": {
+        "value": "0.256655",
+        "unit": "inst"
+      },
+      "warp_stall_math_pipe_per_issue": {
+        "value": "1.192980",
+        "unit": "inst"
+      },
+      "warp_stall_long_scoreboard_per_issue": {
+        "value": "0.105850",
+        "unit": "inst"
+      },
+      "warp_stall_branch_per_issue": {
+        "value": "0.003376",
+        "unit": "inst"
+      },
+      "report_sha256": "2c92ff77376fa0c04d6e5df6da1743865e35ec70f7cace577a79a52a2d0c8cb8",
+      "report_path": "/data1/models/svdquant-wjq/research/20261025/E130/sage2pp_core_gpu2.ncu-rep",
+      "raw_metric_count": 785
+    },
+    "sage3_maskfix": {
+      "grid_ctas": {
+        "value": "110",
+        "unit": ""
+      },
+      "sm_count": {
+        "value": "110",
+        "unit": "SM"
+      },
+      "waves_per_sm": {
+        "value": "1",
+        "unit": ""
+      },
+      "threads_per_cta": {
+        "value": "384",
+        "unit": ""
+      },
+      "registers_per_thread": {
+        "value": "168",
+        "unit": "register/thread"
+      },
+      "dynamic_shared_kb": {
+        "value": "100.352000",
+        "unit": "Kbyte/block"
+      },
+      "spilling_requests": {
+        "value": "345300",
+        "unit": "inst"
+      },
+      "tensor_pipe_pct_elapsed": {
+        "value": "48.789242",
+        "unit": "%"
+      },
+      "sm_throughput_pct_elapsed": {
+        "value": "48.789242",
+        "unit": "%"
+      },
+      "dram_throughput_pct_elapsed": {
+        "value": "4.708272",
+        "unit": "%"
+      },
+      "l2_sector_hit_pct": {
+        "value": "93.304637",
+        "unit": "%"
+      },
+      "achieved_occupancy_pct": {
+        "value": "20.823625",
+        "unit": "%"
+      },
+      "eligible_warps_per_scheduler_cycle": {
+        "value": "0.612866",
+        "unit": "warp"
+      },
+      "warp_stall_wait_per_issue": {
+        "value": "1.549866",
+        "unit": "inst"
+      },
+      "warp_stall_sleeping_per_issue": {
+        "value": "0.879493",
+        "unit": "inst"
+      },
+      "warp_stall_short_scoreboard_per_issue": {
+        "value": "0.788376",
+        "unit": "inst"
+      },
+      "warp_stall_math_pipe_per_issue": {
+        "value": "0.478420",
+        "unit": "inst"
+      },
+      "warp_stall_long_scoreboard_per_issue": {
+        "value": "0.120815",
+        "unit": "inst"
+      },
+      "warp_stall_branch_per_issue": {
+        "value": "0.055881",
+        "unit": "inst"
+      },
+      "report_sha256": "dc0fb896906e66704d7235791d10c22ee5e2a6cf7939437e01f69defc31c04a8",
+      "report_path": "/data1/models/svdquant-wjq/research/20261025/E130/sage3_maskfix_core_gpu2.ncu-rep",
+      "raw_metric_count": 785
+    },
+    "sage3_unfixed": {
+      "grid_ctas": {
+        "value": "110",
+        "unit": ""
+      },
+      "sm_count": {
+        "value": "110",
+        "unit": "SM"
+      },
+      "waves_per_sm": {
+        "value": "1",
+        "unit": ""
+      },
+      "threads_per_cta": {
+        "value": "384",
+        "unit": ""
+      },
+      "registers_per_thread": {
+        "value": "168",
+        "unit": "register/thread"
+      },
+      "dynamic_shared_kb": {
+        "value": "100.352000",
+        "unit": "Kbyte/block"
+      },
+      "spilling_requests": {
+        "value": "0",
+        "unit": "inst"
+      },
+      "tensor_pipe_pct_elapsed": {
+        "value": "51.107541",
+        "unit": "%"
+      },
+      "sm_throughput_pct_elapsed": {
+        "value": "51.107541",
+        "unit": "%"
+      },
+      "dram_throughput_pct_elapsed": {
+        "value": "4.906220",
+        "unit": "%"
+      },
+      "l2_sector_hit_pct": {
+        "value": "93.305642",
+        "unit": "%"
+      },
+      "achieved_occupancy_pct": {
+        "value": "20.823837",
+        "unit": "%"
+      },
+      "eligible_warps_per_scheduler_cycle": {
+        "value": "0.638807",
+        "unit": "warp"
+      },
+      "warp_stall_wait_per_issue": {
+        "value": "1.576694",
+        "unit": "inst"
+      },
+      "warp_stall_sleeping_per_issue": {
+        "value": "0.835756",
+        "unit": "inst"
+      },
+      "warp_stall_short_scoreboard_per_issue": {
+        "value": "0.770603",
+        "unit": "inst"
+      },
+      "warp_stall_math_pipe_per_issue": {
+        "value": "0.291559",
+        "unit": "inst"
+      },
+      "warp_stall_long_scoreboard_per_issue": {
+        "value": "0.114574",
+        "unit": "inst"
+      },
+      "warp_stall_branch_per_issue": {
+        "value": "0.052410",
+        "unit": "inst"
+      },
+      "report_sha256": "ae9b087215c7117e02242f78beab4ada50b5f6086716f12a89d25760a6238b86",
+      "report_path": "/data1/models/svdquant-wjq/research/20261025/E130/sage3_unfixed_core_gpu2.ncu-rep",
+      "raw_metric_count": 785
+    },
+    "sage3_maskbit": {
+      "grid_ctas": {
+        "value": "110",
+        "unit": ""
+      },
+      "sm_count": {
+        "value": "110",
+        "unit": "SM"
+      },
+      "waves_per_sm": {
+        "value": "1",
+        "unit": ""
+      },
+      "threads_per_cta": {
+        "value": "384",
+        "unit": ""
+      },
+      "registers_per_thread": {
+        "value": "168",
+        "unit": "register/thread"
+      },
+      "dynamic_shared_kb": {
+        "value": "100.352000",
+        "unit": "Kbyte/block"
+      },
+      "spilling_requests": {
+        "value": "724580",
+        "unit": "inst"
+      },
+      "tensor_pipe_pct_elapsed": {
+        "value": "47.678644",
+        "unit": "%"
+      },
+      "sm_throughput_pct_elapsed": {
+        "value": "47.678644",
+        "unit": "%"
+      },
+      "dram_throughput_pct_elapsed": {
+        "value": "4.568625",
+        "unit": "%"
+      },
+      "l2_sector_hit_pct": {
+        "value": "93.287272",
+        "unit": "%"
+      },
+      "achieved_occupancy_pct": {
+        "value": "20.823542",
+        "unit": "%"
+      },
+      "eligible_warps_per_scheduler_cycle": {
+        "value": "0.587827",
+        "unit": "warp"
+      },
+      "warp_stall_wait_per_issue": {
+        "value": "1.521606",
+        "unit": "inst"
+      },
+      "warp_stall_sleeping_per_issue": {
+        "value": "0.927950",
+        "unit": "inst"
+      },
+      "warp_stall_short_scoreboard_per_issue": {
+        "value": "0.802921",
+        "unit": "inst"
+      },
+      "warp_stall_math_pipe_per_issue": {
+        "value": "0.716170",
+        "unit": "inst"
+      },
+      "warp_stall_long_scoreboard_per_issue": {
+        "value": "0.125212",
+        "unit": "inst"
+      },
+      "warp_stall_branch_per_issue": {
+        "value": "0.059113",
+        "unit": "inst"
+      },
+      "report_sha256": "ef3a9a68d0bc1264aded0b950648b6c76f1e710402808e7e59b3d5326a8700cf",
+      "report_path": "/data1/models/svdquant-wjq/research/20261025/E130/sage3_maskbit_core_gpu2.ncu-rep",
+      "raw_metric_count": 785
+    },
+    "sage3_tailguard": {
+      "grid_ctas": {
+        "value": "110",
+        "unit": ""
+      },
+      "sm_count": {
+        "value": "110",
+        "unit": "SM"
+      },
+      "waves_per_sm": {
+        "value": "1",
+        "unit": ""
+      },
+      "threads_per_cta": {
+        "value": "384",
+        "unit": ""
+      },
+      "registers_per_thread": {
+        "value": "168",
+        "unit": "register/thread"
+      },
+      "dynamic_shared_kb": {
+        "value": "100.352000",
+        "unit": "Kbyte/block"
+      },
+      "spilling_requests": {
+        "value": "310320",
+        "unit": "inst"
+      },
+      "tensor_pipe_pct_elapsed": {
+        "value": "47.841237",
+        "unit": "%"
+      },
+      "sm_throughput_pct_elapsed": {
+        "value": "47.841237",
+        "unit": "%"
+      },
+      "dram_throughput_pct_elapsed": {
+        "value": "4.596304",
+        "unit": "%"
+      },
+      "l2_sector_hit_pct": {
+        "value": "93.261037",
+        "unit": "%"
+      },
+      "achieved_occupancy_pct": {
+        "value": "20.824441",
+        "unit": "%"
+      },
+      "eligible_warps_per_scheduler_cycle": {
+        "value": "0.603859",
+        "unit": "warp"
+      },
+      "warp_stall_wait_per_issue": {
+        "value": "1.524343",
+        "unit": "inst"
+      },
+      "warp_stall_sleeping_per_issue": {
+        "value": "0.896784",
+        "unit": "inst"
+      },
+      "warp_stall_short_scoreboard_per_issue": {
+        "value": "0.776554",
+        "unit": "inst"
+      },
+      "warp_stall_math_pipe_per_issue": {
+        "value": "0.580749",
+        "unit": "inst"
+      },
+      "warp_stall_long_scoreboard_per_issue": {
+        "value": "0.123361",
+        "unit": "inst"
+      },
+      "warp_stall_branch_per_issue": {
+        "value": "0.056784",
+        "unit": "inst"
+      },
+      "report_sha256": "58d1ebe90284716e0df720e5c68b5e2f2ea8d252eb2ea609f10d1043971ff9ac",
+      "report_path": "/data1/models/svdquant-wjq/research/20261025/E130/sage3_tailguard_core_gpu2.ncu-rep",
+      "raw_metric_count": 785
+    },
+    "sage3_stage2": {
+      "grid_ctas": {
+        "value": "110",
+        "unit": ""
+      },
+      "sm_count": {
+        "value": "110",
+        "unit": "SM"
+      },
+      "waves_per_sm": {
+        "value": "1",
+        "unit": ""
+      },
+      "threads_per_cta": {
+        "value": "384",
+        "unit": ""
+      },
+      "registers_per_thread": {
+        "value": "168",
+        "unit": "register/thread"
+      },
+      "dynamic_shared_kb": {
+        "value": "80.896000",
+        "unit": "Kbyte/block"
+      },
+      "spilling_requests": {
+        "value": "345300",
+        "unit": "inst"
+      },
+      "tensor_pipe_pct_elapsed": {
+        "value": "48.099209",
+        "unit": "%"
+      },
+      "sm_throughput_pct_elapsed": {
+        "value": "48.099209",
+        "unit": "%"
+      },
+      "dram_throughput_pct_elapsed": {
+        "value": "4.618801",
+        "unit": "%"
+      },
+      "l2_sector_hit_pct": {
+        "value": "93.291307",
+        "unit": "%"
+      },
+      "achieved_occupancy_pct": {
+        "value": "20.826965",
+        "unit": "%"
+      },
+      "eligible_warps_per_scheduler_cycle": {
+        "value": "0.601414",
+        "unit": "warp"
+      },
+      "warp_stall_wait_per_issue": {
+        "value": "1.537137",
+        "unit": "inst"
+      },
+      "warp_stall_sleeping_per_issue": {
+        "value": "0.904413",
+        "unit": "inst"
+      },
+      "warp_stall_short_scoreboard_per_issue": {
+        "value": "0.796573",
+        "unit": "inst"
+      },
+      "warp_stall_math_pipe_per_issue": {
+        "value": "0.579923",
+        "unit": "inst"
+      },
+      "warp_stall_long_scoreboard_per_issue": {
+        "value": "0.123642",
+        "unit": "inst"
+      },
+      "warp_stall_branch_per_issue": {
+        "value": "0.056909",
+        "unit": "inst"
+      },
+      "report_sha256": "4802e5c6d38a7ec15ccde6547c640bd7f94b6e9e479dd7b172b088955df1fd1b",
+      "report_path": "/data1/models/svdquant-wjq/research/20261025/E130/sage3_stage2_core_gpu2.ncu-rep",
+      "raw_metric_count": 785
+    },
+    "sage3_m128s1": {
+      "grid_ctas": {
+        "value": "110",
+        "unit": ""
+      },
+      "sm_count": {
+        "value": "110",
+        "unit": "SM"
+      },
+      "waves_per_sm": {
+        "value": "1",
+        "unit": ""
+      },
+      "threads_per_cta": {
+        "value": "384",
+        "unit": ""
+      },
+      "registers_per_thread": {
+        "value": "168",
+        "unit": "register/thread"
+      },
+      "dynamic_shared_kb": {
+        "value": "62.464000",
+        "unit": "Kbyte/block"
+      },
+      "spilling_requests": {
+        "value": "310820",
+        "unit": "inst"
+      },
+      "tensor_pipe_pct_elapsed": {
+        "value": "50.029436",
+        "unit": "%"
+      },
+      "sm_throughput_pct_elapsed": {
+        "value": "50.029436",
+        "unit": "%"
+      },
+      "dram_throughput_pct_elapsed": {
+        "value": "4.797320",
+        "unit": "%"
+      },
+      "l2_sector_hit_pct": {
+        "value": "93.272887",
+        "unit": "%"
+      },
+      "achieved_occupancy_pct": {
+        "value": "20.830314",
+        "unit": "%"
+      },
+      "eligible_warps_per_scheduler_cycle": {
+        "value": "0.558480",
+        "unit": "warp"
+      },
+      "warp_stall_wait_per_issue": {
+        "value": "1.668802",
+        "unit": "inst"
+      },
+      "warp_stall_sleeping_per_issue": {
+        "value": "0.970167",
+        "unit": "inst"
+      },
+      "warp_stall_short_scoreboard_per_issue": {
+        "value": "0.871746",
+        "unit": "inst"
+      },
+      "warp_stall_math_pipe_per_issue": {
+        "value": "0.553931",
+        "unit": "inst"
+      },
+      "warp_stall_long_scoreboard_per_issue": {
+        "value": "0.128490",
+        "unit": "inst"
+      },
+      "warp_stall_branch_per_issue": {
+        "value": "0.061318",
+        "unit": "inst"
+      },
+      "report_sha256": "29da8417019c13d6897285f9ad25804c841585a6ce55dbf0a6c609a5e71ab155",
+      "report_path": "/data1/models/svdquant-wjq/research/20261025/E130/sage3_m128s1_core_gpu2.ncu-rep",
+      "raw_metric_count": 785
+    }
+  }
+}

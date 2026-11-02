@@ -1,0 +1,17 @@
+{
+  "format": "e098-sage3-benchmark-baseline-v1",
+  "model_gpu": "NVIDIA RTX PRO 5000 72GB Blackwell, 110 SMs",
+  "baseline": "official SageAttention3 Blackwell with device-sized persistent grid",
+  "baseline_path": "/data1/models/svdquant-wjq/research/20261014/E098/sage3_sm110_probe",
+  "baseline_fp4attn_sha256": "a326923ecd2fc3aa45b6c780c240c7405a8f06448333722406c3d7094ea7f98a",
+  "historical_original_path": "/data1/models/svdquant-wjq/third_party/SageAttention-official-20261004/sageattention3_blackwell",
+  "historical_original_fp4attn_sha256": "187cffbe0c480ea244e041307e5f9e4156576b1a93af9dfc5901a3c00f05d946",
+  "source_delta": "launch.h: replace hard-coded Scheduler::get_grid_dim(scheduler_args, 170) with runtime multiProcessorCount",
+  "scope": "default for future E098-style RTX PRO 5000 Sage3 benchmarks; historical original remains available; no global package replacement",
+  "validation": {
+    "ncu_grid": [110, 1, 1],
+    "sage3_output_nmse_vs_bf16_before_and_after": 0.0075022605173705285,
+    "sage3_core_nmse_vs_online": 0.0,
+    "ab_result": "sage3_grid_ab_sm110_gpu0.json"
+  }
+}

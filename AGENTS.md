@@ -3,7 +3,9 @@
 ## Workspace and version control
 
 - **Repository:** `/home/wjq/workspace/svdquant-exp`
-- **Branch:** `main`, tracking `origin/main` (`https://github.com/Celeste025/svdquant_backup.git`)
+- **Remote:** `origin` (`https://github.com/Celeste025/svdquant_backup.git`);
+  check the active branch and upstream with `git branch -vv` before Git actions.
+  `main` tracks `origin/main`; experimental work may use another branch.
 - This directory was restored from a ZIP checkout on 2026-09-14. Do not assume
   old absolute paths in archived scripts are valid; prefer the paths below.
 - Do not push without the user's explicit instruction. Before committing, review

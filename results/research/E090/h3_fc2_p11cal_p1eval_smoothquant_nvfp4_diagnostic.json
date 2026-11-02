@@ -1,0 +1,211 @@
+{
+  "format": "h3-smoothquant-nvfp4-fc2-error-v1",
+  "timestamp_utc": "2026-10-14T03:05:30.278125+00:00",
+  "scope": "one H3 block-25 FC2, two real calls, error only",
+  "calibration": "/data1/models/svdquant-wjq/results/E088_native_bench/h3_block25_p11_s00_calib.pt",
+  "evaluation": "/data1/models/svdquant-wjq/results/E088_native_bench/h3_block25_p1_s00.pt",
+  "calibration_call": "/data1/models/svdquant-wjq/results/E087_timestep_aware/cache_16p20s/p11/sample_p11_s00.pt",
+  "evaluation_call": "/data1/models/svdquant-wjq/results/E087_timestep_aware/cache_16p20s/p1/sample_p1_s00.pt",
+  "weight": "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors",
+  "weight_key": "blocks.25.mlp.fc2.weight",
+  "shape": {
+    "calibration_M": 22464,
+    "evaluation_M": 22400,
+    "K": 14336,
+    "N": 5376
+  },
+  "smoke_subset": false,
+  "gpu": 7,
+  "smoothing": "s_j = max_calibration|A_:,j|^alpha / max|W_:,j|^(1-alpha); A/s, W*s; clamp minima 1e-5",
+  "quantization": "FlashInfer native NVFP4 E2M1, E4M3 per K-16 block, per-tensor FP32 global scale from smoothed calibration A and smoothed W",
+  "alpha_selection": "minimum calibration-call output NMSE; no evaluation-call tuning",
+  "dynamic_global_control": "diagnostic only: same smoothing and W; A global scale from current evaluation call",
+  "expected_unsmoothed_nmse": {
+    "evaluation": 0.010424479842185974,
+    "evaluation_dynamic_global": 0.009643156081438065,
+    "calibration": 0.00960738305002451
+  },
+  "calibration_selected_alpha": 0.5,
+  "rows": [
+    {
+      "smoothquant_alpha": null,
+      "label": "none",
+      "activation_global_amax_from_calibration": 2512.0,
+      "evaluation_activation_amax": 5152.0,
+      "evaluation_to_calibration_activation_amax_ratio": 2.050955414012739,
+      "weight_global_amax": 3.21875,
+      "scale_stats": {
+        "min": 1.0,
+        "median": 1.0,
+        "max": 1.0
+      },
+      "weight_qdq_nmse": 0.008871218000802617,
+      "calls": {
+        "calibration": {
+          "output_nmse": 0.009607383981347084,
+          "bf16_smoothing_roundoff_nmse": 0.0,
+          "activation_qdq_nmse": 0.004846306521451676,
+          "relative_output_nmse_to_unsmoothed": 1.0
+        },
+        "evaluation": {
+          "output_nmse": 0.010424480773508549,
+          "bf16_smoothing_roundoff_nmse": 0.0,
+          "activation_qdq_nmse": 0.005637661806825621,
+          "dynamic_global_output_nmse": 0.00964315701276064,
+          "dynamic_global_activation_qdq_nmse": 0.00485812578093605,
+          "relative_output_nmse_to_unsmoothed": 1.0
+        }
+      }
+    },
+    {
+      "smoothquant_alpha": 0.0,
+      "label": "0.0",
+      "activation_global_amax_from_calibration": 2304.0,
+      "evaluation_activation_amax": 4352.0,
+      "evaluation_to_calibration_activation_amax_ratio": 1.8888888888888888,
+      "weight_global_amax": 1.0,
+      "scale_stats": {
+        "min": 0.3106796145439148,
+        "median": 1.5421686172485352,
+        "max": 3.4133334159851074
+      },
+      "weight_qdq_nmse": 0.00893438801530778,
+      "calls": {
+        "calibration": {
+          "output_nmse": 0.010946549475193024,
+          "bf16_smoothing_roundoff_nmse": 8.573359082220122e-06,
+          "activation_qdq_nmse": 0.004214942454692385,
+          "relative_output_nmse_to_unsmoothed": 1.1393891923593304
+        },
+        "evaluation": {
+          "output_nmse": 0.011347256600856781,
+          "bf16_smoothing_roundoff_nmse": 8.56075894262176e-06,
+          "activation_qdq_nmse": 0.004843197301058022,
+          "dynamic_global_output_nmse": 0.010829808190464973,
+          "dynamic_global_activation_qdq_nmse": 0.004231076763528406,
+          "relative_output_nmse_to_unsmoothed": 1.0885200757138196
+        }
+      }
+    },
+    {
+      "smoothquant_alpha": 0.25,
+      "label": "0.25",
+      "activation_global_amax_from_calibration": 332.0,
+      "evaluation_activation_amax": 1440.0,
+      "evaluation_to_calibration_activation_amax_ratio": 4.337349397590361,
+      "weight_global_amax": 6.9375,
+      "scale_stats": {
+        "min": 1.0495944023132324,
+        "median": 4.208063125610352,
+        "max": 10.212573051452637
+      },
+      "weight_qdq_nmse": 0.008811429407800183,
+      "calls": {
+        "calibration": {
+          "output_nmse": 0.00857446901500225,
+          "bf16_smoothing_roundoff_nmse": 8.64632056618575e-06,
+          "activation_qdq_nmse": 0.0052624119270899975,
+          "relative_output_nmse_to_unsmoothed": 0.892487385915848
+        },
+        "evaluation": {
+          "output_nmse": 0.011988689191639423,
+          "bf16_smoothing_roundoff_nmse": 8.614892976765987e-06,
+          "activation_qdq_nmse": 0.008502576177385477,
+          "dynamic_global_output_nmse": 0.009310388937592506,
+          "dynamic_global_activation_qdq_nmse": 0.004978850293613497,
+          "relative_output_nmse_to_unsmoothed": 1.150051446409298
+        }
+      }
+    },
+    {
+      "smoothquant_alpha": 0.5,
+      "label": "0.5",
+      "activation_global_amax_from_calibration": 48.0,
+      "evaluation_activation_amax": 480.0,
+      "evaluation_to_calibration_activation_amax_ratio": 10.0,
+      "weight_global_amax": 48.0,
+      "scale_stats": {
+        "min": 2.1713995933532715,
+        "median": 11.255239486694336,
+        "max": 59.118160247802734
+      },
+      "weight_qdq_nmse": 0.008522914327617018,
+      "calls": {
+        "calibration": {
+          "output_nmse": 0.008035175502300262,
+          "bf16_smoothing_roundoff_nmse": 8.644809895486105e-06,
+          "activation_qdq_nmse": 0.005928379455603857,
+          "relative_output_nmse_to_unsmoothed": 0.8363541540445043
+        },
+        "evaluation": {
+          "output_nmse": 0.016137512400746346,
+          "bf16_smoothing_roundoff_nmse": 8.550140591978561e-06,
+          "activation_qdq_nmse": 0.014461879146631006,
+          "dynamic_global_output_nmse": 0.00932611245661974,
+          "dynamic_global_activation_qdq_nmse": 0.005381869397904488,
+          "relative_output_nmse_to_unsmoothed": 1.5480399217346317
+        }
+      }
+    },
+    {
+      "smoothquant_alpha": 0.75,
+      "label": "0.75",
+      "activation_global_amax_from_calibration": 6.9375,
+      "evaluation_activation_amax": 209.0,
+      "evaluation_to_calibration_activation_amax_ratio": 30.126126126126128,
+      "weight_global_amax": 332.0,
+      "scale_stats": {
+        "min": 2.8772313594818115,
+        "median": 30.39986228942871,
+        "max": 385.36322021484375
+      },
+      "weight_qdq_nmse": 0.008367023481787278,
+      "calls": {
+        "calibration": {
+          "output_nmse": 0.009364034980535507,
+          "bf16_smoothing_roundoff_nmse": 8.573050763516221e-06,
+          "activation_qdq_nmse": 0.00627108167170547,
+          "relative_output_nmse_to_unsmoothed": 0.9746706282080487
+        },
+        "evaluation": {
+          "output_nmse": 0.029362479224801064,
+          "bf16_smoothing_roundoff_nmse": 8.532393621862866e-06,
+          "activation_qdq_nmse": 0.03335404566553585,
+          "dynamic_global_output_nmse": 0.011510178446769714,
+          "dynamic_global_activation_qdq_nmse": 0.005499647486517411,
+          "relative_output_nmse_to_unsmoothed": 2.816685057295049
+        }
+      }
+    },
+    {
+      "smoothquant_alpha": 1.0,
+      "label": "1.0",
+      "activation_global_amax_from_calibration": 1.0,
+      "evaluation_activation_amax": 100.0,
+      "evaluation_to_calibration_activation_amax_ratio": 100.0,
+      "weight_global_amax": 2304.0,
+      "scale_stats": {
+        "min": 3.8125,
+        "median": 82.5,
+        "max": 2512.0
+      },
+      "weight_qdq_nmse": 0.007891184978758854,
+      "calls": {
+        "calibration": {
+          "output_nmse": 0.014152653515338898,
+          "bf16_smoothing_roundoff_nmse": 8.517444257449824e-06,
+          "activation_qdq_nmse": 0.006335408636436132,
+          "relative_output_nmse_to_unsmoothed": 1.4731016833319601
+        },
+        "evaluation": {
+          "output_nmse": 0.06104816868901253,
+          "bf16_smoothing_roundoff_nmse": 8.4992207121104e-06,
+          "activation_qdq_nmse": 0.0991901713578554,
+          "dynamic_global_output_nmse": 0.018487153574824333,
+          "dynamic_global_activation_qdq_nmse": 0.005305798627254261,
+          "relative_output_nmse_to_unsmoothed": 5.856231117443527
+        }
+      }
+    }
+  ]
+}

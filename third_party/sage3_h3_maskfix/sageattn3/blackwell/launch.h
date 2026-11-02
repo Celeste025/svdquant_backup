@@ -34,6 +34,7 @@ void run_flash_fwd(Flash_fwd_params &params, cudaStream_t stream) {
     using Element = typename Kernel_traits::Element;
     using ElementSF = typename Kernel_traits::ElementSF;
     using ElementOut = typename Kernel_traits::ElementOut;
+    using ElementDS = typename Kernel_traits::ElementDS;
     using TileShape_MNK = typename Kernel_traits::TileShape_MNK;
     using ClusterShape = typename Kernel_traits::ClusterShape_MNK;
     using CollectiveMainloop = flash::CollectiveMainloopFwd<Kernel_traits, Is_causal>;
@@ -58,7 +59,7 @@ void run_flash_fwd(Flash_fwd_params &params, cudaStream_t stream) {
             {params.seqlen_k, params.d, params.h_k, params.b},  // shape_SFK
             static_cast<ElementSF const*>(params.sfv_ptr),
             {params.d, params.seqlen_k, params.h_k, params.b},  // shape_SFVt
-            static_cast<float const*>(params.delta_s_ptr),
+            static_cast<ElementDS const*>(params.delta_s_ptr),
             {params.seqlen_s, params.seqlen_k, params.h_k, params.b},
             {params.ds_row_stride, _1{}, params.ds_head_stride, params.ds_batch_stride},
             params.scale_softmax_log2

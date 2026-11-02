@@ -1,0 +1,325 @@
+{
+  "format": "h3-fc2-outlier-zeroing-nvfp4-v1",
+  "timestamp_utc": "2026-10-14T10:27:51.606917+00:00",
+  "scope": "H3 block-25 FC2, full p1/p11 step-0 cached calls; plain W4A4 only",
+  "thresholds_abs_gt": [
+    null,
+    2512.0,
+    1024.0,
+    512.0,
+    256.0
+  ],
+  "gpu": 6,
+  "quantization": "native FlashInfer NVFP4 E2M1, K16 E4M3, original BF16 weight",
+  "definitions": {
+    "primary": "NMSE(native W4A4 output after zeroing, original unmodified BF16 output)",
+    "quantization_only": "NMSE(native W4A4 output after zeroing, BF16 output after zeroing)",
+    "removal": "NMSE(BF16 output after zeroing, original unmodified BF16 output)"
+  },
+  "weight": "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors",
+  "weight_key": "blocks.25.mlp.fc2.weight",
+  "calls": {
+    "p11": {
+      "source": "/data1/models/svdquant-wjq/results/E088_native_bench/h3_block25_p11_s00_calib.pt",
+      "cache_call": "/data1/models/svdquant-wjq/results/E087_timestep_aware/cache_16p20s/p11/sample_p11_s00.pt",
+      "shape": [
+        22464,
+        14336
+      ],
+      "boundaries": {
+        "text_end": 738,
+        "audio_end": 1152,
+        "video_end": 22464
+      },
+      "rows": [
+        {
+          "threshold_abs_gt": null,
+          "removed_elements": 0,
+          "removed_fraction": 0.0,
+          "removed_by_modality": {
+            "text": 0,
+            "audio": 0,
+            "video": 0,
+            "padding": 0
+          },
+          "activation_amax_after_zeroing": 2512.0,
+          "modified_to_original_output_energy_ratio": 1.0,
+          "scales": {
+            "current_input": {
+              "final_original_target_nmse": 0.009607383981347084,
+              "quantization_only_modified_target_nmse": 0.009607383981347084,
+              "quantization_only_original_energy_nmse": 0.009607383981347084,
+              "removal_original_target_nmse": 0.0
+            },
+            "fixed_p11_original": {
+              "final_original_target_nmse": 0.009607383981347084,
+              "quantization_only_modified_target_nmse": 0.009607383981347084,
+              "quantization_only_original_energy_nmse": 0.009607383981347084,
+              "removal_original_target_nmse": 0.0
+            }
+          }
+        },
+        {
+          "threshold_abs_gt": 2512.0,
+          "removed_elements": 0,
+          "removed_fraction": 0.0,
+          "removed_by_modality": {
+            "text": 0,
+            "audio": 0,
+            "video": 0,
+            "padding": 0
+          },
+          "activation_amax_after_zeroing": 2512.0,
+          "modified_to_original_output_energy_ratio": 1.0,
+          "scales": {
+            "current_input": {
+              "final_original_target_nmse": 0.009607383981347084,
+              "quantization_only_modified_target_nmse": 0.009607383981347084,
+              "quantization_only_original_energy_nmse": 0.009607383981347084,
+              "removal_original_target_nmse": 0.0
+            },
+            "fixed_p11_original": {
+              "final_original_target_nmse": 0.009607383981347084,
+              "quantization_only_modified_target_nmse": 0.009607383981347084,
+              "quantization_only_original_energy_nmse": 0.009607383981347084,
+              "removal_original_target_nmse": 0.0
+            }
+          }
+        },
+        {
+          "threshold_abs_gt": 1024.0,
+          "removed_elements": 101,
+          "removed_fraction": 3.136218346179284e-07,
+          "removed_by_modality": {
+            "text": 24,
+            "audio": 0,
+            "video": 77,
+            "padding": 0
+          },
+          "activation_amax_after_zeroing": 1024.0,
+          "modified_to_original_output_energy_ratio": 0.9872552752494812,
+          "scales": {
+            "current_input": {
+              "final_original_target_nmse": 0.0203215591609478,
+              "quantization_only_modified_target_nmse": 0.009654190391302109,
+              "quantization_only_original_energy_nmse": 0.009531150572001934,
+              "removal_original_target_nmse": 0.010791591368615627
+            },
+            "fixed_p11_original": {
+              "final_original_target_nmse": 0.020325126126408577,
+              "quantization_only_modified_target_nmse": 0.009657182730734348,
+              "quantization_only_original_energy_nmse": 0.009534104727208614,
+              "removal_original_target_nmse": 0.010791591368615627
+            }
+          }
+        },
+        {
+          "threshold_abs_gt": 512.0,
+          "removed_elements": 1460,
+          "removed_fraction": 4.533543351902727e-06,
+          "removed_by_modality": {
+            "text": 147,
+            "audio": 4,
+            "video": 1309,
+            "padding": 0
+          },
+          "activation_amax_after_zeroing": 512.0,
+          "modified_to_original_output_energy_ratio": 0.9401465058326721,
+          "scales": {
+            "current_input": {
+              "final_original_target_nmse": 0.059001270681619644,
+              "quantization_only_modified_target_nmse": 0.009846392087638378,
+              "quantization_only_original_energy_nmse": 0.009257051162421703,
+              "removal_original_target_nmse": 0.049683358520269394
+            },
+            "fixed_p11_original": {
+              "final_original_target_nmse": 0.05900771543383598,
+              "quantization_only_modified_target_nmse": 0.009851213544607162,
+              "quantization_only_original_energy_nmse": 0.009261583909392357,
+              "removal_original_target_nmse": 0.049683358520269394
+            }
+          }
+        },
+        {
+          "threshold_abs_gt": 256.0,
+          "removed_elements": 12449,
+          "removed_fraction": 3.865621999166921e-05,
+          "removed_by_modality": {
+            "text": 915,
+            "audio": 6,
+            "video": 11528,
+            "padding": 0
+          },
+          "activation_amax_after_zeroing": 256.0,
+          "modified_to_original_output_energy_ratio": 0.8492226600646973,
+          "scales": {
+            "current_input": {
+              "final_original_target_nmse": 0.13451513648033142,
+              "quantization_only_modified_target_nmse": 0.010218428447842598,
+              "quantization_only_original_energy_nmse": 0.00867772102355957,
+              "removal_original_target_nmse": 0.1256096363067627
+            },
+            "fixed_p11_original": {
+              "final_original_target_nmse": 0.13452517986297607,
+              "quantization_only_modified_target_nmse": 0.010225859470665455,
+              "quantization_only_original_energy_nmse": 0.00868403073400259,
+              "removal_original_target_nmse": 0.1256096363067627
+            }
+          }
+        }
+      ]
+    },
+    "p1": {
+      "source": "/data1/models/svdquant-wjq/results/E088_native_bench/h3_block25_p1_s00.pt",
+      "cache_call": "/data1/models/svdquant-wjq/results/E087_timestep_aware/cache_16p20s/p1/sample_p1_s00.pt",
+      "shape": [
+        22400,
+        14336
+      ],
+      "boundaries": {
+        "text_end": 658,
+        "audio_end": 1072,
+        "video_end": 22384
+      },
+      "rows": [
+        {
+          "threshold_abs_gt": null,
+          "removed_elements": 0,
+          "removed_fraction": 0.0,
+          "removed_by_modality": {
+            "text": 0,
+            "audio": 0,
+            "video": 0,
+            "padding": 0
+          },
+          "activation_amax_after_zeroing": 5152.0,
+          "modified_to_original_output_energy_ratio": 1.0,
+          "scales": {
+            "current_input": {
+              "final_original_target_nmse": 0.00964315701276064,
+              "quantization_only_modified_target_nmse": 0.00964315701276064,
+              "quantization_only_original_energy_nmse": 0.00964315701276064,
+              "removal_original_target_nmse": 0.0
+            },
+            "fixed_p11_original": {
+              "final_original_target_nmse": 0.010424480773508549,
+              "quantization_only_modified_target_nmse": 0.010424480773508549,
+              "quantization_only_original_energy_nmse": 0.010424480773508549,
+              "removal_original_target_nmse": 0.0
+            }
+          }
+        },
+        {
+          "threshold_abs_gt": 2512.0,
+          "removed_elements": 9,
+          "removed_fraction": 2.802634725765306e-08,
+          "removed_by_modality": {
+            "text": 1,
+            "audio": 0,
+            "video": 8,
+            "padding": 0
+          },
+          "activation_amax_after_zeroing": 2272.0,
+          "modified_to_original_output_energy_ratio": 0.9931953549385071,
+          "scales": {
+            "current_input": {
+              "final_original_target_nmse": 0.015242356806993484,
+              "quantization_only_modified_target_nmse": 0.009663061238825321,
+              "quantization_only_original_energy_nmse": 0.009597307071089745,
+              "removal_original_target_nmse": 0.00563154648989439
+            },
+            "fixed_p11_original": {
+              "final_original_target_nmse": 0.01524747908115387,
+              "quantization_only_modified_target_nmse": 0.009671431966125965,
+              "quantization_only_original_energy_nmse": 0.009605620987713337,
+              "removal_original_target_nmse": 0.00563154648989439
+            }
+          }
+        },
+        {
+          "threshold_abs_gt": 1024.0,
+          "removed_elements": 186,
+          "removed_fraction": 5.792111766581632e-07,
+          "removed_by_modality": {
+            "text": 16,
+            "audio": 0,
+            "video": 170,
+            "padding": 0
+          },
+          "activation_amax_after_zeroing": 1024.0,
+          "modified_to_original_output_energy_ratio": 0.974078357219696,
+          "scales": {
+            "current_input": {
+              "final_original_target_nmse": 0.031370654702186584,
+              "quantization_only_modified_target_nmse": 0.009737680666148663,
+              "quantization_only_original_energy_nmse": 0.00948526430875063,
+              "removal_original_target_nmse": 0.02185790427029133
+            },
+            "fixed_p11_original": {
+              "final_original_target_nmse": 0.031385842710733414,
+              "quantization_only_modified_target_nmse": 0.009742701426148415,
+              "quantization_only_original_energy_nmse": 0.009490154683589935,
+              "removal_original_target_nmse": 0.02185790427029133
+            }
+          }
+        },
+        {
+          "threshold_abs_gt": 512.0,
+          "removed_elements": 1983,
+          "removed_fraction": 6.175138512436225e-06,
+          "removed_by_modality": {
+            "text": 142,
+            "audio": 4,
+            "video": 1837,
+            "padding": 0
+          },
+          "activation_amax_after_zeroing": 512.0,
+          "modified_to_original_output_energy_ratio": 0.9196422100067139,
+          "scales": {
+            "current_input": {
+              "final_original_target_nmse": 0.07668332755565643,
+              "quantization_only_modified_target_nmse": 0.009950092062354088,
+              "quantization_only_original_energy_nmse": 0.009150524623692036,
+              "removal_original_target_nmse": 0.06740175187587738
+            },
+            "fixed_p11_original": {
+              "final_original_target_nmse": 0.07669684290885925,
+              "quantization_only_modified_target_nmse": 0.009957154281437397,
+              "quantization_only_original_energy_nmse": 0.00915701873600483,
+              "removal_original_target_nmse": 0.06740175187587738
+            }
+          }
+        },
+        {
+          "threshold_abs_gt": 256.0,
+          "removed_elements": 13737,
+          "removed_fraction": 4.277754803093112e-05,
+          "removed_by_modality": {
+            "text": 872,
+            "audio": 8,
+            "video": 12857,
+            "padding": 0
+          },
+          "activation_amax_after_zeroing": 256.0,
+          "modified_to_original_output_energy_ratio": 0.8332657814025879,
+          "scales": {
+            "current_input": {
+              "final_original_target_nmse": 0.1482580155134201,
+              "quantization_only_modified_target_nmse": 0.010311556048691273,
+              "quantization_only_original_energy_nmse": 0.008592266589403152,
+              "removal_original_target_nmse": 0.13939931988716125
+            },
+            "fixed_p11_original": {
+              "final_original_target_nmse": 0.14827950298786163,
+              "quantization_only_modified_target_nmse": 0.010319565422832966,
+              "quantization_only_original_energy_nmse": 0.008598941378295422,
+              "removal_original_target_nmse": 0.13939931988716125
+            }
+          }
+        }
+      ]
+    }
+  },
+  "weight_amax": 3.21875,
+  "fixed_activation_amax_from_unmodified_p11": 2512.0
+}

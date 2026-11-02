@@ -20,7 +20,11 @@ import torch
 import e122_h3_helpers as exp
 from diffsynth.core.vram.layers import AutoWrappedLinear
 
-ARMS = ("bf16_sdpa", "sage2_default", "sage3_fixed", "split_mixed")
+ARMS = ("bf16_sdpa", "sage2_default", "sage2pp", "sage3_fixed",
+        "sage3_optimized", "sage3_bf16_fused", "sage3_api_fast",
+        "sage3_api_delta_tiled", "sage3_api_qpack_fused",
+        "sage3_api_qpack_delta_tiled", "sage3_api_raw_k_delta",
+        "split_mixed")
 DATA = Path("/data1/models/svdquant-wjq/research/20261015/"
             "E101_h3_r32_fixed1_three_cases/race/bf16_teacher_calls.pt")
 OUT = exp.ROOT / "results/research/E122/h3_forward_profile_refactored.json"
@@ -195,26 +199,44 @@ def nmse(x, y):
     return float((x - y).square().sum() / y.square().sum())
 
 
+def linear_residency(dit):
+    modules = [m for m in dit.modules() if isinstance(m, torch.nn.Linear)]
+    gpu = sum(m.weight.device.type == "cuda" for m in modules)
+    return {"total": len(modules), "gpu_weights": gpu,
+            "all_gpu": gpu == len(modules)}
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--steps", nargs="+", type=int, default=(0, 10))
+    parser.add_argument("--arms", nargs="+", choices=ARMS,
+                        default=("bf16_sdpa", "sage2_default", "sage3_fixed", "split_mixed"))
     parser.add_argument("--output", type=Path, default=OUT)
+    parser.add_argument("--resident", action="store_true",
+                        help="keep DiT BF16 weights on GPU; no VAE/text model")
+    parser.add_argument("--save-output-dir", type=Path,
+                        help="optionally save FP32 video/audio outputs for cross-build comparisons")
     opts = parser.parse_args()
     exp.check_backend()
+    if "sage2pp" in opts.arms:
+        exp.check_sage2pp_backend()
+    assert opts.arms[0] == "bf16_sdpa" and len(set(opts.arms)) == len(opts.arms)
     torch.set_num_threads(6)
     torch.backends.cuda.matmul.allow_tf32 = False
     torch.backends.cudnn.allow_tf32 = False
     assert DATA.is_file() and all(0 <= x < 20 for x in opts.steps)
     calls = torch.load(DATA, map_location="cpu", weights_only=False)
     assert len(calls) == 20
-    pipe = exp.load_h3_pipeline(full=False, vram_limit_gib=18.0)
+    pipe = exp.load_h3_pipeline(full=False, dit_disk=not opts.resident,
+                                vram_limit_gib=65.0 if opts.resident else 18.0)
     pipe.load_models_to_device(["dit"])
     pipe.dit.eval()
     linears = exp.checked_linears(pipe.dit)
     report = {"format": "e122-h3-attention-linear-profile-v1",
               "gpu": torch.cuda.get_device_name(), "model_load_excluded": True,
               "cached_calls": str(DATA), "steps": list(opts.steps),
-              "linears": linears, "arms": {}}
+              "linears": linears, "resident_requested": opts.resident,
+              "arms": {}}
     original_backend = importlib.import_module(
         "diffsynth.core.attention.attention").ATTENTION_IMPLEMENTATION
     try:
@@ -222,21 +244,42 @@ def main() -> None:
             args = exp.tree_device(calls[step]["args"], "cuda")
             kwargs = exp.tree_device(calls[step]["kwargs"], "cuda")
             reference = None
-            for arm in ARMS:
+            sage3_reference = None
+            for arm in opts.arms:
                 # Prime lazy kernel compilation and weight cache outside timing.
                 run_call(pipe.dit, args, kwargs, arm, instrument=False)
+                if opts.resident:
+                    residency = linear_residency(pipe.dit)
+                    if not residency["all_gpu"]:
+                        raise RuntimeError(f"DiT weights not resident: {residency}")
+                    report["linear_residency_after_warmup"] = residency
                 direct, output = run_call(pipe.dit, args, kwargs, arm,
                                           instrument=False)
+                if opts.save_output_dir is not None:
+                    opts.save_output_dir.mkdir(parents=True, exist_ok=True)
+                    torch.save({"step": step, "arm": arm, "video": output[0],
+                                "audio": output[1]},
+                               opts.save_output_dir / f"step{step:02d}_{arm}.pt")
                 profiled, profiled_output = run_call(
                     pipe.dit, args, kwargs, arm, instrument=True)
                 assert all(torch.equal(a, b) for a, b in
                            zip(output, profiled_output, strict=True))
                 if arm == "bf16_sdpa":
                     reference = output
+                if arm == "sage3_fixed":
+                    sage3_reference = output
                 row = {"step": step, "direct": direct, "profiled": profiled,
                        "vs_true_bf16_dit_nmse": None if reference is None else {
                            name: nmse(x, y) for name, x, y in
                            zip(("video", "audio"), output, reference,
+                               strict=True)},
+                       "vs_sage3_fixed_nmse": None if sage3_reference is None else {
+                           name: nmse(x, y) for name, x, y in
+                           zip(("video", "audio"), output, sage3_reference,
+                               strict=True)},
+                       "bitwise_equal_to_sage3_fixed": None if sage3_reference is None else {
+                           name: bool(torch.equal(x, y)) for name, x, y in
+                           zip(("video", "audio"), output, sage3_reference,
                                strict=True)}}
                 report["arms"].setdefault(arm, []).append(row)
                 print(f"PROFILE step={step} arm={arm} direct={direct['wall_seconds']:.3f}s "
@@ -245,6 +288,7 @@ def main() -> None:
                       f"linear={profiled['breakdown']['all_linear_module_ms']:.1f}ms",
                       flush=True)
             del args, kwargs
+        report["peak_cuda_allocated_gib"] = torch.cuda.max_memory_allocated() / 1024**3
     finally:
         importlib.import_module(
             "diffsynth.core.attention.attention").ATTENTION_IMPLEMENTATION = original_backend

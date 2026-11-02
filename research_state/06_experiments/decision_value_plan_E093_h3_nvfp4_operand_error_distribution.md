@@ -1,0 +1,11 @@
+# E093 — H3 NVFP4 operand-error distribution
+
+- Mode: exploration.
+- Problem addressed: Determine whether plain W4A4 NVFP4 operand quantization error is approximately uniform across token/modality, input channel/K16 group, and output row, or dominated by a small subset.
+- Hypothesis: Whole-tensor activation/weight NMSE hides strong spatial concentration; activation may differ by text/audio/video token region, and weight may have sensitive output rows or K groups.
+- Decision informed: Whether follow-up work should target specific modalities/channels/groups or treat the quantization error as diffuse.
+- Minimum valid setup: The same full, real H3 `blocks.25.mlp.fc2` weight and p1/p11 step-0 activation inputs as E089/E090; native FlashInfer NVFP4 E2M1 quantization with K16 E4M3 block scales, weight global scale fixed from weight, activation global scale recomputed from each current input. Decode actual codes/scales; accumulate exact squared-error and BF16 energy totals by row, modality, input channel/K16 group, and weight output row. Gate whole-operand NMSE against E090. Include all tensor rows in global totals, but label padding separately.
+- Invalid cheap proxy to avoid: Gaussian/random inputs; inspecting only absmax instead of quantization error; comparing raw error energy without signal energy/token counts; using p11 global activation scale for p1; conflating operand NMSE with final linear-output error or generated video quality.
+- Expected outcomes / decisions: Concentrated tail or modality gap suggests targeted outlier/modal handling; roughly flat normalized error suggests broad quantizer/format improvements. If p1/p11 patterns disagree, treat static layer-level heuristics as fragile.
+- Stop condition: Both real calls and weight yield finite, independently reconstructible reductions, E090 operand-NMSE gates pass, and compact JSON/summary are written; no layer sweep or generation in this first probe.
+- Evidence: Necessary = per-region normalized error and top-1%-mass concentration; supporting = row/channel/group quantiles and top indices; cuttable = full tensor dumps and decorative heatmaps; future work = replicate across layers/timesteps and test error-cause interventions.

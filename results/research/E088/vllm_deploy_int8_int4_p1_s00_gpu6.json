@@ -1,0 +1,146 @@
+{
+  "format": "h3-vllm-int8-int4-linear-v1",
+  "timestamp_utc": "2026-10-14T01:27:43.317345+00:00",
+  "scope": "one H3 FC2 linear, not a vLLM engine or full DiT block",
+  "vllm_version": "0.26.0",
+  "torch_version": "2.11.0+cu128",
+  "gpu": 6,
+  "gpu_name": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "sample": "/data1/models/svdquant-wjq/results/E088_native_bench/h3_block25_p1_s00.pt",
+  "cached_call": "/data1/models/svdquant-wjq/results/E087_timestep_aware/cache_16p20s/p1/sample_p1_s00.pt",
+  "weight": "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors",
+  "weight_key": "blocks.25.mlp.fc2.weight",
+  "shape": {
+    "M": 22400,
+    "K": 14336,
+    "N": 5376
+  },
+  "offline_weight_pack_excluded": true,
+  "bf16_timing": {
+    "median_ms": 29.810079956054686,
+    "min_ms": 27.765826416015624,
+    "mean_ms": 29.557803780691962,
+    "cv_percent": 3.054427928750587,
+    "batch_ms": [
+      30.499819946289062,
+      29.096847534179688,
+      30.126138305664064,
+      29.612408447265626,
+      29.993505859375,
+      27.765826416015624,
+      29.810079956054686
+    ]
+  },
+  "arms": {
+    "w8a8": {
+      "quantization": "symmetric per-token A8 / per-output-channel W8",
+      "online_ops": [
+        "vllm.scaled_int8_quant",
+        "vllm.triton_scaled_mm"
+      ],
+      "weight_scale_shape": [
+        5376,
+        1
+      ],
+      "weight_stride": [
+        1,
+        14336
+      ],
+      "output": {
+        "nmse": 0.0023187831975519657,
+        "relative_rms_error": 0.04815374541561607,
+        "cosine": 0.9988428950309753
+      },
+      "timing": {
+        "activation_quant": {
+          "median_ms": 1.895849609375,
+          "min_ms": 1.894576072692871,
+          "mean_ms": 1.8960525785173687,
+          "cv_percent": 0.04954271544040806,
+          "batch_ms": [
+            1.8962528228759765,
+            1.895635223388672,
+            1.8967199325561523,
+            1.894576072692871,
+            1.895849609375,
+            1.895756721496582,
+            1.897577667236328
+          ]
+        },
+        "gemm_prepacked": {
+          "median_ms": 8.167657470703125,
+          "min_ms": 8.16550064086914,
+          "mean_ms": 8.16769278390067,
+          "cv_percent": 0.021132992414153156,
+          "batch_ms": [
+            8.165814208984376,
+            8.16550064086914,
+            8.168441772460938,
+            8.170419311523437,
+            8.168828582763672,
+            8.1671875,
+            8.167657470703125
+          ]
+        },
+        "full": {
+          "median_ms": 10.227769470214843,
+          "min_ms": 9.096166229248047,
+          "mean_ms": 9.996974182128906,
+          "cv_percent": 4.375381551176373,
+          "batch_ms": [
+            9.096166229248047,
+            9.760979461669923,
+            10.099913787841796,
+            10.22853775024414,
+            10.28198699951172,
+            10.227769470214843,
+            10.283465576171874
+          ]
+        }
+      }
+    },
+    "w4a16": {
+      "quantization": "symmetric uint4b8, K-group 128, round-to-nearest; no GPTQ correction",
+      "online_ops": [
+        "vllm.marlin_gemm"
+      ],
+      "packed_shape": [
+        896,
+        10752
+      ],
+      "scale_shape": [
+        112,
+        5376
+      ],
+      "layout_gate": {
+        "nmse": 4.9090444917965215e-06,
+        "relative_rms_error": 0.0022156363627176103,
+        "cosine": 0.9999975562095642
+      },
+      "output": {
+        "nmse": 0.010437916964292526,
+        "relative_rms_error": 0.10216612434800748,
+        "cosine": 0.9948277473449707
+      },
+      "timing": {
+        "full": {
+          "median_ms": 35.49290161132812,
+          "min_ms": 35.289730834960935,
+          "mean_ms": 35.46536472865513,
+          "cv_percent": 0.2201307653157429,
+          "batch_ms": [
+            35.289730834960935,
+            35.49290161132812,
+            35.494137573242185,
+            35.48454284667969,
+            35.48420715332031,
+            35.51337585449219,
+            35.4986572265625
+          ]
+        }
+      }
+    }
+  },
+  "stable_cv_threshold_percent": 3.0,
+  "timing_stable": false
+}

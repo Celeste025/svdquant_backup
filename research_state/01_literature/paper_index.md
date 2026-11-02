@@ -1,5 +1,9 @@
 # 第一轮文献索引：视频生成 NVFP4 W4A4
 
+2026-10-31 supplement: primary links and scope notes for DraftAttention2,
+SLA2, Veda, ALLOT, PulseQuant, DSAQuant and FastH3 are consolidated in
+[video_quant_sparse_review_20261031.md](video_quant_sparse_review_20261031.md).
+
 更新：2026-10-02。目的：建立能否决重复 idea 的工作地图，非穷尽综述。下列速度、质量均是作者报告，未在本机复现。只使用论文原文、作者项目页或官方代码/发布；搜索聚合页仅用于发现。
 
 核实等级：A = 读到方法与实验协议的相关原文；B = 官方摘要/项目页，未完成全文核实。预印本不等于已被同行评审。按技术碰撞优先级排列，非质量排名。

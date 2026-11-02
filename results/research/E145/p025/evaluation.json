@@ -1,0 +1,45 @@
+{
+  "format": "e145-text-detail-pure-precision-v1",
+  "prompt_id": 25,
+  "seed": 2141,
+  "initial_latent_sha256": {
+    "video": "fd0b1f7034c96a1a8c2d5d88b9d129583839465e5e1b0731f5486926323fd09e",
+    "audio": "46d617608e74ca6c7d53e9a926a80616d3d9de8d967707705222623f73aaf181"
+  },
+  "sources": {
+    "bf16": "/data1/models/svdquant-wjq/research/20261023/E124_h3_attention_12prompt/p025/bf16/p025_bf16_576x1024_124f_20steps.mp4",
+    "mixed20_10": "/data1/models/svdquant-wjq/research/20261101/E144_text_detail_draft/p025/s70_fp4_20_int8_10/p025_s70_fp4_20_int8_10_576x1024_124f_20steps.mp4",
+    "s70_int8_30": "/data1/models/svdquant-wjq/research/20261101/E145_text_detail_pure_precision/p025/s70_int8_30/p025_s70_int8_30_576x1024_124f_20steps.mp4",
+    "s70_nvfp4_30": "/data1/models/svdquant-wjq/research/20261101/E145_text_detail_pure_precision/p025/s70_nvfp4_30/p025_s70_nvfp4_30_576x1024_124f_20steps.mp4"
+  },
+  "summary_vs_bf16": {
+    "mixed20_10": {
+      "rgb_nmse": 0.214465617133112,
+      "lpips_alex_mean": 0.33327749239340904,
+      "lpips_alex_median": 0.34238201379776,
+      "lpips_alex_max": 0.8049119710922241
+    },
+    "s70_int8_30": {
+      "rgb_nmse": 0.19871620604043067,
+      "lpips_alex_mean": 0.3216486106957159,
+      "lpips_alex_median": 0.2560894340276718,
+      "lpips_alex_max": 0.7968987226486206
+    },
+    "s70_nvfp4_30": {
+      "rgb_nmse": 0.22483451214594083,
+      "lpips_alex_mean": 0.3680883926008978,
+      "lpips_alex_median": 0.3028600662946701,
+      "lpips_alex_max": 0.8064583539962769
+    }
+  },
+  "dit_seconds": {
+    "bf16": 211.13302474102238,
+    "mixed20_10": 185.33819057722576,
+    "s70_int8_30": 176.3191156720277,
+    "s70_nvfp4_30": 177.8571786902612
+  },
+  "prefix_note": "pure NVFP4 video phase uses INT8 prefix K/V and BF16 prefix queries; other quantized arms use INT8 prefix K/V and queries",
+  "comparison_video": "/data1/models/svdquant-wjq/research/20261101/E145_text_detail_pure_precision/p025/p025_bf16_mixed_int8_nvfp4.mp4",
+  "comparison_audio": "none; individual originals retain audio",
+  "five_timepoints": "/home/wjq/workspace/svdquant-exp/results/research/E145/p025/four_arm_five_timepoints.jpg"
+}

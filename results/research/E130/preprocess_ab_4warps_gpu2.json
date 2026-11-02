@@ -1,0 +1,293 @@
+{
+  "format": "e130-sage3-preprocess-ab-v1",
+  "timestamp_utc": "2026-10-24T17:57:23.697330+00:00",
+  "capture": "/data1/models/svdquant-wjq/research/20261014/E098/h3_p1_s0_b25_480x832_73f_qkv.pt",
+  "sage3_source": "/home/wjq/workspace/svdquant-exp/third_party/sage3_h3_maskfix",
+  "shape_hnd": [
+    1,
+    56,
+    9482,
+    128
+  ],
+  "input_policy": "real H3 noncontiguous HND; disposable K restored before CUDA start event",
+  "variants": {
+    "official": {
+      "vs_official_nmse": 0.0,
+      "intermediates_equal": true,
+      "mean_ms": 7.735814655820528,
+      "timing_rounds": [
+        {
+          "mean_ms": 7.731747991508907,
+          "median_ms": 7.733532011508942,
+          "std_batch_mean_ms": 0.012189004868731632,
+          "cv_batch_mean_percent": 0.1576487604370672,
+          "batch_mean_ms": [
+            7.741077264149983,
+            7.740085323651631,
+            7.734677354494731,
+            7.732386668523152,
+            7.7148880163828535,
+            7.737823923428853,
+            7.72324005762736,
+            7.752431948979695,
+            7.718818664550781,
+            7.725050687789917,
+            7.715570688247681,
+            7.744925300280253
+          ],
+          "min_call_ms": 7.662208080291748,
+          "max_call_ms": 7.866335868835449,
+          "calls": 144
+        },
+        {
+          "mean_ms": 7.73988132013215,
+          "median_ms": 7.737959961096445,
+          "std_batch_mean_ms": 0.010548531556334645,
+          "cv_batch_mean_percent": 0.13628802716776722,
+          "batch_mean_ms": [
+            7.7317813237508135,
+            7.730088075002034,
+            7.736042618751526,
+            7.727362672487895,
+            7.750989317893982,
+            7.725306669871013,
+            7.735538681348165,
+            7.739877303441365,
+            7.756119926770528,
+            7.754229346911113,
+            7.744938651720683,
+            7.746301253636678
+          ],
+          "min_call_ms": 7.6631999015808105,
+          "max_call_ms": 7.87011194229126,
+          "calls": 144
+        }
+      ],
+      "speedup_vs_official": 1.0
+    },
+    "fused_q_pad_mean": {
+      "vs_official": {
+        "nmse": 0.0,
+        "relative_rms_error": 0.0,
+        "cosine": 1.0
+      },
+      "intermediates_equal": true,
+      "checks": {
+        "q_center_equal": true,
+        "q_code_equal": true,
+        "q_scale_equal": true,
+        "k_code_equal": true,
+        "k_scale_equal": true,
+        "v_code_equal": true,
+        "v_scale_equal": true,
+        "delta_equal": true
+      },
+      "vs_official_nmse": 0.0,
+      "q_center_max_abs_diff": 0.0,
+      "q_center_mismatched_elements": 0,
+      "delta_max_abs_diff": 0.0,
+      "delta_mismatched_elements": 0,
+      "drop_in_accurate": true,
+      "mean_ms": 7.342017120785183,
+      "timing_rounds": [
+        {
+          "mean_ms": 7.3324182199107275,
+          "median_ms": 7.327300012111664,
+          "std_batch_mean_ms": 0.01709852694507545,
+          "cv_batch_mean_percent": 0.2331908305318082,
+          "batch_mean_ms": [
+            7.31878928343455,
+            7.325831969579061,
+            7.3431386550267534,
+            7.319754679997762,
+            7.3476293087005615,
+            7.335005362828572,
+            7.327240029970805,
+            7.357293367385864,
+            7.3273599942525225,
+            7.3060373067855835,
+            7.3625679810841875,
+            7.318370699882507
+          ],
+          "min_call_ms": 7.24015998840332,
+          "max_call_ms": 7.418848037719727,
+          "calls": 144
+        },
+        {
+          "mean_ms": 7.351616021659639,
+          "median_ms": 7.349932014942169,
+          "std_batch_mean_ms": 0.009958007835655262,
+          "cv_batch_mean_percent": 0.13545331810470734,
+          "batch_mean_ms": [
+            7.350661317507426,
+            7.348490675290425,
+            7.349122722943624,
+            7.361397345860799,
+            7.350709358851115,
+            7.355773409207662,
+            7.367648045221965,
+            7.335818688074748,
+            7.3375546137491865,
+            7.346453348795573,
+            7.366560022036235,
+            7.349202712376912
+          ],
+          "min_call_ms": 7.261568069458008,
+          "max_call_ms": 7.523680210113525,
+          "calls": 144
+        }
+      ],
+      "speedup_vs_official": 1.0536361504688552
+    },
+    "implicit_kv_pad": {
+      "vs_official": {
+        "nmse": 5.7646390707043446e-09,
+        "relative_rms_error": 7.59252202545659e-05,
+        "cosine": 1.0000000142691559
+      },
+      "intermediates_equal": false,
+      "checks": {
+        "q_center_equal": true,
+        "q_code_equal": true,
+        "q_scale_equal": true,
+        "k_code_equal": true,
+        "k_scale_equal": true,
+        "v_code_equal": true,
+        "v_scale_equal": true,
+        "delta_equal": false
+      },
+      "vs_official_nmse": 5.7646390707043446e-09,
+      "q_center_max_abs_diff": 0.0,
+      "q_center_mismatched_elements": 0,
+      "delta_max_abs_diff": 1.0,
+      "delta_mismatched_elements": 349,
+      "drop_in_accurate": true,
+      "mean_ms": 7.408491326702966,
+      "timing_rounds": [
+        {
+          "mean_ms": 7.407658437887828,
+          "median_ms": 7.407056013743083,
+          "std_batch_mean_ms": 0.008501091055952877,
+          "cv_batch_mean_percent": 0.11476084011207222,
+          "batch_mean_ms": [
+            7.398680011431376,
+            7.3941173156102495,
+            7.403346657752991,
+            7.409320036570231,
+            7.4039466381073,
+            7.414072036743164,
+            7.412474711736043,
+            7.421685298283895,
+            7.410005251566569,
+            7.420037309328715,
+            7.399423996607463,
+            7.4047919909159345
+          ],
+          "min_call_ms": 7.332831859588623,
+          "max_call_ms": 7.559135913848877,
+          "calls": 144
+        },
+        {
+          "mean_ms": 7.409324215518104,
+          "median_ms": 7.408034662405649,
+          "std_batch_mean_ms": 0.010615925657214248,
+          "cv_batch_mean_percent": 0.1432779204745857,
+          "batch_mean_ms": [
+            7.426722685496013,
+            7.3972026109695435,
+            7.412290612856547,
+            7.406402667363484,
+            7.393194715181987,
+            7.414602597554524,
+            7.425586700439453,
+            7.417933344841003,
+            7.405799984931946,
+            7.402464032173157,
+            7.400023976961772,
+            7.409666657447815
+          ],
+          "min_call_ms": 7.337952136993408,
+          "max_call_ms": 7.538335800170898,
+          "calls": 144
+        }
+      ],
+      "speedup_vs_official": 1.044182184291391
+    },
+    "fused_q_and_implicit_kv_pad": {
+      "vs_official": {
+        "nmse": 5.7646390707043446e-09,
+        "relative_rms_error": 7.59252202545659e-05,
+        "cosine": 1.0000000142691559
+      },
+      "intermediates_equal": false,
+      "checks": {
+        "q_center_equal": true,
+        "q_code_equal": true,
+        "q_scale_equal": true,
+        "k_code_equal": true,
+        "k_scale_equal": true,
+        "v_code_equal": true,
+        "v_scale_equal": true,
+        "delta_equal": false
+      },
+      "vs_official_nmse": 5.7646390707043446e-09,
+      "q_center_max_abs_diff": 0.0,
+      "q_center_mismatched_elements": 0,
+      "delta_max_abs_diff": 1.0,
+      "delta_mismatched_elements": 349,
+      "drop_in_accurate": true,
+      "mean_ms": 7.037071329024103,
+      "timing_rounds": [
+        {
+          "mean_ms": 7.032162659698063,
+          "median_ms": 7.03354267279307,
+          "std_batch_mean_ms": 0.012984928319186394,
+          "cv_batch_mean_percent": 0.18465056836077115,
+          "batch_mean_ms": [
+            7.0102880001068115,
+            7.028448025385539,
+            7.0338559945424395,
+            7.027591983477275,
+            7.014591972033183,
+            7.052512009938558,
+            7.020125309626262,
+            7.041125337282817,
+            7.033229351043701,
+            7.034024000167847,
+            7.039967934290568,
+            7.0501919984817505
+          ],
+          "min_call_ms": 6.946784019470215,
+          "max_call_ms": 7.14851188659668,
+          "calls": 144
+        },
+        {
+          "mean_ms": 7.041979998350143,
+          "median_ms": 7.042437314987183,
+          "std_batch_mean_ms": 0.009224619148216855,
+          "cv_batch_mean_percent": 0.13099467976873094,
+          "batch_mean_ms": [
+            7.036069273948669,
+            7.047391970952352,
+            7.05348535378774,
+            7.02726137638092,
+            7.041248003641765,
+            7.025576035181682,
+            7.039114634195964,
+            7.045002659161885,
+            7.0537919998168945,
+            7.0397893985112505,
+            7.051402648289998,
+            7.043626626332601
+          ],
+          "min_call_ms": 6.966239929199219,
+          "max_call_ms": 7.1669440269470215,
+          "calls": 144
+        }
+      ],
+      "speedup_vs_official": 1.0992946204644094
+    }
+  },
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "scope": "full online Sage3 API including Q/K/V preprocess and FP4 core; K restore excluded"
+}

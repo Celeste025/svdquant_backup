@@ -1,0 +1,52 @@
+{
+  "status": "complete",
+  "rows": [
+    {
+      "prompt_id": 25,
+      "frames": 124,
+      "seed": 2141,
+      "proxy_nmse": 0.26680204812438635,
+      "reuse_nmse": 0.31144486818783484,
+      "reuse_over_proxy": 1.1673256272854227,
+      "winner": "proxy",
+      "proxy_dit_seconds": 310.8316755199339,
+      "reuse_dit_seconds": 315.2478772389004
+    },
+    {
+      "prompt_id": 48,
+      "frames": 124,
+      "seed": 9939,
+      "proxy_nmse": 0.11023886094580133,
+      "reuse_nmse": 0.10417085273031154,
+      "reuse_over_proxy": 0.9449558153682928,
+      "winner": "reuse",
+      "proxy_dit_seconds": 305.8279264116427,
+      "reuse_dit_seconds": 307.2358498980757
+    },
+    {
+      "prompt_id": 44,
+      "frames": 243,
+      "seed": 17080,
+      "proxy_nmse": 0.09607190222723039,
+      "reuse_nmse": 0.14559078462688765,
+      "reuse_over_proxy": 1.5154356398870361,
+      "winner": "proxy",
+      "proxy_dit_seconds": 708.2841332086828,
+      "reuse_dit_seconds": 707.8347055271734
+    },
+    {
+      "prompt_id": 7,
+      "frames": 243,
+      "seed": 59417,
+      "proxy_nmse": 0.23930128814500728,
+      "reuse_nmse": 0.2508610180832336,
+      "reuse_over_proxy": 1.0483061751477976,
+      "winner": "proxy",
+      "proxy_dit_seconds": 708.1650346965762,
+      "reuse_dit_seconds": 708.1845126344124
+    }
+  ],
+  "pending": [],
+  "metric": "sum((video_latent - BF16)^2) / sum(BF16_video_latent^2)",
+  "policy": "Q128, skip0, NVFP4 .9 / INT8 .1, step0 dense INT8, layer0 BF16; BF16 linears; existing E150 baseline"
+}

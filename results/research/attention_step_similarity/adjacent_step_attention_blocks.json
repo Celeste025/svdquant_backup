@@ -1,0 +1,35 @@
+{
+  "prompt_id": 16,
+  "seed": 20026,
+  "resolution": "480x832",
+  "frames": 124,
+  "layer": 25,
+  "head": 0,
+  "steps": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "tile_size": 128,
+  "video_tokens": 14430,
+  "grid_shape": [
+    113,
+    113
+  ],
+  "score": "max scaled QK logit over valid video token pairs, BF16 Q/K with FP32 matmul",
+  "selection": "top 25% tiles within selected head; stable sorting",
+  "adjacent_overlap_fraction": [
+    0.5447994987468672,
+    0.6873433583959899,
+    0.6848370927318296
+  ],
+  "step0_overlap_fraction": [
+    1.0,
+    0.5447994987468672,
+    0.4730576441102757,
+    0.4201127819548872
+  ],
+  "independent_random_reference": 0.25,
+  "limitations": "One head and one prompt; this is a dense BF16 logit-max diagnostic, not native INT8 exact map or official DraftMap; no softmax and no end-to-end reuse guarantee."
+}

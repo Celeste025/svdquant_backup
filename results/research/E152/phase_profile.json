@@ -1,0 +1,115 @@
+{
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "frames": {
+    "124": {
+      "tokens": 38661,
+      "prefix_tokens": 1365,
+      "full": {
+        "mean_ms": 46.078265243106415,
+        "batch_means_ms": [
+          46.049092292785645,
+          46.053242683410645,
+          46.04348850250244,
+          46.07846895853678,
+          46.10550435384115,
+          46.13979466756185
+        ],
+        "cv_batch_percent": 0.08243691930588433,
+        "calls": 72
+      },
+      "stages": {
+        "qkv_pack_quant_pool": {
+          "mean_ms": 10.062461853027344,
+          "std_ms": 0.018353755361042463,
+          "samples": 30
+        },
+        "draft_probability": {
+          "mean_ms": 4.454096031188965,
+          "std_ms": 0.009968539613973057,
+          "samples": 30
+        },
+        "select_precision_route": {
+          "mean_ms": 1.9982442657152812,
+          "std_ms": 0.005126244287819546,
+          "samples": 30
+        },
+        "route_materialization": {
+          "mean_ms": 0.08502826889355977,
+          "std_ms": 0.0008323708404726721,
+          "samples": 30
+        },
+        "mixed_attention_main": {
+          "mean_ms": 28.387118911743165,
+          "std_ms": 0.03184713668498217,
+          "samples": 30
+        },
+        "prefix_attention_parallel": {
+          "mean_ms": 5.025628757476807,
+          "std_ms": 0.010492349579446314,
+          "samples": 30
+        },
+        "output_assembly": {
+          "mean_ms": 1.1230229338010151,
+          "std_ms": 0.0038592151217796077,
+          "samples": 30
+        }
+      }
+    },
+    "362": {
+      "tokens": 110013,
+      "prefix_tokens": 2157,
+      "full": {
+        "mean_ms": 296.7698148091634,
+        "batch_means_ms": [
+          295.112543741862,
+          295.40216573079425,
+          296.2940851847331,
+          297.16925557454425,
+          298.0162531534831,
+          298.6245854695638
+        ],
+        "cv_batch_percent": 0.4764560627403958,
+        "calls": 72
+      },
+      "stages": {
+        "qkv_pack_quant_pool": {
+          "mean_ms": 28.371295801798503,
+          "std_ms": 0.04222376343647887,
+          "samples": 30
+        },
+        "draft_probability": {
+          "mean_ms": 22.15528939565023,
+          "std_ms": 0.050648279820407587,
+          "samples": 30
+        },
+        "select_precision_route": {
+          "mean_ms": 16.26397139231364,
+          "std_ms": 0.042895332389924906,
+          "samples": 30
+        },
+        "route_materialization": {
+          "mean_ms": 0.8428458730379741,
+          "std_ms": 0.002646335341295511,
+          "samples": 30
+        },
+        "mixed_attention_main": {
+          "mean_ms": 229.44862314860026,
+          "std_ms": 0.3397610610330462,
+          "samples": 30
+        },
+        "prefix_attention_parallel": {
+          "mean_ms": 21.760925801595054,
+          "std_ms": 0.05654838574473449,
+          "samples": 30
+        },
+        "output_assembly": {
+          "mean_ms": 3.2593642711639403,
+          "std_ms": 0.015436351280295139,
+          "samples": 30
+        }
+      }
+    }
+  },
+  "description": "CUDA event spans around actual API functions; prefix stream overlaps main stream; stage sums are not critical-path latency. Full timing without wrappers.",
+  "timing": "25 warmups, 6 batches of 12 full calls; 8 warmups + 30 per-call stage profiles"
+}

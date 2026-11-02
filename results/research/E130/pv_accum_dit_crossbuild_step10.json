@@ -1,0 +1,31 @@
+{
+  "format": "e130-h3-dit-crossbuild-v1",
+  "step": 10,
+  "arm": "sage3_fixed",
+  "baseline_dir": "/data1/models/svdquant-wjq/research/20261025/E130/dit_crossbuild_baseline",
+  "candidate_dir": "/data1/models/svdquant-wjq/research/20261025/E130/dit_crossbuild_pv_accum",
+  "modalities": {
+    "video": {
+      "shape": [
+        21312,
+        96
+      ],
+      "bf16_crossbuild_bitwise_equal": true,
+      "candidate_vs_baseline_nmse": 0.011364982283061799,
+      "baseline_vs_bf16_nmse": 0.018687435272435892,
+      "candidate_vs_bf16_nmse": 0.019700666991912245,
+      "candidate_vs_baseline_max_abs": 2.75
+    },
+    "audio": {
+      "shape": [
+        414,
+        32
+      ],
+      "bf16_crossbuild_bitwise_equal": true,
+      "candidate_vs_baseline_nmse": 0.023111364578411616,
+      "baseline_vs_bf16_nmse": 0.01068993421391439,
+      "candidate_vs_bf16_nmse": 0.02270871985939569,
+      "candidate_vs_baseline_max_abs": 0.5234375
+    }
+  }
+}

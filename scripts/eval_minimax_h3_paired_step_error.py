@@ -22,7 +22,7 @@ from minimax_h3_svdquant_common import (install_runtime_hooks, load_h3_pipeline,
 
 
 @torch.no_grad()
-def apply_svdquant(dit: torch.nn.Module, path: Path):
+def apply_svdquant(dit: torch.nn.Module, path: Path, *, tensor_scale_mode: str = "dynamic"):
     """Install precisely the standard-inference SVDQuant state, without video I/O deps."""
     state = torch.load(path, map_location="cpu", weights_only=False)
     fmt = state.get("format")
@@ -52,7 +52,7 @@ def apply_svdquant(dit: torch.nn.Module, path: Path):
         linear.offload_device = linear.onload_device = torch.device("cpu")
         linear.computation_dtype, linear.computation_device = torch.bfloat16, torch.device("cuda")
         linear.vram_limit, linear.state = 0.0, 1
-        runtime = install_runtime_hooks(linear, smooth, a, b)
+        runtime = install_runtime_hooks(linear, smooth, a, b, tensor_scale_mode=tensor_scale_mode)
         if runtime.branch is not None:
             runtime.branch.to(device="cuda", dtype=torch.bfloat16)
         hooks.append(runtime)
@@ -86,8 +86,12 @@ def apply_plain(dit: torch.nn.Module):
 def args_parser() -> argparse.Namespace:
     p = argparse.ArgumentParser()
     p.add_argument("--state", type=Path, required=True)
-    p.add_argument("--variant", choices=("svdquant", "svdquant_ft", "plain_w4a4"), default="svdquant")
+    p.add_argument("--variant", choices=("svdquant", "svdquant_ft", "svdquant_fixed1", "plain_w4a4"), default="svdquant")
     p.add_argument("--prompt-id", type=int, default=16)
+    p.add_argument("--prompt-text", type=str, default=None,
+                   help="Explicit prompt text for a source outside the standard H3 prompt JSONL.")
+    p.add_argument("--seed", type=int, default=None,
+                   help="Explicit seed; required together with --prompt-text.")
     p.add_argument("--height", type=int, default=576)
     p.add_argument("--width", type=int, default=1024)
     p.add_argument("--frames", type=int, default=124)
@@ -149,7 +153,10 @@ def main() -> None:
     args = args_parser()
     if args.height % 32 or args.width % 32 or (args.frames - 5) % 17:
         raise ValueError("invalid H3 output shape")
-    row = read_prompt(args.prompt_id)
+    if (args.prompt_text is None) != (args.seed is None):
+        raise ValueError("--prompt-text and --seed must be provided together")
+    row = ({"prompt": args.prompt_text, "seed": args.seed} if args.prompt_text is not None
+           else read_prompt(args.prompt_id))
     if args.calls_file:
         print(f"loading BF16 sampling trajectory from {args.calls_file}", flush=True)
         calls = torch.load(args.calls_file, map_location="cpu", weights_only=False)
@@ -164,7 +171,9 @@ def main() -> None:
     print(f"loading {args.variant} DiT", flush=True)
     pipe = load_h3_pipeline(full=True, reserve_gib=35.0)
     pipe.load_models_to_device(["dit"])
-    hooks = apply_svdquant(pipe.dit, args.state) if args.variant in ("svdquant", "svdquant_ft") else apply_plain(pipe.dit)
+    hooks = apply_svdquant(pipe.dit, args.state,
+                           tensor_scale_mode="fixed_one" if args.variant == "svdquant_fixed1" else "dynamic") \
+        if args.variant in ("svdquant", "svdquant_ft", "svdquant_fixed1") else apply_plain(pipe.dit)
     results = []
     for step, call in enumerate(calls):
         output = pipe.dit(*tree_device(call["args"], "cuda"), **tree_device(call["kwargs"], "cuda"))

@@ -1,0 +1,240 @@
+{
+  "experiment": "E009_h3_native_export",
+  "status": "complete",
+  "format": "h3-native-nvfp4-rank64-v1",
+  "recipe": {
+    "input_dtype": "bfloat16",
+    "group_size": 16,
+    "rank": 64,
+    "global": "max(max(abs(x)),1e-12)/2688 then clamp_min(1e-12), FP32",
+    "group_scale": "max(amax(group)/6,1e-12)/global, clamp FP32 tiny then E4M3FN RNE",
+    "e2m1": "E005 signed nibble convention; ties to numerically smaller value; negative rounded zero uses nibble8",
+    "zero_sf": "E005 canonical nibble0 for SF0; reject nonzero-input SF0; independent old QDQ numeric roundtrip required",
+    "residual": "BF16(W*s) - BF16(B@A), BF16 result; original GPU expression",
+    "lr": "1.0 * BF16(BF16(x/s) @ A.T @ B.T), two BF16 F.linear calls",
+    "main": "packed NVFP4 F.scaled_mm with E4M3 block scale and FP32 tensor globals",
+    "out": "BF16 main (including original bias) + BF16 LR"
+  },
+  "start_unix": 1793560060.3970542,
+  "scope": "Two real H3 block0 linear smoke gates then exact 200 weight export; no full-model benchmark or recalibration",
+  "torch": "2.11.0+cu128",
+  "torch_file": "/home/wjq/.conda/envs/convrot-wan/lib/python3.12/site-packages/torch/__init__.py",
+  "cuda": "12.8",
+  "device": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "capability": [
+    12,
+    0
+  ],
+  "attention": "Explicit torch implementation; actual BF16 QKV audited in smoke",
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "1",
+    "DIFFSYNTH_ATTENTION_IMPLEMENTATION": "torch",
+    "DIFFSYNTH_ROOT": "/home/wjq/workspace/DiffSynth-Studio",
+    "MINIMAX_H3_DIT_PATH": "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors",
+    "SVDQUANT_DATA_ROOT": "/data1/models/svdquant-wjq"
+  },
+  "files": {
+    "/home/wjq/workspace/svdquant-exp/scripts/research/export_h3_native_nvfp4_r64.py": {
+      "sha256": "ea487adc319395a998ccd7c6a6df3a91c3cc82d89adb7cb3984af87ee0fd27e6",
+      "bytes": 17882,
+      "mtime_ns": 1793560055908843771
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/h3_native_nvfp4_r64.py": {
+      "sha256": "c8a5d94466b5e6ae3c4224518b5cc8f1386c8b35429e04b5e98710cc06efe3f3",
+      "bytes": 14615,
+      "mtime_ns": 1793560047217562110
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/research/wan_native_nvfp4.py": {
+      "sha256": "ab63bbb13cd043e16af1aa4141e24206389165b62cbd7202b922fb70bc96aeaa",
+      "bytes": 22773,
+      "mtime_ns": 1790928567228482194
+    },
+    "/home/wjq/workspace/svdquant-exp/scripts/minimax_h3_svdquant_common.py": {
+      "sha256": "a25a26884214a743a2ae779dae73ed5cea37012bc42ce2136046d27a611e1075",
+      "bytes": 16044,
+      "mtime_ns": 1792045043312800527
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/models/Comfy-Org/MiniMax-H3/diffusion_models/minimax_h3_fl2va_pruned_bf16.safetensors": {
+      "sha256": "a32572fb90b5508b201ec7c2eddcc184b13ddfd3c6f6d2cf06a0b46535d541b4",
+      "bytes": 40225724176,
+      "mtime_ns": 1788628641816315374
+    },
+    "results/checkpoints/minimax_h3_svdquant_standard_r64_8p64s/quant_state.pt": {
+      "sha256": "d199da3e5c89d248653d72b035e57cc505644075f269c6f44cc4c552e1f10f73",
+      "bytes": 599790215,
+      "mtime_ns": 1789274977070033325
+    },
+    "/home/wjq/workspace/svdquant-exp/results/calib/minimax_h3_svdquant_standard_8p64s/p1/sample_p1_s00.pt": {
+      "sha256": "c89050f015479c3aa097f090f2a600cbd232dc63d86ce430d9a29c33c27e5404",
+      "bytes": 13723182,
+      "mtime_ns": 1788691427220520292
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit.py": {
+      "sha256": "bd617a4312c70405e916707e1908100b484b2259dfbeba4af7de5bb145206d80",
+      "bytes": 18207,
+      "mtime_ns": 1788624228167481922
+    },
+    "/home/wjq/workspace/DiffSynth-Studio/diffsynth/models/minimax_h3_dit_comfy.py": {
+      "sha256": "e8a2eb4cb986ba384052100fdc03984446f3fa35d0ab1e9ebfacffc039a2e8ff",
+      "bytes": 3011,
+      "mtime_ns": 1788624228167481922
+    }
+  },
+  "state_config": {
+    "rank": 64,
+    "num_grids": 10,
+    "max_lowrank_iters": 50,
+    "lowrank_early_stop": "first_non_improvement",
+    "group_size": 16,
+    "element_size": 128,
+    "sample_size": 64,
+    "sample_batch_size": 1,
+    "quant": "real-NVFP4 W4A4",
+    "objective": "H3 block OutputsError"
+  },
+  "capture": {
+    "actual_bf16_sdpa_calls": 4,
+    "input_shapes": {
+      "blocks.0.attn.qkv_proj": [
+        22400,
+        5376
+      ],
+      "blocks.0.mlp.fc2": [
+        22400,
+        14336
+      ]
+    },
+    "sample": "/home/wjq/workspace/svdquant-exp/results/calib/minimax_h3_svdquant_standard_8p64s/p1/sample_p1_s00.pt",
+    "full_tokens": 22400
+  },
+  "smoke": [
+    {
+      "layer": "blocks.0.attn.qkv_proj",
+      "input_scope": "first 512 full-shape BF16-upstream tokens; contract only",
+      "activation_roundtrip": {
+        "exact": true,
+        "changed_elements": 0,
+        "elements": 2752512,
+        "err2": 0.0,
+        "ref2": 191452.26317179203,
+        "nmse": 0.0,
+        "max_abs": 0.0
+      },
+      "main_samepacket_native_vs_qdq": {
+        "exact": false,
+        "changed_elements": 4247403,
+        "elements": 11010048,
+        "err2": 1510.1713935579396,
+        "ref2": 341785307.7112382,
+        "nmse": 4.418479552765994e-06,
+        "max_abs": 0.5
+      },
+      "bypass_vs_original_hooks": {
+        "exact": true,
+        "changed_elements": 0,
+        "elements": 11010048,
+        "err2": 0.0,
+        "ref2": 341864409.92588985,
+        "nmse": 0.0,
+        "max_abs": 0.0
+      },
+      "packed_qdq_vs_original_hooks": {
+        "exact": true,
+        "changed_elements": 0,
+        "elements": 11010048,
+        "err2": 0.0,
+        "ref2": 341864409.92588985,
+        "nmse": 0.0,
+        "max_abs": 0.0
+      },
+      "fused_input_artifact": {
+        "path": "/data1/models/svdquant-wjq/research/20261102/h3_svdquant_rank64_native_export/fused_inputs/blocks.0.attn.qkv_proj.pt",
+        "sha256": "e4bebda12653e49b5092eef1068777db161f2b2ce042899a8140377bf13d2b02",
+        "input_shape": [
+          22400,
+          5376
+        ],
+        "smoothed_sha256": "8e70b85da8542cd33f5de96c8b6b80f9637087077062634044bcd3137876ae57"
+      },
+      "activation_packet": {
+        "global_scale": 0.0006423223530873656,
+        "groups": 172032,
+        "zero_sf": 0,
+        "nonzero_subnormal_sf": 0,
+        "scales_at_448": 2,
+        "packed_sha256": "b269741be84c58c7d999f9303f81642516259bd9a9129d8b78e38a8a4cbcd8e2",
+        "global_sha256": "94cf20d0b46ed3c8103f3a2f431d2d55b7e883339fa749c72caee14b3dcb04d2",
+        "swizzled_sf_sha256": "491abd1058c8819e21755810ef72be171e93f0022572abcf1b5e83072272f9a3"
+      }
+    },
+    {
+      "layer": "blocks.0.mlp.fc2",
+      "input_scope": "first 512 full-shape BF16-upstream tokens; contract only",
+      "activation_roundtrip": {
+        "exact": true,
+        "changed_elements": 0,
+        "elements": 7340032,
+        "err2": 0.0,
+        "ref2": 6328041.572268531,
+        "nmse": 0.0,
+        "max_abs": 0.0
+      },
+      "main_samepacket_native_vs_qdq": {
+        "exact": false,
+        "changed_elements": 1306730,
+        "elements": 2752512,
+        "err2": 6486855.581662267,
+        "ref2": 790600504133.5598,
+        "nmse": 8.204972736225846e-06,
+        "max_abs": 128.0
+      },
+      "bypass_vs_original_hooks": {
+        "exact": true,
+        "changed_elements": 0,
+        "elements": 2752512,
+        "err2": 0.0,
+        "ref2": 790780774526.3469,
+        "nmse": 0.0,
+        "max_abs": 0.0
+      },
+      "packed_qdq_vs_original_hooks": {
+        "exact": true,
+        "changed_elements": 0,
+        "elements": 2752512,
+        "err2": 0.0,
+        "ref2": 790780774526.3469,
+        "nmse": 0.0,
+        "max_abs": 0.0
+      },
+      "fused_input_artifact": {
+        "path": "/data1/models/svdquant-wjq/research/20261102/h3_svdquant_rank64_native_export/fused_inputs/blocks.0.mlp.fc2.pt",
+        "sha256": "480a0a35556504c3f0b94edda612ec9f1722333915fe08555658126937c80d09",
+        "input_shape": [
+          22400,
+          14336
+        ],
+        "smoothed_sha256": "9c7dbff69e47d161cbaaf7b6515f832dcdb7ae35052a1fff9a431571f37dffbe"
+      },
+      "activation_packet": {
+        "global_scale": 0.0587797611951828,
+        "groups": 458752,
+        "zero_sf": 0,
+        "nonzero_subnormal_sf": 0,
+        "scales_at_448": 1,
+        "packed_sha256": "6f1b7bd66a9c4de6e219148492077d5842f7c3ea32a1844c4bd66b4544ead49b",
+        "global_sha256": "a0b9f5e74b43e1a491c768d1b6067f1b5b95f9d7969cb68fbed552a976f8b8e4",
+        "swizzled_sf_sha256": "5254e2ea92d79d5ab0b0ff3faf39311b017abfbae7acbf3b910f2418eb964dcd"
+      }
+    }
+  ],
+  "two_layer_gate": "passed",
+  "export": {
+    "directory": "/data1/models/svdquant-wjq/research/20261102/h3_svdquant_rank64_native_export",
+    "manifest": "/data1/models/svdquant-wjq/research/20261102/h3_svdquant_rank64_native_export/manifest.json",
+    "exact_roundtrip_count": 200,
+    "total_layer_file_bytes": 11438463720,
+    "manifest_sha256": "f203e6dc170f617dcff9db2956bb470b4a9b8ede3ae14bdaf04c0a68aa6c121a"
+  },
+  "peak_gpu_allocated_gib": 5.151373386383057,
+  "elapsed_seconds": 218.27921960304957
+}

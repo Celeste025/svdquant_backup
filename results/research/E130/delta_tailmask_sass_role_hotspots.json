@@ -1,0 +1,1439 @@
+{
+  "format": "e130-sass-source-counter-hotspots-v1",
+  "report": "/data1/models/svdquant-wjq/research/20261025/E130/sage3_delta_tailmask_long_core_gpu2.ncu-rep",
+  "kernel": "void flash::compute_attn_ws<Flash_fwd_kernel_traits<(int)128, (int)128, (int)128, (int)3, (int)1, (bool)1, cutlass::nv_float4_t<cutlass::float_e2m1_t>, cutlass::bfloat16_t>, (bool)0, flash::StaticPersistentTileScheduler>(Flash_fwd_params, flash::CollectiveMainloopFwd<T1, T2>::Params, flash::CollectiveEpilogueFwd<T1>::Params, T3::Params)",
+  "sampled_sass_instructions": 2920,
+  "caveat": "PC sampling attribution identifies stall locations, not exact exclusive time; opcode categories overlap and have warp-specialized roles.",
+  "top_opcode": {
+    "# Samples": [
+      {
+        "opcode": "FFMA",
+        "value": 569792.0
+      },
+      {
+        "opcode": "OMMA",
+        "value": 504163.0
+      },
+      {
+        "opcode": "SYNCS",
+        "value": 280401.0
+      },
+      {
+        "opcode": "MUFU",
+        "value": 272419.0
+      },
+      {
+        "opcode": "FADD",
+        "value": 194264.0
+      },
+      {
+        "opcode": "WARPSYNC",
+        "value": 186245.0
+      },
+      {
+        "opcode": "UIADD3",
+        "value": 176353.0
+      },
+      {
+        "opcode": "FMNMX",
+        "value": 166807.0
+      },
+      {
+        "opcode": "LOP3",
+        "value": 147834.0
+      },
+      {
+        "opcode": "MOV",
+        "value": 83566.0
+      },
+      {
+        "opcode": "PRMT",
+        "value": 83501.0
+      },
+      {
+        "opcode": "FMUL",
+        "value": 74872.0
+      },
+      {
+        "opcode": "LDSM",
+        "value": 62790.0
+      },
+      {
+        "opcode": "IMAD",
+        "value": 58939.0
+      },
+      {
+        "opcode": "SHF",
+        "value": 58793.0
+      }
+    ],
+    "Instructions Executed": [
+      {
+        "opcode": "FFMA",
+        "value": 1981957376.0
+      },
+      {
+        "opcode": "MUFU",
+        "value": 1163943534.0
+      },
+      {
+        "opcode": "FMNMX",
+        "value": 1163943424.0
+      },
+      {
+        "opcode": "FADD",
+        "value": 1022318080.0
+      },
+      {
+        "opcode": "FMUL",
+        "value": 941776640.0
+      },
+      {
+        "opcode": "OMMA",
+        "value": 908443648.0
+      },
+      {
+        "opcode": "LOP3",
+        "value": 828654444.0
+      },
+      {
+        "opcode": "MOV",
+        "value": 668185195.0
+      },
+      {
+        "opcode": "F2FP",
+        "value": 513551360.0
+      },
+      {
+        "opcode": "LDSM",
+        "value": 454381312.0
+      },
+      {
+        "opcode": "PRMT",
+        "value": 454253504.0
+      },
+      {
+        "opcode": "SHF",
+        "value": 399941207.0
+      },
+      {
+        "opcode": "UIADD3",
+        "value": 360671484.0
+      },
+      {
+        "opcode": "LDS",
+        "value": 284048128.0
+      },
+      {
+        "opcode": "IMAD",
+        "value": 279851354.0
+      }
+    ],
+    "stall_short_sb": [
+      {
+        "opcode": "FFMA",
+        "value": 363103.0
+      },
+      {
+        "opcode": "FADD",
+        "value": 48926.0
+      },
+      {
+        "opcode": "FMNMX",
+        "value": 32760.0
+      },
+      {
+        "opcode": "IMAD",
+        "value": 20376.0
+      },
+      {
+        "opcode": "FMUL",
+        "value": 14247.0
+      },
+      {
+        "opcode": "LOP3",
+        "value": 3521.0
+      },
+      {
+        "opcode": "OMMA",
+        "value": 337.0
+      },
+      {
+        "opcode": "PRMT",
+        "value": 246.0
+      },
+      {
+        "opcode": "F2FP",
+        "value": 95.0
+      },
+      {
+        "opcode": "MUFU",
+        "value": 85.0
+      },
+      {
+        "opcode": "SHF",
+        "value": 60.0
+      },
+      {
+        "opcode": "BRA",
+        "value": 25.0
+      },
+      {
+        "opcode": "FSEL",
+        "value": 18.0
+      },
+      {
+        "opcode": "LDS",
+        "value": 16.0
+      },
+      {
+        "opcode": "IADD3",
+        "value": 14.0
+      }
+    ],
+    "stall_sleep": [
+      {
+        "opcode": "SYNCS",
+        "value": 251195.0
+      },
+      {
+        "opcode": "WARPSYNC",
+        "value": 185478.0
+      },
+      {
+        "opcode": "ELECT",
+        "value": 3.0
+      },
+      {
+        "opcode": "LDC",
+        "value": 0.0
+      },
+      {
+        "opcode": "S2R",
+        "value": 0.0
+      },
+      {
+        "opcode": "BSSY",
+        "value": 0.0
+      },
+      {
+        "opcode": "SHF",
+        "value": 0.0
+      },
+      {
+        "opcode": "SHFL",
+        "value": 0.0
+      },
+      {
+        "opcode": "ISETP",
+        "value": 0.0
+      },
+      {
+        "opcode": "BRA",
+        "value": 0.0
+      },
+      {
+        "opcode": "LDCU",
+        "value": 0.0
+      },
+      {
+        "opcode": "UIADD3",
+        "value": 0.0
+      },
+      {
+        "opcode": "UTMACCTL",
+        "value": 0.0
+      },
+      {
+        "opcode": "NOP",
+        "value": 0.0
+      },
+      {
+        "opcode": "BSYNC",
+        "value": 0.0
+      }
+    ],
+    "stall_math": [
+      {
+        "opcode": "OMMA",
+        "value": 286424.0
+      },
+      {
+        "opcode": "LOP3",
+        "value": 11321.0
+      },
+      {
+        "opcode": "IADD3",
+        "value": 4345.0
+      },
+      {
+        "opcode": "PRMT",
+        "value": 3719.0
+      },
+      {
+        "opcode": "SHF",
+        "value": 3594.0
+      },
+      {
+        "opcode": "SEL",
+        "value": 1319.0
+      },
+      {
+        "opcode": "IMAD",
+        "value": 1138.0
+      },
+      {
+        "opcode": "F2FP",
+        "value": 1006.0
+      },
+      {
+        "opcode": "R2UR",
+        "value": 325.0
+      },
+      {
+        "opcode": "LEA",
+        "value": 49.0
+      },
+      {
+        "opcode": "MOV",
+        "value": 34.0
+      },
+      {
+        "opcode": "LDC",
+        "value": 0.0
+      },
+      {
+        "opcode": "S2R",
+        "value": 0.0
+      },
+      {
+        "opcode": "ELECT",
+        "value": 0.0
+      },
+      {
+        "opcode": "BSSY",
+        "value": 0.0
+      }
+    ],
+    "stall_wait": [
+      {
+        "opcode": "UIADD3",
+        "value": 144755.0
+      },
+      {
+        "opcode": "OMMA",
+        "value": 132338.0
+      },
+      {
+        "opcode": "MUFU",
+        "value": 105688.0
+      },
+      {
+        "opcode": "FADD",
+        "value": 70887.0
+      },
+      {
+        "opcode": "LOP3",
+        "value": 69727.0
+      },
+      {
+        "opcode": "FFMA",
+        "value": 65851.0
+      },
+      {
+        "opcode": "FMNMX",
+        "value": 49789.0
+      },
+      {
+        "opcode": "PRMT",
+        "value": 45778.0
+      },
+      {
+        "opcode": "SHFL",
+        "value": 36493.0
+      },
+      {
+        "opcode": "MOV",
+        "value": 36462.0
+      },
+      {
+        "opcode": "LDSM",
+        "value": 33481.0
+      },
+      {
+        "opcode": "LDS",
+        "value": 28931.0
+      },
+      {
+        "opcode": "SHF",
+        "value": 27870.0
+      },
+      {
+        "opcode": "IADD3",
+        "value": 21179.0
+      },
+      {
+        "opcode": "IMAD",
+        "value": 20653.0
+      }
+    ],
+    "stall_long_sb": [
+      {
+        "opcode": "BRA",
+        "value": 33667.0
+      },
+      {
+        "opcode": "NANOSLEEP",
+        "value": 17578.0
+      },
+      {
+        "opcode": "SYNCS",
+        "value": 584.0
+      },
+      {
+        "opcode": "LOP3",
+        "value": 4.0
+      },
+      {
+        "opcode": "UIADD3",
+        "value": 3.0
+      },
+      {
+        "opcode": "NOP",
+        "value": 1.0
+      },
+      {
+        "opcode": "LDC",
+        "value": 0.0
+      },
+      {
+        "opcode": "S2R",
+        "value": 0.0
+      },
+      {
+        "opcode": "ELECT",
+        "value": 0.0
+      },
+      {
+        "opcode": "BSSY",
+        "value": 0.0
+      },
+      {
+        "opcode": "SHF",
+        "value": 0.0
+      },
+      {
+        "opcode": "SHFL",
+        "value": 0.0
+      },
+      {
+        "opcode": "ISETP",
+        "value": 0.0
+      },
+      {
+        "opcode": "LDCU",
+        "value": 0.0
+      },
+      {
+        "opcode": "UTMACCTL",
+        "value": 0.0
+      }
+    ]
+  },
+  "top_addresses_by_samples": [
+    {
+      "address": "0x771dbf7a7c00",
+      "sass": "WARPSYNC.COLLECTIVE R0, 0x771dbf7a7c40",
+      "# Samples": 186245.0,
+      "Instructions Executed": 19716.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 185478.0,
+      "stall_math": 0.0,
+      "stall_wait": 6.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a82a0",
+      "sass": "@!P0  SYNCS.PHASECHK.TRANS64 P0, [R0+URZ], R3",
+      "# Samples": 60441.0,
+      "Instructions Executed": 1805652.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 59371.0,
+      "stall_math": 0.0,
+      "stall_wait": 253.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a8220",
+      "sass": "@!P0  SYNCS.PHASECHK.TRANS64 P0, [R0+URZ], R3",
+      "# Samples": 60307.0,
+      "Instructions Executed": 1805582.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 59275.0,
+      "stall_math": 0.0,
+      "stall_wait": 244.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a8320",
+      "sass": "@!P0  SYNCS.PHASECHK.TRANS64 P0, [R0+URZ], R3",
+      "# Samples": 59903.0,
+      "Instructions Executed": 1805283.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 58972.0,
+      "stall_math": 0.0,
+      "stall_wait": 240.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a83a0",
+      "sass": "@!P0  SYNCS.PHASECHK.TRANS64 P0, [R0+URZ], R3",
+      "# Samples": 58648.0,
+      "Instructions Executed": 1804516.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 57658.0,
+      "stall_math": 0.0,
+      "stall_wait": 238.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a44b0",
+      "sass": "OMMA.SF.16864.F32.E2M1.E2M1.UE4M3.4X R28, R80, R24, R28, R75, R3, URZ",
+      "# Samples": 16618.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 12880.0,
+      "stall_wait": 2098.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a4df0",
+      "sass": "FMNMX.FTZ R177, R2, R10, !PT",
+      "# Samples": 16468.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 15278.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a7c10",
+      "sass": "ELECT P3, UR79, PT",
+      "# Samples": 16130.0,
+      "Instructions Executed": 9858.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 3.0,
+      "stall_math": 0.0,
+      "stall_wait": 907.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a43c0",
+      "sass": "OMMA.SF.16864.F32.E2M1.E2M1.UE4M3.4X R16, R80, R20, R4, R75, R2, URZ",
+      "# Samples": 15408.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 13047.0,
+      "stall_wait": 744.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a3d30",
+      "sass": "IMAD.SHL.U32 R0, R106, 0x10, RZ",
+      "# Samples": 15340.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 13465.0,
+      "stall_sleep": 0.0,
+      "stall_math": 391.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a5d40",
+      "sass": "FMUL.FTZ R38, R63, R5",
+      "# Samples": 15303.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 13306.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 888.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a6fe0",
+      "sass": "OMMA.SF.16864.F32.E2M1.E2M1.UE4M3.4X R52, R68, R84, R52, R0, R2, URZ",
+      "# Samples": 15252.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 9259.0,
+      "stall_wait": 4568.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a3cc0",
+      "sass": "USHF.L.U32 UR8, UR22, 0x1f, URZ",
+      "# Samples": 15152.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 44.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a4200",
+      "sass": "OMMA.SF.16864.F32.E2M1.E2M1.UE4M3.4X R56, R76, R14, R56, R73, R0, UR10",
+      "# Samples": 15089.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 12633.0,
+      "stall_wait": 731.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a52d0",
+      "sass": "FADD.FTZ R4, R3, -2.5849626064300537109",
+      "# Samples": 15080.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 8040.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 860.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a6ed0",
+      "sass": "OMMA.SF.16864.F32.E2M1.E2M1.UE4M3.4X R52, R64, R88, RZ, R3, R72, URZ",
+      "# Samples": 14773.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 1.0,
+      "stall_sleep": 0.0,
+      "stall_math": 8405.0,
+      "stall_wait": 4896.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a4270",
+      "sass": "OMMA.SF.16864.F32.E2M1.E2M1.UE4M3.4X R204, R76, R196, R28, R73, R0, UR19",
+      "# Samples": 14322.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 9062.0,
+      "stall_wait": 3144.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a4730",
+      "sass": "OMMA.SF.16864.F32.E2M1.E2M1.UE4M3.4X R52, R76, R60, R52, R73, R3, UR19",
+      "# Samples": 14169.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 9886.0,
+      "stall_wait": 2781.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a6a90",
+      "sass": "OMMA.SF.16864.F32.E2M1.E2M1.UE4M3.4X R20, R68, R36, R20, R0, R40, URZ",
+      "# Samples": 13883.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 10987.0,
+      "stall_wait": 1385.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a6e40",
+      "sass": "OMMA.SF.16864.F32.E2M1.E2M1.UE4M3.4X R48, R68, R86, R48, R0, R53, UR11",
+      "# Samples": 13876.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 10802.0,
+      "stall_wait": 801.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a5790",
+      "sass": "FFMA.FTZ R4, R55, R100, -R3",
+      "# Samples": 13795.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 11786.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 772.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a6f00",
+      "sass": "OMMA.SF.16864.F32.E2M1.E2M1.UE4M3.4X R56, R64, R90, RZ, R3, R72, UR16",
+      "# Samples": 13711.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 4015.0,
+      "stall_wait": 8230.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a4610",
+      "sass": "OMMA.SF.16864.F32.E2M1.E2M1.UE4M3.4X R200, R76, R192, R88, R73, R0, UR19",
+      "# Samples": 13710.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 7829.0,
+      "stall_wait": 4553.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a5770",
+      "sass": "FFMA.FTZ R4, R54, R100, -R3",
+      "# Samples": 13706.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 11699.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 830.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a57f0",
+      "sass": "FFMA.FTZ R4, R22, R100, -R3",
+      "# Samples": 13706.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 11683.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 876.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a5830",
+      "sass": "FFMA.FTZ R4, R6, R100, -R3",
+      "# Samples": 13550.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 11439.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 814.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a40b0",
+      "sass": "OMMA.SF.16864.F32.E2M1.E2M1.UE4M3.4X R28, R80, R24, R28, R75, R2, UR19",
+      "# Samples": 13529.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 11607.0,
+      "stall_wait": 706.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a57d0",
+      "sass": "FFMA.FTZ R4, R191, R100, -R3",
+      "# Samples": 13518.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 11663.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 790.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a57b0",
+      "sass": "FFMA.FTZ R4, R190, R100, -R3",
+      "# Samples": 13484.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 11404.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 929.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a5810",
+      "sass": "FFMA.FTZ R4, R23, R100, -R3",
+      "# Samples": 13121.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 11267.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 918.0,
+      "stall_long_sb": 0.0
+    }
+  ],
+  "top_addresses_by_sleeping": [
+    {
+      "address": "0x771dbf7a7c00",
+      "sass": "WARPSYNC.COLLECTIVE R0, 0x771dbf7a7c40",
+      "# Samples": 186245.0,
+      "Instructions Executed": 19716.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 185478.0,
+      "stall_math": 0.0,
+      "stall_wait": 6.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a82a0",
+      "sass": "@!P0  SYNCS.PHASECHK.TRANS64 P0, [R0+URZ], R3",
+      "# Samples": 60441.0,
+      "Instructions Executed": 1805652.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 59371.0,
+      "stall_math": 0.0,
+      "stall_wait": 253.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a8220",
+      "sass": "@!P0  SYNCS.PHASECHK.TRANS64 P0, [R0+URZ], R3",
+      "# Samples": 60307.0,
+      "Instructions Executed": 1805582.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 59275.0,
+      "stall_math": 0.0,
+      "stall_wait": 244.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a8320",
+      "sass": "@!P0  SYNCS.PHASECHK.TRANS64 P0, [R0+URZ], R3",
+      "# Samples": 59903.0,
+      "Instructions Executed": 1805283.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 58972.0,
+      "stall_math": 0.0,
+      "stall_wait": 240.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a83a0",
+      "sass": "@!P0  SYNCS.PHASECHK.TRANS64 P0, [R0+URZ], R3",
+      "# Samples": 58648.0,
+      "Instructions Executed": 1804516.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 57658.0,
+      "stall_math": 0.0,
+      "stall_wait": 238.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a81a0",
+      "sass": "@!P0  SYNCS.PHASECHK.TRANS64 P0, [R0+URZ], R3",
+      "# Samples": 7544.0,
+      "Instructions Executed": 215872.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 7430.0,
+      "stall_math": 0.0,
+      "stall_wait": 40.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a7e60",
+      "sass": "@!P2  SYNCS.PHASECHK.TRANS64 P2, [R4+URZ+0x18058], R17",
+      "# Samples": 9992.0,
+      "Instructions Executed": 1945501.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 5168.0,
+      "stall_math": 0.0,
+      "stall_wait": 555.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a7df0",
+      "sass": "@!P2  SYNCS.PHASECHK.TRANS64 P2, [R4+URZ+0x18028], R17",
+      "# Samples": 4963.0,
+      "Instructions Executed": 1916692.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 2889.0,
+      "stall_math": 0.0,
+      "stall_wait": 319.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a85a0",
+      "sass": "@!P0  SYNCS.PHASECHK.TRANS64 P0, [R0+URZ+0x18010], R3",
+      "# Samples": 165.0,
+      "Instructions Executed": 12260087.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 143.0,
+      "stall_math": 0.0,
+      "stall_wait": 6.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a8620",
+      "sass": "@!P0  SYNCS.PHASECHK.TRANS64 P0, [R3+URZ+0x18040], R5",
+      "# Samples": 241.0,
+      "Instructions Executed": 2297876.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 143.0,
+      "stall_math": 0.0,
+      "stall_wait": 23.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a7d80",
+      "sass": "@!P2  SYNCS.PHASECHK.TRANS64 P2, [R0+URZ+0x18058], R17",
+      "# Samples": 93.0,
+      "Instructions Executed": 10922.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 55.0,
+      "stall_math": 0.0,
+      "stall_wait": 6.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a8420",
+      "sass": "@!P0  SYNCS.PHASECHK.TRANS64 P0, [R0+URZ+0x18000], R3",
+      "# Samples": 49.0,
+      "Instructions Executed": 862.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 49.0,
+      "stall_math": 0.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a8520",
+      "sass": "@!P2  SYNCS.PHASECHK.TRANS64 P2, [R11+URZ+0x18040], R13",
+      "# Samples": 28.0,
+      "Instructions Executed": 8165.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 25.0,
+      "stall_math": 0.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a84a0",
+      "sass": "@!P0  SYNCS.PHASECHK.TRANS64 P0, [R0+URZ+0x18010], R3",
+      "# Samples": 18.0,
+      "Instructions Executed": 1222.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 17.0,
+      "stall_math": 0.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a7c10",
+      "sass": "ELECT P3, UR79, PT",
+      "# Samples": 16130.0,
+      "Instructions Executed": 9858.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 3.0,
+      "stall_math": 0.0,
+      "stall_wait": 907.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf79d100",
+      "sass": "LDC R1, c[0x0][0x37c]",
+      "# Samples": 4.0,
+      "Instructions Executed": 1320.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf79d110",
+      "sass": "S2R R13, SR_TID.X",
+      "# Samples": 0.0,
+      "Instructions Executed": 1320.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf79d120",
+      "sass": "ELECT P0, URZ, PT",
+      "# Samples": 0.0,
+      "Instructions Executed": 1320.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf79d130",
+      "sass": "BSSY.RECONVERGENT B0, 0x771dbf79d2d0",
+      "# Samples": 0.0,
+      "Instructions Executed": 1320.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf79d140",
+      "sass": "SHF.R.U32.HI R4, RZ, 0x5, R13",
+      "# Samples": 0.0,
+      "Instructions Executed": 1320.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf79d150",
+      "sass": "SHF.R.U32.HI R0, RZ, 0x7, R13",
+      "# Samples": 1.0,
+      "Instructions Executed": 1320.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf79d160",
+      "sass": "SHFL.IDX PT, R3, R4, RZ, 0x1f",
+      "# Samples": 0.0,
+      "Instructions Executed": 1320.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf79d170",
+      "sass": "SHFL.IDX PT, R0, R0, RZ, 0x1f",
+      "# Samples": 0.0,
+      "Instructions Executed": 1320.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf79d180",
+      "sass": "ISETP.NE.OR P0, PT, R3, RZ, !P0",
+      "# Samples": 4.0,
+      "Instructions Executed": 1320.0,
+      "stall_short_sb": 4.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf79d190",
+      "sass": "@P0   BRA 0x771dbf79d2c0",
+      "# Samples": 1.0,
+      "Instructions Executed": 1320.0,
+      "stall_short_sb": 1.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf79d1a0",
+      "sass": "LDCU.64 UR4, c[0x0][0x348]",
+      "# Samples": 0.0,
+      "Instructions Executed": 110.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf79d1b0",
+      "sass": "UIADD3.64 UR18, UPT, UPT, UR4, 0x380, URZ",
+      "# Samples": 2.0,
+      "Instructions Executed": 110.0,
+      "stall_short_sb": 2.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf79d1c0",
+      "sass": "UIADD3.64 UR16, UPT, UPT, UR4, 0x500, URZ",
+      "# Samples": 0.0,
+      "Instructions Executed": 110.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf79d1d0",
+      "sass": "UIADD3.64 UR14, UPT, UPT, UR4, 0x680, URZ",
+      "# Samples": 0.0,
+      "Instructions Executed": 110.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf79d1e0",
+      "sass": "UIADD3.64 UR12, UPT, UPT, UR4, 0x440, URZ",
+      "# Samples": 0.0,
+      "Instructions Executed": 110.0,
+      "stall_short_sb": 0.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    }
+  ],
+  "top_addresses_by_short_scoreboard": [
+    {
+      "address": "0x771dbf7a4df0",
+      "sass": "FMNMX.FTZ R177, R2, R10, !PT",
+      "# Samples": 16468.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 15278.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a3d30",
+      "sass": "IMAD.SHL.U32 R0, R106, 0x10, RZ",
+      "# Samples": 15340.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 13465.0,
+      "stall_sleep": 0.0,
+      "stall_math": 391.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a5d40",
+      "sass": "FMUL.FTZ R38, R63, R5",
+      "# Samples": 15303.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 13306.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 888.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a5790",
+      "sass": "FFMA.FTZ R4, R55, R100, -R3",
+      "# Samples": 13795.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 11786.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 772.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a5770",
+      "sass": "FFMA.FTZ R4, R54, R100, -R3",
+      "# Samples": 13706.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 11699.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 830.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a57f0",
+      "sass": "FFMA.FTZ R4, R22, R100, -R3",
+      "# Samples": 13706.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 11683.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 876.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a57d0",
+      "sass": "FFMA.FTZ R4, R191, R100, -R3",
+      "# Samples": 13518.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 11663.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 790.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a5830",
+      "sass": "FFMA.FTZ R4, R6, R100, -R3",
+      "# Samples": 13550.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 11439.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 814.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a57b0",
+      "sass": "FFMA.FTZ R4, R190, R100, -R3",
+      "# Samples": 13484.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 11404.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 929.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a5810",
+      "sass": "FFMA.FTZ R4, R23, R100, -R3",
+      "# Samples": 13121.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 11267.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 918.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a4d50",
+      "sass": "FMNMX.FTZ R65, R11, R27, !PT",
+      "# Samples": 12499.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 11226.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a5b40",
+      "sass": "FADD.FTZ R5, R6, R41",
+      "# Samples": 11595.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 10747.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 0.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a4fa0",
+      "sass": "FFMA.FTZ R3, R205, R100, -R2",
+      "# Samples": 11480.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 9624.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 750.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a5230",
+      "sass": "FFMA.FTZ R3, R36, R100, -R2",
+      "# Samples": 11558.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 9269.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 1171.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a5160",
+      "sass": "FFMA.FTZ R3, R189, R100, -R2",
+      "# Samples": 11140.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 8789.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 876.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a5140",
+      "sass": "FFMA.FTZ R3, R188, R100, -R2",
+      "# Samples": 12014.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 8700.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 932.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a50e0",
+      "sass": "FFMA.FTZ R3, R41, R100, -R2",
+      "# Samples": 11103.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 8640.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 1330.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a50a0",
+      "sass": "FFMA.FTZ R3, R17, R100, -R2",
+      "# Samples": 10743.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 8616.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 827.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a50c0",
+      "sass": "FFMA.FTZ R3, R40, R100, -R2",
+      "# Samples": 10616.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 8597.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 740.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a5080",
+      "sass": "FFMA.FTZ R3, R16, R100, -R2",
+      "# Samples": 10400.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 8499.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 754.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a5180",
+      "sass": "FFMA.FTZ R3, R20, R100, -R2",
+      "# Samples": 10337.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 8477.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 798.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a5120",
+      "sass": "FFMA.FTZ R3, R53, R100, -R2",
+      "# Samples": 10801.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 8437.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 938.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a51c0",
+      "sass": "FFMA.FTZ R3, R4, R100, -R2",
+      "# Samples": 10542.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 8429.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 921.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a5100",
+      "sass": "FFMA.FTZ R3, R52, R100, -R2",
+      "# Samples": 10263.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 8421.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 725.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a4fe0",
+      "sass": "FFMA.FTZ R3, R29, R100, -R2",
+      "# Samples": 10405.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 8388.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 942.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a5660",
+      "sass": "FFMA.FTZ R4, R202, R100, -R3",
+      "# Samples": 10443.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 8382.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 719.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a5000",
+      "sass": "FFMA.FTZ R3, R48, R100, -R2",
+      "# Samples": 10074.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 8322.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 726.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a5290",
+      "sass": "FFMA.FTZ R3, R26, R100, -R2",
+      "# Samples": 10853.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 8263.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 1078.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a5630",
+      "sass": "FFMA.FTZ R4, R51, R100, -R3",
+      "# Samples": 10696.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 8252.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 751.0,
+      "stall_long_sb": 0.0
+    },
+    {
+      "address": "0x771dbf7a52d0",
+      "sass": "FADD.FTZ R4, R3, -2.5849626064300537109",
+      "# Samples": 15080.0,
+      "Instructions Executed": 14114688.0,
+      "stall_short_sb": 8040.0,
+      "stall_sleep": 0.0,
+      "stall_math": 0.0,
+      "stall_wait": 860.0,
+      "stall_long_sb": 0.0
+    }
+  ]
+}
