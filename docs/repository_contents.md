@@ -7,6 +7,8 @@ individual reports describe their own configurations and limitations.
 
 ## Start here
 
+- [Recent MiniMax-H3 / DraftAttention2 agent handoff](agent_handoff_20261102.md).
+
 - [Research status](../research_state/00_state/current_state.md): authoritative
   current status; older report statements describe their historical stage.
 - [Research index](../research_state/README.md): reports, experiments and decisions.
