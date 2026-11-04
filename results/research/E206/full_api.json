@@ -1,0 +1,112 @@
+{
+  "status": "complete",
+  "capture": "/data1/models/svdquant-wjq/research/20261102/E187_h3_480p_trajectory/race_480p_124f_step0_block25.pt",
+  "grid": [
+    37,
+    15,
+    26
+  ],
+  "prefix_tokens": 1365,
+  "layer": 25,
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "method": "first-step dense INT8; qk_max native vs softmax_mean two-pass Triton, 10% INT8 / 90% NVFP4; reuse fixed route",
+  "arms": {
+    "qk_max": {
+      "cache_bytes": 2585860,
+      "route_hashes": {
+        "block_ids": "291414421ae7d73d715c1e463828280a45194bbd0686e926e13c64163ef8af8b",
+        "packed_offsets": "56f191ae6337f0c5c65597c5af27366ae22a16f4dafcc3974c1161d119093257",
+        "nvfp4_counts": "d0789bca1dacd851cfb8c59508689c1e307530f9513f3f561a544ee6fbfcd8b8",
+        "fp8_counts": "b7bdfa9e2f7125546fde8a7b855053792f9f8ef4bd4f9fa780503ea334f5d30f",
+        "fp16_counts": "812ac52d39d7d13197f0e88581534d95eff4fd2b43b8018d85c891cdfe6f7789"
+      },
+      "first_step_ms": {
+        "mean_ms": 31.88942756652832,
+        "samples_ms": [
+          31.707712173461914,
+          31.704511642456055,
+          31.96499252319336,
+          32.286529541015625,
+          31.78339195251465
+        ]
+      },
+      "reuse_ms": {
+        "mean_ms": 28.288275146484374,
+        "samples_ms": [
+          28.307872772216797,
+          28.26028823852539,
+          28.261791229248047,
+          28.32192039489746,
+          28.28950309753418
+        ]
+      },
+      "capture_incremental_peak_bytes": 1818752512
+    },
+    "softmax_mean": {
+      "cache_bytes": 2585860,
+      "route_hashes": {
+        "block_ids": "829a37cb83152e336e1523ec09e499fd6c236fdb132d77e1792480aa124c9887",
+        "packed_offsets": "56f191ae6337f0c5c65597c5af27366ae22a16f4dafcc3974c1161d119093257",
+        "nvfp4_counts": "28b7eca981bf9d1e3786da6cf7624681e3ba8cb972472c8b20249b45dfd3960d",
+        "fp8_counts": "5b884472930d0857c58fc216b0128fd19b3f935effbe3a827c02c0dd26b33ccd",
+        "fp16_counts": "812ac52d39d7d13197f0e88581534d95eff4fd2b43b8018d85c891cdfe6f7789"
+      },
+      "first_step_ms": {
+        "mean_ms": 91.64586944580078,
+        "samples_ms": [
+          90.8361587524414,
+          91.04838562011719,
+          91.81196594238281,
+          92.27005004882812,
+          92.26278686523438
+        ]
+      },
+      "reuse_ms": {
+        "mean_ms": 28.542176055908204,
+        "samples_ms": [
+          28.56073570251465,
+          28.524320602416992,
+          28.526559829711914,
+          28.538272857666016,
+          28.560991287231445
+        ]
+      },
+      "capture_incremental_peak_bytes": 1819382784
+    },
+    "softmax_mean_fused": {
+      "cache_bytes": 2585860,
+      "route_hashes": {
+        "block_ids": "829a37cb83152e336e1523ec09e499fd6c236fdb132d77e1792480aa124c9887",
+        "packed_offsets": "56f191ae6337f0c5c65597c5af27366ae22a16f4dafcc3974c1161d119093257",
+        "nvfp4_counts": "28b7eca981bf9d1e3786da6cf7624681e3ba8cb972472c8b20249b45dfd3960d",
+        "fp8_counts": "5b884472930d0857c58fc216b0128fd19b3f935effbe3a827c02c0dd26b33ccd",
+        "fp16_counts": "812ac52d39d7d13197f0e88581534d95eff4fd2b43b8018d85c891cdfe6f7789"
+      },
+      "first_step_ms": {
+        "mean_ms": 35.49859848022461,
+        "samples_ms": [
+          35.08710479736328,
+          35.077056884765625,
+          35.345664978027344,
+          35.764766693115234,
+          36.21839904785156
+        ]
+      },
+      "reuse_ms": {
+        "mean_ms": 28.51914863586426,
+        "samples_ms": [
+          28.507200241088867,
+          28.489696502685547,
+          28.519615173339844,
+          28.51580810546875,
+          28.56342315673828
+        ]
+      },
+      "capture_incremental_peak_bytes": 2947292160
+    }
+  },
+  "first_output_nmse_between_modes": 0.0,
+  "reuse_output_nmse_between_modes": 0.0014445869376882446,
+  "fused_first_output_nmse": 6.802833832724398e-11,
+  "fused_reuse_vs_two_pass_nmse": 0.0
+}

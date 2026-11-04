@@ -1,0 +1,53 @@
+{
+  "status": "complete",
+  "input": "E187 race 480x832 124f step0 layer25 Q64, all 56 heads",
+  "baseline": "old route mixed 10% INT8 90% NVFP4, no skip",
+  "candidate": "separate full dense INT8 probability capture overlapped with old-route mixed output; outputs joined",
+  "mixed_output_nmse": 0.0,
+  "route_fields_equal": {
+    "block_ids": true,
+    "fp8_counts": true,
+    "nvfp4_counts": true,
+    "fp16_counts": true
+  },
+  "mixed": {
+    "mean_ms": 25.529507637023926,
+    "samples_ms": [
+      24.958303451538086,
+      24.847999572753906,
+      25.466943740844727,
+      25.640287399291992,
+      25.800064086914062,
+      25.913471221923828,
+      25.803359985351562,
+      25.805631637573242
+    ]
+  },
+  "capture": {
+    "mean_ms": 34.48152017593384,
+    "samples_ms": [
+      34.38304138183594,
+      34.267967224121094,
+      34.16191864013672,
+      34.182464599609375,
+      34.27926254272461,
+      36.23564910888672,
+      34.191585540771484,
+      34.150272369384766
+    ]
+  },
+  "overlap": {
+    "mean_ms": 60.34730815887451,
+    "samples_ms": [
+      60.39632034301758,
+      60.29414367675781,
+      60.253726959228516,
+      60.3454704284668,
+      60.30646514892578,
+      60.36355209350586,
+      60.460289001464844,
+      60.358497619628906
+    ]
+  },
+  "overhead_percent": 136.38257743504772
+}

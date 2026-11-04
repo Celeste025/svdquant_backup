@@ -1,0 +1,79 @@
+{
+  "status": "complete",
+  "rows": [
+    {
+      "policy": "first",
+      "label": "\u539f\u7248\u9996\u6b65 QK map \u590d\u7528",
+      "lpips": 0.3019600824173404,
+      "psnr_db": 17.77869940647443,
+      "time_p025_s": 15.461330584762617,
+      "source": "existing E160/E161/E162; p025 timing from optimized_route_dit"
+    },
+    {
+      "policy": "periodic",
+      "label": "\u539f\u7248\u6bcf 5 \u6b65\u5237\u65b0 QK map",
+      "lpips": 0.2923459143442253,
+      "psnr_db": 17.873173362633786,
+      "time_p025_s": 15.573554139496991,
+      "source": "existing E160/E161/E162; p025 timing from optimized_route_dit"
+    },
+    {
+      "policy": "baseline",
+      "label": "Baseline \u5168 step \u5168\u5c42 DraftMap",
+      "lpips": 0.30284657329543446,
+      "psnr_db": 17.869999069707628,
+      "time_p025_s": 15.313022088503931,
+      "source": "existing E160/E161/E162; p025 timing from optimized_route_dit"
+    },
+    {
+      "policy": "softmax_first",
+      "label": "\u65b0\u589e\u9996\u6b65 softmax \u6982\u7387 map \u590d\u7528",
+      "lpips": 0.26791002962713056,
+      "psnr_db": 18.369727449010945,
+      "time_p025_s": 16.133956860069883,
+      "time_5s_s": 15.994699680159101,
+      "time_10s_s": 38.41993756177253,
+      "source": "E202 new generation; two-pass INT8 probability capture"
+    }
+  ],
+  "cases": [
+    {
+      "prompt_id": 25,
+      "frames": 124,
+      "lpips": 0.2625525918218397,
+      "psnr_db": 16.40600869320552,
+      "dit_step_mean_s": 16.133956860069883,
+      "dit_total_s": 322.6791372013977,
+      "video": "/home/wjq/workspace/svdquant-exp/results/local/E202/first/p025/first/p025_bf16_1344x768_124f_20steps.mp4"
+    },
+    {
+      "prompt_id": 48,
+      "frames": 124,
+      "lpips": 0.2796311003546561,
+      "psnr_db": 18.844457870582033,
+      "dit_step_mean_s": 15.85544250024832,
+      "dit_total_s": 317.10885000496637,
+      "video": "/home/wjq/workspace/svdquant-exp/results/local/E202/first/p048/first/p048_bf16_1344x768_124f_20steps.mp4"
+    },
+    {
+      "prompt_id": 44,
+      "frames": 243,
+      "lpips": 0.21341852684325152,
+      "psnr_db": 21.691339459738206,
+      "dit_step_mean_s": 38.240871245868036,
+      "dit_total_s": 764.8174249173608,
+      "video": "/home/wjq/workspace/svdquant-exp/results/local/E202/first/p044/first/p044_bf16_1344x768_243f_20steps.mp4"
+    },
+    {
+      "prompt_id": 7,
+      "frames": 243,
+      "lpips": 0.31603789948877486,
+      "psnr_db": 16.537103772518027,
+      "dit_step_mean_s": 38.59900387767702,
+      "dit_total_s": 771.9800775535405,
+      "video": "/home/wjq/workspace/svdquant-exp/results/local/E202/first/p007/first/p007_bf16_1344x768_243f_20steps.mp4"
+    }
+  ],
+  "timing_note": "20-step synchronized DiT wall-clock, model loading/decode excluded; p025 single-run values, 5s/10s new-mode means are reported separately",
+  "old_data": "unchanged E160/E161/E162 reports; no new baseline/periodic results used"
+}

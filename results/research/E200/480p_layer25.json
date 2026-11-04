@@ -1,0 +1,71 @@
+{
+  "status": "complete",
+  "capture": "/data1/models/svdquant-wjq/research/20261102/E187_h3_480p_trajectory/race_480p_124f_step0_block25.pt",
+  "grid": [
+    37,
+    15,
+    26
+  ],
+  "prefix_tokens": 1365,
+  "layer": 25,
+  "gpu": "NVIDIA RTX PRO 5000 72GB Blackwell",
+  "method": "first-step dense INT8; qk_max native vs softmax_mean two-pass Triton, 10% INT8 / 90% NVFP4; reuse fixed route",
+  "arms": {
+    "qk_max": {
+      "cache_bytes": 2585860,
+      "route_hashes": {
+        "block_ids": "291414421ae7d73d715c1e463828280a45194bbd0686e926e13c64163ef8af8b",
+        "packed_offsets": "56f191ae6337f0c5c65597c5af27366ae22a16f4dafcc3974c1161d119093257",
+        "nvfp4_counts": "d0789bca1dacd851cfb8c59508689c1e307530f9513f3f561a544ee6fbfcd8b8",
+        "fp8_counts": "b7bdfa9e2f7125546fde8a7b855053792f9f8ef4bd4f9fa780503ea334f5d30f",
+        "fp16_counts": "812ac52d39d7d13197f0e88581534d95eff4fd2b43b8018d85c891cdfe6f7789"
+      },
+      "first_step_ms": {
+        "mean_ms": 31.792426427205402,
+        "samples_ms": [
+          31.77449607849121,
+          31.78223991394043,
+          31.82054328918457
+        ]
+      },
+      "reuse_ms": {
+        "mean_ms": 28.25222396850586,
+        "samples_ms": [
+          28.273344039916992,
+          28.255775451660156,
+          28.22755241394043
+        ]
+      },
+      "peak_allocated_bytes": 2975070208
+    },
+    "softmax_mean": {
+      "cache_bytes": 2585860,
+      "route_hashes": {
+        "block_ids": "829a37cb83152e336e1523ec09e499fd6c236fdb132d77e1792480aa124c9887",
+        "packed_offsets": "56f191ae6337f0c5c65597c5af27366ae22a16f4dafcc3974c1161d119093257",
+        "nvfp4_counts": "28b7eca981bf9d1e3786da6cf7624681e3ba8cb972472c8b20249b45dfd3960d",
+        "fp8_counts": "5b884472930d0857c58fc216b0128fd19b3f935effbe3a827c02c0dd26b33ccd",
+        "fp16_counts": "812ac52d39d7d13197f0e88581534d95eff4fd2b43b8018d85c891cdfe6f7789"
+      },
+      "first_step_ms": {
+        "mean_ms": 90.84689076741536,
+        "samples_ms": [
+          90.47907257080078,
+          90.73241424560547,
+          91.32918548583984
+        ]
+      },
+      "reuse_ms": {
+        "mean_ms": 28.419850667317707,
+        "samples_ms": [
+          28.414688110351562,
+          28.43177604675293,
+          28.413087844848633
+        ]
+      },
+      "peak_allocated_bytes": 3431281152
+    }
+  },
+  "first_output_nmse_between_modes": 0.0,
+  "reuse_output_nmse_between_modes": 0.0014445869376882446
+}

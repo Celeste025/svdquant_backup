@@ -27,8 +27,8 @@ git -C third_party/anemoi-code apply ../patches/anemoi-local.patch
 Use the corresponding URL, commit and patch from the table for the other
 checkouts. The patches are snapshots of source worktrees, including new source,
 documentation and tests; CUDA build outputs and Python bytecode are excluded.
-They were verified with `git apply --reverse --check` against the source
-worktrees on 2026-11-02. A missing remote commit, changed dependency or toolchain
+The Anemoi patch was verified with `git apply --reverse --check` against its source
+worktree on 2026-11-04; the other patches were verified on 2026-11-02. A missing remote commit, changed dependency or toolchain
 may still require additional setup. The separate `third_party/sage3_h3_maskfix`
 source is already tracked directly by the outer repository; its machine-specific
 `csrc/cutlass` symlink and build temporaries are ignored.

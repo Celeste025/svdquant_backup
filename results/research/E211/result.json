@@ -1,0 +1,940 @@
+{
+  "status": "complete",
+  "input": "E187 step0 layer25 480p 124 frames full56 heads",
+  "budget": "0% skipped /90% NVFP4/10% INT8; first capture remains dense INT8",
+  "arms": {
+    "prob_Q128K128": {
+      "first": {
+        "mean_ms": 35.32563543319702,
+        "samples_ms": [
+          34.601566314697266,
+          34.64944076538086,
+          34.96870422363281,
+          35.35152053833008,
+          35.685150146484375,
+          35.77052688598633,
+          35.733280181884766,
+          35.84489440917969
+        ]
+      },
+      "later": {
+        "mean_ms": 28.518388032913208,
+        "samples_ms": [
+          28.58460807800293,
+          28.49001693725586,
+          28.51932716369629,
+          28.478656768798828,
+          28.489055633544922,
+          28.538816452026367,
+          28.49839973449707,
+          28.5482234954834
+        ]
+      },
+      "cache_bytes": 2585860,
+      "int8_tiles_per_head": 2190,
+      "nvfp4_tiles_per_head": 19714,
+      "map_shape": [
+        148,
+        148
+      ],
+      "later_kernel_profile": [
+        {
+          "name": "mixed_attention::prepare_h3_sm120_operands",
+          "calls": 1,
+          "cuda_total_us": 3913.4420000000027
+        },
+        {
+          "name": "void (anonymous namespace)::prepare_h3_qk_microscaling_kernel<__nv_bfloat16, 128, false, false, 128, 1>(__nv_bfloat16 const*, __nv_bfloat16 const*, long const*, bool const*, int const*, float const*, float const*, __half*, __half*, __half*, __half*, __half*, __half*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, signed char*, float*, signed char*, float*, signed char*, float*, bool, bool, bool, bool, long, long, long, long, long, long, long, long, long, long, long, long)",
+          "calls": 1,
+          "cuda_total_us": 2410.689000000002
+        },
+        {
+          "name": "aten::arange",
+          "calls": 2,
+          "cuda_total_us": 3.263999999995576
+        },
+        {
+          "name": "aten::mul",
+          "calls": 1,
+          "cuda_total_us": 1.5360000000000582
+        },
+        {
+          "name": "aten::rsub",
+          "calls": 1,
+          "cuda_total_us": 1.504000000000815
+        },
+        {
+          "name": "aten::sub",
+          "calls": 2,
+          "cuda_total_us": 2.815999999998894
+        },
+        {
+          "name": "aten::clamp",
+          "calls": 1,
+          "cuda_total_us": 1.3120000000017171
+        },
+        {
+          "name": "aten::clamp_max",
+          "calls": 1,
+          "cuda_total_us": 1.5679999999993015
+        },
+        {
+          "name": "aten::clamp_min",
+          "calls": 1,
+          "cuda_total_us": 1.5360000000000582
+        },
+        {
+          "name": "aten::stack",
+          "calls": 1,
+          "cuda_total_us": 1.3760000000002037
+        },
+        {
+          "name": "aten::cat",
+          "calls": 2,
+          "cuda_total_us": 2.815999999998894
+        },
+        {
+          "name": "mixed_attention::sm120_q128_prefix_int8_attention_forward",
+          "calls": 1,
+          "cuda_total_us": 2109.2810000000027
+        },
+        {
+          "name": "mixed_attention::sm120_h3_materialize_packed_route",
+          "calls": 1,
+          "cuda_total_us": 26.623999999999796
+        },
+        {
+          "name": "mixed_attention::sm120_q128_nv_int8_fp16_attention_forward",
+          "calls": 1,
+          "cuda_total_us": 22427.982
+        },
+        {
+          "name": "mixed_attention::assemble_h3_k64_output",
+          "calls": 1,
+          "cuda_total_us": 437.72899999999936
+        },
+        {
+          "name": "void (anonymous namespace)::prepare_h3_v_microscaling_kernel<__nv_bfloat16, 128>(__nv_bfloat16 const*, long const*, bool const*, float const*, __half*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, float*, bool, bool, bool, long, long, long, long, long, long, long)",
+          "calls": 1,
+          "cuda_total_us": 1054.5930000000008
+        },
+        {
+          "name": "void (anonymous namespace)::prepare_h3_int8_v_from_partials_kernel<128>(__half const*, float const*, __nv_fp8_e4m3*, float*, long, long, long, long)",
+          "calls": 1,
+          "cuda_total_us": 448.15999999999985
+        },
+        {
+          "name": "void (anonymous namespace)::elementwise_kernel_with_index<int, at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}>(int, at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}, function_traits<at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}>::result_type*)",
+          "calls": 1,
+          "cuda_total_us": 1.631999999997788
+        },
+        {
+          "name": "void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFunctor<int, int, int, at::native::binary_internal::MulFunctor<int> >, std::array<char*, 2ul> >(int, at::native::AUnaryFunctor<int, int, int, at::native::binary_internal::MulFunctor<int> >, std::array<char*, 2ul>)",
+          "calls": 1,
+          "cuda_total_us": 1.5360000000000582
+        },
+        {
+          "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnOther_add<int>, std::array<char*, 2ul> >(int, at::native::CUDAFunctorOnOther_add<int>, std::array<char*, 2ul>)",
+          "calls": 1,
+          "cuda_total_us": 1.504000000000815
+        },
+        {
+          "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul> >(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul>)",
+          "calls": 3,
+          "cuda_total_us": 4.416000000001077
+        },
+        {
+          "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnSelf_add<int>, std::array<char*, 2ul> >(int, at::native::CUDAFunctorOnSelf_add<int>, std::array<char*, 2ul>)",
+          "calls": 1,
+          "cuda_total_us": 1.3119999999980791
+        },
+        {
+          "name": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_alignedK_contig<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 3, 128, 1, 16>(at::native::(anonymous namespace)::OpaqueType<4u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+          "calls": 1,
+          "cuda_total_us": 1.3760000000002037
+        },
+        {
+          "name": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_alignedK_contig<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 2, 128, 1, 16>(at::native::(anonymous namespace)::OpaqueType<4u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+          "calls": 1,
+          "cuda_total_us": 1.4399999999986903
+        },
+        {
+          "name": "void (anonymous namespace)::materialize_packed_route_kernel<short>(short const*, int const*, int const*, int const*, int const*, int*, int*, int*, int*, int, int, int, int, int, bool, bool)",
+          "calls": 1,
+          "cuda_total_us": 26.623999999999796
+        },
+        {
+          "name": "void mpa::attention::mixed_attention_sm120_q128_int8_dense_kernel<128u, true, false, false>(signed char*, signed char*, __nv_fp8_e4m3*, __half*, __half*, __half*, __half*, __half*, int*, int*, int*, int*, float*, float*, float*, int const*, float*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, float)",
+          "calls": 1,
+          "cuda_total_us": 2109.2810000000027
+        },
+        {
+          "name": "void mpa::attention::mixed_attention_sm120_q128_nv_int8_fp16_kernel<128u, true, false, false>(signed char*, signed char*, __nv_fp8_e4m3*, __half*, __half*, __half*, __half*, __half*, int*, int*, int*, int*, float*, float*, float*, signed char*, signed char*, __nv_fp8_e4m3*, unsigned char*, unsigned char*, unsigned char*, int*, float const*, float const*, float const*, int const*, float*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, float)",
+          "calls": 1,
+          "cuda_total_us": 22427.982
+        },
+        {
+          "name": "void (anonymous namespace)::assemble_h3_k64_output_kernel<__half, __nv_bfloat16, true>(__half const*, __half const*, long const*, __nv_bfloat16*, long, long, long, long, long, long, long, long, long, int const*, int const*, int const*, long, int)",
+          "calls": 1,
+          "cuda_total_us": 437.72899999999936
+        }
+      ]
+    },
+    "prob_Q128K64": {
+      "first": {
+        "mean_ms": 36.49498796463013,
+        "samples_ms": [
+          35.64633560180664,
+          35.5458869934082,
+          36.38857650756836,
+          36.729984283447266,
+          36.903297424316406,
+          36.941471099853516,
+          36.842689514160156,
+          36.96166229248047
+        ]
+      },
+      "later": {
+        "mean_ms": 28.560443878173828,
+        "samples_ms": [
+          28.591583251953125,
+          28.499711990356445,
+          28.542495727539062,
+          28.493696212768555,
+          28.57689666748047,
+          28.566879272460938,
+          28.66102409362793,
+          28.5512638092041
+        ]
+      },
+      "cache_bytes": 5039108,
+      "int8_tiles_per_head": 4381,
+      "nvfp4_tiles_per_head": 39427,
+      "map_shape": [
+        148,
+        296
+      ],
+      "later_kernel_profile": [
+        {
+          "name": "mixed_attention::prepare_h3_sm120_operands",
+          "calls": 1,
+          "cuda_total_us": 3900.544
+        },
+        {
+          "name": "void (anonymous namespace)::prepare_h3_qk_microscaling_kernel<__nv_bfloat16, 128, false, false, 128, 1>(__nv_bfloat16 const*, __nv_bfloat16 const*, long const*, bool const*, int const*, float const*, float const*, __half*, __half*, __half*, __half*, __half*, __half*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, signed char*, float*, signed char*, float*, signed char*, float*, bool, bool, bool, bool, long, long, long, long, long, long, long, long, long, long, long, long)",
+          "calls": 1,
+          "cuda_total_us": 2404.48
+        },
+        {
+          "name": "aten::arange",
+          "calls": 2,
+          "cuda_total_us": 2.8800000000010186
+        },
+        {
+          "name": "aten::mul",
+          "calls": 1,
+          "cuda_total_us": 1.5689999999995052
+        },
+        {
+          "name": "aten::rsub",
+          "calls": 1,
+          "cuda_total_us": 1.4719999999997526
+        },
+        {
+          "name": "aten::sub",
+          "calls": 2,
+          "cuda_total_us": 2.7830000000003565
+        },
+        {
+          "name": "aten::clamp",
+          "calls": 1,
+          "cuda_total_us": 1.3119999999998981
+        },
+        {
+          "name": "aten::clamp_max",
+          "calls": 1,
+          "cuda_total_us": 1.5670000000000073
+        },
+        {
+          "name": "aten::clamp_min",
+          "calls": 1,
+          "cuda_total_us": 1.568000000000211
+        },
+        {
+          "name": "aten::stack",
+          "calls": 1,
+          "cuda_total_us": 1.3450000000002547
+        },
+        {
+          "name": "aten::cat",
+          "calls": 2,
+          "cuda_total_us": 2.785000000000764
+        },
+        {
+          "name": "mixed_attention::sm120_q128_prefix_int8_attention_forward",
+          "calls": 1,
+          "cuda_total_us": 2204.96
+        },
+        {
+          "name": "mixed_attention::sm120_h3_materialize_packed_route",
+          "calls": 1,
+          "cuda_total_us": 32.447000000000116
+        },
+        {
+          "name": "mixed_attention::sm120_q128_nv_int8_fp16_attention_forward",
+          "calls": 1,
+          "cuda_total_us": 22504.319000000003
+        },
+        {
+          "name": "mixed_attention::assemble_h3_k64_output",
+          "calls": 1,
+          "cuda_total_us": 431.487000000001
+        },
+        {
+          "name": "void (anonymous namespace)::prepare_h3_v_microscaling_kernel<__nv_bfloat16, 128>(__nv_bfloat16 const*, long const*, bool const*, float const*, __half*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, float*, bool, bool, bool, long, long, long, long, long, long, long)",
+          "calls": 1,
+          "cuda_total_us": 1050.4320000000002
+        },
+        {
+          "name": "void (anonymous namespace)::prepare_h3_int8_v_from_partials_kernel<128>(__half const*, float const*, __nv_fp8_e4m3*, float*, long, long, long, long)",
+          "calls": 1,
+          "cuda_total_us": 445.6319999999996
+        },
+        {
+          "name": "void (anonymous namespace)::elementwise_kernel_with_index<int, at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}>(int, at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}, function_traits<at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}>::result_type*)",
+          "calls": 1,
+          "cuda_total_us": 1.4400000000005093
+        },
+        {
+          "name": "void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFunctor<int, int, int, at::native::binary_internal::MulFunctor<int> >, std::array<char*, 2ul> >(int, at::native::AUnaryFunctor<int, int, int, at::native::binary_internal::MulFunctor<int> >, std::array<char*, 2ul>)",
+          "calls": 1,
+          "cuda_total_us": 1.5689999999995052
+        },
+        {
+          "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnOther_add<int>, std::array<char*, 2ul> >(int, at::native::CUDAFunctorOnOther_add<int>, std::array<char*, 2ul>)",
+          "calls": 1,
+          "cuda_total_us": 1.4719999999997526
+        },
+        {
+          "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul> >(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul>)",
+          "calls": 3,
+          "cuda_total_us": 4.447000000000116
+        },
+        {
+          "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnSelf_add<int>, std::array<char*, 2ul> >(int, at::native::CUDAFunctorOnSelf_add<int>, std::array<char*, 2ul>)",
+          "calls": 1,
+          "cuda_total_us": 1.311000000000604
+        },
+        {
+          "name": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_alignedK_contig<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 3, 128, 1, 16>(at::native::(anonymous namespace)::OpaqueType<4u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+          "calls": 1,
+          "cuda_total_us": 1.3450000000002547
+        },
+        {
+          "name": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_alignedK_contig<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 2, 128, 1, 16>(at::native::(anonymous namespace)::OpaqueType<4u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+          "calls": 1,
+          "cuda_total_us": 1.4400000000005093
+        },
+        {
+          "name": "void (anonymous namespace)::materialize_packed_route_kernel<short>(short const*, int const*, int const*, int const*, int const*, int*, int*, int*, int*, int, int, int, int, int, bool, bool)",
+          "calls": 1,
+          "cuda_total_us": 32.447000000000116
+        },
+        {
+          "name": "void mpa::attention::mixed_attention_sm120_q128_int8_dense_kernel<128u, true, false, false>(signed char*, signed char*, __nv_fp8_e4m3*, __half*, __half*, __half*, __half*, __half*, int*, int*, int*, int*, float*, float*, float*, int const*, float*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, float)",
+          "calls": 1,
+          "cuda_total_us": 2204.96
+        },
+        {
+          "name": "void mpa::attention::mixed_attention_sm120_q128_nv_int8_fp16_kernel<128u, true, false, false>(signed char*, signed char*, __nv_fp8_e4m3*, __half*, __half*, __half*, __half*, __half*, int*, int*, int*, int*, float*, float*, float*, signed char*, signed char*, __nv_fp8_e4m3*, unsigned char*, unsigned char*, unsigned char*, int*, float const*, float const*, float const*, int const*, float*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, float)",
+          "calls": 1,
+          "cuda_total_us": 22504.319000000003
+        },
+        {
+          "name": "void (anonymous namespace)::assemble_h3_k64_output_kernel<__half, __nv_bfloat16, true>(__half const*, __half const*, long const*, __nv_bfloat16*, long, long, long, long, long, long, long, long, long, int const*, int const*, int const*, long, int)",
+          "calls": 1,
+          "cuda_total_us": 431.487000000001
+        }
+      ]
+    },
+    "prob_Q64K64": {
+      "first": {
+        "mean_ms": 34.53966045379639,
+        "samples_ms": [
+          34.10710525512695,
+          34.282752990722656,
+          34.613311767578125,
+          34.426273345947266,
+          34.67619323730469,
+          34.758880615234375,
+          34.74457550048828,
+          34.70819091796875
+        ]
+      },
+      "later": {
+        "mean_ms": 26.241403579711914,
+        "samples_ms": [
+          26.12895965576172,
+          26.178943634033203,
+          26.203327178955078,
+          26.251583099365234,
+          26.29862403869629,
+          26.243200302124023,
+          26.257471084594727,
+          26.36911964416504
+        ]
+      },
+      "cache_bytes": 7745140,
+      "int8_tiles_per_head": 6708,
+      "nvfp4_tiles_per_head": 60373,
+      "map_shape": [
+        259,
+        259
+      ],
+      "later_kernel_profile": [
+        {
+          "name": "mixed_attention::prepare_h3_sm120_operands",
+          "calls": 1,
+          "cuda_total_us": 3968.894
+        },
+        {
+          "name": "void (anonymous namespace)::prepare_h3_qk_microscaling_kernel<__nv_bfloat16, 64, false, false, 128, 0>(__nv_bfloat16 const*, __nv_bfloat16 const*, long const*, bool const*, int const*, float const*, float const*, __half*, __half*, __half*, __half*, __half*, __half*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, signed char*, float*, signed char*, float*, signed char*, float*, bool, bool, bool, bool, long, long, long, long, long, long, long, long, long, long, long, long)",
+          "calls": 1,
+          "cuda_total_us": 2612.831
+        },
+        {
+          "name": "void (anonymous namespace)::prepare_h3_v_microscaling_kernel<__nv_bfloat16, 128>(__nv_bfloat16 const*, long const*, bool const*, float const*, __half*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, float*, bool, bool, bool, long, long, long, long, long, long, long)",
+          "calls": 1,
+          "cuda_total_us": 963.4550000000004
+        },
+        {
+          "name": "aten::arange",
+          "calls": 2,
+          "cuda_total_us": 3.135999999998603
+        },
+        {
+          "name": "aten::mul",
+          "calls": 1,
+          "cuda_total_us": 1.5360000000000582
+        },
+        {
+          "name": "aten::rsub",
+          "calls": 1,
+          "cuda_total_us": 1.5039999999999054
+        },
+        {
+          "name": "aten::sub",
+          "calls": 1,
+          "cuda_total_us": 1.5039999999999054
+        },
+        {
+          "name": "aten::clamp",
+          "calls": 1,
+          "cuda_total_us": 1.3119999999998981
+        },
+        {
+          "name": "aten::cat",
+          "calls": 1,
+          "cuda_total_us": 1.5679999999993015
+        },
+        {
+          "name": "mixed_attention::sm120_q64_prefix_int8_attention_forward",
+          "calls": 1,
+          "cuda_total_us": 2252.799
+        },
+        {
+          "name": "mixed_attention::sm120_h3_materialize_packed_route",
+          "calls": 1,
+          "cuda_total_us": 63.80799999999999
+        },
+        {
+          "name": "mixed_attention::sm120_q64_nv_int8_fp16_attention_forward",
+          "calls": 1,
+          "cuda_total_us": 19675.862
+        },
+        {
+          "name": "mixed_attention::assemble_h3_k64_output",
+          "calls": 1,
+          "cuda_total_us": 434.5600000000013
+        },
+        {
+          "name": "void (anonymous namespace)::prepare_h3_int8_v_from_partials_kernel<128>(__half const*, float const*, __nv_fp8_e4m3*, float*, long, long, long, long)",
+          "calls": 1,
+          "cuda_total_us": 392.60799999999927
+        },
+        {
+          "name": "void (anonymous namespace)::elementwise_kernel_with_index<int, at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}>(int, at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}, function_traits<at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}>::result_type*)",
+          "calls": 1,
+          "cuda_total_us": 1.5679999999993015
+        },
+        {
+          "name": "void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFunctor<int, int, int, at::native::binary_internal::MulFunctor<int> >, std::array<char*, 2ul> >(int, at::native::AUnaryFunctor<int, int, int, at::native::binary_internal::MulFunctor<int> >, std::array<char*, 2ul>)",
+          "calls": 1,
+          "cuda_total_us": 1.5360000000000582
+        },
+        {
+          "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnOther_add<int>, std::array<char*, 2ul> >(int, at::native::CUDAFunctorOnOther_add<int>, std::array<char*, 2ul>)",
+          "calls": 1,
+          "cuda_total_us": 1.5039999999999054
+        },
+        {
+          "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul> >(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul>)",
+          "calls": 1,
+          "cuda_total_us": 1.3119999999998981
+        },
+        {
+          "name": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_alignedK_contig<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 2, 128, 1, 16>(at::native::(anonymous namespace)::OpaqueType<4u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+          "calls": 1,
+          "cuda_total_us": 1.5679999999993015
+        },
+        {
+          "name": "void mpa::attention::mixed_attention_sm120_q64_int8_dense_kernel<128u, true, false, false>(signed char*, signed char*, __nv_fp8_e4m3*, __half*, __half*, __half*, __half*, __half*, int*, int*, int*, int*, float*, float*, float*, int const*, float*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, float)",
+          "calls": 1,
+          "cuda_total_us": 2252.799
+        },
+        {
+          "name": "void (anonymous namespace)::materialize_packed_route_kernel<short>(short const*, int const*, int const*, int const*, int const*, int*, int*, int*, int*, int, int, int, int, int, bool, bool)",
+          "calls": 1,
+          "cuda_total_us": 63.80799999999999
+        },
+        {
+          "name": "void mpa::attention::mixed_attention_sm120_q64_nv_int8_fp16_kernel<128u, true, false, false>(signed char*, signed char*, __nv_fp8_e4m3*, __half*, __half*, __half*, __half*, __half*, int*, int*, int*, int*, float*, float*, float*, signed char*, signed char*, __nv_fp8_e4m3*, unsigned char*, unsigned char*, unsigned char*, int*, float const*, float const*, float const*, int const*, float*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, float)",
+          "calls": 1,
+          "cuda_total_us": 19675.862
+        },
+        {
+          "name": "void (anonymous namespace)::assemble_h3_k64_output_kernel<__half, __nv_bfloat16, true>(__half const*, __half const*, long const*, __nv_bfloat16*, long, long, long, long, long, long, long, long, long, int const*, int const*, int const*, long, int)",
+          "calls": 1,
+          "cuda_total_us": 434.5600000000013
+        }
+      ]
+    },
+    "original_Q128K128": {
+      "first": {
+        "mean_ms": 29.785923719406128,
+        "samples_ms": [
+          29.771839141845703,
+          29.776031494140625,
+          29.7609920501709,
+          29.779327392578125,
+          29.76652717590332,
+          29.88982391357422,
+          29.785856246948242,
+          29.75699234008789
+        ]
+      },
+      "later": {
+        "mean_ms": 29.865283727645874,
+        "samples_ms": [
+          29.784927368164062,
+          29.879776000976562,
+          29.817951202392578,
+          29.82316780090332,
+          29.810335159301758,
+          30.000831604003906,
+          29.991872787475586,
+          29.81340789794922
+        ]
+      },
+      "cache_bytes": 0,
+      "later_kernel_profile": [
+        {
+          "name": "mixed_attention::prepare_h3_sm120_operands",
+          "calls": 1,
+          "cuda_total_us": 5202.146000000001
+        },
+        {
+          "name": "void (anonymous namespace)::prepare_h3_qk_microscaling_kernel<__nv_bfloat16, 128, true, true, 128, 0>(__nv_bfloat16 const*, __nv_bfloat16 const*, long const*, bool const*, int const*, float const*, float const*, __half*, __half*, __half*, __half*, __half*, __half*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, signed char*, float*, signed char*, float*, signed char*, float*, bool, bool, bool, bool, long, long, long, long, long, long, long, long, long, long, long, long)",
+          "calls": 1,
+          "cuda_total_us": 3708.13
+        },
+        {
+          "name": "aten::arange",
+          "calls": 2,
+          "cuda_total_us": 2.8800000000010186
+        },
+        {
+          "name": "aten::mul",
+          "calls": 1,
+          "cuda_total_us": 1.6320000000005166
+        },
+        {
+          "name": "aten::rsub",
+          "calls": 1,
+          "cuda_total_us": 1.5030000000006112
+        },
+        {
+          "name": "aten::sub",
+          "calls": 2,
+          "cuda_total_us": 2.8150000000005093
+        },
+        {
+          "name": "aten::clamp",
+          "calls": 1,
+          "cuda_total_us": 1.2799999999997453
+        },
+        {
+          "name": "aten::clamp_max",
+          "calls": 1,
+          "cuda_total_us": 1.537000000000262
+        },
+        {
+          "name": "aten::clamp_min",
+          "calls": 1,
+          "cuda_total_us": 1.6000000000003638
+        },
+        {
+          "name": "aten::stack",
+          "calls": 1,
+          "cuda_total_us": 1.3109999999996944
+        },
+        {
+          "name": "aten::cat",
+          "calls": 2,
+          "cuda_total_us": 2.7509999999992942
+        },
+        {
+          "name": "mixed_attention::sm120_q128_prefix_int8_attention_forward",
+          "calls": 1,
+          "cuda_total_us": 2129.5370000000003
+        },
+        {
+          "name": "mixed_attention::sm120_h3_draft_probability",
+          "calls": 1,
+          "cuda_total_us": 152.5769999999984
+        },
+        {
+          "name": "mixed_attention::sm120_h3_route_precision",
+          "calls": 1,
+          "cuda_total_us": 198.20700000000215
+        },
+        {
+          "name": "mixed_attention::sm120_h3_materialize_route",
+          "calls": 1,
+          "cuda_total_us": 18.751000000000204
+        },
+        {
+          "name": "mixed_attention::sm120_q128_nv_int8_fp16_attention_forward",
+          "calls": 1,
+          "cuda_total_us": 21980.843999999997
+        },
+        {
+          "name": "mixed_attention::assemble_h3_k64_output",
+          "calls": 1,
+          "cuda_total_us": 435.8080000000009
+        },
+        {
+          "name": "void (anonymous namespace)::prepare_h3_v_microscaling_kernel<__nv_bfloat16, 128>(__nv_bfloat16 const*, long const*, bool const*, float const*, __half*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, float*, bool, bool, bool, long, long, long, long, long, long, long)",
+          "calls": 1,
+          "cuda_total_us": 1051.8400000000001
+        },
+        {
+          "name": "void (anonymous namespace)::prepare_h3_int8_v_from_partials_kernel<128>(__half const*, float const*, __nv_fp8_e4m3*, float*, long, long, long, long)",
+          "calls": 1,
+          "cuda_total_us": 442.1760000000004
+        },
+        {
+          "name": "void (anonymous namespace)::elementwise_kernel_with_index<int, at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}>(int, at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}, function_traits<at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}>::result_type*)",
+          "calls": 1,
+          "cuda_total_us": 1.4400000000005093
+        },
+        {
+          "name": "void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFunctor<int, int, int, at::native::binary_internal::MulFunctor<int> >, std::array<char*, 2ul> >(int, at::native::AUnaryFunctor<int, int, int, at::native::binary_internal::MulFunctor<int> >, std::array<char*, 2ul>)",
+          "calls": 1,
+          "cuda_total_us": 1.6320000000005166
+        },
+        {
+          "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnOther_add<int>, std::array<char*, 2ul> >(int, at::native::CUDAFunctorOnOther_add<int>, std::array<char*, 2ul>)",
+          "calls": 1,
+          "cuda_total_us": 1.5030000000006112
+        },
+        {
+          "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul> >(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul>)",
+          "calls": 3,
+          "cuda_total_us": 4.417000000000371
+        },
+        {
+          "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnSelf_add<int>, std::array<char*, 2ul> >(int, at::native::CUDAFunctorOnSelf_add<int>, std::array<char*, 2ul>)",
+          "calls": 1,
+          "cuda_total_us": 1.3119999999998981
+        },
+        {
+          "name": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_alignedK_contig<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 3, 128, 1, 16>(at::native::(anonymous namespace)::OpaqueType<4u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+          "calls": 1,
+          "cuda_total_us": 1.3109999999996944
+        },
+        {
+          "name": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_alignedK_contig<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 2, 128, 1, 16>(at::native::(anonymous namespace)::OpaqueType<4u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+          "calls": 1,
+          "cuda_total_us": 1.4399999999995998
+        },
+        {
+          "name": "void cutlass::Kernel2<cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_128x1_tn_align2>(cutlass_80_wmma_tensorop_f16_s161616gemm_f16_32x32_128x1_tn_align2::Params)",
+          "calls": 2,
+          "cuda_total_us": 55.16899999999896
+        },
+        {
+          "name": "void mpa::attention::mixed_attention_sm120_q128_int8_dense_kernel<128u, true, false, false>(signed char*, signed char*, __nv_fp8_e4m3*, __half*, __half*, __half*, __half*, __half*, int*, int*, int*, int*, float*, float*, float*, int const*, float*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, float)",
+          "calls": 1,
+          "cuda_total_us": 2129.5370000000003
+        },
+        {
+          "name": "(anonymous namespace)::row_softmax_fusion_fp16_kernel(__half*, __half const*, long, long, float)",
+          "calls": 1,
+          "cuda_total_us": 97.40799999999945
+        },
+        {
+          "name": "(anonymous namespace)::initialize_composite_sort_kernel(__half const*, unsigned int*, int*, int, int)",
+          "calls": 1,
+          "cuda_total_us": 14.368000000000393
+        },
+        {
+          "name": "Memset (Device)",
+          "calls": 5,
+          "cuda_total_us": 5.0240000000012515
+        },
+        {
+          "name": "void cub::CUB_200700_1200_NS::DeviceRadixSortHistogramKernel<cub::CUB_200700_1200_NS::DeviceRadixSortPolicy<unsigned int, int, unsigned int>::Policy900, false, unsigned int, unsigned int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t>(unsigned int*, unsigned int const*, unsigned int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t)",
+          "calls": 1,
+          "cuda_total_us": 9.951999999999316
+        },
+        {
+          "name": "void cub::CUB_200700_1200_NS::DeviceRadixSortExclusiveSumKernel<cub::CUB_200700_1200_NS::DeviceRadixSortPolicy<unsigned int, int, unsigned int>::Policy900, unsigned int>(unsigned int*)",
+          "calls": 1,
+          "cuda_total_us": 1.4719999999997526
+        },
+        {
+          "name": "void cub::CUB_200700_1200_NS::DeviceRadixSortOnesweepKernel<cub::CUB_200700_1200_NS::DeviceRadixSortPolicy<unsigned int, int, unsigned int>::Policy900, false, unsigned int, int, unsigned int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t>(int*, int*, unsigned int*, unsigned int const*, unsigned int*, unsigned int const*, int*, int const*, int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t)",
+          "calls": 3,
+          "cuda_total_us": 93.79200000000128
+        },
+        {
+          "name": "(anonymous namespace)::scatter_precision_kernel(int const*, unsigned char*, int, int, int, int, int)",
+          "calls": 1,
+          "cuda_total_us": 40.0630000000001
+        },
+        {
+          "name": "(anonymous namespace)::pack_active_rows_kernel(unsigned char const*, int*, int*, int*, int*, int, int)",
+          "calls": 1,
+          "cuda_total_us": 33.53600000000006
+        },
+        {
+          "name": "(anonymous namespace)::materialize_physical_route_kernel(int const*, int const*, int const*, int const*, int*, int*, int*, int*, int, int, int, int, int, int, bool, bool)",
+          "calls": 1,
+          "cuda_total_us": 18.751000000000204
+        },
+        {
+          "name": "void mpa::attention::mixed_attention_sm120_q128_nv_int8_fp16_kernel<128u, true, false, false>(signed char*, signed char*, __nv_fp8_e4m3*, __half*, __half*, __half*, __half*, __half*, int*, int*, int*, int*, float*, float*, float*, signed char*, signed char*, __nv_fp8_e4m3*, unsigned char*, unsigned char*, unsigned char*, int*, float const*, float const*, float const*, int const*, float*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, float)",
+          "calls": 1,
+          "cuda_total_us": 21980.843999999997
+        },
+        {
+          "name": "void (anonymous namespace)::assemble_h3_k64_output_kernel<__half, __nv_bfloat16, true>(__half const*, __half const*, long const*, __nv_bfloat16*, long, long, long, long, long, long, long, long, long, int const*, int const*, int const*, long, int)",
+          "calls": 1,
+          "cuda_total_us": 435.8080000000009
+        }
+      ]
+    },
+    "original_Q64K64": {
+      "first": {
+        "mean_ms": 26.85056781768799,
+        "samples_ms": [
+          26.5947208404541,
+          26.72867202758789,
+          26.870208740234375,
+          26.910015106201172,
+          26.87798309326172,
+          26.87887954711914,
+          26.968063354492188,
+          26.97599983215332
+        ]
+      },
+      "later": {
+        "mean_ms": 27.10490393638611,
+        "samples_ms": [
+          27.07676887512207,
+          27.084575653076172,
+          27.13372802734375,
+          27.08348846435547,
+          27.08483123779297,
+          27.143648147583008,
+          27.08255958557129,
+          27.14963150024414
+        ]
+      },
+      "cache_bytes": 0,
+      "later_kernel_profile": [
+        {
+          "name": "mixed_attention::prepare_h3_sm120_operands",
+          "calls": 1,
+          "cuda_total_us": 4486.245000000001
+        },
+        {
+          "name": "void (anonymous namespace)::prepare_h3_qk_microscaling_kernel<__nv_bfloat16, 64, true, true, 128, 0>(__nv_bfloat16 const*, __nv_bfloat16 const*, long const*, bool const*, int const*, float const*, float const*, __half*, __half*, __half*, __half*, __half*, __half*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, signed char*, float*, signed char*, float*, signed char*, float*, bool, bool, bool, bool, long, long, long, long, long, long, long, long, long, long, long, long)",
+          "calls": 1,
+          "cuda_total_us": 3124.3560000000007
+        },
+        {
+          "name": "aten::arange",
+          "calls": 2,
+          "cuda_total_us": 3.007999999999811
+        },
+        {
+          "name": "aten::mul",
+          "calls": 1,
+          "cuda_total_us": 1.568000000000211
+        },
+        {
+          "name": "aten::rsub",
+          "calls": 1,
+          "cuda_total_us": 1.5360000000000582
+        },
+        {
+          "name": "aten::sub",
+          "calls": 1,
+          "cuda_total_us": 1.5360000000000582
+        },
+        {
+          "name": "aten::clamp",
+          "calls": 1,
+          "cuda_total_us": 1.3119999999998981
+        },
+        {
+          "name": "aten::cat",
+          "calls": 1,
+          "cuda_total_us": 1.4720000000006621
+        },
+        {
+          "name": "mixed_attention::sm120_q64_prefix_int8_attention_forward",
+          "calls": 1,
+          "cuda_total_us": 2246.8190000000004
+        },
+        {
+          "name": "mixed_attention::sm120_h3_draft_probability",
+          "calls": 1,
+          "cuda_total_us": 170.3040000000019
+        },
+        {
+          "name": "mixed_attention::sm120_h3_route_precision",
+          "calls": 1,
+          "cuda_total_us": 363.13800000000265
+        },
+        {
+          "name": "mixed_attention::sm120_h3_materialize_route",
+          "calls": 1,
+          "cuda_total_us": 27.711999999999534
+        },
+        {
+          "name": "mixed_attention::sm120_q64_nv_int8_fp16_attention_forward",
+          "calls": 1,
+          "cuda_total_us": 19453.147
+        },
+        {
+          "name": "mixed_attention::assemble_h3_k64_output",
+          "calls": 1,
+          "cuda_total_us": 432.7999999999993
+        },
+        {
+          "name": "void (anonymous namespace)::prepare_h3_v_microscaling_kernel<__nv_bfloat16, 128>(__nv_bfloat16 const*, long const*, bool const*, float const*, __half*, unsigned char*, unsigned char*, unsigned char*, unsigned char*, float*, bool, bool, bool, long, long, long, long, long, long, long)",
+          "calls": 1,
+          "cuda_total_us": 965.7609999999995
+        },
+        {
+          "name": "void (anonymous namespace)::prepare_h3_int8_v_from_partials_kernel<128>(__half const*, float const*, __nv_fp8_e4m3*, float*, long, long, long, long)",
+          "calls": 1,
+          "cuda_total_us": 396.1280000000006
+        },
+        {
+          "name": "void (anonymous namespace)::elementwise_kernel_with_index<int, at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}>(int, at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}, function_traits<at::native::arange_cuda_out(c10::Scalar const&, c10::Scalar const&, c10::Scalar const&, at::Tensor&)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(long)#1}>::result_type*)",
+          "calls": 1,
+          "cuda_total_us": 1.5039999999999054
+        },
+        {
+          "name": "void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFunctor<int, int, int, at::native::binary_internal::MulFunctor<int> >, std::array<char*, 2ul> >(int, at::native::AUnaryFunctor<int, int, int, at::native::binary_internal::MulFunctor<int> >, std::array<char*, 2ul>)",
+          "calls": 1,
+          "cuda_total_us": 1.568000000000211
+        },
+        {
+          "name": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnOther_add<int>, std::array<char*, 2ul> >(int, at::native::CUDAFunctorOnOther_add<int>, std::array<char*, 2ul>)",
+          "calls": 1,
+          "cuda_total_us": 1.5360000000000582
+        },
+        {
+          "name": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul> >(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#3}::operator()() const::{lambda(int)#1}, std::array<char*, 2ul>)",
+          "calls": 1,
+          "cuda_total_us": 1.3119999999998981
+        },
+        {
+          "name": "void at::native::(anonymous namespace)::CatArrayBatchedCopy_alignedK_contig<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 2, 128, 1, 16>(at::native::(anonymous namespace)::OpaqueType<4u>*, at::native::(anonymous namespace)::CatArrInputTensorMetadata<at::native::(anonymous namespace)::OpaqueType<4u>, unsigned int, 128, 1>, at::native::(anonymous namespace)::TensorSizeStride<unsigned int, 4u>, int, unsigned int)",
+          "calls": 1,
+          "cuda_total_us": 1.4720000000006621
+        },
+        {
+          "name": "void mpa::attention::mixed_attention_sm120_q64_int8_dense_kernel<128u, true, false, false>(signed char*, signed char*, __nv_fp8_e4m3*, __half*, __half*, __half*, __half*, __half*, int*, int*, int*, int*, float*, float*, float*, int const*, float*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, float)",
+          "calls": 1,
+          "cuda_total_us": 2246.8190000000004
+        },
+        {
+          "name": "void cutlass::Kernel2<cutlass_75_tensorop_f16_s1688gemm_f16_64x64_tn_align1>(cutlass_75_tensorop_f16_s1688gemm_f16_64x64_tn_align1::Params)",
+          "calls": 2,
+          "cuda_total_us": 100.54400000000169
+        },
+        {
+          "name": "(anonymous namespace)::row_softmax_fusion_fp16_kernel(__half*, __half const*, long, long, float)",
+          "calls": 1,
+          "cuda_total_us": 69.76000000000022
+        },
+        {
+          "name": "(anonymous namespace)::initialize_composite_sort_kernel(__half const*, unsigned int*, int*, int, int)",
+          "calls": 1,
+          "cuda_total_us": 21.183999999999287
+        },
+        {
+          "name": "Memset (Device)",
+          "calls": 5,
+          "cuda_total_us": 4.960000000000946
+        },
+        {
+          "name": "void cub::CUB_200700_1200_NS::DeviceRadixSortHistogramKernel<cub::CUB_200700_1200_NS::DeviceRadixSortPolicy<unsigned int, int, unsigned int>::Policy900, false, unsigned int, unsigned int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t>(unsigned int*, unsigned int const*, unsigned int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t)",
+          "calls": 1,
+          "cuda_total_us": 14.432000000000698
+        },
+        {
+          "name": "void cub::CUB_200700_1200_NS::DeviceRadixSortExclusiveSumKernel<cub::CUB_200700_1200_NS::DeviceRadixSortPolicy<unsigned int, int, unsigned int>::Policy900, unsigned int>(unsigned int*)",
+          "calls": 1,
+          "cuda_total_us": 1.6000000000003638
+        },
+        {
+          "name": "void cub::CUB_200700_1200_NS::DeviceRadixSortOnesweepKernel<cub::CUB_200700_1200_NS::DeviceRadixSortPolicy<unsigned int, int, unsigned int>::Policy900, false, unsigned int, int, unsigned int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t>(int*, int*, unsigned int*, unsigned int const*, unsigned int*, unsigned int const*, int*, int const*, int, int, int, cub::CUB_200700_1200_NS::detail::identity_decomposer_t)",
+          "calls": 3,
+          "cuda_total_us": 138.04800000000068
+        },
+        {
+          "name": "(anonymous namespace)::scatter_precision_kernel(int const*, unsigned char*, int, int, int, int, int)",
+          "calls": 1,
+          "cuda_total_us": 117.72900000000118
+        },
+        {
+          "name": "(anonymous namespace)::pack_active_rows_kernel(unsigned char const*, int*, int*, int*, int*, int, int)",
+          "calls": 1,
+          "cuda_total_us": 65.18499999999949
+        },
+        {
+          "name": "(anonymous namespace)::materialize_physical_route_kernel(int const*, int const*, int const*, int const*, int*, int*, int*, int*, int, int, int, int, int, int, bool, bool)",
+          "calls": 1,
+          "cuda_total_us": 27.711999999999534
+        },
+        {
+          "name": "void mpa::attention::mixed_attention_sm120_q64_nv_int8_fp16_kernel<128u, true, false, false>(signed char*, signed char*, __nv_fp8_e4m3*, __half*, __half*, __half*, __half*, __half*, int*, int*, int*, int*, float*, float*, float*, signed char*, signed char*, __nv_fp8_e4m3*, unsigned char*, unsigned char*, unsigned char*, int*, float const*, float const*, float const*, int const*, float*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, float)",
+          "calls": 1,
+          "cuda_total_us": 19453.147
+        },
+        {
+          "name": "void (anonymous namespace)::assemble_h3_k64_output_kernel<__half, __nv_bfloat16, true>(__half const*, __half const*, long const*, __nv_bfloat16*, long, long, long, long, long, long, long, long, long, int const*, int const*, int const*, long, int)",
+          "calls": 1,
+          "cuda_total_us": 432.7999999999993
+        }
+      ]
+    }
+  }
+}

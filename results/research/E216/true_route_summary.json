@@ -1,0 +1,115 @@
+{
+  "status": "complete",
+  "source": "E214 context BF16 dense p16 seed 20026, layer25, steps 0-19, true FP32 softmax-mean maps from prior Q64 capture; video tiles only, no anchors, no skip",
+  "definitions": "for each video query row or key column: both means incident to at least one INT8 and one NVFP4 tile; only means video interactions exclusively that type. Prefix INT8 is excluded: every video query also needs INT8 when prefix is INT8.",
+  "rates": {
+    "0.1": {
+      "Q": {
+        "both_fraction": {
+          "mean": 0.9999276061776061,
+          "min": 0.9993794815223387,
+          "max": 1.0
+        },
+        "int8_only_fraction": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "nvfp4_only_fraction": {
+          "mean": 7.23938223938224e-05,
+          "min": 0.0,
+          "max": 0.0006205184776613348
+        }
+      },
+      "KV": {
+        "both_fraction": {
+          "mean": 0.9270925261996691,
+          "min": 0.8878929950358522,
+          "max": 0.9566326530612245
+        },
+        "int8_only_fraction": {
+          "mean": 0.0009480143408714837,
+          "min": 0.0,
+          "max": 0.0018615554329840043
+        },
+        "nvfp4_only_fraction": {
+          "mean": 0.07195945945945945,
+          "min": 0.041505791505791506,
+          "max": 0.11210700496414783
+        }
+      }
+    },
+    "0.2": {
+      "Q": {
+        "both_fraction": {
+          "mean": 0.9999965526751241,
+          "min": 0.9999310535024821,
+          "max": 1.0
+        },
+        "int8_only_fraction": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "nvfp4_only_fraction": {
+          "mean": 3.4473248758963046e-06,
+          "min": 0.0,
+          "max": 6.89464975179261e-05
+        }
+      },
+      "KV": {
+        "both_fraction": {
+          "mean": 0.9707218698290128,
+          "min": 0.9460148924434638,
+          "max": 0.9865554329840044
+        },
+        "int8_only_fraction": {
+          "mean": 0.0029853833425261996,
+          "min": 0.0011031439602868175,
+          "max": 0.004688361831218974
+        },
+        "nvfp4_only_fraction": {
+          "mean": 0.026292746828461118,
+          "min": 0.011238279095421952,
+          "max": 0.05157198014340871
+        }
+      }
+    },
+    "0.3": {
+      "Q": {
+        "both_fraction": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "int8_only_fraction": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "nvfp4_only_fraction": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "KV": {
+        "both_fraction": {
+          "mean": 0.9842733039161612,
+          "min": 0.9700082735797021,
+          "max": 0.992553778268064
+        },
+        "int8_only_fraction": {
+          "mean": 0.0058156370656370655,
+          "min": 0.0035852178709321566,
+          "max": 0.007790954219525648
+        },
+        "nvfp4_only_fraction": {
+          "mean": 0.009911059018201874,
+          "min": 0.003861003861003861,
+          "max": 0.024613899613899613
+        }
+      }
+    }
+  }
+}

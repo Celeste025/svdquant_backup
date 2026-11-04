@@ -1,5 +1,8 @@
 # Experiment log
 
+- E214: full four-prompt head/layer/step completeness experiment, plan in decision_value_plan_E214.md; execution and findings recorded in results/research/E214.
+- E214 complete: four prompts × 20 steps × 50 layers × 56 heads; strict reversal 13,932/224,000 head observations, layer-aggregate reversal 75/4,000; see results/research/E214/README.md for definitions, effect sizes and limitations.
+
 ## E142 — completed 2026-10-31
 
 Three real BF16-trajectory QKV captures,race s0b0/race s10b25/clap s10b49;

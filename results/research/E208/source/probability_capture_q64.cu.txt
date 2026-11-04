@@ -1,0 +1,32 @@
+#include <torch/extension.h>
+#include <ATen/cuda/CUDAContext.h>
+#include <c10/cuda/CUDAGuard.h>
+#define MPA_CTA_Q 64
+#define MPA_WARP_Q 16
+#define MPA_K64_BLOCK_MODE 1
+#define MPA_MIDDLE_INT8 1
+#define MPA_DENSE_SEQUENTIAL 1
+#define MPA_CAPTURE_IMPORTANCE 2
+#define MPA_STORE_LSE 1
+#define MPA_ATTENTION_KERNEL_ENTRY probability_capture_q64_kernel
+#define MPA_ATTENTION_LAUNCH_ENTRY launch_probability_capture_q64
+#include "q64_attention.cuh"
+
+std::vector<torch::Tensor> capture(torch::Tensor q, torch::Tensor qs,
+    torch::Tensor k, torch::Tensor ks, torch::Tensor v, torch::Tensor vs,
+    torch::Tensor valid) {
+  TORCH_CHECK(q.is_cuda() && q.is_contiguous() && k.is_contiguous() && q.size(-1)==128 && q.size(2)%64==0,"requires packed CUDA D128/Q128");
+  c10::cuda::CUDAGuard guard(q.device());
+  auto output=torch::empty(q.sizes(),q.options().dtype(torch::kFloat16));
+  auto local=torch::empty({q.size(0),q.size(1),q.size(2)/64,k.size(2)/64,64},q.options().dtype(torch::kFloat32));
+  auto lse=torch::empty({q.size(0),q.size(1),q.size(2)},q.options().dtype(torch::kFloat32));
+  launch_probability_capture_q64<128,true,false,false>(
+    q.data_ptr<int8_t>(),k.data_ptr<int8_t>(),reinterpret_cast<__nv_fp8_e4m3*>(v.data_ptr()),
+    nullptr,nullptr,nullptr,nullptr,reinterpret_cast<half*>(output.data_ptr<at::Half>()),
+    nullptr,nullptr,nullptr,nullptr,qs.data_ptr<float>(),ks.data_ptr<float>(),vs.data_ptr<float>(),
+    valid.data_ptr<int32_t>(),lse.data_ptr<float>(),0,reinterpret_cast<half*>(local.data_ptr<float>()),
+    q.size(0),q.size(2),k.size(2),v.size(3),q.size(1),k.size(1),1.f/sqrtf(128.f),at::cuda::getCurrentCUDAStream());
+  C10_CUDA_KERNEL_LAUNCH_CHECK();
+  return {output,local,lse};
+}
+PYBIND11_MODULE(TORCH_EXTENSION_NAME,m) {m.def("capture",&capture);}
